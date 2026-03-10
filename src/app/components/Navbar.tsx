@@ -80,6 +80,7 @@ export default function Navbar() {
           <Link href="/testimonials" className="nav-link">Testimonials</Link>
           <Link href="/contact" className="nav-link">Contact</Link>
           <Link href="/about" className="nav-link">About Us</Link>
+          <Link href="/blog" className="nav-link">Blog</Link>
         </nav>
 
         <div className="nav-actions-desktop" style={{
@@ -109,6 +110,7 @@ export default function Navbar() {
           <Link href="/testimonials" className="mobile-nav-link" onClick={closeMenu}>Testimonials</Link>
           <Link href="/contact" className="mobile-nav-link" onClick={closeMenu}>Contact</Link>
           <Link href="/about" className="mobile-nav-link" onClick={closeMenu}>About Us</Link>
+          <Link href="/blog" className="mobile-nav-link" onClick={closeMenu}>Blog</Link>
         </nav>
         
         <div className="mobile-nav-actions">

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Home, Users, LogOut, MessageSquare, Briefcase, TrendingUp, Activity, Clock, CheckCircle, Star, Layers, MapPin, Phone, Mail, ShieldCheck } from 'lucide-react';
+import { Home, Users, LogOut, MessageSquare, Briefcase, TrendingUp, Activity, Clock, CheckCircle, Star, Layers, MapPin, Phone, Mail, ShieldCheck, BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -234,6 +234,25 @@ export default function AdminPage() {
                         >
                             <Star size={22} color="rgba(255,255,255,0.6)" /> 
                             <span style={{ fontWeight: 500, color: 'rgba(255,255,255,0.7)' }}>Testimonials</span>
+                        </motion.div>
+                    </Link>
+                    <Link href="/admin/blog" style={{ textDecoration: 'none' }}>
+                        <motion.div 
+                            whileHover={{ x: 5, background: 'rgba(255, 255, 255, 0.05)' }}
+                            className="nav-item" 
+                            style={{ 
+                                display: 'flex', 
+                                alignItems: 'center', 
+                                gap: '1rem', 
+                                padding: '1rem 1.2rem', 
+                                borderRadius: '12px', 
+                                color: '#1e293b', 
+                                cursor: 'pointer', 
+                                transition: 'all 0.3s'
+                            }}
+                        >
+                            <BookOpen size={22} color="rgba(255,255,255,0.6)" /> 
+                            <span style={{ fontWeight: 500, color: 'rgba(255,255,255,0.7)' }}>Blog & Resources</span>
                         </motion.div>
                     </Link>
                 </nav>
