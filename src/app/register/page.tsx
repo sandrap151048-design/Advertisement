@@ -23,14 +23,14 @@ const staggerContainer: Variants = {
 const inputStyle = {
     background: 'rgba(124, 58, 237, 0.03)',
     border: '2px solid var(--color-card-border)',
-    padding: '1.2rem',
-    paddingLeft: '3.5rem',
+    padding: 'clamp(1rem, 2vw, 1.2rem)',
+    paddingLeft: 'clamp(3rem, 6vw, 3.5rem)',
     borderRadius: '12px',
     color: 'var(--color-text-main)' as const,
     width: '100%',
     outline: 'none',
     fontFamily: 'var(--font-body)',
-    fontSize: '1rem',
+    fontSize: 'clamp(0.9rem, 2vw, 1rem)',
     transition: 'all 0.3s'
 };
 
@@ -91,7 +91,7 @@ export default function RegisterPage() {
                     style={{ 
                         maxWidth: '600px', 
                         margin: '0 auto', 
-                        padding: '3rem', 
+                        padding: 'clamp(1.5rem, 4vw, 3rem)', 
                         borderRadius: '32px', 
                         border: '1px solid var(--color-card-border)', 
                         background: 'rgba(255, 255, 255, 0.98)', 
