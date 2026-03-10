@@ -83,12 +83,20 @@ export default function BlogPage() {
     ];
 
     useEffect(() => {
-        // Simulate API call
-        setTimeout(() => {
-            setPosts(samplePosts);
-            setLoading(false);
-        }, 1000);
+        fetchPosts();
     }, []);
+
+    const fetchPosts = async () => {
+        try {
+            const response = await fetch('/api/blog?status=published');
+            const data = await response.json();
+            setPosts(data);
+        } catch (error) {
+            console.error('Error fetching posts:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const filteredPosts = selectedCategory === 'All' 
         ? posts 
@@ -377,83 +385,154 @@ export default function BlogPage() {
 
             {/* Newsletter Signup */}
             <section className="section container">
-                <motion.div 
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="glass-card"
-                    style={{
-                        background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))',
-                        padding: '4rem',
-                        textAlign: 'center',
-                        color: 'white'
-                    }}
-                >
-                    <h2 style={{ 
-                        fontSize: '2.5rem', 
-                        fontWeight: 800, 
-                        marginBottom: '1rem',
-                        color: 'white'
-                    }}>
-                        Stay Updated
-                    </h2>
-                    <p style={{ 
-                        fontSize: '1.1rem', 
-                        marginBottom: '2rem',
-                        opacity: 0.9,
-                        maxWidth: '600px',
-                        margin: '0 auto 2rem'
-                    }}>
-                        Subscribe to our newsletter and get the latest insights, trends, and updates delivered to your inbox.
-                    </p>
-                    <div style={{ 
-                        display: 'flex', 
-                        gap: '1rem', 
-                        maxWidth: '400px', 
-                        margin: '0 auto',
-                        flexWrap: 'wrap',
-                        justifyContent: 'center'
-                    }}>
-                        <input 
-                            type="email" 
-                            placeholder="Enter your email"
-                            style={{
-                                flex: 1,
-                                minWidth: '250px',
-                                padding: '1rem 1.5rem',
-                                borderRadius: '50px',
-                                border: 'none',
-                                fontSize: '1rem',
-                                outline: 'none'
-                            }}
-                        />
-                        <button 
-                            className="btn"
-                            style={{
-                                background: 'white',
-                                color: 'var(--color-primary)',
-                                padding: '1rem 2rem',
-                                borderRadius: '50px',
-                                border: 'none',
-                                fontWeight: 700,
-                                cursor: 'pointer',
-                                transition: 'all 0.3s ease'
-                            }}
-                            onMouseOver={(e) => {
-                                e.currentTarget.style.transform = 'translateY(-2px)';
-                                e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.2)';
-                            }}
-                            onMouseOut={(e) => {
-                                e.currentTarget.style.transform = 'translateY(0)';
-                                e.currentTarget.style.boxShadow = 'none';
-                            }}
-                        >
-                            Subscribe
-                        </button>
-                    </div>
-                </motion.div>
+                <NewsletterSignup />
             </section>
         </>
+    );
+}
+
+// Newsletter Signup Component
+function NewsletterSignup() {
+    const [email, setEmail] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setMessage(null);
+
+        try {
+            const response = await fetch('/api/newsletter', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                setMessage({ type: 'success', text: data.message });
+                setEmail('');
+            } else {
+                setMessage({ type: 'error', text: data.error });
+            }
+        } catch (error) {
+            setMessage({ type: 'error', text: 'Failed to subscribe. Please try again.' });
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    return (
+        <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="glass-card"
+            style={{
+                background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))',
+                padding: '4rem',
+                textAlign: 'center',
+                color: 'white'
+            }}
+        >
+            <h2 style={{ 
+                fontSize: '2.5rem', 
+                fontWeight: 800, 
+                marginBottom: '1rem',
+                color: 'white'
+            }}>
+                Stay Updated
+            </h2>
+            <p style={{ 
+                fontSize: '1.1rem', 
+                marginBottom: '2rem',
+                opacity: 0.9,
+                maxWidth: '600px',
+                margin: '0 auto 2rem'
+            }}>
+                Subscribe to our newsletter and get the latest insights, trends, and updates delivered to your inbox.
+            </p>
+
+            {message && (
+                <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    style={{
+                        padding: '1rem',
+                        borderRadius: '8px',
+                        marginBottom: '1.5rem',
+                        background: message.type === 'success' ? 'rgba(34, 197, 94, 0.2)' : 'rgba(239, 68, 68, 0.2)',
+                        border: `1px solid ${message.type === 'success' ? '#22c55e' : '#ef4444'}`,
+                        color: message.type === 'success' ? '#22c55e' : '#ef4444',
+                        fontWeight: 600
+                    }}
+                >
+                    {message.text}
+                </motion.div>
+            )}
+
+            <form onSubmit={handleSubmit} style={{ 
+                display: 'flex', 
+                gap: '1rem', 
+                maxWidth: '400px', 
+                margin: '0 auto',
+                flexWrap: 'wrap',
+                justifyContent: 'center'
+            }}>
+                <input 
+                    type="email" 
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    disabled={isSubmitting}
+                    style={{
+                        flex: 1,
+                        minWidth: '250px',
+                        padding: '1rem 1.5rem',
+                        borderRadius: '50px',
+                        border: 'none',
+                        fontSize: '1rem',
+                        outline: 'none',
+                        opacity: isSubmitting ? 0.7 : 1
+                    }}
+                />
+                <button 
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="btn"
+                    style={{
+                        background: 'white',
+                        color: 'var(--color-primary)',
+                        padding: '1rem 2rem',
+                        borderRadius: '50px',
+                        border: 'none',
+                        fontWeight: 700,
+                        cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                        transition: 'all 0.3s ease',
+                        opacity: isSubmitting ? 0.7 : 1
+                    }}
+                    onMouseOver={(e) => {
+                        if (!isSubmitting) {
+                            e.currentTarget.style.transform = 'translateY(-2px)';
+                            e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.2)';
+                        }
+                    }}
+                    onMouseOut={(e) => {
+                        if (!isSubmitting) {
+                            e.currentTarget.style.transform = 'translateY(0)';
+                            e.currentTarget.style.boxShadow = 'none';
+                        }
+                    }}
+                >
+                    {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+                </button>
+            </form>
+        </motion.div>
     );
 }

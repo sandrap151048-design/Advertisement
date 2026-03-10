@@ -101,13 +101,25 @@ export default function BlogPostPage() {
     ];
 
     useEffect(() => {
-        // Simulate API call
-        setTimeout(() => {
-            const foundPost = samplePosts.find(p => p.id === params.id);
-            setPost(foundPost || null);
-            setLoading(false);
-        }, 1000);
+        fetchPost();
     }, [params.id]);
+
+    const fetchPost = async () => {
+        try {
+            const response = await fetch(`/api/blog?id=${params.id}`);
+            if (response.ok) {
+                const data = await response.json();
+                setPost(data);
+            } else {
+                setPost(null);
+            }
+        } catch (error) {
+            console.error('Error fetching post:', error);
+            setPost(null);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     if (loading) {
         return (

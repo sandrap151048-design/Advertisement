@@ -255,6 +255,25 @@ export default function AdminPage() {
                             <span style={{ fontWeight: 500, color: 'rgba(255,255,255,0.7)' }}>Blog & Resources</span>
                         </motion.div>
                     </Link>
+                    <Link href="/admin/newsletter" style={{ textDecoration: 'none' }}>
+                        <motion.div 
+                            whileHover={{ x: 5, background: 'rgba(255, 255, 255, 0.05)' }}
+                            className="nav-item" 
+                            style={{ 
+                                display: 'flex', 
+                                alignItems: 'center', 
+                                gap: '1rem', 
+                                padding: '1rem 1.2rem', 
+                                borderRadius: '12px', 
+                                color: '#1e293b', 
+                                cursor: 'pointer', 
+                                transition: 'all 0.3s'
+                            }}
+                        >
+                            <Mail size={22} color="rgba(255,255,255,0.6)" /> 
+                            <span style={{ fontWeight: 500, color: 'rgba(255,255,255,0.7)' }}>Newsletter</span>
+                        </motion.div>
+                    </Link>
                 </nav>
 
                 <motion.div 

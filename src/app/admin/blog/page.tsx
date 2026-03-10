@@ -70,12 +70,20 @@ export default function AdminBlogPage() {
     ];
 
     useEffect(() => {
-        // Simulate API call
-        setTimeout(() => {
-            setPosts(samplePosts);
-            setLoading(false);
-        }, 1000);
+        fetchPosts();
     }, []);
+
+    const fetchPosts = async () => {
+        try {
+            const response = await fetch('/api/blog');
+            const data = await response.json();
+            setPosts(data);
+        } catch (error) {
+            console.error('Error fetching posts:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const filteredPosts = posts.filter(post => {
         const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -86,16 +94,52 @@ export default function AdminBlogPage() {
         return matchesSearch && matchesCategory && matchesStatus;
     });
 
-    const handleDeletePost = (id: string) => {
+    const handleDeletePost = async (id: string) => {
         if (confirm('Are you sure you want to delete this blog post?')) {
-            setPosts(posts.filter(post => post.id !== id));
+            try {
+                const response = await fetch(`/api/blog?id=${id}`, {
+                    method: 'DELETE',
+                });
+
+                if (response.ok) {
+                    setPosts(posts.filter(post => post.id !== id));
+                } else {
+                    alert('Failed to delete post');
+                }
+            } catch (error) {
+                console.error('Error deleting post:', error);
+                alert('Failed to delete post');
+            }
         }
     };
 
-    const handleStatusChange = (id: string, newStatus: 'published' | 'draft') => {
-        setPosts(posts.map(post => 
-            post.id === id ? { ...post, status: newStatus } : post
-        ));
+    const handleStatusChange = async (id: string, newStatus: 'published' | 'draft') => {
+        try {
+            const post = posts.find(p => p.id === id);
+            if (!post) return;
+
+            const response = await fetch(`/api/blog?id=${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ...post,
+                    status: newStatus
+                }),
+            });
+
+            if (response.ok) {
+                setPosts(posts.map(post => 
+                    post.id === id ? { ...post, status: newStatus } : post
+                ));
+            } else {
+                alert('Failed to update post status');
+            }
+        } catch (error) {
+            console.error('Error updating post status:', error);
+            alert('Failed to update post status');
+        }
     };
 
     return (
@@ -446,69 +490,327 @@ export default function AdminBlogPage() {
                 )}
             </div>
 
-            {/* Create/Edit Modal would go here */}
+            {/* Create/Edit Modal */}
             {(showCreateModal || editingPost) && (
-                <div style={{
-                    position: 'fixed',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background: 'rgba(0, 0, 0, 0.5)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    zIndex: 1000,
-                    padding: '1rem'
-                }}>
-                    <div style={{
-                        background: 'white',
-                        borderRadius: '12px',
-                        padding: '2rem',
-                        maxWidth: '600px',
-                        width: '100%',
-                        maxHeight: '80vh',
-                        overflow: 'auto'
-                    }}>
-                        <h2 style={{ marginBottom: '1.5rem', color: 'var(--color-text-main)' }}>
-                            {editingPost ? 'Edit Article' : 'Create New Article'}
-                        </h2>
-                        <p style={{ color: 'var(--color-text-muted)', marginBottom: '2rem' }}>
-                            This is a placeholder for the blog editor. In a full implementation, this would include:
-                        </p>
-                        <ul style={{ color: 'var(--color-text-muted)', marginBottom: '2rem' }}>
-                            <li>Rich text editor for content</li>
-                            <li>Image upload functionality</li>
-                            <li>SEO meta fields</li>
-                            <li>Category and tag management</li>
-                            <li>Preview functionality</li>
-                        </ul>
-                        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end' }}>
-                            <button 
-                                onClick={() => {
-                                    setShowCreateModal(false);
-                                    setEditingPost(null);
-                                }}
+                <BlogEditor
+                    post={editingPost}
+                    onClose={() => {
+                        setShowCreateModal(false);
+                        setEditingPost(null);
+                    }}
+                    onSave={async (post) => {
+                        try {
+                            if (editingPost) {
+                                // Update existing post
+                                const response = await fetch(`/api/blog?id=${post.id}`, {
+                                    method: 'PUT',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify(post),
+                                });
+
+                                if (response.ok) {
+                                    const updatedPost = await response.json();
+                                    setPosts(posts.map(p => p.id === post.id ? updatedPost : p));
+                                } else {
+                                    alert('Failed to update post');
+                                    return;
+                                }
+                            } else {
+                                // Add new post
+                                const response = await fetch('/api/blog', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify(post),
+                                });
+
+                                if (response.ok) {
+                                    const newPost = await response.json();
+                                    setPosts([newPost, ...posts]);
+                                } else {
+                                    alert('Failed to create post');
+                                    return;
+                                }
+                            }
+                            setShowCreateModal(false);
+                            setEditingPost(null);
+                        } catch (error) {
+                            console.error('Error saving post:', error);
+                            alert('Failed to save post');
+                        }
+                    }}
+                />
+            )}
+        </div>
+    );
+}
+
+// Blog Editor Component
+interface BlogEditorProps {
+    post: BlogPost | null;
+    onClose: () => void;
+    onSave: (post: BlogPost) => void;
+}
+
+function BlogEditor({ post, onClose, onSave }: BlogEditorProps) {
+    const [formData, setFormData] = useState({
+        title: post?.title || '',
+        excerpt: post?.excerpt || '',
+        content: post?.content || '',
+        author: post?.author || 'Admin',
+        category: post?.category || 'Design Trends',
+        image: post?.image || 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+        status: post?.status || 'draft' as 'published' | 'draft'
+    });
+
+    const categories = ['Design Trends', 'Case Studies', 'Industry News', 'Maintenance Tips', 'Regulations'];
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        
+        const newPost: BlogPost = {
+            id: post?.id || Date.now().toString(),
+            title: formData.title,
+            excerpt: formData.excerpt,
+            content: formData.content,
+            author: formData.author,
+            date: post?.date || new Date().toISOString().split('T')[0],
+            category: formData.category,
+            image: formData.image,
+            status: formData.status,
+            readTime: `${Math.ceil(formData.content.length / 1000)} min read`
+        };
+
+        onSave(newPost);
+    };
+
+    return (
+        <div style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000,
+            padding: '1rem'
+        }}>
+            <div style={{
+                background: 'white',
+                borderRadius: '12px',
+                padding: '2rem',
+                maxWidth: '800px',
+                width: '100%',
+                maxHeight: '90vh',
+                overflow: 'auto'
+            }}>
+                <h2 style={{ marginBottom: '1.5rem', color: 'var(--color-text-main)' }}>
+                    {post ? 'Edit Article' : 'Create New Article'}
+                </h2>
+
+                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                    {/* Title */}
+                    <div>
+                        <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>
+                            Article Title *
+                        </label>
+                        <input
+                            type="text"
+                            value={formData.title}
+                            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                            required
+                            placeholder="Enter article title..."
+                            style={{
+                                width: '100%',
+                                padding: '0.8rem',
+                                border: '1px solid var(--color-card-border)',
+                                borderRadius: '8px',
+                                fontSize: '1rem'
+                            }}
+                        />
+                    </div>
+
+                    {/* Excerpt */}
+                    <div>
+                        <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>
+                            Excerpt *
+                        </label>
+                        <textarea
+                            value={formData.excerpt}
+                            onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })}
+                            required
+                            placeholder="Brief description of the article..."
+                            rows={3}
+                            style={{
+                                width: '100%',
+                                padding: '0.8rem',
+                                border: '1px solid var(--color-card-border)',
+                                borderRadius: '8px',
+                                fontSize: '1rem',
+                                resize: 'vertical'
+                            }}
+                        />
+                    </div>
+
+                    {/* Content */}
+                    <div>
+                        <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>
+                            Content *
+                        </label>
+                        <textarea
+                            value={formData.content}
+                            onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+                            required
+                            placeholder="Write your article content here... You can use HTML tags for formatting."
+                            rows={10}
+                            style={{
+                                width: '100%',
+                                padding: '0.8rem',
+                                border: '1px solid var(--color-card-border)',
+                                borderRadius: '8px',
+                                fontSize: '1rem',
+                                resize: 'vertical',
+                                fontFamily: 'monospace'
+                            }}
+                        />
+                        <small style={{ color: 'var(--color-text-muted)', fontSize: '0.8rem' }}>
+                            You can use HTML tags like &lt;h2&gt;, &lt;h3&gt;, &lt;p&gt;, &lt;ul&gt;, &lt;li&gt; for formatting
+                        </small>
+                    </div>
+
+                    {/* Row with Category, Author, Status */}
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+                        <div>
+                            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>
+                                Category *
+                            </label>
+                            <select
+                                value={formData.category}
+                                onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                                 style={{
-                                    padding: '0.75rem 1.5rem',
+                                    width: '100%',
+                                    padding: '0.8rem',
                                     border: '1px solid var(--color-card-border)',
                                     borderRadius: '8px',
-                                    background: 'transparent',
-                                    cursor: 'pointer'
+                                    fontSize: '1rem'
                                 }}
                             >
-                                Cancel
-                            </button>
-                            <button 
-                                className="btn btn-primary"
-                                style={{ padding: '0.75rem 1.5rem' }}
+                                {categories.map(category => (
+                                    <option key={category} value={category}>{category}</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div>
+                            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>
+                                Author
+                            </label>
+                            <input
+                                type="text"
+                                value={formData.author}
+                                onChange={(e) => setFormData({ ...formData, author: e.target.value })}
+                                placeholder="Author name"
+                                style={{
+                                    width: '100%',
+                                    padding: '0.8rem',
+                                    border: '1px solid var(--color-card-border)',
+                                    borderRadius: '8px',
+                                    fontSize: '1rem'
+                                }}
+                            />
+                        </div>
+
+                        <div>
+                            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>
+                                Status
+                            </label>
+                            <select
+                                value={formData.status}
+                                onChange={(e) => setFormData({ ...formData, status: e.target.value as 'published' | 'draft' })}
+                                style={{
+                                    width: '100%',
+                                    padding: '0.8rem',
+                                    border: '1px solid var(--color-card-border)',
+                                    borderRadius: '8px',
+                                    fontSize: '1rem'
+                                }}
                             >
-                                {editingPost ? 'Update' : 'Create'} Article
-                            </button>
+                                <option value="draft">Draft</option>
+                                <option value="published">Published</option>
+                            </select>
                         </div>
                     </div>
-                </div>
-            )}
+
+                    {/* Image URL */}
+                    <div>
+                        <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>
+                            Featured Image URL
+                        </label>
+                        <input
+                            type="url"
+                            value={formData.image}
+                            onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                            placeholder="https://example.com/image.jpg"
+                            style={{
+                                width: '100%',
+                                padding: '0.8rem',
+                                border: '1px solid var(--color-card-border)',
+                                borderRadius: '8px',
+                                fontSize: '1rem'
+                            }}
+                        />
+                        {formData.image && (
+                            <div style={{ marginTop: '0.5rem' }}>
+                                <img 
+                                    src={formData.image} 
+                                    alt="Preview" 
+                                    style={{ 
+                                        width: '100px', 
+                                        height: '60px', 
+                                        objectFit: 'cover', 
+                                        borderRadius: '4px',
+                                        border: '1px solid var(--color-card-border)'
+                                    }}
+                                    onError={(e) => {
+                                        e.currentTarget.style.display = 'none';
+                                    }}
+                                />
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Actions */}
+                    <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end', paddingTop: '1rem' }}>
+                        <button 
+                            type="button"
+                            onClick={onClose}
+                            style={{
+                                padding: '0.75rem 1.5rem',
+                                border: '1px solid var(--color-card-border)',
+                                borderRadius: '8px',
+                                background: 'transparent',
+                                cursor: 'pointer',
+                                fontSize: '1rem'
+                            }}
+                        >
+                            Cancel
+                        </button>
+                        <button 
+                            type="submit"
+                            className="btn btn-primary"
+                            style={{ padding: '0.75rem 2rem', fontSize: '1rem' }}
+                        >
+                            {post ? 'Update' : 'Create'} Article
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }
