@@ -669,6 +669,28 @@ ul {
     padding: 1.5rem !important;
   }
 
+  /* Admin layout */
+  .admin-layout {
+    flex-direction: column !important;
+  }
+
+  .admin-sidebar {
+    width: 100% !important;
+    min-height: auto !important;
+    position: relative !important;
+  }
+
+  .admin-main {
+    padding: 1rem !important;
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 0.875rem 1.5rem !important;
+    font-size: 0.95rem !important;
+  }
+}
+
 /* Hero section mobile fixes */
 @media (max-width: 768px) {
   .hero-section {
