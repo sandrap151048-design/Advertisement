@@ -933,6 +933,54 @@ ul {
   /* Add dark mode styles if needed */
 }
 
+/* Blog content styling */
+.blog-content h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: var(--color-text-main);
+}
+
+.blog-content h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+  color: var(--color-primary);
+}
+
+.blog-content p {
+  margin-bottom: 1.2rem;
+}
+
+.blog-content ul {
+  margin-bottom: 1.2rem;
+  padding-left: 1.5rem;
+}
+
+.blog-content ol {
+  margin-bottom: 1.2rem;
+  padding-left: 1.5rem;
+}
+
+.blog-content li {
+  margin-bottom: 0.5rem;
+}
+
+.blog-content h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 1.2rem;
+  margin-bottom: 0.6rem;
+  color: var(--color-text-main);
+}
+
+.blog-content strong {
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
 /* ============================================
    COMPREHENSIVE MOBILE RESPONSIVENESS
    ============================================ */

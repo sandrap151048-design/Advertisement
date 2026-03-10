@@ -256,32 +256,7 @@ export default function BlogPostPage() {
                     >
                         <div 
                             dangerouslySetInnerHTML={{ __html: post.content }}
-                            style={{
-                                '& h2': {
-                                    fontSize: '1.8rem',
-                                    fontWeight: 700,
-                                    marginTop: '2rem',
-                                    marginBottom: '1rem',
-                                    color: 'var(--color-text-main)'
-                                },
-                                '& h3': {
-                                    fontSize: '1.4rem',
-                                    fontWeight: 600,
-                                    marginTop: '1.5rem',
-                                    marginBottom: '0.8rem',
-                                    color: 'var(--color-primary)'
-                                },
-                                '& p': {
-                                    marginBottom: '1.2rem'
-                                },
-                                '& ul': {
-                                    marginBottom: '1.2rem',
-                                    paddingLeft: '1.5rem'
-                                },
-                                '& li': {
-                                    marginBottom: '0.5rem'
-                                }
-                            }}
+                            className="blog-content"
                         />
                     </motion.div>
                 </div>
