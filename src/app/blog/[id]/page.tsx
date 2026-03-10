@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Calendar, User, ArrowLeft, Share2, BookOpen, Clock } from 'lucide-react';
+import { ArrowLeft, BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
@@ -202,80 +202,15 @@ export default function BlogPostPage() {
                             Back to Blog
                         </Link>
 
-                        <div style={{ 
-                            display: 'inline-block',
-                            background: 'var(--color-primary)',
-                            color: 'white',
-                            padding: '0.5rem 1rem',
-                            borderRadius: '20px',
-                            fontSize: '0.9rem',
-                            fontWeight: 600,
-                            marginBottom: '1rem'
-                        }}>
-                            {post.category}
-                        </div>
-
                         <h1 style={{ 
                             fontSize: 'clamp(2rem, 5vw, 3.5rem)', 
                             fontWeight: 800, 
                             lineHeight: '1.2',
-                            marginBottom: '1.5rem',
+                            marginBottom: '2rem',
                             color: 'var(--color-text-main)'
                         }}>
                             {post.title}
                         </h1>
-
-                        <div style={{ 
-                            display: 'flex', 
-                            alignItems: 'center', 
-                            gap: '2rem', 
-                            marginBottom: '2rem',
-                            flexWrap: 'wrap',
-                            fontSize: '0.95rem',
-                            color: 'var(--color-text-muted)'
-                        }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                <Calendar size={18} />
-                                {new Date(post.date).toLocaleDateString('en-US', { 
-                                    year: 'numeric', 
-                                    month: 'long', 
-                                    day: 'numeric' 
-                                })}
-                            </div>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                <User size={18} />
-                                {post.author}
-                            </div>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                <Clock size={18} />
-                                {post.readTime}
-                            </div>
-                            <button 
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '0.5rem',
-                                    background: 'transparent',
-                                    border: '1px solid var(--color-primary)',
-                                    color: 'var(--color-primary)',
-                                    padding: '0.5rem 1rem',
-                                    borderRadius: '20px',
-                                    cursor: 'pointer',
-                                    transition: 'all 0.3s ease'
-                                }}
-                                onMouseOver={(e) => {
-                                    e.currentTarget.style.background = 'var(--color-primary)';
-                                    e.currentTarget.style.color = 'white';
-                                }}
-                                onMouseOut={(e) => {
-                                    e.currentTarget.style.background = 'transparent';
-                                    e.currentTarget.style.color = 'var(--color-primary)';
-                                }}
-                            >
-                                <Share2 size={16} />
-                                Share
-                            </button>
-                        </div>
                     </motion.div>
                 </div>
             </section>

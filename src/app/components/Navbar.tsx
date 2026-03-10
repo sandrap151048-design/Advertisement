@@ -78,9 +78,9 @@ export default function Navbar() {
           <Link href="/" className="nav-link">Home</Link>
           <Link href="/services" className="nav-link">Services</Link>
           <Link href="/testimonials" className="nav-link">Testimonials</Link>
+          <Link href="/blog" className="nav-link">Blog</Link>
           <Link href="/contact" className="nav-link">Contact</Link>
           <Link href="/about" className="nav-link">About Us</Link>
-          <Link href="/blog" className="nav-link">Blog</Link>
         </nav>
 
         <div className="nav-actions-desktop" style={{
@@ -90,7 +90,7 @@ export default function Navbar() {
           padding: '0 0.5rem'
         }}>
           <Link href="/register" className="btn btn-outline" style={{ padding: '0.45rem 1.2rem', fontSize: '0.85rem', borderRadius: '8px', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, marginRight: '0.8rem' }}>Start Your Campaign</Link>
-          <Link href="/admin/login" className="btn btn-primary" style={{ padding: '0.45rem 1.2rem', fontSize: '0.85rem', borderRadius: '8px', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700 }}>Admin Panel</Link>
+          <Link href="/admin/login" className="btn btn-primary" style={{ padding: '0.45rem 1.2rem', fontSize: '0.85rem', borderRadius: '8px', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700 }}>Login</Link>
         </div>
       </div>
 
@@ -108,14 +108,14 @@ export default function Navbar() {
           <Link href="/" className="mobile-nav-link" onClick={closeMenu}>Home</Link>
           <Link href="/services" className="mobile-nav-link" onClick={closeMenu}>Services</Link>
           <Link href="/testimonials" className="mobile-nav-link" onClick={closeMenu}>Testimonials</Link>
+          <Link href="/blog" className="mobile-nav-link" onClick={closeMenu}>Blog</Link>
           <Link href="/contact" className="mobile-nav-link" onClick={closeMenu}>Contact</Link>
           <Link href="/about" className="mobile-nav-link" onClick={closeMenu}>About Us</Link>
-          <Link href="/blog" className="mobile-nav-link" onClick={closeMenu}>Blog</Link>
         </nav>
         
         <div className="mobile-nav-actions">
           <Link href="/register" className="btn btn-outline mobile-btn" onClick={closeMenu}>Start Your Campaign</Link>
-          <Link href="/admin/login" className="btn btn-primary mobile-btn" onClick={closeMenu}>Admin Panel</Link>
+          <Link href="/admin/login" className="btn btn-primary mobile-btn" onClick={closeMenu}>Login</Link>
         </div>
       </div>
     </header>

@@ -104,10 +104,10 @@ export default function AdminNewsletterPage() {
                         marginBottom: '0.5rem',
                         color: 'var(--color-text-main)'
                     }}>
-                        Newsletter Subscribers
+                        Subscribers
                     </h1>
                     <p style={{ color: 'var(--color-text-muted)' }}>
-                        Manage your newsletter subscribers and track engagement
+                        Manage your subscribers
                     </p>
                 </div>
                 <button 

@@ -10,6 +10,8 @@ export default function AdminPage() {
     const router = useRouter();
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [currentPath, setCurrentPath] = useState('');
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [stats, setStats] = useState({
         contacts: 0,
         services: 0
@@ -26,6 +28,9 @@ export default function AdminPage() {
             router.push('/admin/login');
         }
         setIsLoading(false);
+        
+        // Set current path for active navigation
+        setCurrentPath(window.location.pathname);
     }, [router]);
 
     const fetchStats = async () => {
@@ -61,6 +66,41 @@ export default function AdminPage() {
         localStorage.removeItem('adminAuth');
         localStorage.removeItem('adminUser');
         router.push('/admin/login');
+    };
+
+    const isActivePath = (path: string) => {
+        if (path === '/admin') {
+            return currentPath === '/admin';
+        }
+        return currentPath.startsWith(path);
+    };
+
+    const getNavItemStyle = (path: string) => {
+        const isActive = isActivePath(path);
+        return {
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1rem',
+            padding: '1rem 1.2rem',
+            borderRadius: '12px',
+            color: '#1e293b',
+            cursor: 'pointer',
+            transition: 'all 0.3s',
+            background: isActive ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+            borderLeft: isActive ? '4px solid var(--color-primary)' : '4px solid transparent',
+            boxShadow: isActive ? '0 2px 8px rgba(124, 58, 237, 0.2)' : 'none'
+        };
+    };
+
+    const getNavIconColor = (path: string) => {
+        return isActivePath(path) ? 'var(--color-primary)' : 'rgba(255,255,255,0.6)';
+    };
+
+    const getNavTextStyle = (path: string) => {
+        return {
+            fontWeight: isActivePath(path) ? 600 : 500,
+            color: isActivePath(path) ? 'white' : 'rgba(255,255,255,0.7)'
+        };
     };
 
     if (isLoading) {
@@ -119,11 +159,11 @@ export default function AdminPage() {
     return (
         <div className="admin-layout">
             {/* Sidebar */}
-            <aside className="admin-sidebar" style={{ display: 'flex', flexDirection: 'column', background: 'linear-gradient(180deg, #1e293b 0%, #0f172a 100%)' }}>
+            <aside className="admin-sidebar">
                 <motion.div 
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    style={{ marginBottom: '3rem', marginTop: '1rem', padding: '0 1rem' }}
+                    style={{ marginBottom: '3rem', marginTop: '1rem' }}
                 >
                     <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
                         <motion.div
@@ -162,116 +202,60 @@ export default function AdminPage() {
                         <motion.div 
                             whileHover={{ x: 5 }}
                             className="nav-item" 
-                            style={{ 
-                                display: 'flex', 
-                                alignItems: 'center', 
-                                gap: '1rem', 
-                                padding: '1rem 1.2rem', 
-                                borderRadius: '12px', 
-                                background: 'rgba(255, 255, 255, 0.1)', 
-                                color: '#1e293b', 
-                                cursor: 'pointer', 
-                                borderLeft: '4px solid var(--color-primary)',
-                                boxShadow: '0 2px 8px rgba(124, 58, 237, 0.2)'
-                            }}
+                            style={getNavItemStyle('/admin')}
                         >
-                            <Home size={22} color="var(--color-primary)" /> 
-                            <span style={{ fontWeight: 600, color: 'white' }}>Dashboard</span>
+                            <Home size={22} color={getNavIconColor('/admin')} /> 
+                            <span style={getNavTextStyle('/admin')}>Dashboard</span>
                         </motion.div>
                     </Link>
                     <Link href="/admin/contacts" style={{ textDecoration: 'none' }}>
                         <motion.div 
                             whileHover={{ x: 5, background: 'rgba(255, 255, 255, 0.05)' }}
                             className="nav-item" 
-                            style={{ 
-                                display: 'flex', 
-                                alignItems: 'center', 
-                                gap: '1rem', 
-                                padding: '1rem 1.2rem', 
-                                borderRadius: '12px', 
-                                color: '#1e293b', 
-                                cursor: 'pointer', 
-                                transition: 'all 0.3s'
-                            }}
+                            style={getNavItemStyle('/admin/contacts')}
                         >
-                            <MessageSquare size={22} color="rgba(255,255,255,0.6)" /> 
-                            <span style={{ fontWeight: 500, color: 'rgba(255,255,255,0.7)' }}>Contact Forms</span>
+                            <MessageSquare size={22} color={getNavIconColor('/admin/contacts')} /> 
+                            <span style={getNavTextStyle('/admin/contacts')}>Contact Forms</span>
                         </motion.div>
                     </Link>
                     <Link href="/admin/services" style={{ textDecoration: 'none' }}>
                         <motion.div 
                             whileHover={{ x: 5, background: 'rgba(255, 255, 255, 0.05)' }}
                             className="nav-item" 
-                            style={{ 
-                                display: 'flex', 
-                                alignItems: 'center', 
-                                gap: '1rem', 
-                                padding: '1rem 1.2rem', 
-                                borderRadius: '12px', 
-                                color: '#1e293b', 
-                                cursor: 'pointer', 
-                                transition: 'all 0.3s'
-                            }}
+                            style={getNavItemStyle('/admin/services')}
                         >
-                            <Briefcase size={22} color="rgba(255,255,255,0.6)" /> 
-                            <span style={{ fontWeight: 500, color: 'rgba(255,255,255,0.7)' }}>Services</span>
+                            <Briefcase size={22} color={getNavIconColor('/admin/services')} /> 
+                            <span style={getNavTextStyle('/admin/services')}>Services</span>
                         </motion.div>
                     </Link>
                     <Link href="/admin/testimonials" style={{ textDecoration: 'none' }}>
                         <motion.div 
                             whileHover={{ x: 5, background: 'rgba(255, 255, 255, 0.05)' }}
                             className="nav-item" 
-                            style={{ 
-                                display: 'flex', 
-                                alignItems: 'center', 
-                                gap: '1rem', 
-                                padding: '1rem 1.2rem', 
-                                borderRadius: '12px', 
-                                color: '#1e293b', 
-                                cursor: 'pointer', 
-                                transition: 'all 0.3s'
-                            }}
+                            style={getNavItemStyle('/admin/testimonials')}
                         >
-                            <Star size={22} color="rgba(255,255,255,0.6)" /> 
-                            <span style={{ fontWeight: 500, color: 'rgba(255,255,255,0.7)' }}>Testimonials</span>
+                            <Star size={22} color={getNavIconColor('/admin/testimonials')} /> 
+                            <span style={getNavTextStyle('/admin/testimonials')}>Testimonials</span>
                         </motion.div>
                     </Link>
                     <Link href="/admin/blog" style={{ textDecoration: 'none' }}>
                         <motion.div 
                             whileHover={{ x: 5, background: 'rgba(255, 255, 255, 0.05)' }}
                             className="nav-item" 
-                            style={{ 
-                                display: 'flex', 
-                                alignItems: 'center', 
-                                gap: '1rem', 
-                                padding: '1rem 1.2rem', 
-                                borderRadius: '12px', 
-                                color: '#1e293b', 
-                                cursor: 'pointer', 
-                                transition: 'all 0.3s'
-                            }}
+                            style={getNavItemStyle('/admin/blog')}
                         >
-                            <BookOpen size={22} color="rgba(255,255,255,0.6)" /> 
-                            <span style={{ fontWeight: 500, color: 'rgba(255,255,255,0.7)' }}>Blog & Resources</span>
+                            <BookOpen size={22} color={getNavIconColor('/admin/blog')} /> 
+                            <span style={getNavTextStyle('/admin/blog')}>Blog & Resources</span>
                         </motion.div>
                     </Link>
                     <Link href="/admin/newsletter" style={{ textDecoration: 'none' }}>
                         <motion.div 
                             whileHover={{ x: 5, background: 'rgba(255, 255, 255, 0.05)' }}
                             className="nav-item" 
-                            style={{ 
-                                display: 'flex', 
-                                alignItems: 'center', 
-                                gap: '1rem', 
-                                padding: '1rem 1.2rem', 
-                                borderRadius: '12px', 
-                                color: '#1e293b', 
-                                cursor: 'pointer', 
-                                transition: 'all 0.3s'
-                            }}
+                            style={getNavItemStyle('/admin/newsletter')}
                         >
-                            <Mail size={22} color="rgba(255,255,255,0.6)" /> 
-                            <span style={{ fontWeight: 500, color: 'rgba(255,255,255,0.7)' }}>Newsletter</span>
+                            <Mail size={22} color={getNavIconColor('/admin/newsletter')} /> 
+                            <span style={getNavTextStyle('/admin/newsletter')}>Subscribers</span>
                         </motion.div>
                     </Link>
                 </nav>
@@ -303,7 +287,7 @@ export default function AdminPage() {
             </aside>
 
             {/* Main Content */}
-            <main className="admin-main" style={{ display: 'flex', flexDirection: 'column', gap: '2rem', height: '100vh', overflowY: 'auto', background: '#f8fafc' }}>
+            <main className="admin-main">
                 {/* Header */}
                 <motion.header 
                     initial={{ opacity: 0, y: -20 }}
@@ -317,7 +301,8 @@ export default function AdminPage() {
                         background: 'white',
                         padding: '1.5rem 2rem',
                         borderRadius: '16px',
-                        boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+                        boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+                        marginBottom: '2rem'
                     }}
                 >
                     <div>
@@ -329,23 +314,43 @@ export default function AdminPage() {
                             {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
                         </p>
                     </div>
-                    <motion.div 
-                        whileHover={{ scale: 1.05 }}
-                        onClick={() => router.push('/admin/login')}
-                        style={{ 
-                            width: 55, 
-                            height: 55, 
-                            borderRadius: '16px', 
-                            background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))', 
-                            display: 'flex', 
-                            alignItems: 'center', 
-                            justifyContent: 'center',
-                            boxShadow: '0 8px 20px rgba(124, 58, 237, 0.3)',
-                            cursor: 'pointer'
-                        }}
-                    >
-                        <Users size={28} color="white" />
-                    </motion.div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                        {/* Mobile Menu Toggle */}
+                        <button
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            style={{
+                                display: 'none',
+                                background: 'var(--color-primary)',
+                                border: 'none',
+                                borderRadius: '8px',
+                                padding: '0.5rem',
+                                color: 'white',
+                                cursor: 'pointer'
+                            }}
+                            className="mobile-menu-toggle"
+                        >
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                        </button>
+                        <motion.div 
+                            whileHover={{ scale: 1.05 }}
+                            onClick={() => router.push('/admin/login')}
+                            style={{ 
+                                width: 55, 
+                                height: 55, 
+                                borderRadius: '16px', 
+                                background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))', 
+                                display: 'flex', 
+                                alignItems: 'center', 
+                                justifyContent: 'center',
+                                boxShadow: '0 8px 20px rgba(124, 58, 237, 0.3)',
+                                cursor: 'pointer'
+                            }}
+                        >
+                            <Users size={28} color="white" />
+                        </motion.div>
+                    </div>
                 </motion.header>
 
                 {/* Stats Cards */}
@@ -503,67 +508,75 @@ export default function AdminPage() {
                         </div>
                     </motion.div>
 
-                    {/* Quick Actions */}
+                    {/* Analytics Overview */}
                     <motion.div 
                         variants={itemVariants}
                         style={{
-                            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                            background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
                             padding: '2rem',
                             borderRadius: '20px',
-                            boxShadow: '0 8px 24px rgba(124, 58, 237, 0.3)',
-                            color: 'white'
+                            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15)',
+                            color: 'white',
+                            border: '1px solid rgba(255, 255, 255, 0.1)'
                         }}
                     >
-                        <h3 style={{ marginBottom: '1.5rem', fontSize: '1.3rem', fontWeight: 700, fontFamily: "'Syne', sans-serif" }}>Quick Actions</h3>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                            <Link href="/admin/services" style={{ textDecoration: 'none' }}>
-                                <motion.button 
-                                    whileHover={{ scale: 1.02, boxShadow: '0 8px 16px rgba(0,0,0,0.2)' }}
-                                    whileTap={{ scale: 0.98 }}
-                                    style={{
-                                        width: '100%',
-                                        padding: '1rem',
-                                        background: 'rgba(255,255,255,0.2)',
-                                        border: '1px solid rgba(255,255,255,0.3)',
-                                        borderRadius: '12px',
-                                        color: 'white',
-                                        fontWeight: 600,
-                                        cursor: 'pointer',
-                                        backdropFilter: 'blur(10px)',
-                                        fontSize: '0.95rem'
-                                    }}
-                                >
-                                    + Add New Service
-                                </motion.button>
-                            </Link>
-                            <Link href="/admin/contacts" style={{ textDecoration: 'none' }}>
-                                <motion.button 
-                                    whileHover={{ scale: 1.02, boxShadow: '0 8px 16px rgba(0,0,0,0.2)' }}
-                                    whileTap={{ scale: 0.98 }}
-                                    style={{
-                                        width: '100%',
-                                        padding: '1rem',
-                                        background: 'rgba(255,255,255,0.2)',
-                                        border: '1px solid rgba(255,255,255,0.3)',
-                                        borderRadius: '12px',
-                                        color: 'white',
-                                        fontWeight: 600,
-                                        cursor: 'pointer',
-                                        backdropFilter: 'blur(10px)',
-                                        fontSize: '0.95rem'
-                                    }}
-                                >
-                                    📧 View All Contacts
-                                </motion.button>
-                            </Link>
+                        <h3 style={{ marginBottom: '2rem', fontSize: '1.3rem', fontWeight: 700, fontFamily: "'Syne', sans-serif", display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            <TrendingUp size={24} color="var(--color-primary)" />
+                            Analytics Overview
+                        </h3>
+                        
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '2rem' }}>
+                            <div style={{ textAlign: 'center' }}>
+                                <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--color-primary)', marginBottom: '0.5rem' }}>
+                                    {stats.contacts}
+                                </div>
+                                <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                                    Client Inquiries
+                                </div>
+                            </div>
+                            <div style={{ textAlign: 'center' }}>
+                                <div style={{ fontSize: '2rem', fontWeight: 800, color: '#10b981', marginBottom: '0.5rem' }}>
+                                    {stats.services}
+                                </div>
+                                <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                                    Service Offerings
+                                </div>
+                            </div>
                         </div>
 
-                        <div style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(255,255,255,0.1)', borderRadius: '12px', backdropFilter: 'blur(10px)' }}>
-                            <p style={{ fontSize: '0.85rem', opacity: 0.9, marginBottom: '0.5rem' }}>System Status</p>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#10b981', boxShadow: '0 0 10px #10b981' }} />
-                                <span style={{ fontWeight: 600 }}>All Systems Operational</span>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                            <div style={{ 
+                                padding: '1rem', 
+                                background: 'rgba(255,255,255,0.05)', 
+                                borderRadius: '12px',
+                                border: '1px solid rgba(255,255,255,0.1)',
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center'
+                            }}>
+                                <span style={{ fontSize: '0.9rem', fontWeight: 500 }}>Response Rate</span>
+                                <span style={{ fontSize: '1.1rem', fontWeight: 700, color: '#10b981' }}>98.5%</span>
                             </div>
+                            <div style={{ 
+                                padding: '1rem', 
+                                background: 'rgba(255,255,255,0.05)', 
+                                borderRadius: '12px',
+                                border: '1px solid rgba(255,255,255,0.1)',
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center'
+                            }}>
+                                <span style={{ fontSize: '0.9rem', fontWeight: 500 }}>Client Satisfaction</span>
+                                <span style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--color-primary)' }}>4.9/5</span>
+                            </div>
+                        </div>
+
+                        <div style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(124, 58, 237, 0.1)', borderRadius: '12px', border: '1px solid rgba(124, 58, 237, 0.2)' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                                <ShieldCheck size={18} color="var(--color-primary)" />
+                                <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-primary)' }}>System Status</span>
+                            </div>
+                            <span style={{ fontSize: '0.9rem', fontWeight: 500 }}>All Services Operational</span>
                         </div>
                     </motion.div>
                 </motion.div>

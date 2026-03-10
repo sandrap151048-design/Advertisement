@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Variants } from 'framer-motion';
-import { Calendar, User, ArrowRight, BookOpen, TrendingUp, Lightbulb, FileText } from 'lucide-react';
+import { ArrowRight, BookOpen, TrendingUp, Lightbulb, FileText } from 'lucide-react';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
@@ -304,29 +304,6 @@ export default function BlogPage() {
                                 </div>
 
                                 <div style={{ padding: '2rem' }}>
-                                    <div style={{ 
-                                        display: 'flex', 
-                                        alignItems: 'center', 
-                                        gap: '1rem', 
-                                        marginBottom: '1rem',
-                                        fontSize: '0.85rem',
-                                        color: 'var(--color-text-muted)'
-                                    }}>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                                            <Calendar size={14} />
-                                            {new Date(post.date).toLocaleDateString('en-US', { 
-                                                year: 'numeric', 
-                                                month: 'short', 
-                                                day: 'numeric' 
-                                            })}
-                                        </div>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                                            <User size={14} />
-                                            {post.author}
-                                        </div>
-                                        <span>{post.readTime}</span>
-                                    </div>
-
                                     <h3 style={{ 
                                         fontSize: '1.4rem', 
                                         fontWeight: 700, 
@@ -414,7 +391,7 @@ function NewsletterSignup() {
             const data = await response.json();
 
             if (response.ok) {
-                setMessage({ type: 'success', text: data.message });
+                setMessage({ type: 'success', text: 'Successfully subscribed!' });
                 setEmail('');
             } else {
                 setMessage({ type: 'error', text: data.error });
