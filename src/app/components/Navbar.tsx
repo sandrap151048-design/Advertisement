@@ -53,8 +53,8 @@ export default function Navbar() {
           <div className="nav-logo-icon">OC</div>
           <div>
             <span style={{ color: 'var(--color-primary)', fontFamily: "'Syne', sans-serif", fontWeight: 700 }}>One</span>
-            <span style={{ color: 'rgba(255, 255, 255, 0.9)', fontFamily: "'Syne', sans-serif", fontWeight: 700 }}> Click</span>
-            <div style={{ fontSize: '0.55rem', fontWeight: 600, color: 'rgba(255, 255, 255, 0.6)', letterSpacing: '2px', textTransform: 'uppercase', lineHeight: 1, marginTop: '1px', fontFamily: "'Space Grotesk', sans-serif" }}>Advertisement</div>
+            <span style={{ color: 'var(--color-text-main)', fontFamily: "'Syne', sans-serif", fontWeight: 700 }}> Click</span>
+            <div style={{ fontSize: '0.55rem', fontWeight: 600, color: 'rgba(15, 23, 42, 0.4)', letterSpacing: '2px', textTransform: 'uppercase', lineHeight: 1, marginTop: '1px', fontFamily: "'Space Grotesk', sans-serif" }}>Advertisement</div>
           </div>
         </Link>
 
@@ -63,6 +63,15 @@ export default function Navbar() {
           onClick={toggleMenu}
           className="mobile-menu-toggle"
           aria-label="Toggle menu"
+          style={{
+            display: 'none',
+            background: 'transparent',
+            border: 'none',
+            cursor: 'pointer',
+            padding: '0.5rem',
+            color: 'var(--color-primary)',
+            zIndex: 1001
+          }}
         >
           {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
