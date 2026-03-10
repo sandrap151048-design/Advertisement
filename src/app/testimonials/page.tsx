@@ -517,7 +517,7 @@ export default function TestimonialsPage() {
                         <motion.div
                             initial={{ scale: 0 }}
                             whileInView={{ scale: 1 }}
-                            transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                            transition={{ type: "spring" as const, stiffness: 200, damping: 15 }}
                             style={{
                                 width: '80px',
                                 height: '80px',

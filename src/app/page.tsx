@@ -18,7 +18,7 @@ const slideDown: Variants = {
 
 const dropIn: Variants = {
   hidden: { opacity: 0, y: -1000 },
-  visible: { opacity: 1, y: 0, transition: { type: "spring", damping: 15, stiffness: 100 } }
+  visible: { opacity: 1, y: 0, transition: { type: "spring" as const, damping: 15, stiffness: 100 } }
 };
 
 const revealDown: Variants = {
@@ -28,7 +28,7 @@ const revealDown: Variants = {
 
 const bounceInDown: Variants = {
   hidden: { opacity: 0, y: -200 },
-  visible: { opacity: 1, y: 0, transition: { type: "spring", damping: 10, stiffness: 80 } }
+  visible: { opacity: 1, y: 0, transition: { type: "spring" as const, damping: 10, stiffness: 80 } }
 };
 
 const staggerContainer: Variants = {

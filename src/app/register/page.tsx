@@ -12,7 +12,7 @@ const fadeInDown: Variants = {
 
 const bounceInDown: Variants = {
     hidden: { opacity: 0, y: -200 },
-    visible: { opacity: 1, y: 0, transition: { type: "spring", damping: 10, stiffness: 80 } }
+    visible: { opacity: 1, y: 0, transition: { type: "spring" as const, damping: 10, stiffness: 80 } }
 };
 
 const staggerContainer: Variants = {
