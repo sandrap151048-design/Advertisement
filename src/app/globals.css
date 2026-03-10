@@ -183,6 +183,7 @@ ul {
   padding: 0;
   transition: all 0.4s ease;
   font-family: var(--font-navbar);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .nav-inner {
@@ -302,12 +303,23 @@ ul {
 /* Mobile menu toggle button */
 .mobile-menu-toggle {
   display: none;
-  background: transparent;
-  border: none;
+  background: rgba(124, 58, 237, 0.1);
+  border: 2px solid var(--color-primary);
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 0.75rem;
   color: var(--color-primary);
   z-index: 1001;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  min-width: 48px;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-menu-toggle:hover {
+  background: rgba(124, 58, 237, 0.2);
+  transform: scale(1.05);
 }
 
 /* Admin panel styles */
@@ -484,7 +496,7 @@ ul {
    MOBILE NAVBAR STYLES
    ============================================ */
 
-/* Hide desktop navigation on mobile */
+/* Show mobile toggle on tablets and phones */
 @media (max-width: 768px) {
   .nav-links-desktop,
   .nav-actions-desktop {
@@ -492,7 +504,34 @@ ul {
   }
 
   .mobile-menu-toggle {
-    display: block !important;
+    display: flex !important;
+  }
+
+  /* Make navbar more visible on mobile */
+  .navbar {
+    background: rgba(255, 255, 255, 0.95) !important;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15) !important;
+    border-bottom: 2px solid rgba(124, 58, 237, 0.2) !important;
+  }
+
+  .nav-inner {
+    padding: 0 1rem !important;
+    min-height: 64px !important;
+  }
+
+  .nav-logo {
+    font-size: 1.1rem !important;
+  }
+
+  .nav-logo-icon {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* Mobile menu positioning */
+  .mobile-menu {
+    top: 64px !important;
   }
 }
 
@@ -517,13 +556,13 @@ ul {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(124, 58, 237, 0.15);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
   transform: translateY(-100%);
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1000;
-  padding: 1.5rem 0;
+  padding: 2rem 0;
   max-height: calc(100vh - 68px);
   overflow-y: auto;
 }
@@ -544,22 +583,24 @@ ul {
 
 .mobile-nav-link {
   display: block;
-  padding: 1rem 1.5rem;
+  padding: 1.2rem 2rem;
   color: var(--color-text-main);
   font-family: var(--font-navbar);
-  font-weight: 600;
-  font-size: 1.1rem;
+  font-weight: 700;
+  font-size: 1.2rem;
   text-align: center;
   border-radius: 12px;
   transition: all 0.3s ease;
   border: 2px solid transparent;
+  margin: 0 1rem 0.5rem 1rem;
 }
 
 .mobile-nav-link:hover,
 .mobile-nav-link:active {
-  background: rgba(124, 58, 237, 0.1);
+  background: rgba(124, 58, 237, 0.15);
   color: var(--color-primary);
-  border-color: rgba(124, 58, 237, 0.2);
+  border-color: rgba(124, 58, 237, 0.3);
+  transform: translateY(-2px);
 }
 
 .mobile-nav-actions {
@@ -628,16 +669,59 @@ ul {
     padding: 1.5rem !important;
   }
 
-  /* Register page specific mobile fixes */
+/* Hero section mobile fixes */
+@media (max-width: 768px) {
   .hero-section {
+    min-height: 80vh !important;
     padding-top: 6rem !important;
-    padding-bottom: 2rem !important;
+    padding-bottom: 3rem !important;
+    text-align: center !important;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 8vw, 3rem) !important;
+    line-height: 1.1 !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .hero-section p {
+    font-size: clamp(1rem, 4vw, 1.1rem) !important;
+    line-height: 1.6 !important;
+    margin-bottom: 2rem !important;
+    padding: 0 1rem !important;
+  }
+
+  .hero-section .btn {
+    padding: 1rem 2rem !important;
+    font-size: 1rem !important;
+    width: auto !important;
+    max-width: 280px !important;
+    margin: 0 auto !important;
+  }
+
+  /* Hero background image mobile */
+  .hero-section > div:first-child img {
+    object-position: center !important;
+    transform: scale(1.1) !important;
   }
 
   /* Form improvements for mobile */
   input, textarea, select {
     font-size: 16px !important; /* Prevents zoom on iOS */
     padding: 1rem 1rem 1rem 3rem !important;
+  }
+
+  /* Grid layouts */
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Cards */
+  .glass-card {
+    padding: 1.5rem !important;
   }
 
   /* Admin layout */

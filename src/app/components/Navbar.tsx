@@ -63,17 +63,8 @@ export default function Navbar() {
           onClick={toggleMenu}
           className="mobile-menu-toggle"
           aria-label="Toggle menu"
-          style={{
-            display: 'none',
-            background: 'transparent',
-            border: 'none',
-            cursor: 'pointer',
-            padding: '0.5rem',
-            color: 'var(--color-primary)',
-            zIndex: 1001
-          }}
         >
-          {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
         {/* Desktop Navigation */}
