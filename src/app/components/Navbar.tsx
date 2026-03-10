@@ -1,16 +1,55 @@
 "use client";
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
+  // Close menu when clicking outside or pressing escape
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsMenuOpen(false);
+      }
+    };
+
+    const handleResize = () => {
+      // Close mobile menu when resizing to desktop
+      if (window.innerWidth > 768) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden'; // Prevent background scroll
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      window.removeEventListener('resize', handleResize);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMenuOpen]);
+
   return (
     <header className="navbar">
       <div className="container nav-inner">
-        <Link href="/" className="nav-logo">
+        <Link href="/" className="nav-logo" onClick={closeMenu}>
           <div className="nav-logo-icon">OC</div>
           <div>
             <span style={{ color: 'var(--color-primary)', fontFamily: "'Syne', sans-serif", fontWeight: 700 }}>One</span>
@@ -21,101 +60,71 @@ export default function Navbar() {
 
         {/* Mobile Menu Toggle */}
         <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          onClick={toggleMenu}
+          className="mobile-menu-toggle"
+          aria-label="Toggle menu"
           style={{
             display: 'none',
             background: 'transparent',
             border: 'none',
             cursor: 'pointer',
             padding: '0.5rem',
-            color: 'var(--color-primary)'
+            color: 'var(--color-primary)',
+            zIndex: 1001
           }}
-          className="mobile-menu-toggle"
-          aria-label="Toggle menu"
         >
           {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
 
-        <nav className={`nav-links ${isMenuOpen ? 'nav-links-mobile-open' : ''}`} style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 600 }}>
-          <Link href="/" className="nav-link" onClick={() => setIsMenuOpen(false)}>Home</Link>
-          <Link href="/services" className="nav-link" onClick={() => setIsMenuOpen(false)}>Services</Link>
-          <Link href="/testimonials" className="nav-link" onClick={() => setIsMenuOpen(false)}>Testimonials</Link>
-          <Link href="/contact" className="nav-link" onClick={() => setIsMenuOpen(false)}>Contact</Link>
-          <Link href="/about" className="nav-link" onClick={() => setIsMenuOpen(false)}>About Us</Link>
+        {/* Desktop Navigation */}
+        <nav className="nav-links-desktop" style={{ 
+          fontFamily: "'Plus Jakarta Sans', sans-serif", 
+          fontWeight: 600,
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.2rem'
+        }}>
+          <Link href="/" className="nav-link">Home</Link>
+          <Link href="/services" className="nav-link">Services</Link>
+          <Link href="/testimonials" className="nav-link">Testimonials</Link>
+          <Link href="/contact" className="nav-link">Contact</Link>
+          <Link href="/about" className="nav-link">About Us</Link>
         </nav>
 
-        <div className={`nav-actions ${isMenuOpen ? 'nav-actions-mobile-open' : ''}`}>
-          <Link href="/register" className="btn btn-outline" style={{ padding: '0.45rem 1.2rem', fontSize: '0.85rem', borderRadius: '8px', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, marginRight: '0.8rem' }} onClick={() => setIsMenuOpen(false)}>Start Your Campaign</Link>
-          <Link href="/admin/login" className="btn btn-primary" style={{ padding: '0.45rem 1.2rem', fontSize: '0.85rem', borderRadius: '8px', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700 }} onClick={() => setIsMenuOpen(false)}>Admin Panel</Link>
+        <div className="nav-actions-desktop" style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.8rem',
+          padding: '0 0.5rem'
+        }}>
+          <Link href="/register" className="btn btn-outline" style={{ padding: '0.45rem 1.2rem', fontSize: '0.85rem', borderRadius: '8px', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, marginRight: '0.8rem' }}>Start Your Campaign</Link>
+          <Link href="/admin/login" className="btn btn-primary" style={{ padding: '0.45rem 1.2rem', fontSize: '0.85rem', borderRadius: '8px', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700 }}>Admin Panel</Link>
         </div>
       </div>
 
-      <style jsx>{`
-        @media (max-width: 768px) {
-          .mobile-menu-toggle {
-            display: block !important;
-          }
+      {/* Mobile Menu Overlay */}
+      {isMenuOpen && (
+        <div 
+          className="mobile-menu-overlay"
+          onClick={closeMenu}
+        />
+      )}
 
-          .nav-links {
-            position: fixed;
-            top: 68px;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            flex-direction: column;
-            padding: 1rem;
-            gap: 0.5rem;
-            transform: translateY(-100%);
-            opacity: 0;
-            transition: all 0.3s ease;
-            pointer-events: none;
-            border-bottom: 1px solid rgba(124, 58, 237, 0.15);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-          }
-
-          .nav-links-mobile-open {
-            transform: translateY(0);
-            opacity: 1;
-            pointer-events: all;
-          }
-
-          .nav-link {
-            width: 100%;
-            text-align: center;
-            padding: 0.75rem;
-          }
-
-          .nav-actions {
-            position: fixed;
-            top: calc(68px + 280px);
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            flex-direction: column;
-            padding: 1rem;
-            gap: 0.75rem;
-            transform: translateY(-100%);
-            opacity: 0;
-            transition: all 0.3s ease;
-            pointer-events: none;
-            border-bottom: 1px solid rgba(124, 58, 237, 0.15);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-          }
-
-          .nav-actions-mobile-open {
-            transform: translateY(0);
-            opacity: 1;
-            pointer-events: all;
-          }
-
-          .nav-actions .btn {
-            width: 100%;
-            margin: 0 !important;
-          }
-        }
-      `}</style>
+      {/* Mobile Menu */}
+      <div className={`mobile-menu ${isMenuOpen ? 'mobile-menu-open' : ''}`}>
+        <nav className="mobile-nav-links">
+          <Link href="/" className="mobile-nav-link" onClick={closeMenu}>Home</Link>
+          <Link href="/services" className="mobile-nav-link" onClick={closeMenu}>Services</Link>
+          <Link href="/testimonials" className="mobile-nav-link" onClick={closeMenu}>Testimonials</Link>
+          <Link href="/contact" className="mobile-nav-link" onClick={closeMenu}>Contact</Link>
+          <Link href="/about" className="mobile-nav-link" onClick={closeMenu}>About Us</Link>
+        </nav>
+        
+        <div className="mobile-nav-actions">
+          <Link href="/register" className="btn btn-outline mobile-btn" onClick={closeMenu}>Start Your Campaign</Link>
+          <Link href="/admin/login" className="btn btn-primary mobile-btn" onClick={closeMenu}>Admin Panel</Link>
+        </div>
+      </div>
     </header>
   );
 }
