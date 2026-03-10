@@ -38,14 +38,14 @@ export default function AboutPage() {
     return (
         <>
             {/* Hero Banner with Images */}
-            <section className="hero-section container" style={{ minHeight: '50vh', paddingTop: '8rem', paddingBottom: '4rem' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' }}>
+            <section className="hero-section container about-hero" style={{ minHeight: '50vh', paddingTop: '8rem', paddingBottom: '4rem' }}>
+                <div className="about-hero-grid">
                     {/* Left Side - Text Content */}
-                    <motion.div initial="hidden" animate="visible" variants={staggerContainer} style={{ zIndex: 10 }}>
+                    <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="about-hero-content">
                         <motion.p variants={fadeInDown} style={{ color: 'var(--color-primary)', fontWeight: 700, letterSpacing: '4px', textTransform: 'uppercase', fontSize: '0.85rem', marginBottom: '1rem', fontFamily: 'var(--font-navbar)' }}>
                             WHO WE ARE
                         </motion.p>
-                        <motion.h1 variants={bounceInDown} className="hero-title" style={{ fontFamily: 'var(--font-about)', textTransform: 'uppercase', lineHeight: '0.95', fontSize: 'clamp(2.8rem, 5vw, 4.5rem)', fontWeight: 800, letterSpacing: '-0.02em' }}>
+                        <motion.h1 variants={bounceInDown} className="hero-title about-hero-title" style={{ fontFamily: 'var(--font-about)', textTransform: 'uppercase', lineHeight: '0.95', fontSize: 'clamp(2.8rem, 5vw, 4.5rem)', fontWeight: 800, letterSpacing: '-0.02em' }}>
                             ABOUT <span style={{ color: 'var(--color-primary)' }}>ONE CLICK</span><br />ADVERTISEMENT
                         </motion.h1>
                         <motion.p variants={slideDown} className="hero-description" style={{ color: 'var(--color-text-muted)', fontSize: '1rem', maxWidth: '600px', fontFamily: 'var(--font-body)' }}>
@@ -58,19 +58,12 @@ export default function AboutPage() {
                         initial="hidden" 
                         animate="visible" 
                         variants={staggerContainer}
-                        style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', height: '500px' }}
+                        className="about-hero-images"
                     >
                         {/* Large Image - Left */}
                         <motion.div 
                             variants={fadeInDown}
-                            style={{ 
-                                gridRow: '1 / 3',
-                                borderRadius: '24px',
-                                overflow: 'hidden',
-                                border: '4px solid white',
-                                boxShadow: '0 10px 40px rgba(124, 58, 237, 0.2)',
-                                position: 'relative'
-                            }}
+                            className="about-hero-image-large"
                         >
                             <img 
                                 src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80"
@@ -82,12 +75,7 @@ export default function AboutPage() {
                         {/* Top Right Image */}
                         <motion.div 
                             variants={fadeInDown}
-                            style={{ 
-                                borderRadius: '24px',
-                                overflow: 'hidden',
-                                border: '4px solid white',
-                                boxShadow: '0 10px 40px rgba(124, 58, 237, 0.2)'
-                            }}
+                            className="about-hero-image-small"
                         >
                             <img 
                                 src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80"
@@ -99,12 +87,7 @@ export default function AboutPage() {
                         {/* Bottom Right Image */}
                         <motion.div 
                             variants={fadeInDown}
-                            style={{ 
-                                borderRadius: '24px',
-                                overflow: 'hidden',
-                                border: '4px solid white',
-                                boxShadow: '0 10px 40px rgba(124, 58, 237, 0.2)'
-                            }}
+                            className="about-hero-image-small"
                         >
                             <img 
                                 src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&q=80"
