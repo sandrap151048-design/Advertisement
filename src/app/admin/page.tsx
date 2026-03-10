@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Home, Users, LogOut, MessageSquare, Briefcase, TrendingUp, Activity, Clock, CheckCircle, Star, Layers, MapPin, Phone, Mail, ShieldCheck, BookOpen } from 'lucide-react';
+import { Home, Users, LogOut, MessageSquare, Briefcase, TrendingUp, Activity, Clock, CheckCircle, Star, Layers, MapPin, Phone, Mail, ShieldCheck, BookOpen, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -158,8 +158,16 @@ export default function AdminPage() {
 
     return (
         <div className="admin-layout">
+            {/* Mobile Menu Overlay */}
+            {isMobileMenuOpen && (
+                <div 
+                    className="admin-mobile-overlay"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                />
+            )}
+
             {/* Sidebar */}
-            <aside className="admin-sidebar">
+            <aside className={`admin-sidebar ${isMobileMenuOpen ? 'admin-sidebar-open' : ''}`}>
                 <motion.div 
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -198,7 +206,7 @@ export default function AdminPage() {
                 </motion.div>
 
                 <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', flex: 1 }}>
-                    <Link href="/admin" style={{ textDecoration: 'none' }}>
+                    <Link href="/admin" style={{ textDecoration: 'none' }} onClick={() => setIsMobileMenuOpen(false)}>
                         <motion.div 
                             whileHover={{ x: 5 }}
                             className="nav-item" 
@@ -208,7 +216,7 @@ export default function AdminPage() {
                             <span style={getNavTextStyle('/admin')}>Dashboard</span>
                         </motion.div>
                     </Link>
-                    <Link href="/admin/contacts" style={{ textDecoration: 'none' }}>
+                    <Link href="/admin/contacts" style={{ textDecoration: 'none' }} onClick={() => setIsMobileMenuOpen(false)}>
                         <motion.div 
                             whileHover={{ x: 5, background: 'rgba(255, 255, 255, 0.05)' }}
                             className="nav-item" 
@@ -218,7 +226,7 @@ export default function AdminPage() {
                             <span style={getNavTextStyle('/admin/contacts')}>Contact Forms</span>
                         </motion.div>
                     </Link>
-                    <Link href="/admin/services" style={{ textDecoration: 'none' }}>
+                    <Link href="/admin/services" style={{ textDecoration: 'none' }} onClick={() => setIsMobileMenuOpen(false)}>
                         <motion.div 
                             whileHover={{ x: 5, background: 'rgba(255, 255, 255, 0.05)' }}
                             className="nav-item" 
@@ -228,7 +236,7 @@ export default function AdminPage() {
                             <span style={getNavTextStyle('/admin/services')}>Services</span>
                         </motion.div>
                     </Link>
-                    <Link href="/admin/testimonials" style={{ textDecoration: 'none' }}>
+                    <Link href="/admin/testimonials" style={{ textDecoration: 'none' }} onClick={() => setIsMobileMenuOpen(false)}>
                         <motion.div 
                             whileHover={{ x: 5, background: 'rgba(255, 255, 255, 0.05)' }}
                             className="nav-item" 
@@ -238,7 +246,7 @@ export default function AdminPage() {
                             <span style={getNavTextStyle('/admin/testimonials')}>Testimonials</span>
                         </motion.div>
                     </Link>
-                    <Link href="/admin/blog" style={{ textDecoration: 'none' }}>
+                    <Link href="/admin/blog" style={{ textDecoration: 'none' }} onClick={() => setIsMobileMenuOpen(false)}>
                         <motion.div 
                             whileHover={{ x: 5, background: 'rgba(255, 255, 255, 0.05)' }}
                             className="nav-item" 
@@ -248,7 +256,7 @@ export default function AdminPage() {
                             <span style={getNavTextStyle('/admin/blog')}>Blog & Resources</span>
                         </motion.div>
                     </Link>
-                    <Link href="/admin/newsletter" style={{ textDecoration: 'none' }}>
+                    <Link href="/admin/newsletter" style={{ textDecoration: 'none' }} onClick={() => setIsMobileMenuOpen(false)}>
                         <motion.div 
                             whileHover={{ x: 5, background: 'rgba(255, 255, 255, 0.05)' }}
                             className="nav-item" 
@@ -292,6 +300,7 @@ export default function AdminPage() {
                 <motion.header 
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
+                    className="admin-header"
                     style={{ 
                         display: 'flex', 
                         justifyContent: 'space-between', 
@@ -318,20 +327,20 @@ export default function AdminPage() {
                         {/* Mobile Menu Toggle */}
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            className="admin-mobile-toggle"
                             style={{
                                 display: 'none',
                                 background: 'var(--color-primary)',
                                 border: 'none',
                                 borderRadius: '8px',
-                                padding: '0.5rem',
+                                padding: '0.75rem',
                                 color: 'white',
-                                cursor: 'pointer'
+                                cursor: 'pointer',
+                                alignItems: 'center',
+                                justifyContent: 'center'
                             }}
-                            className="mobile-menu-toggle"
                         >
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
+                            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
                         </button>
                         <motion.div 
                             whileHover={{ scale: 1.05 }}
