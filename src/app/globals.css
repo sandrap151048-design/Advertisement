@@ -419,16 +419,19 @@ ul {
     font-size: 0.9rem;
   }
 }
-  font-family: var(--font-navbar);
-  font-weight: 800;
-  font-size: 1.3rem;
-  letter-spacing: -0.03em;
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 0.5rem;
   text-decoration: none;
-  transition: opacity 0.3s;
+  transition: all 0.3s ease;
+  z-index: 1001;
 }
 
 .nav-logo:hover {
-  opacity: 0.85;
+  transform: translateY(-1px);
 }
 
 .nav-logo-icon {
