@@ -176,13 +176,14 @@ ul {
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.98);
+  background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(124, 58, 237, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: 0;
   transition: all 0.4s ease;
   font-family: var(--font-navbar);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .nav-inner {
@@ -238,7 +239,7 @@ ul {
   padding: 0.5rem 1rem;
   border-radius: 8px;
   transition: all 0.25s ease;
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.9);
   position: relative;
   overflow: hidden;
 }
@@ -258,7 +259,7 @@ ul {
 
 .nav-link:hover {
   color: var(--color-primary);
-  background: rgba(124, 58, 237, 0.08);
+  background: rgba(124, 58, 237, 0.15);
 }
 
 .nav-link:hover::after {
@@ -267,7 +268,7 @@ ul {
 
 .nav-link.active {
   color: var(--color-primary);
-  background: rgba(124, 58, 237, 0.12);
+  background: rgba(124, 58, 237, 0.2);
 }
 
 .nav-link.active::after {
@@ -306,8 +307,15 @@ ul {
   border: none;
   cursor: pointer;
   padding: 0.5rem;
-  color: var(--color-primary);
+  color: rgba(255, 255, 255, 0.9);
   z-index: 1001;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-primary);
 }
 
 /* Admin panel styles */
@@ -513,11 +521,11 @@ ul {
   top: 68px;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.98);
+  background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(124, 58, 237, 0.15);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   transform: translateY(-100%);
   opacity: 0;
   visibility: hidden;
@@ -545,7 +553,7 @@ ul {
 .mobile-nav-link {
   display: block;
   padding: 1rem 1.5rem;
-  color: var(--color-text-main);
+  color: rgba(255, 255, 255, 0.9);
   font-family: var(--font-navbar);
   font-weight: 600;
   font-size: 1.1rem;
@@ -557,9 +565,9 @@ ul {
 
 .mobile-nav-link:hover,
 .mobile-nav-link:active {
-  background: rgba(124, 58, 237, 0.1);
+  background: rgba(124, 58, 237, 0.2);
   color: var(--color-primary);
-  border-color: rgba(124, 58, 237, 0.2);
+  border-color: rgba(124, 58, 237, 0.3);
 }
 
 .mobile-nav-actions {
@@ -567,7 +575,7 @@ ul {
   flex-direction: column;
   gap: 1rem;
   padding: 0 1.5rem;
-  border-top: 1px solid rgba(124, 58, 237, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 1.5rem;
 }
 
