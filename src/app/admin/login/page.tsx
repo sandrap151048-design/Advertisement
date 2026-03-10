@@ -321,6 +321,7 @@ export default function AdminLoginPage() {
                                     value={formData.password}
                                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                                     placeholder="Enter your password"
+                                    autoComplete="current-password"
                                     style={{
                                         width: '100%',
                                         padding: '1rem 3rem 1rem 3rem',
@@ -331,7 +332,9 @@ export default function AdminLoginPage() {
                                         fontSize: '1rem',
                                         outline: 'none',
                                         transition: 'all 0.3s',
-                                        fontFamily: "'Manrope', sans-serif"
+                                        fontFamily: "'Manrope', sans-serif",
+                                        WebkitAppearance: 'none',
+                                        MozAppearance: 'textfield'
                                     }}
                                     onFocus={(e) => {
                                         e.target.style.borderColor = '#7c3aed';
@@ -451,6 +454,18 @@ export default function AdminLoginPage() {
                 @keyframes spin {
                     to { transform: rotate(360deg); }
                 }
+                
+                /* Hide browser's default password reveal button */
+                input[type="password"]::-ms-reveal,
+                input[type="password"]::-ms-clear {
+                    display: none;
+                }
+                
+                input[type="password"]::-webkit-credentials-auto-fill-button,
+                input[type="password"]::-webkit-strong-password-auto-fill-button {
+                    display: none !important;
+                }
+                
                 @media (max-width: 1024px) {
                     div[style*="grid-template-columns"] {
                         grid-template-columns: 1fr !important;
