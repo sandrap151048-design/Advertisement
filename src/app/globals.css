@@ -2214,3 +2214,110 @@ iframe {
     padding: 1rem !important;
   }
 }
+/* Fix Mobile Admin Sidebar Navigation Layout */
+@media (max-width: 768px) {
+  .admin-sidebar {
+    padding: 1rem !important;
+    overflow-y: auto !important;
+  }
+
+  .admin-sidebar nav {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .admin-sidebar .nav-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    padding: 1rem !important;
+    border-radius: 12px !important;
+    color: white !important;
+    cursor: pointer !important;
+    transition: all 0.3s !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    margin-bottom: 0.5rem !important;
+    white-space: nowrap !important;
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    border: none !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .admin-sidebar .nav-item:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    transform: translateX(5px) !important;
+  }
+
+  .admin-sidebar .nav-item span {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 500 !important;
+    font-size: 0.95rem !important;
+  }
+
+  .admin-sidebar a {
+    text-decoration: none !important;
+    width: 100% !important;
+  }
+
+  /* Fix logo section spacing */
+  .admin-sidebar > div:first-child {
+    margin-bottom: 2rem !important;
+    margin-top: 1rem !important;
+  }
+
+  /* Fix logout button */
+  .admin-sidebar > div:last-child {
+    margin-top: auto !important;
+    padding-top: 1rem !important;
+  }
+}
+
+/* Small Mobile Devices - Additional fixes */
+@media (max-width: 480px) {
+  .admin-sidebar {
+    width: 260px !important;
+    padding: 0.75rem !important;
+  }
+
+  .admin-sidebar .nav-item {
+    padding: 0.875rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  .admin-sidebar .nav-item span {
+    font-size: 0.9rem !important;
+  }
+}
+/* Admin Mobile Toggle Button */
+.admin-mobile-toggle {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .admin-mobile-toggle {
+    display: flex !important;
+    background: var(--color-primary) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 0.75rem !important;
+    color: white !important;
+    cursor: pointer !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    z-index: 1002 !important;
+  }
+
+  .admin-mobile-toggle:hover {
+    background: var(--color-secondary) !important;
+    transform: scale(1.05) !important;
+  }
+}
