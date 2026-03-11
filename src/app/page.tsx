@@ -118,8 +118,19 @@ export default function Home() {
             One Click Advertisement combines cutting-edge AI technology with premium branding solutions. We transform ordinary surfaces into extraordinary brand stories that captivate audiences across the UAE.
           </motion.p>
 
-          <motion.div variants={slideDown} style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link href="/services" className="btn btn-primary" style={{ padding: '1.2rem 3.5rem', borderRadius: '14px', fontWeight: 700 }}>EXPLORE SOLUTIONS</Link>
+          <motion.div variants={slideDown} style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap', width: '100%' }}>
+            <Link href="/services" className="btn btn-primary" style={{ 
+              padding: '1.2rem 3.5rem', 
+              borderRadius: '14px', 
+              fontWeight: 700,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textAlign: 'center',
+              minWidth: '280px'
+            }}>
+              EXPLORE SOLUTIONS
+            </Link>
           </motion.div>
         </motion.div>
       </section>
@@ -731,13 +742,14 @@ export default function Home() {
           marginTop: '3rem',
           padding: '0 1rem'
         }}>
-          <div style={{
+          <div className="success-stories-buttons" style={{
             display: 'flex',
             flexDirection: 'column',
             gap: '1.5rem',
             alignItems: 'center',
             maxWidth: '400px',
-            margin: '0 auto'
+            margin: '0 auto',
+            width: '100%'
           }}>
             <Link href="/testimonials" className="btn btn-primary" style={{ 
               padding: '1.2rem 3rem',
@@ -745,7 +757,10 @@ export default function Home() {
               maxWidth: '300px',
               textAlign: 'center',
               fontSize: '1.1rem',
-              fontWeight: '600'
+              fontWeight: '600',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
             }}>
               View More Stories
             </Link>
@@ -755,7 +770,10 @@ export default function Home() {
               maxWidth: '300px',
               textAlign: 'center',
               fontSize: '1.1rem',
-              fontWeight: '600'
+              fontWeight: '600',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
             }}>
               Start Your Project
             </Link>
