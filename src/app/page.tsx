@@ -726,13 +726,36 @@ export default function Home() {
             </motion.div>
           ))}
         </div>
-        <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-          <Link href="/testimonials" className="btn btn-primary" style={{ padding: '1rem 2.5rem', marginRight: '1rem' }}>
-            View More Stories
-          </Link>
-          <Link href="/contact" className="btn btn-outline" style={{ padding: '1rem 2.5rem' }}>
-            Start Your Project
-          </Link>
+        <div style={{ 
+          textAlign: 'center', 
+          marginTop: '3rem',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1rem',
+          alignItems: 'center'
+        }}>
+          <div style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '1rem',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+            <Link href="/testimonials" className="btn btn-primary" style={{ 
+              padding: '1rem 2.5rem',
+              minWidth: '200px',
+              textAlign: 'center'
+            }}>
+              View More Stories
+            </Link>
+            <Link href="/contact" className="btn btn-outline" style={{ 
+              padding: '1rem 2.5rem',
+              minWidth: '200px',
+              textAlign: 'center'
+            }}>
+              Start Your Project
+            </Link>
+          </div>
         </div>
       </section>
 

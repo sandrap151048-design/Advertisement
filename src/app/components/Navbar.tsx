@@ -66,15 +66,6 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          onClick={toggleMenu}
-          className="mobile-menu-toggle"
-          aria-label="Toggle menu"
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-
         {/* Desktop Navigation */}
         <nav className="nav-links-desktop">
           <Link href="/" className="nav-link">Home</Link>
@@ -89,6 +80,16 @@ export default function Navbar() {
           <Link href="/register" className="btn btn-outline nav-btn">Start Your Campaign</Link>
           <Link href="/admin/login" className="btn btn-primary nav-btn">Login</Link>
         </div>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          onClick={toggleMenu}
+          className="mobile-menu-toggle"
+          aria-label="Toggle menu"
+          style={{ display: 'none' }}
+        >
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
 
       {/* Mobile Menu Overlay */}
