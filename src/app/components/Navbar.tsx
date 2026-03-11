@@ -86,7 +86,6 @@ export default function Navbar() {
           onClick={toggleMenu}
           className="mobile-menu-toggle"
           aria-label="Toggle menu"
-          style={{ display: 'none' }}
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -97,6 +96,16 @@ export default function Navbar() {
         <div 
           className="mobile-menu-overlay"
           onClick={closeMenu}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0, 0, 0, 0.5)',
+            zIndex: 999,
+            backdropFilter: 'blur(4px)'
+          }}
         />
       )}
 

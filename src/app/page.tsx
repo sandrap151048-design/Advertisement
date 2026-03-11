@@ -729,29 +729,33 @@ export default function Home() {
         <div style={{ 
           textAlign: 'center', 
           marginTop: '3rem',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '1rem',
-          alignItems: 'center'
+          padding: '0 1rem'
         }}>
           <div style={{
             display: 'flex',
-            flexWrap: 'wrap',
-            gap: '1rem',
-            justifyContent: 'center',
-            alignItems: 'center'
+            flexDirection: 'column',
+            gap: '1.5rem',
+            alignItems: 'center',
+            maxWidth: '400px',
+            margin: '0 auto'
           }}>
             <Link href="/testimonials" className="btn btn-primary" style={{ 
-              padding: '1rem 2.5rem',
-              minWidth: '200px',
-              textAlign: 'center'
+              padding: '1.2rem 3rem',
+              width: '100%',
+              maxWidth: '300px',
+              textAlign: 'center',
+              fontSize: '1.1rem',
+              fontWeight: '600'
             }}>
               View More Stories
             </Link>
             <Link href="/contact" className="btn btn-outline" style={{ 
-              padding: '1rem 2.5rem',
-              minWidth: '200px',
-              textAlign: 'center'
+              padding: '1.2rem 3rem',
+              width: '100%',
+              maxWidth: '300px',
+              textAlign: 'center',
+              fontSize: '1.1rem',
+              fontWeight: '600'
             }}>
               Start Your Project
             </Link>
