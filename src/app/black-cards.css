@@ -1,0 +1,69 @@
+@keyframes loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.service-card-black {
+  background: #000000 !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+.service-card-black,
+.service-card-black::before,
+.service-card-black::after {
+  background: #000000 !important;
+}
+
+.service-card-black * {
+  background: transparent !important;
+}
+
+.service-card-black h3 {
+  color: #ffffff !important;
+}
+
+.service-card-black p {
+  color: #cccccc !important;
+}
+
+.service-card-black li {
+  color: #ffffff !important;
+}
+
+/* Override any possible conflicting styles */
+div.service-card-black {
+  background: #000000 !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+section div.service-card-black {
+  background: #000000 !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.container div.service-card-black {
+  background: #000000 !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+/* Data attribute approach */
+[data-theme="black"] {
+  background: #000000 !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+div[data-theme="black"] {
+  background: #000000 !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  backdrop-filter: blur(10px) !important;
+}

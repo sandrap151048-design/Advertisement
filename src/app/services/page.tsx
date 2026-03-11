@@ -163,9 +163,9 @@ export default function ServicesPage() {
                                 borderRadius: '24px',
                                 padding: '2rem 1.8rem',
                                 transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                                border: '1px solid rgba(124, 58, 237, 0.1)',
-                                background: 'rgba(255, 255, 255, 0.98)',
-                                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)',
+                                border: '1px solid rgba(255, 255, 255, 0.2)',
+                                background: '#000000',
+                                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
                                 minHeight: '420px'
                             }}
                             whileHover={{ y: -10, boxShadow: '0 20px 40px rgba(124, 58, 237, 0.15)', borderColor: 'rgba(124, 58, 237, 0.3)' }}
@@ -174,9 +174,9 @@ export default function ServicesPage() {
                                 <div style={{ width: 64, height: 64, borderRadius: '16px', background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', color: 'white', boxShadow: '0 8px 24px rgba(124, 58, 237, 0.25)' }}>
                                     {service.icon}
                                 </div>
-                                <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', fontFamily: 'var(--font-heading)', fontWeight: 700, lineHeight: '1.3', color: 'var(--color-text-main)', minHeight: '60px' }}>{service.title}</h3>
-                                <p style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem', marginBottom: '1.5rem', lineHeight: '1.6', minHeight: '50px' }}>{service.desc}</p>
-                                <ul style={{ color: 'var(--color-text-muted)', paddingLeft: '0', listStyleType: 'none', fontSize: '0.9rem', lineHeight: '1.8', flex: 1 }}>
+                                <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', fontFamily: 'var(--font-heading)', fontWeight: 700, lineHeight: '1.3', color: '#ffffff', minHeight: '60px' }}>{service.title}</h3>
+                                <p style={{ color: '#cccccc', fontSize: '0.95rem', marginBottom: '1.5rem', lineHeight: '1.6', minHeight: '50px' }}>{service.desc}</p>
+                                <ul style={{ color: '#ffffff', paddingLeft: '0', listStyleType: 'none', fontSize: '0.9rem', lineHeight: '1.8', flex: 1 }}>
                                     {service.items.map((item, id) => (
                                         <li key={id} style={{ marginBottom: '0.7rem', paddingLeft: '1.5rem', position: 'relative' }}>
                                             <span style={{ position: 'absolute', left: 0, color: 'var(--color-primary)', fontWeight: 'bold' }}>•</span>
@@ -265,9 +265,9 @@ export default function ServicesPage() {
                                     borderRadius: '32px',
                                     padding: '3rem 2.5rem',
                                     transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                                    border: '1px solid rgba(124, 58, 237, 0.1)',
-                                    background: 'rgba(255, 255, 255, 0.98)',
-                                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)',
+                                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                                    background: '#000000',
+                                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
                                     minHeight: '420px'
                                 }}
                                 whileHover={{ y: -10, boxShadow: '0 20px 40px rgba(124, 58, 237, 0.15)', borderColor: 'rgba(124, 58, 237, 0.3)' }}
@@ -276,10 +276,10 @@ export default function ServicesPage() {
                                     <div style={{ width: 80, height: 80, borderRadius: '20px', background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '2rem', color: 'white', boxShadow: '0 8px 24px rgba(124, 58, 237, 0.25)' }}>
                                         <Briefcase size={28} />
                                     </div>
-                                    <h3 style={{ fontSize: '1.75rem', marginBottom: '1.2rem', fontFamily: 'var(--font-heading)', fontWeight: 700, lineHeight: '1.3', color: 'var(--color-text-main)', minHeight: '70px' }}>{service.name}</h3>
-                                    <p style={{ color: 'var(--color-text-muted)', fontSize: '1rem', marginBottom: '2rem', lineHeight: '1.7', minHeight: '55px' }}>{service.description}</p>
+                                    <h3 style={{ fontSize: '1.75rem', marginBottom: '1.2rem', fontFamily: 'var(--font-heading)', fontWeight: 700, lineHeight: '1.3', color: '#ffffff', minHeight: '70px' }}>{service.name}</h3>
+                                    <p style={{ color: '#cccccc', fontSize: '1rem', marginBottom: '2rem', lineHeight: '1.7', minHeight: '55px' }}>{service.description}</p>
                                     {service.items && service.items.length > 0 ? (
-                                        <ul style={{ color: 'var(--color-text-muted)', paddingLeft: '0', listStyleType: 'none', fontSize: '0.95rem', lineHeight: '2', flex: 1 }}>
+                                        <ul style={{ color: '#ffffff', paddingLeft: '0', listStyleType: 'none', fontSize: '0.95rem', lineHeight: '2', flex: 1 }}>
                                             {service.items.map((item, id) => (
                                                 <li key={id} style={{ marginBottom: '0.8rem', paddingLeft: '1.5rem', position: 'relative' }}>
                                                     <span style={{ position: 'absolute', left: 0, color: 'var(--color-primary)', fontWeight: 'bold' }}>•</span>

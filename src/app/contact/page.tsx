@@ -30,11 +30,11 @@ const staggerContainer: Variants = {
 };
 
 const inputStyle = {
-    background: 'rgba(124, 58, 237, 0.03)',
-    border: '1px solid var(--color-card-border)',
+    background: 'rgba(255, 255, 255, 0.1)',
+    border: '1px solid rgba(255, 255, 255, 0.2)',
     padding: '1rem',
     borderRadius: '8px',
-    color: 'var(--color-text-main)' as const,
+    color: '#ffffff' as const,
     width: '100%',
     outline: 'none',
     fontFamily: 'var(--font-body)',
@@ -152,7 +152,9 @@ export default function ContactPage() {
                                     borderRadius: '20px',
                                     position: 'relative',
                                     overflow: 'hidden',
-                                    cursor: item.link ? 'pointer' : 'default'
+                                    cursor: item.link ? 'pointer' : 'default',
+                                    background: '#000000',
+                                    border: '1px solid rgba(255, 255, 255, 0.2)'
                                 }}
                                 onClick={() => item.link && window.open(item.link, '_blank')}
                             >
@@ -161,7 +163,7 @@ export default function ContactPage() {
                                     {item.icon}
                                 </div>
                                 <div style={{ position: 'relative', zIndex: 2 }}>
-                                    <h4 style={{ fontSize: '1.1rem', marginBottom: '0.2rem', fontFamily: 'var(--font-heading)', color: 'var(--color-text-main)' }}>{item.title}</h4>
+                                    <h4 style={{ fontSize: '1.1rem', marginBottom: '0.2rem', fontFamily: 'var(--font-heading)', color: '#ffffff' }}>{item.title}</h4>
                                     <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: '1rem' }}>{item.val}</p>
                                     <p style={{ color: 'var(--color-primary)', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '4px' }}>
                                         {item.desc} {item.link && <ExternalLink size={12} />}
@@ -172,9 +174,9 @@ export default function ContactPage() {
                     </motion.div>
 
                     {/* Contact Form */}
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={slideDown} className="glass-card" style={{ padding: '3rem', borderRadius: '32px', border: '1px solid var(--color-card-border)', background: 'rgba(255, 255, 255, 0.98)', position: 'relative', overflow: 'hidden', boxShadow: '0 20px 50px rgba(124, 58, 237, 0.1)' }}>
+                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={slideDown} className="glass-card" style={{ padding: '3rem', borderRadius: '32px', border: '1px solid rgba(255, 255, 255, 0.2)', background: '#000000', position: 'relative', overflow: 'hidden', boxShadow: '0 20px 50px rgba(0, 0, 0, 0.3)' }}>
                         <div style={{ position: 'absolute', top: '-100px', right: '-100px', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, transparent 70%)', filter: 'blur(60px)', pointerEvents: 'none' }} />
-                        <h3 style={{ fontSize: '1.8rem', marginBottom: '2rem', fontFamily: 'var(--font-contact)', color: 'var(--color-text-main)' }}>Send a <span className="text-gradient">Message</span></h3>
+                        <h3 style={{ fontSize: '1.8rem', marginBottom: '2rem', fontFamily: 'var(--font-contact)', color: '#ffffff' }}>Send a <span className="text-gradient">Message</span> ✦</h3>
 
                         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', position: 'relative', zIndex: 2 }}>
                             {submitStatus && (
@@ -216,15 +218,15 @@ export default function ContactPage() {
                         { loc: 'Ras Al Khaimah', sub: 'Industrial Core', desc: 'Supporting the growing industrial and retail sectors with durable, high-impact outdoor branding solutions.', query: 'Ras+Al+Khaimah+Industrial+Area', img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80' },
                         { loc: 'Fujairah', sub: 'East Coast Outreach', desc: 'Extending our premium branding services to the Fujairah business community and maritime industries.', query: 'Fujairah+Port', img: 'https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=800&q=80' }
                     ].map((item, i) => (
-                        <motion.div key={i} variants={dropIn} className="glass-card" style={{ padding: '0', textAlign: 'left', borderRadius: '28px', position: 'relative', overflow: 'hidden', border: '1px solid var(--color-card-border)' }}>
+                        <motion.div key={i} variants={dropIn} className="glass-card" style={{ padding: '0', textAlign: 'left', borderRadius: '28px', position: 'relative', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.2)', background: '#000000' }}>
                             <div style={{ position: 'relative', height: '200px', overflow: 'hidden' }}>
                                 <img src={item.img} alt={item.loc} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%)' }} />
                             </div>
                             <div style={{ padding: '2rem', position: 'relative', zIndex: 2 }}>
-                                <h4 style={{ fontFamily: 'var(--font-contact)', fontSize: '1.4rem', marginBottom: '0.5rem', color: 'var(--color-text-main)' }}>{item.loc}</h4>
+                                <h4 style={{ fontFamily: 'var(--font-contact)', fontSize: '1.4rem', marginBottom: '0.5rem', color: '#ffffff' }}>{item.loc}</h4>
                                 <p style={{ color: 'var(--color-primary)', fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '1rem' }}>{item.sub}</p>
-                                <p style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>{item.desc}</p>
+                                <p style={{ color: '#cccccc', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>{item.desc}</p>
                                 <button
                                     onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${item.query}`, '_blank')}
                                     style={{ background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '12px', color: 'white', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', transition: 'all 0.3s', fontWeight: 600, boxShadow: '0 4px 12px rgba(124, 58, 237, 0.3)' }}

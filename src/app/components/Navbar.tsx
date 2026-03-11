@@ -6,6 +6,7 @@ import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -15,8 +16,15 @@ export default function Navbar() {
     setIsMenuOpen(false);
   };
 
+  // Optimize mounting and event listeners
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   // Close menu when clicking outside or pressing escape
   useEffect(() => {
+    if (!isMounted) return;
+
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setIsMenuOpen(false);
@@ -44,17 +52,17 @@ export default function Navbar() {
       window.removeEventListener('resize', handleResize);
       document.body.style.overflow = 'unset';
     };
-  }, [isMenuOpen]);
+  }, [isMenuOpen, isMounted]);
 
   return (
     <header className="navbar">
       <div className="container nav-inner">
         <Link href="/" className="nav-logo" onClick={closeMenu}>
           <div className="nav-logo-icon">OC</div>
-          <div>
-            <span style={{ color: 'var(--color-primary)', fontFamily: "'Syne', sans-serif", fontWeight: 700 }}>One</span>
-            <span style={{ color: 'var(--color-text-main)', fontFamily: "'Syne', sans-serif", fontWeight: 700 }}> Click</span>
-            <div style={{ fontSize: '0.55rem', fontWeight: 600, color: 'rgba(15, 23, 42, 0.4)', letterSpacing: '2px', textTransform: 'uppercase', lineHeight: 1, marginTop: '1px', fontFamily: "'Space Grotesk', sans-serif" }}>Advertisement</div>
+          <div className="nav-logo-text">
+            <span className="brand-primary">One</span>
+            <span className="brand-secondary"> Click</span>
+            <div className="brand-tagline">Advertisement</div>
           </div>
         </Link>
 
@@ -68,13 +76,7 @@ export default function Navbar() {
         </button>
 
         {/* Desktop Navigation */}
-        <nav className="nav-links-desktop" style={{ 
-          fontFamily: "'Plus Jakarta Sans', sans-serif", 
-          fontWeight: 600,
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.2rem'
-        }}>
+        <nav className="nav-links-desktop">
           <Link href="/" className="nav-link">Home</Link>
           <Link href="/services" className="nav-link">Services</Link>
           <Link href="/testimonials" className="nav-link">Testimonials</Link>
@@ -83,14 +85,9 @@ export default function Navbar() {
           <Link href="/about" className="nav-link">About Us</Link>
         </nav>
 
-        <div className="nav-actions-desktop" style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.8rem',
-          padding: '0 0.5rem'
-        }}>
-          <Link href="/register" className="btn btn-outline" style={{ padding: '0.45rem 1.2rem', fontSize: '0.85rem', borderRadius: '8px', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, marginRight: '0.8rem' }}>Start Your Campaign</Link>
-          <Link href="/admin/login" className="btn btn-primary" style={{ padding: '0.45rem 1.2rem', fontSize: '0.85rem', borderRadius: '8px', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700 }}>Login</Link>
+        <div className="nav-actions-desktop">
+          <Link href="/register" className="btn btn-outline nav-btn">Start Your Campaign</Link>
+          <Link href="/admin/login" className="btn btn-primary nav-btn">Login</Link>
         </div>
       </div>
 

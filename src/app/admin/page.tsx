@@ -83,23 +83,23 @@ export default function AdminPage() {
             gap: '1rem',
             padding: '1rem 1.2rem',
             borderRadius: '12px',
-            color: '#1e293b',
+            color: '#ffffff',
             cursor: 'pointer',
             transition: 'all 0.3s',
-            background: isActive ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
-            borderLeft: isActive ? '4px solid var(--color-primary)' : '4px solid transparent',
-            boxShadow: isActive ? '0 2px 8px rgba(124, 58, 237, 0.2)' : 'none'
+            background: isActive ? 'rgba(34, 211, 238, 0.15)' : 'transparent',
+            borderLeft: isActive ? '4px solid var(--color-secondary)' : '4px solid transparent',
+            boxShadow: isActive ? '0 2px 8px rgba(34, 211, 238, 0.3)' : 'none'
         };
     };
 
     const getNavIconColor = (path: string) => {
-        return isActivePath(path) ? 'var(--color-primary)' : 'rgba(255,255,255,0.6)';
+        return isActivePath(path) ? 'var(--color-secondary)' : 'rgba(255,255,255,0.6)';
     };
 
     const getNavTextStyle = (path: string) => {
         return {
             fontWeight: isActivePath(path) ? 600 : 500,
-            color: isActivePath(path) ? 'white' : 'rgba(255,255,255,0.7)'
+            color: isActivePath(path) ? 'var(--color-secondary)' : 'rgba(255,255,255,0.7)'
         };
     };
 
@@ -110,7 +110,7 @@ export default function AdminPage() {
                 alignItems: 'center', 
                 justifyContent: 'center', 
                 minHeight: '100vh',
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+                background: '#0B0B0F'
             }}>
                 <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
@@ -120,8 +120,8 @@ export default function AdminPage() {
                     <div style={{ 
                         width: '60px', 
                         height: '60px', 
-                        border: '4px solid rgba(255,255,255,0.3)',
-                        borderTop: '4px solid white',
+                        border: '4px solid rgba(124, 58, 237, 0.3)',
+                        borderTop: '4px solid #7C3AED',
                         borderRadius: '50%',
                         margin: '0 auto 1rem',
                         animation: 'spin 1s linear infinite'
@@ -198,7 +198,7 @@ export default function AdminPage() {
                                 <span style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: '1.1rem' }}>One</span>
                                 <span style={{ color: 'white', fontWeight: 700, fontSize: '1.1rem' }}> Click</span>
                             </div>
-                            <div style={{ fontSize: '0.65rem', fontWeight: 500, color: 'rgba(255,255,255,0.5)', letterSpacing: '1.5px', textTransform: 'uppercase', lineHeight: 1, marginTop: '2px' }}>
+                            <div style={{ fontSize: '0.65rem', fontWeight: 500, color: 'var(--color-accent)', letterSpacing: '1.5px', textTransform: 'uppercase', lineHeight: 1, marginTop: '2px' }}>
                                 Admin Portal
                             </div>
                         </div>
@@ -270,7 +270,7 @@ export default function AdminPage() {
 
                 <motion.div 
                     whileHover={{ x: 5 }}
-                    style={{ marginTop: 'auto' }}
+                    className="admin-logout-button"
                 >
                     <div 
                         onClick={handleLogout}
@@ -281,15 +281,11 @@ export default function AdminPage() {
                             gap: '1rem', 
                             padding: '1rem 1.2rem', 
                             borderRadius: '12px', 
-                            color: '#ef4444', 
-                            cursor: 'pointer', 
-                            transition: 'all 0.3s',
-                            border: '1px solid rgba(239, 68, 68, 0.3)',
-                            background: 'rgba(239, 68, 68, 0.1)'
+                            cursor: 'pointer'
                         }}
                     >
                         <LogOut size={22} color="#ef4444" /> 
-                        <span style={{ fontWeight: 500 }}>Logout</span>
+                        <span style={{ fontWeight: 500, color: '#ef4444' }}>Logout</span>
                     </div>
                 </motion.div>
             </aside>
@@ -306,20 +302,20 @@ export default function AdminPage() {
                         justifyContent: 'space-between', 
                         alignItems: 'center', 
                         paddingBottom: '1.5rem', 
-                        borderBottom: '2px solid #e2e8f0',
-                        background: 'white',
+                        borderBottom: '2px solid rgba(124, 58, 237, 0.3)',
+                        background: 'rgba(255, 255, 255, 0.05)',
                         padding: '1.5rem 2rem',
                         borderRadius: '16px',
-                        boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+                        boxShadow: '0 1px 3px rgba(124, 58, 237, 0.2)',
                         marginBottom: '2rem'
                     }}
                 >
                     <div>
-                        <h1 style={{ fontSize: '2rem', marginBottom: '0.3rem', fontWeight: 800, fontFamily: "'Outfit', sans-serif" }}>
-                            Welcome Back, <span className="text-gradient">Admin</span>
+                        <h1 style={{ fontSize: '2rem', marginBottom: '0.3rem', fontWeight: 800, fontFamily: "'Outfit', sans-serif", color: '#000000' }}>
+                            Welcome Back, <span style={{ color: 'var(--color-secondary)' }}>Admin</span>
                         </h1>
                         <p style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontFamily: "'DM Sans', sans-serif" }}>
-                            <Clock size={16} />
+                            <Clock size={16} color="var(--color-accent)" />
                             {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
                         </p>
                     </div>
@@ -367,10 +363,12 @@ export default function AdminPage() {
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
+                    className="admin-stats-grid"
                     style={{ 
                         display: 'grid',
                         gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                        gap: '1.5rem'
+                        gap: '1.5rem',
+                        marginBottom: '2rem'
                     }}
                 >
                     {[
@@ -379,7 +377,7 @@ export default function AdminPage() {
                             value: stats.contacts, 
                             icon: <MessageSquare size={28} />, 
                             color: '#7c3aed',
-                            bgColor: 'rgba(124, 58, 237, 0.1)',
+                            bgColor: 'rgba(124, 58, 237, 0.15)',
                             link: '/admin/contacts',
                             trend: '+12%'
                         },
@@ -387,8 +385,8 @@ export default function AdminPage() {
                             title: "Active Services", 
                             value: stats.services, 
                             icon: <Briefcase size={28} />, 
-                            color: '#10b981',
-                            bgColor: 'rgba(16, 185, 129, 0.1)',
+                            color: '#22d3ee',
+                            bgColor: 'rgba(34, 211, 238, 0.15)',
                             link: '/admin/services',
                             trend: '+8%'
                         },
@@ -396,8 +394,8 @@ export default function AdminPage() {
                             title: "Total Records", 
                             value: stats.contacts + stats.services, 
                             icon: <Activity size={28} />, 
-                            color: '#f59e0b',
-                            bgColor: 'rgba(245, 158, 11, 0.1)',
+                            color: '#facc15',
+                            bgColor: 'rgba(250, 204, 21, 0.15)',
                             link: '/admin',
                             trend: '+20%'
                         }
@@ -407,11 +405,11 @@ export default function AdminPage() {
                                 variants={itemVariants}
                                 whileHover={{ y: -8, boxShadow: '0 12px 24px rgba(0,0,0,0.1)' }}
                                 style={{
-                                    background: 'white',
+                                    background: 'rgba(255, 255, 255, 0.05)',
                                     padding: '2rem',
                                     borderRadius: '20px',
-                                    boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
-                                    border: '1px solid #e2e8f0',
+                                    boxShadow: '0 4px 12px rgba(124, 58, 237, 0.1)',
+                                    border: '1px solid rgba(124, 58, 237, 0.3)',
                                     cursor: 'pointer',
                                     transition: 'all 0.3s ease',
                                     position: 'relative',
@@ -453,7 +451,7 @@ export default function AdminPage() {
                                     <h5 style={{ color: 'var(--color-text-muted)', fontWeight: 500, marginBottom: '0.5rem', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.5px', fontFamily: "'Space Grotesk', sans-serif" }}>
                                         {stat.title}
                                     </h5>
-                                    <h2 style={{ fontSize: '2.5rem', margin: 0, color: 'var(--color-text-main)', fontWeight: 800, fontFamily: "'Outfit', sans-serif" }}>
+                                    <h2 style={{ fontSize: '2.5rem', margin: 0, color: 'white', fontWeight: 800, fontFamily: "'Outfit', sans-serif" }}>
                                         {stat.value}
                                     </h2>
                                 </div>
@@ -467,25 +465,27 @@ export default function AdminPage() {
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
+                    className="admin-bottom-grid"
                     style={{ 
                         display: 'grid',
                         gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-                        gap: '1.5rem'
+                        gap: '1.5rem',
+                        marginTop: '2rem'
                     }}
                 >
                     {/* Recent Activity */}
                     <motion.div 
                         variants={itemVariants}
                         style={{
-                            background: 'white',
+                            background: 'rgba(255, 255, 255, 0.05)',
                             padding: '2rem',
                             borderRadius: '20px',
-                            boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
-                            border: '1px solid #e2e8f0'
+                            boxShadow: '0 4px 12px rgba(124, 58, 237, 0.1)',
+                            border: '1px solid rgba(124, 58, 237, 0.3)'
                         }}
                     >
-                        <h3 style={{ marginBottom: '1.5rem', fontSize: '1.3rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '0.5rem', fontFamily: "'Syne', sans-serif" }}>
-                            <Activity size={24} color="var(--color-primary)" />
+                        <h3 style={{ marginBottom: '1.5rem', fontSize: '1.3rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '0.5rem', fontFamily: "'Syne', sans-serif", color: 'white' }}>
+                            <Activity size={24} color="var(--color-secondary)" />
                             Recent Contacts
                         </h3>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -497,19 +497,19 @@ export default function AdminPage() {
                                     transition={{ delay: i * 0.1 }}
                                     style={{
                                         padding: '1rem',
-                                        background: 'rgba(124, 58, 237, 0.03)',
+                                        background: 'rgba(34, 211, 238, 0.1)',
                                         borderRadius: '12px',
-                                        border: '1px solid rgba(124, 58, 237, 0.1)',
+                                        border: '1px solid rgba(34, 211, 238, 0.3)',
                                         display: 'flex',
                                         justifyContent: 'space-between',
                                         alignItems: 'center'
                                     }}
                                 >
                                     <div>
-                                        <p style={{ fontWeight: 600, marginBottom: '0.2rem', color: 'var(--color-text-main)', fontFamily: "'DM Sans', sans-serif" }}>{contact.name}</p>
+                                        <p style={{ fontWeight: 600, marginBottom: '0.2rem', color: 'white', fontFamily: "'DM Sans', sans-serif" }}>{contact.name}</p>
                                         <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', fontFamily: "'Manrope', sans-serif" }}>{contact.email}</p>
                                     </div>
-                                    <CheckCircle size={20} color="#10b981" />
+                                    <CheckCircle size={20} color="#22D3EE" />
                                 </motion.div>
                             )) : (
                                 <p style={{ color: 'var(--color-text-muted)', textAlign: 'center', padding: '2rem' }}>No recent contacts</p>
@@ -521,16 +521,16 @@ export default function AdminPage() {
                     <motion.div 
                         variants={itemVariants}
                         style={{
-                            background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
+                            background: 'linear-gradient(135deg, #0B0B0F 0%, #1a1a2e 100%)',
                             padding: '2rem',
                             borderRadius: '20px',
-                            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15)',
+                            boxShadow: '0 8px 24px rgba(124, 58, 237, 0.2)',
                             color: 'white',
-                            border: '1px solid rgba(255, 255, 255, 0.1)'
+                            border: '1px solid rgba(124, 58, 237, 0.3)'
                         }}
                     >
                         <h3 style={{ marginBottom: '2rem', fontSize: '1.3rem', fontWeight: 700, fontFamily: "'Syne', sans-serif", display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                            <TrendingUp size={24} color="var(--color-primary)" />
+                            <TrendingUp size={24} color="var(--color-secondary)" />
                             Analytics Overview
                         </h3>
                         
@@ -544,7 +544,7 @@ export default function AdminPage() {
                                 </div>
                             </div>
                             <div style={{ textAlign: 'center' }}>
-                                <div style={{ fontSize: '2rem', fontWeight: 800, color: '#10b981', marginBottom: '0.5rem' }}>
+                                <div style={{ fontSize: '2rem', fontWeight: 800, color: '#22D3EE', marginBottom: '0.5rem' }}>
                                     {stats.services}
                                 </div>
                                 <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
@@ -564,7 +564,7 @@ export default function AdminPage() {
                                 alignItems: 'center'
                             }}>
                                 <span style={{ fontSize: '0.9rem', fontWeight: 500 }}>Response Rate</span>
-                                <span style={{ fontSize: '1.1rem', fontWeight: 700, color: '#10b981' }}>98.5%</span>
+                                <span style={{ fontSize: '1.1rem', fontWeight: 700, color: '#22D3EE' }}>98.5%</span>
                             </div>
                             <div style={{ 
                                 padding: '1rem', 
@@ -580,10 +580,10 @@ export default function AdminPage() {
                             </div>
                         </div>
 
-                        <div style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(124, 58, 237, 0.1)', borderRadius: '12px', border: '1px solid rgba(124, 58, 237, 0.2)' }}>
+                        <div style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(34, 211, 238, 0.1)', borderRadius: '12px', border: '1px solid rgba(34, 211, 238, 0.3)' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
-                                <ShieldCheck size={18} color="var(--color-primary)" />
-                                <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-primary)' }}>System Status</span>
+                                <ShieldCheck size={18} color="var(--color-secondary)" />
+                                <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-secondary)' }}>System Status</span>
                             </div>
                             <span style={{ fontSize: '0.9rem', fontWeight: 500 }}>All Services Operational</span>
                         </div>
@@ -591,7 +591,7 @@ export default function AdminPage() {
                 </motion.div>
 
                 {/* Admin Footer */}
-                <footer style={{ marginTop: '3rem', padding: '5rem 0', background: '#0f172a', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+                <footer style={{ marginTop: '3rem', padding: '5rem 0', background: '#0B0B0F', borderTop: '1px solid rgba(124, 58, 237, 0.3)' }}>
                     <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
                         <div style={{ marginBottom: '5rem' }}>
                             <div>
@@ -618,13 +618,13 @@ export default function AdminPage() {
                                 <h4 style={{ marginBottom: '1rem', fontSize: '1rem', color: 'white' }}>Contact Us</h4>
                                 <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem', listStyle: 'none', padding: 0 }}>
                                     <li style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}>
-                                        <MapPin size={18} color="var(--color-primary)" /> Dubai, UAE
+                                        <MapPin size={18} color="var(--color-accent)" /> Dubai, UAE
                                     </li>
                                     <li style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}>
-                                        <Phone size={18} color="var(--color-primary)" /> +971 00 000 0000
+                                        <Phone size={18} color="var(--color-accent)" /> +971 00 000 0000
                                     </li>
                                     <li style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}>
-                                        <Mail size={18} color="var(--color-primary)" /> info@oneclickadv.ae
+                                        <Mail size={18} color="var(--color-accent)" /> info@oneclickadv.ae
                                     </li>
                                 </ul>
                             </div>

@@ -142,11 +142,11 @@ export default function AboutPage() {
                     initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
                     className="grid-2" style={{ marginTop: '3rem' }}
                 >
-                    <motion.div variants={dropIn} className="glass-card" style={{ position: 'relative', overflow: 'hidden' }}>
+                    <motion.div variants={dropIn} className="glass-card" style={{ position: 'relative', overflow: 'hidden', background: '#000000', border: '1px solid rgba(255, 255, 255, 0.2)' }}>
                         <img src="/images/ad_facade.svg" alt="Facade" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.12, pointerEvents: 'none' }} />
                         <div style={{ position: 'relative', zIndex: 2 }}>
-                            <h3 style={{ fontSize: '1.6rem', marginBottom: '1rem' }}>Who We Are</h3>
-                            <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.8' }}>
+                            <h3 style={{ fontSize: '1.6rem', marginBottom: '1rem', color: '#ffffff' }}>Who We Are</h3>
+                            <p style={{ color: '#cccccc', lineHeight: '1.8' }}>
                                 We are a UAE-based advertising and branding solutions company delivering high-quality visual communication services to businesses across Dubai, Abu Dhabi, Sharjah, Ajman, and the Northern Emirates.
                             </p>
                             <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.8', marginTop: '1rem' }}>
@@ -155,11 +155,11 @@ export default function AboutPage() {
                         </div>
                     </motion.div>
 
-                    <motion.div variants={slideDown} className="glass-card" style={{ position: 'relative', overflow: 'hidden' }}>
+                    <motion.div variants={slideDown} className="glass-card" style={{ position: 'relative', overflow: 'hidden', background: '#000000', border: '1px solid rgba(255, 255, 255, 0.2)' }}>
                         <img src="/images/ad_pattern_1.svg" alt="Pattern" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.12, pointerEvents: 'none' }} />
                         <div style={{ position: 'relative', zIndex: 2 }}>
-                            <h3 style={{ fontSize: '1.6rem', marginBottom: '1rem' }}>Our Commitment</h3>
-                            <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.8' }}>
+                            <h3 style={{ fontSize: '1.6rem', marginBottom: '1rem', color: '#ffffff' }}>Our Commitment</h3>
+                            <p style={{ color: '#cccccc', lineHeight: '1.8' }}>
                                 With a commitment to international standards and local market compliance, we provide complete turnkey solutions — from design and production to installation and maintenance.
                             </p>
                             <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.8', marginTop: '1rem' }}>
@@ -185,7 +185,7 @@ export default function AboutPage() {
                         borderRadius: '32px',
                         padding: '3rem',
                         border: '1px solid rgba(79, 70, 229, 0.1)',
-                        background: 'white'
+                        background: '#000000'
                     }}>
                         <img 
                             src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80" 
@@ -206,8 +206,8 @@ export default function AboutPage() {
                             <div style={{ width: 64, height: 64, borderRadius: '16px', background: 'linear-gradient(45deg, var(--color-primary), var(--color-secondary))', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '2rem', boxShadow: '0 10px 30px rgba(79, 70, 229, 0.2)' }}>
                                 <Target size={32} color="white" />
                             </div>
-                            <h3 style={{ fontSize: '2.2rem', marginBottom: '1.5rem', fontFamily: 'var(--font-about)', fontWeight: 700, color: 'var(--color-text-main)' }}>Our Vision</h3>
-                            <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.8', fontSize: '1.1rem' }}>
+                            <h3 style={{ fontSize: '2.2rem', marginBottom: '1.5rem', fontFamily: 'var(--font-about)', fontWeight: 700, color: '#ffffff' }}>Our Vision</h3>
+                            <p style={{ color: '#cccccc', lineHeight: '1.8', fontSize: '1.1rem' }}>
                                 To be recognized as the leading AI-driven branding partner in the UAE, delivering world-class visual solutions that redefine the advertising landscape.
                             </p>
                         </div>
@@ -218,7 +218,7 @@ export default function AboutPage() {
                         borderRadius: '32px',
                         padding: '3rem',
                         border: '1px solid rgba(6, 182, 212, 0.1)',
-                        background: 'white'
+                        background: '#000000'
                     }}>
                         <img 
                             src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80" 
@@ -239,8 +239,8 @@ export default function AboutPage() {
                             <div style={{ width: 64, height: 64, borderRadius: '16px', background: 'linear-gradient(45deg, var(--color-secondary), var(--color-primary))', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '2rem', boxShadow: '0 10px 30px rgba(6, 182, 212, 0.2)' }}>
                                 <ShieldCheck size={32} color="white" />
                             </div>
-                            <h3 style={{ fontSize: '2.2rem', marginBottom: '1.5rem', fontFamily: 'var(--font-about)', fontWeight: 700, color: 'var(--color-text-main)' }}>Our Mission</h3>
-                            <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.8', fontSize: '1.1rem' }}>
+                            <h3 style={{ fontSize: '2.2rem', marginBottom: '1.5rem', fontFamily: 'var(--font-about)', fontWeight: 700, color: '#ffffff' }}>Our Mission</h3>
+                            <p style={{ color: '#cccccc', lineHeight: '1.8', fontSize: '1.1rem' }}>
                                 To deliver creative, compliant, and high-quality advertising solutions that meet UAE authority requirements while exceeding client expectations in terms of durability, safety, and visual impact.
                             </p>
                         </div>
@@ -264,10 +264,10 @@ export default function AboutPage() {
                         { title: "Quality", desc: "Uncompromising standards in production and final finishing." },
                         { title: "Compliance", desc: "Full adherence to UAE municipal and authority standards." }
                     ].map((value, i) => (
-                        <motion.div key={i} variants={dropIn} className="glass-card" style={{ padding: '2.5rem', textAlign: 'center', borderRadius: '24px' }}>
+                        <motion.div key={i} variants={dropIn} className="glass-card" style={{ padding: '2.5rem', textAlign: 'center', borderRadius: '24px', background: '#000000', border: '1px solid rgba(255, 255, 255, 0.2)' }}>
                             <div style={{ color: 'var(--color-primary)', marginBottom: '1.5rem', fontSize: '2.5rem', fontWeight: 900 }}>0{i + 1}</div>
-                            <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', fontFamily: 'var(--font-about)' }}>{value.title}</h3>
-                            <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.6' }}>{value.desc}</p>
+                            <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', fontFamily: 'var(--font-about)', color: '#ffffff' }}>{value.title}</h3>
+                            <p style={{ color: '#cccccc', lineHeight: '1.6' }}>{value.desc}</p>
                         </motion.div>
                     ))}
                 </motion.div>
@@ -339,8 +339,8 @@ export default function AboutPage() {
                                 borderRadius: '24px',
                                 position: 'relative',
                                 overflow: 'hidden',
-                                border: '1px solid rgba(124, 58, 237, 0.15)',
-                                background: 'white',
+                                border: '1px solid rgba(255, 255, 255, 0.2)',
+                                background: '#000000',
                                 transition: 'all 0.3s ease'
                             }}
                             whileHover={{ 
@@ -379,7 +379,7 @@ export default function AboutPage() {
                                     <h3 style={{ 
                                         fontSize: '1.8rem', 
                                         fontWeight: 800,
-                                        color: 'var(--color-text-main)',
+                                        color: '#ffffff',
                                         fontFamily: 'var(--font-heading)'
                                     }}>
                                         {location.city}
@@ -416,7 +416,7 @@ export default function AboutPage() {
                                                 display: 'flex', 
                                                 alignItems: 'center', 
                                                 gap: '0.6rem',
-                                                color: 'var(--color-text-muted)',
+                                                color: '#ffffff',
                                                 fontSize: '0.9rem'
                                             }}>
                                                 <span style={{ 

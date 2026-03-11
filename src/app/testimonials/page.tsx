@@ -139,8 +139,8 @@ export default function TestimonialsPage() {
                                 padding: '2rem',
                                 textAlign: 'center',
                                 borderRadius: '20px',
-                                background: 'white',
-                                border: '1px solid rgba(124, 58, 237, 0.1)',
+                                background: '#000000',
+                                border: '1px solid rgba(255, 255, 255, 0.2)',
                                 transition: 'all 0.3s ease'
                             }}
                         >
@@ -158,8 +158,8 @@ export default function TestimonialsPage() {
                             }}>
                                 {item.icon}
                             </div>
-                            <h3 style={{ fontSize: '1.3rem', fontWeight: 700, marginBottom: '0.5rem', color: 'var(--color-text-main)' }}>{item.title}</h3>
-                            <p style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem', lineHeight: '1.6' }}>{item.desc}</p>
+                            <h3 style={{ fontSize: '1.3rem', fontWeight: 700, marginBottom: '0.5rem', color: '#ffffff' }}>{item.title}</h3>
+                            <p style={{ color: '#cccccc', fontSize: '0.95rem', lineHeight: '1.6' }}>{item.desc}</p>
                         </motion.div>
                     ))}
                 </motion.div>
@@ -239,8 +239,8 @@ export default function TestimonialsPage() {
                                     padding: '2.5rem',
                                     borderRadius: '24px',
                                     transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                                    border: '1px solid rgba(124, 58, 237, 0.1)',
-                                    background: 'white',
+                                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                                    background: '#000000',
                                     display: 'flex',
                                     flexDirection: 'column',
                                     position: 'relative',
@@ -284,7 +284,7 @@ export default function TestimonialsPage() {
 
                                 {/* Testimonial Message */}
                                 <p style={{ 
-                                    color: 'var(--color-text-main)', 
+                                    color: '#ffffff', 
                                     fontSize: '1.05rem', 
                                     lineHeight: '1.8', 
                                     flex: 1, 
@@ -324,13 +324,13 @@ export default function TestimonialsPage() {
                                             <h4 style={{ 
                                                 fontSize: '1.2rem', 
                                                 marginBottom: '0.2rem', 
-                                                color: 'var(--color-text-main)',
+                                                color: '#ffffff',
                                                 fontWeight: 700
                                             }}>
                                                 {testimonial.name}
                                             </h4>
                                             <p style={{ 
-                                                color: 'var(--color-text-muted)', 
+                                                color: '#cccccc', 
                                                 fontSize: '0.9rem',
                                                 lineHeight: '1.4'
                                             }}>
@@ -432,8 +432,8 @@ export default function TestimonialsPage() {
                             style={{
                                 padding: '2.5rem',
                                 borderRadius: '20px',
-                                background: 'white',
-                                border: '1px solid rgba(124, 58, 237, 0.1)',
+                                background: '#000000',
+                                border: '1px solid rgba(255, 255, 255, 0.2)',
                                 transition: 'all 0.3s ease'
                             }}
                         >
@@ -457,12 +457,12 @@ export default function TestimonialsPage() {
                                 fontSize: '1.4rem', 
                                 fontWeight: 700, 
                                 marginBottom: '0.8rem', 
-                                color: 'var(--color-text-main)'
+                                color: '#ffffff'
                             }}>
                                 {item.title}
                             </h3>
                             <p style={{ 
-                                color: 'var(--color-text-muted)', 
+                                color: '#cccccc', 
                                 fontSize: '0.95rem', 
                                 lineHeight: '1.7'
                             }}>

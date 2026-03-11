@@ -7,18 +7,15 @@ import Navbar from './components/Navbar';
 export const metadata: Metadata = {
   title: 'One Click Advertisement',
   description: 'Premium signage production, branding, digital printed graphics, facade cladding, and vehicle graphics in UAE.',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-    userScalable: true,
-  },
-  themeColor: '#7C3AED',
   manifest: '/manifest.json',
-  icons: {
-  icon: '/favicon.ico',
-  apple: '/apple-touch-icon.png',    
-  },
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: '#7C3AED',
 };
 
 export default function RootLayout({
@@ -37,62 +34,62 @@ export default function RootLayout({
           {children}
         </main>
 
-        <footer style={{ marginTop: '0', padding: '10rem 0 6rem 0', background: '#0f172a', borderTop: 'none' }}>
-          <div className="container" style={{ maxWidth: '1200px' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '4rem', marginBottom: '6rem' }}>
-              <div>
-                <h3 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '1rem', color: 'white' }}>
-                  <span style={{ color: 'var(--color-primary)' }}>One</span> Click
+        <footer className="main-footer">
+          <div className="container footer-container">
+            <div className="footer-grid">
+              <div className="footer-section">
+                <h3 className="footer-brand">
+                  <span className="brand-primary">One</span> Click
                 </h3>
-                <p style={{ color: 'rgba(255,255,255,0.6)', marginBottom: '2rem', lineHeight: '1.6' }}>
+                <p className="footer-description">
                   Delivering end-to-end visual communication solutions across the UAE.
                 </p>
-                <div style={{ display: 'flex', gap: '0.8rem' }}>
-                  <a href="https://www.facebook.com/oneclickadv" target="_blank" rel="noopener noreferrer" style={{ width: 40, height: 40, borderRadius: '50%', border: '1px solid rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(255,255,255,0.05)', color: 'var(--color-primary)', transition: 'all 0.3s', textDecoration: 'none' }} className="social-icon">
+                <div className="social-links">
+                  <a href="https://www.facebook.com/oneclickadv" target="_blank" rel="noopener noreferrer" className="social-icon">
                     <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                   </a>
-                  <a href="https://www.instagram.com/oneclickadv" target="_blank" rel="noopener noreferrer" style={{ width: 40, height: 40, borderRadius: '50%', border: '1px solid rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(255,255,255,0.05)', color: 'var(--color-primary)', transition: 'all 0.3s', textDecoration: 'none' }} className="social-icon">
+                  <a href="https://www.instagram.com/oneclickadv" target="_blank" rel="noopener noreferrer" className="social-icon">
                     <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                   </a>
-                  <a href="https://twitter.com/oneclickadv" target="_blank" rel="noopener noreferrer" style={{ width: 40, height: 40, borderRadius: '50%', border: '1px solid rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(255,255,255,0.05)', color: 'var(--color-primary)', transition: 'all 0.3s', textDecoration: 'none' }} className="social-icon">
+                  <a href="https://twitter.com/oneclickadv" target="_blank" rel="noopener noreferrer" className="social-icon">
                     <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
                   </a>
                 </div>
               </div>
 
-              <div>
-                <h4 style={{ marginBottom: '1.5rem', color: 'white', fontSize: '1.1rem', fontWeight: 700 }}>Quick Links</h4>
-                <ul style={{ display: 'flex', flexDirection: 'column', gap: '1rem', color: 'rgba(255,255,255,0.6)', listStyle: 'none', padding: 0, margin: 0 }}>
-                  <li><Link href="/#about" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.3s' }}>About Us</Link></li>
-                  <li><Link href="/#services" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.3s' }}>Core Services</Link></li>
-                  <li><Link href="/#vision" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.3s' }}>Vision & Mission</Link></li>
+              <div className="footer-section">
+                <h4 className="footer-title">Quick Links</h4>
+                <ul className="footer-links">
+                  <li><Link href="/#about">About Us</Link></li>
+                  <li><Link href="/#services">Core Services</Link></li>
+                  <li><Link href="/#vision">Vision & Mission</Link></li>
                 </ul>
               </div>
 
-              <div>
-                <h4 style={{ marginBottom: '1.5rem', color: 'white', fontSize: '1.1rem', fontWeight: 700 }}>Contact Us</h4>
-                <ul style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', color: 'rgba(255,255,255,0.6)', listStyle: 'none', padding: 0, margin: 0 }}>
-                  <li style={{ display: 'flex', gap: '0.8rem', alignItems: 'flex-start' }}>
-                    <MapPin size={18} color="var(--color-primary)" style={{ marginTop: '2px', flexShrink: 0 }} /> 
-                    <a href="https://www.google.com/maps/search/?api=1&query=Dubai+UAE" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer', transition: 'color 0.3s' }}>
+              <div className="footer-section">
+                <h4 className="footer-title">Contact Us</h4>
+                <ul className="contact-info">
+                  <li className="contact-item">
+                    <MapPin size={18} className="contact-icon" /> 
+                    <a href="https://www.google.com/maps/search/?api=1&query=Dubai+UAE" target="_blank" rel="noopener noreferrer">
                       Dubai, UAE
                     </a>
                   </li>
-                  <li style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
-                    <Phone size={18} color="var(--color-primary)" style={{ flexShrink: 0 }} /> 
-                    <a href="tel:+97100000000" style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer', transition: 'color 0.3s' }}>
+                  <li className="contact-item">
+                    <Phone size={18} className="contact-icon" /> 
+                    <a href="tel:+97100000000">
                       +971 00 000 0000
                     </a>
                   </li>
-                  <li style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
-                    <Mail size={18} color="var(--color-primary)" style={{ flexShrink: 0 }} /> 
-                    <a href="mailto:info@oneclickadv.ae" style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer', transition: 'color 0.3s' }}>
+                  <li className="contact-item">
+                    <Mail size={18} className="contact-icon" /> 
+                    <a href="mailto:info@oneclickadv.ae">
                       info@oneclickadv.ae
                     </a>
                   </li>
-                  <li style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
-                    <ShieldCheck size={18} color="var(--color-primary)" style={{ flexShrink: 0 }} /> 
-                    <a href="https://oneclickadv.ae" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer', transition: 'color 0.3s' }}>
+                  <li className="contact-item">
+                    <ShieldCheck size={18} className="contact-icon" /> 
+                    <a href="https://oneclickadv.ae" target="_blank" rel="noopener noreferrer">
                       oneclickadv.ae
                     </a>
                   </li>
@@ -100,7 +97,7 @@ export default function RootLayout({
               </div>
             </div>
             
-            <div style={{ textAlign: 'center', paddingTop: '3rem', borderTop: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem' }}>
+            <div className="footer-bottom">
               &copy; {new Date().getFullYear()} One Click Advertisement. All Rights Reserved.
             </div>
           </div>
