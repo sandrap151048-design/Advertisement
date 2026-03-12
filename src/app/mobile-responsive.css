@@ -57,7 +57,7 @@
 @media (max-width: 768px) {
   .hero-section {
     min-height: 80vh !important;
-    padding-top: 6rem !important;
+    padding-top: 8rem !important;
     padding-bottom: 3rem !important;
     text-align: center !important;
   }
@@ -78,9 +78,13 @@
   .hero-section .btn {
     padding: 1rem 2rem !important;
     font-size: 1rem !important;
-    width: auto !important;
-    max-width: 280px !important;
+    width: 100% !important;
+    max-width: 300px !important;
     margin: 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
   }
 
   /* Hero background image mobile */
@@ -110,8 +114,15 @@
 
   /* Buttons */
   .btn {
-    padding: 0.875rem 1.5rem !important;
-    font-size: 0.95rem !important;
+    padding: 1rem 2rem !important;
+    font-size: 1rem !important;
+    width: 100% !important;
+    max-width: 300px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
   }
 
   /* Mobile navbar specific */
@@ -127,6 +138,46 @@
     width: 32px !important;
     height: 32px !important;
     font-size: 0.9rem !important;
+  }
+
+  /* Success Stories Buttons Mobile */
+  .success-stories-buttons {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    align-items: center !important;
+    max-width: 400px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+  }
+
+  .success-stories-buttons .btn {
+    width: 100% !important;
+    max-width: 300px !important;
+    padding: 1.2rem 2rem !important;
+    font-size: 1rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  /* CTA Ribbon Mobile */
+  .cta-ribbon {
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    text-align: center !important;
+    padding: 2rem 1rem !important;
+  }
+  
+  .cta-ribbon h2 {
+    font-size: 1.8rem !important;
+  }
+  
+  .cta-ribbon .btn {
+    width: 100% !important;
+    max-width: 280px !important;
+    margin: 0 auto !important;
   }
 }
 

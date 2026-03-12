@@ -68,6 +68,88 @@ div[data-theme="black"] {
   backdrop-filter: blur(10px) !important;
 }
 
+/* MOBILE BUTTON ALIGNMENT FIXES */
+@media (max-width: 768px) {
+  /* Hero Section Button */
+  .hero-section .btn {
+    width: 100% !important;
+    max-width: 300px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 1.2rem 2rem !important;
+    font-size: 1rem !important;
+  }
+
+  /* Success Stories Buttons */
+  .success-stories-buttons {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    align-items: center !important;
+    max-width: 400px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+  }
+
+  .success-stories-buttons .btn {
+    width: 100% !important;
+    max-width: 300px !important;
+    padding: 1.2rem 2rem !important;
+    font-size: 1rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    margin: 0 !important;
+  }
+
+  /* General Button Fixes */
+  .btn {
+    width: 100% !important;
+    max-width: 300px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 1rem 2rem !important;
+    font-size: 1rem !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Button Container Fixes */
+  div[style*="display: flex"] .btn {
+    flex: none !important;
+    width: 100% !important;
+    max-width: 300px !important;
+  }
+
+  /* CTA Section Button */
+  .glass-card .btn {
+    width: 100% !important;
+    max-width: 280px !important;
+    margin: 0 auto !important;
+    padding: 1rem 2rem !important;
+  }
+
+  /* Contact Form Button */
+  form .btn {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 1.2rem !important;
+  }
+
+  /* About Section Buttons */
+  .grid-2 .btn {
+    width: 100% !important;
+    max-width: 250px !important;
+    margin: 0.5rem auto !important;
+  }
+}
+
 /* Mobile Responsive Service Cards */
 @media (max-width: 768px) {
   .service-card-black {
@@ -121,5 +203,19 @@ div[data-theme="black"] {
   
   .service-card-black div[style*="fontSize: '3rem'"] {
     font-size: 2rem !important;
+  }
+
+  /* Smaller mobile button adjustments */
+  .btn {
+    padding: 1rem 1.5rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  .hero-section .btn {
+    padding: 1rem 1.5rem !important;
+  }
+
+  .success-stories-buttons .btn {
+    padding: 1rem 1.5rem !important;
   }
 }
