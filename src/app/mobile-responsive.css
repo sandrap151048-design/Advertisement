@@ -22,7 +22,7 @@ body {
     padding-top: 70px !important;
   }
   
-  /* Ensure navbar is always visible */
+  /* Ensure navbar is always visible on mobile */
   header.navbar,
   .navbar {
     display: block !important;
@@ -38,6 +38,46 @@ body {
     background: #0B0B0F !important;
     border-bottom: 3px solid #7C3AED !important;
     box-shadow: 0 4px 20px rgba(124, 58, 237, 0.8) !important;
+  }
+  
+  /* Hide desktop navigation on mobile */
+  .nav-links-desktop,
+  .nav-actions-desktop {
+    display: none !important;
+  }
+  
+  /* Show mobile menu toggle only on mobile */
+  .mobile-menu-toggle {
+    display: flex !important;
+  }
+}
+
+@media (min-width: 769px) {
+  /* Desktop navbar - normal positioning */
+  .navbar {
+    position: relative !important;
+    background: transparent !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Show desktop navigation */
+  .nav-links-desktop,
+  .nav-actions-desktop {
+    display: flex !important;
+  }
+  
+  /* Hide mobile elements on desktop */
+  .mobile-menu-toggle,
+  .mobile-menu,
+  .mobile-menu-overlay {
+    display: none !important;
+  }
+  
+  /* Reset body padding on desktop */
+  html,
+  body {
+    padding-top: 0 !important;
   }
 }
 
@@ -328,6 +368,54 @@ body {
     border-radius: 8px !important;
     margin: 0 !important;
     text-align: center !important;
+  }
+}
+
+/* Desktop navbar styles */
+@media (min-width: 769px) {
+  /* Reset mobile styles for desktop */
+  .navbar {
+    position: relative !important;
+    background: transparent !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+    height: auto !important;
+  }
+  
+  .nav-inner {
+    display: grid !important;
+    grid-template-columns: auto 1fr auto !important;
+    height: auto !important;
+    padding: 1rem 2rem !important;
+  }
+  
+  /* Show desktop navigation */
+  .nav-links-desktop,
+  .nav-actions-desktop {
+    display: flex !important;
+  }
+  
+  /* Hide mobile elements */
+  .mobile-menu-toggle,
+  .mobile-menu,
+  .mobile-menu-overlay {
+    display: none !important;
+  }
+  
+  /* Desktop logo styling */
+  .nav-logo {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    height: auto !important;
+    max-width: none !important;
+    flex: none !important;
+  }
+  
+  .nav-logo-icon {
+    background: linear-gradient(135deg, #7C3AED, #22D3EE) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
   }
 }
 

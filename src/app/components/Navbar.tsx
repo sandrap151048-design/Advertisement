@@ -8,6 +8,7 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -21,18 +22,24 @@ export default function Navbar() {
   useEffect(() => {
     setIsMounted(true);
     
-    // Force body padding for navbar
+    // Check if mobile and force body padding for navbar
     if (typeof window !== 'undefined') {
-      const updateBodyPadding = () => {
-        const padding = window.innerWidth <= 480 ? '65px' : '70px';
-        document.body.style.paddingTop = padding;
+      const checkMobile = () => {
+        const mobile = window.innerWidth <= 768;
+        setIsMobile(mobile);
+        if (mobile) {
+          const padding = window.innerWidth <= 480 ? '65px' : '70px';
+          document.body.style.paddingTop = padding;
+        } else {
+          document.body.style.paddingTop = '0px';
+        }
       };
       
-      updateBodyPadding();
-      window.addEventListener('resize', updateBodyPadding);
+      checkMobile();
+      window.addEventListener('resize', checkMobile);
       
       return () => {
-        window.removeEventListener('resize', updateBodyPadding);
+        window.removeEventListener('resize', checkMobile);
         document.body.style.paddingTop = '0px';
       };
     }
@@ -91,114 +98,14 @@ export default function Navbar() {
   }, [isMenuOpen, isMounted]);
 
   return (
-    <header 
-      className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        width: '100vw',
-        zIndex: 999999,
-        height: '70px',
-        background: '#0B0B0F',
-        borderBottom: '3px solid #7C3AED',
-        boxShadow: '0 4px 20px rgba(124, 58, 237, 0.8)',
-        padding: 0,
-        margin: 0,
-        opacity: 1,
-        visibility: 'visible',
-        display: 'block'
-      }}
-    >
-      <div 
-        className="container nav-inner"
-        style={{
-          height: '70px',
-          minHeight: '70px',
-          padding: '0 1rem',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          width: '100%',
-          maxWidth: '100%',
-          background: 'transparent',
-          border: 'none',
-          borderRadius: 0,
-          margin: 0,
-          boxShadow: 'none',
-          gap: '1rem',
-          opacity: 1,
-          visibility: 'visible',
-          gridTemplateColumns: 'none'
-        }}
-      >
-        <Link 
-          href="/" 
-          className="nav-logo" 
-          onClick={closeMenu}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.75rem',
-            padding: '0.5rem 1rem',
-            background: 'linear-gradient(135deg, rgba(124, 58, 237, 0.4), rgba(34, 211, 238, 0.4))',
-            border: '2px solid #7C3AED',
-            borderRadius: '10px',
-            color: 'white',
-            textDecoration: 'none',
-            flex: 1,
-            maxWidth: 'calc(100% - 75px)',
-            height: '50px',
-            boxShadow: '0 4px 15px rgba(124, 58, 237, 0.6)',
-            opacity: 1,
-            visibility: 'visible',
-            fontSize: '1rem'
-          }}
-        >
-          <div 
-            className="nav-logo-icon"
-            style={{
-              width: '40px',
-              height: '40px',
-              background: 'linear-gradient(135deg, #7C3AED, #22D3EE)',
-              borderRadius: '8px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '1rem',
-              fontWeight: 900,
-              color: 'white',
-              flexShrink: 0,
-              border: '2px solid rgba(255, 255, 255, 0.3)',
-              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
-            }}
-          >
-            OC
-          </div>
-          <div 
-            className="nav-logo-text"
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              lineHeight: 1.1,
-              color: 'white',
-              fontWeight: 700,
-              fontSize: '0.9rem'
-            }}
-          >
-            <span style={{ color: '#22D3EE', fontWeight: 800 }}>One</span>
-            <span style={{ color: 'white', fontWeight: 700 }}> Click</span>
-            <div style={{
-              fontSize: '0.6rem',
-              fontWeight: 600,
-              color: '#FACC15',
-              letterSpacing: '0.5px',
-              textTransform: 'uppercase',
-              marginTop: '1px'
-            }}>
-              Advertisement
-            </div>
+    <header className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
+      <div className="container nav-inner">
+        <Link href="/" className="nav-logo" onClick={closeMenu}>
+          <div className="nav-logo-icon">OC</div>
+          <div className="nav-logo-text">
+            <span className="brand-primary">One</span>
+            <span className="brand-secondary"> Click</span>
+            <div className="brand-tagline">Advertisement</div>
           </div>
         </Link>
 
@@ -217,43 +124,21 @@ export default function Navbar() {
           <Link href="/admin/login" className="btn btn-primary nav-btn">Login</Link>
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          onClick={toggleMenu}
-          className="mobile-menu-toggle"
-          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={isMenuOpen}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '55px',
-            height: '55px',
-            minWidth: '55px',
-            minHeight: '55px',
-            background: 'linear-gradient(135deg, #7C3AED, #22D3EE)',
-            border: '3px solid white',
-            borderRadius: '10px',
-            color: 'white',
-            cursor: 'pointer',
-            padding: 0,
-            boxShadow: '0 6px 20px rgba(124, 58, 237, 0.8)',
-            transition: 'all 0.3s ease',
-            zIndex: 1000000,
-            flexShrink: 0,
-            opacity: 1,
-            visibility: 'visible'
-          }}
-        >
-          {isMenuOpen ? 
-            <X size={24} style={{ strokeWidth: 3 }} /> : 
-            <Menu size={24} style={{ strokeWidth: 3 }} />
-          }
-        </button>
+        {/* Mobile Menu Toggle - Only show on mobile */}
+        {isMounted && isMobile && (
+          <button
+            onClick={toggleMenu}
+            className="mobile-menu-toggle"
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMenuOpen}
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        )}
       </div>
 
       {/* Mobile Menu Overlay */}
-      {isMenuOpen && (
+      {isMounted && isMobile && isMenuOpen && (
         <div 
           className="mobile-menu-overlay"
           onClick={closeMenu}
@@ -272,37 +157,39 @@ export default function Navbar() {
       )}
 
       {/* Mobile Menu */}
-      <div className={`mobile-menu ${isMenuOpen ? 'mobile-menu-open' : ''}`}>
-        <nav className="mobile-nav-links">
-          <Link href="/" className="mobile-nav-link" onClick={closeMenu}>
-            <span>Home</span>
-          </Link>
-          <Link href="/services" className="mobile-nav-link" onClick={closeMenu}>
-            <span>Services</span>
-          </Link>
-          <Link href="/testimonials" className="mobile-nav-link" onClick={closeMenu}>
-            <span>Testimonials</span>
-          </Link>
-          <Link href="/blog" className="mobile-nav-link" onClick={closeMenu}>
-            <span>Blog</span>
-          </Link>
-          <Link href="/contact" className="mobile-nav-link" onClick={closeMenu}>
-            <span>Contact</span>
-          </Link>
-          <Link href="/about" className="mobile-nav-link" onClick={closeMenu}>
-            <span>About Us</span>
-          </Link>
-        </nav>
-        
-        <div className="mobile-nav-actions">
-          <Link href="/register" className="btn btn-outline mobile-btn" onClick={closeMenu}>
-            Start Your Campaign
-          </Link>
-          <Link href="/admin/login" className="btn btn-primary mobile-btn" onClick={closeMenu}>
-            Login
-          </Link>
+      {isMounted && isMobile && (
+        <div className={`mobile-menu ${isMenuOpen ? 'mobile-menu-open' : ''}`}>
+          <nav className="mobile-nav-links">
+            <Link href="/" className="mobile-nav-link" onClick={closeMenu}>
+              <span>Home</span>
+            </Link>
+            <Link href="/services" className="mobile-nav-link" onClick={closeMenu}>
+              <span>Services</span>
+            </Link>
+            <Link href="/testimonials" className="mobile-nav-link" onClick={closeMenu}>
+              <span>Testimonials</span>
+            </Link>
+            <Link href="/blog" className="mobile-nav-link" onClick={closeMenu}>
+              <span>Blog</span>
+            </Link>
+            <Link href="/contact" className="mobile-nav-link" onClick={closeMenu}>
+              <span>Contact</span>
+            </Link>
+            <Link href="/about" className="mobile-nav-link" onClick={closeMenu}>
+              <span>About Us</span>
+            </Link>
+          </nav>
+          
+          <div className="mobile-nav-actions">
+            <Link href="/register" className="btn btn-outline mobile-btn" onClick={closeMenu}>
+              Start Your Campaign
+            </Link>
+            <Link href="/admin/login" className="btn btn-primary mobile-btn" onClick={closeMenu}>
+              Login
+            </Link>
+          </div>
         </div>
-      </div>
+      )}
 
       <style jsx>{`
         .navbar-scrolled {
