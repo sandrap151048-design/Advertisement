@@ -89,12 +89,6 @@ export default function RootLayout({
                       info@oneclickadv.ae
                     </a>
                   </li>
-                  <li className="contact-item">
-                    <ShieldCheck size={18} className="contact-icon" /> 
-                    <a href="https://oneclickadv.ae" target="_blank" rel="noopener noreferrer">
-                      oneclickadv.ae
-                    </a>
-                  </li>
                 </ul>
               </div>
             </div>

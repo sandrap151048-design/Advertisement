@@ -21,12 +21,12 @@ const staggerContainer: Variants = {
 };
 
 const inputStyle = {
-    background: 'rgba(124, 58, 237, 0.03)',
-    border: '2px solid var(--color-card-border)',
+    background: 'rgba(255, 255, 255, 0.05)',
+    border: '2px solid rgba(124, 58, 237, 0.3)',
     padding: 'clamp(1rem, 2vw, 1.2rem)',
     paddingLeft: 'clamp(3rem, 6vw, 3.5rem)',
     borderRadius: '12px',
-    color: 'var(--color-text-main)' as const,
+    color: 'white' as const,
     width: '100%',
     outline: 'none',
     fontFamily: 'var(--font-body)',
@@ -89,29 +89,29 @@ export default function RegisterPage() {
                     transition={{ duration: 0.6 }}
                     className="glass-card" 
                     style={{ 
-                        maxWidth: '600px', 
+                        maxWidth: '500px', 
                         margin: '0 auto', 
-                        padding: 'clamp(1.5rem, 4vw, 3rem)', 
-                        borderRadius: '32px', 
-                        border: '1px solid var(--color-card-border)', 
-                        background: 'rgba(255, 255, 255, 0.98)', 
+                        padding: 'clamp(1.5rem, 3vw, 2.5rem)', 
+                        borderRadius: '24px', 
+                        border: '2px solid #7C3AED', 
+                        background: '#000000', 
                         position: 'relative', 
                         overflow: 'hidden', 
-                        boxShadow: '0 20px 50px rgba(124, 58, 237, 0.15)' 
+                        boxShadow: '0 20px 50px rgba(124, 58, 237, 0.3)' 
                     }}
                 >
                     {/* Background Decoration */}
-                    <div style={{ position: 'absolute', top: '-100px', right: '-100px', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%)', filter: 'blur(60px)', pointerEvents: 'none' }} />
+                    <div style={{ position: 'absolute', top: '-100px', right: '-100px', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(124, 58, 237, 0.2) 0%, transparent 70%)', filter: 'blur(60px)', pointerEvents: 'none' }} />
                     
                     <div style={{ position: 'relative', zIndex: 2 }}>
-                        <h2 style={{ fontSize: '2rem', marginBottom: '0.5rem', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>
-                            Start Your <span className="text-gradient">Campaign</span>
+                        <h2 style={{ fontSize: '1.8rem', marginBottom: '0.5rem', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, color: 'white' }}>
+                            Start Your <span style={{ color: '#7C3AED' }}>Campaign</span>
                         </h2>
-                        <p style={{ color: 'var(--color-text-muted)', marginBottom: '2.5rem', fontSize: '1rem' }}>
+                        <p style={{ color: '#A1A1AA', marginBottom: '2rem', fontSize: '0.95rem' }}>
                             Tell us about your advertising needs
                         </p>
 
-                        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
                             {submitStatus && (
                                 <motion.div 
                                     initial={{ opacity: 0, y: -10 }}
@@ -119,7 +119,7 @@ export default function RegisterPage() {
                                     style={{ 
                                         padding: '1rem', 
                                         borderRadius: '12px', 
-                                        background: submitStatus.success ? 'rgba(34, 197, 94, 0.1)' : 'rgba(239, 68, 68, 0.1)', 
+                                        background: submitStatus.success ? 'rgba(34, 197, 94, 0.2)' : 'rgba(239, 68, 68, 0.2)', 
                                         color: submitStatus.success ? '#22c55e' : '#ef4444', 
                                         border: `2px solid ${submitStatus.success ? '#22c55e' : '#ef4444'}`,
                                         display: 'flex',
@@ -135,7 +135,7 @@ export default function RegisterPage() {
 
                             {/* Full Name */}
                             <div style={{ position: 'relative' }}>
-                                <User size={20} color="var(--color-primary)" style={{ position: 'absolute', left: '1.2rem', top: '50%', transform: 'translateY(-50%)', zIndex: 2 }} />
+                                <User size={20} color="#7C3AED" style={{ position: 'absolute', left: '1.2rem', top: '50%', transform: 'translateY(-50%)', zIndex: 2 }} />
                                 <input 
                                     type="text"
                                     placeholder="Full Name" 
@@ -143,14 +143,14 @@ export default function RegisterPage() {
                                     value={formData.name} 
                                     onChange={e => setFormData({ ...formData, name: e.target.value })} 
                                     required 
-                                    onFocus={(e) => e.target.style.borderColor = 'var(--color-primary)'}
-                                    onBlur={(e) => e.target.style.borderColor = 'var(--color-card-border)'}
+                                    onFocus={(e) => e.target.style.borderColor = '#7C3AED'}
+                                    onBlur={(e) => e.target.style.borderColor = 'rgba(124, 58, 237, 0.3)'}
                                 />
                             </div>
 
                             {/* Email */}
                             <div style={{ position: 'relative' }}>
-                                <Mail size={20} color="var(--color-primary)" style={{ position: 'absolute', left: '1.2rem', top: '50%', transform: 'translateY(-50%)', zIndex: 2 }} />
+                                <Mail size={20} color="#7C3AED" style={{ position: 'absolute', left: '1.2rem', top: '50%', transform: 'translateY(-50%)', zIndex: 2 }} />
                                 <input 
                                     type="email"
                                     placeholder="Email Address" 
@@ -158,14 +158,14 @@ export default function RegisterPage() {
                                     value={formData.email} 
                                     onChange={e => setFormData({ ...formData, email: e.target.value })} 
                                     required 
-                                    onFocus={(e) => e.target.style.borderColor = 'var(--color-primary)'}
-                                    onBlur={(e) => e.target.style.borderColor = 'var(--color-card-border)'}
+                                    onFocus={(e) => e.target.style.borderColor = '#7C3AED'}
+                                    onBlur={(e) => e.target.style.borderColor = 'rgba(124, 58, 237, 0.3)'}
                                 />
                             </div>
 
                             {/* Phone */}
                             <div style={{ position: 'relative' }}>
-                                <Phone size={20} color="var(--color-primary)" style={{ position: 'absolute', left: '1.2rem', top: '50%', transform: 'translateY(-50%)', zIndex: 2 }} />
+                                <Phone size={20} color="#7C3AED" style={{ position: 'absolute', left: '1.2rem', top: '50%', transform: 'translateY(-50%)', zIndex: 2 }} />
                                 <input 
                                     type="tel"
                                     placeholder="Phone Number" 
@@ -173,80 +173,80 @@ export default function RegisterPage() {
                                     value={formData.phone} 
                                     onChange={e => setFormData({ ...formData, phone: e.target.value })} 
                                     required 
-                                    onFocus={(e) => e.target.style.borderColor = 'var(--color-primary)'}
-                                    onBlur={(e) => e.target.style.borderColor = 'var(--color-card-border)'}
+                                    onFocus={(e) => e.target.style.borderColor = '#7C3AED'}
+                                    onBlur={(e) => e.target.style.borderColor = 'rgba(124, 58, 237, 0.3)'}
                                 />
                             </div>
 
                             {/* Company (Optional) */}
                             <div style={{ position: 'relative' }}>
-                                <Briefcase size={20} color="var(--color-primary)" style={{ position: 'absolute', left: '1.2rem', top: '50%', transform: 'translateY(-50%)', zIndex: 2 }} />
+                                <Briefcase size={20} color="#7C3AED" style={{ position: 'absolute', left: '1.2rem', top: '50%', transform: 'translateY(-50%)', zIndex: 2 }} />
                                 <input 
                                     type="text"
                                     placeholder="Company Name (Optional)" 
                                     style={inputStyle} 
                                     value={formData.company} 
                                     onChange={e => setFormData({ ...formData, company: e.target.value })} 
-                                    onFocus={(e) => e.target.style.borderColor = 'var(--color-primary)'}
-                                    onBlur={(e) => e.target.style.borderColor = 'var(--color-card-border)'}
+                                    onFocus={(e) => e.target.style.borderColor = '#7C3AED'}
+                                    onBlur={(e) => e.target.style.borderColor = 'rgba(124, 58, 237, 0.3)'}
                                 />
                             </div>
 
                             {/* Campaign Type */}
                             <div style={{ position: 'relative' }}>
-                                <UserPlus size={20} color="var(--color-primary)" style={{ position: 'absolute', left: '1.2rem', top: '50%', transform: 'translateY(-50%)', zIndex: 2 }} />
+                                <UserPlus size={20} color="#7C3AED" style={{ position: 'absolute', left: '1.2rem', top: '50%', transform: 'translateY(-50%)', zIndex: 2 }} />
                                 <select 
                                     style={{...inputStyle, appearance: 'none', cursor: 'pointer'}} 
                                     value={formData.campaignType} 
                                     onChange={e => setFormData({ ...formData, campaignType: e.target.value })} 
                                     required
-                                    onFocus={(e) => e.target.style.borderColor = 'var(--color-primary)'}
-                                    onBlur={(e) => e.target.style.borderColor = 'var(--color-card-border)'}
+                                    onFocus={(e) => e.target.style.borderColor = '#7C3AED'}
+                                    onBlur={(e) => e.target.style.borderColor = 'rgba(124, 58, 237, 0.3)'}
                                 >
-                                    <option value="">Select Campaign Type *</option>
-                                    <option value="outdoor-signage">Outdoor Signage</option>
-                                    <option value="vehicle-branding">Vehicle Branding</option>
-                                    <option value="digital-displays">Digital Displays</option>
-                                    <option value="building-facade">Building Facade</option>
-                                    <option value="event-branding">Event Branding</option>
-                                    <option value="retail-graphics">Retail Graphics</option>
-                                    <option value="other">Other</option>
+                                    <option value="" style={{ background: '#000000', color: '#A1A1AA' }}>Select Campaign Type *</option>
+                                    <option value="outdoor-signage" style={{ background: '#000000', color: 'white' }}>Outdoor Signage</option>
+                                    <option value="vehicle-branding" style={{ background: '#000000', color: 'white' }}>Vehicle Branding</option>
+                                    <option value="digital-displays" style={{ background: '#000000', color: 'white' }}>Digital Displays</option>
+                                    <option value="building-facade" style={{ background: '#000000', color: 'white' }}>Building Facade</option>
+                                    <option value="event-branding" style={{ background: '#000000', color: 'white' }}>Event Branding</option>
+                                    <option value="retail-graphics" style={{ background: '#000000', color: 'white' }}>Retail Graphics</option>
+                                    <option value="other" style={{ background: '#000000', color: 'white' }}>Other</option>
                                 </select>
                             </div>
 
                             {/* Project Timeline */}
                             <div style={{ position: 'relative' }}>
-                                <Clock size={20} color="var(--color-primary)" style={{ position: 'absolute', left: '1.2rem', top: '50%', transform: 'translateY(-50%)', zIndex: 2 }} />
+                                <Clock size={20} color="#7C3AED" style={{ position: 'absolute', left: '1.2rem', top: '50%', transform: 'translateY(-50%)', zIndex: 2 }} />
                                 <select 
                                     style={{...inputStyle, appearance: 'none', cursor: 'pointer'}} 
                                     value={formData.timeline} 
                                     onChange={e => setFormData({ ...formData, timeline: e.target.value })}
-                                    onFocus={(e) => e.target.style.borderColor = 'var(--color-primary)'}
-                                    onBlur={(e) => e.target.style.borderColor = 'var(--color-card-border)'}
+                                    onFocus={(e) => e.target.style.borderColor = '#7C3AED'}
+                                    onBlur={(e) => e.target.style.borderColor = 'rgba(124, 58, 237, 0.3)'}
                                 >
-                                    <option value="">Project Timeline (Optional)</option>
-                                    <option value="urgent">Urgent (Within 1 week)</option>
-                                    <option value="2-4-weeks">2-4 weeks</option>
-                                    <option value="1-3-months">1-3 months</option>
-                                    <option value="flexible">Flexible</option>
+                                    <option value="" style={{ background: '#000000', color: '#A1A1AA' }}>Project Timeline (Optional)</option>
+                                    <option value="urgent" style={{ background: '#000000', color: 'white' }}>Urgent (Within 1 week)</option>
+                                    <option value="2-4-weeks" style={{ background: '#000000', color: 'white' }}>2-4 weeks</option>
+                                    <option value="1-3-months" style={{ background: '#000000', color: 'white' }}>1-3 months</option>
+                                    <option value="flexible" style={{ background: '#000000', color: 'white' }}>Flexible</option>
                                 </select>
                             </div>
 
                             {/* Brief Message */}
                             <div style={{ position: 'relative' }}>
-                                <MessageSquare size={20} color="var(--color-primary)" style={{ position: 'absolute', left: '1.2rem', top: '1.2rem', zIndex: 2 }} />
+                                <MessageSquare size={20} color="#7C3AED" style={{ position: 'absolute', left: '1.2rem', top: '1.2rem', zIndex: 2 }} />
                                 <textarea 
                                     placeholder="Tell us about your campaign goals (Optional)" 
                                     style={{
                                         ...inputStyle,
-                                        minHeight: '120px',
+                                        minHeight: '100px',
                                         resize: 'vertical',
                                         paddingTop: '1.2rem'
                                     }} 
                                     value={formData.message} 
                                     onChange={e => setFormData({ ...formData, message: e.target.value })}
-                                    onFocus={(e) => e.target.style.borderColor = 'var(--color-primary)'}
-                                    onBlur={(e) => e.target.style.borderColor = 'var(--color-card-border)'}
+                                    onFocus={(e) => e.target.style.borderColor = '#7C3AED'}
+                                    onBlur={(e) => e.target.style.borderColor = 'rgba(124, 58, 237, 0.3)'}
                                 />
                             </div>
 
@@ -258,12 +258,12 @@ export default function RegisterPage() {
                                 whileTap={{ scale: 0.98 }}
                                 className="btn btn-primary" 
                                 style={{ 
-                                    padding: '1.3rem', 
+                                    padding: '1.2rem', 
                                     display: 'flex', 
                                     alignItems: 'center', 
                                     justifyContent: 'center', 
                                     gap: '1rem', 
-                                    fontSize: '1.1rem', 
+                                    fontSize: '1rem', 
                                     borderRadius: '12px',
                                     fontWeight: 700,
                                     marginTop: '1rem'
@@ -279,6 +279,25 @@ export default function RegisterPage() {
                         </form>
                     </div>
                 </motion.div>
+                
+                {/* Add CSS for placeholder styling */}
+                <style jsx>{`
+                    input::placeholder,
+                    textarea::placeholder,
+                    select option:first-child {
+                        color: #A1A1AA !important;
+                        opacity: 1;
+                    }
+                    
+                    select option {
+                        background: #000000 !important;
+                        color: white !important;
+                    }
+                    
+                    select option:first-child {
+                        color: #A1A1AA !important;
+                    }
+                `}</style>
             </section>
         </>
     );
