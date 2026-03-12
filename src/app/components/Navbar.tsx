@@ -189,23 +189,21 @@ export default function Navbar() {
         
         @media (max-width: 768px) {
           .navbar {
-            background: rgba(11, 11, 15, 1) !important;
-            backdrop-filter: none !important;
-            -webkit-backdrop-filter: none !important;
-            border-bottom: 2px solid rgba(124, 58, 237, 0.8) !important;
-            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.5) !important;
             position: fixed !important;
             top: 0 !important;
             left: 0 !important;
             right: 0 !important;
             z-index: 1000 !important;
-            height: 80px !important;
+            height: 70px !important;
+            background: #0B0B0F !important;
+            border-bottom: 2px solid #7C3AED !important;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.5) !important;
             padding: 0 !important;
           }
           
           .nav-inner {
-            min-height: 80px !important;
-            height: 80px !important;
+            height: 70px !important;
+            min-height: 70px !important;
             padding: 0 1rem !important;
             background: transparent !important;
             border-radius: 0 !important;
@@ -222,29 +220,30 @@ export default function Navbar() {
             display: flex !important;
             align-items: center !important;
             gap: 0.75rem !important;
-            padding: 0.6rem 1rem !important;
-            background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(34, 211, 238, 0.15)) !important;
-            border-radius: 12px !important;
-            border: 2px solid rgba(124, 58, 237, 0.4) !important;
-            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3) !important;
+            padding: 0.5rem 1rem !important;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(34, 211, 238, 0.2)) !important;
+            border: 2px solid rgba(124, 58, 237, 0.5) !important;
+            border-radius: 10px !important;
             flex: 1 !important;
-            max-width: calc(100% - 80px) !important;
+            max-width: calc(100% - 75px) !important;
+            height: 50px !important;
+            box-shadow: 0 2px 10px rgba(124, 58, 237, 0.3) !important;
           }
 
           .nav-logo-icon {
-            width: 48px !important;
-            height: 48px !important;
-            font-size: 1.2rem !important;
+            width: 40px !important;
+            height: 40px !important;
+            font-size: 1rem !important;
             font-weight: 900 !important;
-            border-radius: 10px !important;
-            border: 2px solid rgba(255, 255, 255, 0.2) !important;
+            border-radius: 8px !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
             flex-shrink: 0 !important;
           }
 
           .nav-logo-text {
             color: white !important;
             font-weight: 700 !important;
-            font-size: 1rem !important;
+            font-size: 0.9rem !important;
             line-height: 1.1 !important;
           }
           
@@ -259,77 +258,86 @@ export default function Navbar() {
           }
           
           .brand-tagline {
-            font-size: 0.65rem !important;
+            font-size: 0.6rem !important;
             font-weight: 600 !important;
             color: #FACC15 !important;
-            letter-spacing: 1px !important;
-            margin-top: 2px !important;
+            letter-spacing: 0.5px !important;
+            margin-top: 1px !important;
           }
           
           .mobile-menu-toggle {
-            background: linear-gradient(135deg, #7C3AED 0%, #22D3EE 100%) !important;
+            background: linear-gradient(135deg, #7C3AED, #22D3EE) !important;
             border: 2px solid rgba(255, 255, 255, 0.3) !important;
-            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.6) !important;
-            width: 64px !important;
-            height: 64px !important;
-            min-width: 64px !important;
-            min-height: 64px !important;
-            border-radius: 12px !important;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.5) !important;
+            width: 55px !important;
+            height: 55px !important;
+            min-width: 55px !important;
+            min-height: 55px !important;
+            border-radius: 10px !important;
             padding: 0 !important;
             flex-shrink: 0 !important;
           }
+
+          .mobile-menu-toggle svg {
+            width: 24px !important;
+            height: 24px !important;
+          }
           
           .mobile-menu {
-            background: rgba(11, 11, 15, 1) !important;
-            backdrop-filter: none !important;
-            -webkit-backdrop-filter: none !important;
-            border-bottom: 2px solid rgba(124, 58, 237, 0.8) !important;
-            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.4) !important;
-            top: 80px !important;
+            background: #0B0B0F !important;
+            border-bottom: 2px solid #7C3AED !important;
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4) !important;
+            top: 70px !important;
           }
         }
         
         @media (max-width: 480px) {
           .navbar {
-            height: 75px !important;
+            height: 65px !important;
           }
 
           .nav-inner {
-            min-height: 75px !important;
-            height: 75px !important;
+            height: 65px !important;
+            min-height: 65px !important;
             padding: 0 0.75rem !important;
             gap: 0.75rem !important;
           }
 
           .nav-logo {
-            padding: 0.5rem 0.8rem !important;
+            padding: 0.4rem 0.8rem !important;
             gap: 0.6rem !important;
-            max-width: calc(100% - 70px) !important;
+            max-width: calc(100% - 65px) !important;
+            height: 45px !important;
           }
 
           .nav-logo-icon {
-            width: 44px !important;
-            height: 44px !important;
-            font-size: 1.1rem !important;
+            width: 36px !important;
+            height: 36px !important;
+            font-size: 0.9rem !important;
           }
 
           .nav-logo-text {
-            font-size: 0.9rem !important;
+            font-size: 0.85rem !important;
           }
           
           .brand-tagline {
-            font-size: 0.6rem !important;
+            font-size: 0.55rem !important;
           }
 
           .mobile-menu-toggle {
-            width: 60px !important;
-            height: 60px !important;
-            min-width: 60px !important;
-            min-height: 60px !important;
+            width: 50px !important;
+            height: 50px !important;
+            min-width: 50px !important;
+            min-height: 50px !important;
+          }
+
+          .mobile-menu-toggle svg {
+            width: 22px !important;
+            height: 22px !important;
           }
 
           .mobile-menu {
-            top: 75px !important;
+            top: 65px !important;
           }
         }
       `}</style>
