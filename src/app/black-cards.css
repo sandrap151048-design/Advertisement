@@ -68,7 +68,7 @@ div[data-theme="black"] {
   backdrop-filter: blur(10px) !important;
 }
 
-/* MOBILE BUTTON ALIGNMENT FIXES */
+/* MOBILE BUTTON ALIGNMENT FIXES - COMPREHENSIVE */
 @media (max-width: 768px) {
   /* Hero Section Button */
   .hero-section .btn {
@@ -81,6 +81,17 @@ div[data-theme="black"] {
     text-align: center !important;
     padding: 1.2rem 2rem !important;
     font-size: 1rem !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Hero Section Button Container */
+  .hero-section div[style*="display: flex"] {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 1rem !important;
+    width: 100% !important;
   }
 
   /* Success Stories Buttons */
@@ -104,6 +115,7 @@ div[data-theme="black"] {
     justify-content: center !important;
     text-align: center !important;
     margin: 0 !important;
+    box-sizing: border-box !important;
   }
 
   /* General Button Fixes */
@@ -125,6 +137,26 @@ div[data-theme="black"] {
     flex: none !important;
     width: 100% !important;
     max-width: 300px !important;
+    margin: 0 auto !important;
+  }
+
+  /* About Section Buttons */
+  .grid-2 .btn {
+    width: 100% !important;
+    max-width: 250px !important;
+    margin: 0.5rem auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* About Section Button Container */
+  .grid-2 div[style*="display: flex"] {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    width: 100% !important;
   }
 
   /* CTA Section Button */
@@ -133,6 +165,32 @@ div[data-theme="black"] {
     max-width: 280px !important;
     margin: 0 auto !important;
     padding: 1rem 2rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* CTA Ribbon Mobile */
+  .cta-ribbon {
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    text-align: center !important;
+    padding: 2rem 1rem !important;
+    align-items: center !important;
+  }
+  
+  .cta-ribbon h2 {
+    font-size: clamp(1.5rem, 6vw, 2rem) !important;
+    text-align: center !important;
+  }
+  
+  .cta-ribbon .btn {
+    width: 100% !important;
+    max-width: 280px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   /* Contact Form Button */
@@ -140,13 +198,43 @@ div[data-theme="black"] {
     width: 100% !important;
     max-width: none !important;
     padding: 1.2rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
-  /* About Section Buttons */
-  .grid-2 .btn {
+  /* FAQ Section Button */
+  .faq-container .btn {
     width: 100% !important;
-    max-width: 250px !important;
-    margin: 0.5rem auto !important;
+    max-width: 300px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Process Section - Fix any button containers */
+  .section div[style*="textAlign: center"] .btn {
+    width: 100% !important;
+    max-width: 300px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Ensure all flex containers center their buttons */
+  div[style*="display: flex"][style*="justifyContent: center"] {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1rem !important;
+  }
+
+  /* Fix any inline flex styles */
+  div[style*="display: flex"][style*="gap"] .btn {
+    width: 100% !important;
+    max-width: 300px !important;
+    margin: 0 auto !important;
   }
 }
 

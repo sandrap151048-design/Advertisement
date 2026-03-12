@@ -250,7 +250,29 @@
   text-align: left;
 }
 
-/* Input Container */
+/* Password input - prevent browser toggles */
+.form-input[type="password"] {
+  -webkit-text-security: disc !important;
+  text-security: disc !important;
+}
+
+.form-input[type="password"]::-ms-reveal,
+.form-input[type="password"]::-ms-clear {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.form-input[type="password"]::-webkit-credentials-auto-fill-button,
+.form-input[type="password"]::-webkit-strong-password-auto-fill-button {
+  display: none !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  right: 0 !important;
+}
+
+/* Ensure only one password toggle */
 .input-container {
   position: relative;
   display: flex;

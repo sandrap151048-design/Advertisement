@@ -197,13 +197,14 @@ export default function Navbar() {
             z-index: 9999 !important;
             height: 70px !important;
             background: #0B0B0F !important;
-            border-bottom: 2px solid #7C3AED !important;
-            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.5) !important;
+            border-bottom: 3px solid #7C3AED !important;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.8) !important;
             padding: 0 !important;
             margin: 0 !important;
             opacity: 1 !important;
             visibility: visible !important;
             display: block !important;
+            transform: translateZ(0) !important;
           }
           
           .nav-inner {
@@ -221,6 +222,7 @@ export default function Navbar() {
             gap: 1rem !important;
             opacity: 1 !important;
             visibility: visible !important;
+            transform: translateZ(0) !important;
           }
           
           .nav-logo {
@@ -228,15 +230,16 @@ export default function Navbar() {
             align-items: center !important;
             gap: 0.75rem !important;
             padding: 0.5rem 1rem !important;
-            background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(34, 211, 238, 0.2)) !important;
-            border: 2px solid rgba(124, 58, 237, 0.5) !important;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.3), rgba(34, 211, 238, 0.3)) !important;
+            border: 2px solid #7C3AED !important;
             border-radius: 10px !important;
             flex: 1 !important;
             max-width: calc(100% - 75px) !important;
             height: 50px !important;
-            box-shadow: 0 2px 10px rgba(124, 58, 237, 0.3) !important;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.6) !important;
             opacity: 1 !important;
             visibility: visible !important;
+            transform: translateZ(0) !important;
           }
 
           .nav-logo-icon {
@@ -245,8 +248,9 @@ export default function Navbar() {
             font-size: 1rem !important;
             font-weight: 900 !important;
             border-radius: 8px !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            border: 2px solid rgba(255, 255, 255, 0.3) !important;
             flex-shrink: 0 !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
           }
 
           .nav-logo-text {
@@ -276,8 +280,8 @@ export default function Navbar() {
           
           .mobile-menu-toggle {
             background: linear-gradient(135deg, #7C3AED, #22D3EE) !important;
-            border: 2px solid rgba(255, 255, 255, 0.3) !important;
-            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.5) !important;
+            border: 3px solid white !important;
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.8) !important;
             width: 55px !important;
             height: 55px !important;
             min-width: 55px !important;
@@ -289,17 +293,19 @@ export default function Navbar() {
             z-index: 10000 !important;
             opacity: 1 !important;
             visibility: visible !important;
+            transform: translateZ(0) !important;
           }
 
           .mobile-menu-toggle svg {
             width: 24px !important;
             height: 24px !important;
+            stroke-width: 3 !important;
           }
           
           .mobile-menu {
             background: #0B0B0F !important;
-            border-bottom: 2px solid #7C3AED !important;
-            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4) !important;
+            border-bottom: 3px solid #7C3AED !important;
+            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.8) !important;
             top: 70px !important;
             z-index: 9998 !important;
             opacity: 1 !important;

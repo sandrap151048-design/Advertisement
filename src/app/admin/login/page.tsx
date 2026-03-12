@@ -157,6 +157,10 @@ export default function AdminLoginPage() {
                                         autoCapitalize="none"
                                         autoCorrect="off"
                                         spellCheck="false"
+                                        style={{
+                                            WebkitTextSecurity: showPassword ? 'none' : 'disc',
+                                            textSecurity: showPassword ? 'none' : 'disc'
+                                        }}
                                     />
                                     <button
                                         type="button"
