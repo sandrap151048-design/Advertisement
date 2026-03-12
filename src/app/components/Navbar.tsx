@@ -195,10 +195,10 @@ export default function Navbar() {
             right: 0 !important;
             width: 100vw !important;
             z-index: 9999 !important;
-            height: 75px !important;
-            background: #000000 !important;
-            border-bottom: 3px solid #FF0000 !important;
-            box-shadow: 0 8px 30px rgba(255, 0, 0, 0.8) !important;
+            height: 70px !important;
+            background: #0B0B0F !important;
+            border-bottom: 2px solid #7C3AED !important;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.5) !important;
             padding: 0 !important;
             margin: 0 !important;
             opacity: 1 !important;
@@ -207,10 +207,10 @@ export default function Navbar() {
           }
           
           .nav-inner {
-            height: 75px !important;
-            min-height: 75px !important;
+            height: 70px !important;
+            min-height: 70px !important;
             padding: 0 1rem !important;
-            background: #000000 !important;
+            background: transparent !important;
             border-radius: 0 !important;
             margin: 0 !important;
             border: none !important;
@@ -227,92 +227,80 @@ export default function Navbar() {
             display: flex !important;
             align-items: center !important;
             gap: 0.75rem !important;
-            padding: 0.6rem 1.2rem !important;
-            background: #FF0000 !important;
-            border: 3px solid #FFFFFF !important;
-            border-radius: 12px !important;
+            padding: 0.5rem 1rem !important;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(34, 211, 238, 0.2)) !important;
+            border: 2px solid rgba(124, 58, 237, 0.5) !important;
+            border-radius: 10px !important;
             flex: 1 !important;
-            max-width: calc(100% - 85px) !important;
-            height: 55px !important;
-            box-shadow: 0 4px 20px rgba(255, 0, 0, 0.8) !important;
+            max-width: calc(100% - 75px) !important;
+            height: 50px !important;
+            box-shadow: 0 2px 10px rgba(124, 58, 237, 0.3) !important;
             opacity: 1 !important;
             visibility: visible !important;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
           }
 
           .nav-logo-icon {
-            width: 45px !important;
-            height: 45px !important;
-            font-size: 1.2rem !important;
+            width: 40px !important;
+            height: 40px !important;
+            font-size: 1rem !important;
             font-weight: 900 !important;
-            border-radius: 10px !important;
-            border: 2px solid #000000 !important;
+            border-radius: 8px !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
             flex-shrink: 0 !important;
-            background: #FFFFFF !important;
-            color: #FF0000 !important;
-            text-shadow: none !important;
           }
 
           .nav-logo-text {
-            color: #FFFFFF !important;
-            font-weight: 900 !important;
-            font-size: 1rem !important;
+            color: white !important;
+            font-weight: 700 !important;
+            font-size: 0.9rem !important;
             line-height: 1.1 !important;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
           }
           
           .brand-primary {
-            color: #FFFFFF !important;
-            font-weight: 900 !important;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+            color: #22D3EE !important;
+            font-weight: 800 !important;
           }
 
           .brand-secondary {
-            color: #FFFF00 !important;
-            font-weight: 900 !important;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+            color: white !important;
+            font-weight: 700 !important;
           }
           
           .brand-tagline {
-            font-size: 0.7rem !important;
-            font-weight: 800 !important;
-            color: #00FF00 !important;
-            letter-spacing: 1px !important;
-            margin-top: 2px !important;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
+            font-size: 0.6rem !important;
+            font-weight: 600 !important;
+            color: #FACC15 !important;
+            letter-spacing: 0.5px !important;
+            margin-top: 1px !important;
           }
           
           .mobile-menu-toggle {
-            background: #FF0000 !important;
-            border: 3px solid #FFFFFF !important;
-            box-shadow: 0 6px 25px rgba(255, 0, 0, 0.8) !important;
-            width: 65px !important;
-            height: 65px !important;
-            min-width: 65px !important;
-            min-height: 65px !important;
-            border-radius: 12px !important;
+            background: linear-gradient(135deg, #7C3AED, #22D3EE) !important;
+            border: 2px solid rgba(255, 255, 255, 0.3) !important;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.5) !important;
+            width: 55px !important;
+            height: 55px !important;
+            min-width: 55px !important;
+            min-height: 55px !important;
+            border-radius: 10px !important;
             padding: 0 !important;
             flex-shrink: 0 !important;
-            color: #FFFFFF !important;
+            color: white !important;
             z-index: 10000 !important;
             opacity: 1 !important;
             visibility: visible !important;
-            outline: 2px solid #000000 !important;
-            outline-offset: 2px !important;
           }
 
           .mobile-menu-toggle svg {
-            width: 28px !important;
-            height: 28px !important;
-            stroke-width: 3 !important;
-            filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.8)) !important;
+            width: 24px !important;
+            height: 24px !important;
           }
           
           .mobile-menu {
-            background: #000000 !important;
-            border-bottom: 3px solid #FF0000 !important;
-            box-shadow: 0 10px 40px rgba(255, 0, 0, 0.8) !important;
-            top: 75px !important;
+            background: #0B0B0F !important;
+            border-bottom: 2px solid #7C3AED !important;
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4) !important;
+            top: 70px !important;
             z-index: 9998 !important;
             opacity: 1 !important;
             visibility: visible !important;
@@ -321,51 +309,51 @@ export default function Navbar() {
         
         @media (max-width: 480px) {
           .navbar {
-            height: 70px !important;
+            height: 65px !important;
           }
 
           .nav-inner {
-            height: 70px !important;
-            min-height: 70px !important;
+            height: 65px !important;
+            min-height: 65px !important;
             padding: 0 0.75rem !important;
             gap: 0.75rem !important;
           }
 
           .nav-logo {
-            padding: 0.5rem 1rem !important;
+            padding: 0.4rem 0.8rem !important;
             gap: 0.6rem !important;
-            max-width: calc(100% - 70px) !important;
-            height: 50px !important;
+            max-width: calc(100% - 65px) !important;
+            height: 45px !important;
           }
 
           .nav-logo-icon {
-            width: 40px !important;
-            height: 40px !important;
-            font-size: 1rem !important;
+            width: 36px !important;
+            height: 36px !important;
+            font-size: 0.9rem !important;
           }
 
           .nav-logo-text {
-            font-size: 0.9rem !important;
+            font-size: 0.85rem !important;
           }
           
           .brand-tagline {
-            font-size: 0.6rem !important;
+            font-size: 0.55rem !important;
           }
 
           .mobile-menu-toggle {
-            width: 60px !important;
-            height: 60px !important;
-            min-width: 60px !important;
-            min-height: 60px !important;
+            width: 50px !important;
+            height: 50px !important;
+            min-width: 50px !important;
+            min-height: 50px !important;
           }
 
           .mobile-menu-toggle svg {
-            width: 26px !important;
-            height: 26px !important;
+            width: 22px !important;
+            height: 22px !important;
           }
 
           .mobile-menu {
-            top: 70px !important;
+            top: 65px !important;
           }
         }
       `}</style>
