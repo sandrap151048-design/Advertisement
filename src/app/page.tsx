@@ -120,14 +120,15 @@ export default function Home() {
 
           <motion.div variants={slideDown} style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap', width: '100%' }}>
             <Link href="/services" className="btn btn-primary" style={{ 
-              padding: '1.2rem 3.5rem', 
+              padding: 'clamp(1rem, 3vw, 1.2rem) clamp(2.5rem, 6vw, 3.5rem)', 
               borderRadius: '14px', 
               fontWeight: 700,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               textAlign: 'center',
-              minWidth: '280px'
+              minWidth: 'clamp(250px, 60vw, 280px)',
+              fontSize: 'clamp(0.9rem, 2.5vw, 1rem)'
             }}>
               EXPLORE SOLUTIONS
             </Link>
@@ -198,7 +199,7 @@ export default function Home() {
             From concept to completion, we deliver comprehensive advertising solutions that drive results
           </p>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(320px, 100%), 1fr))', gap: 'clamp(1.5rem, 4vw, 2rem)' }}>
           {[
             {
               title: "Branding & Corporate Identity",
@@ -243,7 +244,7 @@ export default function Home() {
               className="service-card-black"
               data-theme="black"
               style={{ 
-                padding: '2.5rem',
+                padding: 'clamp(2rem, 5vw, 2.5rem)',
                 textAlign: 'left',
                 transition: 'all 0.3s ease',
                 background: '#000000',
@@ -270,11 +271,11 @@ export default function Home() {
                 e.currentTarget.style.background = '#000000';
               }}
             >
-              <div style={{ fontSize: '3rem', marginBottom: '1.5rem', color: 'var(--color-primary)' }}>{service.icon}</div>
-              <h3 style={{ color: '#ffffff', fontSize: '1.4rem', fontWeight: 700, marginBottom: '1rem', textShadow: 'none' }}>
+              <div style={{ fontSize: 'clamp(2.5rem, 6vw, 3rem)', marginBottom: '1.5rem', color: 'var(--color-primary)' }}>{service.icon}</div>
+              <h3 style={{ color: '#ffffff', fontSize: 'clamp(1.2rem, 3vw, 1.4rem)', fontWeight: 700, marginBottom: '1rem', textShadow: 'none' }}>
                 {service.title}
               </h3>
-              <p style={{ color: '#cccccc', marginBottom: '1.5rem', lineHeight: '1.6', fontSize: '1rem' }}>
+              <p style={{ color: '#cccccc', marginBottom: '1.5rem', lineHeight: '1.6', fontSize: 'clamp(0.9rem, 2.5vw, 1rem)' }}>
                 {service.desc}
               </p>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
@@ -285,7 +286,7 @@ export default function Home() {
                     gap: '0.75rem', 
                     marginBottom: '0.75rem',
                     color: '#ffffff',
-                    fontSize: '0.95rem',
+                    fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
                     lineHeight: '1.5'
                   }}>
                     <Zap size={16} color="var(--color-secondary)" style={{ marginTop: '2px', flexShrink: 0 }} />

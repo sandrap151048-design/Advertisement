@@ -139,6 +139,12 @@ export default function ServicesPage() {
                     <Link href="/admin/testimonials" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', color: 'rgba(255,255,255,0.7)', cursor: 'pointer', transition: 'all 0.3s', textDecoration: 'none' }}>
                         <Star size={20} color="rgba(255,255,255,0.6)" /> Testimonials
                     </Link>
+                    <Link href="/admin/blog" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', color: 'rgba(255,255,255,0.7)', cursor: 'pointer', transition: 'all 0.3s', textDecoration: 'none' }}>
+                        <Layers size={20} color="rgba(255,255,255,0.6)" /> Blog & Resources
+                    </Link>
+                    <Link href="/admin/newsletter" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', color: 'rgba(255,255,255,0.7)', cursor: 'pointer', transition: 'all 0.3s', textDecoration: 'none' }}>
+                        <Mail size={20} color="rgba(255,255,255,0.6)" /> Subscribers
+                    </Link>
                 </nav>
 
                 <div style={{ marginTop: 'auto' }}>
@@ -152,8 +158,8 @@ export default function ServicesPage() {
             <main className="admin-main" style={{ display: 'flex', flexDirection: 'column', gap: '2rem', height: '100vh', overflowY: 'auto' }}>
                 <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '1.5rem', borderBottom: '1px solid var(--color-card-border)' }}>
                     <div>
-                        <h1 style={{ fontSize: '1.8rem', marginBottom: '0.5rem', fontFamily: "'Outfit', sans-serif" }}>Services <span className="text-gradient">Management</span></h1>
-                        <p style={{ color: 'var(--color-text-muted)', fontSize: '0.9rem', fontFamily: "'Space Grotesk', sans-serif" }}>Manage your service offerings</p>
+                        <h1 style={{ fontSize: '1.8rem', marginBottom: '0.5rem', fontFamily: "'Outfit', sans-serif", color: '#000000' }}>Services <span className="text-gradient">Management</span></h1>
+                        <p style={{ color: '#333333', fontSize: '0.9rem', fontFamily: "'Space Grotesk', sans-serif" }}>Manage your service offerings</p>
                     </div>
                     <button
                         onClick={() => setShowAddModal(true)}

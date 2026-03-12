@@ -12,6 +12,7 @@ export default function AdminPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [currentPath, setCurrentPath] = useState('');
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
     const [stats, setStats] = useState({
         contacts: 0,
         services: 0
@@ -320,6 +321,31 @@ export default function AdminPage() {
                         </p>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                        {/* Contact Info Button */}
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => setIsContactModalOpen(true)}
+                            style={{
+                                background: 'linear-gradient(135deg, #22D3EE 0%, #7C3AED 100%)',
+                                border: 'none',
+                                borderRadius: '12px',
+                                padding: '0.75rem 1.5rem',
+                                color: 'white',
+                                fontSize: '0.9rem',
+                                fontWeight: 600,
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '0.5rem',
+                                boxShadow: '0 4px 12px rgba(34, 211, 238, 0.3)',
+                                transition: 'all 0.3s ease'
+                            }}
+                        >
+                            <Phone size={18} />
+                            Contact Info
+                        </motion.button>
+                        
                         {/* Mobile Menu Toggle */}
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -448,10 +474,10 @@ export default function AdminPage() {
                                 </div>
 
                                 <div style={{ position: 'relative', zIndex: 2 }}>
-                                    <h5 style={{ color: 'var(--color-text-muted)', fontWeight: 500, marginBottom: '0.5rem', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.5px', fontFamily: "'Space Grotesk', sans-serif" }}>
+                                    <h5 style={{ color: '#333333', fontWeight: 500, marginBottom: '0.5rem', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.5px', fontFamily: "'Space Grotesk', sans-serif" }}>
                                         {stat.title}
                                     </h5>
-                                    <h2 style={{ fontSize: '2.5rem', margin: 0, color: 'white', fontWeight: 800, fontFamily: "'Outfit', sans-serif" }}>
+                                    <h2 style={{ fontSize: '2.5rem', margin: 0, color: '#000000', fontWeight: 800, fontFamily: "'Outfit', sans-serif" }}>
                                         {stat.value}
                                     </h2>
                                 </div>
@@ -484,7 +510,7 @@ export default function AdminPage() {
                             border: '1px solid rgba(124, 58, 237, 0.3)'
                         }}
                     >
-                        <h3 style={{ marginBottom: '1.5rem', fontSize: '1.3rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '0.5rem', fontFamily: "'Syne', sans-serif", color: 'white' }}>
+                        <h3 style={{ marginBottom: '1.5rem', fontSize: '1.3rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '0.5rem', fontFamily: "'Syne', sans-serif", color: '#000000' }}>
                             <Activity size={24} color="var(--color-secondary)" />
                             Recent Contacts
                         </h3>
@@ -506,8 +532,8 @@ export default function AdminPage() {
                                     }}
                                 >
                                     <div>
-                                        <p style={{ fontWeight: 600, marginBottom: '0.2rem', color: 'white', fontFamily: "'DM Sans', sans-serif" }}>{contact.name}</p>
-                                        <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', fontFamily: "'Manrope', sans-serif" }}>{contact.email}</p>
+                                        <p style={{ fontWeight: 600, marginBottom: '0.2rem', color: '#000000', fontFamily: "'DM Sans', sans-serif" }}>{contact.name}</p>
+                                        <p style={{ fontSize: '0.85rem', color: '#333333', fontFamily: "'Manrope', sans-serif" }}>{contact.email}</p>
                                     </div>
                                     <CheckCircle size={20} color="#22D3EE" />
                                 </motion.div>
@@ -590,6 +616,250 @@ export default function AdminPage() {
                     </motion.div>
                 </motion.div>
 
+                {/* Contact Info Modal */}
+                {isContactModalOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        style={{
+                            position: 'fixed',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            background: 'rgba(0, 0, 0, 0.7)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            zIndex: 1000,
+                            backdropFilter: 'blur(8px)'
+                        }}
+                        onClick={() => setIsContactModalOpen(false)}
+                    >
+                        <motion.div
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.8, opacity: 0 }}
+                            onClick={(e) => e.stopPropagation()}
+                            style={{
+                                background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+                                padding: '3rem',
+                                borderRadius: '24px',
+                                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
+                                border: '1px solid rgba(124, 58, 237, 0.2)',
+                                maxWidth: '500px',
+                                width: '90%',
+                                position: 'relative'
+                            }}
+                        >
+                            {/* Close Button */}
+                            <button
+                                onClick={() => setIsContactModalOpen(false)}
+                                style={{
+                                    position: 'absolute',
+                                    top: '1rem',
+                                    right: '1rem',
+                                    background: 'rgba(239, 68, 68, 0.1)',
+                                    border: 'none',
+                                    borderRadius: '50%',
+                                    width: '40px',
+                                    height: '40px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    cursor: 'pointer',
+                                    color: '#ef4444',
+                                    transition: 'all 0.3s ease'
+                                }}
+                            >
+                                <X size={20} />
+                            </button>
+
+                            {/* Modal Header */}
+                            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                                <div style={{
+                                    width: '80px',
+                                    height: '80px',
+                                    borderRadius: '20px',
+                                    background: 'linear-gradient(135deg, #7C3AED 0%, #22D3EE 100%)',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    margin: '0 auto 1.5rem',
+                                    boxShadow: '0 8px 20px rgba(124, 58, 237, 0.4)'
+                                }}>
+                                    <Phone size={32} color="white" />
+                                </div>
+                                <h2 style={{ 
+                                    fontSize: '2rem', 
+                                    fontWeight: 800, 
+                                    color: '#1f2937', 
+                                    marginBottom: '0.5rem',
+                                    fontFamily: "'Outfit', sans-serif"
+                                }}>
+                                    Contact Information
+                                </h2>
+                                <p style={{ 
+                                    color: '#6b7280', 
+                                    fontSize: '1rem',
+                                    fontFamily: "'DM Sans', sans-serif"
+                                }}>
+                                    Get in touch with One Click Advertisement
+                                </p>
+                            </div>
+
+                            {/* Contact Details */}
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                                {/* Location */}
+                                <div style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '1rem',
+                                    padding: '1.5rem',
+                                    background: 'rgba(124, 58, 237, 0.05)',
+                                    borderRadius: '16px',
+                                    border: '1px solid rgba(124, 58, 237, 0.1)'
+                                }}>
+                                    <div style={{
+                                        width: '50px',
+                                        height: '50px',
+                                        borderRadius: '12px',
+                                        background: 'rgba(124, 58, 237, 0.1)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center'
+                                    }}>
+                                        <MapPin size={24} color="#7C3AED" />
+                                    </div>
+                                    <div>
+                                        <h4 style={{ 
+                                            fontSize: '1.1rem', 
+                                            fontWeight: 600, 
+                                            color: '#1f2937', 
+                                            marginBottom: '0.25rem',
+                                            fontFamily: "'Space Grotesk', sans-serif"
+                                        }}>
+                                            Location
+                                        </h4>
+                                        <p style={{ 
+                                            color: '#4b5563', 
+                                            fontSize: '1rem',
+                                            fontFamily: "'Manrope', sans-serif"
+                                        }}>
+                                            Dubai, UAE
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Phone */}
+                                <div style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '1rem',
+                                    padding: '1.5rem',
+                                    background: 'rgba(34, 211, 238, 0.05)',
+                                    borderRadius: '16px',
+                                    border: '1px solid rgba(34, 211, 238, 0.1)'
+                                }}>
+                                    <div style={{
+                                        width: '50px',
+                                        height: '50px',
+                                        borderRadius: '12px',
+                                        background: 'rgba(34, 211, 238, 0.1)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center'
+                                    }}>
+                                        <Phone size={24} color="#22D3EE" />
+                                    </div>
+                                    <div>
+                                        <h4 style={{ 
+                                            fontSize: '1.1rem', 
+                                            fontWeight: 600, 
+                                            color: '#1f2937', 
+                                            marginBottom: '0.25rem',
+                                            fontFamily: "'Space Grotesk', sans-serif"
+                                        }}>
+                                            Phone
+                                        </h4>
+                                        <p style={{ 
+                                            color: '#4b5563', 
+                                            fontSize: '1rem',
+                                            fontFamily: "'Manrope', sans-serif"
+                                        }}>
+                                            +971 00 000 0000
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Email */}
+                                <div style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '1rem',
+                                    padding: '1.5rem',
+                                    background: 'rgba(250, 204, 21, 0.05)',
+                                    borderRadius: '16px',
+                                    border: '1px solid rgba(250, 204, 21, 0.1)'
+                                }}>
+                                    <div style={{
+                                        width: '50px',
+                                        height: '50px',
+                                        borderRadius: '12px',
+                                        background: 'rgba(250, 204, 21, 0.1)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center'
+                                    }}>
+                                        <Mail size={24} color="#FACC15" />
+                                    </div>
+                                    <div>
+                                        <h4 style={{ 
+                                            fontSize: '1.1rem', 
+                                            fontWeight: 600, 
+                                            color: '#1f2937', 
+                                            marginBottom: '0.25rem',
+                                            fontFamily: "'Space Grotesk', sans-serif"
+                                        }}>
+                                            Email
+                                        </h4>
+                                        <p style={{ 
+                                            color: '#4b5563', 
+                                            fontSize: '1rem',
+                                            fontFamily: "'Manrope', sans-serif"
+                                        }}>
+                                            info@oneclickadv.ae
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Action Button */}
+                            <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+                                <button
+                                    onClick={() => setIsContactModalOpen(false)}
+                                    style={{
+                                        background: 'linear-gradient(135deg, #7C3AED 0%, #22D3EE 100%)',
+                                        border: 'none',
+                                        borderRadius: '12px',
+                                        padding: '1rem 2rem',
+                                        color: 'white',
+                                        fontSize: '1rem',
+                                        fontWeight: 600,
+                                        cursor: 'pointer',
+                                        boxShadow: '0 4px 12px rgba(124, 58, 237, 0.3)',
+                                        transition: 'all 0.3s ease',
+                                        fontFamily: "'DM Sans', sans-serif"
+                                    }}
+                                >
+                                    Got it!
+                                </button>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+
                 {/* Admin Footer */}
                 <footer style={{ marginTop: '3rem', padding: '5rem 0', background: '#0B0B0F', borderTop: '1px solid rgba(124, 58, 237, 0.3)' }}>
                     <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
@@ -615,15 +885,97 @@ export default function AdminPage() {
                             </div>
 
                             <div>
-                                <h4 style={{ marginBottom: '1rem', fontSize: '1rem', color: 'white' }}>Contact Us</h4>
+                                <h4 
+                                    onClick={() => setIsContactModalOpen(true)}
+                                    style={{ 
+                                        marginBottom: '1rem', 
+                                        fontSize: '1rem', 
+                                        color: 'white',
+                                        cursor: 'pointer',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '0.5rem',
+                                        padding: '0.5rem',
+                                        borderRadius: '8px',
+                                        transition: 'all 0.3s ease'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.background = 'rgba(124, 58, 237, 0.1)';
+                                        e.currentTarget.style.color = 'var(--color-secondary)';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.background = 'transparent';
+                                        e.currentTarget.style.color = 'white';
+                                    }}
+                                >
+                                    <Phone size={16} color="var(--color-accent)" />
+                                    Contact Us
+                                </h4>
                                 <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem', listStyle: 'none', padding: 0 }}>
-                                    <li style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}>
+                                    <li 
+                                        onClick={() => setIsContactModalOpen(true)}
+                                        style={{ 
+                                            display: 'flex', 
+                                            gap: '0.6rem', 
+                                            alignItems: 'center',
+                                            cursor: 'pointer',
+                                            padding: '0.5rem',
+                                            borderRadius: '8px',
+                                            transition: 'all 0.3s ease'
+                                        }}
+                                        onMouseEnter={(e) => {
+                                            e.currentTarget.style.background = 'rgba(124, 58, 237, 0.1)';
+                                            e.currentTarget.style.color = 'white';
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.currentTarget.style.background = 'transparent';
+                                            e.currentTarget.style.color = 'rgba(255,255,255,0.6)';
+                                        }}
+                                    >
                                         <MapPin size={18} color="var(--color-accent)" /> Dubai, UAE
                                     </li>
-                                    <li style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}>
+                                    <li 
+                                        onClick={() => setIsContactModalOpen(true)}
+                                        style={{ 
+                                            display: 'flex', 
+                                            gap: '0.6rem', 
+                                            alignItems: 'center',
+                                            cursor: 'pointer',
+                                            padding: '0.5rem',
+                                            borderRadius: '8px',
+                                            transition: 'all 0.3s ease'
+                                        }}
+                                        onMouseEnter={(e) => {
+                                            e.currentTarget.style.background = 'rgba(34, 211, 238, 0.1)';
+                                            e.currentTarget.style.color = 'white';
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.currentTarget.style.background = 'transparent';
+                                            e.currentTarget.style.color = 'rgba(255,255,255,0.6)';
+                                        }}
+                                    >
                                         <Phone size={18} color="var(--color-accent)" /> +971 00 000 0000
                                     </li>
-                                    <li style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}>
+                                    <li 
+                                        onClick={() => setIsContactModalOpen(true)}
+                                        style={{ 
+                                            display: 'flex', 
+                                            gap: '0.6rem', 
+                                            alignItems: 'center',
+                                            cursor: 'pointer',
+                                            padding: '0.5rem',
+                                            borderRadius: '8px',
+                                            transition: 'all 0.3s ease'
+                                        }}
+                                        onMouseEnter={(e) => {
+                                            e.currentTarget.style.background = 'rgba(250, 204, 21, 0.1)';
+                                            e.currentTarget.style.color = 'white';
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.currentTarget.style.background = 'transparent';
+                                            e.currentTarget.style.color = 'rgba(255,255,255,0.6)';
+                                        }}
+                                    >
                                         <Mail size={18} color="var(--color-accent)" /> info@oneclickadv.ae
                                     </li>
                                 </ul>

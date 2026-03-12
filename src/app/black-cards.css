@@ -67,3 +67,59 @@ div[data-theme="black"] {
   border: 1px solid rgba(255,255,255,0.2) !important;
   backdrop-filter: blur(10px) !important;
 }
+
+/* Mobile Responsive Service Cards */
+@media (max-width: 768px) {
+  .service-card-black {
+    padding: 1.5rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .service-card-black h3 {
+    font-size: 1.1rem !important;
+    margin-bottom: 0.8rem !important;
+  }
+  
+  .service-card-black p {
+    font-size: 0.9rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .service-card-black ul {
+    margin-top: 0.8rem !important;
+  }
+  
+  .service-card-black li {
+    font-size: 0.85rem !important;
+    margin-bottom: 0.5rem !important;
+    line-height: 1.4 !important;
+  }
+  
+  .service-card-black div[style*="fontSize: '3rem'"] {
+    font-size: 2.5rem !important;
+    margin-bottom: 1rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-card-black {
+    padding: 1.25rem !important;
+  }
+  
+  .service-card-black h3 {
+    font-size: 1rem !important;
+  }
+  
+  .service-card-black p {
+    font-size: 0.85rem !important;
+  }
+  
+  .service-card-black li {
+    font-size: 0.8rem !important;
+  }
+  
+  .service-card-black div[style*="fontSize: '3rem'"] {
+    font-size: 2rem !important;
+  }
+}

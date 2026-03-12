@@ -7,6 +7,7 @@ import { Menu, X } from 'lucide-react';
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -19,6 +20,16 @@ export default function Navbar() {
   // Optimize mounting and event listeners
   useEffect(() => {
     setIsMounted(true);
+  }, []);
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Close menu when clicking outside or pressing escape
@@ -38,8 +49,16 @@ export default function Navbar() {
       }
     };
 
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as Element;
+      if (isMenuOpen && !target.closest('.mobile-menu') && !target.closest('.mobile-menu-toggle')) {
+        setIsMenuOpen(false);
+      }
+    };
+
     if (isMenuOpen) {
       document.addEventListener('keydown', handleEscape);
+      document.addEventListener('click', handleClickOutside);
       document.body.style.overflow = 'hidden'; // Prevent background scroll
     } else {
       document.body.style.overflow = 'unset';
@@ -49,13 +68,14 @@ export default function Navbar() {
 
     return () => {
       document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener('click', handleClickOutside);
       window.removeEventListener('resize', handleResize);
       document.body.style.overflow = 'unset';
     };
   }, [isMenuOpen, isMounted]);
 
   return (
-    <header className="navbar">
+    <header className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
       <div className="container nav-inner">
         <Link href="/" className="nav-logo" onClick={closeMenu}>
           <div className="nav-logo-icon">OC</div>
@@ -85,7 +105,8 @@ export default function Navbar() {
         <button
           onClick={toggleMenu}
           className="mobile-menu-toggle"
-          aria-label="Toggle menu"
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isMenuOpen}
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -104,7 +125,8 @@ export default function Navbar() {
             bottom: 0,
             background: 'rgba(0, 0, 0, 0.5)',
             zIndex: 999,
-            backdropFilter: 'blur(4px)'
+            backdropFilter: 'blur(4px)',
+            WebkitBackdropFilter: 'blur(4px)'
           }}
         />
       )}
@@ -112,19 +134,75 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <div className={`mobile-menu ${isMenuOpen ? 'mobile-menu-open' : ''}`}>
         <nav className="mobile-nav-links">
-          <Link href="/" className="mobile-nav-link" onClick={closeMenu}>Home</Link>
-          <Link href="/services" className="mobile-nav-link" onClick={closeMenu}>Services</Link>
-          <Link href="/testimonials" className="mobile-nav-link" onClick={closeMenu}>Testimonials</Link>
-          <Link href="/blog" className="mobile-nav-link" onClick={closeMenu}>Blog</Link>
-          <Link href="/contact" className="mobile-nav-link" onClick={closeMenu}>Contact</Link>
-          <Link href="/about" className="mobile-nav-link" onClick={closeMenu}>About Us</Link>
+          <Link href="/" className="mobile-nav-link" onClick={closeMenu}>
+            <span>Home</span>
+          </Link>
+          <Link href="/services" className="mobile-nav-link" onClick={closeMenu}>
+            <span>Services</span>
+          </Link>
+          <Link href="/testimonials" className="mobile-nav-link" onClick={closeMenu}>
+            <span>Testimonials</span>
+          </Link>
+          <Link href="/blog" className="mobile-nav-link" onClick={closeMenu}>
+            <span>Blog</span>
+          </Link>
+          <Link href="/contact" className="mobile-nav-link" onClick={closeMenu}>
+            <span>Contact</span>
+          </Link>
+          <Link href="/about" className="mobile-nav-link" onClick={closeMenu}>
+            <span>About Us</span>
+          </Link>
         </nav>
         
         <div className="mobile-nav-actions">
-          <Link href="/register" className="btn btn-outline mobile-btn" onClick={closeMenu}>Start Your Campaign</Link>
-          <Link href="/admin/login" className="btn btn-primary mobile-btn" onClick={closeMenu}>Login</Link>
+          <Link href="/register" className="btn btn-outline mobile-btn" onClick={closeMenu}>
+            Start Your Campaign
+          </Link>
+          <Link href="/admin/login" className="btn btn-primary mobile-btn" onClick={closeMenu}>
+            Login
+          </Link>
         </div>
       </div>
+
+      <style jsx>{`
+        .navbar-scrolled {
+          background: rgba(11, 11, 15, 0.95) !important;
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+        }
+        
+        .nav-logo-text {
+          display: flex;
+          flex-direction: column;
+          line-height: 1;
+        }
+        
+        .brand-tagline {
+          font-size: 0.65rem;
+          font-weight: 500;
+          color: var(--color-accent);
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          margin-top: 2px;
+        }
+        
+        @media (max-width: 768px) {
+          .brand-tagline {
+            font-size: 0.6rem;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .nav-logo-text {
+            font-size: 0.9rem;
+          }
+          
+          .brand-tagline {
+            font-size: 0.55rem;
+          }
+        }
+      `}</style>
     </header>
   );
 }

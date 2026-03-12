@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import './mobile-responsive.css';
 import Link from 'next/link';
 import { ShieldCheck, Mail, Phone, MapPin } from 'lucide-react';
 import Navbar from './components/Navbar';
@@ -16,6 +17,7 @@ export const viewport = {
   maximumScale: 5,
   userScalable: true,
   themeColor: '#7C3AED',
+  viewportFit: 'cover',
 };
 
 export default function RootLayout({
