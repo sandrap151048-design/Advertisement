@@ -436,13 +436,13 @@
 @media (max-width: 768px) {
   .login-page {
     padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
-    padding-top: 70px; /* Account for fixed navbar */
+    padding-top: 70px !important; /* Account for fixed navbar */
   }
   
   .form-section {
     padding: 2rem 1.5rem;
-    min-height: calc(100vh - 80px);
-    min-height: calc(100dvh - 80px);
+    min-height: calc(100vh - 70px) !important;
+    min-height: calc(100dvh - 70px) !important;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -492,10 +492,14 @@
 
 /* Small mobile devices */
 @media (max-width: 480px) {
+  .login-page {
+    padding-top: 65px !important; /* Account for smaller navbar */
+  }
+  
   .form-section {
     padding: 1.5rem 1rem;
-    min-height: calc(100vh - 70px);
-    min-height: calc(100dvh - 70px);
+    min-height: calc(100vh - 65px) !important;
+    min-height: calc(100dvh - 65px) !important;
     display: flex;
     align-items: center;
     justify-content: center;
