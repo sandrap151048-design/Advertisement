@@ -188,8 +188,47 @@ export default function Navbar() {
         }
         
         @media (max-width: 768px) {
+          .navbar {
+            background: rgba(11, 11, 15, 1) !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            border-bottom: 3px solid rgba(124, 58, 237, 0.8) !important;
+            box-shadow: 0 4px 25px rgba(124, 58, 237, 0.6) !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 1000 !important;
+          }
+          
+          .nav-inner {
+            background: rgba(11, 11, 15, 1) !important;
+            border-radius: 8px !important;
+            margin: 0.5rem !important;
+            border: 2px solid rgba(124, 58, 237, 0.6) !important;
+            box-shadow: 0 2px 15px rgba(124, 58, 237, 0.4) !important;
+          }
+          
           .brand-tagline {
             font-size: 0.6rem;
+          }
+          
+          .mobile-menu-toggle {
+            background: linear-gradient(135deg, #7C3AED 0%, #22D3EE 100%) !important;
+            border: 3px solid rgba(255, 255, 255, 0.6) !important;
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.8) !important;
+            min-width: 60px !important;
+            min-height: 60px !important;
+          }
+          
+          .mobile-menu {
+            background: rgba(11, 11, 15, 1) !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            border-bottom: 3px solid rgba(124, 58, 237, 0.8) !important;
+            box-shadow: 0 10px 40px rgba(124, 58, 237, 0.6) !important;
+            border-left: 2px solid rgba(124, 58, 237, 0.4) !important;
+            border-right: 2px solid rgba(124, 58, 237, 0.4) !important;
           }
         }
         
@@ -200,6 +239,10 @@ export default function Navbar() {
           
           .brand-tagline {
             font-size: 0.55rem;
+          }
+          
+          .nav-inner {
+            margin: 0.25rem !important;
           }
         }
       `}</style>
