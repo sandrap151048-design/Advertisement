@@ -44,7 +44,6 @@ body {
   .section-title {
     font-size: clamp(1.5rem, 6vw, 2rem) !important;
     text-align: center !important;
-   !important;
   }
 
   /* Container padding */
@@ -227,7 +226,7 @@ body {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-  xt-align: center !important;
+    text-align: center !important;
   }
 
   /* CTA Ribbon Mobile */
