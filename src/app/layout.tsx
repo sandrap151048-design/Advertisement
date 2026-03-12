@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import './mobile-responsive.css';
+// import './mobile-responsive.css'; // Temporarily disabled due to syntax errors
 import Link from 'next/link';
 import { ShieldCheck, Mail, Phone, MapPin } from 'lucide-react';
 import Navbar from './components/Navbar';

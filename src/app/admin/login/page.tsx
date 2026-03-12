@@ -160,7 +160,7 @@ export default function AdminLoginPage() {
                                         style={{
                                             WebkitTextSecurity: showPassword ? 'none' : 'disc',
                                             textSecurity: showPassword ? 'none' : 'disc'
-                                        }}
+                                        } as React.CSSProperties}
                                     />
                                     <button
                                         type="button"
