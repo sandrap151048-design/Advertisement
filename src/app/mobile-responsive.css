@@ -809,8 +809,7 @@ ight: 22px !important;
 }
 
 /* Performance optimizations */
-.mobile-menu,
-.mobimportant;
+.mobile-menu {
     width: 100% !important;
   }
 
