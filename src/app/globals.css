@@ -2746,7 +2746,7 @@ iframe {
 
 .main-footer {
     margin-top: 0;
-    padding: 6rem 0 4rem 0;
+    padding: 8rem 0 6rem 0;
     background: #0B0B0F;
     border-top: 1px solid rgba(124, 58, 237, 0.3);
 }
@@ -2923,7 +2923,7 @@ iframe {
 /* Footer Mobile Optimization */
 @media (max-width: 768px) {
     .main-footer {
-        padding: 4rem 0 3rem 0;
+        padding: 6rem 0 4rem 0;
     }
     
     .footer-grid {
@@ -2951,7 +2951,7 @@ iframe {
 
 @media (max-width: 480px) {
     .main-footer {
-        padding: 3rem 0 2rem 0;
+        padding: 5rem 0 3rem 0;
     }
     
     .footer-brand {
@@ -3653,7 +3653,7 @@ input::placeholder, textarea::placeholder {
 .main-footer {
   background: linear-gradient(180deg, #0B0B0F 0%, #1a1a1f 100%);
   border-top: 1px solid rgba(124, 58, 237, 0.3);
-  padding: 4rem 0 2rem;
+  padding: 8rem 0 6rem;
   margin-top: 8rem;
 }
 
@@ -3785,7 +3785,7 @@ input::placeholder, textarea::placeholder {
   }
 
   .main-footer {
-    padding: 3rem 0 1.5rem;
+    padding: 6rem 0 4rem;
     margin-top: 4rem;
   }
 
