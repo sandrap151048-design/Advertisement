@@ -24,7 +24,7 @@ const inputStyle = {
     background: 'rgba(255, 255, 255, 0.05)',
     border: '2px solid rgba(124, 58, 237, 0.3)',
     padding: 'clamp(1rem, 2vw, 1.2rem)',
-    paddingLeft: 'clamp(3rem, 6vw, 3.5rem)',
+    paddingLeft: 'clamp(4rem, 8vw, 4.5rem)',
     borderRadius: '12px',
     color: 'white' as const,
     width: '100%',

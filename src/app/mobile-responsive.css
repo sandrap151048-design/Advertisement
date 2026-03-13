@@ -71,12 +71,24 @@ body {
     text-align: center !important;
   }
 
-  /* Form improvements for mobile */
+  /* Form improvements for mobile - Fix icon overlap */
   input, textarea, select {
     font-size: 16px !important;
-    padding: 1rem !important;
+    padding: 1rem 1rem 1rem 4rem !important;
     width: 100% !important;
     box-sizing: border-box !important;
+  }
+
+  /* Ensure proper spacing for form icons on mobile */
+  div[style*="position: relative"] input,
+  div[style*="position: relative"] textarea,
+  div[style*="position: relative"] select {
+    padding-left: 4rem !important;
+  }
+
+  /* Adjust icon positioning for mobile */
+  div[style*="position: relative"] svg {
+    left: 1.2rem !important;
   }
 
   /* Grid layouts */
@@ -141,6 +153,47 @@ body {
 
   .glass-card:hover {
     transform: none !important;
+  }
+}
+
+/* Register page form fixes for mobile */
+@media (max-width: 768px) {
+  /* Fix register page form input spacing */
+  .glass-card input,
+  .glass-card textarea,
+  .glass-card select {
+    padding: 1rem 1rem 1rem 4rem !important;
+    font-size: 16px !important;
+  }
+  
+  /* Ensure icons don't overlap text */
+  .glass-card div[style*="position: relative"] svg {
+    left: 1.2rem !important;
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 2 !important;
+  }
+  
+  /* Specific fix for textarea icon positioning */
+  .glass-card div[style*="position: relative"] textarea + svg,
+  .glass-card div[style*="position: relative"] svg:first-child {
+    top: 1.2rem !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small mobile devices */
+  .glass-card input,
+  .glass-card textarea,
+  .glass-card select {
+    padding: 1rem 1rem 1rem 3.5rem !important;
+    font-size: 16px !important;
+  }
+  
+  .glass-card div[style*="position: relative"] svg {
+    left: 1rem !important;
   }
 }
 
