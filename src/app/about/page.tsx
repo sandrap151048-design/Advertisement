@@ -116,14 +116,14 @@ export default function AboutPage() {
                             width: '100%',
                             height: '100%',
                             objectFit: 'cover', 
-                            opacity: 0.25, 
-                            filter: 'grayscale(0.3) brightness(1.1) contrast(1.1)' 
+                            opacity: 0.4, 
+                            filter: 'grayscale(0.2) brightness(1.1) contrast(1.1)' 
                         }} 
                     />
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(248, 250, 252, 0.95) 40%, rgba(248, 250, 252, 0.2))', display: 'flex', alignItems: 'center', padding: '3rem' }}>
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(124, 58, 237, 0.9) 0%, rgba(167, 139, 250, 0.8) 50%, rgba(34, 211, 238, 0.7) 100%)', display: 'flex', alignItems: 'center', padding: '3rem' }}>
                         <div>
-                            <h2 style={{ fontSize: '2.4rem', fontFamily: 'var(--font-heading)', marginBottom: '1rem', color: 'var(--color-primary)' }}>Elite Visual Architecture</h2>
-                            <p style={{ color: 'var(--color-text-muted)', maxWidth: '400px', lineHeight: '1.8', fontSize: '1.1rem' }}>
+                            <h2 style={{ fontSize: '2.4rem', fontFamily: 'var(--font-heading)', marginBottom: '1rem', color: 'white' }}>Elite Visual Architecture</h2>
+                            <p style={{ color: 'rgba(255, 255, 255, 0.95)', maxWidth: '400px', lineHeight: '1.8', fontSize: '1.1rem' }}>
                                 Delivering world-class branding experiences that transform ordinary spaces into extraordinary digital landmarks.
                             </p>
                         </div>
