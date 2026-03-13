@@ -221,7 +221,15 @@ export default function ServicesPage() {
             {/* Vehicle Ad Visual */}
             <motion.section className="container" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInDown} style={{ marginBottom: '4rem' }}>
                 <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--color-card-border)', position: 'relative', height: '300px' }}>
-                    <img src="/images/ad_vehicle.svg" alt="Vehicle Branding" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <img 
+                        src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&q=80" 
+                        alt="Vehicle Branding" 
+                        style={{ 
+                            width: '100%', 
+                            height: '100%', 
+                            objectFit: 'cover' 
+                        }} 
+                    />
                     <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(124, 58, 237, 0.9) 35%, rgba(167, 139, 250, 0.3))', display: 'flex', alignItems: 'center', padding: '3rem' }}>
                         <div>
                             <h2 style={{ fontSize: '2rem', fontFamily: 'var(--font-heading)', marginBottom: '0.8rem', color: 'white' }}>Fleet Branding</h2>
