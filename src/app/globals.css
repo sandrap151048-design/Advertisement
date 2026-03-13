@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,600;1,9..40,400&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Manrope:wght@400;600;700;800&family=Outfit:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
 
 :root {
-  --color-bg-start: #0B0B0F;
-  --color-bg-end: #0B0B0F;
+  --color-bg-start: #1a1a1f;
+  --color-bg-end: #1a1a1f;
   --color-primary: #7C3AED;
   --color-secondary: #22D3EE;
   --color-text-main: #FFFFFF;
   --color-text-muted: #A1A1AA;
-  --color-card-bg: rgba(0, 0, 0, 0.8);
+  --color-card-bg: rgba(30, 30, 40, 0.8);
   --color-card-border: rgba(124, 58, 237, 0.3);
   --color-accent: #FACC15;
   /* Fonts per section */
@@ -29,7 +29,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: #0B0B0F;
+  background: #1a1a1f;
   background-attachment: fixed;
   color: var(--color-text-main);
   font-family: var(--font-body);
@@ -133,7 +133,7 @@ ul {
 
 /* Card Style */
 .glass-card {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(30, 30, 40, 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(124, 58, 237, 0.3);
@@ -149,7 +149,7 @@ ul {
   transform: translateY(-8px);
   border-color: var(--color-secondary);
   box-shadow: 0 20px 25px -5px rgba(34, 211, 238, 0.2), 0 10px 10px -5px rgba(34, 211, 238, 0.1);
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(40, 40, 50, 0.9);
 }
 
 /* Layout util */
@@ -179,7 +179,7 @@ ul {
   left: 0;
   right: 0;
   z-index: 1000;
-  background: #0B0B0F;
+  background: #1a1a1f;
   border-bottom: 1px solid rgba(124, 58, 237, 0.3);
   padding: 0;
   transition: all 0.4s ease;
@@ -395,7 +395,7 @@ ul {
     width: 100vw !important;
     z-index: 9999 !important;
     height: 70px !important;
-    background: #0B0B0F !important;
+    background: #1a1a1f !important;
     border-bottom: 2px solid #7C3AED !important;
     box-shadow: 0 4px 20px rgba(124, 58, 237, 0.5) !important;
     padding: 0 !important;
@@ -467,7 +467,7 @@ ul {
     top: 70px !important;
     left: 0 !important;
     right: 0 !important;
-    background: #0B0B0F !important;
+    background: #1a1a1f !important;
     border-bottom: 2px solid #7C3AED !important;
     box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4) !important;
     z-index: 9998 !important;
@@ -629,12 +629,12 @@ ul {
 .admin-layout {
   display: flex;
   min-height: 100vh;
-  background: #0B0B0F;
+  background: #1a1a1f;
 }
 
 .admin-sidebar {
   width: 250px;
-  background: rgba(11, 11, 15, 0.98);
+  background: rgba(26, 26, 31, 0.98);
   border-right: 1px solid rgba(124, 58, 237, 0.3);
   padding: 2rem 1rem;
 }
@@ -642,13 +642,13 @@ ul {
 .admin-main {
   flex: 1;
   padding: 2rem;
-  background: #0B0B0F;
+  background: #1a1a1f;
 }
 
 .stat-card {
   padding: 1.5rem;
   border-radius: 6px;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(30, 30, 40, 0.8);
   border: 1px solid rgba(124, 58, 237, 0.3);
   color: var(--color-text-main);
 }
@@ -2747,7 +2747,7 @@ iframe {
 .main-footer {
     margin-top: 0;
     padding: 8rem 0 6rem 0;
-    background: #0B0B0F;
+    background: #1a1a1f;
     border-top: 1px solid rgba(124, 58, 237, 0.3);
 }
 
@@ -3651,7 +3651,7 @@ input::placeholder, textarea::placeholder {
 
 /* Footer Styles */
 .main-footer {
-  background: linear-gradient(180deg, #0B0B0F 0%, #1a1a1f 100%);
+  background: linear-gradient(180deg, #1a1a1f 0%, #2a2a2f 100%);
   border-top: 1px solid rgba(124, 58, 237, 0.3);
   padding: 8rem 0 6rem;
   margin-top: 8rem;

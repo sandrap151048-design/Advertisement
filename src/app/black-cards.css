@@ -8,7 +8,7 @@
 }
 
 .service-card-black {
-  background: #000000 !important;
+  background: #2a2a2f !important;
   border: 1px solid rgba(255,255,255,0.2) !important;
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
@@ -17,7 +17,7 @@
 .service-card-black,
 .service-card-black::before,
 .service-card-black::after {
-  background: #000000 !important;
+  background: #2a2a2f !important;
 }
 
 .service-card-black * {
@@ -38,32 +38,32 @@
 
 /* Override any possible conflicting styles */
 div.service-card-black {
-  background: #000000 !important;
+  background: #2a2a2f !important;
   border: 1px solid rgba(255,255,255,0.2) !important;
   backdrop-filter: blur(10px) !important;
 }
 
 section div.service-card-black {
-  background: #000000 !important;
+  background: #2a2a2f !important;
   border: 1px solid rgba(255,255,255,0.2) !important;
   backdrop-filter: blur(10px) !important;
 }
 
 .container div.service-card-black {
-  background: #000000 !important;
+  background: #2a2a2f !important;
   border: 1px solid rgba(255,255,255,0.2) !important;
   backdrop-filter: blur(10px) !important;
 }
 
 /* Data attribute approach */
 [data-theme="black"] {
-  background: #000000 !important;
+  background: #2a2a2f !important;
   border: 1px solid rgba(255,255,255,0.2) !important;
   backdrop-filter: blur(10px) !important;
 }
 
 div[data-theme="black"] {
-  background: #000000 !important;
+  background: #2a2a2f !important;
   border: 1px solid rgba(255,255,255,0.2) !important;
   backdrop-filter: blur(10px) !important;
 }
