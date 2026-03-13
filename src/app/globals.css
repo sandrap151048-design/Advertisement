@@ -1184,14 +1184,28 @@ ul {
   }
 }
 
-/* Reduced motion for accessibility */
-@media (prefers-reduced-motion: reduce) {
+/* Reduced motion for accessibility and mobile performance */
+@media (prefers-reduced-motion: reduce), (max-width: 768px) {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
+    animation-duration: 0.2ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    transition-duration: 0.2s !important;
+  }
+  
+  /* Disable complex animations on mobile */
+  .bg-orb {
+    animation: none !important;
+    display: none !important;
+  }
+  
+  .floating {
+    animation: none !important;
+  }
+  
+  .glass-card:hover {
+    transform: translateY(-2px) !important;
   }
 }
 

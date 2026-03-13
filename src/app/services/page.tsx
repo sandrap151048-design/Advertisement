@@ -14,28 +14,28 @@ interface DynamicService {
 }
 
 const fadeInDown: Variants = {
-    hidden: { opacity: 0, y: -60 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7 } }
+    hidden: { opacity: 0, y: -30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
 };
 const slideDown: Variants = {
-    hidden: { opacity: 0, y: -120 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.9 } }
+    hidden: { opacity: 0, y: -60 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
 };
 const dropIn: Variants = {
-    hidden: { opacity: 0, y: -800 },
-    visible: { opacity: 1, y: 0, transition: { type: "spring" as const, damping: 18, stiffness: 90 } }
+    hidden: { opacity: 0, y: -400 },
+    visible: { opacity: 1, y: 0, transition: { type: "spring" as const, damping: 20, stiffness: 120 } }
 };
 const revealDown: Variants = {
     hidden: { opacity: 0, clipPath: 'inset(0 0 100% 0)' },
-    visible: { opacity: 1, clipPath: 'inset(0 0 0% 0)', transition: { duration: 0.9 } }
+    visible: { opacity: 1, clipPath: 'inset(0 0 0% 0)', transition: { duration: 0.5 } }
 };
 const bounceInDown: Variants = {
-    hidden: { opacity: 0, y: -200 },
-    visible: { opacity: 1, y: 0, transition: { type: "spring" as const, damping: 10, stiffness: 80 } }
+    hidden: { opacity: 0, y: -100 },
+    visible: { opacity: 1, y: 0, transition: { type: "spring" as const, damping: 15, stiffness: 100 } }
 };
 const staggerContainer: Variants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
 };
 
 const services = [
@@ -123,7 +123,7 @@ export default function ServicesPage() {
             <motion.section className="container" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealDown} style={{ marginBottom: '1rem' }}>
                 <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--color-card-border)', position: 'relative', height: '260px' }}>
                     <img 
-                        src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&q=80" 
+                        src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&q=80" 
                         alt="Services Visual" 
                         style={{ 
                             width: '100%', 

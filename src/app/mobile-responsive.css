@@ -218,6 +218,45 @@ body {
   perspective: 1000px;
 }
 
+/* Mobile animation optimizations */
+@media (max-width: 768px) {
+  /* Reduce motion complexity on mobile for better performance */
+  * {
+    animation-duration: 0.3s !important;
+    transition-duration: 0.3s !important;
+  }
+  
+  /* Disable complex animations on mobile */
+  .bg-orb {
+    display: none !important;
+  }
+  
+  /* Optimize framer-motion animations for mobile */
+  [data-framer-component-type] {
+    will-change: transform, opacity !important;
+    transform: translateZ(0) !important;
+    backface-visibility: hidden !important;
+  }
+  
+  /* Reduce animation complexity */
+  .glass-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  }
+  
+  .glass-card:hover {
+    transform: translateY(-2px) !important;
+  }
+  
+  /* Optimize button animations */
+  .btn {
+    transition: all 0.2s ease !important;
+  }
+  
+  .btn:hover {
+    transform: translateY(-1px) !important;
+  }
+}
+
 /* Reduced motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
   *,
