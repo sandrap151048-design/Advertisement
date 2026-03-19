@@ -94,13 +94,14 @@ export default function Home() {
         position: 'relative',
         width: '100vw',
         marginLeft: 'calc(-50vw + 50%)',
-        height: 'clamp(500px, 80vh, 700px)',
+        height: 'clamp(500px, 90vh, 800px)',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         overflow: 'hidden',
         marginTop: '-5rem',
-        paddingTop: '5rem'
+        paddingTop: '5rem',
+        paddingRight: 'clamp(2rem, 8vw, 6rem)'
       }}>
         {/* Background Image */}
         <div style={{
@@ -115,91 +116,61 @@ export default function Home() {
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-              filter: 'brightness(0.5) contrast(1.2)'
+              filter: 'brightness(0.6) contrast(1.1)'
             }}
           />
           <div style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(124, 58, 237, 0.3) 100%)'
+            background: 'linear-gradient(90deg, rgba(0,0,0,0.5) 0%, transparent 60%)'
           }} />
         </div>
 
-        {/* Content */}
+        {/* Content - Right Side */}
         <motion.div 
           initial="hidden" 
           animate="visible" 
           variants={staggerContainer} 
           style={{
-            maxWidth: '1000px',
+            maxWidth: '600px',
             zIndex: 10,
             position: 'relative',
-            textAlign: 'center',
-            padding: '2rem',
-            width: '100%'
+            textAlign: 'right',
+            padding: '2rem'
           }}
         >
-          <motion.div 
-            variants={fadeInDown} 
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              marginBottom: '2rem',
-              background: 'rgba(124, 58, 237, 0.2)',
-              padding: '0.75rem 1.5rem',
-              borderRadius: '50px',
-              border: '1px solid rgba(124, 58, 237, 0.5)',
-              backdropFilter: 'blur(10px)'
-            }}
-          >
-            <span style={{
-              width: 10,
-              height: 10,
-              borderRadius: '50%',
-              background: 'var(--color-primary)',
-              display: 'inline-block',
-              boxShadow: '0 0 15px var(--color-primary)',
-              animation: 'pulse 2s infinite'
-            }} />
-            <span style={{
-              fontSize: '0.9rem',
-              fontWeight: 800,
-              letterSpacing: '2px',
-              textTransform: 'uppercase',
-              color: 'var(--color-primary)'
-            }}>
-              Next-Gen AI Advertising
-            </span>
-          </motion.div>
-
           <motion.h1 
             variants={slideDown} 
             style={{
-              fontSize: 'clamp(2.5rem, 6vw, 5rem)',
+              fontSize: 'clamp(3rem, 7vw, 5.5rem)',
               fontWeight: 900,
               color: 'white',
               marginBottom: '1.5rem',
               lineHeight: '1.1',
               letterSpacing: '-1px',
-              textShadow: '0 4px 20px rgba(0,0,0,0.3)'
+              textShadow: '0 4px 20px rgba(0,0,0,0.4)',
+              background: 'linear-gradient(90deg, white 0%, white 60%, var(--color-primary) 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text'
             }}
           >
-            Transforming <span style={{ color: 'var(--color-primary)' }}>Spaces</span> Into <span style={{ background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Experiences</span>
+            Attractive
           </motion.h1>
 
           <motion.p 
             variants={fadeInDown} 
             style={{
-              color: 'rgba(255,255,255,0.9)',
-              fontSize: 'clamp(1rem, 2.5vw, 1.3rem)',
-              maxWidth: '700px',
-              marginBottom: '3rem',
+              color: 'rgba(255,255,255,0.95)',
+              fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
+              maxWidth: '500px',
+              marginBottom: '2rem',
               lineHeight: '1.8',
-              margin: '0 auto 3rem'
+              marginLeft: 'auto',
+              textShadow: '0 2px 10px rgba(0,0,0,0.3)'
             }}
           >
-            One Click Advertisement combines cutting-edge AI technology with premium branding solutions. We transform ordinary surfaces into extraordinary brand stories.
+            We create high-impact advertising that makes your brand visible, memorable, and impossible to ignore.
           </motion.p>
 
           <motion.div 
@@ -207,19 +178,19 @@ export default function Home() {
             style={{
               display: 'flex',
               gap: '1.5rem',
-              justifyContent: 'center',
+              justifyContent: 'flex-end',
               flexWrap: 'wrap',
               width: '100%'
             }}
           >
             <Link 
-              href="/services" 
+              href="/contact" 
               className="btn btn-primary" 
               style={{
-                padding: '1.2rem 3rem',
-                borderRadius: '12px',
+                padding: '1rem 2.5rem',
+                borderRadius: '50px',
                 fontWeight: 700,
-                fontSize: '1.1rem',
+                fontSize: '1rem',
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -227,58 +198,9 @@ export default function Home() {
                 boxShadow: '0 10px 30px rgba(124, 58, 237, 0.3)'
               }}
             >
-              EXPLORE SOLUTIONS
-            </Link>
-            <Link 
-              href="/contact" 
-              className="btn btn-outline" 
-              style={{
-                padding: '1.2rem 3rem',
-                borderRadius: '12px',
-                fontWeight: 700,
-                fontSize: '1.1rem',
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                border: '2px solid rgba(255,255,255,0.3)',
-                color: 'white',
-                transition: 'all 0.3s ease'
-              }}
-            >
-              GET IN TOUCH
+              Get Started
             </Link>
           </motion.div>
-        </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          style={{
-            position: 'absolute',
-            bottom: '2rem',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            zIndex: 10
-          }}
-        >
-          <div style={{
-            width: '30px',
-            height: '50px',
-            border: '2px solid rgba(255,255,255,0.5)',
-            borderRadius: '15px',
-            display: 'flex',
-            alignItems: 'flex-start',
-            justifyContent: 'center',
-            padding: '8px'
-          }}>
-            <div style={{
-              width: '4px',
-              height: '8px',
-              background: 'rgba(255,255,255,0.7)',
-              borderRadius: '2px'
-            }} />
-          </div>
         </motion.div>
       </section>
 

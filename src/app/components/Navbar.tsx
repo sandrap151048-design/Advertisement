@@ -71,10 +71,10 @@ export default function Navbar() {
 
         <style jsx>{`
           .navbar-scrolled {
-            background: rgba(11, 11, 15, 0.95) !important;
+            background: rgba(255, 255, 255, 0.98) !important;
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
           }
           
           .nav-logo-text {
