@@ -203,6 +203,183 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* We Build Section */}
+      <section style={{
+        position: 'relative',
+        width: '100vw',
+        marginLeft: 'calc(-50vw + 50%)',
+        background: '#f5f5f5',
+        padding: 'clamp(4rem, 10vw, 8rem) clamp(2rem, 8vw, 6rem)',
+        textAlign: 'center'
+      }}>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+          style={{
+            maxWidth: '900px',
+            margin: '0 auto',
+            marginBottom: '4rem'
+          }}
+        >
+          <motion.h2
+            variants={slideDown}
+            style={{
+              fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+              fontWeight: 900,
+              color: '#1a1a1f',
+              marginBottom: '1rem',
+              lineHeight: '1.2'
+            }}
+          >
+            We build
+          </motion.h2>
+          <motion.h3
+            variants={fadeInDown}
+            style={{
+              fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+              fontWeight: 400,
+              fontStyle: 'italic',
+              color: '#1a1a1f',
+              marginBottom: '2rem',
+              lineHeight: '1.3'
+            }}
+          >
+            unmissable brand presence
+          </motion.h3>
+          <motion.p
+            variants={fadeInDown}
+            style={{
+              fontSize: 'clamp(1rem, 2vw, 1.1rem)',
+              color: '#333333',
+              maxWidth: '700px',
+              margin: '0 auto 2.5rem',
+              lineHeight: '1.8',
+              fontWeight: 500
+            }}
+          >
+            We provide signage, branding, and advertising solutions designed to make your business stand out and attract attention.
+          </motion.p>
+          <motion.div
+            variants={slideDown}
+          >
+            <Link
+              href="/services"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                padding: '1rem 2rem',
+                background: '#1a3a52',
+                color: 'white',
+                borderRadius: '50px',
+                textDecoration: 'none',
+                fontWeight: 700,
+                fontSize: '1.05rem',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 4px 15px rgba(26, 58, 82, 0.3)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#0f2438';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 8px 25px rgba(26, 58, 82, 0.4)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = '#1a3a52';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 15px rgba(26, 58, 82, 0.3)';
+              }}
+            >
+              Explore Services
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </Link>
+          </motion.div>
+        </motion.div>
+
+        {/* Image Grid */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: 'clamp(1.5rem, 4vw, 2.5rem)',
+          maxWidth: '1200px',
+          margin: '0 auto'
+        }}>
+          {[
+            {
+              title: 'Retail Signage',
+              subtitle: 'Elevate your storefront presence',
+              image: 'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=500&q=80'
+            },
+            {
+              title: 'Billboard Mockup',
+              subtitle: 'Maximum visibility, urban placement',
+              image: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=500&q=80'
+            },
+            {
+              title: 'Vehicle Branding',
+              subtitle: 'Mobile advertising solutions',
+              image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&q=80'
+            }
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInDown}
+              whileHover={{ y: -10 }}
+              style={{
+                position: 'relative',
+                borderRadius: '24px',
+                overflow: 'hidden',
+                height: '320px',
+                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              <img
+                src={item.image}
+                alt={item.title}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover'
+                }}
+              />
+              <div style={{
+                position: 'absolute',
+                inset: 0,
+                background: 'linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.6) 100%)',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'flex-end',
+                padding: '2rem',
+                color: 'white'
+              }}>
+                <h3 style={{
+                  fontSize: '1.3rem',
+                  fontWeight: 700,
+                  marginBottom: '0.5rem'
+                }}>
+                  {item.title}
+                </h3>
+                <p style={{
+                  fontSize: '0.95rem',
+                  fontWeight: 500,
+                  opacity: 0.9
+                }}>
+                  {item.subtitle}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       {/* About Us Section - Image Right */}
       <section className="section container">
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center', marginBottom: '4rem' }}>
