@@ -656,6 +656,161 @@ export default function Home() {
         </div>
       </section>
 
+      {/* We Reach Across Cities Section */}
+      <section style={{
+        position: 'relative',
+        width: '100vw',
+        marginLeft: 'calc(-50vw + 50%)',
+        background: 'linear-gradient(135deg, #1a1a1f 0%, #2a2a3f 100%)',
+        padding: 'clamp(4rem, 10vw, 8rem) clamp(2rem, 8vw, 6rem)',
+        overflow: 'hidden'
+      }}>
+        {/* Background Image Overlay */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          opacity: 0.15,
+          backgroundImage: 'url(https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1200&q=80)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          zIndex: 0
+        }} />
+
+        <div style={{
+          maxWidth: '1400px',
+          margin: '0 auto',
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: 'clamp(2rem, 6vw, 4rem)',
+          alignItems: 'center',
+          position: 'relative',
+          zIndex: 1
+        }}>
+          {/* Left Side - Image */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInDown}
+            whileHover={{ scale: 1.02 }}
+            style={{
+              position: 'relative',
+              borderRadius: '20px',
+              overflow: 'hidden',
+              height: '450px',
+              boxShadow: '0 20px 60px rgba(0,0,0,0.4)',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease'
+            }}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=600&q=80"
+              alt="Urban advertising campaign"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover'
+              }}
+            />
+            <div style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(135deg, rgba(255, 165, 0, 0.3), rgba(0, 0, 0, 0.5))'
+            }} />
+          </motion.div>
+
+          {/* Right Side - Content */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center'
+            }}
+          >
+            <motion.h2
+              variants={slideDown}
+              style={{
+                fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+                fontWeight: 900,
+                color: '#ffffff',
+                marginBottom: '0.5rem',
+                lineHeight: '1.2'
+              }}
+            >
+              We reach
+            </motion.h2>
+            <motion.h3
+              variants={fadeInDown}
+              style={{
+                fontSize: 'clamp(2rem, 4vw, 3rem)',
+                fontWeight: 400,
+                fontStyle: 'italic',
+                color: '#ffffff',
+                marginBottom: '2rem',
+                lineHeight: '1.3',
+                opacity: 0.9
+              }}
+            >
+              across cities
+            </motion.h3>
+
+            <motion.p
+              variants={fadeInDown}
+              style={{
+                fontSize: 'clamp(1rem, 2vw, 1.1rem)',
+                color: '#cccccc',
+                lineHeight: '1.8',
+                marginBottom: '2.5rem',
+                maxWidth: '500px'
+              }}
+            >
+              Our campaigns connect brands with real audiences across high-traffic urban spaces – from streets to storefronts and beyond.
+            </motion.p>
+
+            <motion.div
+              variants={slideDown}
+            >
+              <Link
+                href="/contact"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.75rem',
+                  padding: '1rem 2rem',
+                  background: '#ffffff',
+                  color: '#1a1a1f',
+                  borderRadius: '50px',
+                  textDecoration: 'none',
+                  fontWeight: 700,
+                  fontSize: '1.05rem',
+                  transition: 'all 0.3s ease',
+                  boxShadow: '0 8px 25px rgba(255, 255, 255, 0.2)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = '#f0f0f0';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 12px 35px rgba(255, 255, 255, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = '#ffffff';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(255, 255, 255, 0.2)';
+                }}
+              >
+                Start your campaign
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </Link>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Services Overview Section */}
       <section className="section container">
         <motion.div
