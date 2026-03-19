@@ -89,212 +89,432 @@ export default function Home() {
           }
         `
       }} />
-      {/* Hero Section */}
-      <section className="hero-section container" style={{
+      {/* Hero Section - Full Width with Background Image */}
+      <section style={{
+        position: 'relative',
+        width: '100vw',
+        marginLeft: 'calc(-50vw + 50%)',
+        height: 'clamp(500px, 80vh, 700px)',
         display: 'flex',
-        flexDirection: 'column',
         alignItems: 'center',
-        textAlign: 'center',
-        paddingTop: '12rem',
-        paddingBottom: '8rem',
-        position: 'relative'
+        justifyContent: 'center',
+        overflow: 'hidden',
+        marginTop: '-5rem',
+        paddingTop: '5rem'
       }}>
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, overflow: 'hidden' }}>
-          <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&q=80" alt="Digital Advertising Background" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.05, filter: 'blur(4px) brightness(1.2) contrast(1.1)' }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, transparent 0%, var(--color-bg-start) 85%)' }} />
+        {/* Background Image */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 0
+        }}>
+          <img 
+            src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1600&q=80" 
+            alt="Digital Advertising Background" 
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              filter: 'brightness(0.5) contrast(1.2)'
+            }}
+          />
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(124, 58, 237, 0.3) 100%)'
+          }} />
         </div>
 
-        <motion.div initial="hidden" animate="visible" variants={staggerContainer} style={{ maxWidth: '1000px', zIndex: 10, position: 'relative' }}>
-          <motion.div variants={fadeInDown} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '1.5rem', background: 'rgba(124, 58, 237, 0.15)', padding: '0.5rem 1.2rem', borderRadius: '50px', border: '1px solid rgba(124, 58, 237, 0.3)', backdropFilter: 'blur(10px)' }}>
-            <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--color-primary)', display: 'inline-block', boxShadow: '0 0 10px var(--color-primary)' }}></span>
-            <span style={{ fontSize: '0.8rem', fontWeight: 800, letterSpacing: '3px', textTransform: 'uppercase', color: 'var(--color-primary)' }}>Next-Gen AI Advertising</span>
+        {/* Content */}
+        <motion.div 
+          initial="hidden" 
+          animate="visible" 
+          variants={staggerContainer} 
+          style={{
+            maxWidth: '1000px',
+            zIndex: 10,
+            position: 'relative',
+            textAlign: 'center',
+            padding: '2rem',
+            width: '100%'
+          }}
+        >
+          <motion.div 
+            variants={fadeInDown} 
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              marginBottom: '2rem',
+              background: 'rgba(124, 58, 237, 0.2)',
+              padding: '0.75rem 1.5rem',
+              borderRadius: '50px',
+              border: '1px solid rgba(124, 58, 237, 0.5)',
+              backdropFilter: 'blur(10px)'
+            }}
+          >
+            <span style={{
+              width: 10,
+              height: 10,
+              borderRadius: '50%',
+              background: 'var(--color-primary)',
+              display: 'inline-block',
+              boxShadow: '0 0 15px var(--color-primary)',
+              animation: 'pulse 2s infinite'
+            }} />
+            <span style={{
+              fontSize: '0.9rem',
+              fontWeight: 800,
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
+              color: 'var(--color-primary)'
+            }}>
+              Next-Gen AI Advertising
+            </span>
           </motion.div>
 
-          <motion.h1 variants={slideDown} className="hero-title" style={{ fontFamily: "'Bebas Neue', sans-serif", textTransform: 'uppercase', lineHeight: '1.05', fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', color: 'var(--color-text-main)', fontWeight: 400, marginBottom: '2rem', letterSpacing: '2px' }}>
-            Transforming <span style={{ color: 'var(--color-primary)' }}>Spaces</span> & Screens<br />Into <span className="text-gradient">Experiences</span>
+          <motion.h1 
+            variants={slideDown} 
+            style={{
+              fontSize: 'clamp(2.5rem, 6vw, 5rem)',
+              fontWeight: 900,
+              color: 'white',
+              marginBottom: '1.5rem',
+              lineHeight: '1.1',
+              letterSpacing: '-1px',
+              textShadow: '0 4px 20px rgba(0,0,0,0.3)'
+            }}
+          >
+            Transforming <span style={{ color: 'var(--color-primary)' }}>Spaces</span> Into <span style={{ background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Experiences</span>
           </motion.h1>
 
-          <motion.p variants={fadeInDown} style={{ color: 'var(--color-text-muted)', fontSize: '1.2rem', maxWidth: '750px', marginBottom: '3.5rem', lineHeight: '1.8', fontFamily: "'Space Grotesk', sans-serif" }}>
-            One Click Advertisement combines cutting-edge AI technology with premium branding solutions. We transform ordinary surfaces into extraordinary brand stories that captivate audiences across the UAE.
+          <motion.p 
+            variants={fadeInDown} 
+            style={{
+              color: 'rgba(255,255,255,0.9)',
+              fontSize: 'clamp(1rem, 2.5vw, 1.3rem)',
+              maxWidth: '700px',
+              marginBottom: '3rem',
+              lineHeight: '1.8',
+              margin: '0 auto 3rem'
+            }}
+          >
+            One Click Advertisement combines cutting-edge AI technology with premium branding solutions. We transform ordinary surfaces into extraordinary brand stories.
           </motion.p>
 
-          <motion.div variants={slideDown} style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap', width: '100%' }}>
-            <Link href="/services" className="btn btn-primary" style={{ 
-              padding: 'clamp(1rem, 3vw, 1.2rem) clamp(2.5rem, 6vw, 3.5rem)', 
-              borderRadius: '14px', 
-              fontWeight: 700,
+          <motion.div 
+            variants={slideDown} 
+            style={{
               display: 'flex',
-              alignItems: 'center',
+              gap: '1.5rem',
               justifyContent: 'center',
-              textAlign: 'center',
-              minWidth: 'clamp(250px, 60vw, 280px)',
-              fontSize: 'clamp(0.9rem, 2.5vw, 1rem)'
-            }}>
+              flexWrap: 'wrap',
+              width: '100%'
+            }}
+          >
+            <Link 
+              href="/services" 
+              className="btn btn-primary" 
+              style={{
+                padding: '1.2rem 3rem',
+                borderRadius: '12px',
+                fontWeight: 700,
+                fontSize: '1.1rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 10px 30px rgba(124, 58, 237, 0.3)'
+              }}
+            >
               EXPLORE SOLUTIONS
+            </Link>
+            <Link 
+              href="/contact" 
+              className="btn btn-outline" 
+              style={{
+                padding: '1.2rem 3rem',
+                borderRadius: '12px',
+                fontWeight: 700,
+                fontSize: '1.1rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: '2px solid rgba(255,255,255,0.3)',
+                color: 'white',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              GET IN TOUCH
             </Link>
           </motion.div>
         </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          style={{
+            position: 'absolute',
+            bottom: '2rem',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 10
+          }}
+        >
+          <div style={{
+            width: '30px',
+            height: '50px',
+            border: '2px solid rgba(255,255,255,0.5)',
+            borderRadius: '15px',
+            display: 'flex',
+            alignItems: 'flex-start',
+            justifyContent: 'center',
+            padding: '8px'
+          }}>
+            <div style={{
+              width: '4px',
+              height: '8px',
+              background: 'rgba(255,255,255,0.7)',
+              borderRadius: '2px'
+            }} />
+          </div>
+        </motion.div>
       </section>
 
-      {/* About Us Section */}
+      {/* About Us Section - Image Right */}
       <section className="section container">
-        <div className="grid-2" style={{ gap: '4rem', alignItems: 'center' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center', marginBottom: '4rem' }}>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
             <motion.div variants={fadeInDown} style={{ marginBottom: '2rem' }}>
-              <span style={{ 
-                display: 'inline-block', 
-                padding: '0.5rem 1rem', 
-                background: 'rgba(124, 58, 237, 0.1)', 
-                border: '1px solid rgba(124, 58, 237, 0.3)', 
-                borderRadius: '50px', 
-                color: 'var(--color-primary)', 
-                fontSize: '0.9rem', 
-                fontWeight: 600,
-                marginBottom: '1rem'
+              <span style={{
+                display: 'inline-block',
+                padding: '0.6rem 1.2rem',
+                background: 'rgba(124, 58, 237, 0.15)',
+                border: '1px solid rgba(124, 58, 237, 0.4)',
+                borderRadius: '50px',
+                color: 'var(--color-primary)',
+                fontSize: '0.9rem',
+                fontWeight: 700,
+                letterSpacing: '1px',
+                textTransform: 'uppercase',
+                marginBottom: '1.5rem'
               }}>
-                About One Click Advertisement
+                About Us
               </span>
             </motion.div>
-            <motion.h2 variants={slideDown} style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--color-text-main)', marginBottom: '1.5rem' }}>
-              Pioneering the Future of <span className="text-gradient">Digital Advertising</span>
+            <motion.h2 variants={slideDown} style={{
+              fontSize: 'clamp(2rem, 4vw, 3rem)',
+              fontWeight: 900,
+              color: 'var(--color-text-main)',
+              marginBottom: '1.5rem',
+              lineHeight: '1.2'
+            }}>
+              We Build <span style={{ background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Unmissable Brand Presence</span>
             </motion.h2>
-            <motion.p variants={fadeInDown} style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', lineHeight: '1.8', marginBottom: '2rem' }}>
+            <motion.p variants={fadeInDown} style={{
+              color: 'var(--color-text-muted)',
+              fontSize: '1.1rem',
+              lineHeight: '1.8',
+              marginBottom: '2rem'
+            }}>
               With over a decade of excellence in the UAE market, One Click Advertisement has transformed from a traditional signage company into a cutting-edge digital advertising powerhouse. We combine AI-driven insights with premium craftsmanship to deliver advertising solutions that don't just capture attention—they create lasting impressions.
             </motion.p>
-            <motion.div variants={slideDown}>
-              <Link href="/about" className="btn btn-primary" style={{ padding: '1rem 2.5rem', marginRight: '1rem' }}>Learn More</Link>
-              <Link href="/services" className="btn btn-outline" style={{ padding: '1rem 2.5rem' }}>Our Services</Link>
+            <motion.div variants={slideDown} style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <Link href="/about" className="btn btn-primary" style={{ padding: '1rem 2.5rem', fontWeight: 700 }}>Learn More</Link>
+              <Link href="/services" className="btn btn-outline" style={{ padding: '1rem 2.5rem', fontWeight: 700 }}>Our Services</Link>
             </motion.div>
           </motion.div>
-          
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInDown} style={{ position: 'relative' }}>
-            <div style={{ 
-              background: 'linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(34, 211, 238, 0.2))', 
-              borderRadius: '20px', 
-              padding: '2rem',
-              border: '1px solid rgba(124, 58, 237, 0.3)',
-              backdropFilter: 'blur(10px)'
-            }}>
-              <img 
-                src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80" 
-                alt="Digital Advertising Solutions" 
-                style={{ 
-                  width: '100%', 
-                  height: '300px', 
-                  objectFit: 'cover', 
-                  borderRadius: '12px',
-                  filter: 'brightness(1.1) contrast(1.1)'
-                }} 
-              />
-            </div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInDown}
+            style={{
+              position: 'relative',
+              height: '400px',
+              borderRadius: '20px',
+              overflow: 'hidden',
+              boxShadow: '0 20px 60px rgba(124, 58, 237, 0.2)'
+            }}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80"
+              alt="Team collaboration"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                filter: 'brightness(1.1) contrast(1.1)'
+              }}
+            />
+            <div style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(135deg, rgba(124, 58, 237, 0.2), transparent)'
+            }} />
           </motion.div>
         </div>
       </section>
 
       {/* Services Overview Section */}
       <section className="section container">
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h2 className="section-title">Our Core <span className="text-gradient">Services</span></h2>
-          <p style={{ color: 'var(--color-text-muted)', maxWidth: '700px', margin: '1rem auto 0', fontSize: '1.1rem' }}>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+          style={{ textAlign: 'center', marginBottom: '4rem' }}
+        >
+          <motion.h2 variants={slideDown} style={{
+            fontSize: 'clamp(2rem, 4vw, 3rem)',
+            fontWeight: 900,
+            color: 'var(--color-text-main)',
+            marginBottom: '1rem'
+          }}>
+            Our Core <span style={{ background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Services</span>
+          </motion.h2>
+          <motion.p variants={fadeInDown} style={{
+            color: 'var(--color-text-muted)',
+            maxWidth: '700px',
+            margin: '1rem auto 0',
+            fontSize: '1.1rem',
+            lineHeight: '1.7'
+          }}>
             From concept to completion, we deliver comprehensive advertising solutions that drive results
-          </p>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(320px, 100%), 1fr))', gap: 'clamp(1.5rem, 4vw, 2rem)' }}>
+          </motion.p>
+        </motion.div>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(320px, 100%), 1fr))',
+          gap: 'clamp(1.5rem, 4vw, 2rem)'
+        }}>
           {[
             {
               title: "Branding & Corporate Identity",
               desc: "Complete brand implementation and rollout across all touchpoints.",
               features: ["Brand implementation & rollout", "Corporate identity applications", "Office branding & interior graphics", "Brand consistency across locations"],
-              icon: <Briefcase size={48} />
+              icon: <Briefcase size={48} />,
+              color: "#7C3AED"
             },
             {
               title: "Digital Printed Graphics",
               desc: "Large format premium printing for every surface.",
               features: ["Large format digital printing", "Wall, glass & window graphics", "Frosted film & privacy films", "Floor & promotional graphics"],
-              icon: <Monitor size={48} />
+              icon: <Monitor size={48} />,
+              color: "#22D3EE"
             },
             {
               title: "Vehicle Graphics & Fleet Branding",
               desc: "Turn every vehicle into a moving advertisement.",
               features: ["Full & partial vehicle wraps", "Corporate fleet branding", "Reflective & safety graphics", "Promotional vehicle advertising"],
-              icon: <Car size={48} />
+              icon: <Car size={48} />,
+              color: "#FACC15"
             },
             {
               title: "Signage Production",
               desc: "Premium indoor and outdoor signage solutions.",
               features: ["Indoor & outdoor signage", "Illuminated & non-illuminated signboards", "3D letter signs", "Directional, wayfinding & safety signs"],
-              icon: <MapPin size={48} />
+              icon: <MapPin size={48} />,
+              color: "#EC4899"
             },
             {
               title: "Exhibition & POS Solutions",
               desc: "Impactful exhibition displays and in-store materials.",
               features: ["Exhibition stands & kiosks", "Pop-up systems & backdrops", "Roll-up & X-banners", "POS & in-store displays"],
-              icon: <Camera size={48} />
+              icon: <Camera size={48} />,
+              color: "#10B981"
             },
             {
               title: "Cladding & Facade Solutions",
               desc: "Architectural cladding and facade branding solutions.",
               features: ["ACP cladding works", "Aluminum & composite panel cladding", "Shopfront & facade branding", "Signage-integrated facade solutions"],
-              icon: <Building2 size={48} />
+              icon: <Building2 size={48} />,
+              color: "#F97316"
             }
           ].map((service, i) => (
-            <div 
+            <motion.div
               key={i}
-              id={`service-card-${i}`}
-              className="service-card-black"
-              data-theme="black"
-              style={{ 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInDown}
+              whileHover={{ y: -10, boxShadow: `0 20px 50px ${service.color}30` }}
+              style={{
                 padding: 'clamp(2rem, 5vw, 2.5rem)',
                 textAlign: 'left',
-                transition: 'all 0.3s ease',
-                background: '#000000',
-                backgroundSize: '200% 100%',
-                border: '1px solid rgba(255,255,255,0.2)',
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02))',
+                border: `1px solid ${service.color}30`,
                 borderRadius: '20px',
                 backdropFilter: 'blur(10px)',
                 WebkitBackdropFilter: 'blur(10px)',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
                 position: 'relative',
                 overflow: 'hidden',
-                color: '#ffffff'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-5px)';
-                e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.6)';
-                e.currentTarget.style.border = '1px solid rgba(124, 58, 237, 0.5)';
-                e.currentTarget.style.background = '#111111';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0px)';
-                e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.5)';
-                e.currentTarget.style.border = '1px solid rgba(255,255,255,0.2)';
-                e.currentTarget.style.background = '#000000';
+                color: '#ffffff',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer'
               }}
             >
-              <div style={{ fontSize: 'clamp(2.5rem, 6vw, 3rem)', marginBottom: '1.5rem', color: 'var(--color-primary)' }}>{service.icon}</div>
-              <h3 style={{ color: '#ffffff', fontSize: 'clamp(1.2rem, 3vw, 1.4rem)', fontWeight: 700, marginBottom: '1rem', textShadow: 'none' }}>
-                {service.title}
-              </h3>
-              <p style={{ color: '#cccccc', marginBottom: '1.5rem', lineHeight: '1.6', fontSize: 'clamp(0.9rem, 2.5vw, 1rem)' }}>
-                {service.desc}
-              </p>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                {service.features.map((feature, idx) => (
-                  <li key={idx} style={{ 
-                    display: 'flex', 
-                    alignItems: 'flex-start', 
-                    gap: '0.75rem', 
-                    marginBottom: '0.75rem',
-                    color: '#ffffff',
-                    fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
-                    lineHeight: '1.5'
-                  }}>
-                    <Zap size={16} color="var(--color-secondary)" style={{ marginTop: '2px', flexShrink: 0 }} />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
+              {/* Gradient Background */}
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                width: '100px',
+                height: '100px',
+                background: `radial-gradient(circle, ${service.color}20, transparent)`,
+                borderRadius: '50%',
+                zIndex: 0
+              }} />
+
+              <div style={{ position: 'relative', zIndex: 1 }}>
+                <div style={{
+                  fontSize: 'clamp(2.5rem, 6vw, 3rem)',
+                  marginBottom: '1.5rem',
+                  color: service.color,
+                  display: 'flex',
+                  alignItems: 'center'
+                }}>
+                  {service.icon}
+                </div>
+                <h3 style={{
+                  color: '#ffffff',
+                  fontSize: 'clamp(1.2rem, 3vw, 1.4rem)',
+                  fontWeight: 700,
+                  marginBottom: '1rem',
+                  textShadow: 'none'
+                }}>
+                  {service.title}
+                </h3>
+                <p style={{
+                  color: '#cccccc',
+                  marginBottom: '1.5rem',
+                  lineHeight: '1.6',
+                  fontSize: 'clamp(0.9rem, 2.5vw, 1rem)'
+                }}>
+                  {service.desc}
+                </p>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                  {service.features.map((feature, idx) => (
+                    <li key={idx} style={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: '0.75rem',
+                      marginBottom: '0.75rem',
+                      color: '#ffffff',
+                      fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
+                      lineHeight: '1.5'
+                    }}>
+                      <Zap size={16} color={service.color} style={{ marginTop: '2px', flexShrink: 0 }} />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
           ))}
         </div>
       </section>
