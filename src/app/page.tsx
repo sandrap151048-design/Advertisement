@@ -97,11 +97,11 @@ export default function Home() {
         height: 'clamp(500px, 90vh, 800px)',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-start',
         overflow: 'hidden',
         marginTop: '-5rem',
         paddingTop: '5rem',
-        paddingRight: 'clamp(2rem, 8vw, 6rem)'
+        paddingLeft: 'clamp(2rem, 8vw, 6rem)'
       }}>
         {/* Background Image */}
         <div style={{
@@ -122,11 +122,11 @@ export default function Home() {
           <div style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(90deg, rgba(0,0,0,0.5) 0%, transparent 60%)'
+            background: 'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.5) 60%)'
           }} />
         </div>
 
-        {/* Content - Right Side */}
+        {/* Content - Left Side */}
         <motion.div 
           initial="hidden" 
           animate="visible" 
@@ -135,7 +135,7 @@ export default function Home() {
             maxWidth: '600px',
             zIndex: 10,
             position: 'relative',
-            textAlign: 'right',
+            textAlign: 'left',
             padding: '2rem'
           }}
         >
@@ -149,7 +149,7 @@ export default function Home() {
               lineHeight: '1.1',
               letterSpacing: '-1px',
               textShadow: '0 4px 20px rgba(0,0,0,0.4)',
-              background: 'linear-gradient(90deg, white 0%, white 60%, var(--color-primary) 100%)',
+              background: 'linear-gradient(90deg, var(--color-primary) 0%, white 60%, white 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text'
@@ -166,7 +166,6 @@ export default function Home() {
               maxWidth: '500px',
               marginBottom: '2rem',
               lineHeight: '1.8',
-              marginLeft: 'auto',
               textShadow: '0 2px 10px rgba(0,0,0,0.3)'
             }}
           >
@@ -178,7 +177,7 @@ export default function Home() {
             style={{
               display: 'flex',
               gap: '1.5rem',
-              justifyContent: 'flex-end',
+              justifyContent: 'flex-start',
               flexWrap: 'wrap',
               width: '100%'
             }}
