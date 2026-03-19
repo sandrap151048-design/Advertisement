@@ -380,8 +380,208 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Us Section - Image Right */}
-      <section className="section container">
+      {/* For Brands & Prime Locations Section */}
+      <section style={{
+        position: 'relative',
+        width: '100vw',
+        marginLeft: 'calc(-50vw + 50%)',
+        background: '#ffffff',
+        padding: 'clamp(4rem, 10vw, 8rem) clamp(2rem, 8vw, 6rem)'
+      }}>
+        <div style={{
+          maxWidth: '1400px',
+          margin: '0 auto'
+        }}>
+          {/* For Brands Section */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: 'clamp(2rem, 6vw, 4rem)',
+            alignItems: 'center',
+            marginBottom: 'clamp(4rem, 8vw, 6rem)'
+          }}>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
+              <motion.h2
+                variants={slideDown}
+                style={{
+                  fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+                  fontWeight: 900,
+                  color: '#1a1a1f',
+                  marginBottom: '1.5rem',
+                  lineHeight: '1.2'
+                }}
+              >
+                For Brands
+              </motion.h2>
+              <motion.p
+                variants={fadeInDown}
+                style={{
+                  fontSize: 'clamp(1rem, 2vw, 1.1rem)',
+                  color: '#333333',
+                  lineHeight: '1.8',
+                  marginBottom: '2rem'
+                }}
+              >
+                Outdoor advertising made simple for modern brands. Reach the right audience with high-impact placements across cities.
+              </motion.p>
+            </motion.div>
+
+            {/* Service List */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1rem'
+              }}
+            >
+              {[
+                'Retail Signage',
+                'Billboards',
+                'Vehicle Branding',
+                'Campaign Solutions'
+              ].map((service, i) => (
+                <motion.div
+                  key={i}
+                  variants={fadeInDown}
+                  whileHover={{ x: 10 }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '1.5rem 2rem',
+                    background: '#f5f5f5',
+                    borderRadius: '16px',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    border: '1px solid #e5e5e5'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = '#efefef';
+                    e.currentTarget.style.boxShadow = '0 8px 20px rgba(0,0,0,0.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = '#f5f5f5';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }}
+                >
+                  <span style={{
+                    fontSize: 'clamp(1.1rem, 2vw, 1.3rem)',
+                    fontWeight: 600,
+                    color: '#1a1a1f'
+                  }}>
+                    {service}
+                  </span>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a1a1f" strokeWidth="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Prime Locations Section */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: 'clamp(2rem, 6vw, 4rem)',
+            alignItems: 'center'
+          }}>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
+              <motion.h2
+                variants={slideDown}
+                style={{
+                  fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+                  fontWeight: 900,
+                  color: '#1a1a1f',
+                  marginBottom: '1.5rem',
+                  lineHeight: '1.2'
+                }}
+              >
+                Prime Locations
+              </motion.h2>
+              <motion.p
+                variants={fadeInDown}
+                style={{
+                  fontSize: 'clamp(1rem, 2vw, 1.1rem)',
+                  color: '#333333',
+                  lineHeight: '1.8'
+                }}
+              >
+                Strategically placed across high-traffic urban areas to maximize visibility and impact for your brand.
+              </motion.p>
+            </motion.div>
+
+            {/* Location Image */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInDown}
+              whileHover={{ scale: 1.02 }}
+              style={{
+                position: 'relative',
+                borderRadius: '20px',
+                overflow: 'hidden',
+                height: '400px',
+                boxShadow: '0 15px 40px rgba(0,0,0,0.2)',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              <img
+                src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=600&q=80"
+                alt="Sheikh Zayed Road - Mega Billboard"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover'
+                }}
+              />
+              <div style={{
+                position: 'absolute',
+                inset: 0,
+                background: 'linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.7) 100%)',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'flex-end',
+                padding: '2rem',
+                color: 'white'
+              }}>
+                <h3 style={{
+                  fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+                  fontWeight: 900,
+                  marginBottom: '0.5rem'
+                }}>
+                  SHEIKH ZAYED RD
+                </h3>
+                <p style={{
+                  fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+                  fontWeight: 600,
+                  color: '#ff6b6b',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1px'
+                }}>
+                  Mega Billboard
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center', marginBottom: '4rem' }}>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
             <motion.div variants={fadeInDown} style={{ marginBottom: '2rem' }}>
