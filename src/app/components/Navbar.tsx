@@ -30,7 +30,6 @@ export default function Navbar() {
       <header className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
         <div className="container nav-inner">
           <Link href="/" className="nav-logo">
-            <div className="nav-logo-icon">OC</div>
             <div className="nav-logo-text">
               <span className="brand-primary">One</span>
               <span className="brand-secondary"> Click</span>
@@ -70,8 +69,12 @@ export default function Navbar() {
         </div>
 
         <style jsx>{`
+          .navbar {
+            background: #ffffff !important;
+          }
+
           .navbar-scrolled {
-            background: rgba(255, 255, 255, 0.98) !important;
+            background: #ffffff !important;
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
