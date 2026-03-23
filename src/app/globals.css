@@ -3553,24 +3553,6 @@ input::placeholder, textarea::placeholder {
     color: var(--color-accent);
 }
 
-/* Enhanced scrollbar for dark theme */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: rgba(11, 11, 15, 0.5);
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgba(124, 58, 237, 0.5);
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(34, 211, 238, 0.7);
-}
-
 /* Enhanced selection colors */
 ::selection {
     background: rgba(34, 211, 238, 0.3);
@@ -4875,26 +4857,3 @@ html {
   height: 300px;
 }
 
-/* Smooth scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(124, 58, 237, 0.1);
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(124, 58, 237, 0.5);
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(124, 58, 237, 0.7);
-}
-
-/* Firefox scrollbar */
-* {
-  scrollbar-color: rgba(124, 58, 237, 0.5) rgba(124, 58, 237, 0.1);
-  scrollbar-width: thin;
-}
