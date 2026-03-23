@@ -447,7 +447,7 @@ ul {
     border-radius: 0 !important;
     margin: 0 !important;
     box-shadow: none !important;
-    gap: 1rem !important;
+    gap: 0.5rem !important;
     opacity: 1 !important;
     visibility: visible !important;
   }
@@ -461,8 +461,8 @@ ul {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: 55px !important;
-    height: 55px !important;
+    width: 50px !important;
+    height: 50px !important;
     background: #1a1a1f !important;
     border: 2px solid rgba(0, 0, 0, 0.2) !important;
     border-radius: 10px !important;
@@ -474,12 +474,15 @@ ul {
     flex-shrink: 0 !important;
     opacity: 1 !important;
     visibility: visible !important;
+    margin-left: auto !important;
   }
 
   .nav-logo {
-    font-size: 1rem;
-    flex: 1;
-    color: #1a1a1a;
+    font-size: 0.9rem !important;
+    flex: 0 1 auto !important;
+    color: #1a1a1a !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 
   .nav-logo-icon {
@@ -489,8 +492,21 @@ ul {
   }
   
   .nav-logo-text {
-    font-size: 1rem;
-    color: #1a1a1a;
+    font-size: 0.9rem !important;
+    color: #1a1a1a !important;
+    display: flex !important;
+    flex-direction: column !important;
+    line-height: 1.2 !important;
+  }
+
+  .brand-primary,
+  .brand-secondary {
+    font-weight: 700 !important;
+  }
+
+  .brand-tagline {
+    font-size: 0.5rem !important;
+    margin-top: 1px !important;
   }
   
   .mobile-menu {
@@ -510,7 +526,25 @@ ul {
 /* Small Mobile Devices */
 @media (max-width: 480px) {
   .nav-inner {
-    padding: 0 0.5rem;
+    padding: 0 0.75rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .nav-logo {
+    font-size: 0.85rem !important;
+  }
+
+  .nav-logo-text {
+    font-size: 0.85rem !important;
+  }
+
+  .brand-tagline {
+    font-size: 0.45rem !important;
+  }
+
+  .mobile-menu-toggle {
+    width: 45px !important;
+    height: 45px !important;
   }
 
   .mobile-menu {
