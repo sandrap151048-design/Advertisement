@@ -1,354 +1,547 @@
 "use client";
 
-import { motion, Variants } from 'framer-motion';
-import { Edit3, Image as ImageIcon, Car, Layout, Store, Building2, Briefcase } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { ChevronDown, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import { useState } from 'react';
 
-interface DynamicService {
-    _id: string;
-    name: string;
-    description: string;
-    category: string;
-    items?: string[];
-    createdAt: string;
-}
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
 
-const fadeInDown: Variants = {
-    hidden: { opacity: 0, y: -30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
-};
-const slideDown: Variants = {
-    hidden: { opacity: 0, y: -60 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-};
-const dropIn: Variants = {
-    hidden: { opacity: 0, y: -400 },
-    visible: { opacity: 1, y: 0, transition: { type: "spring" as const, damping: 20, stiffness: 120 } }
-};
-const revealDown: Variants = {
-    hidden: { opacity: 0, clipPath: 'inset(0 0 100% 0)' },
-    visible: { opacity: 1, clipPath: 'inset(0 0 0% 0)', transition: { duration: 0.5 } }
-};
-const bounceInDown: Variants = {
-    hidden: { opacity: 0, y: -100 },
-    visible: { opacity: 1, y: 0, transition: { type: "spring" as const, damping: 15, stiffness: 100 } }
-};
-const staggerContainer: Variants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+  }
 };
 
 const services = [
-    {
-        icon: <Edit3 size={28} />,
-        title: "Branding & Corporate Identity",
-        desc: "Complete brand implementation and rollout across all touchpoints.",
-        items: ["Brand implementation & rollout", "Corporate identity applications", "Office branding & interior graphics", "Brand consistency across locations"],
-        img: "/images/ad_pattern_1.svg"
-    },
-    {
-        icon: <ImageIcon size={28} />,
-        title: "Digital Printed Graphics",
-        desc: "Large format premium printing for every surface.",
-        items: ["Large format digital printing", "Wall, glass & window graphics", "Frosted film & privacy films", "Floor & promotional graphics"],
-        img: "/images/ai_ad_1.png"
-    },
-    {
-        icon: <Car size={28} />,
-        title: "Vehicle Graphics & Fleet Branding",
-        desc: "Turn every vehicle into a moving advertisement.",
-        items: ["Full & partial vehicle wraps", "Corporate fleet branding", "Reflective & safety graphics", "Promotional vehicle advertising"],
-        img: "/images/ad_vehicle.svg"
-    },
-    {
-        icon: <Layout size={28} />,
-        title: "Signage Production",
-        desc: "Premium indoor and outdoor signage solutions.",
-        items: ["Indoor & outdoor signage", "Illuminated & non-illuminated signboards", "3D letter signs", "Directional, wayfinding & safety signs"],
-        img: "/images/ad_facade.svg"
-    },
-    {
-        icon: <Store size={28} />,
-        title: "Exhibition & POS Solutions",
-        desc: "Impactful exhibition displays and in-store materials.",
-        items: ["Exhibition stands & kiosks", "Pop-up systems & backdrops", "Roll-up & X-banners", "POS & in-store displays"],
-        img: "/images/ad_pattern_1.svg"
-    },
-    {
-        icon: <Building2 size={28} />,
-        title: "Cladding & Facade Solutions",
-        desc: "Architectural cladding and facade branding solutions.",
-        items: ["ACP cladding works", "Aluminum & composite panel cladding", "Shopfront & facade branding", "Signage-integrated facade solutions"],
-        img: "/images/ad_facade.svg"
-    }
+  {
+    title: "Billboards",
+    image: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=600&q=80",
+    description: "High-impact outdoor advertising"
+  },
+  {
+    title: "Retail Signage",
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80",
+    description: "Premium storefront solutions"
+  },
+  {
+    title: "Vehicle Branding",
+    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=80",
+    description: "Mobile advertising solutions"
+  },
+  {
+    title: "Campaign Solutions",
+    image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80",
+    description: "End-to-end campaign management"
+  }
+];
+
+const accordionItems = [
+  {
+    title: "High-Impact Visibility",
+    content: "Our strategic placements ensure maximum exposure for your brand across high-traffic areas in the UAE."
+  },
+  {
+    title: "Prime Locations",
+    content: "Access to premium advertising spaces in Dubai, Abu Dhabi, and across all seven emirates."
+  },
+  {
+    title: "Fast Execution",
+    content: "Quick turnaround times from concept to installation, ensuring your campaigns launch on schedule."
+  },
+  {
+    title: "End-to-End Service",
+    content: "Complete support from design and production to installation and maintenance."
+  }
 ];
 
 export default function ServicesPage() {
-    const [dynamicServices, setDynamicServices] = useState<DynamicService[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
+  const [openAccordion, setOpenAccordion] = useState<number | null>(0);
 
-    useEffect(() => {
-        fetchServices();
-    }, []);
-
-    const fetchServices = async () => {
-        try {
-            const response = await fetch('/api/services');
-            const data = await response.json();
-            setDynamicServices(data);
-        } catch (error) {
-            console.error('Error fetching services:', error);
+  return (
+    <>
+      <style jsx global>{`
+        * {
+          scrollbar-width: none;
+          -ms-overflow-style: none;
         }
-        setIsLoading(false);
-    };
 
-    return (
-        <>
-            {/* Hero */}
-            <section className="hero-section container" style={{ minHeight: '50vh', paddingTop: '8rem', paddingBottom: '4rem' }}>
-                <motion.div initial="hidden" animate="visible" variants={staggerContainer} style={{ zIndex: 10 }}>
-                    <motion.p variants={fadeInDown} style={{ color: 'var(--color-primary)', fontWeight: 700, letterSpacing: '4px', textTransform: 'uppercase', fontSize: '0.85rem', marginBottom: '1rem', fontFamily: 'var(--font-navbar)' }}>
-                        WHAT WE OFFER
-                    </motion.p>
-                    <motion.h1 variants={bounceInDown} className="hero-title" style={{ fontFamily: "'Bricolage Grotesque', sans-serif", textTransform: 'uppercase', lineHeight: '0.95', fontSize: 'clamp(2.8rem, 5vw, 4.5rem)', fontWeight: 700, letterSpacing: '-0.01em' }}>
-                        OUR <span style={{ color: 'var(--color-primary)' }}>CORE</span><br />SERVICES
-                    </motion.h1>
-                    <motion.p variants={slideDown} style={{ color: 'var(--color-text-muted)', fontSize: '1rem', maxWidth: '600px', marginBottom: '2.5rem', fontFamily: "'DM Sans', sans-serif" }}>
-                        Delivering world-class visual solutions that enhance brand presence and support business growth across the UAE.
-                    </motion.p>
-                </motion.div>
-            </section>
+        *::-webkit-scrollbar {
+          display: none;
+        }
 
-            {/* AI Ad Image Strip */}
-            <motion.section className="container" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealDown} style={{ marginBottom: '1rem' }}>
-                <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--color-card-border)', position: 'relative', height: '260px' }}>
-                    <img 
-                        src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&q=80" 
-                        alt="Services Visual" 
-                        style={{ 
-                            width: '100%', 
-                            height: '100%', 
-                            objectFit: 'cover' 
-                        }} 
-                    />
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(15,23,42,0.3) 0%, rgba(15,23,42,0.85) 100%)', display: 'flex', alignItems: 'flex-end', padding: '2rem' }}>
-                        <h2 style={{ fontSize: '1.5rem', fontFamily: 'var(--font-heading)', color: 'white' }}>End-to-End Visual Communication Solutions</h2>
-                    </div>
-                </div>
-            </motion.section>
+        .services-page {
+          background: #ffffff;
+          min-height: 100vh;
+        }
 
-            {/* Services Grid */}
-            <section className="section container">
-                <motion.div 
-                    initial="hidden" 
-                    whileInView="visible" 
-                    viewport={{ once: true, margin: "-50px" }} 
-                    variants={staggerContainer} 
-                    style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(3, 1fr)',
-                        gap: '2rem'
-                    }}
+        .hero-services {
+          position: relative;
+          height: 70vh;
+          min-height: 500px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          margin-top: 100px;
+        }
+
+        .hero-bg {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+        }
+
+        .hero-bg img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: brightness(0.5);
+        }
+
+        .hero-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%);
+          z-index: 1;
+        }
+
+        .hero-content {
+          position: relative;
+          z-index: 2;
+          text-align: center;
+          color: white;
+          max-width: 900px;
+          padding: 2rem;
+        }
+
+        .hero-title {
+          font-size: clamp(3rem, 8vw, 5rem);
+          font-weight: 900;
+          line-height: 1.1;
+          margin-bottom: 1.5rem;
+          letter-spacing: -2px;
+        }
+
+        .hero-title .highlight {
+          color: #FF6B35;
+        }
+
+        .hero-subtitle {
+          font-size: clamp(1rem, 2vw, 1.2rem);
+          color: rgba(255,255,255,0.9);
+          max-width: 600px;
+          margin: 0 auto 2rem auto;
+          line-height: 1.6;
+        }
+
+        .services-section {
+          padding: clamp(4rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
+          background: #f5f5f5;
+        }
+
+        .section-header {
+          text-align: center;
+          margin-bottom: 3rem;
+        }
+
+        .section-title {
+          font-size: clamp(2rem, 5vw, 3rem);
+          font-weight: 900;
+          margin-bottom: 1rem;
+        }
+
+        .section-title .italic {
+          font-style: italic;
+          color: #666;
+        }
+
+        .section-subtitle {
+          font-size: 1rem;
+          color: #666;
+          max-width: 600px;
+          margin: 0 auto;
+        }
+
+        .services-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 2rem;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+
+        .service-card {
+          position: relative;
+          height: 300px;
+          border-radius: 16px;
+          overflow: hidden;
+          cursor: pointer;
+          transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+          transform: scale(1.02);
+        }
+
+        .service-card img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .service-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 100%);
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          padding: 2rem;
+          color: white;
+        }
+
+        .service-title {
+          font-size: 1.8rem;
+          font-weight: 800;
+          margin-bottom: 0.5rem;
+        }
+
+        .service-desc {
+          font-size: 0.95rem;
+          color: rgba(255,255,255,0.9);
+        }
+
+        .why-choose-section {
+          padding: clamp(4rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
+          background: #ffffff;
+        }
+
+        .why-choose-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+          align-items: start;
+        }
+
+        .why-choose-content h2 {
+          font-size: clamp(2rem, 5vw, 3rem);
+          font-weight: 900;
+          margin-bottom: 1.5rem;
+          line-height: 1.2;
+        }
+
+        .why-choose-content p {
+          color: #666;
+          font-size: 1rem;
+          line-height: 1.6;
+          margin-bottom: 2rem;
+        }
+
+        .accordion {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .accordion-item {
+          border: 1px solid #e0e0e0;
+          border-radius: 12px;
+          overflow: hidden;
+          background: white;
+          transition: all 0.3s ease;
+        }
+
+        .accordion-item.open {
+          border-color: #7C3AED;
+          box-shadow: 0 4px 12px rgba(124, 58, 237, 0.1);
+        }
+
+        .accordion-header {
+          padding: 1.5rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          cursor: pointer;
+          font-weight: 600;
+          font-size: 1.1rem;
+          transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+          background: rgba(124, 58, 237, 0.05);
+        }
+
+        .accordion-icon {
+          transition: transform 0.3s ease;
+        }
+
+        .accordion-icon.open {
+          transform: rotate(180deg);
+        }
+
+        .accordion-content {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease;
+        }
+
+        .accordion-content.open {
+          max-height: 200px;
+        }
+
+        .accordion-content-inner {
+          padding: 0 1.5rem 1.5rem 1.5rem;
+          color: #666;
+          line-height: 1.6;
+        }
+
+        .cta-section {
+          position: relative;
+          height: 60vh;
+          min-height: 400px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+        }
+
+        .cta-bg {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+        }
+
+        .cta-bg img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: brightness(0.4);
+        }
+
+        .cta-overlay {
+          position: absolute;
+          inset: 0;
+          background: rgba(0,0,0,0.5);
+          z-index: 1;
+        }
+
+        .cta-content {
+          position: relative;
+          z-index: 2;
+          text-align: center;
+          color: white;
+          max-width: 800px;
+          padding: 2rem;
+        }
+
+        .cta-title {
+          font-size: clamp(2rem, 5vw, 3rem);
+          font-weight: 900;
+          margin-bottom: 1rem;
+          line-height: 1.2;
+        }
+
+        .cta-title .italic {
+          font-style: italic;
+        }
+
+        .cta-subtitle {
+          font-size: 1.1rem;
+          color: rgba(255,255,255,0.9);
+          margin-bottom: 2rem;
+          line-height: 1.6;
+        }
+
+        .cta-button {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.8rem;
+          padding: 1rem 2.5rem;
+          background: white;
+          color: #1a1a1a;
+          font-weight: 700;
+          border-radius: 50px;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          font-size: 1rem;
+        }
+
+        .cta-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(255,255,255,0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+          .hero-services {
+            margin-top: 80px;
+            height: 60vh;
+          }
+
+          .services-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+          }
+
+          .service-card {
+            height: 250px;
+          }
+
+          .why-choose-container {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+          }
+
+          .cta-section {
+            height: 50vh;
+          }
+        }
+      `}</style>
+
+      <div className="services-page">
+        {/* Hero Section */}
+        <section className="hero-services">
+          <div className="hero-bg">
+            <img 
+              src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=1600&q=80" 
+              alt="Stand Out Everywhere" 
+            />
+          </div>
+          <div className="hero-overlay"></div>
+          <motion.div 
+            className="hero-content"
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+          >
+            <motion.h1 className="hero-title" variants={fadeInUp}>
+              Stand Out <br />
+              Every<span className="highlight">where</span>
+            </motion.h1>
+            <motion.p className="hero-subtitle" variants={fadeInUp}>
+              High-impact outdoor advertising designed to make your brand visible, memorable, and impossible to ignore across the places that matter most.
+            </motion.p>
+          </motion.div>
+        </section>
+
+        {/* Our Services Section */}
+        <section className="services-section">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            <motion.div className="section-header" variants={fadeInUp}>
+              <h2 className="section-title">
+                Our <br />
+                <span className="italic">Services</span>
+              </h2>
+              <p className="section-subtitle">
+                Flexible advertising solutions tailored to your brand.
+              </p>
+            </motion.div>
+
+            <motion.div className="services-grid" variants={staggerContainer}>
+              {services.map((service, index) => (
+                <motion.div
+                  key={index}
+                  className="service-card"
+                  variants={fadeInUp}
+                  whileHover={{ y: -5 }}
                 >
-                    {services.map((service, i) => (
-                        <motion.div
-                            key={i}
-                            variants={i % 3 === 0 ? dropIn : i % 3 === 1 ? bounceInDown : slideDown}
-                            className="glass-card"
-                            style={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                position: 'relative',
-                                overflow: 'hidden',
-                                borderRadius: '24px',
-                                padding: '2rem 1.8rem',
-                                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                                border: '1px solid rgba(255, 255, 255, 0.2)',
-                                background: '#000000',
-                                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
-                                minHeight: '420px'
-                            }}
-                            whileHover={{ y: -10, boxShadow: '0 20px 40px rgba(124, 58, 237, 0.15)', borderColor: 'rgba(124, 58, 237, 0.3)' }}
-                        >
-                            <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', height: '100%' }}>
-                                <div style={{ width: 64, height: 64, borderRadius: '16px', background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', color: 'white', boxShadow: '0 8px 24px rgba(124, 58, 237, 0.25)' }}>
-                                    {service.icon}
-                                </div>
-                                <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', fontFamily: 'var(--font-heading)', fontWeight: 700, lineHeight: '1.3', color: '#ffffff', minHeight: '60px' }}>{service.title}</h3>
-                                <p style={{ color: '#cccccc', fontSize: '0.95rem', marginBottom: '1.5rem', lineHeight: '1.6', minHeight: '50px' }}>{service.desc}</p>
-                                <ul style={{ color: '#ffffff', paddingLeft: '0', listStyleType: 'none', fontSize: '0.9rem', lineHeight: '1.8', flex: 1 }}>
-                                    {service.items.map((item, id) => (
-                                        <li key={id} style={{ marginBottom: '0.7rem', paddingLeft: '1.5rem', position: 'relative' }}>
-                                            <span style={{ position: 'absolute', left: 0, color: 'var(--color-primary)', fontWeight: 'bold' }}>•</span>
-                                            {item}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </motion.div>
-                    ))}
+                  <img src={service.image} alt={service.title} />
+                  <div className="service-overlay">
+                    <h3 className="service-title">{service.title}</h3>
+                    <p className="service-desc">{service.description}</p>
+                  </div>
                 </motion.div>
-            </section>
+              ))}
+            </motion.div>
+          </motion.div>
+        </section>
 
-            {/* Process Section - More UI */}
-            <section className="section container">
-                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInDown} style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                    <h2 className="section-title" style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 700 }}>Our <span className="text-gradient">Process</span></h2>
-                    <p style={{ color: 'var(--color-text-muted)', maxWidth: '600px', margin: '0 auto', fontFamily: "'Manrope', sans-serif" }}>From initial concept to final installation, we ensure perfection at every step.</p>
-                </motion.div>
+        {/* Why Choose One Click Section */}
+        <section className="why-choose-section">
+          <motion.div
+            className="why-choose-container"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            <motion.div className="why-choose-content" variants={fadeInUp}>
+              <h2>Why Choose One Click</h2>
+              <p>
+                As the leader in outdoor hope, we deliver measurable results through strategic placements and creative excellence.
+              </p>
+            </motion.div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '2rem' }}>
-                    {[
-                        { step: "01", title: "Consultation", desc: "Understanding your brand requirements and UAE compliance needs." },
-                        { step: "02", title: "Design & Mockup", desc: "AI-assisted design visualizations and professional engineering." },
-                        { step: "03", title: "Production", desc: "Precision manufacturing using premium materials and technology." },
-                        { step: "04", title: "Installation", desc: "Expert on-site installation with safety and quality guarantee." }
-                    ].map((p, i) => (
-                        <motion.div
-                            key={i}
-                            variants={dropIn}
-                            className="glass-card"
-                            style={{ padding: '2rem', borderRadius: '20px', position: 'relative', display: 'flex', flexDirection: 'column' }}
-                        >
-                            <div style={{ position: 'absolute', top: '1rem', right: '1rem', fontSize: '2rem', fontWeight: 900, opacity: 0.1 }}>{p.step}</div>
-                            <h3 style={{ fontSize: '1.3rem', marginBottom: '1rem', fontFamily: 'var(--font-services)' }}>{p.title}</h3>
-                            <p style={{ color: 'var(--color-text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>{p.desc}</p>
-                        </motion.div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Vehicle Ad Visual */}
-            <motion.section className="container" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInDown} style={{ marginBottom: '4rem' }}>
-                <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--color-card-border)', position: 'relative', height: '300px' }}>
-                    <img 
-                        src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&q=80" 
-                        alt="Vehicle Branding" 
-                        style={{ 
-                            width: '100%', 
-                            height: '100%', 
-                            objectFit: 'cover' 
-                        }} 
+            <motion.div className="accordion" variants={fadeInUp}>
+              {accordionItems.map((item, index) => (
+                <div
+                  key={index}
+                  className={`accordion-item ${openAccordion === index ? 'open' : ''}`}
+                >
+                  <div
+                    className="accordion-header"
+                    onClick={() => setOpenAccordion(openAccordion === index ? null : index)}
+                  >
+                    <span>{item.title}</span>
+                    <ChevronDown 
+                      size={20} 
+                      className={`accordion-icon ${openAccordion === index ? 'open' : ''}`}
                     />
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(124, 58, 237, 0.9) 35%, rgba(167, 139, 250, 0.3))', display: 'flex', alignItems: 'center', padding: '3rem' }}>
-                        <div>
-                            <h2 style={{ fontSize: '2rem', fontFamily: 'var(--font-heading)', marginBottom: '0.8rem', color: 'white' }}>Fleet Branding</h2>
-                            <p style={{ color: 'rgba(255, 255, 255, 0.95)', maxWidth: '380px', lineHeight: '1.8' }}>
-                                Transform your vehicles into powerful mobile advertisements reaching thousands daily across the UAE.
-                            </p>
-                        </div>
+                  </div>
+                  <div className={`accordion-content ${openAccordion === index ? 'open' : ''}`}>
+                    <div className="accordion-content-inner">
+                      {item.content}
                     </div>
+                  </div>
                 </div>
-            </motion.section>
+              ))}
+            </motion.div>
+          </motion.div>
+        </section>
 
-            {/* Dynamic Services from Admin */}
-            {!isLoading && dynamicServices.length > 0 && (
-                <section className="section container">
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInDown} style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                        <h2 className="section-title" style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 700 }}>Additional <span className="text-gradient">Services</span></h2>
-                        <p style={{ color: 'var(--color-text-muted)', maxWidth: '600px', margin: '0 auto', fontFamily: "'Manrope', sans-serif" }}>Explore our extended range of specialized advertising solutions</p>
-                    </motion.div>
-
-                    <motion.div 
-                        initial="hidden" 
-                        whileInView="visible" 
-                        viewport={{ once: true, margin: "-50px" }} 
-                        variants={staggerContainer} 
-                        style={{
-                            display: 'grid',
-                            gridTemplateColumns: 'repeat(3, 1fr)',
-                            gap: '2rem'
-                        }}
-                    >
-                        {dynamicServices.map((service, i) => (
-                            <motion.div
-                                key={service._id}
-                                variants={i % 3 === 0 ? dropIn : i % 3 === 1 ? bounceInDown : slideDown}
-                                className="glass-card"
-                                style={{
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    position: 'relative',
-                                    overflow: 'hidden',
-                                    borderRadius: '32px',
-                                    padding: '3rem 2.5rem',
-                                    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                                    border: '1px solid rgba(255, 255, 255, 0.2)',
-                                    background: '#000000',
-                                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
-                                    minHeight: '420px'
-                                }}
-                                whileHover={{ y: -10, boxShadow: '0 20px 40px rgba(124, 58, 237, 0.15)', borderColor: 'rgba(124, 58, 237, 0.3)' }}
-                            >
-                                <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', height: '100%' }}>
-                                    <div style={{ width: 80, height: 80, borderRadius: '20px', background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '2rem', color: 'white', boxShadow: '0 8px 24px rgba(124, 58, 237, 0.25)' }}>
-                                        <Briefcase size={28} />
-                                    </div>
-                                    <h3 style={{ fontSize: '1.75rem', marginBottom: '1.2rem', fontFamily: 'var(--font-heading)', fontWeight: 700, lineHeight: '1.3', color: '#ffffff', minHeight: '70px' }}>{service.name}</h3>
-                                    <p style={{ color: '#cccccc', fontSize: '1rem', marginBottom: '2rem', lineHeight: '1.7', minHeight: '55px' }}>{service.description}</p>
-                                    {service.items && service.items.length > 0 ? (
-                                        <ul style={{ color: '#ffffff', paddingLeft: '0', listStyleType: 'none', fontSize: '0.95rem', lineHeight: '2', flex: 1 }}>
-                                            {service.items.map((item, id) => (
-                                                <li key={id} style={{ marginBottom: '0.8rem', paddingLeft: '1.5rem', position: 'relative' }}>
-                                                    <span style={{ position: 'absolute', left: 0, color: 'var(--color-primary)', fontWeight: 'bold' }}>•</span>
-                                                    {item}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    ) : (
-                                        <div style={{ flex: 1 }} />
-                                    )}
-                                    <div style={{ 
-                                        marginTop: 'auto',
-                                        paddingTop: '1rem',
-                                        borderTop: '1px solid rgba(124, 58, 237, 0.1)'
-                                    }}>
-                                        <span style={{ 
-                                            background: 'rgba(124, 58, 237, 0.1)', 
-                                            color: 'var(--color-primary)',
-                                            padding: '0.4rem 1rem',
-                                            borderRadius: '20px',
-                                            fontSize: '0.75rem',
-                                            fontWeight: 700,
-                                            textTransform: 'uppercase',
-                                            display: 'inline-block'
-                                        }}>
-                                            {service.category}
-                                        </span>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </section>
-            )}
-
-            {/* Compliance CTA */}
-            <section className="section container" style={{ paddingBottom: '8rem' }}>
-                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealDown}>
-                    <div className="glass-card" style={{ textAlign: 'center', padding: '3rem 2rem', borderColor: 'var(--color-secondary)', position: 'relative', overflow: 'hidden' }}>
-                        <img 
-                            src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=1200&q=80" 
-                            alt="Billboard Advertising" 
-                            style={{ 
-                                position: 'absolute', 
-                                top: 0, 
-                                left: 0, 
-                                width: '100%', 
-                                height: '100%', 
-                                objectFit: 'cover', 
-                                opacity: 0.15, 
-                                pointerEvents: 'none',
-                                filter: 'brightness(0.6) contrast(1.2)'
-                            }} 
-                        />
-                        <h2 className="section-title text-gradient" style={{ fontSize: '2rem', position: 'relative', zIndex: 2, fontFamily: "'Syne', sans-serif", fontWeight: 700 }}>UAE Authority Compliant</h2>
-                        <p style={{ color: 'var(--color-text-muted)', maxWidth: '600px', margin: '0 auto', lineHeight: '1.8', position: 'relative', zIndex: 2, fontFamily: "'Space Grotesk', sans-serif" }}>
-                            All our services are delivered in full compliance with UAE municipality, RTA, and mall management standards.
-                        </p>
-                    </div>
-                </motion.div>
-            </section>
-        </>
-    );
+        {/* CTA Section */}
+        <section className="cta-section">
+          <div className="cta-bg">
+            <img 
+              src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1600&q=80" 
+              alt="Ready to make your brand" 
+            />
+          </div>
+          <div className="cta-overlay"></div>
+          <motion.div 
+            className="cta-content"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            <motion.h2 className="cta-title" variants={fadeInUp}>
+              Ready to make your brand <span className="italic">impossible to ignore?</span>
+            </motion.h2>
+            <motion.p className="cta-subtitle" variants={fadeInUp}>
+              Launch your advertising campaign with high-impact placements across prime locations - fast, simple, and effective.
+            </motion.p>
+            <motion.div variants={fadeInUp}>
+              <Link href="/register" className="cta-button">
+                Get started <ArrowRight size={20} />
+              </Link>
+            </motion.div>
+          </motion.div>
+        </section>
+      </div>
+    </>
+  );
 }
