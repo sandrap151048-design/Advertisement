@@ -70,13 +70,13 @@ export default function Home() {
   const [submitStatus, setSubmitStatus] = useState<{ success?: boolean; message?: string } | null>(null);
   const [currentYear, setCurrentYear] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<'whyus' | 'reach' | 'solutions'>('whyus');
-  const [currentBlogImage, setCurrentBlogImage] = useState(0);
+  const [currentLocationImage, setCurrentLocationImage] = useState(0);
 
-  const blogImages = [
-    'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=500&q=80',
-    'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=500&q=80',
-    'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=500&q=80',
-    'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=500&q=80'
+  const locationImages = [
+    'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80', // Dubai skyline
+    'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&q=80', // Abu Dhabi
+    'https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?w=600&q=80', // Dubai Marina
+    'https://images.unsplash.com/photo-1546412414-e1885259563a?w=600&q=80'  // UAE cityscape
   ];
 
   useEffect(() => {
@@ -85,10 +85,10 @@ export default function Home() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentBlogImage((prev) => (prev + 1) % blogImages.length);
-    }, 3000);
+      setCurrentLocationImage((prev) => (prev + 1) % locationImages.length);
+    }, 3500);
     return () => clearInterval(interval);
-  }, [blogImages.length]);
+  }, [locationImages.length]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -814,17 +814,17 @@ export default function Home() {
             whileHover={{ scale: 1.02, x: 5, transition: { duration: 0.3 } }}
             style={{ position: 'relative', overflow: 'hidden' }}
           >
-            {blogImages.map((image, index) => (
+            {locationImages.map((image, index) => (
               <motion.img
                 key={index}
                 src={image}
-                alt={`Blog Article ${index + 1}`}
+                alt={`Prime Location ${index + 1}`}
                 initial={{ opacity: 0 }}
                 animate={{ 
-                  opacity: currentBlogImage === index ? 1 : 0,
-                  scale: currentBlogImage === index ? 1 : 1.1
+                  opacity: currentLocationImage === index ? 1 : 0,
+                  scale: currentLocationImage === index ? 1 : 1.1
                 }}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
+                transition={{ duration: 1, ease: "easeInOut" }}
                 style={{
                   position: index === 0 ? 'relative' : 'absolute',
                   top: 0,
@@ -835,18 +835,44 @@ export default function Home() {
                 }}
               />
             ))}
+            
+            {/* Location indicators */}
+            <div style={{
+              position: 'absolute',
+              bottom: '1.5rem',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              display: 'flex',
+              gap: '0.5rem',
+              zIndex: 10
+            }}>
+              {locationImages.map((_, index) => (
+                <div
+                  key={index}
+                  onClick={() => setCurrentLocationImage(index)}
+                  style={{
+                    width: currentLocationImage === index ? '2rem' : '0.5rem',
+                    height: '0.5rem',
+                    borderRadius: '0.25rem',
+                    background: currentLocationImage === index ? 'white' : 'rgba(255,255,255,0.5)',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease'
+                  }}
+                />
+              ))}
+            </div>
           </motion.div>
           <motion.div 
             className="prime-locations-content" 
             variants={swipeRight}
             whileHover={{ x: -5, transition: { duration: 0.3 } }}
           >
-            <h2>Latest Insights</h2>
+            <h2>Prime Locations</h2>
             <p>
-              Explore our blog for the latest trends in advertising, branding strategies, and industry insights. Learn how to maximize your brand visibility and stay ahead of the competition.
+              Strategically placed across high-traffic urban areas to maximize visibility and impact for your brand. From Dubai's iconic landmarks to Abu Dhabi's business districts, we cover all major UAE locations.
             </p>
-            <Link href="/blog" className="btn btn-primary">
-              Read Our Blog <ArrowRight size={20} />
+            <Link href="/contact" className="btn btn-primary">
+              Explore Locations <ArrowRight size={20} />
             </Link>
           </motion.div>
         </motion.div>
