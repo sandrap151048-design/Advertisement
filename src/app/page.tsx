@@ -137,6 +137,15 @@ export default function Home() {
           box-sizing: border-box;
         }
 
+        *::-webkit-scrollbar {
+          display: none;
+        }
+
+        * {
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+
         body {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
           background: #ffffff;
@@ -273,6 +282,7 @@ export default function Home() {
         .container {
           max-width: 1200px;
           margin: 0 auto;
+          overflow: hidden;
         }
 
         /* We Build Section */
