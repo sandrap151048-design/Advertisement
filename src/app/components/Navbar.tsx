@@ -53,6 +53,7 @@ export default function Navbar() {
           display: block;
           visibility: visible;
           opacity: 1;
+          border-radius: 0 0 24px 24px;
         }
 
         .modern-navbar.scrolled {
@@ -60,6 +61,7 @@ export default function Navbar() {
           box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
           backdrop-filter: blur(16px);
           -webkit-backdrop-filter: blur(16px);
+          border-radius: 0 0 24px 24px;
         }
 
         .navbar-container {
@@ -70,7 +72,7 @@ export default function Navbar() {
           align-items: center;
           justify-content: space-between;
           height: 80px;
-          gap: 2rem;
+          gap: 3rem;
           visibility: visible;
           opacity: 1;
         }
@@ -84,6 +86,7 @@ export default function Navbar() {
           transition: transform 0.3s ease;
           visibility: visible;
           opacity: 1;
+          min-width: 180px;
         }
 
         .navbar-logo:hover {
@@ -125,7 +128,8 @@ export default function Navbar() {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 2rem;
+          gap: 2.5rem;
+          padding: 0 2rem;
         }
 
         .nav-link {
@@ -164,6 +168,8 @@ export default function Navbar() {
           display: flex;
           align-items: center;
           gap: 0.75rem;
+          min-width: 180px;
+          justify-content: flex-end;
         }
 
         .btn-campaign {
