@@ -70,13 +70,25 @@ export default function Home() {
   const [submitStatus, setSubmitStatus] = useState<{ success?: boolean; message?: string } | null>(null);
   const [currentYear, setCurrentYear] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<'whyus' | 'reach' | 'solutions'>('whyus');
-  const [currentLocationImage, setCurrentLocationImage] = useState(0);
+  const [currentLocationIndex, setCurrentLocationIndex] = useState(0);
 
-  const locationImages = [
-    'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80',
-    'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&q=80',
-    'https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?w=600&q=80',
-    'https://images.unsplash.com/photo-1546412414-e1885259563a?w=600&q=80'
+  const locations = [
+    { 
+      name: 'Dubai Marina', 
+      image: 'https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?w=600&q=80'
+    },
+    { 
+      name: 'Abu Dhabi Corniche', 
+      image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&q=80'
+    },
+    { 
+      name: 'Downtown Dubai', 
+      image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80'
+    },
+    { 
+      name: 'Jumeirah Beach', 
+      image: 'https://images.unsplash.com/photo-1546412414-e1885259563a?w=600&q=80'
+    }
   ];
 
   useEffect(() => {
@@ -85,10 +97,10 @@ export default function Home() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentLocationImage((prev) => (prev + 1) % locationImages.length);
-    }, 3500);
+      setCurrentLocationIndex((prev) => (prev + 1) % locations.length);
+    }, 4000);
     return () => clearInterval(interval);
-  }, [locationImages.length]);
+  }, [locations.length]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -814,49 +826,109 @@ export default function Home() {
             whileHover={{ scale: 1.02, x: 5, transition: { duration: 0.3 } }}
             style={{ position: 'relative', overflow: 'hidden' }}
           >
-            {locationImages.map((image, index) => (
-              <motion.img
+            {locations.map((location, index) => (
+              <motion.div
                 key={index}
-                src={image}
-                alt={`Prime Location ${index + 1}`}
-                initial={{ opacity: 0 }}
+                initial={{ opacity: 0, x: 100 }}
                 animate={{ 
-                  opacity: currentLocationImage === index ? 1 : 0,
-                  scale: currentLocationImage === index ? 1 : 1.1
+                  opacity: currentLocationIndex === index ? 1 : 0,
+                  x: currentLocationIndex === index ? 0 : currentLocationIndex > index ? -100 : 100,
+                  scale: currentLocationIndex === index ? 1 : 1.1
                 }}
-                transition={{ duration: 1, ease: "easeInOut" }}
+                transition={{ 
+                  duration: 0.8, 
+                  ease: "easeInOut",
+                  delay: currentLocationIndex === index ? 0.2 : 0
+                }}
                 style={{
                   position: index === 0 ? 'relative' : 'absolute',
                   top: 0,
                   left: 0,
                   width: '100%',
-                  height: '100%',
-                  objectFit: 'cover'
+                  height: '100%'
                 }}
-              />
+              >
+                <img 
+                  src={location.image}
+                  alt={location.name}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover'
+                  }}
+                />
+                
+                {/* Gradient Overlay */}
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, transparent 100%)'
+                }} />
+
+                {/* Location Name */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ 
+                    opacity: currentLocationIndex === index ? 1 : 0,
+                    y: currentLocationIndex === index ? 0 : 30
+                  }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  style={{
+                    position: 'absolute',
+                    bottom: '2rem',
+                    left: '2rem',
+                    right: '2rem',
+                    color: 'white',
+                    zIndex: 2
+                  }}
+                >
+                  <h3 style={{
+                    fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
+                    fontWeight: 900,
+                    marginBottom: '0.5rem',
+                    textShadow: '0 4px 12px rgba(0,0,0,0.5)',
+                    letterSpacing: '-0.5px'
+                  }}>
+                    {location.name}
+                  </h3>
+                  <div style={{
+                    width: '60px',
+                    height: '4px',
+                    background: 'linear-gradient(90deg, #7C3AED, #A855F7)',
+                    borderRadius: '2px',
+                    boxShadow: '0 0 10px rgba(124, 58, 237, 0.8)'
+                  }} />
+                </motion.div>
+              </motion.div>
             ))}
             
             {/* Location indicators */}
             <div style={{
               position: 'absolute',
               bottom: '1.5rem',
-              left: '50%',
-              transform: 'translateX(-50%)',
+              right: '2rem',
               display: 'flex',
               gap: '0.5rem',
               zIndex: 10
             }}>
-              {locationImages.map((_, index) => (
-                <div
+              {locations.map((_, index) => (
+                <motion.div
                   key={index}
-                  onClick={() => setCurrentLocationImage(index)}
+                  onClick={() => setCurrentLocationIndex(index)}
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
                   style={{
-                    width: currentLocationImage === index ? '2rem' : '0.5rem',
-                    height: '0.5rem',
-                    borderRadius: '0.25rem',
-                    background: currentLocationImage === index ? 'white' : 'rgba(255,255,255,0.5)',
+                    width: currentLocationIndex === index ? '2.5rem' : '0.6rem',
+                    height: '0.6rem',
+                    borderRadius: '0.3rem',
+                    background: currentLocationIndex === index 
+                      ? 'linear-gradient(90deg, #7C3AED, #A855F7)' 
+                      : 'rgba(255,255,255,0.5)',
                     cursor: 'pointer',
-                    transition: 'all 0.3s ease'
+                    transition: 'all 0.3s ease',
+                    boxShadow: currentLocationIndex === index 
+                      ? '0 0 12px rgba(124, 58, 237, 0.8)' 
+                      : 'none'
                   }}
                 />
               ))}
