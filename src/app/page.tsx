@@ -70,40 +70,13 @@ export default function Home() {
   const [submitStatus, setSubmitStatus] = useState<{ success?: boolean; message?: string } | null>(null);
   const [currentYear, setCurrentYear] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<'whyus' | 'reach' | 'solutions'>('whyus');
-  const [currentLocationIndex, setCurrentLocationIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [currentLocationImage, setCurrentLocationImage] = useState(0);
 
-  const locations = [
-    { 
-      name: 'Dubai Marina', 
-      image: 'https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?w=600&q=80',
-      description: 'High-traffic waterfront district'
-    },
-    { 
-      name: 'Abu Dhabi Corniche', 
-      image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&q=80',
-      description: 'Premium business hub'
-    },
-    { 
-      name: 'Downtown Dubai', 
-      image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80',
-      description: 'Iconic landmark location'
-    },
-    { 
-      name: 'Dubai Mall', 
-      image: 'https://images.unsplash.com/photo-1546412414-e1885259563a?w=600&q=80',
-      description: 'World\'s largest shopping destination'
-    },
-    { 
-      name: 'Sheikh Zayed Road', 
-      image: 'https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=600&q=80',
-      description: 'Major highway with maximum visibility'
-    },
-    { 
-      name: 'Jumeirah Beach', 
-      image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80',
-      description: 'Tourist hotspot location'
-    }
+  const locationImages = [
+    'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80',
+    'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&q=80',
+    'https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?w=600&q=80',
+    'https://images.unsplash.com/photo-1546412414-e1885259563a?w=600&q=80'
   ];
 
   useEffect(() => {
@@ -111,13 +84,11 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (!isPaused) {
-      const interval = setInterval(() => {
-        setCurrentLocationIndex((prev) => (prev + 1) % locations.length);
-      }, 4000);
-      return () => clearInterval(interval);
-    }
-  }, [isPaused, locations.length]);
+    const interval = setInterval(() => {
+      setCurrentLocationImage((prev) => (prev + 1) % locationImages.length);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, [locationImages.length]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -828,274 +799,80 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Prime Locations Carousel */}
-      <section className="section" style={{ background: '#f5f5f5', padding: 'clamp(4rem, 8vw, 6rem) 0', overflow: 'hidden' }}>
+      {/* Prime Locations */}
+      <section className="section">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={staggerContainer}
+          className="prime-locations container"
         >
-          <motion.h2 
-            variants={fadeInDown}
-            style={{ 
-              fontSize: 'clamp(2rem, 5vw, 3.5rem)', 
-              fontWeight: 900, 
-              textAlign: 'center',
-              marginBottom: '1rem'
-            }}
+          <motion.div 
+            className="prime-locations-image" 
+            variants={swipeLeft}
+            whileHover={{ scale: 1.02, x: 5, transition: { duration: 0.3 } }}
+            style={{ position: 'relative', overflow: 'hidden' }}
           >
-            Prime Locations
-          </motion.h2>
-          <motion.p 
-            variants={fadeInUp}
-            style={{ 
-              textAlign: 'center', 
-              color: '#666', 
-              maxWidth: '700px', 
-              margin: '0 auto 4rem auto',
-              fontSize: '1.1rem',
-              lineHeight: 1.6
-            }}
-          >
-            Strategically placed across high-traffic urban areas to maximize visibility and impact for your brand
-          </motion.p>
-
-          {/* Carousel Container */}
-          <div 
-            style={{ 
-              position: 'relative',
-              width: '100%',
-              padding: '0 2rem'
-            }}
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-          >
+            {locationImages.map((image, index) => (
+              <motion.img
+                key={index}
+                src={image}
+                alt={`Prime Location ${index + 1}`}
+                initial={{ opacity: 0 }}
+                animate={{ 
+                  opacity: currentLocationImage === index ? 1 : 0,
+                  scale: currentLocationImage === index ? 1 : 1.1
+                }}
+                transition={{ duration: 1, ease: "easeInOut" }}
+                style={{
+                  position: index === 0 ? 'relative' : 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover'
+                }}
+              />
+            ))}
+            
+            {/* Location indicators */}
             <div style={{
+              position: 'absolute',
+              bottom: '1.5rem',
+              left: '50%',
+              transform: 'translateX(-50%)',
               display: 'flex',
-              gap: '2rem',
-              justifyContent: 'center',
-              alignItems: 'center',
-              flexWrap: 'wrap',
-              maxWidth: '1400px',
-              margin: '0 auto'
+              gap: '0.5rem',
+              zIndex: 10
             }}>
-              {locations.map((location, index) => {
-                const isActive = index === currentLocationIndex;
-                const isPrev = index === (currentLocationIndex - 1 + locations.length) % locations.length;
-                const isNext = index === (currentLocationIndex + 1) % locations.length;
-                const isVisible = isActive || isPrev || isNext;
-
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ 
-                      opacity: isVisible ? (isActive ? 1 : 0.6) : 0,
-                      scale: isActive ? 1.1 : 0.9,
-                      y: isActive ? -10 : 0,
-                      x: isPrev ? -20 : isNext ? 20 : 0
-                    }}
-                    transition={{ 
-                      duration: 0.6, 
-                      ease: [0.4, 0, 0.2, 1]
-                    }}
-                    whileHover={{ 
-                      scale: 1.15, 
-                      y: -20,
-                      transition: { duration: 0.3 }
-                    }}
-                    onClick={() => setCurrentLocationIndex(index)}
-                    style={{
-                      position: 'relative',
-                      width: 'clamp(280px, 30vw, 380px)',
-                      height: '450px',
-                      borderRadius: '20px',
-                      overflow: 'hidden',
-                      cursor: 'pointer',
-                      background: 'linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(168, 85, 247, 0.1))',
-                      backdropFilter: 'blur(10px)',
-                      boxShadow: isActive 
-                        ? '0 20px 60px rgba(124, 58, 237, 0.4), 0 0 40px rgba(168, 85, 247, 0.3)' 
-                        : '0 10px 30px rgba(0, 0, 0, 0.1)',
-                      border: isActive ? '2px solid rgba(124, 58, 237, 0.3)' : '2px solid rgba(255, 255, 255, 0.2)',
-                      display: isVisible ? 'block' : 'none'
-                    }}
-                  >
-                    {/* Image */}
-                    <div style={{
-                      width: '100%',
-                      height: '100%',
-                      position: 'relative'
-                    }}>
-                      <img 
-                        src={location.image}
-                        alt={location.name}
-                        style={{
-                          width: '100%',
-                          height: '100%',
-                          objectFit: 'cover',
-                          filter: isActive ? 'brightness(0.8)' : 'brightness(0.6)'
-                        }}
-                      />
-                      
-                      {/* Gradient Overlay */}
-                      <div style={{
-                        position: 'absolute',
-                        inset: 0,
-                        background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, transparent 100%)'
-                      }} />
-
-                      {/* Content */}
-                      <div style={{
-                        position: 'absolute',
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        padding: '2rem',
-                        color: 'white',
-                        zIndex: 2
-                      }}>
-                        <motion.h3 
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.2 }}
-                          style={{
-                            fontSize: 'clamp(1.5rem, 3vw, 2rem)',
-                            fontWeight: 800,
-                            marginBottom: '0.5rem',
-                            textShadow: '0 2px 10px rgba(0,0,0,0.5)'
-                          }}
-                        >
-                          {location.name}
-                        </motion.h3>
-                        <motion.p 
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.3 }}
-                          style={{
-                            fontSize: '0.95rem',
-                            color: 'rgba(255,255,255,0.9)',
-                            marginBottom: '1rem',
-                            textShadow: '0 2px 8px rgba(0,0,0,0.5)'
-                          }}
-                        >
-                          {location.description}
-                        </motion.p>
-
-                        {/* Active indicator */}
-                        {isActive && (
-                          <motion.div
-                            initial={{ width: 0 }}
-                            animate={{ width: '60px' }}
-                            transition={{ duration: 0.5 }}
-                            style={{
-                              height: '4px',
-                              background: 'linear-gradient(90deg, #7C3AED, #A855F7)',
-                              borderRadius: '2px',
-                              boxShadow: '0 0 10px rgba(124, 58, 237, 0.8)'
-                            }}
-                          />
-                        )}
-                      </div>
-
-                      {/* Corner accent */}
-                      <div style={{
-                        position: 'absolute',
-                        top: '1rem',
-                        right: '1rem',
-                        width: '50px',
-                        height: '50px',
-                        borderRadius: '50%',
-                        background: isActive 
-                          ? 'linear-gradient(135deg, #7C3AED, #A855F7)' 
-                          : 'rgba(255,255,255,0.2)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: '1.2rem',
-                        fontWeight: 700,
-                        color: 'white',
-                        boxShadow: isActive ? '0 4px 15px rgba(124, 58, 237, 0.5)' : 'none',
-                        transition: 'all 0.3s ease'
-                      }}>
-                        {index + 1}
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-
-            {/* Navigation Dots */}
-            <div style={{
-              display: 'flex',
-              justifyContent: 'center',
-              gap: '0.75rem',
-              marginTop: '3rem'
-            }}>
-              {locations.map((_, index) => (
-                <motion.div
+              {locationImages.map((_, index) => (
+                <div
                   key={index}
-                  onClick={() => setCurrentLocationIndex(index)}
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.9 }}
+                  onClick={() => setCurrentLocationImage(index)}
                   style={{
-                    width: currentLocationIndex === index ? '40px' : '12px',
-                    height: '12px',
-                    borderRadius: '6px',
-                    background: currentLocationIndex === index 
-                      ? 'linear-gradient(90deg, #7C3AED, #A855F7)' 
-                      : 'rgba(0,0,0,0.2)',
+                    width: currentLocationImage === index ? '2rem' : '0.5rem',
+                    height: '0.5rem',
+                    borderRadius: '0.25rem',
+                    background: currentLocationImage === index ? 'white' : 'rgba(255,255,255,0.5)',
                     cursor: 'pointer',
-                    transition: 'all 0.3s ease',
-                    boxShadow: currentLocationIndex === index 
-                      ? '0 4px 12px rgba(124, 58, 237, 0.4)' 
-                      : 'none'
+                    transition: 'all 0.3s ease'
                   }}
                 />
               ))}
             </div>
-          </div>
+          </motion.div>
+          <motion.div 
+            className="prime-locations-content" 
+            variants={swipeRight}
+            whileHover={{ x: -5, transition: { duration: 0.3 } }}
+          >
+            <h2>Prime Locations</h2>
+            <p>
+              Strategically placed across high-traffic urban areas to maximize visibility and impact for your brand. From Dubai's iconic landmarks to Abu Dhabi's business districts, we cover all major UAE locations.
+            </p>
+          </motion.div>
         </motion.div>
-
-        {/* Responsive Styles */}
-        <style jsx>{`
-          @media (max-width: 1024px) {
-            div[style*="flexWrap"] > div {
-              width: clamp(250px, 40vw, 320px) !important;
-              height: 400px !important;
-            }
-          }
-
-          @media (max-width: 768px) {
-            div[style*="flexWrap"] {
-              flex-wrap: nowrap !important;
-              overflow-x: auto !important;
-              scroll-snap-type: x mandatory !important;
-              -webkit-overflow-scrolling: touch !important;
-              scrollbar-width: none !important;
-            }
-
-            div[style*="flexWrap"]::-webkit-scrollbar {
-              display: none !important;
-            }
-
-            div[style*="flexWrap"] > div {
-              width: 85vw !important;
-              height: 450px !important;
-              flex-shrink: 0 !important;
-              scroll-snap-align: center !important;
-            }
-          }
-
-          @media (max-width: 480px) {
-            div[style*="flexWrap"] > div {
-              width: 90vw !important;
-              height: 400px !important;
-            }
-          }
-        `}</style>
       </section>
 
       {/* We Reach Section */}
