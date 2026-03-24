@@ -279,6 +279,7 @@ export default function Home() {
         .we-build-section {
           text-align: center;
           padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
+          overflow: hidden;
         }
 
         .we-build-title {
@@ -308,6 +309,7 @@ export default function Home() {
           grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
           gap: 2rem;
           margin-bottom: 3rem;
+          overflow: hidden;
         }
 
         .portfolio-item {
