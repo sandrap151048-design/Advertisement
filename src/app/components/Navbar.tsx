@@ -56,7 +56,7 @@ export default function Navbar() {
           background: rgba(255, 255, 255, 0.95);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
-          border-radius: 50px;
+          border-radius: 24px;
           box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
           border: 1px solid rgba(0, 0, 0, 0.08);
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -273,7 +273,7 @@ export default function Navbar() {
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
           padding: 2rem;
-          border-radius: 30px;
+          border-radius: 24px;
           transform: translateY(-20px);
           opacity: 0;
           visibility: hidden;
