@@ -68,6 +68,24 @@ export default function ServicesPage() {
     setCurrentYear(new Date().getFullYear());
   }, []);
 
+  const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    
+    card.style.setProperty('--mouse-x', `${x}%`);
+    card.style.setProperty('--mouse-y', `${y}%`);
+  };
+
+  const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    card.classList.add('clicked');
+    setTimeout(() => {
+      card.classList.remove('clicked');
+    }, 600);
+  };
+
   return (
     <>
       <style jsx global>{`
@@ -188,11 +206,54 @@ export default function ServicesPage() {
           border-radius: 16px;
           overflow: hidden;
           cursor: pointer;
-          transition: transform 0.3s ease;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          background: rgba(0, 0, 0, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          will-change: transform, box-shadow;
+        }
+
+        .service-card::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.15), transparent 60%);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          pointer-events: none;
+          z-index: 1;
         }
 
         .service-card:hover {
-          transform: scale(1.02);
+          transform: translateY(-8px) scale(1.02);
+          background: rgba(255, 255, 255, 0.12);
+          box-shadow: 0 0 25px rgba(255, 255, 255, 0.15), 0 12px 30px rgba(0, 0, 0, 0.2);
+          border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .service-card:hover::before {
+          opacity: 1;
+        }
+
+        .service-card:active {
+          transform: scale(0.98);
+          box-shadow: 0 0 35px rgba(255, 255, 255, 0.25), 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes glowPulse {
+          0% {
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+          }
+          50% {
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+          }
+          100% {
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+          }
+        }
+
+        .service-card.clicked {
+          animation: glowPulse 0.6s ease-out;
         }
 
         .service-card img {
@@ -210,17 +271,37 @@ export default function ServicesPage() {
           justify-content: flex-end;
           padding: 2rem;
           color: white;
+          z-index: 2;
+          transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-overlay {
+          background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 100%);
         }
 
         .service-title {
           font-size: 1.8rem;
           font-weight: 800;
           margin-bottom: 0.5rem;
+          transition: all 0.3s ease;
+          text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .service-card:hover .service-title {
+          color: #ffffff;
+          text-shadow: 0 0 20px rgba(255,255,255,0.5), 0 2px 8px rgba(0,0,0,0.5);
+          transform: translateY(-2px);
         }
 
         .service-desc {
           font-size: 0.95rem;
-          color: rgba(255,255,255,0.9);
+          color: rgba(255,255,255,0.8);
+          transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-desc {
+          color: rgba(255,255,255,1);
+          transform: translateY(-2px);
         }
 
         .why-choose-section {
@@ -463,6 +544,8 @@ export default function ServicesPage() {
                   className="service-card"
                   variants={fadeInUp}
                   whileHover={{ y: -5 }}
+                  onMouseMove={handleCardMouseMove}
+                  onClick={handleCardClick}
                 >
                   <img src={service.image} alt={service.title} />
                   <div className="service-overlay">
