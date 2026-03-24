@@ -289,14 +289,6 @@ export default function Home() {
           overflow: hidden;
           cursor: pointer;
           transition: transform 0.3s ease;
-          outline: none;
-          border: none;
-        }
-
-        .portfolio-item:focus,
-        .portfolio-item:active {
-          outline: none;
-          border: none;
         }
 
         .portfolio-item:hover {
