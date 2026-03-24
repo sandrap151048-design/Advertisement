@@ -7,10 +7,9 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -27,83 +26,399 @@ export default function Navbar() {
 
   return (
     <>
-      <header className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
-        <div className="container nav-inner">
-          <Link href="/" className="nav-logo">
-            <div className="nav-logo-text">
-              <span className="brand-primary">One</span>
-              <span className="brand-secondary"> Click</span>
-              <div className="brand-tagline">Advertisement</div>
+      <style jsx global>{`
+        @keyframes fadeInDown {
+          from {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .modern-navbar {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index: 1000;
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          animation: fadeInDown 0.6s ease-out;
+        }
+
+        .modern-navbar.scrolled {
+          background: rgba(255, 255, 255, 0.98);
+          box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+        }
+
+        .navbar-container {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 0 2rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: 80px;
+          gap: 2rem;
+        }
+
+        /* Logo Section */
+        .navbar-logo {
+          flex: 0 0 auto;
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+          transition: transform 0.3s ease;
+        }
+
+        .navbar-logo:hover {
+          transform: scale(1.02);
+        }
+
+        .logo-text {
+          display: flex;
+          flex-direction: column;
+          line-height: 1;
+        }
+
+        .logo-main {
+          font-size: 1.4rem;
+          font-weight: 700;
+          color: #1a1a1a;
+          letter-spacing: -0.5px;
+        }
+
+        .logo-main .accent {
+          background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .logo-tagline {
+          font-size: 0.65rem;
+          font-weight: 600;
+          color: #666;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          margin-top: 2px;
+        }
+
+        /* Center Navigation */
+        .navbar-nav {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 2rem;
+        }
+
+        .nav-link {
+          position: relative;
+          color: #1a1a1a;
+          text-decoration: none;
+          font-size: 0.95rem;
+          font-weight: 500;
+          letter-spacing: 0.3px;
+          transition: color 0.3s ease;
+          padding: 0.5rem 0;
+        }
+
+        .nav-link::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
+          transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-link:hover {
+          color: #7C3AED;
+        }
+
+        .nav-link:hover::after {
+          width: 100%;
+        }
+
+        /* Right Actions */
+        .navbar-actions {
+          flex: 0 0 auto;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+        }
+
+        .btn-campaign {
+          padding: 0.75rem 1.75rem;
+          background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
+          color: white;
+          text-decoration: none;
+          font-size: 0.95rem;
+          font-weight: 600;
+          border-radius: 12px;
+          border: none;
+          cursor: pointer;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
+          letter-spacing: 0.3px;
+        }
+
+        .btn-campaign:hover {
+          transform: translateY(-2px) scale(1.02);
+          box-shadow: 0 6px 20px rgba(124, 58, 237, 0.35);
+        }
+
+        .btn-campaign:active {
+          transform: translateY(0) scale(0.98);
+        }
+
+        .btn-login {
+          padding: 0.75rem 1.75rem;
+          background: #1a1a1a;
+          color: white;
+          text-decoration: none;
+          font-size: 0.95rem;
+          font-weight: 600;
+          border-radius: 12px;
+          border: none;
+          cursor: pointer;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          letter-spacing: 0.3px;
+        }
+
+        .btn-login:hover {
+          background: #333;
+          transform: translateY(-2px) scale(1.02);
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-login:active {
+          transform: translateY(0) scale(0.98);
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-toggle {
+          display: none;
+          flex-direction: column;
+          gap: 5px;
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0.5rem;
+          transition: transform 0.3s ease;
+        }
+
+        .mobile-toggle:hover {
+          transform: scale(1.1);
+        }
+
+        .mobile-toggle span {
+          width: 24px;
+          height: 2.5px;
+          background: #1a1a1a;
+          border-radius: 2px;
+          transition: all 0.3s ease;
+        }
+
+        .mobile-toggle.open span:nth-child(1) {
+          transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .mobile-toggle.open span:nth-child(2) {
+          opacity: 0;
+        }
+
+        .mobile-toggle.open span:nth-child(3) {
+          transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+          position: fixed;
+          top: 80px;
+          left: 0;
+          right: 0;
+          background: rgba(255, 255, 255, 0.98);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          padding: 2rem;
+          transform: translateY(-100%);
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+          max-height: calc(100vh - 80px);
+          overflow-y: auto;
+        }
+
+        .mobile-menu.open {
+          transform: translateY(0);
+          opacity: 1;
+          visibility: visible;
+        }
+
+        .mobile-nav-links {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          margin-bottom: 2rem;
+        }
+
+        .mobile-nav-link {
+          color: #1a1a1a;
+          text-decoration: none;
+          font-size: 1.1rem;
+          font-weight: 500;
+          padding: 1rem;
+          border-radius: 10px;
+          transition: all 0.3s ease;
+          letter-spacing: 0.3px;
+        }
+
+        .mobile-nav-link:hover {
+          background: rgba(124, 58, 237, 0.08);
+          color: #7C3AED;
+          transform: translateX(8px);
+        }
+
+        .mobile-actions {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .mobile-actions .btn-campaign,
+        .mobile-actions .btn-login {
+          width: 100%;
+          text-align: center;
+          padding: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+          .navbar-nav {
+            gap: 1.5rem;
+          }
+
+          .nav-link {
+            font-size: 0.9rem;
+          }
+
+          .btn-campaign,
+          .btn-login {
+            padding: 0.7rem 1.5rem;
+            font-size: 0.9rem;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .navbar-container {
+            height: 70px;
+            padding: 0 1.5rem;
+          }
+
+          .navbar-nav,
+          .navbar-actions {
+            display: none;
+          }
+
+          .mobile-toggle {
+            display: flex;
+          }
+
+          .logo-main {
+            font-size: 1.2rem;
+          }
+
+          .logo-tagline {
+            font-size: 0.6rem;
+          }
+
+          .mobile-menu {
+            top: 70px;
+            max-height: calc(100vh - 70px);
+          }
+        }
+
+        @media (max-width: 480px) {
+          .navbar-container {
+            padding: 0 1rem;
+          }
+
+          .logo-main {
+            font-size: 1.1rem;
+          }
+
+          .logo-tagline {
+            font-size: 0.55rem;
+            letter-spacing: 1.5px;
+          }
+        }
+
+        /* Smooth scrolling offset for fixed navbar */
+        html {
+          scroll-padding-top: 100px;
+        }
+      `}</style>
+
+      <nav className={`modern-navbar ${isScrolled ? 'scrolled' : ''}`}>
+        <div className="navbar-container">
+          {/* Logo */}
+          <Link href="/" className="navbar-logo">
+            <div className="logo-text">
+              <div className="logo-main">
+                <span className="accent">One</span> Click
+              </div>
+              <div className="logo-tagline">Advertisement</div>
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="nav-links-desktop">
+          {/* Center Navigation */}
+          <div className="navbar-nav">
             <Link href="/" className="nav-link">Home</Link>
             <Link href="/services" className="nav-link">Services</Link>
             <Link href="/testimonials" className="nav-link">Testimonials</Link>
             <Link href="/blog" className="nav-link">Blog</Link>
             <Link href="/contact" className="nav-link">Contact</Link>
             <Link href="/about" className="nav-link">About Us</Link>
-          </nav>
-
-          <div className="nav-actions-desktop">
-            <Link href="/register" className="btn btn-outline nav-btn">Start Your Campaign</Link>
-            <Link href="/admin/login" className="btn btn-primary nav-btn">Login</Link>
           </div>
 
-          {/* Mobile Menu Toggle */}
+          {/* Right Actions */}
+          <div className="navbar-actions">
+            <Link href="/register" className="btn-campaign">
+              Start Your Campaign
+            </Link>
+            <Link href="/admin/login" className="btn-login">
+              Login
+            </Link>
+          </div>
+
+          {/* Mobile Toggle */}
           <button 
-            className="mobile-menu-toggle" 
+            className={`mobile-toggle ${isMobileMenuOpen ? 'open' : ''}`}
             onClick={toggleMobileMenu}
-            aria-label="Toggle mobile menu"
+            aria-label="Toggle menu"
           >
-            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {isMobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
+            <span></span>
+            <span></span>
+            <span></span>
           </button>
         </div>
-
-        <style jsx>{`
-          .navbar {
-            background: #ffffff !important;
-          }
-
-          .navbar-scrolled {
-            background: #ffffff !important;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-          }
-          
-          .nav-logo-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1;
-          }
-          
-          .brand-tagline {
-            font-size: 0.65rem;
-            font-weight: 500;
-            color: var(--color-accent);
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-top: 2px;
-          }
-        `}</style>
-      </header>
-
-      {/* Mobile Menu Overlay */}
-      {isMobileMenuOpen && (
-        <div className="mobile-menu-overlay" onClick={closeMobileMenu}></div>
-      )}
+      </nav>
 
       {/* Mobile Menu */}
-      <div className={`mobile-menu ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`}>
+      <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
         <div className="mobile-nav-links">
           <Link href="/" className="mobile-nav-link" onClick={closeMobileMenu}>Home</Link>
           <Link href="/services" className="mobile-nav-link" onClick={closeMobileMenu}>Services</Link>
@@ -113,11 +428,11 @@ export default function Navbar() {
           <Link href="/about" className="mobile-nav-link" onClick={closeMobileMenu}>About Us</Link>
         </div>
         
-        <div className="mobile-nav-actions">
-          <Link href="/register" className="btn btn-outline mobile-btn" onClick={closeMobileMenu}>
+        <div className="mobile-actions">
+          <Link href="/register" className="btn-campaign" onClick={closeMobileMenu}>
             Start Your Campaign
           </Link>
-          <Link href="/admin/login" className="btn btn-primary mobile-btn" onClick={closeMobileMenu}>
+          <Link href="/admin/login" className="btn-login" onClick={closeMobileMenu}>
             Login
           </Link>
         </div>

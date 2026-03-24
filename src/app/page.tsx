@@ -69,10 +69,26 @@ export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{ success?: boolean; message?: string } | null>(null);
   const [currentYear, setCurrentYear] = useState<number | null>(null);
+  const [activeTab, setActiveTab] = useState<'whyus' | 'reach' | 'solutions'>('whyus');
+  const [currentBlogImage, setCurrentBlogImage] = useState(0);
+
+  const blogImages = [
+    'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=500&q=80',
+    'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=500&q=80',
+    'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=500&q=80',
+    'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=500&q=80'
+  ];
 
   useEffect(() => {
     setCurrentYear(new Date().getFullYear());
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentBlogImage((prev) => (prev + 1) % blogImages.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [blogImages.length]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -796,11 +812,29 @@ export default function Home() {
             className="prime-locations-image" 
             variants={swipeLeft}
             whileHover={{ scale: 1.02, x: 5, transition: { duration: 0.3 } }}
+            style={{ position: 'relative', overflow: 'hidden' }}
           >
-            <img 
-              src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=500&q=80"
-              alt="Blog Articles"
-            />
+            {blogImages.map((image, index) => (
+              <motion.img
+                key={index}
+                src={image}
+                alt={`Blog Article ${index + 1}`}
+                initial={{ opacity: 0 }}
+                animate={{ 
+                  opacity: currentBlogImage === index ? 1 : 0,
+                  scale: currentBlogImage === index ? 1 : 1.1
+                }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
+                style={{
+                  position: index === 0 ? 'relative' : 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover'
+                }}
+              />
+            ))}
           </motion.div>
           <motion.div 
             className="prime-locations-content" 
@@ -873,47 +907,59 @@ export default function Home() {
               flexWrap: 'wrap'
             }}
           >
-            <div style={{ 
-              padding: '1rem 3rem', 
-              background: '#1a1a1a', 
-              color: 'white', 
-              borderRadius: '50px',
-              fontSize: '1.1rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-              transition: 'all 0.3s ease'
-            }}>
+            <div 
+              onClick={() => setActiveTab('whyus')}
+              style={{ 
+                padding: '1rem 3rem', 
+                background: activeTab === 'whyus' ? '#1a1a1a' : 'white', 
+                color: activeTab === 'whyus' ? 'white' : '#1a1a1a', 
+                borderRadius: '50px',
+                fontSize: '1.1rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'all 0.3s ease'
+              }}
+            >
               Why Us
             </div>
-            <div style={{ 
-              padding: '1rem 3rem', 
-              background: 'white', 
-              color: '#1a1a1a', 
-              borderRadius: '50px',
-              fontSize: '1.1rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-              transition: 'all 0.3s ease'
-            }}>
+            <div 
+              onClick={() => setActiveTab('reach')}
+              style={{ 
+                padding: '1rem 3rem', 
+                background: activeTab === 'reach' ? '#1a1a1a' : 'white', 
+                color: activeTab === 'reach' ? 'white' : '#1a1a1a', 
+                borderRadius: '50px',
+                fontSize: '1.1rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'all 0.3s ease'
+              }}
+            >
               Reach
             </div>
-            <div style={{ 
-              padding: '1rem 3rem', 
-              background: 'white', 
-              color: '#1a1a1a', 
-              borderRadius: '50px',
-              fontSize: '1.1rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-              transition: 'all 0.3s ease'
-            }}>
+            <div 
+              onClick={() => setActiveTab('solutions')}
+              style={{ 
+                padding: '1rem 3rem', 
+                background: activeTab === 'solutions' ? '#1a1a1a' : 'white', 
+                color: activeTab === 'solutions' ? 'white' : '#1a1a1a', 
+                borderRadius: '50px',
+                fontSize: '1.1rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'all 0.3s ease'
+              }}
+            >
               Solutions
             </div>
           </motion.div>
 
           {/* Content */}
           <motion.div 
-            variants={staggerContainer}
+            key={activeTab}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
             style={{ 
               display: 'grid', 
               gridTemplateColumns: '1fr 1fr', 
@@ -921,92 +967,169 @@ export default function Home() {
               alignItems: 'center' 
             }}
           >
-            <motion.div variants={swipeLeft}>
-              <h2 style={{ 
-                fontSize: 'clamp(2.5rem, 5vw, 4rem)', 
-                fontWeight: 900, 
-                marginBottom: '1.5rem',
-                lineHeight: 1.2
-              }}>
-                Built for Visibility
-              </h2>
-              <p style={{ 
-                color: '#666666', 
-                fontSize: '1.1rem', 
-                lineHeight: 1.8,
-                marginBottom: '2rem'
-              }}>
-                We help brands stand out through high-impact outdoor advertising across real-world environments. From storefront displays to large-scale city campaigns, our focus is simple – make your brand impossible to ignore.
-              </p>
-              <Link 
-                href="/services" 
-                style={{ 
-                  display: 'inline-flex', 
-                  alignItems: 'center', 
-                  gap: '0.5rem',
-                  color: '#1a1a1a',
-                  textDecoration: 'none',
-                  fontWeight: 600,
-                  fontSize: '1rem',
-                  transition: 'all 0.3s ease'
-                }}
-              >
-                Learn more <ArrowRight size={20} />
-              </Link>
-            </motion.div>
+            {activeTab === 'whyus' && (
+              <>
+                <div>
+                  <h2 style={{ 
+                    fontSize: 'clamp(2.5rem, 5vw, 4rem)', 
+                    fontWeight: 900, 
+                    marginBottom: '1.5rem',
+                    lineHeight: 1.2
+                  }}>
+                    Built for Visibility
+                  </h2>
+                  <p style={{ 
+                    color: '#666666', 
+                    fontSize: '1.1rem', 
+                    lineHeight: 1.8,
+                    marginBottom: '2rem'
+                  }}>
+                    We help brands stand out through high-impact outdoor advertising across real-world environments. From storefront displays to large-scale city campaigns, our focus is simple – make your brand impossible to ignore.
+                  </p>
+                  <Link 
+                    href="/about" 
+                    style={{ 
+                      display: 'inline-flex', 
+                      alignItems: 'center', 
+                      gap: '0.5rem',
+                      color: '#1a1a1a',
+                      textDecoration: 'none',
+                      fontWeight: 600,
+                      fontSize: '1rem',
+                      transition: 'all 0.3s ease'
+                    }}
+                  >
+                    Learn more <ArrowRight size={20} />
+                  </Link>
+                </div>
+                <div style={{ 
+                  width: '100%', 
+                  height: '400px', 
+                  background: '#e0e0e0', 
+                  borderRadius: '12px',
+                  overflow: 'hidden'
+                }}>
+                  <img 
+                    src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=600&q=80"
+                    alt="Built for Visibility"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                </div>
+              </>
+            )}
 
-            <motion.div 
-              variants={swipeRight}
-              style={{ 
-                width: '100%', 
-                height: '400px', 
-                background: '#e0e0e0', 
-                borderRadius: '12px',
-                overflow: 'hidden'
-              }}
-            >
-              <img 
-                src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=600&q=80"
-                alt="Built for Visibility"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-            </motion.div>
-          </motion.div>
-        </motion.div>
-      </section>
+            {activeTab === 'reach' && (
+              <>
+                <div>
+                  <h2 style={{ 
+                    fontSize: 'clamp(2.5rem, 5vw, 4rem)', 
+                    fontWeight: 900, 
+                    marginBottom: '1.5rem',
+                    lineHeight: 1.2
+                  }}>
+                    Nationwide Coverage
+                  </h2>
+                  <p style={{ 
+                    color: '#666666', 
+                    fontSize: '1.1rem', 
+                    lineHeight: 1.8,
+                    marginBottom: '2rem'
+                  }}>
+                    With strategic presence across all seven emirates, we deliver your message to millions. From Dubai's bustling streets to Abu Dhabi's corporate districts, our network ensures maximum exposure for your brand across the UAE.
+                  </p>
+                  <Link 
+                    href="/contact" 
+                    style={{ 
+                      display: 'inline-flex', 
+                      alignItems: 'center', 
+                      gap: '0.5rem',
+                      color: '#1a1a1a',
+                      textDecoration: 'none',
+                      fontWeight: 600,
+                      fontSize: '1rem',
+                      transition: 'all 0.3s ease'
+                    }}
+                  >
+                    Get in touch <ArrowRight size={20} />
+                  </Link>
+                </div>
+                <div style={{ 
+                  width: '100%', 
+                  height: '400px', 
+                  background: '#e0e0e0', 
+                  borderRadius: '12px',
+                  overflow: 'hidden'
+                }}>
+                  <img 
+                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80"
+                    alt="Nationwide Coverage"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                </div>
+              </>
+            )}
 
-      {/* Built for Visibility */}
-      <section className="built-section">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerContainer}
-          className="built-content container"
-        >
-          <motion.div 
-            className="built-text" 
-            variants={swipeLeft}
-            whileHover={{ x: 5, transition: { duration: 0.3 } }}
-          >
-            <h2>Built for Visibility</h2>
-            <p>
-              Every campaign is designed with one goal: maximum visibility. From concept to execution, we ensure your brand stands out in every market.
-            </p>
-            <Link href="/services" className="btn btn-primary">
-              Learn More <ArrowRight size={20} />
-            </Link>
+            {activeTab === 'solutions' && (
+              <>
+                <div>
+                  <h2 style={{ 
+                    fontSize: 'clamp(2.5rem, 5vw, 4rem)', 
+                    fontWeight: 900, 
+                    marginBottom: '1.5rem',
+                    lineHeight: 1.2
+                  }}>
+                    Complete Solutions
+                  </h2>
+                  <p style={{ 
+                    color: '#666666', 
+                    fontSize: '1.1rem', 
+                    lineHeight: 1.8,
+                    marginBottom: '2rem'
+                  }}>
+                    From concept to installation, we provide end-to-end advertising solutions. Our services include branding, digital graphics, vehicle wraps, signage production, and facade cladding – all designed to elevate your brand presence.
+                  </p>
+                  <Link 
+                    href="/services" 
+                    style={{ 
+                      display: 'inline-flex', 
+                      alignItems: 'center', 
+                      gap: '0.5rem',
+                      color: '#1a1a1a',
+                      textDecoration: 'none',
+                      fontWeight: 600,
+                      fontSize: '1rem',
+                      transition: 'all 0.3s ease'
+                    }}
+                  >
+                    View services <ArrowRight size={20} />
+                  </Link>
+                </div>
+                <div style={{ 
+                  width: '100%', 
+                  height: '400px', 
+                  background: '#e0e0e0', 
+                  borderRadius: '12px',
+                  overflow: 'hidden'
+                }}>
+                  <img 
+                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80"
+                    alt="Complete Solutions"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                </div>
+              </>
+            )}
           </motion.div>
-          <motion.div 
-            className="built-image" 
-            variants={swipeRight}
-            whileHover={{ scale: 1.02, x: -5, transition: { duration: 0.3 } }}
-          >
-            <img 
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&q=80"
-              alt="Built for Visibility"
-            />
-          </motion.div>
+
+          {/* Responsive styles */}
+          <style jsx>{`
+            @media (max-width: 768px) {
+              div[style*="gridTemplateColumns"] {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+              }
+            }
+          `}</style>
         </motion.div>
       </section>
 
@@ -1047,15 +1170,15 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer style={{ background: '#1a1a1a', color: 'white', padding: '5rem 2rem 3rem 2rem' }}>
+      <footer style={{ background: '#1a1a1a', color: 'white', padding: '6rem 2rem 4rem 2rem' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '3rem', marginBottom: '3rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '3.5rem', marginBottom: '3.5rem' }}>
             {/* Brand Section */}
             <div>
-              <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem', color: 'white' }}>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>
                 <span style={{ color: '#7C3AED' }}>One</span> Click
               </h3>
-              <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '1.5rem', lineHeight: '1.6' }}>
+              <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '1.5rem', lineHeight: '1.8', fontSize: '1rem' }}>
                 Premium advertising solutions across the UAE. Delivering high-impact visual communication services.
               </p>
               <div style={{ display: 'flex', gap: '1rem' }}>
@@ -1114,7 +1237,7 @@ export default function Home() {
           </div>
 
           {/* Footer Bottom */}
-          <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2rem', textAlign: 'center', color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem' }}>
+          <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2.5rem', textAlign: 'center', color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem' }}>
             &copy; {currentYear || 2026} One Click Advertisement. All Rights Reserved.
           </div>
         </div>
