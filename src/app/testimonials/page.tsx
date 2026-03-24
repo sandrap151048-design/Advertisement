@@ -18,9 +18,15 @@ const staggerContainer = {
   }
 };
 
-const categories = ['Billboards', 'Retail Signage', 'Vehicle Branding', 'Campaigns'];
+const categories = ['Billboards', 'Retail Signage', 'Vehicle Branding', 'Campaigns'] as const;
 
-const projectsByCategory = {
+type CategoryKey = typeof categories[number];
+
+const projectsByCategory: Record<CategoryKey, {
+  title: string;
+  description: string;
+  images: { title: string; image: string; }[];
+}> = {
   'Billboards': {
     title: 'Billboards',
     description: 'High-impact outdoor displays placed in high-traffic locations, designed to capture attention and deliver maximum visibility.',
@@ -64,7 +70,7 @@ const projectsByCategory = {
 };
 
 export default function ProjectsPage() {
-  const [activeCategory, setActiveCategory] = useState('Billboards');
+  const [activeCategory, setActiveCategory] = useState<CategoryKey>('Billboards');
 
   return (
     <>
