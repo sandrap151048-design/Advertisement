@@ -40,41 +40,36 @@ export default function Navbar() {
 
         .modern-navbar {
           position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
+          top: 20px;
+          left: 50%;
+          transform: translateX(-50%);
           z-index: 1000;
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+          width: calc(100% - 40px);
+          max-width: 1300px;
+          background: rgba(255, 255, 255, 0.98);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border-radius: 50px;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           animation: fadeInDown 0.6s ease-out;
-          display: block;
-          visibility: visible;
-          opacity: 1;
-          border-radius: 0 0 24px 24px;
+          border: 1px solid rgba(0, 0, 0, 0.06);
         }
 
         .modern-navbar.scrolled {
-          background: rgba(255, 255, 255, 0.98);
-          box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          border-radius: 0 0 24px 24px;
+          background: rgba(255, 255, 255, 1);
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
         }
 
         .navbar-container {
-          max-width: 1400px;
-          margin: 0 auto;
-          padding: 0 2rem;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          height: 80px;
+          padding: 1rem 2rem;
+          height: 70px;
           gap: 3rem;
-          visibility: visible;
-          opacity: 1;
         }
 
         /* Logo Section */
@@ -84,9 +79,7 @@ export default function Navbar() {
           align-items: center;
           text-decoration: none;
           transition: transform 0.3s ease;
-          visibility: visible;
-          opacity: 1;
-          min-width: 180px;
+          min-width: 150px;
         }
 
         .navbar-logo:hover {
@@ -95,13 +88,15 @@ export default function Navbar() {
 
         .logo-text {
           display: flex;
-          flex-direction: column;
+          flex-direction: row;
+          align-items: baseline;
           line-height: 1;
+          gap: 0.3rem;
         }
 
         .logo-main {
-          font-size: 1.4rem;
-          font-weight: 700;
+          font-size: 1.5rem;
+          font-weight: 800;
           color: #1a1a1a;
           letter-spacing: -0.5px;
         }
@@ -114,12 +109,7 @@ export default function Navbar() {
         }
 
         .logo-tagline {
-          font-size: 0.65rem;
-          font-weight: 600;
-          color: #666;
-          letter-spacing: 2px;
-          text-transform: uppercase;
-          margin-top: 2px;
+          display: none;
         }
 
         /* Center Navigation */
@@ -167,43 +157,23 @@ export default function Navbar() {
           flex: 0 0 auto;
           display: flex;
           align-items: center;
-          gap: 0.75rem;
-          min-width: 180px;
+          gap: 0;
+          min-width: 150px;
           justify-content: flex-end;
         }
 
         .btn-campaign {
-          padding: 0.75rem 1.75rem;
-          background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
-          color: white;
-          text-decoration: none;
-          font-size: 0.95rem;
-          font-weight: 600;
-          border-radius: 12px;
-          border: none;
-          cursor: pointer;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
-          letter-spacing: 0.3px;
-        }
-
-        .btn-campaign:hover {
-          transform: translateY(-2px) scale(1.02);
-          box-shadow: 0 6px 20px rgba(124, 58, 237, 0.35);
-        }
-
-        .btn-campaign:active {
-          transform: translateY(0) scale(0.98);
+          display: none;
         }
 
         .btn-login {
-          padding: 0.75rem 1.75rem;
+          padding: 0.85rem 2rem;
           background: #1a1a1a;
           color: white;
           text-decoration: none;
           font-size: 0.95rem;
           font-weight: 600;
-          border-radius: 12px;
+          border-radius: 50px;
           border: none;
           cursor: pointer;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -212,12 +182,12 @@ export default function Navbar() {
 
         .btn-login:hover {
           background: #333;
-          transform: translateY(-2px) scale(1.02);
-          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
 
         .btn-login:active {
-          transform: translateY(0) scale(0.98);
+          transform: translateY(0);
         }
 
         /* Mobile Menu Toggle */
@@ -261,24 +231,26 @@ export default function Navbar() {
         /* Mobile Menu */
         .mobile-menu {
           position: fixed;
-          top: 80px;
-          left: 0;
-          right: 0;
+          top: 95px;
+          left: 50%;
+          transform: translateX(-50%) translateY(-20px);
+          width: calc(100% - 40px);
+          max-width: 500px;
           background: rgba(255, 255, 255, 0.98);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
           padding: 2rem;
-          transform: translateY(-100%);
+          border-radius: 30px;
           opacity: 0;
           visibility: hidden;
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-          max-height: calc(100vh - 80px);
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+          max-height: calc(100vh - 120px);
           overflow-y: auto;
         }
 
         .mobile-menu.open {
-          transform: translateY(0);
+          transform: translateX(-50%) translateY(0);
           opacity: 1;
           visibility: visible;
         }
@@ -323,106 +295,79 @@ export default function Navbar() {
         /* Responsive */
         @media (max-width: 1024px) {
           .navbar-nav {
-            gap: 1.5rem;
+            gap: 2rem;
           }
 
           .nav-link {
             font-size: 0.9rem;
           }
 
-          .btn-campaign,
           .btn-login {
-            padding: 0.7rem 1.5rem;
+            padding: 0.8rem 1.8rem;
             font-size: 0.9rem;
           }
         }
 
         @media (max-width: 768px) {
           .modern-navbar {
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            width: 100% !important;
-            z-index: 9999 !important;
-            display: block !important;
-            visibility: visible !important;
-            opacity: 1 !important;
+            top: 15px;
+            width: calc(100% - 30px);
           }
 
           .navbar-container {
-            height: 70px;
-            padding: 0 1.5rem;
-            display: flex !important;
-            visibility: visible !important;
-            opacity: 1 !important;
+            padding: 0.8rem 1.5rem;
+            height: 60px;
           }
 
           .navbar-nav,
           .navbar-actions {
-            display: none !important;
+            display: none;
           }
 
           .mobile-toggle {
-            display: flex !important;
-            visibility: visible !important;
-            opacity: 1 !important;
+            display: flex;
           }
 
-          .navbar-logo {
-            display: flex !important;
-            visibility: visible !important;
-            opacity: 1 !important;
+          .logo-main {
+            font-size: 1.3rem;
+          }
+
+          .mobile-menu {
+            top: 95px;
+            width: calc(100% - 30px);
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            border-radius: 30px;
+          }
+
+          .mobile-menu.open {
+            transform: translateX(-50%) translateY(0);
+          }
+        }
+
+        @media (max-width: 480px) {
+          .modern-navbar {
+            top: 10px;
+            width: calc(100% - 20px);
+          }
+
+          .navbar-container {
+            padding: 0.7rem 1.2rem;
+            height: 55px;
           }
 
           .logo-main {
             font-size: 1.2rem;
           }
 
-          .logo-tagline {
-            font-size: 0.6rem;
+          .mobile-toggle span {
+            width: 22px;
           }
 
           .mobile-menu {
-            top: 70px;
-            max-height: calc(100vh - 70px);
-          }
-        }
-
-        @media (max-width: 480px) {
-          .modern-navbar {
-            position: fixed !important;
-            display: block !important;
-            visibility: visible !important;
-            opacity: 1 !important;
-          }
-
-          .navbar-container {
-            padding: 0 1rem;
-            display: flex !important;
-            visibility: visible !important;
-            opacity: 1 !important;
-          }
-
-          .navbar-logo {
-            display: flex !important;
-            visibility: visible !important;
-            opacity: 1 !important;
-          }
-
-          .mobile-toggle {
-            display: flex !important;
-            visibility: visible !important;
-            opacity: 1 !important;
-          }
-
-          .logo-main {
-            font-size: 1.1rem;
-          }
-
-          .logo-tagline {
-            font-size: 0.55rem;
-            letter-spacing: 1.5px;
+            top: 85px;
+            width: calc(100% - 20px);
+            padding: 1.5rem;
           }
         }
 
@@ -437,10 +382,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="navbar-logo">
             <div className="logo-text">
-              <div className="logo-main">
-                <span className="accent">One</span> Click
-              </div>
-              <div className="logo-tagline">Advertisement</div>
+              <div className="logo-main">One Click</div>
             </div>
           </Link>
 
@@ -448,19 +390,15 @@ export default function Navbar() {
           <div className="navbar-nav">
             <Link href="/" className="nav-link">Home</Link>
             <Link href="/services" className="nav-link">Services</Link>
-            <Link href="/testimonials" className="nav-link">Testimonials</Link>
-            <Link href="/blog" className="nav-link">Blog</Link>
+            <Link href="/testimonials" className="nav-link">Projects</Link>
+            <Link href="/about" className="nav-link">About</Link>
             <Link href="/contact" className="nav-link">Contact</Link>
-            <Link href="/about" className="nav-link">About Us</Link>
           </div>
 
-          {/* Right Actions */}
+          {/* Right CTA */}
           <div className="navbar-actions">
-            <Link href="/register" className="btn-campaign">
-              Start Your Campaign
-            </Link>
-            <Link href="/admin/login" className="btn-login">
-              Login
+            <Link href="/register" className="btn-login">
+              Get a Quote
             </Link>
           </div>
 
@@ -482,18 +420,14 @@ export default function Navbar() {
         <div className="mobile-nav-links">
           <Link href="/" className="mobile-nav-link" onClick={closeMobileMenu}>Home</Link>
           <Link href="/services" className="mobile-nav-link" onClick={closeMobileMenu}>Services</Link>
-          <Link href="/testimonials" className="mobile-nav-link" onClick={closeMobileMenu}>Testimonials</Link>
-          <Link href="/blog" className="mobile-nav-link" onClick={closeMobileMenu}>Blog</Link>
+          <Link href="/testimonials" className="mobile-nav-link" onClick={closeMobileMenu}>Projects</Link>
+          <Link href="/about" className="mobile-nav-link" onClick={closeMobileMenu}>About</Link>
           <Link href="/contact" className="mobile-nav-link" onClick={closeMobileMenu}>Contact</Link>
-          <Link href="/about" className="mobile-nav-link" onClick={closeMobileMenu}>About Us</Link>
         </div>
         
         <div className="mobile-actions">
-          <Link href="/register" className="btn-campaign" onClick={closeMobileMenu}>
-            Start Your Campaign
-          </Link>
-          <Link href="/admin/login" className="btn-login" onClick={closeMobileMenu}>
-            Login
+          <Link href="/register" className="btn-login" onClick={closeMobileMenu}>
+            Get a Quote
           </Link>
         </div>
       </div>
