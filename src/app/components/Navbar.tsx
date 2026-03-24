@@ -53,6 +53,7 @@ export default function Navbar() {
           display: block;
           visibility: visible;
           opacity: 1;
+          border-radius: 0 0 20px 20px;
         }
 
         .modern-navbar.scrolled {
@@ -60,6 +61,7 @@ export default function Navbar() {
           box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
           backdrop-filter: blur(16px);
           -webkit-backdrop-filter: blur(16px);
+          border-radius: 0 0 20px 20px;
         }
 
         .navbar-container {
