@@ -770,7 +770,7 @@ export default function Home() {
 
           <motion.div variants={fadeInUp}>
             <Link href="/services" className="btn btn-primary">
-              View All Services <ArrowRight size={20} />
+              Explore Services <ArrowRight size={20} />
             </Link>
           </motion.div>
         </motion.div>
