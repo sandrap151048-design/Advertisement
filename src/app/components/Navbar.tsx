@@ -27,17 +27,6 @@ export default function Navbar() {
   return (
     <>
       <style jsx global>{`
-        @keyframes fadeInDown {
-          from {
-            opacity: 0;
-            transform: translateY(-30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
         @keyframes float {
           0%, 100% {
             transform: translateY(0);
@@ -60,16 +49,13 @@ export default function Navbar() {
           box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
           border: 1px solid rgba(0, 0, 0, 0.08);
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          animation: fadeInDown 0.8s ease-out, float 6s ease-in-out infinite;
           max-width: 1400px;
           margin: 0 auto;
         }
 
         .floating-navbar.scrolled {
-          top: 15px;
           background: rgba(255, 255, 255, 0.98);
           box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-          transform: scale(0.98);
         }
 
         .navbar-container {
@@ -140,6 +126,11 @@ export default function Navbar() {
           letter-spacing: 0.3px;
           transition: color 0.3s ease;
           padding: 0.5rem 0;
+          outline: none;
+        }
+
+        .nav-link:focus {
+          outline: none;
         }
 
         .nav-link::after {
@@ -149,16 +140,21 @@ export default function Navbar() {
           left: 0;
           width: 0;
           height: 2px;
-          background: linear-gradient(90deg, #7C3AED, #A855F7);
+          background: #EF4444;
           transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .nav-link:hover {
-          color: #7C3AED;
+          color: #EF4444;
         }
 
         .nav-link:hover::after {
           width: 100%;
+        }
+
+        .nav-link:active::after {
+          width: 100%;
+          background: #DC2626;
         }
 
         /* Right Actions */
@@ -181,6 +177,11 @@ export default function Navbar() {
           transition: all 0.3s ease;
           letter-spacing: 0.3px;
           position: relative;
+          outline: none;
+        }
+
+        .btn-campaign:focus {
+          outline: none;
         }
 
         .btn-campaign::after {
@@ -190,17 +191,22 @@ export default function Navbar() {
           left: 24px;
           right: 24px;
           height: 2px;
-          background: linear-gradient(90deg, #7C3AED, #A855F7);
+          background: #EF4444;
           transform: scaleX(0);
           transition: transform 0.3s ease;
         }
 
         .btn-campaign:hover {
-          color: #7C3AED;
+          color: #EF4444;
         }
 
         .btn-campaign:hover::after {
           transform: scaleX(1);
+        }
+
+        .btn-campaign:active::after {
+          transform: scaleX(1);
+          background: #DC2626;
         }
 
         .btn-login {
@@ -215,6 +221,11 @@ export default function Navbar() {
           cursor: pointer;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           letter-spacing: 0.3px;
+          outline: none;
+        }
+
+        .btn-login:focus {
+          outline: none;
         }
 
         .btn-login:hover {
@@ -308,11 +319,16 @@ export default function Navbar() {
           border-radius: 15px;
           transition: all 0.3s ease;
           letter-spacing: 0.3px;
+          outline: none;
+        }
+
+        .mobile-nav-link:focus {
+          outline: none;
         }
 
         .mobile-nav-link:hover {
-          background: rgba(124, 58, 237, 0.08);
-          color: #7C3AED;
+          background: rgba(239, 68, 68, 0.08);
+          color: #EF4444;
           transform: translateX(8px);
         }
 
@@ -326,8 +342,13 @@ export default function Navbar() {
           width: 100%;
           text-align: center;
           padding: 1rem;
-          background: rgba(124, 58, 237, 0.08);
+          background: rgba(239, 68, 68, 0.08);
           border-radius: 15px;
+          outline: none;
+        }
+
+        .mobile-actions .btn-campaign:focus {
+          outline: none;
         }
 
         .mobile-actions .btn-campaign::after {
