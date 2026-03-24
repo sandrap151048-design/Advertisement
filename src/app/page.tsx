@@ -853,6 +853,128 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* Tabbed Section - Why Us, Reach, Solutions */}
+      <section className="section" style={{ background: '#f5f5f5', padding: 'clamp(4rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem)' }}>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+          className="container"
+        >
+          {/* Tabs */}
+          <motion.div 
+            variants={fadeInDown}
+            style={{ 
+              display: 'flex', 
+              gap: '1rem', 
+              marginBottom: '3rem',
+              justifyContent: 'center',
+              flexWrap: 'wrap'
+            }}
+          >
+            <div style={{ 
+              padding: '1rem 3rem', 
+              background: '#1a1a1a', 
+              color: 'white', 
+              borderRadius: '50px',
+              fontSize: '1.1rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all 0.3s ease'
+            }}>
+              Why Us
+            </div>
+            <div style={{ 
+              padding: '1rem 3rem', 
+              background: 'white', 
+              color: '#1a1a1a', 
+              borderRadius: '50px',
+              fontSize: '1.1rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all 0.3s ease'
+            }}>
+              Reach
+            </div>
+            <div style={{ 
+              padding: '1rem 3rem', 
+              background: 'white', 
+              color: '#1a1a1a', 
+              borderRadius: '50px',
+              fontSize: '1.1rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all 0.3s ease'
+            }}>
+              Solutions
+            </div>
+          </motion.div>
+
+          {/* Content */}
+          <motion.div 
+            variants={staggerContainer}
+            style={{ 
+              display: 'grid', 
+              gridTemplateColumns: '1fr 1fr', 
+              gap: '4rem', 
+              alignItems: 'center' 
+            }}
+          >
+            <motion.div variants={swipeLeft}>
+              <h2 style={{ 
+                fontSize: 'clamp(2.5rem, 5vw, 4rem)', 
+                fontWeight: 900, 
+                marginBottom: '1.5rem',
+                lineHeight: 1.2
+              }}>
+                Built for Visibility
+              </h2>
+              <p style={{ 
+                color: '#666666', 
+                fontSize: '1.1rem', 
+                lineHeight: 1.8,
+                marginBottom: '2rem'
+              }}>
+                We help brands stand out through high-impact outdoor advertising across real-world environments. From storefront displays to large-scale city campaigns, our focus is simple – make your brand impossible to ignore.
+              </p>
+              <Link 
+                href="/services" 
+                style={{ 
+                  display: 'inline-flex', 
+                  alignItems: 'center', 
+                  gap: '0.5rem',
+                  color: '#1a1a1a',
+                  textDecoration: 'none',
+                  fontWeight: 600,
+                  fontSize: '1rem',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                Learn more <ArrowRight size={20} />
+              </Link>
+            </motion.div>
+
+            <motion.div 
+              variants={swipeRight}
+              style={{ 
+                width: '100%', 
+                height: '400px', 
+                background: '#e0e0e0', 
+                borderRadius: '12px',
+                overflow: 'hidden'
+              }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=600&q=80"
+                alt="Built for Visibility"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </section>
+
       {/* Built for Visibility */}
       <section className="built-section">
         <motion.div
