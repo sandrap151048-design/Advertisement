@@ -50,6 +50,9 @@ export default function Navbar() {
           border-bottom: 1px solid rgba(0, 0, 0, 0.06);
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           animation: fadeInDown 0.6s ease-out;
+          display: block;
+          visibility: visible;
+          opacity: 1;
         }
 
         .modern-navbar.scrolled {
@@ -68,6 +71,8 @@ export default function Navbar() {
           justify-content: space-between;
           height: 80px;
           gap: 2rem;
+          visibility: visible;
+          opacity: 1;
         }
 
         /* Logo Section */
@@ -77,6 +82,8 @@ export default function Navbar() {
           align-items: center;
           text-decoration: none;
           transition: transform 0.3s ease;
+          visibility: visible;
+          opacity: 1;
         }
 
         .navbar-logo:hover {
@@ -217,6 +224,8 @@ export default function Navbar() {
           cursor: pointer;
           padding: 0.5rem;
           transition: transform 0.3s ease;
+          visibility: visible;
+          opacity: 1;
         }
 
         .mobile-toggle:hover {
@@ -323,18 +332,41 @@ export default function Navbar() {
         }
 
         @media (max-width: 768px) {
+          .modern-navbar {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            z-index: 9999 !important;
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+          }
+
           .navbar-container {
             height: 70px;
             padding: 0 1.5rem;
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
           }
 
           .navbar-nav,
           .navbar-actions {
-            display: none;
+            display: none !important;
           }
 
           .mobile-toggle {
-            display: flex;
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+          }
+
+          .navbar-logo {
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
           }
 
           .logo-main {
@@ -352,8 +384,30 @@ export default function Navbar() {
         }
 
         @media (max-width: 480px) {
+          .modern-navbar {
+            position: fixed !important;
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+          }
+
           .navbar-container {
             padding: 0 1rem;
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+          }
+
+          .navbar-logo {
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+          }
+
+          .mobile-toggle {
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
           }
 
           .logo-main {
