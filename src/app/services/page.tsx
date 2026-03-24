@@ -159,6 +159,7 @@ export default function ServicesPage() {
           font-size: clamp(2rem, 5vw, 3rem);
           font-weight: 900;
           margin-bottom: 1rem;
+          color: #1a1a1a;
         }
 
         .section-title .italic {
