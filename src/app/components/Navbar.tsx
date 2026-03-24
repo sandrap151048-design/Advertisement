@@ -9,7 +9,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -30,7 +30,7 @@ export default function Navbar() {
         @keyframes fadeInDown {
           from {
             opacity: 0;
-            transform: translateY(-20px);
+            transform: translateY(-30px);
           }
           to {
             opacity: 1;
@@ -38,35 +38,45 @@ export default function Navbar() {
           }
         }
 
-        .modern-navbar {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          z-index: 1000;
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          animation: fadeInDown 0.6s ease-out;
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-3px);
+          }
         }
 
-        .modern-navbar.scrolled {
+        .floating-navbar {
+          position: fixed;
+          top: 20px;
+          left: 40px;
+          right: 40px;
+          z-index: 1000;
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border-radius: 50px;
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+          border: 1px solid rgba(0, 0, 0, 0.08);
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          animation: fadeInDown 0.8s ease-out, float 6s ease-in-out infinite;
+          max-width: 1400px;
+          margin: 0 auto;
+        }
+
+        .floating-navbar.scrolled {
+          top: 15px;
           background: rgba(255, 255, 255, 0.98);
-          box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+          transform: scale(0.98);
         }
 
         .navbar-container {
-          max-width: 1400px;
-          margin: 0 auto;
-          padding: 0 2rem;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          height: 80px;
+          padding: 12px 30px;
           gap: 2rem;
         }
 
@@ -80,7 +90,7 @@ export default function Navbar() {
         }
 
         .navbar-logo:hover {
-          transform: scale(1.02);
+          transform: scale(1.05);
         }
 
         .logo-text {
@@ -90,8 +100,8 @@ export default function Navbar() {
         }
 
         .logo-main {
-          font-size: 1.4rem;
-          font-weight: 700;
+          font-size: 1.3rem;
+          font-weight: 800;
           color: #1a1a1a;
           letter-spacing: -0.5px;
         }
@@ -104,10 +114,10 @@ export default function Navbar() {
         }
 
         .logo-tagline {
-          font-size: 0.65rem;
+          font-size: 0.6rem;
           font-weight: 600;
           color: #666;
-          letter-spacing: 2px;
+          letter-spacing: 1.8px;
           text-transform: uppercase;
           margin-top: 2px;
         }
@@ -118,7 +128,7 @@ export default function Navbar() {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 2rem;
+          gap: 28px;
         }
 
         .nav-link {
@@ -126,7 +136,7 @@ export default function Navbar() {
           color: #1a1a1a;
           text-decoration: none;
           font-size: 0.95rem;
-          font-weight: 500;
+          font-weight: 600;
           letter-spacing: 0.3px;
           transition: color 0.3s ease;
           padding: 0.5rem 0;
@@ -139,8 +149,8 @@ export default function Navbar() {
           left: 0;
           width: 0;
           height: 2px;
-          background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
-          transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          background: linear-gradient(90deg, #7C3AED, #A855F7);
+          transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .nav-link:hover {
@@ -156,41 +166,51 @@ export default function Navbar() {
           flex: 0 0 auto;
           display: flex;
           align-items: center;
-          gap: 0.75rem;
+          gap: 12px;
         }
 
         .btn-campaign {
-          padding: 0.75rem 1.75rem;
-          background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
-          color: white;
+          padding: 10px 24px;
+          color: #1a1a1a;
           text-decoration: none;
           font-size: 0.95rem;
           font-weight: 600;
-          border-radius: 12px;
           border: none;
+          background: transparent;
           cursor: pointer;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
+          transition: all 0.3s ease;
           letter-spacing: 0.3px;
+          position: relative;
+        }
+
+        .btn-campaign::after {
+          content: '';
+          position: absolute;
+          bottom: 8px;
+          left: 24px;
+          right: 24px;
+          height: 2px;
+          background: linear-gradient(90deg, #7C3AED, #A855F7);
+          transform: scaleX(0);
+          transition: transform 0.3s ease;
         }
 
         .btn-campaign:hover {
-          transform: translateY(-2px) scale(1.02);
-          box-shadow: 0 6px 20px rgba(124, 58, 237, 0.35);
+          color: #7C3AED;
         }
 
-        .btn-campaign:active {
-          transform: translateY(0) scale(0.98);
+        .btn-campaign:hover::after {
+          transform: scaleX(1);
         }
 
         .btn-login {
-          padding: 0.75rem 1.75rem;
-          background: #1a1a1a;
+          padding: 10px 20px;
+          background: #111;
           color: white;
           text-decoration: none;
           font-size: 0.95rem;
           font-weight: 600;
-          border-radius: 12px;
+          border-radius: 14px;
           border: none;
           cursor: pointer;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -198,13 +218,13 @@ export default function Navbar() {
         }
 
         .btn-login:hover {
-          background: #333;
-          transform: translateY(-2px) scale(1.02);
-          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+          background: #1a1a1a;
+          transform: scale(1.05);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
         }
 
         .btn-login:active {
-          transform: translateY(0) scale(0.98);
+          transform: scale(0.98);
         }
 
         /* Mobile Menu Toggle */
@@ -246,20 +266,24 @@ export default function Navbar() {
         /* Mobile Menu */
         .mobile-menu {
           position: fixed;
-          top: 80px;
-          left: 0;
-          right: 0;
+          top: 110px;
+          left: 40px;
+          right: 40px;
           background: rgba(255, 255, 255, 0.98);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
           padding: 2rem;
-          transform: translateY(-100%);
+          border-radius: 30px;
+          transform: translateY(-20px);
           opacity: 0;
           visibility: hidden;
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-          max-height: calc(100vh - 80px);
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+          max-height: calc(100vh - 140px);
           overflow-y: auto;
+          border: 1px solid rgba(0, 0, 0, 0.08);
+          max-width: 1400px;
+          margin: 0 auto;
         }
 
         .mobile-menu.open {
@@ -279,9 +303,9 @@ export default function Navbar() {
           color: #1a1a1a;
           text-decoration: none;
           font-size: 1.1rem;
-          font-weight: 500;
+          font-weight: 600;
           padding: 1rem;
-          border-radius: 10px;
+          border-radius: 15px;
           transition: all 0.3s ease;
           letter-spacing: 0.3px;
         }
@@ -298,7 +322,18 @@ export default function Navbar() {
           gap: 1rem;
         }
 
-        .mobile-actions .btn-campaign,
+        .mobile-actions .btn-campaign {
+          width: 100%;
+          text-align: center;
+          padding: 1rem;
+          background: rgba(124, 58, 237, 0.08);
+          border-radius: 15px;
+        }
+
+        .mobile-actions .btn-campaign::after {
+          display: none;
+        }
+
         .mobile-actions .btn-login {
           width: 100%;
           text-align: center;
@@ -308,7 +343,7 @@ export default function Navbar() {
         /* Responsive */
         @media (max-width: 1024px) {
           .navbar-nav {
-            gap: 1.5rem;
+            gap: 20px;
           }
 
           .nav-link {
@@ -317,15 +352,20 @@ export default function Navbar() {
 
           .btn-campaign,
           .btn-login {
-            padding: 0.7rem 1.5rem;
+            padding: 9px 18px;
             font-size: 0.9rem;
           }
         }
 
         @media (max-width: 768px) {
+          .floating-navbar {
+            top: 15px;
+            left: 20px;
+            right: 20px;
+          }
+
           .navbar-container {
-            height: 70px;
-            padding: 0 1.5rem;
+            padding: 10px 20px;
           }
 
           .navbar-nav,
@@ -342,18 +382,25 @@ export default function Navbar() {
           }
 
           .logo-tagline {
-            font-size: 0.6rem;
+            font-size: 0.55rem;
           }
 
           .mobile-menu {
-            top: 70px;
-            max-height: calc(100vh - 70px);
+            top: 95px;
+            left: 20px;
+            right: 20px;
           }
         }
 
         @media (max-width: 480px) {
+          .floating-navbar {
+            top: 10px;
+            left: 15px;
+            right: 15px;
+          }
+
           .navbar-container {
-            padding: 0 1rem;
+            padding: 8px 18px;
           }
 
           .logo-main {
@@ -361,18 +408,29 @@ export default function Navbar() {
           }
 
           .logo-tagline {
-            font-size: 0.55rem;
+            font-size: 0.5rem;
             letter-spacing: 1.5px;
+          }
+
+          .mobile-toggle span {
+            width: 22px;
+          }
+
+          .mobile-menu {
+            top: 85px;
+            left: 15px;
+            right: 15px;
+            padding: 1.5rem;
           }
         }
 
         /* Smooth scrolling offset for fixed navbar */
         html {
-          scroll-padding-top: 100px;
+          scroll-padding-top: 120px;
         }
       `}</style>
 
-      <nav className={`modern-navbar ${isScrolled ? 'scrolled' : ''}`}>
+      <nav className={`floating-navbar ${isScrolled ? 'scrolled' : ''}`}>
         <div className="navbar-container">
           {/* Logo */}
           <Link href="/" className="navbar-logo">
