@@ -43,6 +43,15 @@ select:focus {
   box-shadow: none;
 }
 
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
 body {
   margin: 0;
   padding: 0;
