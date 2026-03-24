@@ -216,7 +216,7 @@ export default function Navbar() {
           text-decoration: none;
           font-size: 0.95rem;
           font-weight: 600;
-          border-radius: 14px;
+          border-radius: 8px;
           border: none;
           cursor: pointer;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -467,8 +467,7 @@ export default function Navbar() {
           <div className="navbar-nav">
             <Link href="/" className="nav-link">Home</Link>
             <Link href="/services" className="nav-link">Services</Link>
-            <Link href="/testimonials" className="nav-link">Testimonials</Link>
-            <Link href="/blog" className="nav-link">Blog</Link>
+            <Link href="/testimonials" className="nav-link">Projects</Link>
             <Link href="/contact" className="nav-link">Contact</Link>
             <Link href="/about" className="nav-link">About Us</Link>
           </div>
@@ -501,8 +500,7 @@ export default function Navbar() {
         <div className="mobile-nav-links">
           <Link href="/" className="mobile-nav-link" onClick={closeMobileMenu}>Home</Link>
           <Link href="/services" className="mobile-nav-link" onClick={closeMobileMenu}>Services</Link>
-          <Link href="/testimonials" className="mobile-nav-link" onClick={closeMobileMenu}>Testimonials</Link>
-          <Link href="/blog" className="mobile-nav-link" onClick={closeMobileMenu}>Blog</Link>
+          <Link href="/testimonials" className="mobile-nav-link" onClick={closeMobileMenu}>Projects</Link>
           <Link href="/contact" className="mobile-nav-link" onClick={closeMobileMenu}>Contact</Link>
           <Link href="/about" className="mobile-nav-link" onClick={closeMobileMenu}>About Us</Link>
         </div>

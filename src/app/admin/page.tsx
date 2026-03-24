@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Home, Users, LogOut, MessageSquare, Briefcase, TrendingUp, Activity, Clock, CheckCircle, Star, Layers, MapPin, Phone, Mail, ShieldCheck, BookOpen, Menu, X } from 'lucide-react';
+import { Home, Users, LogOut, MessageSquare, Briefcase, TrendingUp, Activity, Clock, CheckCircle, Layers, MapPin, Phone, Mail, ShieldCheck, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -243,18 +243,8 @@ export default function AdminPage() {
                             className="nav-item" 
                             style={getNavItemStyle('/admin/testimonials')}
                         >
-                            <Star size={22} color={getNavIconColor('/admin/testimonials')} /> 
-                            <span style={getNavTextStyle('/admin/testimonials')}>Testimonials</span>
-                        </motion.div>
-                    </Link>
-                    <Link href="/admin/blog" style={{ textDecoration: 'none' }} onClick={() => setIsMobileMenuOpen(false)}>
-                        <motion.div 
-                            whileHover={{ x: 5, background: 'rgba(255, 255, 255, 0.05)' }}
-                            className="nav-item" 
-                            style={getNavItemStyle('/admin/blog')}
-                        >
-                            <BookOpen size={22} color={getNavIconColor('/admin/blog')} /> 
-                            <span style={getNavTextStyle('/admin/blog')}>Blog & Resources</span>
+                            <Layers size={22} color={getNavIconColor('/admin/testimonials')} /> 
+                            <span style={getNavTextStyle('/admin/testimonials')}>Projects</span>
                         </motion.div>
                     </Link>
                     <Link href="/admin/newsletter" style={{ textDecoration: 'none' }} onClick={() => setIsMobileMenuOpen(false)}>

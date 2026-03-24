@@ -1,603 +1,547 @@
 "use client";
 
-import { motion, Variants } from 'framer-motion';
-import { Star, Quote, Award, Users, TrendingUp, CheckCircle, Building2, Sparkles, ShieldCheck, Clock, Headphones, DollarSign, BadgeCheck, Zap } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Filter } from 'lucide-react';
 import Link from 'next/link';
+import { useState } from 'react';
 
-interface Testimonial {
-    _id: string;
-    name: string;
-    company: string;
-    role: string;
-    message: string;
-    rating: number;
-    createdAt: string;
-}
-
-const fadeInUp: Variants = {
-    hidden: { opacity: 0, y: 60 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
 
-const fadeInDown: Variants = {
-    hidden: { opacity: 0, y: -40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+  }
 };
 
-const scaleIn: Variants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } }
+const categories = ['Billboards', 'Retail Signage', 'Vehicle Branding', 'Campaigns'];
+
+const projectsByCategory = {
+  'Billboards': {
+    title: 'Billboards',
+    description: 'High-impact outdoor displays placed in high-traffic locations, designed to capture attention and deliver maximum visibility.',
+    images: [
+      { title: 'DIOR Luxury Billboard', image: 'https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&q=80' },
+      { title: 'Times Square LED Display', image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80' },
+      { title: 'Downtown Billboard', image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80' },
+      { title: 'Highway Billboard', image: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&q=80' }
+    ]
+  },
+  'Retail Signage': {
+    title: 'Retail Signage',
+    description: 'Premium storefront solutions that enhance brand presence at retail locations, attracting customers and building brand identity.',
+    images: [
+      { title: 'Luxury Store Front', image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80' },
+      { title: 'Mall Signage', image: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=800&q=80' },
+      { title: 'Retail Display', image: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800&q=80' },
+      { title: 'Shop Window', image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=800&q=80' }
+    ]
+  },
+  'Vehicle Branding': {
+    title: 'Vehicle Branding',
+    description: 'Mobile advertising solutions turning vehicles into powerful marketing tools, reaching audiences wherever they go.',
+    images: [
+      { title: 'Fleet Wrapping', image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80' },
+      { title: 'Delivery Van Branding', image: 'https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=800&q=80' },
+      { title: 'Bus Advertisement', image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80' },
+      { title: 'Car Wrap Design', image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&q=80' }
+    ]
+  },
+  'Campaigns': {
+    title: 'Campaign Solutions',
+    description: 'End-to-end campaign management delivering measurable results, from strategy to execution across multiple channels.',
+    images: [
+      { title: 'Corporate Campaign', image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80' },
+      { title: 'Brand Launch', image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80' },
+      { title: 'Multi-Channel Campaign', image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80' },
+      { title: 'Event Marketing', image: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&q=80' }
+    ]
+  }
 };
 
-const staggerContainer: Variants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
-};
+export default function ProjectsPage() {
+  const [activeCategory, setActiveCategory] = useState('Billboards');
 
-export default function TestimonialsPage() {
-    const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        fetchTestimonials();
-    }, []);
-
-    const fetchTestimonials = async () => {
-        try {
-            const response = await fetch('/api/testimonials');
-            const data = await response.json();
-            setTestimonials(data.testimonials || []);
-        } catch (error) {
-            console.error('Error fetching testimonials:', error);
+  return (
+    <>
+      <style jsx global>{`
+        * {
+          scrollbar-width: none;
+          -ms-overflow-style: none;
         }
-        setIsLoading(false);
-    };
 
-    // Calculate average rating
-    const averageRating = testimonials.length > 0 
-        ? (testimonials.reduce((sum, t) => sum + t.rating, 0) / testimonials.length).toFixed(1)
-        : '0.0';
+        *::-webkit-scrollbar {
+          display: none;
+        }
 
-    return (
-        <>
-            {/* Hero Section */}
-            <section className="hero-section container" style={{ minHeight: '60vh', paddingTop: '10rem', paddingBottom: '5rem', position: 'relative', overflow: 'hidden' }}>
-                {/* Background Image */}
-                <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-                    <img 
-                        src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1600&q=80"
-                        alt="AI Advertising Background"
-                        style={{ 
-                            width: '100%', 
-                            height: '100%', 
-                            objectFit: 'cover',
-                            opacity: 0.15,
-                            filter: 'brightness(0.8) contrast(1.2) grayscale(0.2)'
-                        }}
-                    />
-                    <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, transparent 0%, var(--color-bg-start) 85%)' }} />
+        .projects-page {
+          background: #f5f5f5;
+          min-height: 100vh;
+        }
+
+        .projects-hero {
+          position: relative;
+          height: 60vh;
+          min-height: 500px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          margin-top: 80px;
+        }
+
+        .projects-hero-bg {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+        }
+
+        .projects-hero-bg img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: brightness(0.6);
+        }
+
+        .projects-hero-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.3) 100%);
+          z-index: 1;
+        }
+
+        .projects-hero-content {
+          position: relative;
+          z-index: 2;
+          text-align: center;
+          color: white;
+          max-width: 900px;
+          padding: 2rem;
+        }
+
+        .projects-hero-title {
+          font-size: clamp(3rem, 8vw, 5rem);
+          font-weight: 900;
+          line-height: 1.1;
+          margin-bottom: 1rem;
+          letter-spacing: -2px;
+        }
+
+        .projects-hero-subtitle {
+          font-size: clamp(1rem, 2vw, 1.2rem);
+          color: rgba(255,255,255,0.9);
+          max-width: 600px;
+          margin: 0 auto;
+          line-height: 1.6;
+        }
+
+        .projects-content {
+          padding: 4rem 2rem;
+          max-width: 1400px;
+          margin: 0 auto;
+        }
+
+        .projects-header {
+          text-align: center;
+          margin-bottom: 3rem;
+        }
+
+        .projects-header h2 {
+          font-size: clamp(2rem, 5vw, 3rem);
+          font-weight: 900;
+          margin-bottom: 1rem;
+          color: #1a1a1a;
+        }
+
+        .projects-header h2 .italic {
+          font-style: italic;
+          color: #666;
+        }
+
+        .projects-header p {
+          font-size: 1rem;
+          color: #666;
+          max-width: 700px;
+          margin: 0 auto;
+          line-height: 1.8;
+        }
+
+        .projects-filters {
+          display: flex;
+          gap: 1rem;
+          justify-content: center;
+          flex-wrap: wrap;
+          margin-bottom: 4rem;
+        }
+
+        .filter-button {
+          padding: 0.75rem 1.8rem;
+          border-radius: 8px;
+          border: 2px solid #e0e0e0;
+          background: white;
+          color: #666;
+          font-weight: 600;
+          font-size: 0.95rem;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+
+        .filter-button:hover {
+          border-color: #1a3a52;
+          color: #1a3a52;
+        }
+
+        .filter-button.active {
+          background: #1a3a52;
+          border-color: #1a3a52;
+          color: white;
+        }
+
+        .category-section {
+          display: grid;
+          grid-template-columns: 1fr 1.5fr;
+          gap: 3rem;
+          margin-bottom: 5rem;
+          align-items: start;
+        }
+
+        .category-info {
+          background: white;
+          padding: 3rem;
+          border-radius: 20px;
+          box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+          position: sticky;
+          top: 120px;
+        }
+
+        .category-info h3 {
+          font-size: 2.5rem;
+          font-weight: 900;
+          color: #1a1a1a;
+          margin-bottom: 1.5rem;
+          line-height: 1.2;
+        }
+
+        .category-info p {
+          font-size: 1rem;
+          color: #666;
+          line-height: 1.8;
+        }
+
+        .category-images {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.5rem;
+        }
+
+        .category-image {
+          position: relative;
+          height: 300px;
+          border-radius: 16px;
+          overflow: hidden;
+          cursor: pointer;
+          transition: all 0.4s ease;
+        }
+
+        .category-image:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .category-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.4s ease;
+        }
+
+        .category-image:hover img {
+          transform: scale(1.1);
+        }
+
+        .image-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+          display: flex;
+          align-items: flex-end;
+          padding: 1.5rem;
+          color: white;
+        }
+
+        .image-title {
+          font-size: 1.1rem;
+          font-weight: 700;
+        }
+
+        .project-overview {
+          position: relative;
+          padding: 6rem 2rem;
+          color: white;
+          text-align: center;
+          overflow: hidden;
+        }
+
+        .project-overview::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80');
+          background-size: cover;
+          background-position: center;
+          filter: brightness(0.3);
+          z-index: 0;
+        }
+
+        .project-overview-content {
+          position: relative;
+          z-index: 1;
+        }
+
+        .project-overview h2 {
+          font-size: clamp(2rem, 5vw, 3rem);
+          font-weight: 900;
+          margin-bottom: 1.5rem;
+        }
+
+        .project-overview p {
+          font-size: 1.1rem;
+          color: rgba(255,255,255,0.8);
+          max-width: 800px;
+          margin: 0 auto 2rem auto;
+          line-height: 1.8;
+        }
+
+        .cta-button {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.8rem;
+          padding: 1rem 2.5rem;
+          background: white;
+          color: #1a1a1a;
+          font-weight: 700;
+          border-radius: 50px;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          font-size: 1rem;
+        }
+
+        .cta-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(255,255,255,0.3);
+        }
+
+        @media (max-width: 768px) {
+          .projects-hero {
+            margin-top: 60px;
+            height: 50vh;
+          }
+
+          .category-section {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+          }
+
+          .category-info {
+            position: relative;
+            top: 0;
+            padding: 2rem;
+          }
+
+          .category-info h3 {
+            font-size: 2rem;
+          }
+
+          .category-images {
+            grid-template-columns: 1fr;
+          }
+
+          .category-image {
+            height: 250px;
+          }
+
+          .projects-filters {
+            gap: 0.5rem;
+          }
+
+          .filter-button {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.85rem;
+          }
+        }
+      `}</style>
+
+      <div className="projects-page">
+        {/* Hero Section */}
+        <section className="projects-hero">
+          <div className="projects-hero-bg">
+            <img 
+              src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1600&q=80" 
+              alt="Our Projects" 
+            />
+          </div>
+          <div className="projects-hero-overlay"></div>
+          <motion.div 
+            className="projects-hero-content"
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+          >
+            <motion.h1 className="projects-hero-title" variants={fadeInUp}>
+              Campaigns That<br /><span style={{ color: '#FF6B35' }}>Make an Impact</span>
+            </motion.h1>
+            <motion.p className="projects-hero-subtitle" variants={fadeInUp}>
+              Real campaigns. Real impact.
+            </motion.p>
+          </motion.div>
+        </section>
+
+        {/* Projects Content */}
+        <section className="projects-content">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            <motion.div className="projects-header" variants={fadeInUp}>
+              <h2>
+                Our <br />
+                <span className="italic">Projects</span>
+              </h2>
+              <p>
+                Explore real-world advertising campaigns crafted to maximize visibility, attract attention, and deliver strong brand impact across prime locations.
+              </p>
+            </motion.div>
+
+            {/* Category Filters */}
+            <motion.div className="projects-filters" variants={fadeInUp}>
+              {categories.map((category, index) => (
+                <button
+                  key={index}
+                  className={`filter-button ${activeCategory === category ? 'active' : ''}`}
+                  onClick={() => setActiveCategory(category)}
+                >
+                  {category}
+                </button>
+              ))}
+            </motion.div>
+
+            {/* Category Section */}
+            <motion.div className="category-section" variants={staggerContainer}>
+              <motion.div className="category-info" variants={fadeInUp}>
+                <h3>{projectsByCategory[activeCategory].title}</h3>
+                <p>{projectsByCategory[activeCategory].description}</p>
+              </motion.div>
+
+              <motion.div className="category-images" variants={staggerContainer}>
+                {projectsByCategory[activeCategory].images.map((img, index) => (
+                  <motion.div
+                    key={index}
+                    className="category-image"
+                    variants={fadeInUp}
+                  >
+                    <img src={img.image} alt={img.title} />
+                    <div className="image-overlay">
+                      <div className="image-title">{img.title}</div>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </section>
+
+        {/* Project Overview CTA */}
+        <motion.section 
+          className="project-overview"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+        >
+          <div className="project-overview-content">
+            <motion.h2 variants={fadeInUp}>Project Overview</motion.h2>
+            <motion.p variants={fadeInUp}>
+              A strategically placed outdoor campaign built to maximize visibility, attract attention, and deliver a strong brand impact across prime commercial locations.
+            </motion.p>
+            <motion.div variants={fadeInUp}>
+              <Link href="/contact" className="cta-button">
+                Get This for Your Brand <ArrowRight size={20} />
+              </Link>
+            </motion.div>
+          </div>
+        </motion.section>
+
+        {/* Footer */}
+        <footer style={{ background: '#1a1a1a', color: 'white', padding: '6rem 2rem 4rem 2rem' }}>
+          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '3.5rem', marginBottom: '3.5rem' }}>
+              {/* Brand Section */}
+              <div>
+                <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>
+                  <span style={{ color: '#7C3AED' }}>One</span> Click
+                </h3>
+                <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '1.5rem', lineHeight: '1.8', fontSize: '1rem' }}>
+                  Premium advertising solutions across the UAE. Delivering high-impact visual communication services.
+                </p>
+                <div style={{ display: 'flex', gap: '1rem' }}>
+                  <a href="https://www.facebook.com/oneclickadv" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.8)', transition: 'color 0.3s' }}>
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                  </a>
+                  <a href="https://www.instagram.com/oneclickadv" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.8)', transition: 'color 0.3s' }}>
+                    <svg width="24" height="24" fill="currentColor" stroke="currentColor" strokeWidth="0" viewBox="0 0 24 24"><path stroke="none" d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.25a1.25 1.25 0 0 0-2.5 0 1.25 1.25 0 0 0 2.5 0zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>
+                  </a>
+                  <a href="https://twitter.com/oneclickadv" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.8)', transition: 'color 0.3s' }}>
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                  </a>
                 </div>
+              </div>
 
-                {/* Background Decoration */}
-                <div style={{ position: 'absolute', top: '10%', right: '5%', width: '300px', height: '300px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(124, 58, 237, 0.08), transparent)', filter: 'blur(60px)', zIndex: 1 }} />
-                <div style={{ position: 'absolute', bottom: '10%', left: '5%', width: '250px', height: '250px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(167, 139, 250, 0.08), transparent)', filter: 'blur(60px)', zIndex: 1 }} />
+              {/* Services Section */}
+              <div>
+                <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>Services</h4>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                  <li><Link href="/services#branding" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Branding</Link></li>
+                  <li><Link href="/services#graphics" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Graphics</Link></li>
+                  <li><Link href="/services#signage" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Signage</Link></li>
+                  <li><Link href="/services#vehicle" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Vehicle Wraps</Link></li>
+                </ul>
+              </div>
 
-                <motion.div initial="hidden" animate="visible" variants={staggerContainer} style={{ textAlign: 'center', maxWidth: '900px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
-                    <motion.div variants={fadeInDown} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '1.5rem', background: 'rgba(124, 58, 237, 0.1)', padding: '0.6rem 1.5rem', borderRadius: '50px', border: '1px solid rgba(124, 58, 237, 0.2)' }}>
-                        <Sparkles size={18} color="var(--color-primary)" />
-                        <span style={{ fontSize: '0.85rem', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--color-primary)' }}>CLIENT TESTIMONIALS</span>
-                    </motion.div>
+              {/* Company Section */}
+              <div>
+                <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>Company</h4>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                  <li><Link href="/about" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>About</Link></li>
+                  <li><Link href="/services" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Services</Link></li>
+                  <li><Link href="/contact" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Contact</Link></li>
+                </ul>
+              </div>
 
-                    <motion.h1 variants={fadeInUp} className="hero-title" style={{ fontFamily: "'Outfit', sans-serif", lineHeight: '1.1', fontSize: 'clamp(2.8rem, 6vw, 5rem)', fontWeight: 800, letterSpacing: '-0.02em', marginBottom: '1.5rem' }}>
-                        What Our <span className="text-gradient">Clients</span><br />Say About Us
-                    </motion.h1>
-                    
-                    <motion.p variants={fadeInUp} style={{ color: 'var(--color-text-muted)', fontSize: '1.2rem', lineHeight: '1.8', maxWidth: '700px', margin: '0 auto 3rem auto', fontFamily: "'Manrope', sans-serif" }}>
-                        Trusted by leading brands across the UAE for exceptional quality, innovation, and service excellence.
-                    </motion.p>
+              {/* Support Section */}
+              <div>
+                <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>Support</h4>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                  <li><a href="tel:+97100000000" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>+971 00 000 0000</a></li>
+                  <li><a href="mailto:hello@oneclickadv.ae" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>hello@oneclickadv.ae</a></li>
+                  <li><Link href="/contact" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Terms & Conditions</Link></li>
+                  <li><Link href="/contact" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Privacy Policy</Link></li>
+                </ul>
+              </div>
+            </div>
 
-                    {/* Stats Row */}
-                    <motion.div variants={fadeInUp} style={{ display: 'flex', gap: '3rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-                        <div style={{ textAlign: 'center' }}>
-                            <div style={{ fontSize: '3rem', fontWeight: 900, color: 'var(--color-primary)', marginBottom: '0.5rem' }}>7</div>
-                            <div style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>Emirates Coverage</div>
-                        </div>
-                        <div style={{ textAlign: 'center' }}>
-                            <div style={{ fontSize: '3rem', fontWeight: 900, color: 'var(--color-primary)', marginBottom: '0.5rem' }}>15+</div>
-                            <div style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>Industry Sectors</div>
-                        </div>
-                        <div style={{ textAlign: 'center' }}>
-                            <div style={{ fontSize: '3rem', fontWeight: 900, color: 'var(--color-primary)', marginBottom: '0.5rem' }}>50+</div>
-                            <div style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>Cities Served</div>
-                        </div>
-                    </motion.div>
-                </motion.div>
-            </section>
-
-            {/* Trust Indicators */}
-            <section className="container" style={{ marginBottom: '5rem' }}>
-                <motion.div 
-                    initial="hidden" 
-                    whileInView="visible" 
-                    viewport={{ once: true }} 
-                    variants={staggerContainer}
-                    style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}
-                >
-                    {[
-                        { icon: <Award size={32} />, title: 'Award Winning', desc: 'Recognized for excellence in outdoor advertising' },
-                        { icon: <Users size={32} />, title: '150+ Brands', desc: 'Serving top companies across the UAE' },
-                        { icon: <TrendingUp size={32} />, title: '2500+ Projects', desc: 'Successfully delivered with precision' },
-                        { icon: <CheckCircle size={32} />, title: '48Hr Delivery', desc: 'Fast turnaround without compromising quality' }
-                    ].map((item, i) => (
-                        <motion.div
-                            key={i}
-                            variants={scaleIn}
-                            whileHover={{ y: -5, boxShadow: '0 15px 30px rgba(124, 58, 237, 0.15)' }}
-                            className="glass-card"
-                            style={{
-                                padding: '2rem',
-                                textAlign: 'center',
-                                borderRadius: '20px',
-                                background: '#000000',
-                                border: '1px solid rgba(255, 255, 255, 0.2)',
-                                transition: 'all 0.3s ease'
-                            }}
-                        >
-                            <div style={{
-                                width: '70px',
-                                height: '70px',
-                                borderRadius: '16px',
-                                background: 'linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(167, 139, 250, 0.1))',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                margin: '0 auto 1.5rem auto',
-                                color: 'var(--color-primary)',
-                                border: '2px solid rgba(124, 58, 237, 0.2)'
-                            }}>
-                                {item.icon}
-                            </div>
-                            <h3 style={{ fontSize: '1.3rem', fontWeight: 700, marginBottom: '0.5rem', color: '#ffffff' }}>{item.title}</h3>
-                            <p style={{ color: '#cccccc', fontSize: '0.95rem', lineHeight: '1.6' }}>{item.desc}</p>
-                        </motion.div>
-                    ))}
-                </motion.div>
-            </section>
-
-            {/* Testimonials Grid */}
-            <section className="section container" style={{ paddingTop: '3rem', paddingBottom: '5rem' }}>
-                <motion.div 
-                    initial="hidden" 
-                    whileInView="visible" 
-                    viewport={{ once: true }} 
-                    variants={fadeInDown}
-                    style={{ textAlign: 'center', marginBottom: '4rem' }}
-                >
-                    <h2 className="section-title" style={{ marginBottom: '1rem', fontFamily: "'Syne', sans-serif", fontWeight: 700 }}>
-                        Client <span className="text-gradient">Success Stories</span>
-                    </h2>
-                    <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', maxWidth: '700px', margin: '0 auto', fontFamily: "'Space Grotesk', sans-serif" }}>
-                        Real feedback from real clients who have experienced our commitment to excellence
-                    </p>
-                </motion.div>
-
-                {isLoading ? (
-                    <div style={{ textAlign: 'center', padding: '4rem' }}>
-                        <div style={{ 
-                            width: '60px', 
-                            height: '60px', 
-                            border: '5px solid rgba(124, 58, 237, 0.2)',
-                            borderTop: '5px solid var(--color-primary)',
-                            borderRadius: '50%',
-                            margin: '0 auto 1.5rem',
-                            animation: 'spin 1s linear infinite'
-                        }} />
-                        <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', fontWeight: 600 }}>Loading testimonials...</p>
-                    </div>
-                ) : testimonials.length === 0 ? (
-                    <motion.div 
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="glass-card" 
-                        style={{ 
-                            padding: '5rem 2rem', 
-                            textAlign: 'center',
-                            maxWidth: '700px',
-                            margin: '0 auto',
-                            background: 'white'
-                        }}
-                    >
-                        <Quote size={80} color="var(--color-primary)" style={{ margin: '0 auto 2rem', opacity: 0.2 }} />
-                        <h3 style={{ fontSize: '2rem', marginBottom: '1rem', color: 'var(--color-text-main)', fontWeight: 700 }}>No Testimonials Yet</h3>
-                        <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', lineHeight: '1.8', marginBottom: '2rem' }}>
-                            We're collecting feedback from our valued clients. Check back soon to see what they have to say about our services.
-                        </p>
-                        <Link href="/contact" className="btn btn-primary">
-                            Be Our First Reviewer
-                        </Link>
-                    </motion.div>
-                ) : (
-                    <motion.div 
-                        initial="hidden" 
-                        whileInView="visible" 
-                        viewport={{ once: true, margin: "-50px" }} 
-                        variants={staggerContainer}
-                        style={{
-                            display: 'grid',
-                            gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))',
-                            gap: '2rem'
-                        }}
-                    >
-                        {testimonials.map((testimonial, i) => (
-                            <motion.div
-                                key={testimonial._id}
-                                variants={fadeInUp}
-                                whileHover={{ y: -10, boxShadow: '0 25px 50px rgba(124, 58, 237, 0.15)' }}
-                                className="glass-card"
-                                style={{
-                                    padding: '2.5rem',
-                                    borderRadius: '24px',
-                                    transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                                    border: '1px solid rgba(255, 255, 255, 0.2)',
-                                    background: '#000000',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    position: 'relative',
-                                    overflow: 'hidden'
-                                }}
-                            >
-                                {/* Quote Icon Background */}
-                                <div style={{
-                                    position: 'absolute',
-                                    top: '-30px',
-                                    right: '-30px',
-                                    width: '140px',
-                                    height: '140px',
-                                    borderRadius: '50%',
-                                    background: 'linear-gradient(135deg, rgba(124, 58, 237, 0.06), rgba(167, 139, 250, 0.06))',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center'
-                                }}>
-                                    <Quote size={70} color="var(--color-primary)" style={{ opacity: 0.12 }} />
-                                </div>
-
-                                {/* Star Rating */}
-                                <div style={{ display: 'flex', gap: '0.4rem', marginBottom: '1.5rem', position: 'relative', zIndex: 2 }}>
-                                    {[...Array(5)].map((_, starIndex) => (
-                                        <motion.div
-                                            key={starIndex}
-                                            initial={{ opacity: 0, scale: 0 }}
-                                            animate={{ opacity: 1, scale: 1 }}
-                                            transition={{ delay: starIndex * 0.1 }}
-                                        >
-                                            <Star 
-                                                size={24} 
-                                                fill={starIndex < testimonial.rating ? 'var(--color-accent)' : 'none'}
-                                                color={starIndex < testimonial.rating ? 'var(--color-accent)' : '#e2e8f0'}
-                                                style={{ transition: 'all 0.3s' }}
-                                            />
-                                        </motion.div>
-                                    ))}
-                                </div>
-
-                                {/* Testimonial Message */}
-                                <p style={{ 
-                                    color: '#ffffff', 
-                                    fontSize: '1.05rem', 
-                                    lineHeight: '1.8', 
-                                    flex: 1, 
-                                    marginBottom: '2rem',
-                                    fontStyle: 'italic',
-                                    position: 'relative',
-                                    zIndex: 2,
-                                    fontWeight: 500
-                                }}>
-                                    "{testimonial.message}"
-                                </p>
-
-                                {/* Client Info */}
-                                <div style={{ 
-                                    paddingTop: '1.5rem', 
-                                    borderTop: '2px solid rgba(124, 58, 237, 0.1)',
-                                    position: 'relative',
-                                    zIndex: 2
-                                }}>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
-                                        <div style={{
-                                            width: '50px',
-                                            height: '50px',
-                                            borderRadius: '50%',
-                                            background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            color: 'white',
-                                            fontWeight: 800,
-                                            fontSize: '1.2rem',
-                                            flexShrink: 0
-                                        }}>
-                                            {testimonial.name.charAt(0)}
-                                        </div>
-                                        <div>
-                                            <h4 style={{ 
-                                                fontSize: '1.2rem', 
-                                                marginBottom: '0.2rem', 
-                                                color: '#ffffff',
-                                                fontWeight: 700
-                                            }}>
-                                                {testimonial.name}
-                                            </h4>
-                                            <p style={{ 
-                                                color: '#cccccc', 
-                                                fontSize: '0.9rem',
-                                                lineHeight: '1.4'
-                                            }}>
-                                                {testimonial.role}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div style={{
-                                        display: 'inline-flex',
-                                        alignItems: 'center',
-                                        gap: '0.5rem',
-                                        background: 'linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(167, 139, 250, 0.1))',
-                                        padding: '0.5rem 1.2rem',
-                                        borderRadius: '25px',
-                                        border: '1px solid rgba(124, 58, 237, 0.2)'
-                                    }}>
-                                        <Building2 size={16} color="var(--color-primary)" />
-                                        <span style={{ 
-                                            color: 'var(--color-primary)', 
-                                            fontSize: '0.9rem',
-                                            fontWeight: 700
-                                        }}>
-                                            {testimonial.company}
-                                        </span>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                )}
-            </section>
-
-            {/* Why Clients Choose Us */}
-            <section className="section container" style={{ paddingTop: '3rem', paddingBottom: '5rem' }}>
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={fadeInDown}
-                    style={{ textAlign: 'center', marginBottom: '4rem' }}
-                >
-                    <h2 className="section-title" style={{ marginBottom: '1rem', fontFamily: "'Syne', sans-serif", fontWeight: 700 }}>
-                        Why Clients <span className="text-gradient">Choose Us</span>
-                    </h2>
-                    <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', maxWidth: '700px', margin: '0 auto', fontFamily: "'Space Grotesk', sans-serif" }}>
-                        The key factors that make us the preferred choice for outdoor advertising in the UAE
-                    </p>
-                </motion.div>
-
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={staggerContainer}
-                    style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}
-                >
-                    {[
-                        { 
-                            title: 'Quality Assurance', 
-                            desc: 'Premium materials and meticulous attention to detail in every project', 
-                            icon: <ShieldCheck size={32} />,
-                            color: '#7C3AED'
-                        },
-                        { 
-                            title: 'Timely Delivery', 
-                            desc: '48-hour turnaround time with guaranteed on-schedule completion', 
-                            icon: <Clock size={32} />,
-                            color: '#F59E0B'
-                        },
-                        { 
-                            title: 'Expert Team', 
-                            desc: 'Skilled professionals with years of experience in outdoor advertising', 
-                            icon: <Award size={32} />,
-                            color: '#10B981'
-                        },
-                        { 
-                            title: 'Competitive Pricing', 
-                            desc: 'Best value for money without compromising on quality', 
-                            icon: <TrendingUp size={32} />,
-                            color: '#3B82F6'
-                        },
-                        { 
-                            title: 'Full Compliance', 
-                            desc: 'All projects meet UAE regulations and municipality standards', 
-                            icon: <CheckCircle size={32} />,
-                            color: '#EF4444'
-                        },
-                        { 
-                            title: '24/7 Support', 
-                            desc: 'Round-the-clock customer service for all your needs', 
-                            icon: <Headphones size={32} />,
-                            color: '#8B5CF6'
-                        }
-                    ].map((item, i) => (
-                        <motion.div
-                            key={i}
-                            variants={fadeInUp}
-                            whileHover={{ y: -8, boxShadow: '0 20px 40px rgba(124, 58, 237, 0.12)' }}
-                            style={{
-                                padding: '2.5rem',
-                                borderRadius: '20px',
-                                background: '#000000',
-                                border: '1px solid rgba(255, 255, 255, 0.2)',
-                                transition: 'all 0.3s ease'
-                            }}
-                        >
-                            {/* Simple Icon Container */}
-                            <div style={{
-                                width: '70px',
-                                height: '70px',
-                                borderRadius: '16px',
-                                background: `${item.color}15`,
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                marginBottom: '1.5rem',
-                                color: item.color,
-                                border: `2px solid ${item.color}30`
-                            }}>
-                                {item.icon}
-                            </div>
-
-                            <h3 style={{ 
-                                fontSize: '1.4rem', 
-                                fontWeight: 700, 
-                                marginBottom: '0.8rem', 
-                                color: '#ffffff'
-                            }}>
-                                {item.title}
-                            </h3>
-                            <p style={{ 
-                                color: '#cccccc', 
-                                fontSize: '0.95rem', 
-                                lineHeight: '1.7'
-                            }}>
-                                {item.desc}
-                            </p>
-                        </motion.div>
-                    ))}
-                </motion.div>
-            </section>
-
-            {/* CTA Section */}
-            <section className="section container" style={{ paddingBottom: '8rem' }}>
-                <motion.div 
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="glass-card" 
-                    style={{ 
-                        textAlign: 'center', 
-                        padding: '5rem 2rem', 
-                        background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))',
-                        border: 'none',
-                        position: 'relative',
-                        overflow: 'hidden',
-                        borderRadius: '32px'
-                    }}
-                >
-                    {/* Decorative Elements */}
-                    <div style={{
-                        position: 'absolute',
-                        top: '-100px',
-                        right: '-100px',
-                        width: '350px',
-                        height: '350px',
-                        borderRadius: '50%',
-                        background: 'rgba(255,255,255,0.1)',
-                        filter: 'blur(80px)'
-                    }} />
-                    <div style={{
-                        position: 'absolute',
-                        bottom: '-100px',
-                        left: '-100px',
-                        width: '350px',
-                        height: '350px',
-                        borderRadius: '50%',
-                        background: 'rgba(255,255,255,0.1)',
-                        filter: 'blur(80px)'
-                    }} />
-                    
-                    <div style={{ position: 'relative', zIndex: 2, maxWidth: '800px', margin: '0 auto' }}>
-                        <motion.div
-                            initial={{ scale: 0 }}
-                            whileInView={{ scale: 1 }}
-                            transition={{ type: "spring" as const, stiffness: 200, damping: 15 }}
-                            style={{
-                                width: '80px',
-                                height: '80px',
-                                borderRadius: '50%',
-                                background: 'rgba(255,255,255,0.2)',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                margin: '0 auto 2rem auto',
-                                border: '3px solid rgba(255,255,255,0.3)'
-                            }}
-                        >
-                            <Sparkles size={40} color="white" />
-                        </motion.div>
-
-                        <h2 style={{ 
-                            fontSize: 'clamp(2rem, 4vw, 3rem)', 
-                            marginBottom: '1.5rem', 
-                            color: 'white',
-                            fontFamily: 'var(--font-heading)',
-                            fontWeight: 800,
-                            lineHeight: '1.2'
-                        }}>
-                            Ready to Join Our Happy Clients?
-                        </h2>
-                        <p style={{ 
-                            color: 'rgba(255,255,255,0.95)', 
-                            maxWidth: '650px', 
-                            margin: '0 auto 3rem auto', 
-                            lineHeight: '1.8',
-                            fontSize: '1.15rem'
-                        }}>
-                            Experience the same quality and service that our clients rave about. Let's bring your vision to life with our expert team.
-                        </p>
-                        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-                            <Link href="/contact" style={{ textDecoration: 'none' }}>
-                                <motion.button
-                                    whileHover={{ scale: 1.05, boxShadow: '0 15px 40px rgba(0,0,0,0.3)' }}
-                                    whileTap={{ scale: 0.95 }}
-                                    style={{
-                                        padding: '1.3rem 3.5rem',
-                                        fontSize: '1.1rem',
-                                        fontWeight: 700,
-                                        borderRadius: '14px',
-                                        border: 'none',
-                                        background: 'white',
-                                        color: 'var(--color-primary)',
-                                        cursor: 'pointer',
-                                        boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
-                                        transition: 'all 0.3s ease'
-                                    }}
-                                >
-                                    Get Started Today
-                                </motion.button>
-                            </Link>
-                            <Link href="/services" style={{ textDecoration: 'none' }}>
-                                <motion.button
-                                    whileHover={{ scale: 1.05, background: 'rgba(255,255,255,0.25)' }}
-                                    whileTap={{ scale: 0.95 }}
-                                    style={{
-                                        padding: '1.3rem 3.5rem',
-                                        fontSize: '1.1rem',
-                                        fontWeight: 700,
-                                        borderRadius: '14px',
-                                        border: '2px solid white',
-                                        background: 'rgba(255,255,255,0.15)',
-                                        color: 'white',
-                                        cursor: 'pointer',
-                                        backdropFilter: 'blur(10px)',
-                                        transition: 'all 0.3s ease'
-                                    }}
-                                >
-                                    View Our Services
-                                </motion.button>
-                            </Link>
-                        </div>
-                    </div>
-                </motion.div>
-            </section>
-
-        </>
-    );
+            {/* Footer Bottom */}
+            <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2.5rem', textAlign: 'center', color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem' }}>
+              <span>&copy; 2024 One Click Advertisement. All Rights Reserved.</span>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </>
+  );
 }

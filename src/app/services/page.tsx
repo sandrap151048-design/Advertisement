@@ -22,22 +22,26 @@ const services = [
   {
     title: "Billboards",
     image: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=600&q=80",
-    description: "High-impact outdoor advertising"
+    description: "High-impact outdoor advertising",
+    link: "/services/billboards"
   },
   {
     title: "Retail Signage",
     image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80",
-    description: "Premium storefront solutions"
+    description: "Premium storefront solutions",
+    link: "/services/retail-signage"
   },
   {
     title: "Vehicle Branding",
     image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=80",
-    description: "Mobile advertising solutions"
+    description: "Mobile advertising solutions",
+    link: "/services/vehicle-branding"
   },
   {
     title: "Campaign Solutions",
     image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80",
-    description: "End-to-end campaign management"
+    description: "End-to-end campaign management",
+    link: "/services/campaign-solutions"
   }
 ];
 
@@ -78,19 +82,16 @@ export default function ServicesPage() {
     card.style.setProperty('--mouse-y', `${y}%`);
   };
 
-  const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleCardClick = (e: React.MouseEvent<HTMLDivElement>, link: string) => {
     const card = e.currentTarget;
     
-    // Toggle clicked state
-    if (card.classList.contains('clicked')) {
-      card.classList.remove('clicked');
-    } else {
-      // Remove clicked from all other cards
-      document.querySelectorAll('.service-card.clicked').forEach(c => {
-        c.classList.remove('clicked');
-      });
-      card.classList.add('clicked');
-    }
+    // Add clicked animation
+    card.classList.add('clicked');
+    
+    // Navigate after animation
+    setTimeout(() => {
+      window.location.href = link;
+    }, 400);
   };
 
   return (
@@ -260,8 +261,35 @@ export default function ServicesPage() {
           border-color: rgba(124, 58, 237, 0.4);
         }
 
+        @keyframes cardPulse {
+          0% {
+            transform: scale(1);
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.2), 0 12px 30px rgba(0, 0, 0, 0.2);
+          }
+          50% {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(124, 58, 237, 0.3), 0 15px 40px rgba(0, 0, 0, 0.3);
+          }
+          100% {
+            transform: scale(1);
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.2), 0 12px 30px rgba(0, 0, 0, 0.2);
+          }
+        }
+
         .service-card.clicked::after {
           opacity: 1;
+        }
+
+        @keyframes spotlightPulse {
+          0% {
+            opacity: 0;
+          }
+          50% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 0;
+          }
         }
 
         .service-card img {
@@ -281,7 +309,7 @@ export default function ServicesPage() {
           padding: 2rem;
           color: white;
           z-index: 2;
-          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .service-card:hover .service-overlay {
@@ -298,7 +326,7 @@ export default function ServicesPage() {
           font-size: 1.8rem;
           font-weight: 800;
           margin-bottom: 0.5rem;
-          transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+          transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
           text-shadow: 0 2px 8px rgba(0,0,0,0.5);
           position: relative;
           z-index: 3;
@@ -321,10 +349,25 @@ export default function ServicesPage() {
           letter-spacing: 1px;
         }
 
+        @keyframes titleToCenter {
+          0% {
+            transform: translate(0, 0);
+            font-size: 1.8rem;
+          }
+          50% {
+            transform: translate(0, 0);
+            font-size: 2.8rem;
+          }
+          100% {
+            transform: translate(0, 0);
+            font-size: 1.8rem;
+          }
+        }
+
         .service-desc {
           font-size: 0.95rem;
           color: rgba(255,255,255,0.75);
-          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           position: relative;
           z-index: 3;
         }
@@ -581,7 +624,7 @@ export default function ServicesPage() {
                   variants={fadeInUp}
                   whileHover={{ y: -5 }}
                   onMouseMove={handleCardMouseMove}
-                  onClick={handleCardClick}
+                  onClick={(e) => handleCardClick(e, service.link)}
                 >
                   <img src={service.image} alt={service.title} />
                   <div className="service-overlay">
@@ -710,7 +753,6 @@ export default function ServicesPage() {
                   <li><Link href="/about" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>About</Link></li>
                   <li><Link href="/services" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Services</Link></li>
                   <li><Link href="/contact" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Contact</Link></li>
-                  <li><Link href="/blog" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Blog</Link></li>
                 </ul>
               </div>
 

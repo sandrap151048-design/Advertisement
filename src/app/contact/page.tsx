@@ -1,245 +1,611 @@
 "use client";
 
-import { motion, Variants } from 'framer-motion';
-import { MapPin, Phone, Mail, Globe, Clock, Send, ExternalLink, ShieldCheck } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 import { useState, FormEvent } from 'react';
 
-const fadeInDown: Variants = {
-    hidden: { opacity: 0, y: -60 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7 } }
-};
-const slideDown: Variants = {
-    hidden: { opacity: 0, y: -120 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.9 } }
-};
-const dropIn: Variants = {
-    hidden: { opacity: 0, y: -800 },
-    visible: { opacity: 1, y: 0, transition: { type: "spring" as const, damping: 18, stiffness: 90 } }
-};
-const revealDown: Variants = {
-    hidden: { opacity: 0, clipPath: 'inset(0 0 100% 0)' },
-    visible: { opacity: 1, clipPath: 'inset(0 0 0% 0)', transition: { duration: 0.9 } }
-};
-const bounceInDown: Variants = {
-    hidden: { opacity: 0, y: -200 },
-    visible: { opacity: 1, y: 0, transition: { type: "spring" as const, damping: 10, stiffness: 80 } }
-};
-const staggerContainer: Variants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
 
-const inputStyle = {
-    background: 'rgba(255, 255, 255, 0.1)',
-    border: '1px solid rgba(255, 255, 255, 0.2)',
-    padding: '1rem',
-    borderRadius: '8px',
-    color: '#ffffff' as const,
-    width: '100%',
-    outline: 'none',
-    fontFamily: 'var(--font-body)',
-    fontSize: '1rem',
-    transition: 'border-color 0.3s'
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+  }
 };
 
 export default function ContactPage() {
-    const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitStatus, setSubmitStatus] = useState<{ success?: boolean; message?: string } | null>(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    service: '',
+    location: '',
+    duration: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{ success?: boolean; message?: string } | null>(null);
 
-    const handleSubmit = async (e: FormEvent) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-        setSubmitStatus(null);
-        try {
-            const res = await fetch('/api/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
-            });
-            const data = await res.json();
-            if (res.ok) {
-                setSubmitStatus({ success: true, message: data.message });
-                setFormData({ name: '', email: '', phone: '', message: '' });
-            } else {
-                setSubmitStatus({ success: false, message: data.error || 'Something went wrong.' });
-            }
-        } catch {
-            setSubmitStatus({ success: false, message: 'Failed to connect to the server.' });
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        setSubmitStatus({ success: true, message: data.message });
+        setFormData({ name: '', phone: '', email: '', service: '', location: '', duration: '', message: '' });
+      } else {
+        setSubmitStatus({ success: false, message: data.error || 'Something went wrong.' });
+      }
+    } catch {
+      setSubmitStatus({ success: false, message: 'Failed to connect to the server.' });
+    }
+    setIsSubmitting(false);
+  };
+
+  return (
+    <>
+      <style jsx global>{`
+        * {
+          scrollbar-width: none;
+          -ms-overflow-style: none;
         }
-        setIsSubmitting(false);
-    };
 
-    return (
-        <>
-            {/* Hero */}
-            <section className="hero-section container" style={{ minHeight: '50vh', paddingTop: '8rem', paddingBottom: '4rem' }}>
-                <motion.div initial="hidden" animate="visible" variants={staggerContainer} style={{ zIndex: 10 }}>
-                    <motion.p variants={fadeInDown} style={{ color: 'var(--color-primary)', fontWeight: 700, letterSpacing: '4px', textTransform: 'uppercase', fontSize: '0.85rem', marginBottom: '1rem', fontFamily: 'var(--font-navbar)' }}>
-                        GET IN TOUCH
-                    </motion.p>
-                    <motion.h1 variants={bounceInDown} className="hero-title" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", textTransform: 'uppercase', lineHeight: '0.95', fontSize: 'clamp(2.8rem, 5vw, 4.5rem)', fontWeight: 800, letterSpacing: '-0.03em' }}>
-                        CONTACT <span style={{ color: 'var(--color-primary)' }}>US</span>
-                    </motion.h1>
-                    <motion.p variants={slideDown} style={{ color: 'var(--color-text-muted)', fontSize: '1rem', maxWidth: '550px', marginBottom: '2.5rem', fontFamily: "'Manrope', sans-serif" }}>
-                        Ready to transform your brand? Reach out to our team and let us bring your vision to life.
-                    </motion.p>
-                </motion.div>
-            </section>
+        *::-webkit-scrollbar {
+          display: none;
+        }
 
-            {/* Navigation Hub Section */}
-            <motion.section className="container" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealDown} style={{ marginBottom: '4rem' }}>
-                <div style={{ borderRadius: '32px', overflow: 'hidden', border: '1px solid var(--color-card-border)', background: 'rgba(124, 58, 237, 0.05)', backdropFilter: 'blur(20px)', position: 'relative' }}>
-                    <img 
-                        src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80" 
-                        alt="Technology Innovation" 
-                        style={{ 
-                            position: 'absolute', 
-                            inset: 0, 
-                            width: '100%', 
-                            height: '100%', 
-                            objectFit: 'cover', 
-                            opacity: 0.12, 
-                            filter: 'brightness(1.3)' 
-                        }} 
-                    />
-                    <div style={{ padding: '4rem 2rem', textAlign: 'center', position: 'relative', zIndex: 2 }}>
-                        <h2 style={{ fontSize: '2.5rem', fontFamily: 'var(--font-heading)', marginBottom: '1.5rem' }}>The <span className="text-gradient">Visibility Nexus</span></h2>
-                        <p style={{ color: 'var(--color-text-muted)', fontSize: '1.2rem', maxWidth: '700px', margin: '0 auto 2.5rem', lineHeight: '1.8' }}>
-                            Our primary production hub and global headquarters are centrally located in Al Quoz, Dubai. Visit us for live demonstrations of AI-integrated signage architecture.
-                        </p>
-                        <button
-                            onClick={() => window.open('https://www.google.com/maps/search/?api=1&query=Al+Quoz+Industrial+Area+3+Dubai', '_blank')}
-                            className="btn btn-primary"
-                            style={{ padding: '1.2rem 3.5rem', borderRadius: '14px', fontSize: '1.1rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '12px', boxShadow: '0 20px 40px rgba(124, 58, 237, 0.2)' }}
-                        >
-                            VIEW LOCATION <MapPin size={20} />
-                        </button>
-                    </div>
+        .contact-page {
+          background: #f5f5f5;
+          min-height: 100vh;
+        }
+
+        .contact-hero {
+          position: relative;
+          height: 60vh;
+          min-height: 500px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          overflow: hidden;
+          margin-top: 80px;
+          padding: 0 4rem;
+        }
+
+        .contact-hero-bg {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+        }
+
+        .contact-hero-bg img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: brightness(0.5);
+        }
+
+        .contact-hero-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 100%);
+          z-index: 1;
+        }
+
+        .contact-hero-content {
+          position: relative;
+          z-index: 2;
+          color: white;
+          max-width: 600px;
+        }
+
+        .contact-hero-title {
+          font-size: clamp(3rem, 8vw, 5rem);
+          font-weight: 900;
+          line-height: 1.1;
+          margin-bottom: 1.5rem;
+          letter-spacing: -2px;
+        }
+
+        .contact-hero-text {
+          font-size: 1.1rem;
+          color: rgba(255,255,255,0.9);
+          line-height: 1.6;
+          margin-bottom: 2rem;
+        }
+
+        .hero-cta-button {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.8rem;
+          padding: 1rem 2rem;
+          background: white;
+          color: #1a1a1a;
+          font-weight: 700;
+          border-radius: 8px;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          font-size: 1rem;
+          border: none;
+          cursor: pointer;
+        }
+
+        .hero-cta-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(255,255,255,0.3);
+        }
+
+        .contact-content {
+          padding: 4rem 2rem;
+          max-width: 1400px;
+          margin: 0 auto;
+        }
+
+        .get-in-touch-section {
+          display: grid;
+          grid-template-columns: 1fr 1.2fr;
+          gap: 2rem;
+          margin-bottom: 4rem;
+        }
+
+        .touch-info {
+          padding: 4rem 3rem;
+          background: white;
+          border-radius: 20px;
+        }
+
+        .touch-info h2 {
+          font-size: 2.5rem;
+          font-weight: 900;
+          color: #1a1a1a;
+          margin-bottom: 0.5rem;
+          line-height: 1.2;
+        }
+
+        .touch-info h2 .italic {
+          font-style: italic;
+          color: #666;
+        }
+
+        .touch-info p {
+          font-size: 1rem;
+          color: #666;
+          line-height: 1.8;
+          margin-bottom: 2rem;
+        }
+
+        .contact-details {
+          background: #2c4a5e;
+          padding: 4rem 3rem;
+          color: white;
+          border-radius: 0;
+        }
+
+        .contact-detail-item {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          margin-bottom: 2rem;
+        }
+
+        .contact-detail-item svg {
+          flex-shrink: 0;
+        }
+
+        .contact-detail-item div {
+          flex: 1;
+        }
+
+        .contact-detail-item a {
+          color: white;
+          text-decoration: none;
+          font-size: 1.1rem;
+          font-weight: 600;
+        }
+
+        .contact-detail-item a:hover {
+          text-decoration: underline;
+        }
+
+        .form-section {
+          background: #1a1a1a;
+          padding: 6rem 2rem;
+          color: white;
+          text-align: center;
+        }
+
+        .form-container {
+          max-width: 600px;
+          margin: 0 auto;
+          padding: 3rem;
+          border: 1px solid rgba(255,255,255,0.2);
+          border-radius: 12px;
+          background: transparent;
+        }
+
+        .form-section h2 {
+          font-size: clamp(2rem, 5vw, 3rem);
+          font-weight: 900;
+          margin-bottom: 0.5rem;
+        }
+
+        .form-section h2 .italic {
+          font-style: italic;
+          color: #999;
+        }
+
+        .form-section p {
+          color: rgba(255,255,255,0.8);
+          margin-bottom: 3rem;
+          font-size: 1rem;
+        }
+
+        .contact-form {
+          display: flex;
+          flex-direction: column;
+          gap: 1.2rem;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+          width: 100%;
+          padding: 1rem 1.5rem;
+          background: transparent;
+          border: 1px solid rgba(255,255,255,0.2);
+          border-radius: 8px;
+          color: white;
+          font-size: 1rem;
+          outline: none;
+          transition: all 0.3s;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+          border-color: rgba(255,255,255,0.4);
+          background: rgba(255,255,255,0.05);
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+          color: rgba(255,255,255,0.5);
+        }
+
+        .form-select {
+          cursor: pointer;
+          appearance: none;
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+          background-repeat: no-repeat;
+          background-position: right 1rem center;
+          padding-right: 3rem;
+        }
+
+        .form-select option {
+          background: white !important;
+          color: #000000 !important;
+        }
+
+        .form-textarea {
+          min-height: 120px;
+          resize: vertical;
+        }
+
+        .submit-button {
+          padding: 2rem 3rem;
+          background: white;
+          color: #1a1a1a;
+          font-weight: 700;
+          border-radius: 50px;
+          border: none;
+          font-size: 1.3rem;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          margin-top: 1.5rem;
+          width: 100%;
+          min-height: 85px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .submit-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(255,255,255,0.3);
+        }
+
+        .submit-button:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+          .contact-hero {
+            margin-top: 60px;
+            height: 50vh;
+            padding: 0 2rem;
+            flex-direction: column;
+            justify-content: center;
+          }
+
+          .get-in-touch-section {
+            grid-template-columns: 1fr;
+          }
+
+          .touch-info,
+          .contact-details {
+            padding: 2rem;
+          }
+        }
+      `}</style>
+
+      <div className="contact-page">
+
+        {/* Hero Section */}
+        <section className="contact-hero">
+          <div className="contact-hero-bg">
+            <img 
+              src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1600&q=80" 
+              alt="Contact Us" 
+            />
+          </div>
+          <div className="contact-hero-overlay"></div>
+          
+          <motion.div 
+            className="contact-hero-content"
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+          >
+            <motion.h1 className="contact-hero-title" variants={fadeInUp}>
+              Contact<br />Us
+            </motion.h1>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+            style={{ position: 'relative', zIndex: 2, color: 'white', maxWidth: '400px' }}
+          >
+            <p className="contact-hero-text">
+              Let's start your advertising campaign and bring your brand into the spotlight.
+            </p>
+            <button className="hero-cta-button" onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}>
+              Start Your Campaign
+            </button>
+          </motion.div>
+        </section>
+
+        {/* Get In Touch Section */}
+        <section className="contact-content">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="get-in-touch-section"
+          >
+            <motion.div className="touch-info" variants={fadeInUp}>
+              <h2>
+                Get <br />
+                <span className="italic">In Touch</span>
+              </h2>
+              <p>
+                Reach out to us for enquiries, support, or to start your advertising campaign.
+              </p>
+            </motion.div>
+
+            <motion.div className="contact-details" variants={fadeInUp}>
+              <div className="contact-detail-item">
+                <Mail size={24} />
+                <div>
+                  <a href="mailto:hello@oneclick.adv.ae">hello@oneclick.adv.ae</a>
                 </div>
-            </motion.section>
-
-            {/* Contact Info + Form */}
-            <section className="section container">
-                <div className="grid-2" style={{ alignItems: 'flex-start', gap: '3rem' }}>
-                    {/* Info Cards */}
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                        <motion.div variants={fadeInDown}>
-                            <h2 style={{ fontSize: '2rem', fontFamily: 'var(--font-contact)', marginBottom: '1rem' }}>
-                                Create Something <span className="text-gradient">Extraordinary</span>
-                            </h2>
-                            <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.8', marginBottom: '2rem' }}>
-                                Your brand deserves to be seen. Contact our UAE experts for a baseline consultation and discover the future of AI-driven advertisement.
-                            </p>
-                        </motion.div>
-
-                        {[
-                            { icon: <Phone size={24} />, title: "Concierge Desk", val: "+971 4 240 8899", desc: "WhatsApp Available", link: "tel:+97142408899" },
-                            { icon: <Mail size={24} />, title: "Project Enquiries", val: "projects@oneclickadv.ae", desc: "Response: < 2 Hours", link: "mailto:projects@oneclickadv.ae" },
-                            { icon: <ShieldCheck size={24} />, title: "Authority Desk", val: "RTA & DM Approvals", desc: "NOC & Permit Management", link: null },
-                            { icon: <MapPin size={24} />, title: "Dubai Hub", val: "Al Quoz Industrial 3", desc: "Global Headquarters, UAE", link: "https://www.google.com/maps/search/?api=1&query=Al+Quoz+Industrial+3+Dubai" },
-                            { icon: <Globe size={24} />, title: "Social Hub", val: "@oneclick.adv", desc: "Live AI Portfolio", link: "https://instagram.com" }
-                        ].map((item, i) => (
-                            <motion.div
-                                key={i}
-                                variants={dropIn}
-                                className="glass-card"
-                                style={{
-                                    display: 'flex',
-                                    gap: '1.5rem',
-                                    alignItems: 'center',
-                                    padding: '1.5rem',
-                                    borderRadius: '20px',
-                                    position: 'relative',
-                                    overflow: 'hidden',
-                                    cursor: item.link ? 'pointer' : 'default',
-                                    background: '#000000',
-                                    border: '1px solid rgba(255, 255, 255, 0.2)'
-                                }}
-                                onClick={() => item.link && window.open(item.link, '_blank')}
-                            >
-                                <img src="/images/ai_ad_1.png" alt="Card BG" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.03, pointerEvents: 'none', filter: `grayscale(1) brightness(1.5)` }} />
-                                <div style={{ width: 50, height: 50, borderRadius: '12px', background: 'rgba(124, 58, 237, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-primary)', position: 'relative', zIndex: 2 }}>
-                                    {item.icon}
-                                </div>
-                                <div style={{ position: 'relative', zIndex: 2 }}>
-                                    <h4 style={{ fontSize: '1.1rem', marginBottom: '0.2rem', fontFamily: 'var(--font-heading)', color: '#ffffff' }}>{item.title}</h4>
-                                    <p style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: '1rem' }}>{item.val}</p>
-                                    <p style={{ color: 'var(--color-primary)', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                                        {item.desc} {item.link && <ExternalLink size={12} />}
-                                    </p>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-
-                    {/* Contact Form */}
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={slideDown} className="glass-card" style={{ padding: '3rem', borderRadius: '32px', border: '1px solid rgba(255, 255, 255, 0.2)', background: '#000000', position: 'relative', overflow: 'hidden', boxShadow: '0 20px 50px rgba(0, 0, 0, 0.3)' }}>
-                        <div style={{ position: 'absolute', top: '-100px', right: '-100px', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, transparent 70%)', filter: 'blur(60px)', pointerEvents: 'none' }} />
-                        <h3 style={{ fontSize: '1.8rem', marginBottom: '2rem', fontFamily: 'var(--font-contact)', color: '#ffffff' }}>Send a <span className="text-gradient">Message</span> ✦</h3>
-
-                        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', position: 'relative', zIndex: 2 }}>
-                            {submitStatus && (
-                                <div style={{ padding: '1rem', borderRadius: '8px', background: submitStatus.success ? 'rgba(34, 197, 94, 0.1)' : 'rgba(239, 68, 68, 0.1)', color: submitStatus.success ? '#4ade80' : '#f87171', border: `1px solid ${submitStatus.success ? '#4ade8033' : '#f8717133'}`, marginBottom: '1rem' }}>
-                                    {submitStatus.message}
-                                </div>
-                            )}
-                            <div className="grid-2" style={{ gap: '1.2rem' }}>
-                                <input placeholder="Full Name" style={inputStyle} value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} required />
-                                <input placeholder="Email Address" type="email" style={inputStyle} value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} required />
-                            </div>
-                            <input placeholder="Phone Number" style={inputStyle} value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} />
-                            <textarea placeholder="Tell us about your project..." style={{ ...inputStyle, minHeight: '150px', resize: 'vertical' }} value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })} required />
-
-                            <button type="submit" disabled={isSubmitting} className="btn btn-primary" style={{ padding: '1.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', fontSize: '1.1rem', borderRadius: '12px' }}>
-                                {isSubmitting ? 'Sending...' : <><Send size={20} /> Send Message ✦</>}
-                            </button>
-                        </form>
-                    </motion.div>
+              </div>
+              <div className="contact-detail-item">
+                <Phone size={24} />
+                <div>
+                  <a href="tel:+97152406510">+971 52 406 5110</a>
                 </div>
-            </section>
+              </div>
+              <div className="contact-detail-item">
+                <MapPin size={24} />
+                <div>
+                  <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer">
+                    Dubai, United Arab Emirates
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
 
-            {/* Locations Section */}
-            <section className="section container" style={{ paddingBottom: '8rem' }}>
-                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealDown} style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                    <h2 className="section-title" style={{ fontFamily: 'var(--font-contact)' }}>Regional <span className="text-gradient">Presence</span></h2>
-                    <p style={{ color: 'var(--color-text-muted)' }}>Serving businesses across the entire United Arab Emirates.</p>
-                </motion.div>
+          {/* Form Section */}
+          <motion.section 
+            id="contact-form"
+            className="form-section"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            <div className="form-container">
+              <motion.h2 variants={fadeInUp}>
+                Start Your <br />
+                <span className="italic">Campaign</span>
+              </motion.h2>
+              <motion.p variants={fadeInUp}>
+                Tell us about your requirements and we'll get back to you quickly
+              </motion.p>
 
-                <motion.div
-                    initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
-                    className="grid-3" style={{ gap: '2rem' }}
+              {submitStatus && (
+                <motion.div 
+                  variants={fadeInUp}
+                  style={{ 
+                    padding: '1rem', 
+                    borderRadius: '8px', 
+                    background: submitStatus.success ? 'rgba(34, 197, 94, 0.1)' : 'rgba(239, 68, 68, 0.1)', 
+                    color: submitStatus.success ? '#4ade80' : '#f87171', 
+                    border: `1px solid ${submitStatus.success ? '#4ade8033' : '#f8717133'}`, 
+                    marginBottom: '1.5rem',
+                    textAlign: 'center'
+                  }}
                 >
-                    {[
-                        { loc: 'Dubai Hub', sub: 'Headquarters & Main Production', desc: 'Our central facility equipped with state-of-the-art machinery for high-volume production and regional logistics.', query: 'Industrial+Area+Dubai', img: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80' },
-                        { loc: 'Abu Dhabi', sub: 'Capital Support Team', desc: 'Dedicated installation and support teams serving government entities and corporate headquarters in the capital.', query: 'Musaffah+Industrial+Area+Abu+Dhabi', img: 'https://images.unsplash.com/photo-1512632578888-169bbbc64f33?w=800&q=80' },
-                        { loc: 'Sharjah', sub: 'Northern Emirates Link', desc: 'Strategically located to provide rapid response times for businesses across Sharjah and the Northern Emirates.', query: 'Industrial+Area+Sharjah', img: 'https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?w=800&q=80' },
-                        { loc: 'Ajman', sub: 'Local Presence', desc: 'Providing tailored branding and signage solutions for small to medium enterprises in the heart of Ajman.', query: 'Ajman+Industrial+Area', img: 'https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?w=800&q=80' },
-                        { loc: 'Ras Al Khaimah', sub: 'Industrial Core', desc: 'Supporting the growing industrial and retail sectors with durable, high-impact outdoor branding solutions.', query: 'Ras+Al+Khaimah+Industrial+Area', img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80' },
-                        { loc: 'Fujairah', sub: 'East Coast Outreach', desc: 'Extending our premium branding services to the Fujairah business community and maritime industries.', query: 'Fujairah+Port', img: 'https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=800&q=80' }
-                    ].map((item, i) => (
-                        <motion.div key={i} variants={dropIn} className="glass-card" style={{ padding: '0', textAlign: 'left', borderRadius: '28px', position: 'relative', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.2)', background: '#000000' }}>
-                            <div style={{ position: 'relative', height: '200px', overflow: 'hidden' }}>
-                                <img src={item.img} alt={item.loc} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%)' }} />
-                            </div>
-                            <div style={{ padding: '2rem', position: 'relative', zIndex: 2 }}>
-                                <h4 style={{ fontFamily: 'var(--font-contact)', fontSize: '1.4rem', marginBottom: '0.5rem', color: '#ffffff' }}>{item.loc}</h4>
-                                <p style={{ color: 'var(--color-primary)', fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '1rem' }}>{item.sub}</p>
-                                <p style={{ color: '#cccccc', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>{item.desc}</p>
-                                <button
-                                    onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${item.query}`, '_blank')}
-                                    style={{ background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '12px', color: 'white', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', transition: 'all 0.3s', fontWeight: 600, boxShadow: '0 4px 12px rgba(124, 58, 237, 0.3)' }}
-                                    onMouseOver={e => e.currentTarget.style.transform = 'translateY(-2px)'}
-                                    onMouseOut={e => e.currentTarget.style.transform = 'translateY(0)'}
-                                >
-                                    OPEN MAP <ExternalLink size={14} />
-                                </button>
-                            </div>
-                        </motion.div>
-                    ))}
+                  {submitStatus.message}
                 </motion.div>
-            </section>
-        </>
-    );
+              )}
+
+              <motion.form className="contact-form" onSubmit={handleSubmit} variants={staggerContainer}>
+                <motion.input
+                  variants={fadeInUp}
+                  type="text"
+                  placeholder="Name"
+                  className="form-input"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  required
+                />
+                
+                <motion.input
+                  variants={fadeInUp}
+                  type="tel"
+                  placeholder="Phone Number"
+                  className="form-input"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  required
+                />
+                
+                <motion.input
+                  variants={fadeInUp}
+                  type="email"
+                  placeholder="Email"
+                  className="form-input"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  required
+                />
+                
+                <motion.select
+                  variants={fadeInUp}
+                  className="form-select"
+                  value={formData.service}
+                  onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                  required
+                >
+                  <option value="">Service</option>
+                  <option value="billboards">Billboards</option>
+                  <option value="retail-signage">Retail Signage</option>
+                  <option value="vehicle-branding">Vehicle Branding</option>
+                  <option value="campaign-solutions">Campaign Solutions</option>
+                </motion.select>
+                
+                <motion.input
+                  variants={fadeInUp}
+                  type="text"
+                  placeholder="Preferred Location"
+                  className="form-input"
+                  value={formData.location}
+                  onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                />
+                
+                <motion.input
+                  variants={fadeInUp}
+                  type="text"
+                  placeholder="Campaign Duration"
+                  className="form-input"
+                  value={formData.duration}
+                  onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
+                />
+                
+                <motion.textarea
+                  variants={fadeInUp}
+                  placeholder="Message"
+                  className="form-textarea"
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  required
+                />
+                
+                <motion.button
+                  variants={fadeInUp}
+                  type="submit"
+                  className="submit-button"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Sending...' : 'Submit Request'}
+                </motion.button>
+              </motion.form>
+            </div>
+          </motion.section>
+        </section>
+
+        {/* Footer */}
+        <footer style={{ background: '#1a1a1a', color: 'white', padding: '6rem 2rem 4rem 2rem' }}>
+          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '3.5rem', marginBottom: '3.5rem' }}>
+              {/* Services Section */}
+              <div>
+                <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>Services</h4>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                  <li><Link href="/services/billboards" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Retail Signage</Link></li>
+                  <li><Link href="/services/billboards" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Billboards</Link></li>
+                  <li><Link href="/services/vehicle-branding" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Vehicle Branding</Link></li>
+                  <li><Link href="/services/campaign-solutions" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Campaign Solutions</Link></li>
+                </ul>
+              </div>
+
+              {/* Company Section */}
+              <div>
+                <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>Company</h4>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                  <li><Link href="/about" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>About Us</Link></li>
+                  <li><Link href="/services" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Our Work</Link></li>
+                  <li><Link href="/testimonials" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Locations</Link></li>
+                  <li><Link href="/contact" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Contact</Link></li>
+                </ul>
+              </div>
+
+              {/* Support Section */}
+              <div>
+                <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>Support</h4>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                  <li><Link href="/contact" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>How It Works</Link></li>
+                  <li><Link href="/contact" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>FAQs</Link></li>
+                  <li><Link href="/contact" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Terms & Conditions</Link></li>
+                  <li><Link href="/contact" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Privacy Policy</Link></li>
+                </ul>
+              </div>
+
+              {/* Connect Section */}
+              <div>
+                <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>Connect with us</h4>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                  <li><a href="tel:+97152406510" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>+971 52 406 5110</a></li>
+                  <li><a href="mailto:hello@oneclick.adv.ae" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>hello@oneclick.adv.ae</a></li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Footer Bottom */}
+            <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2.5rem', textAlign: 'center', color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem' }}>
+              <span>© 2025 One Click. All rights reserved.</span>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </>
+  );
 }
