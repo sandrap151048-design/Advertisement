@@ -1333,7 +1333,7 @@ export default function Home() {
 
           {/* Footer Bottom */}
           <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2.5rem', textAlign: 'center', color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem' }}>
-            &copy; {currentYear || 2026} One Click Advertisement. All Rights Reserved.
+            <span suppressHydrationWarning>&copy; {currentYear || new Date().getFullYear()} One Click Advertisement. All Rights Reserved.</span>
           </div>
         </div>
       </footer>
