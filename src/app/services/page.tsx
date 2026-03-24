@@ -80,10 +80,17 @@ export default function ServicesPage() {
 
   const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = e.currentTarget;
-    card.classList.add('clicked');
-    setTimeout(() => {
+    
+    // Toggle clicked state
+    if (card.classList.contains('clicked')) {
       card.classList.remove('clicked');
-    }, 600);
+    } else {
+      // Remove clicked from all other cards
+      document.querySelectorAll('.service-card.clicked').forEach(c => {
+        c.classList.remove('clicked');
+      });
+      card.classList.add('clicked');
+    }
   };
 
   return (
@@ -203,10 +210,10 @@ export default function ServicesPage() {
         .service-card {
           position: relative;
           height: 300px;
-          border-radius: 16px;
+          border-radius: 18px;
           overflow: hidden;
           cursor: pointer;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           background: rgba(0, 0, 0, 0.05);
           border: 1px solid rgba(255, 255, 255, 0.1);
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -224,36 +231,37 @@ export default function ServicesPage() {
           z-index: 1;
         }
 
+        .service-card::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at center, rgba(124, 58, 237, 0.2), transparent 70%);
+          opacity: 0;
+          transition: opacity 0.5s ease;
+          pointer-events: none;
+          z-index: 1;
+        }
+
         .service-card:hover {
-          transform: translateY(-8px) scale(1.02);
-          background: rgba(255, 255, 255, 0.12);
-          box-shadow: 0 0 25px rgba(255, 255, 255, 0.15), 0 12px 30px rgba(0, 0, 0, 0.2);
-          border-color: rgba(255, 255, 255, 0.2);
+          transform: translateY(-6px);
+          background: rgba(255, 255, 255, 0.08);
+          box-shadow: 0 0 20px rgba(255, 255, 255, 0.1), 0 12px 30px rgba(0, 0, 0, 0.15);
+          border-color: rgba(255, 255, 255, 0.15);
         }
 
         .service-card:hover::before {
           opacity: 1;
         }
 
-        .service-card:active {
-          transform: scale(0.98);
-          box-shadow: 0 0 35px rgba(255, 255, 255, 0.25), 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        @keyframes glowPulse {
-          0% {
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
-          }
-          50% {
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
-          }
-          100% {
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
-          }
-        }
-
         .service-card.clicked {
-          animation: glowPulse 0.6s ease-out;
+          transform: scale(1.05);
+          background: rgba(255, 255, 255, 0.15);
+          box-shadow: 0 0 40px rgba(124, 58, 237, 0.3), 0 15px 40px rgba(0, 0, 0, 0.3);
+          border-color: rgba(124, 58, 237, 0.4);
+        }
+
+        .service-card.clicked::after {
+          opacity: 1;
         }
 
         .service-card img {
@@ -265,43 +273,71 @@ export default function ServicesPage() {
         .service-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 100%);
+          background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.25) 100%);
           display: flex;
           flex-direction: column;
           justify-content: flex-end;
+          align-items: flex-start;
           padding: 2rem;
           color: white;
           z-index: 2;
-          transition: all 0.3s ease;
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .service-card:hover .service-overlay {
-          background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 100%);
+          background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.2) 100%);
+        }
+
+        .service-card.clicked .service-overlay {
+          justify-content: center;
+          align-items: center;
+          background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(20,0,40,0.85) 100%);
         }
 
         .service-title {
           font-size: 1.8rem;
           font-weight: 800;
           margin-bottom: 0.5rem;
-          transition: all 0.3s ease;
+          transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
           text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+          position: relative;
+          z-index: 3;
         }
 
         .service-card:hover .service-title {
           color: #ffffff;
-          text-shadow: 0 0 20px rgba(255,255,255,0.5), 0 2px 8px rgba(0,0,0,0.5);
-          transform: translateY(-2px);
+          text-shadow: 0 0 15px rgba(255,255,255,0.4), 0 2px 8px rgba(0,0,0,0.5);
+          transform: translateY(-3px);
+        }
+
+        .service-card.clicked .service-title {
+          font-size: 2.8rem;
+          font-weight: 900;
+          transform: translate(0, 0);
+          text-align: center;
+          margin-bottom: 0;
+          color: #ffffff;
+          text-shadow: 0 0 30px rgba(124, 58, 237, 0.8), 0 0 60px rgba(124, 58, 237, 0.4), 0 4px 12px rgba(0,0,0,0.8);
+          letter-spacing: 1px;
         }
 
         .service-desc {
           font-size: 0.95rem;
-          color: rgba(255,255,255,0.8);
-          transition: all 0.3s ease;
+          color: rgba(255,255,255,0.75);
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          position: relative;
+          z-index: 3;
         }
 
         .service-card:hover .service-desc {
-          color: rgba(255,255,255,1);
+          color: rgba(255,255,255,0.9);
           transform: translateY(-2px);
+        }
+
+        .service-card.clicked .service-desc {
+          opacity: 0;
+          transform: translateY(10px);
+          transition: all 0.3s ease;
         }
 
         .why-choose-section {
