@@ -93,10 +93,7 @@ export default function Navbar() {
         }
 
         .logo-main .accent {
-          background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
+          color: #ff6b35;
         }
 
         .logo-tagline {
