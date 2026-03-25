@@ -55,6 +55,7 @@ html::-webkit-scrollbar {
 body {
   margin: 0;
   padding: 0;
+  padding-top: 70px;
   background: #ffffff;
   background-attachment: fixed;
   color: #1a1a1a;

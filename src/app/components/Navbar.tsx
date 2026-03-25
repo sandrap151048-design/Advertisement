@@ -38,32 +38,31 @@ export default function Navbar() {
 
         .floating-navbar {
           position: fixed;
-          top: 20px;
-          left: 40px;
-          right: 40px;
+          top: 0;
+          left: 0;
+          right: 0;
           z-index: 1000;
           background: rgba(255, 255, 255, 0.95);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
-          border-radius: 16px;
-          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-          border: 1px solid rgba(0, 0, 0, 0.08);
+          box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+          border-bottom: 1px solid rgba(0, 0, 0, 0.08);
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          max-width: 1400px;
-          margin: 0 auto;
         }
 
         .floating-navbar.scrolled {
           background: rgba(255, 255, 255, 0.98);
-          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.12);
         }
 
         .navbar-container {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 12px 30px;
+          padding: 16px 40px;
           gap: 2rem;
+          max-width: 1400px;
+          margin: 0 auto;
         }
 
         /* Logo Section */
@@ -277,24 +276,21 @@ export default function Navbar() {
         /* Mobile Menu */
         .mobile-menu {
           position: fixed;
-          top: 110px;
-          left: 40px;
-          right: 40px;
+          top: 70px;
+          left: 0;
+          right: 0;
           background: rgba(255, 255, 255, 0.98);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
           padding: 2rem;
-          border-radius: 16px;
           transform: translateY(-20px);
           opacity: 0;
           visibility: hidden;
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-          max-height: calc(100vh - 140px);
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+          max-height: calc(100vh - 70px);
           overflow-y: auto;
-          border: 1px solid rgba(0, 0, 0, 0.08);
-          max-width: 1400px;
-          margin: 0 auto;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         }
 
         .mobile-menu.open {
@@ -380,13 +376,13 @@ export default function Navbar() {
 
         @media (max-width: 768px) {
           .floating-navbar {
-            top: 15px;
-            left: 20px;
-            right: 20px;
+            top: 0;
+            left: 0;
+            right: 0;
           }
 
           .navbar-container {
-            padding: 10px 20px;
+            padding: 12px 20px;
           }
 
           .navbar-nav,
@@ -407,21 +403,21 @@ export default function Navbar() {
           }
 
           .mobile-menu {
-            top: 95px;
-            left: 20px;
-            right: 20px;
+            top: 60px;
+            left: 0;
+            right: 0;
           }
         }
 
         @media (max-width: 480px) {
           .floating-navbar {
-            top: 10px;
-            left: 15px;
-            right: 15px;
+            top: 0;
+            left: 0;
+            right: 0;
           }
 
           .navbar-container {
-            padding: 8px 18px;
+            padding: 10px 15px;
           }
 
           .logo-main {
@@ -438,16 +434,16 @@ export default function Navbar() {
           }
 
           .mobile-menu {
-            top: 85px;
-            left: 15px;
-            right: 15px;
+            top: 55px;
+            left: 0;
+            right: 0;
             padding: 1.5rem;
           }
         }
 
         /* Smooth scrolling offset for fixed navbar */
         html {
-          scroll-padding-top: 120px;
+          scroll-padding-top: 80px;
         }
       `}</style>
 
