@@ -737,7 +737,7 @@ export default function ServicesPage() {
               {/* Brand Section */}
               <div>
                 <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>
-                  <span style={{ color: '#7C3AED' }}>One</span> Click
+                  <span style={{ color: '#ff6b35' }}>One</span> Click
                 </h3>
                 <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '1.5rem', lineHeight: '1.8', fontSize: '1rem' }}>
                   Premium advertising solutions across the UAE. Delivering high-impact visual communication services.
@@ -781,15 +781,15 @@ export default function ServicesPage() {
                 <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>Contact</h4>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   <li style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                    <Phone size={18} style={{ color: '#7C3AED', flexShrink: 0 }} />
+                    <Phone size={18} style={{ color: '#ff6b35', flexShrink: 0 }} />
                     <a href="tel:+971524065110" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>+971 52 406 5110</a>
                   </li>
                   <li style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                    <Mail size={18} style={{ color: '#7C3AED', flexShrink: 0 }} />
+                    <Mail size={18} style={{ color: '#ff6b35', flexShrink: 0 }} />
                     <a href="mailto:hello@oneclickadv.ae" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>hello@oneclickadv.ae</a>
                   </li>
                   <li style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                    <MapPin size={18} style={{ color: '#7C3AED', flexShrink: 0 }} />
+                    <MapPin size={18} style={{ color: '#ff6b35', flexShrink: 0 }} />
                     <a href="https://www.google.com/maps/search/?api=1&query=Dubai+UAE" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Dubai, UAE</a>
                   </li>
                 </ul>

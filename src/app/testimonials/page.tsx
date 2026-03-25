@@ -530,7 +530,7 @@ export default function ProjectsPage() {
               {/* Brand Section */}
               <div>
                 <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>
-                  <span style={{ color: '#7C3AED' }}>One</span> Click
+                  <span style={{ color: '#ff6b35' }}>One</span> Click
                 </h3>
                 <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '1.5rem', lineHeight: '1.8', fontSize: '1rem' }}>
                   Premium advertising solutions across the UAE. Delivering high-impact visual communication services.
