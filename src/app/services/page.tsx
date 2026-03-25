@@ -20,28 +20,46 @@ const staggerContainer = {
 
 const services = [
   {
-    title: "Billboards",
-    image: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=600&q=80",
-    description: "High-impact outdoor advertising",
-    link: "/services/billboards"
+    title: "Branding & Corporate Identity",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80",
+    description: "Brand implementation, rollout & corporate identity applications",
+    details: ["Brand implementation & rollout", "Corporate identity applications", "Office branding & interior graphics", "Brand consistency across multiple locations"],
+    link: "#branding"
   },
   {
-    title: "Retail Signage",
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80",
-    description: "Premium storefront solutions",
-    link: "/services/retail-signage"
+    title: "Digital Printed Graphics",
+    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80",
+    description: "Large format printing & interior graphics",
+    details: ["Large format digital printing", "Wall, glass & window graphics", "Frosted film & privacy films", "Floor & promotional graphics", "Wallpaper & interior branding"],
+    link: "#digital-graphics"
   },
   {
-    title: "Vehicle Branding",
+    title: "Vehicle Graphics & Fleet Branding",
     image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=80",
-    description: "Mobile advertising solutions",
-    link: "/services/vehicle-branding"
+    description: "Full & partial vehicle wraps for mobile advertising",
+    details: ["Full & partial vehicle wraps", "Corporate fleet branding", "Reflective & safety graphics", "Promotional vehicle advertising"],
+    link: "#vehicle-graphics"
   },
   {
-    title: "Campaign Solutions",
-    image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80",
-    description: "End-to-end campaign management",
-    link: "/services/campaign-solutions"
+    title: "Signage Production & Installation",
+    image: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=600&q=80",
+    description: "Indoor & outdoor signage solutions",
+    details: ["Indoor & outdoor signage", "Illuminated & non-illuminated signboards", "3D letter signs (acrylic, metal, LED)", "Directional, wayfinding & safety signage", "Mall, retail & commercial signage"],
+    link: "#signage"
+  },
+  {
+    title: "Exhibition, Display & POS",
+    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80",
+    description: "Exhibition stands, kiosks & point of sale displays",
+    details: ["Exhibition stands & kiosks", "Pop-up systems & backdrops", "Roll-up & X-banners", "Point of Sale (POS) & in-store displays"],
+    link: "#exhibition"
+  },
+  {
+    title: "Cladding & Facade Solutions",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80",
+    description: "ACP cladding & architectural facade branding",
+    details: ["ACP cladding works", "Aluminum & composite panel cladding", "Shopfront & facade branding", "Decorative architectural finishes", "Signage-integrated facade solutions"],
+    link: "#cladding"
   }
 ];
 

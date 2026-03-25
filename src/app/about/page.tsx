@@ -519,10 +519,13 @@ export default function AboutPage() {
                   <span className="italic">We Are</span>
                 </h2>
                 <p>
-                  One Click Advertisement is a UAE-based advertising and branding solutions company delivering high-quality visual communication services to businesses across Dubai, Abu Dhabi, Sharjah, and beyond.
+                  One Click Advertisement is a full-service advertising and branding company delivering end-to-end visual communication solutions. We specialize in transforming spaces, surfaces, and screens into powerful brand experiences.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  We specialize in premium signage production, branding, digital printed graphics, and vehicle graphics, helping brands achieve strong visibility in competitive environments.
+                  From high-quality printing to large-scale digital displays, we ensure your brand gets noticed—clearly, creatively, and professionally across Dubai, Abu Dhabi, Sharjah, Ajman, and the Northern Emirates.
+                </p>
+                <p style={{ marginTop: '1rem' }}>
+                  With a commitment to international standards and local market compliance, we provide complete turnkey solutions — from design and production to installation and maintenance.
                 </p>
               </motion.div>
 
@@ -678,6 +681,163 @@ export default function AboutPage() {
                 </div>
               </div>
             ))}
+          </motion.div>
+
+          {/* Vision & Mission Section */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            style={{ marginBottom: '5rem' }}
+          >
+            <div className="section-layout">
+              <motion.div className="section-info" variants={fadeInUp}>
+                <h2>
+                  Our <br />
+                  <span className="italic">Vision</span>
+                </h2>
+                <p>
+                  To be recognized as a reliable and innovative branding and signage partner in the UAE, delivering world-class visual solutions that enhance brand presence and support business growth.
+                </p>
+              </motion.div>
+
+              <motion.div className="section-info" variants={fadeInUp}>
+                <h2>
+                  Our <br />
+                  <span className="italic">Mission</span>
+                </h2>
+                <p>
+                  To deliver creative, compliant, and high-quality advertising solutions that meet UAE authority requirements while exceeding client expectations in terms of durability, safety, and visual impact.
+                </p>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Industries We Serve Section */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="accordion-section"
+          >
+            <h2 className="accordion-title">Industries We Serve</h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', marginTop: '2rem' }}>
+              {[
+                'Retail & Shopping Malls',
+                'Corporate & Business Centers',
+                'Real Estate & Property Developers',
+                'Schools & Educational Institutions',
+                'Automotive & Logistics',
+                'Hospitality (Hotels, Cafés & Restaurants)',
+                'Healthcare & Clinics',
+                'Government & Semi-Government Entities'
+              ].map((industry, index) => (
+                <motion.div
+                  key={index}
+                  variants={fadeInUp}
+                  style={{
+                    padding: '1.5rem',
+                    background: 'linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%)',
+                    borderRadius: '12px',
+                    border: '1px solid #e0e0e0',
+                    textAlign: 'center',
+                    fontWeight: 600,
+                    color: '#1a1a1a',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    boxShadow: '0 8px 20px rgba(0,0,0,0.1)',
+                    borderColor: '#ff6b35'
+                  }}
+                >
+                  {industry}
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Compliance & Authority Approvals Section */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="accordion-section"
+          >
+            <h2 className="accordion-title">Compliance & Authority Approvals</h2>
+            <p style={{ textAlign: 'center', color: '#666', marginBottom: '2rem', fontSize: '1rem', lineHeight: '1.8' }}>
+              We are experienced in working in accordance with UAE municipality and mall regulations, ensuring smooth approvals, proper installation, and long-term durability of all projects.
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginTop: '2rem' }}>
+              {[
+                {
+                  title: 'Dubai Municipality Guidelines',
+                  desc: 'Full compliance with Dubai Municipality signage and advertising regulations'
+                },
+                {
+                  title: 'RTA Requirements',
+                  desc: 'Adherence to RTA standards for vehicle graphics and mobile advertising'
+                },
+                {
+                  title: 'Mall & Property Standards',
+                  desc: 'Meeting mall and property management requirements for installations'
+                },
+                {
+                  title: 'Safety & Installation',
+                  desc: 'Certified safety compliance and professional installation standards'
+                }
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  variants={fadeInUp}
+                  style={{
+                    padding: '2rem',
+                    background: 'white',
+                    borderRadius: '16px',
+                    border: '2px solid #e0e0e0',
+                    transition: 'all 0.3s ease'
+                  }}
+                  whileHover={{ 
+                    borderColor: '#2c4a5e',
+                    boxShadow: '0 8px 20px rgba(44, 74, 94, 0.15)'
+                  }}
+                >
+                  <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#2c4a5e', marginBottom: '1rem' }}>
+                    {item.title}
+                  </h3>
+                  <p style={{ color: '#666', lineHeight: '1.6', fontSize: '0.95rem' }}>
+                    {item.desc}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Our Commitment Section */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            style={{
+              background: 'linear-gradient(135deg, #2c4a5e 0%, #1a2f3d 100%)',
+              padding: '4rem 3rem',
+              borderRadius: '20px',
+              marginBottom: '3rem',
+              textAlign: 'center',
+              color: 'white'
+            }}
+          >
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 900, marginBottom: '1.5rem' }}>
+              Our <span style={{ fontStyle: 'italic', color: '#ff6b35' }}>Commitment</span>
+            </h2>
+            <p style={{ fontSize: '1.1rem', lineHeight: '1.8', maxWidth: '900px', margin: '0 auto', color: 'rgba(255,255,255,0.9)' }}>
+              We are committed to delivering professional workmanship, premium finishing, and long-lasting branding solutions that withstand the UAE climate while maintaining strong visual impact. Every project is executed with attention to detail, quality materials, and adherence to international standards.
+            </p>
           </motion.div>
 
           {/* Our Process Section */}
