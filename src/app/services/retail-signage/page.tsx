@@ -135,7 +135,10 @@ export default function RetailSignagePage() {
 
         .hero-section {
           background: white;
-          padding: 4rem 2rem;
+          padding: 8rem 2rem;
+          min-height: 70vh;
+          display: flex;
+          align-items: center;
           margin-bottom: 3rem;
         }
 

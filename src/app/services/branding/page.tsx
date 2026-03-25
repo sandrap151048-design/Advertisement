@@ -95,7 +95,10 @@ export default function BrandingPage() {
 
         .service-hero {
           background: transparent;
-          padding: 2rem;
+          padding: 8rem 2rem;
+          min-height: 50vh;
+          display: flex;
+          align-items: center;
           margin: 0 auto 2rem auto;
           max-width: 1200px;
         }
