@@ -87,12 +87,14 @@
     will-change: transform;
     backface-visibility: hidden;
     visibility: hidden;
+    display: none;
   }
 
   .admin-sidebar-open {
     transform: translateX(0);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     visibility: visible;
+    display: flex;
   }
 
   .admin-mobile-overlay {

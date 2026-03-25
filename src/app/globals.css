@@ -69,6 +69,13 @@ body {
   -ms-overflow-style: none; /* IE and Edge */
 }
 
+/* Prevent flash of unstyled content */
+body:not(.loaded) .mobile-menu,
+body:not(.loaded) .admin-sidebar {
+  display: none !important;
+  visibility: hidden !important;
+}
+
 body::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }

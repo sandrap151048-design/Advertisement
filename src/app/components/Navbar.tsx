@@ -285,6 +285,7 @@ export default function Navbar() {
           transform: translateY(-20px);
           opacity: 0;
           visibility: hidden;
+          display: none;
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
           max-height: calc(100vh - 140px);
@@ -298,6 +299,7 @@ export default function Navbar() {
           transform: translateY(0);
           opacity: 1;
           visibility: visible;
+          display: block;
         }
 
         .mobile-nav-links {
