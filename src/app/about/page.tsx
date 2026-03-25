@@ -498,10 +498,10 @@ export default function AboutPage() {
               About{' '}
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
                 <svg width="60" height="60" viewBox="0 0 60 60" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-                  <circle cx="30" cy="30" r="26" fill="none" stroke="#1a1a1a" strokeWidth="6"/>
+                  <circle cx="30" cy="30" r="26" fill="none" stroke="#FF6B35" strokeWidth="6"/>
                   <rect x="34" y="4" width="20" height="20" fill="#FF6B35" rx="2"/>
                 </svg>
-                <span style={{ color: '#1a1a1a' }}>ne Click</span>
+                <span style={{ color: '#FF6B35' }}>ne Click</span>
               </span>
             </motion.h1>
             <motion.p className="about-hero-subtitle" variants={fadeInUp}>

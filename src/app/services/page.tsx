@@ -685,9 +685,18 @@ export default function ServicesPage() {
             variants={staggerContainer}
           >
             <motion.div className="why-choose-content" variants={fadeInUp}>
-              <h2>Why Choose One Click</h2>
+              <h2 style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                Why Choose{' '}
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                  <svg width="40" height="40" viewBox="0 0 40 40" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                    <circle cx="20" cy="20" r="17" fill="none" stroke="#1a1a1a" strokeWidth="4"/>
+                    <rect x="23" y="3" width="13" height="13" fill="#FF6B35" rx="1"/>
+                  </svg>
+                  <span style={{ color: '#1a1a1a' }}>ne Click</span>
+                </span>
+              </h2>
               <p>
-                As the leader in outdoor hope, we deliver measurable results through strategic placements and creative excellence.
+                As the leader in outdoor advertising, we deliver measurable results through strategic placements and creative excellence.
               </p>
             </motion.div>
 
