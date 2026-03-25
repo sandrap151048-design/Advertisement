@@ -38,7 +38,7 @@ export default function Navbar() {
 
         .floating-navbar {
           position: fixed;
-          top: 20px;
+          top: 0;
           left: 40px;
           right: 40px;
           z-index: 1000;
@@ -50,7 +50,7 @@ export default function Navbar() {
           border: 1px solid rgba(0, 0, 0, 0.08);
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           max-width: 1400px;
-          margin: 0 auto;
+          margin: 10px auto 0 auto;
         }
 
         .floating-navbar.scrolled {
@@ -274,7 +274,7 @@ export default function Navbar() {
         /* Mobile Menu */
         .mobile-menu {
           position: fixed;
-          top: 110px;
+          top: 90px;
           left: 40px;
           right: 40px;
           background: rgba(255, 255, 255, 0.98);
@@ -288,7 +288,7 @@ export default function Navbar() {
           display: none;
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-          max-height: calc(100vh - 140px);
+          max-height: calc(100vh - 120px);
           overflow-y: auto;
           border: 1px solid rgba(0, 0, 0, 0.08);
           max-width: 1400px;
@@ -379,9 +379,10 @@ export default function Navbar() {
 
         @media (max-width: 768px) {
           .floating-navbar {
-            top: 15px;
+            top: 0;
             left: 20px;
             right: 20px;
+            margin: 8px auto 0 auto;
           }
 
           .navbar-container {
@@ -406,7 +407,7 @@ export default function Navbar() {
           }
 
           .mobile-menu {
-            top: 95px;
+            top: 75px;
             left: 20px;
             right: 20px;
           }
@@ -414,9 +415,10 @@ export default function Navbar() {
 
         @media (max-width: 480px) {
           .floating-navbar {
-            top: 10px;
+            top: 0;
             left: 15px;
             right: 15px;
+            margin: 5px auto 0 auto;
           }
 
           .navbar-container {
@@ -437,7 +439,7 @@ export default function Navbar() {
           }
 
           .mobile-menu {
-            top: 85px;
+            top: 65px;
             left: 15px;
             right: 15px;
             padding: 1.5rem;
@@ -446,7 +448,7 @@ export default function Navbar() {
 
         /* Smooth scrolling offset for fixed navbar */
         html {
-          scroll-padding-top: 120px;
+          scroll-padding-top: 100px;
         }
       `}</style>
 
