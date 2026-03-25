@@ -699,7 +699,21 @@ export default function AboutPage() {
             style={{ marginBottom: '5rem' }}
           >
             <div className="section-layout">
-              <motion.div className="section-info" variants={fadeInUp}>
+              <motion.div 
+                className="section-info" 
+                variants={fadeInUp}
+                whileHover={{ 
+                  scale: 1.02,
+                  boxShadow: '0 12px 30px rgba(44, 74, 94, 0.2)',
+                  borderColor: '#2c4a5e'
+                }}
+                whileTap={{ scale: 0.98 }}
+                style={{
+                  cursor: 'pointer',
+                  border: '2px solid #e0e0e0',
+                  transition: 'all 0.3s ease'
+                }}
+              >
                 <h2>
                   Our <br />
                   <span className="italic">Vision</span>
@@ -709,7 +723,21 @@ export default function AboutPage() {
                 </p>
               </motion.div>
 
-              <motion.div className="section-info" variants={fadeInUp}>
+              <motion.div 
+                className="section-info" 
+                variants={fadeInUp}
+                whileHover={{ 
+                  scale: 1.02,
+                  boxShadow: '0 12px 30px rgba(255, 107, 53, 0.2)',
+                  borderColor: '#ff6b35'
+                }}
+                whileTap={{ scale: 0.98 }}
+                style={{
+                  cursor: 'pointer',
+                  border: '2px solid #e0e0e0',
+                  transition: 'all 0.3s ease'
+                }}
+              >
                 <h2>
                   Our <br />
                   <span className="italic">Mission</span>
@@ -744,21 +772,26 @@ export default function AboutPage() {
                 <motion.div
                   key={index}
                   variants={fadeInUp}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    boxShadow: '0 12px 25px rgba(255, 107, 53, 0.2)',
+                    borderColor: '#ff6b35',
+                    background: 'linear-gradient(135deg, #fff5f0 0%, #ffffff 100%)'
+                  }}
+                  whileTap={{ 
+                    scale: 0.95,
+                    boxShadow: '0 5px 15px rgba(255, 107, 53, 0.3)'
+                  }}
                   style={{
                     padding: '1.5rem',
                     background: 'linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%)',
                     borderRadius: '12px',
-                    border: '1px solid #e0e0e0',
+                    border: '2px solid #e0e0e0',
                     textAlign: 'center',
                     fontWeight: 600,
                     color: '#1a1a1a',
                     transition: 'all 0.3s ease',
                     cursor: 'pointer'
-                  }}
-                  whileHover={{ 
-                    scale: 1.05, 
-                    boxShadow: '0 8px 20px rgba(0,0,0,0.1)',
-                    borderColor: '#ff6b35'
                   }}
                 >
                   {industry}
@@ -801,21 +834,36 @@ export default function AboutPage() {
                 <motion.div
                   key={index}
                   variants={fadeInUp}
+                  whileHover={{ 
+                    scale: 1.05,
+                    borderColor: '#2c4a5e',
+                    boxShadow: '0 12px 30px rgba(44, 74, 94, 0.2)'
+                  }}
+                  whileTap={{ 
+                    scale: 0.95,
+                    boxShadow: '0 5px 15px rgba(44, 74, 94, 0.3)'
+                  }}
                   style={{
                     padding: '2rem',
                     background: 'white',
                     borderRadius: '16px',
                     border: '2px solid #e0e0e0',
-                    transition: 'all 0.3s ease'
-                  }}
-                  whileHover={{ 
-                    borderColor: '#2c4a5e',
-                    boxShadow: '0 8px 20px rgba(44, 74, 94, 0.15)'
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
                   }}
                 >
-                  <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#2c4a5e', marginBottom: '1rem' }}>
+                  <motion.h3 
+                    style={{ 
+                      fontSize: '1.2rem', 
+                      fontWeight: 700, 
+                      color: '#2c4a5e', 
+                      marginBottom: '1rem',
+                      transition: 'color 0.3s ease'
+                    }}
+                    whileHover={{ color: '#ff6b35' }}
+                  >
                     {item.title}
-                  </h3>
+                  </motion.h3>
                   <p style={{ color: '#666', lineHeight: '1.6', fontSize: '0.95rem' }}>
                     {item.desc}
                   </p>
