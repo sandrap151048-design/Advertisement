@@ -357,8 +357,8 @@ export default function ContactPage() {
         <section className="contact-hero">
           <div className="contact-hero-bg">
             <img 
-              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80" 
-              alt="Contact Us - Billboard Advertising" 
+              src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=1600&q=80" 
+              alt="Contact Us - One Click Billboard" 
             />
           </div>
           <div className="contact-hero-overlay"></div>
