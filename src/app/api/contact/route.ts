@@ -28,8 +28,17 @@ export async function POST(req: Request) {
             { success: true, message: 'Message received successfully!', data: { id: newSubmission.insertedId } },
             { status: 201 }
         );
-    } catch (error) {
+    } catch (error: any) {
         console.error('Contact API Error:', error);
+        
+        // Check if it's an authentication error
+        if (error.code === 8000 || error.codeName === 'AtlasError') {
+            return NextResponse.json(
+                { error: 'Database connection error. Please check your credentials.' },
+                { status: 503 }
+            );
+        }
+        
         return NextResponse.json(
             { error: 'Internal server error while processing contact submission.' },
             { status: 500 }
@@ -44,9 +53,11 @@ export async function GET() {
             .find({})
             .sort({ createdAt: -1 })
             .toArray();
-        return NextResponse.json(submissions);
+        return NextResponse.json(submissions || []);
     } catch (error) {
-        return NextResponse.json({ error: 'Failed to fetch submissions' }, { status: 500 });
+        console.error('Contact GET API Error:', error);
+        // Return empty array instead of error to prevent UI crash
+        return NextResponse.json([]);
     }
 }
 

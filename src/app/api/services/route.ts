@@ -9,10 +9,11 @@ export async function GET() {
             .find({})
             .sort({ createdAt: -1 })
             .toArray();
-        return NextResponse.json(services);
+        return NextResponse.json(services || []);
     } catch (error) {
         console.error('Services API Error:', error);
-        return NextResponse.json({ error: 'Failed to fetch services' }, { status: 500 });
+        // Return empty array instead of error to prevent UI crash
+        return NextResponse.json([]);
     }
 }
 

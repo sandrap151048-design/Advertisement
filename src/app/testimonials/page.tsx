@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Filter } from 'lucide-react';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -71,6 +71,46 @@ const projectsByCategory: Record<CategoryKey, {
 
 export default function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState<CategoryKey>('Billboards');
+  const [dbProjects, setDbProjects] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  const fetchProjects = async () => {
+    try {
+      const response = await fetch('/api/projects');
+      const data = await response.json();
+      setDbProjects(data || []);
+    } catch (error) {
+      console.error('Error fetching projects:', error);
+    }
+  };
+
+  // Group database projects by category
+  const groupedDbProjects = dbProjects.reduce((acc: any, project: any) => {
+    const category = project.category as CategoryKey;
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push({
+      title: project.title,
+      image: project.image
+    });
+    return acc;
+  }, {});
+
+  // Merge database projects with hardcoded projects
+  const mergedProjects: Record<CategoryKey, any> = { ...projectsByCategory };
+  Object.keys(groupedDbProjects).forEach((category) => {
+    const cat = category as CategoryKey;
+    if (mergedProjects[cat]) {
+      mergedProjects[cat].images = [
+        ...mergedProjects[cat].images,
+        ...groupedDbProjects[cat]
+      ];
+    }
+  });
 
   return (
     <>
@@ -440,12 +480,12 @@ export default function ProjectsPage() {
             {/* Category Section */}
             <motion.div className="category-section" variants={staggerContainer}>
               <motion.div className="category-info" variants={fadeInUp}>
-                <h3>{projectsByCategory[activeCategory].title}</h3>
-                <p>{projectsByCategory[activeCategory].description}</p>
+                <h3>{mergedProjects[activeCategory].title}</h3>
+                <p>{mergedProjects[activeCategory].description}</p>
               </motion.div>
 
               <motion.div className="category-images" variants={staggerContainer}>
-                {projectsByCategory[activeCategory].images.map((img, index) => (
+                {mergedProjects[activeCategory].images.map((img, index) => (
                   <motion.div
                     key={index}
                     className="category-image"

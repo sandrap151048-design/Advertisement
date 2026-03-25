@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Home, Users, LogOut, MessageSquare, Briefcase, Plus, Trash2, Edit, Star, Layers, MapPin, Phone, Mail, ShieldCheck } from 'lucide-react';
+import { Home, LogOut, MessageSquare, Briefcase, Plus, Trash2, Edit, Layers, MapPin, Phone, Mail } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -21,6 +21,7 @@ export default function ServicesPage() {
     const [services, setServices] = useState<Service[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [showAddModal, setShowAddModal] = useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
     const [formData, setFormData] = useState({
         name: '',
         description: '',
@@ -42,9 +43,10 @@ export default function ServicesPage() {
         try {
             const response = await fetch('/api/services');
             const data = await response.json();
-            setServices(data);
+            setServices(Array.isArray(data) ? data : []);
         } catch (error) {
             console.error('Error fetching services:', error);
+            setServices([]);
         }
         setIsLoading(false);
     };
@@ -62,10 +64,14 @@ export default function ServicesPage() {
             if (response.ok) {
                 setShowAddModal(false);
                 setFormData({ name: '', description: '', category: '', items: ['', '', '', ''] });
+                setSuccessMessage('Service added successfully!');
+                setTimeout(() => setSuccessMessage(''), 3000);
                 fetchServices();
             }
         } catch (error) {
             console.error('Error adding service:', error);
+            setSuccessMessage('Failed to add service');
+            setTimeout(() => setSuccessMessage(''), 3000);
         }
     };
 
@@ -79,9 +85,13 @@ export default function ServicesPage() {
 
             if (response.ok) {
                 setServices(services.filter(s => s._id !== id));
+                setSuccessMessage('Service deleted successfully!');
+                setTimeout(() => setSuccessMessage(''), 3000);
             }
         } catch (error) {
             console.error('Error deleting service:', error);
+            setSuccessMessage('Failed to delete service');
+            setTimeout(() => setSuccessMessage(''), 3000);
         }
     };
 
@@ -103,20 +113,20 @@ export default function ServicesPage() {
                             width: '45px',
                             height: '45px',
                             borderRadius: '12px',
-                            background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))',
+                            background: 'linear-gradient(135deg, #2c4a5e, #ff6b35)',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
                             color: 'white',
                             fontWeight: 800,
                             fontSize: '1.1rem',
-                            boxShadow: '0 4px 12px rgba(124, 58, 237, 0.4)'
+                            boxShadow: '0 4px 12px rgba(255, 107, 53, 0.4)'
                         }}>
                             OC
                         </div>
                         <div>
                             <div>
-                                <span style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: '1.1rem' }}>One</span>
+                                <span style={{ color: '#ff6b35', fontWeight: 700, fontSize: '1.1rem' }}>One</span>
                                 <span style={{ color: 'white', fontWeight: 700, fontSize: '1.1rem' }}> Click</span>
                             </div>
                             <div style={{ fontSize: '0.65rem', fontWeight: 500, color: 'rgba(255,255,255,0.5)', letterSpacing: '1.5px', textTransform: 'uppercase', lineHeight: 1, marginTop: '2px' }}>
@@ -133,17 +143,8 @@ export default function ServicesPage() {
                     <Link href="/admin/contacts" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', color: 'rgba(255,255,255,0.7)', cursor: 'pointer', transition: 'all 0.3s', textDecoration: 'none' }}>
                         <MessageSquare size={20} color="rgba(255,255,255,0.6)" /> Contact Forms
                     </Link>
-                    <Link href="/admin/services" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', background: 'rgba(255, 255, 255, 0.1)', color: 'white', cursor: 'pointer', borderLeft: '3px solid var(--color-primary)', textDecoration: 'none' }}>
-                        <Briefcase size={20} color="var(--color-primary)" /> Services
-                    </Link>
-                    <Link href="/admin/testimonials" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', color: 'rgba(255,255,255,0.7)', cursor: 'pointer', transition: 'all 0.3s', textDecoration: 'none' }}>
-                        <Star size={20} color="rgba(255,255,255,0.6)" /> Testimonials
-                    </Link>
-                    <Link href="/admin/blog" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', color: 'rgba(255,255,255,0.7)', cursor: 'pointer', transition: 'all 0.3s', textDecoration: 'none' }}>
-                        <Layers size={20} color="rgba(255,255,255,0.6)" /> Blog & Resources
-                    </Link>
-                    <Link href="/admin/newsletter" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', color: 'rgba(255,255,255,0.7)', cursor: 'pointer', transition: 'all 0.3s', textDecoration: 'none' }}>
-                        <Mail size={20} color="rgba(255,255,255,0.6)" /> Subscribers
+                    <Link href="/admin/services" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', background: 'rgba(255, 107, 53, 0.2)', color: 'white', cursor: 'pointer', borderLeft: '3px solid #ff6b35', textDecoration: 'none' }}>
+                        <Briefcase size={20} color="#ff6b35" /> Services
                     </Link>
                 </nav>
 
@@ -156,15 +157,45 @@ export default function ServicesPage() {
 
             {/* Main Content */}
             <main className="admin-main" style={{ display: 'flex', flexDirection: 'column', gap: '2rem', height: '100vh', overflowY: 'auto' }}>
-                <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '1.5rem', borderBottom: '1px solid var(--color-card-border)' }}>
+                {successMessage && (
+                    <div style={{
+                        position: 'fixed',
+                        top: '20px',
+                        right: '20px',
+                        background: successMessage.includes('success') ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)' : 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+                        color: 'white',
+                        padding: '1rem 1.5rem',
+                        borderRadius: '8px',
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                        zIndex: 9999,
+                        fontWeight: 600,
+                        fontSize: '0.95rem'
+                    }}>
+                        {successMessage}
+                    </div>
+                )}
+                <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '1.5rem', borderBottom: '1px solid rgba(44, 74, 94, 0.2)' }}>
                     <div>
-                        <h1 style={{ fontSize: '1.8rem', marginBottom: '0.5rem', fontFamily: "'Outfit', sans-serif", color: '#000000' }}>Services <span className="text-gradient">Management</span></h1>
-                        <p style={{ color: '#333333', fontSize: '0.9rem', fontFamily: "'Space Grotesk', sans-serif" }}>Manage your service offerings</p>
+                        <h1 style={{ fontSize: '1.8rem', marginBottom: '0.5rem', fontFamily: "'Outfit', sans-serif", color: '#1a1a1a' }}>Services <span style={{ color: '#ff6b35', fontWeight: 700 }}>Management</span></h1>
+                        <p style={{ color: '#666666', fontSize: '0.9rem', fontFamily: "'Space Grotesk', sans-serif" }}>Manage your service offerings</p>
                     </div>
                     <button
                         onClick={() => setShowAddModal(true)}
-                        className="btn btn-primary"
-                        style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.8rem 1.5rem' }}
+                        style={{ 
+                            display: 'flex', 
+                            alignItems: 'center', 
+                            gap: '0.5rem', 
+                            padding: '0.8rem 1.5rem',
+                            background: 'linear-gradient(135deg, #2c4a5e 0%, #ff6b35 100%)',
+                            border: 'none',
+                            borderRadius: '8px',
+                            color: 'white',
+                            fontSize: '0.95rem',
+                            fontWeight: 600,
+                            cursor: 'pointer',
+                            boxShadow: '0 4px 12px rgba(255, 107, 53, 0.3)',
+                            transition: 'all 0.3s ease'
+                        }}
                     >
                         <Plus size={20} /> Add Service
                     </button>
@@ -172,15 +203,32 @@ export default function ServicesPage() {
 
                 {isLoading ? (
                     <div style={{ textAlign: 'center', padding: '3rem' }}>
-                        <p style={{ color: 'var(--color-text-muted)' }}>Loading services...</p>
+                        <p style={{ color: '#666666' }}>Loading services...</p>
                     </div>
                 ) : services.length === 0 ? (
                     <div className="glass-card" style={{ padding: '3rem', textAlign: 'center' }}>
-                        <Briefcase size={48} color="var(--color-text-muted)" style={{ margin: '0 auto 1rem' }} />
+                        <Briefcase size={48} color="#666666" style={{ margin: '0 auto 1rem' }} />
                         <h3 style={{ marginBottom: '0.5rem' }}>No Services Yet</h3>
-                        <p style={{ color: 'var(--color-text-muted)', marginBottom: '1.5rem' }}>Start by adding your first service</p>
-                        <button onClick={() => setShowAddModal(true)} className="btn btn-primary">
-                            <Plus size={20} style={{ marginRight: '0.5rem' }} /> Add Service
+                        <p style={{ color: '#666666', marginBottom: '1.5rem' }}>Start by adding your first service</p>
+                        <button 
+                            onClick={() => setShowAddModal(true)} 
+                            style={{ 
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '0.5rem',
+                                padding: '0.8rem 1.5rem',
+                                background: 'linear-gradient(135deg, #2c4a5e 0%, #ff6b35 100%)',
+                                border: 'none',
+                                borderRadius: '8px',
+                                color: 'white',
+                                fontSize: '0.95rem',
+                                fontWeight: 600,
+                                cursor: 'pointer',
+                                boxShadow: '0 4px 12px rgba(255, 107, 53, 0.3)',
+                                transition: 'all 0.3s ease'
+                            }}
+                        >
+                            <Plus size={20} /> Add Service
                         </button>
                     </div>
                 ) : (

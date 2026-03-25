@@ -1,4 +1,16 @@
-/* Optimized Admin Dashboard CSS - High Performance */
+/* Optimized Admin Dashboard CSS - Website Color Theme */
+
+/* Admin Color Variables */
+:root {
+  --admin-primary: #2c4a5e;
+  --admin-secondary: #ff6b35;
+  --admin-accent: #facc15;
+  --admin-bg: #f5f5f5;
+  --admin-card-bg: #ffffff;
+  --admin-text: #1a1a1a;
+  --admin-text-muted: #666666;
+  --admin-border: rgba(44, 74, 94, 0.2);
+}
 
 /* Admin Layout - Performance Optimized */
 .admin-layout {
@@ -11,9 +23,9 @@
 .admin-sidebar {
   width: 280px;
   min-height: 100vh;
-  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  background: linear-gradient(180deg, #2c4a5e 0%, #1a2f3d 100%);
   padding: 1.5rem;
-  border-right: 1px solid rgba(124, 58, 237, 0.3);
+  border-right: 1px solid rgba(255, 107, 53, 0.2);
   position: fixed;
   left: 0;
   top: 0;
@@ -31,7 +43,7 @@
   flex: 1;
   margin-left: 280px;
   padding: 2rem;
-  background: #ffffff;
+  background: var(--admin-bg);
   min-height: 100vh;
   width: calc(100% - 280px);
   contain: layout style;
@@ -74,11 +86,13 @@
     transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform;
     backface-visibility: hidden;
+    visibility: hidden;
   }
 
   .admin-sidebar-open {
     transform: translateX(0);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    visibility: visible;
   }
 
   .admin-mobile-overlay {
@@ -195,7 +209,7 @@
 @media (max-width: 768px) {
   .admin-mobile-toggle {
     display: flex !important;
-    background: var(--color-primary) !important;
+    background: var(--admin-primary) !important;
     border: none !important;
     border-radius: 8px !important;
     padding: 0.75rem !important;
@@ -212,7 +226,7 @@
 
   .admin-mobile-toggle:hover,
   .admin-mobile-toggle:active {
-    background: var(--color-secondary) !important;
+    background: var(--admin-secondary) !important;
     transform: scale(1.05) !important;
   }
 }
@@ -269,7 +283,7 @@
 
   .admin-sidebar .nav-item:hover,
   .admin-sidebar .nav-item:active {
-    background: rgba(255, 255, 255, 0.1) !important;
+    background: rgba(255, 107, 53, 0.2) !important;
     transform: translateX(4px) !important;
   }
 
@@ -519,4 +533,20 @@
     padding: 0.75rem 0.875rem !important;
     font-size: 0.85rem !important;
   }
+}
+
+/* Glass Card Styling */
+.glass-card {
+  background: var(--admin-card-bg);
+  border-radius: 16px;
+  border: 1px solid var(--admin-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Text Gradient */
+.text-gradient {
+  background: linear-gradient(135deg, var(--admin-primary) 0%, var(--admin-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

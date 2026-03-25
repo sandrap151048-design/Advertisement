@@ -67,10 +67,30 @@ const accordionItems = [
 export default function ServicesPage() {
   const [openAccordion, setOpenAccordion] = useState<number | null>(0);
   const [currentYear, setCurrentYear] = useState<number | null>(null);
+  const [dbServices, setDbServices] = useState<any[]>([]);
 
   useEffect(() => {
     setCurrentYear(new Date().getFullYear());
+    fetchServices();
   }, []);
+
+  const fetchServices = async () => {
+    try {
+      const response = await fetch('/api/services');
+      const data = await response.json();
+      setDbServices(data || []);
+    } catch (error) {
+      console.error('Error fetching services:', error);
+    }
+  };
+
+  // Combine hardcoded services with database services
+  const allServices = [...services, ...dbServices.map(service => ({
+    title: service.name,
+    image: service.items && service.items[0] ? service.items[0] : "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80",
+    description: service.description,
+    link: "#"
+  }))];
 
   const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = e.currentTarget;
@@ -617,7 +637,7 @@ export default function ServicesPage() {
             </motion.div>
 
             <motion.div className="services-grid" variants={staggerContainer}>
-              {services.map((service, index) => (
+              {allServices.map((service, index) => (
                 <motion.div
                   key={index}
                   className="service-card"

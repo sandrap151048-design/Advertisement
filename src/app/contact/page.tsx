@@ -308,7 +308,7 @@ export default function ContactPage() {
           background: white;
           color: #1a1a1a;
           font-weight: 700;
-          border-radius: 50px;
+          border-radius: 12px;
           border: none;
           font-size: 1.3rem;
           cursor: pointer;

@@ -1,52 +1,51 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Home, MessageSquare, Briefcase, LogOut, Star, Plus, Trash2, Quote, Layers, MapPin, Phone, Mail, ShieldCheck, BookOpen } from 'lucide-react';
+import { Home, MessageSquare, Briefcase, LogOut, Plus, Trash2, Layers, MapPin, Phone, Mail } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-interface Testimonial {
+interface Project {
     _id: string;
-    name: string;
-    company: string;
-    role: string;
-    message: string;
-    rating: number;
+    title: string;
+    category: string;
+    image: string;
+    description?: string;
     createdAt: string;
 }
 
-export default function TestimonialsPage() {
+export default function ProjectsPage() {
     const router = useRouter();
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+    const [projects, setProjects] = useState<Project[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [showAddModal, setShowAddModal] = useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
     const [formData, setFormData] = useState({
-        name: '',
-        company: '',
-        role: '',
-        message: '',
-        rating: 5
+        title: '',
+        category: 'Billboards',
+        image: '',
+        description: ''
     });
 
     useEffect(() => {
         const authToken = localStorage.getItem('adminAuth');
         if (authToken === 'true') {
             setIsAuthenticated(true);
-            fetchTestimonials();
+            fetchProjects();
         } else {
             router.push('/admin/login');
         }
     }, [router]);
 
-    const fetchTestimonials = async () => {
+    const fetchProjects = async () => {
         try {
-            const response = await fetch('/api/testimonials');
+            const response = await fetch('/api/projects');
             const data = await response.json();
-            setTestimonials(data.testimonials || []);
+            setProjects(data || []);
         } catch (error) {
-            console.error('Error fetching testimonials:', error);
+            console.error('Error fetching projects:', error);
         }
         setIsLoading(false);
     };
@@ -55,7 +54,7 @@ export default function TestimonialsPage() {
         e.preventDefault();
         
         try {
-            const response = await fetch('/api/testimonials', {
+            const response = await fetch('/api/projects', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
@@ -63,27 +62,35 @@ export default function TestimonialsPage() {
 
             if (response.ok) {
                 setShowAddModal(false);
-                setFormData({ name: '', company: '', role: '', message: '', rating: 5 });
-                fetchTestimonials();
+                setFormData({ title: '', category: 'Billboards', image: '', description: '' });
+                setSuccessMessage('Project added successfully!');
+                setTimeout(() => setSuccessMessage(''), 3000);
+                fetchProjects();
             }
         } catch (error) {
-            console.error('Error adding testimonial:', error);
+            console.error('Error adding project:', error);
+            setSuccessMessage('Failed to add project');
+            setTimeout(() => setSuccessMessage(''), 3000);
         }
     };
 
     const handleDelete = async (id: string) => {
-        if (!confirm('Are you sure you want to delete this testimonial?')) return;
+        if (!confirm('Are you sure you want to delete this project?')) return;
 
         try {
-            const response = await fetch(`/api/testimonials?id=${id}`, {
+            const response = await fetch(`/api/projects?id=${id}`, {
                 method: 'DELETE'
             });
 
             if (response.ok) {
-                setTestimonials(testimonials.filter(t => t._id !== id));
+                setProjects(projects.filter(p => p._id !== id));
+                setSuccessMessage('Project deleted successfully!');
+                setTimeout(() => setSuccessMessage(''), 3000);
             }
         } catch (error) {
-            console.error('Error deleting testimonial:', error);
+            console.error('Error deleting project:', error);
+            setSuccessMessage('Failed to delete project');
+            setTimeout(() => setSuccessMessage(''), 3000);
         }
     };
 
@@ -98,27 +105,27 @@ export default function TestimonialsPage() {
     return (
         <div className="admin-layout">
             {/* Sidebar */}
-            <aside className="admin-sidebar" style={{ display: 'flex', flexDirection: 'column', background: 'linear-gradient(180deg, #1e293b 0%, #0f172a 100%)' }}>
+            <aside className="admin-sidebar" style={{ display: 'flex', flexDirection: 'column', background: 'linear-gradient(180deg, #2c4a5e 0%, #1a2f3d 100%)' }}>
                 <div style={{ marginBottom: '3rem', marginTop: '1rem', padding: '0 1rem' }}>
                     <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
                         <div style={{
                             width: '45px',
                             height: '45px',
                             borderRadius: '12px',
-                            background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))',
+                            background: 'linear-gradient(135deg, #2c4a5e, #ff6b35)',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
                             color: 'white',
                             fontWeight: 800,
                             fontSize: '1.1rem',
-                            boxShadow: '0 4px 12px rgba(124, 58, 237, 0.4)'
+                            boxShadow: '0 4px 12px rgba(255, 107, 53, 0.4)'
                         }}>
                             OC
                         </div>
                         <div>
                             <div>
-                                <span style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: '1.1rem' }}>One</span>
+                                <span style={{ color: '#ff6b35', fontWeight: 700, fontSize: '1.1rem' }}>One</span>
                                 <span style={{ color: 'white', fontWeight: 700, fontSize: '1.1rem' }}> Click</span>
                             </div>
                             <div style={{ fontSize: '0.65rem', fontWeight: 500, color: 'rgba(255,255,255,0.5)', letterSpacing: '1.5px', textTransform: 'uppercase', lineHeight: 1, marginTop: '2px' }}>
@@ -138,14 +145,8 @@ export default function TestimonialsPage() {
                     <Link href="/admin/services" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', color: 'rgba(255,255,255,0.7)', cursor: 'pointer', transition: 'all 0.3s', textDecoration: 'none' }}>
                         <Briefcase size={20} color="rgba(255,255,255,0.6)" /> Services
                     </Link>
-                    <Link href="/admin/testimonials" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', background: 'rgba(255, 255, 255, 0.1)', color: 'white', cursor: 'pointer', borderLeft: '3px solid var(--color-primary)', textDecoration: 'none' }}>
-                        <Star size={20} color="var(--color-primary)" /> Testimonials
-                    </Link>
-                    <Link href="/admin/blog" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', color: 'rgba(255,255,255,0.7)', cursor: 'pointer', transition: 'all 0.3s', textDecoration: 'none' }}>
-                        <BookOpen size={20} color="rgba(255,255,255,0.6)" /> Blog & Resources
-                    </Link>
-                    <Link href="/admin/newsletter" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', color: 'rgba(255,255,255,0.7)', cursor: 'pointer', transition: 'all 0.3s', textDecoration: 'none' }}>
-                        <Mail size={20} color="rgba(255,255,255,0.6)" /> Subscribers
+                    <Link href="/admin/testimonials" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', background: 'rgba(255, 107, 53, 0.2)', color: 'white', cursor: 'pointer', borderLeft: '3px solid #ff6b35', textDecoration: 'none' }}>
+                        <Layers size={20} color="#ff6b35" /> Projects
                     </Link>
                 </nav>
 
@@ -158,88 +159,150 @@ export default function TestimonialsPage() {
 
             {/* Main Content */}
             <main className="admin-main" style={{ display: 'flex', flexDirection: 'column', gap: '2rem', height: '100vh', overflowY: 'auto' }}>
-                <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '1.5rem', borderBottom: '1px solid var(--color-card-border)' }}>
+                {successMessage && (
+                    <div style={{
+                        position: 'fixed',
+                        top: '20px',
+                        right: '20px',
+                        background: successMessage.includes('success') ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)' : 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+                        color: 'white',
+                        padding: '1rem 1.5rem',
+                        borderRadius: '8px',
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                        zIndex: 9999,
+                        fontWeight: 600,
+                        fontSize: '0.95rem'
+                    }}>
+                        {successMessage}
+                    </div>
+                )}
+                <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '1.5rem', borderBottom: '1px solid rgba(44, 74, 94, 0.2)' }}>
                     <div>
-                        <h1 style={{ fontSize: '1.8rem', marginBottom: '0.5rem', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#000000' }}>Testimonials <span className="text-gradient">Management</span></h1>
-                        <p style={{ color: '#333333', fontSize: '0.9rem', fontFamily: "'DM Sans', sans-serif" }}>Manage customer testimonials and reviews</p>
+                        <h1 style={{ fontSize: '1.8rem', marginBottom: '0.5rem', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#1a1a1a' }}>Projects <span className="text-gradient">Management</span></h1>
+                        <p style={{ color: '#666666', fontSize: '0.9rem', fontFamily: "'DM Sans', sans-serif" }}>Manage your advertising projects</p>
                     </div>
                     <button
                         onClick={() => setShowAddModal(true)}
-                        className="btn btn-primary"
-                        style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.8rem 1.5rem' }}
+                        style={{ 
+                            display: 'flex', 
+                            alignItems: 'center', 
+                            gap: '0.5rem', 
+                            padding: '0.8rem 1.5rem',
+                            background: 'linear-gradient(135deg, #2c4a5e 0%, #ff6b35 100%)',
+                            border: 'none',
+                            borderRadius: '8px',
+                            color: 'white',
+                            fontSize: '0.95rem',
+                            fontWeight: 600,
+                            cursor: 'pointer',
+                            boxShadow: '0 4px 12px rgba(255, 107, 53, 0.3)',
+                            transition: 'all 0.3s ease'
+                        }}
                     >
-                        <Plus size={20} /> Add Testimonial
+                        <Plus size={20} /> Add Project
                     </button>
                 </header>
 
                 {isLoading ? (
                     <div style={{ textAlign: 'center', padding: '3rem' }}>
-                        <p style={{ color: 'var(--color-text-muted)' }}>Loading testimonials...</p>
+                        <p style={{ color: '#666666' }}>Loading projects...</p>
                     </div>
-                ) : testimonials.length === 0 ? (
+                ) : projects.length === 0 ? (
                     <div className="glass-card" style={{ padding: '3rem', textAlign: 'center' }}>
-                        <Quote size={48} color="var(--color-text-muted)" style={{ margin: '0 auto 1rem' }} />
-                        <h3 style={{ marginBottom: '0.5rem' }}>No Testimonials Yet</h3>
-                        <p style={{ color: 'var(--color-text-muted)', marginBottom: '1.5rem' }}>Start by adding your first testimonial</p>
-                        <button onClick={() => setShowAddModal(true)} className="btn btn-primary">
-                            <Plus size={20} style={{ marginRight: '0.5rem' }} /> Add Testimonial
+                        <Layers size={48} color="#666666" style={{ margin: '0 auto 1rem' }} />
+                        <h3 style={{ marginBottom: '0.5rem' }}>No Projects Yet</h3>
+                        <p style={{ color: '#666666', marginBottom: '1.5rem' }}>Start by adding your first project</p>
+                        <button 
+                            onClick={() => setShowAddModal(true)} 
+                            style={{ 
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '0.5rem',
+                                padding: '0.8rem 1.5rem',
+                                background: 'linear-gradient(135deg, #2c4a5e 0%, #ff6b35 100%)',
+                                border: 'none',
+                                borderRadius: '8px',
+                                color: 'white',
+                                fontSize: '0.95rem',
+                                fontWeight: 600,
+                                cursor: 'pointer',
+                                boxShadow: '0 4px 12px rgba(255, 107, 53, 0.3)',
+                                transition: 'all 0.3s ease'
+                            }}
+                        >
+                            <Plus size={20} /> Add Project
                         </button>
                     </div>
                 ) : (
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '1.5rem' }}>
-                        {testimonials.map((testimonial) => (
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem' }}>
+                        {projects.map((project) => (
                             <motion.div
-                                key={testimonial._id}
+                                key={project._id}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 className="glass-card"
-                                style={{ padding: '1.8rem', display: 'flex', flexDirection: 'column' }}
+                                style={{ padding: '0', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}
                             >
-                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-                                    <div style={{ display: 'flex', gap: '0.3rem' }}>
-                                        {[...Array(5)].map((_, i) => (
-                                            <Star 
-                                                key={i} 
-                                                size={18} 
-                                                fill={i < testimonial.rating ? 'var(--color-accent)' : 'none'}
-                                                color={i < testimonial.rating ? 'var(--color-accent)' : 'var(--color-text-muted)'}
-                                            />
-                                        ))}
+                                {project.image && (
+                                    <div style={{ 
+                                        width: '100%', 
+                                        height: '200px', 
+                                        overflow: 'hidden',
+                                        background: '#f0f0f0'
+                                    }}>
+                                        <img 
+                                            src={project.image} 
+                                            alt={project.title}
+                                            style={{ 
+                                                width: '100%', 
+                                                height: '100%', 
+                                                objectFit: 'cover' 
+                                            }}
+                                        />
                                     </div>
-                                    <Quote size={24} color="var(--color-primary)" style={{ opacity: 0.3 }} />
-                                </div>
-                                
-                                <p style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem', lineHeight: '1.7', flex: 1, marginBottom: '1.5rem', fontStyle: 'italic', fontFamily: "'Manrope', sans-serif" }}>
-                                    "{testimonial.message}"
-                                </p>
-                                
-                                <div style={{ paddingTop: '1rem', borderTop: '1px solid var(--color-card-border)' }}>
-                                    <h4 style={{ fontSize: '1.1rem', marginBottom: '0.3rem', color: 'var(--color-text-main)', fontFamily: "'Syne', sans-serif" }}>
-                                        {testimonial.name}
-                                    </h4>
-                                    <p style={{ color: 'var(--color-text-muted)', fontSize: '0.85rem', marginBottom: '1rem', fontFamily: "'Space Grotesk', sans-serif" }}>
-                                        {testimonial.role} at {testimonial.company}
-                                    </p>
-                                    
+                                )}
+                                <div style={{ padding: '1.5rem' }}>
+                                    <div style={{ marginBottom: '1rem' }}>
+                                        <span style={{ 
+                                            background: 'rgba(255, 107, 53, 0.1)', 
+                                            color: '#ff6b35',
+                                            padding: '0.3rem 0.8rem',
+                                            borderRadius: '6px',
+                                            fontSize: '0.75rem',
+                                            fontWeight: 600,
+                                            textTransform: 'uppercase'
+                                        }}>
+                                            {project.category}
+                                        </span>
+                                    </div>
+                                    <h3 style={{ fontSize: '1.2rem', marginBottom: '0.8rem', color: '#1a1a1a' }}>
+                                        {project.title}
+                                    </h3>
+                                    {project.description && (
+                                        <p style={{ color: '#666666', fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '1rem' }}>
+                                            {project.description}
+                                        </p>
+                                    )}
                                     <button
-                                        onClick={() => handleDelete(testimonial._id)}
+                                        onClick={() => handleDelete(project._id)}
                                         style={{
                                             width: '100%',
+                                            padding: '0.7rem',
                                             background: 'rgba(239, 68, 68, 0.1)',
                                             border: '1px solid rgba(239, 68, 68, 0.3)',
                                             color: '#ef4444',
-                                            padding: '0.6rem',
                                             borderRadius: '8px',
                                             cursor: 'pointer',
                                             display: 'flex',
                                             alignItems: 'center',
                                             justifyContent: 'center',
                                             gap: '0.5rem',
-                                            fontSize: '0.85rem',
-                                            fontWeight: 600
+                                            fontSize: '0.9rem',
+                                            fontWeight: 600,
+                                            transition: 'all 0.3s ease'
                                         }}
                                     >
-                                        <Trash2 size={16} /> Delete
+                                        <Trash2 size={16} /> Delete Project
                                     </button>
                                 </div>
                             </motion.div>
@@ -247,7 +310,7 @@ export default function TestimonialsPage() {
                     </div>
                 )}
 
-                {/* Add Testimonial Modal */}
+                {/* Add Project Modal */}
                 {showAddModal && (
                     <div style={{
                         position: 'fixed',
@@ -265,107 +328,85 @@ export default function TestimonialsPage() {
                             maxHeight: '90vh',
                             overflowY: 'auto'
                         }} onClick={(e) => e.stopPropagation()}>
-                            <h2 style={{ marginBottom: '1.5rem', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Add New Testimonial</h2>
+                            <h2 style={{ marginBottom: '1.5rem', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#1a1a1a' }}>Add New Project</h2>
                             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
                                 <div>
-                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem' }}>
-                                        Customer Name
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem', color: '#1a1a1a' }}>
+                                        Project Title
                                     </label>
                                     <input
                                         type="text"
                                         required
-                                        value={formData.name}
-                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                        placeholder="e.g., Ahmed Al Mansoori"
+                                        value={formData.title}
+                                        onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                                        placeholder="e.g., DIOR Luxury Billboard"
                                         style={{
                                             width: '100%',
                                             padding: '0.8rem',
                                             borderRadius: '8px',
-                                            border: '1px solid var(--color-card-border)',
-                                            background: 'rgba(124, 58, 237, 0.03)',
+                                            border: '1px solid rgba(44, 74, 94, 0.2)',
+                                            background: 'rgba(255, 107, 53, 0.03)',
                                             fontSize: '0.95rem'
                                         }}
                                     />
                                 </div>
                                 <div>
-                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem' }}>
-                                        Company
-                                    </label>
-                                    <input
-                                        type="text"
-                                        required
-                                        value={formData.company}
-                                        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                                        placeholder="e.g., Emirates Group"
-                                        style={{
-                                            width: '100%',
-                                            padding: '0.8rem',
-                                            borderRadius: '8px',
-                                            border: '1px solid var(--color-card-border)',
-                                            background: 'rgba(124, 58, 237, 0.03)',
-                                            fontSize: '0.95rem'
-                                        }}
-                                    />
-                                </div>
-                                <div>
-                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem' }}>
-                                        Role/Position
-                                    </label>
-                                    <input
-                                        type="text"
-                                        required
-                                        value={formData.role}
-                                        onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                                        placeholder="e.g., Marketing Director"
-                                        style={{
-                                            width: '100%',
-                                            padding: '0.8rem',
-                                            borderRadius: '8px',
-                                            border: '1px solid var(--color-card-border)',
-                                            background: 'rgba(124, 58, 237, 0.03)',
-                                            fontSize: '0.95rem'
-                                        }}
-                                    />
-                                </div>
-                                <div>
-                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem' }}>
-                                        Rating
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem', color: '#1a1a1a' }}>
+                                        Category
                                     </label>
                                     <select
-                                        value={formData.rating}
-                                        onChange={(e) => setFormData({ ...formData, rating: parseInt(e.target.value) })}
+                                        value={formData.category}
+                                        onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                                         style={{
                                             width: '100%',
                                             padding: '0.8rem',
                                             borderRadius: '8px',
-                                            border: '1px solid var(--color-card-border)',
-                                            background: 'rgba(124, 58, 237, 0.03)',
+                                            border: '1px solid rgba(44, 74, 94, 0.2)',
+                                            background: 'rgba(255, 107, 53, 0.03)',
                                             fontSize: '0.95rem'
                                         }}
                                     >
-                                        <option value={5}>5 Stars</option>
-                                        <option value={4}>4 Stars</option>
-                                        <option value={3}>3 Stars</option>
-                                        <option value={2}>2 Stars</option>
-                                        <option value={1}>1 Star</option>
+                                        <option value="Billboards">Billboards</option>
+                                        <option value="Retail Signage">Retail Signage</option>
+                                        <option value="Vehicle Branding">Vehicle Branding</option>
+                                        <option value="Campaigns">Campaign Solutions</option>
                                     </select>
                                 </div>
                                 <div>
-                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem' }}>
-                                        Testimonial Message
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem', color: '#1a1a1a' }}>
+                                        Image URL
                                     </label>
-                                    <textarea
+                                    <input
+                                        type="url"
                                         required
-                                        value={formData.message}
-                                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                        placeholder="Write the testimonial message..."
-                                        rows={5}
+                                        value={formData.image}
+                                        onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                                        placeholder="https://images.unsplash.com/..."
                                         style={{
                                             width: '100%',
                                             padding: '0.8rem',
                                             borderRadius: '8px',
-                                            border: '1px solid var(--color-card-border)',
-                                            background: 'rgba(124, 58, 237, 0.03)',
+                                            border: '1px solid rgba(44, 74, 94, 0.2)',
+                                            background: 'rgba(255, 107, 53, 0.03)',
+                                            fontSize: '0.95rem'
+                                        }}
+                                    />
+                                </div>
+                                <div>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem', color: '#1a1a1a' }}>
+                                        Description (Optional)
+                                    </label>
+                                    <textarea
+                                        value={formData.description}
+                                        onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                                        placeholder="Brief description of the project..."
+                                        rows={3}
+                                        style={{
+                                            width: '100%',
+                                            padding: '0.8rem',
+                                            borderRadius: '8px',
+                                            border: '1px solid rgba(44, 74, 94, 0.2)',
+                                            background: 'rgba(255, 107, 53, 0.03)',
                                             fontSize: '0.95rem',
                                             resize: 'vertical'
                                         }}
@@ -375,17 +416,34 @@ export default function TestimonialsPage() {
                                     <button
                                         type="button"
                                         onClick={() => setShowAddModal(false)}
-                                        className="btn btn-outline"
-                                        style={{ flex: 1 }}
+                                        style={{ 
+                                            flex: 1,
+                                            padding: '0.8rem',
+                                            background: '#f5f5f5',
+                                            border: '1px solid rgba(44, 74, 94, 0.2)',
+                                            borderRadius: '8px',
+                                            cursor: 'pointer',
+                                            fontWeight: 600,
+                                            fontSize: '0.95rem'
+                                        }}
                                     >
                                         Cancel
                                     </button>
                                     <button
                                         type="submit"
-                                        className="btn btn-primary"
-                                        style={{ flex: 1 }}
+                                        style={{ 
+                                            flex: 1,
+                                            padding: '0.8rem',
+                                            background: 'linear-gradient(135deg, #2c4a5e 0%, #ff6b35 100%)',
+                                            border: 'none',
+                                            borderRadius: '8px',
+                                            color: 'white',
+                                            cursor: 'pointer',
+                                            fontWeight: 600,
+                                            fontSize: '0.95rem'
+                                        }}
                                     >
-                                        Add Testimonial
+                                        Add Project
                                     </button>
                                 </div>
                             </form>
@@ -394,12 +452,12 @@ export default function TestimonialsPage() {
                 )}
 
                 {/* Admin Footer */}
-                <footer style={{ marginTop: '3rem', padding: '5rem 0', background: '#0f172a', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+                <footer style={{ marginTop: '3rem', padding: '5rem 0', background: '#2c4a5e', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
                     <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
                         <div style={{ marginBottom: '5rem' }}>
                             <div>
                                 <h3 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '0.5rem', color: 'white' }}>
-                                    <span style={{ color: 'var(--color-primary)' }}>One</span> Click
+                                    <span style={{ color: '#ff6b35' }}>One</span> Click
                                 </h3>
                                 <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '2px', margin: 0 }}>
                                     PREMIUM OUTDOOR MEDIA SOLUTIONS
@@ -412,7 +470,7 @@ export default function TestimonialsPage() {
                                 <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem', listStyle: 'none', padding: 0 }}>
                                     <li><a href="/" style={{ color: 'inherit', textDecoration: 'none' }}>Home</a></li>
                                     <li><a href="/services" style={{ color: 'inherit', textDecoration: 'none' }}>Services</a></li>
-                                    <li><a href="/testimonials" style={{ color: 'inherit', textDecoration: 'none' }}>Testimonials</a></li>
+                                    <li><a href="/testimonials" style={{ color: 'inherit', textDecoration: 'none' }}>Projects</a></li>
                                     <li><a href="/contact" style={{ color: 'inherit', textDecoration: 'none' }}>Contact</a></li>
                                 </ul>
                             </div>
@@ -421,13 +479,13 @@ export default function TestimonialsPage() {
                                 <h4 style={{ marginBottom: '1rem', fontSize: '1rem', color: 'white' }}>Contact Us</h4>
                                 <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem', listStyle: 'none', padding: 0 }}>
                                     <li style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}>
-                                        <MapPin size={18} color="var(--color-primary)" /> Dubai, UAE
+                                        <MapPin size={18} color="#facc15" /> Dubai, UAE
                                     </li>
                                     <li style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}>
-                                        <Phone size={18} color="var(--color-primary)" /> +971 00 000 0000
+                                        <Phone size={18} color="#facc15" /> +971 00 000 0000
                                     </li>
                                     <li style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}>
-                                        <Mail size={18} color="var(--color-primary)" /> info@oneclickadv.ae
+                                        <Mail size={18} color="#facc15" /> info@oneclickadv.ae
                                     </li>
                                 </ul>
                             </div>

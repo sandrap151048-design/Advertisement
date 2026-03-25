@@ -9,10 +9,11 @@ export async function GET() {
             .find({})
             .sort({ createdAt: -1 })
             .toArray();
-        return NextResponse.json({ testimonials });
+        return NextResponse.json({ testimonials: testimonials || [] });
     } catch (error) {
         console.error('Testimonials API Error:', error);
-        return NextResponse.json({ error: 'Failed to fetch testimonials' }, { status: 500 });
+        // Return empty array instead of error to prevent UI crash
+        return NextResponse.json({ testimonials: [] });
     }
 }
 

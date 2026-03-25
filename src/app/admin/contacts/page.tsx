@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Home, Users, LogOut, MessageSquare, Star, Box, Briefcase, Trash2, Mail, Phone, Calendar, Layers, MapPin, ShieldCheck } from 'lucide-react';
+import { Home, LogOut, MessageSquare, Briefcase, Trash2, Mail, Phone, Calendar, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -35,9 +35,10 @@ export default function ContactsPage() {
         try {
             const response = await fetch('/api/contact');
             const data = await response.json();
-            setContacts(data);
+            setContacts(Array.isArray(data) ? data : []);
         } catch (error) {
             console.error('Error fetching contacts:', error);
+            setContacts([]);
         }
         setIsLoading(false);
     };
@@ -76,20 +77,20 @@ export default function ContactsPage() {
                             width: '45px',
                             height: '45px',
                             borderRadius: '12px',
-                            background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))',
+                            background: 'linear-gradient(135deg, #2c4a5e, #ff6b35)',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
                             color: 'white',
                             fontWeight: 800,
                             fontSize: '1.1rem',
-                            boxShadow: '0 4px 12px rgba(124, 58, 237, 0.4)'
+                            boxShadow: '0 4px 12px rgba(255, 107, 53, 0.4)'
                         }}>
                             OC
                         </div>
                         <div>
                             <div>
-                                <span style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: '1.1rem' }}>One</span>
+                                <span style={{ color: '#ff6b35', fontWeight: 700, fontSize: '1.1rem' }}>One</span>
                                 <span style={{ color: 'white', fontWeight: 700, fontSize: '1.1rem' }}> Click</span>
                             </div>
                             <div style={{ fontSize: '0.65rem', fontWeight: 500, color: 'rgba(255,255,255,0.5)', letterSpacing: '1.5px', textTransform: 'uppercase', lineHeight: 1, marginTop: '2px' }}>
@@ -103,20 +104,11 @@ export default function ContactsPage() {
                     <Link href="/admin" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', color: 'rgba(255,255,255,0.7)', cursor: 'pointer', transition: 'all 0.3s', textDecoration: 'none' }}>
                         <Home size={20} color="rgba(255,255,255,0.6)" /> Dashboard
                     </Link>
-                    <Link href="/admin/contacts" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', background: 'rgba(255, 255, 255, 0.1)', color: 'white', cursor: 'pointer', borderLeft: '3px solid var(--color-primary)', textDecoration: 'none' }}>
-                        <MessageSquare size={20} color="var(--color-primary)" /> Contact Forms
+                    <Link href="/admin/contacts" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', background: 'rgba(255, 107, 53, 0.2)', color: 'white', cursor: 'pointer', borderLeft: '3px solid #ff6b35', textDecoration: 'none' }}>
+                        <MessageSquare size={20} color="#ff6b35" /> Contact Forms
                     </Link>
                     <Link href="/admin/services" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', color: 'rgba(255,255,255,0.7)', cursor: 'pointer', transition: 'all 0.3s', textDecoration: 'none' }}>
                         <Briefcase size={20} color="rgba(255,255,255,0.6)" /> Services
-                    </Link>
-                    <Link href="/admin/testimonials" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', color: 'rgba(255,255,255,0.7)', cursor: 'pointer', transition: 'all 0.3s', textDecoration: 'none' }}>
-                        <Star size={20} color="rgba(255,255,255,0.6)" /> Testimonials
-                    </Link>
-                    <Link href="/admin/blog" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', color: 'rgba(255,255,255,0.7)', cursor: 'pointer', transition: 'all 0.3s', textDecoration: 'none' }}>
-                        <Layers size={20} color="rgba(255,255,255,0.6)" /> Blog & Resources
-                    </Link>
-                    <Link href="/admin/newsletter" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', color: 'rgba(255,255,255,0.7)', cursor: 'pointer', transition: 'all 0.3s', textDecoration: 'none' }}>
-                        <Mail size={20} color="rgba(255,255,255,0.6)" /> Subscribers
                     </Link>
                 </nav>
 
@@ -129,25 +121,25 @@ export default function ContactsPage() {
 
             {/* Main Content */}
             <main className="admin-main" style={{ display: 'flex', flexDirection: 'column', gap: '2rem', height: '100vh', overflowY: 'auto' }}>
-                <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '1.5rem', borderBottom: '1px solid var(--color-card-border)' }}>
+                <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '1.5rem', borderBottom: '1px solid rgba(44, 74, 94, 0.2)' }}>
                     <div>
-                        <h1 style={{ fontSize: '1.8rem', marginBottom: '0.5rem', fontFamily: "'Bricolage Grotesque', sans-serif", color: '#000000' }}>Contact <span className="text-gradient">Forms</span></h1>
-                        <p style={{ color: '#333333', fontSize: '0.9rem', fontFamily: "'Manrope', sans-serif" }}>Manage customer inquiries and messages</p>
+                        <h1 style={{ fontSize: '1.8rem', marginBottom: '0.5rem', fontFamily: "'Bricolage Grotesque', sans-serif", color: '#1a1a1a' }}>Contact <span style={{ color: '#ff6b35', fontWeight: 700 }}>Forms</span></h1>
+                        <p style={{ color: '#666666', fontSize: '0.9rem', fontFamily: "'Manrope', sans-serif" }}>Manage customer inquiries and messages</p>
                     </div>
-                    <div style={{ background: 'rgba(124, 58, 237, 0.1)', padding: '0.8rem 1.5rem', borderRadius: '8px', border: '1px solid rgba(124, 58, 237, 0.2)' }}>
-                        <span style={{ color: 'var(--color-primary)', fontWeight: 700 }}>{contacts.length} Total</span>
+                    <div style={{ background: 'rgba(255, 107, 53, 0.1)', padding: '0.8rem 1.5rem', borderRadius: '8px', border: '1px solid rgba(255, 107, 53, 0.2)' }}>
+                        <span style={{ color: '#ff6b35', fontWeight: 700 }}>{contacts.length} Total</span>
                     </div>
                 </header>
 
                 {isLoading ? (
                     <div style={{ textAlign: 'center', padding: '3rem' }}>
-                        <p style={{ color: 'var(--color-text-muted)' }}>Loading contacts...</p>
+                        <p style={{ color: '#666666' }}>Loading contacts...</p>
                     </div>
                 ) : contacts.length === 0 ? (
                     <div className="glass-card" style={{ padding: '3rem', textAlign: 'center' }}>
-                        <MessageSquare size={48} color="var(--color-text-muted)" style={{ margin: '0 auto 1rem' }} />
+                        <MessageSquare size={48} color="#666666" style={{ margin: '0 auto 1rem' }} />
                         <h3 style={{ marginBottom: '0.5rem' }}>No Contact Forms Yet</h3>
-                        <p style={{ color: 'var(--color-text-muted)' }}>Contact form submissions will appear here</p>
+                        <p style={{ color: '#666666' }}>Contact form submissions will appear here</p>
                     </div>
                 ) : (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -157,24 +149,29 @@ export default function ContactsPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 className="glass-card"
-                                style={{ padding: '1.5rem' }}
+                                style={{ 
+                                    padding: '1.5rem',
+                                    background: 'linear-gradient(135deg, rgba(255, 107, 53, 0.08) 0%, rgba(255, 107, 53, 0.03) 100%)',
+                                    border: '1px solid rgba(255, 107, 53, 0.2)',
+                                    boxShadow: '0 4px 12px rgba(255, 107, 53, 0.1)'
+                                }}
                             >
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '1rem' }}>
                                     <div>
-                                        <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', fontFamily: "'DM Sans', sans-serif" }}>{contact.name}</h3>
+                                        <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', fontFamily: "'DM Sans', sans-serif", color: '#ff6b35', fontWeight: 700 }}>{contact.name}</h3>
                                         <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-text-muted)', fontSize: '0.9rem' }}>
-                                                <Mail size={16} color="var(--color-primary)" />
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#666666', fontSize: '0.9rem' }}>
+                                                <Mail size={16} color="#ff6b35" />
                                                 {contact.email}
                                             </div>
                                             {contact.phone && (
-                                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-text-muted)', fontSize: '0.9rem' }}>
-                                                    <Phone size={16} color="var(--color-primary)" />
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#666666', fontSize: '0.9rem' }}>
+                                                    <Phone size={16} color="#ff6b35" />
                                                     {contact.phone}
                                                 </div>
                                             )}
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-text-muted)', fontSize: '0.9rem' }}>
-                                                <Calendar size={16} color="var(--color-primary)" />
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#666666', fontSize: '0.9rem' }}>
+                                                <Calendar size={16} color="#ff6b35" />
                                                 {new Date(contact.createdAt).toLocaleDateString()}
                                             </div>
                                         </div>
@@ -199,12 +196,12 @@ export default function ContactsPage() {
                                     </button>
                                 </div>
                                 <div style={{ 
-                                    background: 'rgba(124, 58, 237, 0.05)', 
+                                    background: 'rgba(255, 107, 53, 0.1)', 
                                     padding: '1rem', 
                                     borderRadius: '8px',
-                                    border: '1px solid rgba(124, 58, 237, 0.1)'
+                                    border: '1px solid rgba(255, 107, 53, 0.2)'
                                 }}>
-                                    <p style={{ color: 'var(--color-text-main)', lineHeight: '1.6', margin: 0, fontFamily: "'Manrope', sans-serif" }}>
+                                    <p style={{ color: '#1a1a1a', lineHeight: '1.6', margin: 0, fontFamily: "'Manrope', sans-serif" }}>
                                         {contact.message}
                                     </p>
                                 </div>
@@ -214,12 +211,12 @@ export default function ContactsPage() {
                 )}
 
                 {/* Admin Footer */}
-                <footer style={{ marginTop: '3rem', padding: '5rem 0', background: '#0f172a', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+                <footer style={{ marginTop: '3rem', padding: '5rem 0', background: '#2c4a5e', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
                     <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
                         <div style={{ marginBottom: '5rem' }}>
                             <div>
                                 <h3 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '0.5rem', color: 'white' }}>
-                                    <span style={{ color: 'var(--color-primary)' }}>One</span> Click
+                                    <span style={{ color: '#ff6b35' }}>One</span> Click
                                 </h3>
                                 <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '2px', margin: 0 }}>
                                     PREMIUM OUTDOOR MEDIA SOLUTIONS
@@ -241,13 +238,13 @@ export default function ContactsPage() {
                                 <h4 style={{ marginBottom: '1rem', fontSize: '1rem', color: 'white' }}>Contact Us</h4>
                                 <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem', listStyle: 'none', padding: 0 }}>
                                     <li style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}>
-                                        <MapPin size={18} color="var(--color-primary)" /> Dubai, UAE
+                                        <MapPin size={18} color="#facc15" /> Dubai, UAE
                                     </li>
                                     <li style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}>
-                                        <Phone size={18} color="var(--color-primary)" /> +971 00 000 0000
+                                        <Phone size={18} color="#facc15" /> +971 00 000 0000
                                     </li>
                                     <li style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}>
-                                        <Mail size={18} color="var(--color-primary)" /> info@oneclickadv.ae
+                                        <Mail size={18} color="#facc15" /> info@oneclickadv.ae
                                     </li>
                                 </ul>
                             </div>
