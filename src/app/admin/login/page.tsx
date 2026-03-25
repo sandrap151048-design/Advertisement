@@ -262,7 +262,7 @@ export default function AdminLoginPage() {
 
                 .login-right {
                     flex: 1;
-                    background-image: url('https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=1200&q=80');
+                    background-image: url('https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1200&q=80');
                     background-size: cover;
                     background-position: center;
                     position: relative;
@@ -272,7 +272,7 @@ export default function AdminLoginPage() {
                     content: '';
                     position: absolute;
                     inset: 0;
-                    background: linear-gradient(135deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2));
+                    background: linear-gradient(135deg, rgba(0,0,0,0.3), rgba(0,0,0,0.1));
                 }
 
                 .error-message {
