@@ -15,7 +15,8 @@ export default function RootLayout({
   const pathname = usePathname();
   const isAdminRoute = pathname?.startsWith('/admin');
   const isRegisterRoute = pathname === '/register';
-  const hideNavbar = isAdminRoute || isRegisterRoute;
+  const isCampaignRoute = pathname === '/campaign';
+  const hideNavbar = isAdminRoute || isRegisterRoute || isCampaignRoute;
 
   useEffect(() => {
     // Add loaded class to body after mount to prevent flash

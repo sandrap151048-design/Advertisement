@@ -640,86 +640,11 @@ export default function VehicleBrandingPage() {
               <p>Tell us about your requirements and we'll get back to you promptly</p>
             </motion.div>
 
-            <motion.form className="contact-form" variants={fadeInUp} onSubmit={handleSubmit}>
-              <div className="form-group">
-                <input
-                  type="text"
-                  className="form-input"
-                  placeholder="Name"
-                  value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  required
-                />
-              </div>
-
-              <div className="form-group">
-                <input
-                  type="tel"
-                  className="form-input"
-                  placeholder="Phone Number"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                  required
-                />
-              </div>
-
-              <div className="form-group">
-                <input
-                  type="email"
-                  className="form-input"
-                  placeholder="Email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
-                  required
-                />
-              </div>
-
-              <div className="form-group">
-                <select
-                  className="form-select"
-                  value={formData.service}
-                  onChange={(e) => setFormData({...formData, service: e.target.value})}
-                  required
-                >
-                  <option value="Vehicle Branding">Vehicle Branding</option>
-                  <option value="Fleet Wrapping">Fleet Wrapping</option>
-                  <option value="Partial Wrap">Partial Wrap</option>
-                </select>
-              </div>
-
-              <div className="form-group">
-                <input
-                  type="text"
-                  className="form-input"
-                  placeholder="Vehicle Type"
-                  value={formData.location}
-                  onChange={(e) => setFormData({...formData, location: e.target.value})}
-                />
-              </div>
-
-              <div className="form-group">
-                <input
-                  type="text"
-                  className="form-input"
-                  placeholder="Campaign Budget"
-                  value={formData.budget}
-                  onChange={(e) => setFormData({...formData, budget: e.target.value})}
-                />
-              </div>
-
-              <div className="form-group">
-                <textarea
-                  className="form-textarea"
-                  placeholder="Message"
-                  value={formData.message}
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
-                ></textarea>
-              </div>
-
-              <button type="submit" className="submit-button">
-                Submit Request
-              </button>
-            </motion.form>
+            <motion.div variants={fadeInUp} style={{ marginTop: '2rem', textAlign: 'center' }}>
+              <Link href="/campaign" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.8rem', padding: '1.2rem 3rem', background: 'white', color: '#1a1a1a', fontWeight: 700, borderRadius: '12px', textDecoration: 'none', transition: 'all 0.3s ease', fontSize: '1.1rem', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+                Submit Request <ArrowRight size={22} />
+              </Link>
+            </motion.div>
           </div>
         </motion.section>
       </div>

@@ -24,42 +24,42 @@ const services = [
     image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80",
     description: "Brand implementation, rollout & corporate identity applications",
     details: ["Brand implementation & rollout", "Corporate identity applications", "Office branding & interior graphics", "Brand consistency across multiple locations"],
-    link: "#branding"
+    link: "/services/branding"
   },
   {
     title: "Digital Printed Graphics",
     image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80",
     description: "Large format printing & interior graphics",
     details: ["Large format digital printing", "Wall, glass & window graphics", "Frosted film & privacy films", "Floor & promotional graphics", "Wallpaper & interior branding"],
-    link: "#digital-graphics"
+    link: "/services/digital-graphics"
   },
   {
     title: "Vehicle Graphics & Fleet Branding",
     image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=80",
     description: "Full & partial vehicle wraps for mobile advertising",
     details: ["Full & partial vehicle wraps", "Corporate fleet branding", "Reflective & safety graphics", "Promotional vehicle advertising"],
-    link: "#vehicle-graphics"
+    link: "/services/vehicle-branding"
   },
   {
     title: "Signage Production & Installation",
     image: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=600&q=80",
     description: "Indoor & outdoor signage solutions",
     details: ["Indoor & outdoor signage", "Illuminated & non-illuminated signboards", "3D letter signs (acrylic, metal, LED)", "Directional, wayfinding & safety signage", "Mall, retail & commercial signage"],
-    link: "#signage"
+    link: "/services/signage"
   },
   {
     title: "Exhibition, Display & POS",
     image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80",
     description: "Exhibition stands, kiosks & point of sale displays",
     details: ["Exhibition stands & kiosks", "Pop-up systems & backdrops", "Roll-up & X-banners", "Point of Sale (POS) & in-store displays"],
-    link: "#exhibition"
+    link: "/services/exhibition"
   },
   {
     title: "Cladding & Facade Solutions",
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80",
     description: "ACP cladding & architectural facade branding",
     details: ["ACP cladding works", "Aluminum & composite panel cladding", "Shopfront & facade branding", "Decorative architectural finishes", "Signage-integrated facade solutions"],
-    link: "#cladding"
+    link: "/services/cladding"
   }
 ];
 
@@ -102,8 +102,8 @@ export default function ServicesPage() {
     }
   };
 
-  // Combine hardcoded services with database services
-  const allServices = [...services, ...dbServices.map(service => ({
+  // Combine hardcoded services with database services, ignoring blank database entries
+  const allServices = [...services, ...dbServices.filter((s:any) => s.name).map((service:any) => ({
     title: service.name,
     image: service.items && service.items[0] ? service.items[0] : "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80",
     description: service.description,
@@ -157,7 +157,7 @@ export default function ServicesPage() {
           align-items: center;
           justify-content: center;
           overflow: hidden;
-          margin-top: 100px;
+          padding-top: 100px;
         }
 
         .hero-bg {
@@ -210,7 +210,7 @@ export default function ServicesPage() {
         }
 
         .services-section {
-          padding: clamp(4rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
+          padding: 4rem 1rem 0 1rem;
           background: #f5f5f5;
         }
 
@@ -240,7 +240,7 @@ export default function ServicesPage() {
 
         .services-grid {
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
+          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
           gap: 2rem;
           max-width: 1200px;
           margin: 0 auto;
@@ -422,8 +422,11 @@ export default function ServicesPage() {
         }
 
         .why-choose-section {
-          padding: clamp(4rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
+          padding: 6rem 1rem 8rem 1rem;
           background: #ffffff;
+          min-height: 70vh;
+          display: flex;
+          align-items: center;
         }
 
         .why-choose-container {
@@ -596,7 +599,8 @@ export default function ServicesPage() {
           }
 
           .service-card {
-            height: 250px;
+            height: auto;
+            min-height: 250px;
           }
 
           .why-choose-container {

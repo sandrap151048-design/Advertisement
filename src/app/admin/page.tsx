@@ -237,6 +237,16 @@ export default function AdminPage() {
                             <span style={getNavTextStyle('/admin/services')}>Services</span>
                         </motion.div>
                     </Link>
+                    <Link href="/admin/campaigns" style={{ textDecoration: 'none' }} onClick={() => setIsMobileMenuOpen(false)}>
+                        <motion.div 
+                            whileHover={{ x: 5, background: 'rgba(255, 255, 255, 0.05)' }}
+                            className="nav-item" 
+                            style={getNavItemStyle('/admin/campaigns')}
+                        >
+                            <TrendingUp size={22} color={getNavIconColor('/admin/campaigns')} /> 
+                            <span style={getNavTextStyle('/admin/campaigns')}>Campaigns</span>
+                        </motion.div>
+                    </Link>
                 </nav>
 
                 <motion.div 

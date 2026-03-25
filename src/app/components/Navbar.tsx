@@ -37,25 +37,24 @@ export default function Navbar() {
         }
 
         .floating-navbar {
-          position: fixed;
+          position: absolute;
           top: 0;
           left: 40px;
           right: 40px;
           z-index: 1000;
-          background: rgba(255, 255, 255, 0.95);
+          background: rgba(0, 0, 0, 0.95);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
           border-radius: 16px;
-          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-          border: 1px solid rgba(0, 0, 0, 0.08);
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+          border: 1px solid rgba(255, 255, 255, 0.1);
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           max-width: 1400px;
           margin: 10px auto 0 auto;
         }
 
         .floating-navbar.scrolled {
-          background: rgba(255, 255, 255, 0.98);
-          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+          background: rgba(0, 0, 0, 0.98);
         }
 
         .navbar-container {
@@ -88,7 +87,7 @@ export default function Navbar() {
         .logo-main {
           font-size: 1.3rem;
           font-weight: 800;
-          color: #1a1a1a;
+          color: #ffffff;
           letter-spacing: -0.5px;
         }
 
@@ -99,7 +98,7 @@ export default function Navbar() {
         .logo-tagline {
           font-size: 0.6rem;
           font-weight: 600;
-          color: #666;
+          color: rgba(255, 255, 255, 0.7);
           letter-spacing: 1.8px;
           text-transform: uppercase;
           margin-top: 2px;
@@ -116,7 +115,7 @@ export default function Navbar() {
 
         .nav-link {
           position: relative;
-          color: #1a1a1a;
+          color: #ffffff;
           text-decoration: none;
           font-size: 0.95rem;
           font-weight: 600;
@@ -137,12 +136,12 @@ export default function Navbar() {
           left: 0;
           width: 0;
           height: 2px;
-          background: #EF4444;
+          background: #ff6b35;
           transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .nav-link:hover {
-          color: #EF4444;
+          color: #ff6b35;
         }
 
         .nav-link:hover::after {
@@ -164,7 +163,7 @@ export default function Navbar() {
 
         .btn-campaign {
           padding: 10px 24px;
-          color: #1a1a1a;
+          color: #ffffff;
           text-decoration: none;
           font-size: 0.95rem;
           font-weight: 600;
@@ -188,13 +187,13 @@ export default function Navbar() {
           left: 24px;
           right: 24px;
           height: 2px;
-          background: #EF4444;
+          background: #ff6b35;
           transform: scaleX(0);
           transition: transform 0.3s ease;
         }
 
         .btn-campaign:hover {
-          color: #EF4444;
+          color: #ff6b35;
         }
 
         .btn-campaign:hover::after {
@@ -208,7 +207,7 @@ export default function Navbar() {
 
         .btn-login {
           padding: 10px 20px;
-          background: #111;
+          background: #ff6b35;
           color: white;
           text-decoration: none;
           font-size: 0.95rem;
@@ -226,9 +225,9 @@ export default function Navbar() {
         }
 
         .btn-login:hover {
-          background: #1a1a1a;
+          background: #e55a25;
           transform: scale(1.05);
-          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
         }
 
         .btn-login:active {
@@ -254,7 +253,7 @@ export default function Navbar() {
         .mobile-toggle span {
           width: 24px;
           height: 2.5px;
-          background: #1a1a1a;
+          background: #ffffff;
           border-radius: 2px;
           transition: all 0.3s ease;
         }
@@ -277,7 +276,7 @@ export default function Navbar() {
           top: 90px;
           left: 40px;
           right: 40px;
-          background: rgba(255, 255, 255, 0.98);
+          background: rgba(0, 0, 0, 0.98);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
           padding: 2rem;
@@ -287,10 +286,10 @@ export default function Navbar() {
           visibility: hidden;
           display: none;
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
           max-height: calc(100vh - 120px);
           overflow-y: auto;
-          border: 1px solid rgba(0, 0, 0, 0.08);
+          border: 1px solid rgba(255, 255, 255, 0.1);
           max-width: 1400px;
           margin: 0 auto;
         }
@@ -310,7 +309,7 @@ export default function Navbar() {
         }
 
         .mobile-nav-link {
-          color: #1a1a1a;
+          color: #ffffff;
           text-decoration: none;
           font-size: 1.1rem;
           font-weight: 600;
@@ -326,8 +325,8 @@ export default function Navbar() {
         }
 
         .mobile-nav-link:hover {
-          background: rgba(239, 68, 68, 0.08);
-          color: #EF4444;
+          background: rgba(255, 107, 53, 0.15);
+          color: #ff6b35;
           transform: translateX(8px);
         }
 
@@ -341,7 +340,7 @@ export default function Navbar() {
           width: 100%;
           text-align: center;
           padding: 1rem;
-          background: rgba(239, 68, 68, 0.08);
+          background: rgba(255, 107, 53, 0.15);
           border-radius: 15px;
           outline: none;
         }
@@ -460,11 +459,11 @@ export default function Navbar() {
               <div className="logo-main">
                 <span className="logo-circle">
                   <svg width="28" height="28" viewBox="0 0 28 28" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '2px' }}>
-                    <circle cx="14" cy="14" r="12" fill="none" stroke="#1a1a1a" strokeWidth="4"/>
+                    <circle cx="14" cy="14" r="12" fill="none" stroke="#ffffff" strokeWidth="4"/>
                     <rect x="16" y="2" width="8" height="8" fill="#ff6b35" rx="1"/>
                   </svg>
                 </span>
-                <span style={{ color: '#1a1a1a' }}>ne Click</span>
+                <span style={{ color: '#ffffff' }}>ne Click</span>
               </div>
               <div className="logo-tagline">Advertisement</div>
             </div>
@@ -482,7 +481,7 @@ export default function Navbar() {
           {/* Right Actions */}
           <div className="navbar-actions">
             <Link href="/register" className="btn-campaign">
-              Start Your Campaign
+              Register
             </Link>
             <Link href="/admin/login" className="btn-login">
               Login
@@ -514,7 +513,7 @@ export default function Navbar() {
         
         <div className="mobile-actions">
           <Link href="/register" className="btn-campaign" onClick={closeMobileMenu}>
-            Start Your Campaign
+            Register
           </Link>
           <Link href="/admin/login" className="btn-login" onClick={closeMobileMenu}>
             Login

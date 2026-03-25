@@ -80,7 +80,7 @@ export default function ContactPage() {
           align-items: center;
           justify-content: space-between;
           overflow: hidden;
-          margin-top: 80px;
+          padding-top: 80px;
           padding: 0 4rem;
         }
 
@@ -220,54 +220,57 @@ export default function ContactPage() {
         }
 
         .form-section {
-          background: #1a1a1a;
+          background: #0a0a0a;
           padding: 6rem 2rem;
           color: white;
           text-align: center;
         }
 
         .form-container {
-          max-width: 600px;
+          max-width: 500px;
           margin: 0 auto;
-          padding: 3rem;
-          border: 1px solid rgba(255,255,255,0.2);
-          border-radius: 12px;
-          background: transparent;
+          padding: 3rem 2.5rem;
+          border: 1px solid rgba(255,255,255,0.15);
+          border-radius: 16px;
+          background: rgba(20, 20, 20, 0.5);
+          backdrop-filter: blur(10px);
         }
 
         .form-section h2 {
-          font-size: clamp(2rem, 5vw, 3rem);
+          font-size: clamp(2.5rem, 5vw, 3.5rem);
           font-weight: 900;
-          margin-bottom: 0.5rem;
+          margin-bottom: 0.3rem;
+          color: white;
         }
 
         .form-section h2 .italic {
           font-style: italic;
-          color: #999;
+          color: rgba(255,255,255,0.7);
+          font-weight: 400;
         }
 
         .form-section p {
-          color: rgba(255,255,255,0.8);
-          margin-bottom: 3rem;
-          font-size: 1rem;
+          color: rgba(255,255,255,0.6);
+          margin-bottom: 2.5rem;
+          font-size: 0.95rem;
         }
 
         .contact-form {
           display: flex;
           flex-direction: column;
-          gap: 1.2rem;
+          gap: 1rem;
         }
 
         .form-input,
         .form-select,
         .form-textarea {
           width: 100%;
-          padding: 1rem 1.5rem;
-          background: transparent;
-          border: 1px solid rgba(255,255,255,0.2);
+          padding: 1rem 1.2rem;
+          background: rgba(255,255,255,0.05);
+          border: 1px solid rgba(255,255,255,0.15);
           border-radius: 8px;
           color: white;
-          font-size: 1rem;
+          font-size: 0.95rem;
           outline: none;
           transition: all 0.3s;
         }
@@ -275,55 +278,60 @@ export default function ContactPage() {
         .form-input:focus,
         .form-select:focus,
         .form-textarea:focus {
-          border-color: rgba(255,255,255,0.4);
-          background: rgba(255,255,255,0.05);
+          border-color: rgba(255,255,255,0.3);
+          background: rgba(255,255,255,0.08);
         }
 
         .form-input::placeholder,
         .form-textarea::placeholder {
-          color: rgba(255,255,255,0.5);
+          color: rgba(255,255,255,0.4);
         }
 
         .form-select {
           cursor: pointer;
           appearance: none;
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='rgba(255,255,255,0.6)' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
           background-repeat: no-repeat;
           background-position: right 1rem center;
           padding-right: 3rem;
+          color: rgba(255,255,255,0.8);
         }
 
         .form-select option {
-          background: white !important;
-          color: #000000 !important;
+          background: #1a1a1a !important;
+          color: white !important;
         }
 
         .form-textarea {
-          min-height: 120px;
+          min-height: 100px;
           resize: vertical;
         }
 
         .submit-button {
-          padding: 2rem 3rem;
+          -webkit-appearance: none;
+          appearance: none;
+          padding: 1.4rem 2rem;
           background: white;
-          color: #1a1a1a;
-          font-weight: 700;
-          border-radius: 12px;
+          color: #0a0a0a;
+          font-weight: 800;
+          border-radius: 50px;
           border: none;
-          font-size: 1.3rem;
+          font-size: 1.15rem;
           cursor: pointer;
-          transition: all 0.3s ease;
-          margin-top: 1.5rem;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          margin-top: 1rem;
           width: 100%;
-          min-height: 85px;
           display: flex;
           align-items: center;
           justify-content: center;
+          text-transform: uppercase;
+          letter-spacing: 1px;
         }
 
         .submit-button:hover {
           transform: translateY(-2px);
-          box-shadow: 0 8px 20px rgba(255,255,255,0.3);
+          box-shadow: 0 8px 20px rgba(255,255,255,0.25);
+          background: rgba(255,255,255,0.95);
         }
 
         .submit-button:disabled {
@@ -357,7 +365,7 @@ export default function ContactPage() {
         <section className="contact-hero">
           <div className="contact-hero-bg">
             <img 
-              src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=1600&q=80" 
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80" 
               alt="Contact Us - One Click Billboard" 
             />
           </div>
@@ -383,9 +391,9 @@ export default function ContactPage() {
             <p className="contact-hero-text">
               Let's start your advertising campaign and bring your brand into the spotlight.
             </p>
-            <button className="hero-cta-button" onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}>
+            <Link href="/campaign" className="hero-cta-button" style={{ display: 'inline-block', textDecoration: 'none' }}>
               Start Your Campaign
-            </button>
+            </Link>
           </motion.div>
         </section>
 
@@ -505,29 +513,22 @@ export default function ContactPage() {
                   onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                   required
                 >
-                  <option value="">Service</option>
-                  <option value="billboards">Billboards</option>
-                  <option value="retail-signage">Retail Signage</option>
-                  <option value="vehicle-branding">Vehicle Branding</option>
-                  <option value="campaign-solutions">Campaign Solutions</option>
+                  <option value="">Service (Brand Identity)</option>
+                  <option value="branding">Brand Identity</option>
+                  <option value="digital-graphics">Digital Graphics</option>
+                  <option value="vehicle-graphics">Vehicle Graphics</option>
+                  <option value="signage">Signage</option>
+                  <option value="exhibition">Exhibition & POS</option>
+                  <option value="cladding">Cladding & Facade</option>
                 </motion.select>
                 
                 <motion.input
                   variants={fadeInUp}
                   type="text"
-                  placeholder="Preferred Location"
+                  placeholder="Company Name (optional)"
                   className="form-input"
                   value={formData.location}
                   onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                />
-                
-                <motion.input
-                  variants={fadeInUp}
-                  type="text"
-                  placeholder="Campaign Duration"
-                  className="form-input"
-                  value={formData.duration}
-                  onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
                 />
                 
                 <motion.textarea

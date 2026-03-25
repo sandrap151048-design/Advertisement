@@ -46,7 +46,7 @@ export default function AboutPage() {
           align-items: center;
           justify-content: center;
           overflow: hidden;
-          margin-top: 80px;
+          padding-top: 80px;
         }
 
         .about-hero-bg {
@@ -484,8 +484,8 @@ export default function AboutPage() {
         <section className="about-hero">
           <div className="about-hero-bg">
             <img 
-              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1600&q=80" 
-              alt="About Us - Professional Team" 
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1800&q=80" 
+              alt="About Us - One Click Billboard" 
             />
           </div>
           <div className="about-hero-overlay"></div>
@@ -499,10 +499,10 @@ export default function AboutPage() {
               About{' '}
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
                 <svg width="60" height="60" viewBox="0 0 60 60" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-                  <circle cx="30" cy="30" r="26" fill="none" stroke="#FF6B35" strokeWidth="6"/>
+                  <circle cx="30" cy="30" r="26" fill="none" stroke="white" strokeWidth="6"/>
                   <rect x="34" y="4" width="20" height="20" fill="#FF6B35" rx="2"/>
                 </svg>
-                <span style={{ color: '#FF6B35' }}>ne Click</span>
+                <span style={{ color: 'white' }}>ne Click</span>
               </span>
             </motion.h1>
             <motion.p className="about-hero-subtitle" variants={fadeInUp}>
@@ -573,78 +573,109 @@ export default function AboutPage() {
             </motion.div>
 
             <motion.div 
-              className="section-images" 
               variants={staggerContainer}
-              style={{ maxWidth: '1000px', margin: '0 auto' }}
+              style={{ 
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                gap: '2rem',
+                maxWidth: '1200px',
+                margin: '0 auto'
+              }}
             >
-              <motion.div className="section-image" variants={fadeInUp}>
-                <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&q=80" alt="Billboards" />
-                <div style={{ 
-                  position: 'absolute', 
-                  bottom: '1.5rem', 
-                  left: '50%', 
-                  transform: 'translateX(-50%)',
-                  background: 'rgba(0,0,0,0.8)',
-                  padding: '0.8rem 2rem',
-                  borderRadius: '8px',
-                  fontSize: '1.2rem',
-                  fontWeight: 700,
-                  color: 'white'
-                }}>
-                  Billboards
-                </div>
-              </motion.div>
-              <motion.div className="section-image" variants={fadeInUp}>
-                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80" alt="Retail Signage" />
-                <div style={{ 
-                  position: 'absolute', 
-                  bottom: '1.5rem', 
-                  left: '50%', 
-                  transform: 'translateX(-50%)',
-                  background: 'rgba(0,0,0,0.8)',
-                  padding: '0.8rem 2rem',
-                  borderRadius: '8px',
-                  fontSize: '1.2rem',
-                  fontWeight: 700,
-                  color: 'white'
-                }}>
-                  Retail Signage
-                </div>
-              </motion.div>
-              <motion.div className="section-image" variants={fadeInUp}>
-                <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80" alt="Vehicle Branding" />
-                <div style={{ 
-                  position: 'absolute', 
-                  bottom: '1.5rem', 
-                  left: '50%', 
-                  transform: 'translateX(-50%)',
-                  background: 'rgba(0,0,0,0.8)',
-                  padding: '0.8rem 2rem',
-                  borderRadius: '8px',
-                  fontSize: '1.2rem',
-                  fontWeight: 700,
-                  color: 'white'
-                }}>
-                  Vehicle Branding
-                </div>
-              </motion.div>
-              <motion.div className="section-image" variants={fadeInUp}>
-                <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80" alt="Campaign Solutions" />
-                <div style={{ 
-                  position: 'absolute', 
-                  bottom: '1.5rem', 
-                  left: '50%', 
-                  transform: 'translateX(-50%)',
-                  background: 'rgba(0,0,0,0.8)',
-                  padding: '0.8rem 2rem',
-                  borderRadius: '8px',
-                  fontSize: '1.2rem',
-                  fontWeight: 700,
-                  color: 'white'
-                }}>
-                  Campaign Solutions
-                </div>
-              </motion.div>
+              {[
+                {
+                  title: 'Branding & Corporate Identity',
+                  desc: 'Brand implementation, rollout & corporate identity applications',
+                  image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80',
+                  link: '/services/branding'
+                },
+                {
+                  title: 'Digital Printed Graphics',
+                  desc: 'Large format printing & interior graphics',
+                  image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80',
+                  link: '/services/digital-graphics'
+                },
+                {
+                  title: 'Vehicle Graphics & Fleet Branding',
+                  desc: 'Full & partial vehicle wraps for mobile advertising',
+                  image: 'https://images.unsplash.com/photo-1611532736579-6b16e2b50449?w=800&q=80',
+                  link: '/services/vehicle-graphics'
+                },
+                {
+                  title: 'Signage Production & Installation',
+                  desc: 'Indoor & outdoor signage solutions',
+                  image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&q=80',
+                  link: '/services/signage'
+                },
+                {
+                  title: 'Exhibition, Display & POS',
+                  desc: 'Exhibition stands, kiosks & point of sale displays',
+                  image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80',
+                  link: '/services/exhibition'
+                },
+                {
+                  title: 'Cladding & Facade Solutions',
+                  desc: 'ACP cladding & architectural facade branding',
+                  image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
+                  link: '/services/cladding'
+                }
+              ].map((service, index) => (
+                <motion.div
+                  key={index}
+                  variants={fadeInUp}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => window.location.href = service.link}
+                  style={{
+                    position: 'relative',
+                    height: '320px',
+                    borderRadius: '18px',
+                    overflow: 'hidden',
+                    cursor: 'pointer',
+                    transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+                    background: '#fff'
+                  }}
+                >
+                  <img 
+                    src={service.image} 
+                    alt={service.title}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      transition: 'transform 0.4s ease'
+                    }}
+                  />
+                  <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, transparent 100%)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'flex-end',
+                    padding: '2rem',
+                    color: 'white',
+                    transition: 'all 0.3s ease'
+                  }}>
+                    <h3 style={{
+                      fontSize: '1.4rem',
+                      fontWeight: 800,
+                      marginBottom: '0.5rem',
+                      lineHeight: 1.3
+                    }}>
+                      {service.title}
+                    </h3>
+                    <p style={{
+                      fontSize: '0.95rem',
+                      color: 'rgba(255,255,255,0.9)',
+                      lineHeight: 1.5
+                    }}>
+                      {service.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
             </motion.div>
           </motion.div>
 

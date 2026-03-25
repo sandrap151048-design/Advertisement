@@ -2,7 +2,7 @@
 
 import React, { useState, FormEvent, useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
-import { ArrowRight, MapPin, Phone, Mail } from 'lucide-react';
+import { ArrowRight, MapPin, Phone, Mail, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import './black-cards.css';
 
@@ -71,6 +71,7 @@ export default function Home() {
   const [currentYear, setCurrentYear] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<'whyus' | 'reach' | 'solutions'>('whyus');
   const [currentLocationIndex, setCurrentLocationIndex] = useState(0);
+  const [openBrandAccordion, setOpenBrandAccordion] = useState<number | null>(0);
 
   const locations = [
     { 
@@ -160,7 +161,7 @@ export default function Home() {
           align-items: center;
           justify-content: center;
           overflow: hidden;
-          margin-top: 70px;
+          padding-top: 70px;
         }
 
         .hero-background {
@@ -344,48 +345,84 @@ export default function Home() {
         /* For Brands Section */
         .for-brands-section {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1fr 1.5fr;
           gap: 4rem;
-          align-items: center;
+          align-items: start;
           padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
         }
 
         .for-brands-content h2 {
-          font-size: clamp(2rem, 5vw, 3rem);
+          font-size: clamp(2.5rem, 5vw, 3.5rem);
           font-weight: 900;
+          margin-bottom: 1rem;
+          line-height: 1.2;
+        }
+
+        .for-brands-content p {
+          color: #666;
+          font-size: 1rem;
+          line-height: 1.6;
           margin-bottom: 2rem;
         }
 
-        .for-brands-list {
-          list-style: none;
-        }
-
-        .for-brands-list li {
-          padding: 1rem 0;
-          font-size: 1rem;
-          color: #1a1a1a;
+        .for-brands-accordion {
           display: flex;
-          align-items: center;
+          flex-direction: column;
           gap: 1rem;
-          border-bottom: 1px solid #e0e0e0;
         }
 
-        .for-brands-list li:last-child {
-          border-bottom: none;
+        .accordion-item-brand {
+          background: white;
+          border-radius: 12px;
+          overflow: hidden;
+          transition: all 0.3s ease;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
-        .for-brands-list a {
-          color: #1a1a1a;
-          text-decoration: none;
-          font-weight: 600;
+        .accordion-item-brand:hover {
+          box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+
+        .accordion-header-brand {
+          padding: 1.5rem 2rem;
           display: flex;
+          justify-content: space-between;
           align-items: center;
-          gap: 0.5rem;
+          cursor: pointer;
+          font-weight: 600;
+          font-size: 1.1rem;
+          color: #1a1a1a;
           transition: all 0.3s ease;
         }
 
-        .for-brands-list a:hover {
-          color: #FF6B35;
+        .accordion-header-brand:hover {
+          background: rgba(0,0,0,0.02);
+        }
+
+        .accordion-icon-brand {
+          transition: transform 0.3s ease;
+          color: #666;
+        }
+
+        .accordion-icon-brand.open {
+          transform: rotate(180deg);
+        }
+
+        .accordion-content-brand {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease;
+        }
+
+        .accordion-content-brand.open {
+          max-height: 200px;
+        }
+
+        .accordion-content-inner-brand {
+          padding: 0 2rem 1.5rem 2rem;
+          color: #666;
+          line-height: 1.6;
+          font-size: 0.95rem;
         }
 
         .for-brands-image {
@@ -729,7 +766,7 @@ export default function Home() {
             We create high-impact advertising that makes your brand visible, memorable, and impossible to ignore.
           </motion.p>
           <motion.div className="hero-buttons" variants={fadeInUp}>
-            <Link href="/register" className="btn btn-primary">
+            <Link href="/campaign" className="btn btn-primary">
               Start Your Campaign <ArrowRight size={20} />
             </Link>
             <Link href="/contact" className="btn btn-secondary">
@@ -800,25 +837,56 @@ export default function Home() {
           <motion.div 
             className="for-brands-content" 
             variants={swipeLeft}
-            whileHover={{ x: 5, transition: { duration: 0.3 } }}
           >
             <h2>For Brands</h2>
-            <ul className="for-brands-list">
-              <li><Link href="/services#branding">Branding & Identity <ArrowRight size={16} /></Link></li>
-              <li><Link href="/services#graphics">Digital Graphics <ArrowRight size={16} /></Link></li>
-              <li><Link href="/services#vehicle">Vehicle Graphics <ArrowRight size={16} /></Link></li>
-              <li><Link href="/services#signage">Signage Production <ArrowRight size={16} /></Link></li>
-            </ul>
+            <p>
+              Outdoor advertising made simple for modern brands. Reach the right audience with high-impact placements across cities.
+            </p>
           </motion.div>
+          
           <motion.div 
-            className="for-brands-image" 
+            className="for-brands-accordion"
             variants={swipeRight}
-            whileHover={{ scale: 1.02, x: -5, transition: { duration: 0.3 } }}
           >
-            <img 
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&q=80"
-              alt="For Brands"
-            />
+            {[
+              { 
+                title: 'End-to-End Solutions', 
+                desc: 'Complete advertising solutions from concept to installation, handling every detail of your campaign.' 
+              },
+              { 
+                title: 'Premium Quality', 
+                desc: 'High-quality materials and professional execution that withstand UAE climate while maintaining aesthetics.' 
+              },
+              { 
+                title: 'UAE Compliance', 
+                desc: 'Fully compliant with RTA and local regulations, ensuring smooth approvals and installations.' 
+              },
+              { 
+                title: 'Reliable Execution', 
+                desc: 'On-time delivery and professional installation across Dubai, Abu Dhabi, and the Northern Emirates.' 
+              }
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="accordion-item-brand"
+              >
+                <div
+                  className="accordion-header-brand"
+                  onClick={() => setOpenBrandAccordion(openBrandAccordion === index ? null : index)}
+                >
+                  <span>{item.title}</span>
+                  <ChevronDown
+                    size={20}
+                    className={`accordion-icon-brand ${openBrandAccordion === index ? 'open' : ''}`}
+                  />
+                </div>
+                <div className={`accordion-content-brand ${openBrandAccordion === index ? 'open' : ''}`}>
+                  <div className="accordion-content-inner-brand">
+                    {item.desc}
+                  </div>
+                </div>
+              </div>
+            ))}
           </motion.div>
         </motion.div>
       </section>
@@ -1269,7 +1337,7 @@ export default function Home() {
             Launch your outdoor campaign with high-impact placements across prime locations - fast, simple, and effective.
           </motion.p>
           <motion.div variants={fadeInUp}>
-            <Link href="/register" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.8rem', padding: '1rem 2.5rem', background: 'white', color: '#1a1a1a', fontWeight: 700, borderRadius: '8px', textDecoration: 'none', transition: 'all 0.3s ease', fontSize: '1rem' }}>
+            <Link href="/campaign" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.8rem', padding: '1rem 2.5rem', background: 'white', color: '#1a1a1a', fontWeight: 700, borderRadius: '8px', textDecoration: 'none', transition: 'all 0.3s ease', fontSize: '1rem' }}>
               Start your campaign <ArrowRight size={20} />
             </Link>
           </motion.div>

@@ -51,11 +51,12 @@ export default function RegisterPage() {
                 .register-left {
                     flex: 1;
                     background: #000;
-                    padding: 4rem;
+                    padding: 3rem 2rem;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
                     color: white;
+                    overflow-y: auto;
                 }
 
                 .register-logo {
@@ -81,36 +82,36 @@ export default function RegisterPage() {
                 }
 
                 .register-form-container {
-                    max-width: 420px;
+                    max-width: 380px;
                     width: 100%;
                     margin: 0 auto;
-                    margin-top: 3rem;
+                    margin-top: 2rem;
                 }
 
                 .register-title {
-                    font-size: 2.5rem;
+                    font-size: 2rem;
                     font-weight: 700;
                     margin-bottom: 0.5rem;
                 }
 
                 .register-subtitle {
                     color: rgba(255,255,255,0.7);
-                    margin-bottom: 3rem;
-                    font-size: 1rem;
+                    margin-bottom: 2rem;
+                    font-size: 0.9rem;
                 }
 
                 .form-group {
-                    margin-bottom: 1.5rem;
+                    margin-bottom: 1rem;
                 }
 
                 .form-input {
                     width: 100%;
-                    padding: 1rem 1.2rem;
+                    padding: 0.85rem 1rem;
                     background: rgba(255,255,255,0.05);
                     border: 1px solid rgba(255,255,255,0.1);
                     border-radius: 8px;
                     color: white;
-                    font-size: 1rem;
+                    font-size: 0.95rem;
                     outline: none;
                     transition: all 0.3s;
                 }
@@ -150,29 +151,29 @@ export default function RegisterPage() {
                     display: flex;
                     align-items: center;
                     gap: 0.5rem;
-                    margin-bottom: 2rem;
+                    margin-bottom: 1.5rem;
                     color: rgba(255,255,255,0.8);
-                    font-size: 0.95rem;
+                    font-size: 0.9rem;
                 }
 
                 .keep-logged-in input[type="checkbox"] {
-                    width: 18px;
-                    height: 18px;
+                    width: 16px;
+                    height: 16px;
                     cursor: pointer;
                 }
 
                 .sign-up-button {
                     width: 100%;
-                    padding: 1rem;
+                    padding: 0.9rem;
                     background: white;
                     color: #000;
                     border: none;
                     border-radius: 8px;
-                    font-size: 1rem;
+                    font-size: 0.95rem;
                     font-weight: 600;
                     cursor: pointer;
                     transition: all 0.3s;
-                    margin-bottom: 1.5rem;
+                    margin-bottom: 1.2rem;
                 }
 
                 .sign-up-button:hover {
@@ -189,9 +190,9 @@ export default function RegisterPage() {
                     display: flex;
                     align-items: center;
                     gap: 1rem;
-                    margin: 1.5rem 0;
+                    margin: 1.2rem 0;
                     color: rgba(255,255,255,0.4);
-                    font-size: 0.9rem;
+                    font-size: 0.85rem;
                 }
 
                 .divider::before,
@@ -204,13 +205,13 @@ export default function RegisterPage() {
 
                 .social-buttons {
                     display: flex;
-                    gap: 1rem;
-                    margin-bottom: 2rem;
+                    gap: 0.8rem;
+                    margin-bottom: 1.5rem;
                 }
 
                 .social-button {
                     flex: 1;
-                    padding: 0.9rem;
+                    padding: 0.75rem;
                     background: rgba(255,255,255,0.05);
                     border: 1px solid rgba(255,255,255,0.1);
                     border-radius: 8px;
@@ -227,14 +228,14 @@ export default function RegisterPage() {
                 }
 
                 .social-button svg {
-                    width: 24px;
-                    height: 24px;
+                    width: 20px;
+                    height: 20px;
                 }
 
                 .have-account {
                     text-align: center;
                     color: rgba(255,255,255,0.7);
-                    font-size: 0.95rem;
+                    font-size: 0.9rem;
                 }
 
                 .have-account a {
@@ -279,8 +280,9 @@ export default function RegisterPage() {
                     }
 
                     .register-left {
-                        padding: 2rem;
+                        padding: 2rem 1.5rem;
                         position: relative;
+                        min-height: 100vh;
                     }
 
                     .register-logo {
@@ -288,8 +290,44 @@ export default function RegisterPage() {
                         margin-bottom: 2rem;
                     }
 
+                    .register-form-container {
+                        max-width: 100%;
+                        margin-top: 1rem;
+                    }
+
+                    .register-title {
+                        font-size: 1.8rem;
+                    }
+
                     .register-right {
-                        min-height: 300px;
+                        display: none;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .register-left {
+                        padding: 1.5rem 1rem;
+                    }
+
+                    .register-form-container {
+                        max-width: 100%;
+                    }
+
+                    .register-title {
+                        font-size: 1.6rem;
+                    }
+
+                    .form-input {
+                        padding: 0.75rem 0.9rem;
+                        font-size: 0.9rem;
+                    }
+
+                    .social-buttons {
+                        flex-direction: column;
+                    }
+
+                    .social-button {
+                        width: 100%;
                     }
                 }
             `}</style>
