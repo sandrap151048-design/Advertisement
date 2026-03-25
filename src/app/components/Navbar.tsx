@@ -458,7 +458,13 @@ export default function Navbar() {
           <Link href="/" className="navbar-logo">
             <div className="logo-text">
               <div className="logo-main">
-                <span className="accent">One</span> Click
+                <span className="logo-circle">
+                  <svg width="28" height="28" viewBox="0 0 28 28" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '2px' }}>
+                    <circle cx="14" cy="14" r="12" fill="none" stroke="#1a1a1a" strokeWidth="4"/>
+                    <rect x="16" y="2" width="8" height="8" fill="#ff6b35" rx="1"/>
+                  </svg>
+                </span>
+                <span style={{ color: '#1a1a1a' }}>ne Click</span>
               </div>
               <div className="logo-tagline">Advertisement</div>
             </div>

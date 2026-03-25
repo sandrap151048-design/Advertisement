@@ -498,7 +498,7 @@ export default function AboutPage() {
               About <span style={{ color: '#FF6B35' }}>One Click</span>
             </motion.h1>
             <motion.p className="about-hero-subtitle" variants={fadeInUp}>
-              Transforming brands through innovative advertising solutions
+              Full-service advertising and branding company delivering end-to-end visual communication solutions
             </motion.p>
           </motion.div>
         </section>
@@ -985,8 +985,12 @@ export default function AboutPage() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '3.5rem', marginBottom: '3.5rem' }}>
               {/* Brand Section */}
               <div>
-                <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>
-                  <span style={{ color: '#ff6b35' }}>One</span> Click
+                <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <svg width="32" height="32" viewBox="0 0 32 32" style={{ display: 'inline-block' }}>
+                    <circle cx="16" cy="16" r="13" fill="none" stroke="white" strokeWidth="4"/>
+                    <rect x="18" y="3" width="10" height="10" fill="#ff6b35" rx="1"/>
+                  </svg>
+                  <span style={{ color: 'white' }}>ne Click</span>
                 </h3>
                 <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '1.5rem', lineHeight: '1.8', fontSize: '1rem' }}>
                   Premium advertising solutions across the UAE. Delivering high-impact visual communication services.
