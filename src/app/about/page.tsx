@@ -218,17 +218,18 @@ export default function AboutPage() {
         .accordion-content {
           max-height: 0;
           overflow: hidden;
-          transition: max-height 0.3s ease;
+          transition: max-height 0.4s ease;
         }
 
         .accordion-content.open {
-          max-height: 500px;
+          max-height: 800px;
           padding-top: 1rem;
         }
 
         .accordion-content p {
           color: #666;
           line-height: 1.8;
+          font-size: 1rem;
         }
 
         .process-section {
@@ -655,24 +656,41 @@ export default function AboutPage() {
             variants={fadeInUp}
             className="accordion-section"
           >
-            <h2 className="accordion-title">Why Choose One Click</h2>
+            <h2 className="accordion-title" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', flexWrap: 'wrap' }}>
+              Why Choose{' '}
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                <svg width="40" height="40" viewBox="0 0 40 40" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                  <circle cx="20" cy="20" r="17" fill="none" stroke="#1a1a1a" strokeWidth="4"/>
+                  <rect x="23" y="3" width="13" height="13" fill="#FF6B35" rx="1"/>
+                </svg>
+                <span style={{ color: '#1a1a1a' }}>ne Click</span>
+              </span>
+            </h2>
             
             {[
               {
                 title: 'Prime Locations',
-                content: 'Strategic placement in high-traffic areas across Dubai, Abu Dhabi, and Sharjah ensures maximum visibility for your brand.'
+                content: 'Strategic placement in high-traffic areas across Dubai, Abu Dhabi, Sharjah, and all seven emirates ensures maximum visibility for your brand. We have access to premium advertising spaces in shopping malls, business districts, highways, and key commercial zones. Our location intelligence helps you reach your target audience where they live, work, and shop.'
               },
               {
                 title: 'Expert Team',
-                content: 'Our experienced professionals bring creativity, technical expertise, and market knowledge to every project.'
+                content: 'Our experienced professionals bring creativity, technical expertise, and deep market knowledge to every project. From creative designers and production specialists to certified installers and project managers, our team ensures flawless execution. With years of experience in the UAE market, we understand local regulations, cultural nuances, and what works best for your brand.'
               },
               {
                 title: 'Quality Materials',
-                content: 'We use premium materials and cutting-edge technology to ensure durability and visual impact in UAE\'s climate.'
+                content: 'We use premium materials and cutting-edge technology to ensure durability and visual impact in UAE\'s challenging climate. Our materials are UV-resistant, weatherproof, and built to last. From high-grade vinyl and acrylics to LED systems and aluminum composites, we source only the best materials that maintain their appearance and structural integrity for years.'
               },
               {
                 title: 'End-to-End Service',
-                content: 'From initial concept and design through production, installation, and maintenance - we handle everything.'
+                content: 'From initial concept and design through production, installation, and maintenance - we handle everything. Our turnkey solutions include consultation, creative design, authority approvals, manufacturing, professional installation, and ongoing maintenance. You get a single point of contact and complete peace of mind throughout the entire process.'
+              },
+              {
+                title: 'Compliance & Approvals',
+                content: 'We are experts in navigating UAE authority requirements including Dubai Municipality, RTA, and mall management regulations. Our team handles all necessary approvals and ensures your signage meets safety standards and local guidelines. This expertise saves you time and prevents costly delays or rejections.'
+              },
+              {
+                title: 'Proven Track Record',
+                content: 'With hundreds of successful projects across retail, corporate, hospitality, and government sectors, we have built a reputation for reliability and excellence. Our portfolio includes work for leading brands and organizations throughout the UAE. We deliver on time, within budget, and to the highest quality standards.'
               }
             ].map((item, index) => (
               <div key={index} className="accordion-item">
