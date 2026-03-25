@@ -107,6 +107,7 @@ export default function ServicesPage() {
     title: service.name,
     image: service.items && service.items[0] ? service.items[0] : "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80",
     description: service.description,
+    details: service.details || [],
     link: "#"
   }))];
 
@@ -421,6 +422,61 @@ export default function ServicesPage() {
           transition: all 0.3s ease;
         }
 
+        .service-points {
+          list-style: none;
+          padding: 0;
+          margin: 1.5rem 0 0 0;
+          opacity: 0;
+          transform: translateY(20px);
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          width: 100%;
+          text-align: left;
+          position: relative;
+          z-index: 3;
+        }
+
+        .service-card:hover .service-points {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .service-card.clicked .service-points {
+          opacity: 1;
+          transform: translateY(0);
+          margin-top: 2rem;
+          max-width: 500px;
+          text-align: center;
+        }
+
+        .service-points li {
+          color: rgba(255,255,255,0.9);
+          font-size: 0.95rem;
+          margin-bottom: 0.8rem;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          line-height: 1.4;
+          font-weight: 500;
+        }
+
+        .service-card.clicked .service-points li {
+          justify-content: center;
+          font-size: 1.2rem;
+          margin-bottom: 1.2rem;
+        }
+
+        .service-points li::before {
+          content: '✦';
+          color: #e61e25;
+          font-size: 1.1rem;
+          flex-shrink: 0;
+        }
+
+        .service-card.clicked .service-points li::before {
+          color: #ffffff;
+          box-shadow: 0 0 15px #e61e25;
+        }
+
         .why-choose-section {
           padding: 6rem 1rem 8rem 1rem;
           background: #ffffff;
@@ -672,6 +728,13 @@ export default function ServicesPage() {
                   <div className="service-overlay">
                     <h3 className="service-title">{service.title}</h3>
                     <p className="service-desc">{service.description}</p>
+                    {service.details && (
+                      <ul className="service-points">
+                        {service.details.map((point: any, i: number) => (
+                          <li key={i}>{point}</li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </motion.div>
               ))}
