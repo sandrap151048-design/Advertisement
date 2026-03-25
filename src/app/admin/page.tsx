@@ -88,19 +88,19 @@ export default function AdminPage() {
             cursor: 'pointer',
             transition: 'all 0.3s',
             background: isActive ? 'rgba(255, 107, 53, 0.2)' : 'transparent',
-            borderLeft: isActive ? '4px solid #ff6b35' : '4px solid transparent',
+            borderLeft: isActive ? '4px solid #e61e25' : '4px solid transparent',
             boxShadow: isActive ? '0 2px 8px rgba(255, 107, 53, 0.3)' : 'none'
         };
     };
 
     const getNavIconColor = (path: string) => {
-        return isActivePath(path) ? '#ff6b35' : 'rgba(255,255,255,0.6)';
+        return isActivePath(path) ? '#e61e25' : 'rgba(255,255,255,0.6)';
     };
 
     const getNavTextStyle = (path: string) => {
         return {
             fontWeight: isActivePath(path) ? 600 : 500,
-            color: isActivePath(path) ? '#ff6b35' : 'rgba(255,255,255,0.7)'
+            color: isActivePath(path) ? '#e61e25' : 'rgba(255,255,255,0.7)'
         };
     };
 
@@ -122,7 +122,7 @@ export default function AdminPage() {
                         width: '60px', 
                         height: '60px', 
                         border: '4px solid rgba(255, 107, 53, 0.3)',
-                        borderTop: '4px solid #ff6b35',
+                        borderTop: '4px solid #e61e25',
                         borderRadius: '50%',
                         margin: '0 auto 1rem',
                         animation: 'spin 1s linear infinite'
@@ -182,7 +182,7 @@ export default function AdminPage() {
                                 width: '45px',
                                 height: '45px',
                                 borderRadius: '12px',
-                                background: 'linear-gradient(135deg, #2c4a5e, #ff6b35)',
+                                background: 'linear-gradient(135deg, #2c4a5e, #e61e25)',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
@@ -196,7 +196,7 @@ export default function AdminPage() {
                         </motion.div>
                         <div>
                             <div>
-                                <span style={{ color: '#ff6b35', fontWeight: 700, fontSize: '1.1rem' }}>One</span>
+                                <span style={{ color: '#e61e25', fontWeight: 700, fontSize: '1.1rem' }}>One</span>
                                 <span style={{ color: 'white', fontWeight: 700, fontSize: '1.1rem' }}> Click</span>
                             </div>
                             <div style={{ fontSize: '0.65rem', fontWeight: 500, color: '#facc15', letterSpacing: '1.5px', textTransform: 'uppercase', lineHeight: 1, marginTop: '2px' }}>
@@ -293,7 +293,7 @@ export default function AdminPage() {
                 >
                     <div>
                         <h1 style={{ fontSize: '2rem', marginBottom: '0.3rem', fontWeight: 800, fontFamily: "'Outfit', sans-serif", color: '#1a1a1a' }}>
-                            Welcome Back, <span style={{ color: '#ff6b35' }}>Admin</span>
+                            Welcome Back, <span style={{ color: '#e61e25' }}>Admin</span>
                         </h1>
                         <p style={{ color: '#666666', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontFamily: "'DM Sans', sans-serif" }}>
                             <Clock size={16} color="#facc15" />
@@ -307,7 +307,7 @@ export default function AdminPage() {
                             whileTap={{ scale: 0.95 }}
                             onClick={() => setIsContactModalOpen(true)}
                             style={{
-                                background: 'linear-gradient(135deg, #2c4a5e 0%, #ff6b35 100%)',
+                                background: 'linear-gradient(135deg, #2c4a5e 0%, #e61e25 100%)',
                                 border: 'none',
                                 borderRadius: '12px',
                                 padding: '0.75rem 1.5rem',
@@ -351,7 +351,7 @@ export default function AdminPage() {
                                 width: 55, 
                                 height: 55, 
                                 borderRadius: '16px', 
-                                background: 'linear-gradient(135deg, #2c4a5e, #ff6b35)', 
+                                background: 'linear-gradient(135deg, #2c4a5e, #e61e25)', 
                                 display: 'flex', 
                                 alignItems: 'center', 
                                 justifyContent: 'center',
@@ -391,7 +391,7 @@ export default function AdminPage() {
                             title: "Active Services", 
                             value: stats.services, 
                             icon: <Briefcase size={28} />, 
-                            color: '#ff6b35',
+                            color: '#e61e25',
                             bgColor: 'rgba(255, 107, 53, 0.15)',
                             link: '/admin/services',
                             trend: '+8%'
@@ -482,7 +482,7 @@ export default function AdminPage() {
                         }}
                     >
                         <h3 style={{ marginBottom: '1.5rem', fontSize: '1.3rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '0.5rem', fontFamily: "'Syne', sans-serif", color: '#1a1a1a' }}>
-                            <Activity size={24} color="#ff6b35" />
+                            <Activity size={24} color="#e61e25" />
                             Recent Contacts
                         </h3>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -506,7 +506,7 @@ export default function AdminPage() {
                                         <p style={{ fontWeight: 600, marginBottom: '0.2rem', color: '#1a1a1a', fontFamily: "'DM Sans', sans-serif" }}>{contact.name}</p>
                                         <p style={{ fontSize: '0.85rem', color: '#666666', fontFamily: "'Manrope', sans-serif" }}>{contact.email}</p>
                                     </div>
-                                    <CheckCircle size={20} color="#ff6b35" />
+                                    <CheckCircle size={20} color="#e61e25" />
                                 </motion.div>
                             )) : (
                                 <p style={{ color: '#666666', textAlign: 'center', padding: '2rem' }}>No recent contacts</p>
@@ -527,13 +527,13 @@ export default function AdminPage() {
                         }}
                     >
                         <h3 style={{ marginBottom: '2rem', fontSize: '1.3rem', fontWeight: 700, fontFamily: "'Syne', sans-serif", display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                            <TrendingUp size={24} color="#ff6b35" />
+                            <TrendingUp size={24} color="#e61e25" />
                             Analytics Overview
                         </h3>
                         
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '2rem' }}>
                             <div style={{ textAlign: 'center' }}>
-                                <div style={{ fontSize: '2rem', fontWeight: 800, color: '#ff6b35', marginBottom: '0.5rem' }}>
+                                <div style={{ fontSize: '2rem', fontWeight: 800, color: '#e61e25', marginBottom: '0.5rem' }}>
                                     {stats.contacts}
                                 </div>
                                 <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
@@ -561,7 +561,7 @@ export default function AdminPage() {
                                 alignItems: 'center'
                             }}>
                                 <span style={{ fontSize: '0.9rem', fontWeight: 500 }}>Response Rate</span>
-                                <span style={{ fontSize: '1.1rem', fontWeight: 700, color: '#ff6b35' }}>98.5%</span>
+                                <span style={{ fontSize: '1.1rem', fontWeight: 700, color: '#e61e25' }}>98.5%</span>
                             </div>
                             <div style={{ 
                                 padding: '1rem', 
@@ -653,7 +653,7 @@ export default function AdminPage() {
                                     width: '80px',
                                     height: '80px',
                                     borderRadius: '20px',
-                                    background: 'linear-gradient(135deg, #2c4a5e 0%, #ff6b35 100%)',
+                                    background: 'linear-gradient(135deg, #2c4a5e 0%, #e61e25 100%)',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
@@ -742,7 +742,7 @@ export default function AdminPage() {
                                         alignItems: 'center',
                                         justifyContent: 'center'
                                     }}>
-                                        <Phone size={24} color="#ff6b35" />
+                                        <Phone size={24} color="#e61e25" />
                                     </div>
                                     <div>
                                         <h4 style={{ 
@@ -811,7 +811,7 @@ export default function AdminPage() {
                                 <button
                                     onClick={() => setIsContactModalOpen(false)}
                                     style={{
-                                        background: 'linear-gradient(135deg, #2c4a5e 0%, #ff6b35 100%)',
+                                        background: 'linear-gradient(135deg, #2c4a5e 0%, #e61e25 100%)',
                                         border: 'none',
                                         borderRadius: '12px',
                                         padding: '1rem 2rem',
@@ -837,7 +837,7 @@ export default function AdminPage() {
                         <div style={{ marginBottom: '5rem' }}>
                             <div>
                                 <h3 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '0.5rem', color: 'white' }}>
-                                    <span style={{ color: '#ff6b35' }}>One</span> Click
+                                    <span style={{ color: '#e61e25' }}>One</span> Click
                                 </h3>
                                 <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '2px', margin: 0 }}>
                                     PREMIUM OUTDOOR MEDIA SOLUTIONS
@@ -872,7 +872,7 @@ export default function AdminPage() {
                                     }}
                                     onMouseEnter={(e) => {
                                         e.currentTarget.style.background = 'rgba(255, 107, 53, 0.1)';
-                                        e.currentTarget.style.color = '#ff6b35';
+                                        e.currentTarget.style.color = '#e61e25';
                                     }}
                                     onMouseLeave={(e) => {
                                         e.currentTarget.style.background = 'transparent';

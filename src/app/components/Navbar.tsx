@@ -92,7 +92,7 @@ export default function Navbar() {
         }
 
         .logo-main .accent {
-          color: #ff6b35;
+          color: #e61e25;
         }
 
         .logo-tagline {
@@ -136,12 +136,12 @@ export default function Navbar() {
           left: 0;
           width: 0;
           height: 2px;
-          background: #ff6b35;
+          background: #e61e25;
           transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .nav-link:hover {
-          color: #ff6b35;
+          color: #e61e25;
         }
 
         .nav-link:hover::after {
@@ -187,13 +187,13 @@ export default function Navbar() {
           left: 24px;
           right: 24px;
           height: 2px;
-          background: #ff6b35;
+          background: #e61e25;
           transform: scaleX(0);
           transition: transform 0.3s ease;
         }
 
         .btn-campaign:hover {
-          color: #ff6b35;
+          color: #e61e25;
         }
 
         .btn-campaign:hover::after {
@@ -207,7 +207,7 @@ export default function Navbar() {
 
         .btn-login {
           padding: 10px 20px;
-          background: #ff6b35;
+          background: #e61e25;
           color: white;
           text-decoration: none;
           font-size: 0.95rem;
@@ -326,7 +326,7 @@ export default function Navbar() {
 
         .mobile-nav-link:hover {
           background: rgba(255, 107, 53, 0.15);
-          color: #ff6b35;
+          color: #e61e25;
           transform: translateX(8px);
         }
 
@@ -460,7 +460,7 @@ export default function Navbar() {
                 <span className="logo-circle">
                   <svg width="28" height="28" viewBox="0 0 28 28" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '2px' }}>
                     <circle cx="14" cy="14" r="12" fill="none" stroke="#ffffff" strokeWidth="4"/>
-                    <rect x="16" y="2" width="8" height="8" fill="#ff6b35" rx="1"/>
+                    <rect x="16" y="2" width="8" height="8" fill="#e61e25" rx="1"/>
                   </svg>
                 </span>
                 <span style={{ color: '#ffffff' }}>ne Click</span>

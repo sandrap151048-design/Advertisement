@@ -112,7 +112,7 @@ export default function ProjectsPage() {
                             width: '45px',
                             height: '45px',
                             borderRadius: '12px',
-                            background: 'linear-gradient(135deg, #2c4a5e, #ff6b35)',
+                            background: 'linear-gradient(135deg, #2c4a5e, #e61e25)',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -125,7 +125,7 @@ export default function ProjectsPage() {
                         </div>
                         <div>
                             <div>
-                                <span style={{ color: '#ff6b35', fontWeight: 700, fontSize: '1.1rem' }}>One</span>
+                                <span style={{ color: '#e61e25', fontWeight: 700, fontSize: '1.1rem' }}>One</span>
                                 <span style={{ color: 'white', fontWeight: 700, fontSize: '1.1rem' }}> Click</span>
                             </div>
                             <div style={{ fontSize: '0.65rem', fontWeight: 500, color: 'rgba(255,255,255,0.5)', letterSpacing: '1.5px', textTransform: 'uppercase', lineHeight: 1, marginTop: '2px' }}>
@@ -145,8 +145,8 @@ export default function ProjectsPage() {
                     <Link href="/admin/services" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', color: 'rgba(255,255,255,0.7)', cursor: 'pointer', transition: 'all 0.3s', textDecoration: 'none' }}>
                         <Briefcase size={20} color="rgba(255,255,255,0.6)" /> Services
                     </Link>
-                    <Link href="/admin/testimonials" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', background: 'rgba(255, 107, 53, 0.2)', color: 'white', cursor: 'pointer', borderLeft: '3px solid #ff6b35', textDecoration: 'none' }}>
-                        <Layers size={20} color="#ff6b35" /> Projects
+                    <Link href="/admin/testimonials" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', background: 'rgba(255, 107, 53, 0.2)', color: 'white', cursor: 'pointer', borderLeft: '3px solid #e61e25', textDecoration: 'none' }}>
+                        <Layers size={20} color="#e61e25" /> Projects
                     </Link>
                 </nav>
 
@@ -188,7 +188,7 @@ export default function ProjectsPage() {
                             alignItems: 'center', 
                             gap: '0.5rem', 
                             padding: '0.8rem 1.5rem',
-                            background: 'linear-gradient(135deg, #2c4a5e 0%, #ff6b35 100%)',
+                            background: 'linear-gradient(135deg, #2c4a5e 0%, #e61e25 100%)',
                             border: 'none',
                             borderRadius: '8px',
                             color: 'white',
@@ -219,7 +219,7 @@ export default function ProjectsPage() {
                                 alignItems: 'center',
                                 gap: '0.5rem',
                                 padding: '0.8rem 1.5rem',
-                                background: 'linear-gradient(135deg, #2c4a5e 0%, #ff6b35 100%)',
+                                background: 'linear-gradient(135deg, #2c4a5e 0%, #e61e25 100%)',
                                 border: 'none',
                                 borderRadius: '8px',
                                 color: 'white',
@@ -265,7 +265,7 @@ export default function ProjectsPage() {
                                     <div style={{ marginBottom: '1rem' }}>
                                         <span style={{ 
                                             background: 'rgba(255, 107, 53, 0.1)', 
-                                            color: '#ff6b35',
+                                            color: '#e61e25',
                                             padding: '0.3rem 0.8rem',
                                             borderRadius: '6px',
                                             fontSize: '0.75rem',
@@ -434,7 +434,7 @@ export default function ProjectsPage() {
                                         style={{ 
                                             flex: 1,
                                             padding: '0.8rem',
-                                            background: 'linear-gradient(135deg, #2c4a5e 0%, #ff6b35 100%)',
+                                            background: 'linear-gradient(135deg, #2c4a5e 0%, #e61e25 100%)',
                                             border: 'none',
                                             borderRadius: '8px',
                                             color: 'white',
@@ -457,7 +457,7 @@ export default function ProjectsPage() {
                         <div style={{ marginBottom: '5rem' }}>
                             <div>
                                 <h3 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '0.5rem', color: 'white' }}>
-                                    <span style={{ color: '#ff6b35' }}>One</span> Click
+                                    <span style={{ color: '#e61e25' }}>One</span> Click
                                 </h3>
                                 <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '2px', margin: 0 }}>
                                     PREMIUM OUTDOOR MEDIA SOLUTIONS

@@ -114,9 +114,9 @@ export default function CampaignsPage() {
         position: 'sticky', top: 0, height: '100vh', flexShrink: 0
       }}>
         <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '2.5rem' }}>
-          <div style={{ width: 42, height: 42, borderRadius: 12, background: 'linear-gradient(135deg, #2c4a5e, #ff6b35)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, color: 'white', fontSize: '1rem' }}>OC</div>
+          <div style={{ width: 42, height: 42, borderRadius: 12, background: 'linear-gradient(135deg, #2c4a5e, #e61e25)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, color: 'white', fontSize: '1rem' }}>OC</div>
           <div>
-            <div><span style={{ color: '#ff6b35', fontWeight: 700 }}>One</span><span style={{ color: 'white', fontWeight: 700 }}> Click</span></div>
+            <div><span style={{ color: '#e61e25', fontWeight: 700 }}>One</span><span style={{ color: 'white', fontWeight: 700 }}> Click</span></div>
             <div style={{ fontSize: '0.6rem', color: '#facc15', letterSpacing: '1.5px', textTransform: 'uppercase' }}>Admin Portal</div>
           </div>
         </Link>
@@ -128,9 +128,9 @@ export default function CampaignsPage() {
               <Link key={link.href} href={link.href} style={{ textDecoration: 'none' }}>
                 <div style={{
                   display: 'flex', alignItems: 'center', gap: '0.8rem', padding: '0.85rem 1rem',
-                  borderRadius: 10, color: isActive ? '#ff6b35' : 'rgba(255,255,255,0.65)',
+                  borderRadius: 10, color: isActive ? '#e61e25' : 'rgba(255,255,255,0.65)',
                   background: isActive ? 'rgba(255,107,53,0.15)' : 'transparent',
-                  borderLeft: isActive ? '3px solid #ff6b35' : '3px solid transparent',
+                  borderLeft: isActive ? '3px solid #e61e25' : '3px solid transparent',
                   fontWeight: isActive ? 600 : 400, transition: 'all 0.2s', fontSize: '0.92rem'
                 }}>
                   {link.icon}{link.label}
@@ -155,7 +155,7 @@ export default function CampaignsPage() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
           <div>
             <h1 style={{ fontSize: '2rem', fontWeight: 800, color: '#1a1a1a', margin: 0 }}>
-              Campaign <span style={{ color: '#ff6b35' }}>Requests</span>
+              Campaign <span style={{ color: '#e61e25' }}>Requests</span>
             </h1>
             <p style={{ color: '#888', margin: '0.3rem 0 0', fontSize: '0.95rem' }}>
               {campaigns.length} total submission{campaigns.length !== 1 ? 's' : ''}
@@ -163,7 +163,7 @@ export default function CampaignsPage() {
           </div>
           <button onClick={fetchCampaigns} style={{
             display: 'flex', alignItems: 'center', gap: '0.5rem',
-            background: '#ff6b35', border: 'none', borderRadius: 10,
+            background: '#e61e25', border: 'none', borderRadius: 10,
             padding: '0.75rem 1.2rem', color: 'white', fontWeight: 600,
             cursor: 'pointer', fontSize: '0.9rem'
           }}>
@@ -174,7 +174,7 @@ export default function CampaignsPage() {
         {/* Stats */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
           {[
-            { label: 'Total', value: campaigns.length, color: '#ff6b35' },
+            { label: 'Total', value: campaigns.length, color: '#e61e25' },
             { label: 'Pending', value: campaigns.filter(c => c.status === 'pending').length, color: '#f59e0b' },
             { label: 'In Progress', value: campaigns.filter(c => c.status === 'in-progress').length, color: '#3b82f6' },
             { label: 'Completed', value: campaigns.filter(c => c.status === 'completed').length, color: '#10b981' },
@@ -215,7 +215,7 @@ export default function CampaignsPage() {
         {/* Cards */}
         {loading ? (
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
-            <div style={{ width: 50, height: 50, border: '4px solid rgba(255,107,53,0.2)', borderTop: '4px solid #ff6b35', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
+            <div style={{ width: 50, height: 50, border: '4px solid rgba(255,107,53,0.2)', borderTop: '4px solid #e61e25', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
           </div>
         ) : filtered.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '4rem', background: 'white', borderRadius: 16, boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>

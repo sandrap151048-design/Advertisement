@@ -199,7 +199,7 @@ export default function VehicleGraphicsPage() {
 
         .accordion-item.open {
           background: white;
-          border-color: #ff6b35;
+          border-color: #e61e25;
           box-shadow: 0 4px 12px rgba(255, 107, 53, 0.15);
           transform: translateX(5px);
         }
@@ -524,35 +524,35 @@ export default function VehicleGraphicsPage() {
               {/* Dubai */}
               <g>
                 <circle cx="480" cy="240" r="30" fill="rgba(255, 107, 53, 0.2)"/>
-                <circle cx="480" cy="240" r="8" fill="#ff6b35"/>
+                <circle cx="480" cy="240" r="8" fill="#e61e25"/>
                 <text x="480" y="280" textAnchor="middle" fill="#1a1a1a" fontSize="16" fontWeight="600">Dubai</text>
               </g>
               
               {/* Abu Dhabi */}
               <g>
                 <circle cx="350" cy="260" r="30" fill="rgba(255, 107, 53, 0.2)"/>
-                <circle cx="350" cy="260" r="8" fill="#ff6b35"/>
+                <circle cx="350" cy="260" r="8" fill="#e61e25"/>
                 <text x="350" y="300" textAnchor="middle" fill="#1a1a1a" fontSize="16" fontWeight="600">Abu Dhabi</text>
               </g>
               
               {/* Sharjah */}
               <g>
                 <circle cx="520" cy="210" r="30" fill="rgba(255, 107, 53, 0.2)"/>
-                <circle cx="520" cy="210" r="8" fill="#ff6b35"/>
+                <circle cx="520" cy="210" r="8" fill="#e61e25"/>
                 <text x="520" y="195" textAnchor="middle" fill="#1a1a1a" fontSize="16" fontWeight="600">Sharjah</text>
               </g>
               
               {/* Ajman */}
               <g>
                 <circle cx="540" cy="190" r="30" fill="rgba(255, 107, 53, 0.2)"/>
-                <circle cx="540" cy="190" r="8" fill="#ff6b35"/>
+                <circle cx="540" cy="190" r="8" fill="#e61e25"/>
                 <text x="540" y="175" textAnchor="middle" fill="#1a1a1a" fontSize="16" fontWeight="600">Ajman</text>
               </g>
               
               {/* Northern Emirates */}
               <g>
                 <circle cx="580" cy="160" r="30" fill="rgba(255, 107, 53, 0.2)"/>
-                <circle cx="580" cy="160" r="8" fill="#ff6b35"/>
+                <circle cx="580" cy="160" r="8" fill="#e61e25"/>
                 <text x="580" y="145" textAnchor="middle" fill="#1a1a1a" fontSize="14" fontWeight="600">Northern</text>
                 <text x="580" y="160" textAnchor="middle" fill="#1a1a1a" fontSize="14" fontWeight="600">Emirates</text>
               </g>
@@ -597,7 +597,7 @@ export default function VehicleGraphicsPage() {
                 <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <svg width="32" height="32" viewBox="0 0 32 32" style={{ display: 'inline-block' }}>
                     <circle cx="16" cy="16" r="13" fill="none" stroke="white" strokeWidth="4"/>
-                    <rect x="18" y="3" width="10" height="10" fill="#ff6b35" rx="1"/>
+                    <rect x="18" y="3" width="10" height="10" fill="#e61e25" rx="1"/>
                   </svg>
                   <span style={{ color: 'white' }}>ne Click</span>
                 </h3>
@@ -626,15 +626,15 @@ export default function VehicleGraphicsPage() {
                 <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>Contact</h4>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   <li style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                    <Phone size={18} style={{ color: '#ff6b35', flexShrink: 0 }} />
+                    <Phone size={18} style={{ color: '#e61e25', flexShrink: 0 }} />
                     <a href="tel:+971524065110" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>+971 52 406 5110</a>
                   </li>
                   <li style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                    <Mail size={18} style={{ color: '#ff6b35', flexShrink: 0 }} />
+                    <Mail size={18} style={{ color: '#e61e25', flexShrink: 0 }} />
                     <a href="mailto:hello@oneclickadv.ae" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>hello@oneclickadv.ae</a>
                   </li>
                   <li style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                    <MapPin size={18} style={{ color: '#ff6b35', flexShrink: 0 }} />
+                    <MapPin size={18} style={{ color: '#e61e25', flexShrink: 0 }} />
                     <span style={{ color: 'rgba(255,255,255,0.7)' }}>Dubai, UAE</span>
                   </li>
                 </ul>

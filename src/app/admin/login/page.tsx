@@ -85,16 +85,15 @@ export default function AdminLoginPage() {
                 .logo-icon {
                     width: 32px;
                     height: 32px;
-                    background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+                    background: transparent;
                     border-radius: 8px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    font-size: 1.2rem;
                 }
 
                 .login-form-container {
-                    max-width: 420px;
+                    max-width: 340px;
                     width: 100%;
                     margin: 0 auto;
                     margin-top: 3rem;
@@ -177,7 +176,7 @@ export default function AdminLoginPage() {
                 .sign-in-button {
                     width: 100%;
                     padding: 1rem;
-                    background: #3B82F6;
+                    background: #e61e25;
                     color: white;
                     border: none;
                     border-radius: 8px;
@@ -189,8 +188,9 @@ export default function AdminLoginPage() {
                 }
 
                 .sign-in-button:hover {
-                    background: #2563EB;
+                    background: #cc1a21;
                     transform: translateY(-1px);
+                    box-shadow: 0 4px 12px rgba(230, 30, 37, 0.3);
                 }
 
                 .sign-in-button:disabled {
@@ -251,7 +251,7 @@ export default function AdminLoginPage() {
                 }
 
                 .create-account a {
-                    color: #3B82F6;
+                    color: #e61e25;
                     text-decoration: none;
                     font-weight: 600;
                 }
@@ -311,8 +311,13 @@ export default function AdminLoginPage() {
                 {/* Left Side - Form */}
                 <div className="login-left">
                     <div className="login-logo">
-                        <div className="logo-icon">✦</div>
-                        <span>OneClick</span>
+                        <div className="logo-icon">
+                          <svg width="28" height="28" viewBox="0 0 28 28">
+                            <circle cx="14" cy="14" r="12" fill="none" stroke="#ffffff" strokeWidth="4"/>
+                            <rect x="16" y="2" width="8" height="8" fill="#e61e25" rx="1"/>
+                          </svg>
+                        </div>
+                        <span style={{ marginLeft: '-15px' }}>ne Click</span>
                     </div>
 
                     <div className="login-form-container">

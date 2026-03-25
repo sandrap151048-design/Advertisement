@@ -39,7 +39,7 @@ const projectsByCategory: Record<CategoryKey, {
     title: 'Digital',
     subtitle: 'Printing',
     description: 'High-resolution digital print solutions for banners, posters, window graphics, and large-format displays that bring your brand visuals to life with vibrant, lasting quality.',
-    accent: '#ff6b35',
+    accent: '#e61e25',
     images: [
       { title: 'Large Format Banner', tag: 'Banner', image: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=800&q=80' },
       { title: 'Window Graphics', tag: 'Window', image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=800&q=80' },
@@ -147,7 +147,7 @@ export default function ProjectsPage() {
             </motion.div>
             <h1 style={{ fontSize: 'clamp(3rem,8vw,5.5rem)', fontWeight: 900, color: 'white', lineHeight: 1.05, letterSpacing: '-2px', margin: '0 0 1rem' }}>
               Campaigns That<br />
-              <span style={{ color: '#ff6b35' }}>Make an Impact</span>
+              <span style={{ color: '#e61e25' }}>Make an Impact</span>
             </h1>
             <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '1.1rem', maxWidth: 600, margin: '0 auto', lineHeight: 1.7 }}>
               Explore real-world advertising campaigns crafted to maximize visibility, attract attention, and deliver strong brand impact across prime locations.
@@ -339,7 +339,7 @@ export default function ProjectsPage() {
               viewport={{ once: true }}
               style={{ fontSize: 'clamp(2rem,5vw,3.2rem)', fontWeight: 900, marginBottom: '1.5rem', lineHeight: 1.15 }}
             >
-              Ready to Build Your <span style={{ color: '#ff6b35' }}>Next Campaign?</span>
+              Ready to Build Your <span style={{ color: '#e61e25' }}>Next Campaign?</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -361,7 +361,7 @@ export default function ProjectsPage() {
                 <motion.div
                   whileHover={{ scale: 1.05, y: -3 }}
                   whileTap={{ scale: 0.97 }}
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.7rem', padding: '1rem 2.5rem', background: '#ff6b35', color: 'white', fontWeight: 700, borderRadius: 50, fontSize: '1rem', cursor: 'pointer', boxShadow: '0 8px 24px rgba(255,107,53,0.4)' }}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.7rem', padding: '1rem 2.5rem', background: '#e61e25', color: 'white', fontWeight: 700, borderRadius: 50, fontSize: '1rem', cursor: 'pointer', boxShadow: '0 8px 24px rgba(255,107,53,0.4)' }}
                 >
                   Start a Campaign <ArrowRight size={20} />
                 </motion.div>
@@ -385,7 +385,7 @@ export default function ProjectsPage() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '3.5rem', marginBottom: '3.5rem' }}>
               <div>
                 <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>
-                  <span style={{ color: '#ff6b35' }}>One</span> Click Advertisement
+                  <span style={{ color: '#e61e25' }}>One</span> Click Advertisement
                 </h3>
                 <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '1.5rem', lineHeight: '1.8', fontSize: '1rem' }}>
                   Premium advertising solutions across the UAE. Delivering high-impact visual communication services.

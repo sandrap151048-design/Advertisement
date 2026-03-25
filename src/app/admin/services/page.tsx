@@ -113,7 +113,7 @@ export default function ServicesPage() {
                             width: '45px',
                             height: '45px',
                             borderRadius: '12px',
-                            background: 'linear-gradient(135deg, #2c4a5e, #ff6b35)',
+                            background: 'linear-gradient(135deg, #2c4a5e, #e61e25)',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -126,7 +126,7 @@ export default function ServicesPage() {
                         </div>
                         <div>
                             <div>
-                                <span style={{ color: '#ff6b35', fontWeight: 700, fontSize: '1.1rem' }}>One</span>
+                                <span style={{ color: '#e61e25', fontWeight: 700, fontSize: '1.1rem' }}>One</span>
                                 <span style={{ color: 'white', fontWeight: 700, fontSize: '1.1rem' }}> Click</span>
                             </div>
                             <div style={{ fontSize: '0.65rem', fontWeight: 500, color: 'rgba(255,255,255,0.5)', letterSpacing: '1.5px', textTransform: 'uppercase', lineHeight: 1, marginTop: '2px' }}>
@@ -143,8 +143,8 @@ export default function ServicesPage() {
                     <Link href="/admin/contacts" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', color: 'rgba(255,255,255,0.7)', cursor: 'pointer', transition: 'all 0.3s', textDecoration: 'none' }}>
                         <MessageSquare size={20} color="rgba(255,255,255,0.6)" /> Contact Forms
                     </Link>
-                    <Link href="/admin/services" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', background: 'rgba(255, 107, 53, 0.2)', color: 'white', cursor: 'pointer', borderLeft: '3px solid #ff6b35', textDecoration: 'none' }}>
-                        <Briefcase size={20} color="#ff6b35" /> Services
+                    <Link href="/admin/services" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', background: 'rgba(255, 107, 53, 0.2)', color: 'white', cursor: 'pointer', borderLeft: '3px solid #e61e25', textDecoration: 'none' }}>
+                        <Briefcase size={20} color="#e61e25" /> Services
                     </Link>
                 </nav>
 
@@ -176,7 +176,7 @@ export default function ServicesPage() {
                 )}
                 <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '1.5rem', borderBottom: '1px solid rgba(44, 74, 94, 0.2)' }}>
                     <div>
-                        <h1 style={{ fontSize: '1.8rem', marginBottom: '0.5rem', fontFamily: "'Outfit', sans-serif", color: '#1a1a1a' }}>Services <span style={{ color: '#ff6b35', fontWeight: 700 }}>Management</span></h1>
+                        <h1 style={{ fontSize: '1.8rem', marginBottom: '0.5rem', fontFamily: "'Outfit', sans-serif", color: '#1a1a1a' }}>Services <span style={{ color: '#e61e25', fontWeight: 700 }}>Management</span></h1>
                         <p style={{ color: '#666666', fontSize: '0.9rem', fontFamily: "'Space Grotesk', sans-serif" }}>Manage your service offerings</p>
                     </div>
                     <button
@@ -186,7 +186,7 @@ export default function ServicesPage() {
                             alignItems: 'center', 
                             gap: '0.5rem', 
                             padding: '0.8rem 1.5rem',
-                            background: 'linear-gradient(135deg, #2c4a5e 0%, #ff6b35 100%)',
+                            background: 'linear-gradient(135deg, #2c4a5e 0%, #e61e25 100%)',
                             border: 'none',
                             borderRadius: '8px',
                             color: 'white',
@@ -217,7 +217,7 @@ export default function ServicesPage() {
                                 alignItems: 'center',
                                 gap: '0.5rem',
                                 padding: '0.8rem 1.5rem',
-                                background: 'linear-gradient(135deg, #2c4a5e 0%, #ff6b35 100%)',
+                                background: 'linear-gradient(135deg, #2c4a5e 0%, #e61e25 100%)',
                                 border: 'none',
                                 borderRadius: '8px',
                                 color: 'white',

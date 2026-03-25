@@ -389,7 +389,7 @@ export default function ContactPage() {
             style={{ position: 'relative', zIndex: 2, color: 'white', maxWidth: '400px' }}
           >
             <p className="contact-hero-text">
-              Let's start your advertising campaign and bring your brand into the spotlight.
+              Let's start your advertising campaign and bring your brand into the spotlight. We are dedicated to providing the best advertising solutions that drive results for your business. Reach out today and let's make an impact together.
             </p>
             <Link href="/campaign" className="hero-cta-button" style={{ display: 'inline-block', textDecoration: 'none' }}>
               Start Your Campaign

@@ -500,7 +500,7 @@ export default function AboutPage() {
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
                 <svg width="60" height="60" viewBox="0 0 60 60" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
                   <circle cx="30" cy="30" r="26" fill="none" stroke="white" strokeWidth="6"/>
-                  <rect x="34" y="4" width="20" height="20" fill="#FF6B35" rx="2"/>
+                  <rect x="34" y="4" width="20" height="20" fill="#e61e25" rx="2"/>
                 </svg>
                 <span style={{ color: 'white' }}>ne Click</span>
               </span>
@@ -692,7 +692,7 @@ export default function AboutPage() {
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
                 <svg width="40" height="40" viewBox="0 0 40 40" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
                   <circle cx="20" cy="20" r="17" fill="none" stroke="#1a1a1a" strokeWidth="4"/>
-                  <rect x="23" y="3" width="13" height="13" fill="#FF6B35" rx="1"/>
+                  <rect x="23" y="3" width="13" height="13" fill="#e61e25" rx="1"/>
                 </svg>
                 <span style={{ color: '#1a1a1a' }}>ne Click</span>
               </span>
@@ -778,7 +778,7 @@ export default function AboutPage() {
                 whileHover={{ 
                   scale: 1.02,
                   boxShadow: '0 12px 30px rgba(255, 107, 53, 0.2)',
-                  borderColor: '#ff6b35'
+                  borderColor: '#e61e25'
                 }}
                 whileTap={{ scale: 0.98 }}
                 style={{
@@ -824,7 +824,7 @@ export default function AboutPage() {
                   whileHover={{ 
                     scale: 1.05, 
                     boxShadow: '0 12px 25px rgba(255, 107, 53, 0.2)',
-                    borderColor: '#ff6b35',
+                    borderColor: '#e61e25',
                     background: 'linear-gradient(135deg, #fff5f0 0%, #ffffff 100%)'
                   }}
                   whileTap={{ 
@@ -909,7 +909,7 @@ export default function AboutPage() {
                       marginBottom: '1rem',
                       transition: 'color 0.3s ease'
                     }}
-                    whileHover={{ color: '#ff6b35' }}
+                    whileHover={{ color: '#e61e25' }}
                   >
                     {item.title}
                   </motion.h3>
@@ -937,7 +937,7 @@ export default function AboutPage() {
             }}
           >
             <h2 style={{ fontSize: '2.5rem', fontWeight: 900, marginBottom: '1.5rem' }}>
-              Our <span style={{ fontStyle: 'italic', color: '#ff6b35' }}>Commitment</span>
+              Our <span style={{ fontStyle: 'italic', color: '#e61e25' }}>Commitment</span>
             </h2>
             <p style={{ fontSize: '1.1rem', lineHeight: '1.8', maxWidth: '900px', margin: '0 auto', color: 'rgba(255,255,255,0.9)' }}>
               We are committed to delivering professional workmanship, premium finishing, and long-lasting branding solutions that withstand the UAE climate while maintaining strong visual impact. Every project is executed with attention to detail, quality materials, and adherence to international standards.
@@ -1092,7 +1092,7 @@ export default function AboutPage() {
                 <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <svg width="32" height="32" viewBox="0 0 32 32" style={{ display: 'inline-block' }}>
                     <circle cx="16" cy="16" r="13" fill="none" stroke="white" strokeWidth="4"/>
-                    <rect x="18" y="3" width="10" height="10" fill="#ff6b35" rx="1"/>
+                    <rect x="18" y="3" width="10" height="10" fill="#e61e25" rx="1"/>
                   </svg>
                   <span style={{ color: 'white' }}>ne Click</span>
                 </h3>

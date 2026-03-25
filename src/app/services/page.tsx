@@ -198,7 +198,7 @@ export default function ServicesPage() {
         }
 
         .hero-title .highlight {
-          color: #FF6B35;
+          color: #e61e25;
         }
 
         .hero-subtitle {
@@ -694,7 +694,7 @@ export default function ServicesPage() {
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
                   <svg width="40" height="40" viewBox="0 0 40 40" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
                     <circle cx="20" cy="20" r="17" fill="none" stroke="#1a1a1a" strokeWidth="4"/>
-                    <rect x="23" y="3" width="13" height="13" fill="#FF6B35" rx="1"/>
+                    <rect x="23" y="3" width="13" height="13" fill="#e61e25" rx="1"/>
                   </svg>
                   <span style={{ color: '#1a1a1a' }}>ne Click</span>
                 </span>
@@ -770,7 +770,7 @@ export default function ServicesPage() {
                 <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <svg width="32" height="32" viewBox="0 0 32 32" style={{ display: 'inline-block' }}>
                     <circle cx="16" cy="16" r="13" fill="none" stroke="white" strokeWidth="4"/>
-                    <rect x="18" y="3" width="10" height="10" fill="#ff6b35" rx="1"/>
+                    <rect x="18" y="3" width="10" height="10" fill="#e61e25" rx="1"/>
                   </svg>
                   <span style={{ color: 'white' }}>ne Click</span>
                 </h3>
@@ -816,15 +816,15 @@ export default function ServicesPage() {
                 <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>Contact</h4>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   <li style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                    <Phone size={18} style={{ color: '#ff6b35', flexShrink: 0 }} />
+                    <Phone size={18} style={{ color: '#e61e25', flexShrink: 0 }} />
                     <a href="tel:+971524065110" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>+971 52 406 5110</a>
                   </li>
                   <li style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                    <Mail size={18} style={{ color: '#ff6b35', flexShrink: 0 }} />
+                    <Mail size={18} style={{ color: '#e61e25', flexShrink: 0 }} />
                     <a href="mailto:hello@oneclickadv.ae" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>hello@oneclickadv.ae</a>
                   </li>
                   <li style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                    <MapPin size={18} style={{ color: '#ff6b35', flexShrink: 0 }} />
+                    <MapPin size={18} style={{ color: '#e61e25', flexShrink: 0 }} />
                     <a href="https://www.google.com/maps/search/?api=1&query=Dubai+UAE" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Dubai, UAE</a>
                   </li>
                 </ul>

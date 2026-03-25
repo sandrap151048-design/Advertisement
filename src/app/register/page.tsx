@@ -73,16 +73,15 @@ export default function RegisterPage() {
                 .logo-icon {
                     width: 32px;
                     height: 32px;
-                    background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+                    background: transparent;
                     border-radius: 8px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    font-size: 1.2rem;
                 }
 
                 .register-form-container {
-                    max-width: 380px;
+                    max-width: 340px;
                     width: 100%;
                     margin: 0 auto;
                     margin-top: 2rem;
@@ -165,8 +164,8 @@ export default function RegisterPage() {
                 .sign-up-button {
                     width: 100%;
                     padding: 0.9rem;
-                    background: white;
-                    color: #000;
+                    background: #e61e25;
+                    color: white;
                     border: none;
                     border-radius: 8px;
                     font-size: 0.95rem;
@@ -177,8 +176,9 @@ export default function RegisterPage() {
                 }
 
                 .sign-up-button:hover {
-                    background: #f0f0f0;
+                    background: #cc1a21;
                     transform: translateY(-1px);
+                    box-shadow: 0 4px 12px rgba(230, 30, 37, 0.3);
                 }
 
                 .sign-up-button:disabled {
@@ -239,7 +239,7 @@ export default function RegisterPage() {
                 }
 
                 .have-account a {
-                    color: #3B82F6;
+                    color: #e61e25;
                     text-decoration: none;
                     font-weight: 600;
                 }
@@ -337,13 +337,18 @@ export default function RegisterPage() {
                 {/* Left Side - Form */}
                 <div className="register-left">
                     <div className="register-logo">
-                        <div className="logo-icon">✦</div>
-                        <span>OneClick</span>
+                        <div className="logo-icon">
+                          <svg width="28" height="28" viewBox="0 0 28 28">
+                            <circle cx="14" cy="14" r="12" fill="none" stroke="#ffffff" strokeWidth="4"/>
+                            <rect x="16" y="2" width="8" height="8" fill="#e61e25" rx="1"/>
+                          </svg>
+                        </div>
+                        <span style={{ marginLeft: '-15px' }}>ne Click</span>
                     </div>
 
                     <div className="register-form-container">
                         <h1 className="register-title">Sign up</h1>
-                        <p className="register-subtitle">Sign up to enjoy the feature of OneClick</p>
+                        <p className="register-subtitle">Join One Click and start your advertising journey today.</p>
 
                         {error && (
                             <div className="error-message">{error}</div>
