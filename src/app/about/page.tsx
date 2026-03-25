@@ -40,13 +40,13 @@ export default function AboutPage() {
 
         .about-hero {
           position: relative;
-          height: 60vh;
-          min-height: 500px;
+          height: 80vh;
+          min-height: 600px;
           display: flex;
           align-items: center;
           justify-content: center;
           overflow: hidden;
-          padding-top: 80px;
+          padding-top: 100px;
         }
 
         .about-hero-bg {

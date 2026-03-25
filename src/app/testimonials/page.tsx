@@ -124,7 +124,7 @@ export default function ProjectsPage() {
       <div style={{ background: '#f4f4f0', minHeight: '100vh' }}>
 
         {/* ─── Hero ─── */}
-        <section style={{ position: 'relative', height: '65vh', minHeight: 520, overflow: 'hidden', paddingTop: 80, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <section style={{ position: 'relative', height: '80vh', minHeight: 600, overflow: 'hidden', paddingTop: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <img
             src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1800&q=80"
             alt="Hero"

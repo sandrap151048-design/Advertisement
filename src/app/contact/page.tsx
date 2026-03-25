@@ -74,13 +74,13 @@ export default function ContactPage() {
 
         .contact-hero {
           position: relative;
-          height: 60vh;
-          min-height: 500px;
+          height: 80vh;
+          min-height: 600px;
           display: flex;
           align-items: center;
           justify-content: space-between;
           overflow: hidden;
-          padding-top: 80px;
+          padding-top: 100px;
           padding: 0 4rem;
         }
 
