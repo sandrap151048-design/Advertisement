@@ -749,7 +749,7 @@ export default function AdminPage() {
                                             fontSize: '1rem',
                                             fontFamily: "'Manrope', sans-serif"
                                         }}>
-                                            +971 00 000 0000
+                                            +971 52 406 5110
                                         </p>
                                     </div>
                                 </div>
@@ -790,7 +790,7 @@ export default function AdminPage() {
                                             fontSize: '1rem',
                                             fontFamily: "'Manrope', sans-serif"
                                         }}>
-                                            info@oneclickadv.ae
+                                            hello@oneclickadv.ae
                                         </p>
                                     </div>
                                 </div>
@@ -915,7 +915,7 @@ export default function AdminPage() {
                                             e.currentTarget.style.color = 'rgba(255,255,255,0.6)';
                                         }}
                                     >
-                                        <Phone size={18} color="#facc15" /> +971 00 000 0000
+                                        <Phone size={18} color="#facc15" /> +971 52 406 5110
                                     </li>
                                     <li 
                                         onClick={() => setIsContactModalOpen(true)}
@@ -937,7 +937,7 @@ export default function AdminPage() {
                                             e.currentTarget.style.color = 'rgba(255,255,255,0.6)';
                                         }}
                                     >
-                                        <Mail size={18} color="#facc15" /> info@oneclickadv.ae
+                                        <Mail size={18} color="#facc15" /> hello@oneclickadv.ae
                                     </li>
                                 </ul>
                             </div>

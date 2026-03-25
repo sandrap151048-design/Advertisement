@@ -460,10 +460,10 @@ export default function ServicesPage() {
                                         <MapPin size={18} color="var(--color-primary)" /> Dubai, UAE
                                     </li>
                                     <li style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}>
-                                        <Phone size={18} color="var(--color-primary)" /> +971 00 000 0000
+                                        <Phone size={18} color="var(--color-primary)" /> +971 52 406 5110
                                     </li>
                                     <li style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}>
-                                        <Mail size={18} color="var(--color-primary)" /> info@oneclickadv.ae
+                                        <Mail size={18} color="var(--color-primary)" /> hello@oneclickadv.ae
                                     </li>
                                 </ul>
                             </div>

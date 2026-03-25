@@ -57,11 +57,11 @@ export default function Footer() {
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <li style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
                 <Phone size={18} style={{ color: '#7C3AED', flexShrink: 0 }} />
-                <a href="tel:+97100000000" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#7C3AED'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.7)'}>+971 00 000 0000</a>
+                <a href="tel:+971524065110" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#7C3AED'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.7)'}>+971 52 406 5110</a>
               </li>
               <li style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
                 <Mail size={18} style={{ color: '#7C3AED', flexShrink: 0 }} />
-                <a href="mailto:info@oneclickadv.ae" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#7C3AED'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.7)'}>info@oneclickadv.ae</a>
+                <a href="mailto:hello@oneclickadv.ae" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#7C3AED'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.7)'}>hello@oneclickadv.ae</a>
               </li>
               <li style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
                 <MapPin size={18} style={{ color: '#7C3AED', flexShrink: 0 }} />

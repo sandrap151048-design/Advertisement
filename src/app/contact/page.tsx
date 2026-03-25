@@ -418,7 +418,7 @@ export default function ContactPage() {
               <div className="contact-detail-item">
                 <Phone size={24} />
                 <div>
-                  <a href="tel:+97152406510">+971 52 406 5110</a>
+                  <a href="tel:+971524065110">+971 52 406 5110</a>
                 </div>
               </div>
               <div className="contact-detail-item">
@@ -593,8 +593,8 @@ export default function ContactPage() {
               <div>
                 <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>Connect with us</h4>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                  <li><a href="tel:+97152406510" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>+971 52 406 5110</a></li>
-                  <li><a href="mailto:hello@oneclick.adv.ae" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>hello@oneclick.adv.ae</a></li>
+                  <li><a href="tel:+971524065110" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>+971 52 406 5110</a></li>
+                  <li><a href="mailto:hello@oneclickadv.ae" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>hello@oneclickadv.ae</a></li>
                 </ul>
               </div>
             </div>
