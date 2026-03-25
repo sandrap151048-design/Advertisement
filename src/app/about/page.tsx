@@ -483,8 +483,8 @@ export default function AboutPage() {
         <section className="about-hero">
           <div className="about-hero-bg">
             <img 
-              src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1600&q=80" 
-              alt="About Us" 
+              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1600&q=80" 
+              alt="About Us - Professional Team" 
             />
           </div>
           <div className="about-hero-overlay"></div>
