@@ -41,7 +41,8 @@ export default function ServicesPage() {
 
     const fetchServices = async () => {
         try {
-            const response = await fetch('/api/services');
+            const timestamp = new Date().getTime();
+            const response = await fetch(`/api/services?t=${timestamp}`, { cache: 'no-store', headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' } });
             const data = await response.json();
             setServices(Array.isArray(data) ? data : []);
         } catch (error) {

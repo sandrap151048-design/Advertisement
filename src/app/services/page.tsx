@@ -94,7 +94,8 @@ export default function ServicesPage() {
 
   const fetchServices = async () => {
     try {
-      const response = await fetch('/api/services', { cache: 'no-store' });
+      const timestamp = new Date().getTime();
+      const response = await fetch(`/api/services?t=${timestamp}`, { cache: 'no-store', headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' } });
       const data = await response.json();
       setDbServices(data || []);
     } catch (error) {
