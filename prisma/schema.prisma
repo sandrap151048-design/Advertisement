@@ -45,3 +45,14 @@ model Campaign {
   status    String   @default("pending")
   createdAt DateTime @default(now())
 }
+
+model Project {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  category    String
+  image       String
+  clientName  String?
+  status      String   @default("published")
+  createdAt   DateTime @default(now())
+}

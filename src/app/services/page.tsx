@@ -151,7 +151,7 @@ export default function ServicesPage() {
 
         .hero-services {
           position: relative;
-          height: 80vh;
+          height: 100vh;
           min-height: 600px;
           display: flex;
           align-items: center;

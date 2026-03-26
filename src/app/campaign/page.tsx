@@ -81,36 +81,26 @@ export default function CampaignPage() {
 
         .back-button-campaign {
           position: fixed;
-          top: 30px;
+          top: 40px;
           left: 40px;
           z-index: 100;
-          background: rgba(255, 255, 255, 0.1);
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          color: white;
           cursor: pointer;
-          transition: all 0.3s ease;
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          backdrop-filter: blur(10px);
+          transition: transform 0.3s ease;
         }
 
         .back-button-campaign:hover {
-          background: rgba(255, 255, 255, 0.2);
-          transform: scale(1.1);
+          transform: translateX(-5px);
         }
 
         .campaign-container {
-          max-width: 500px;
+          max-width: 550px;
           width: 100%;
-          padding: 3rem 2.5rem;
-          background: rgba(20, 20, 20, 0.8);
-          backdrop-filter: blur(20px);
-          border-radius: 16px;
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+          padding: 3rem 2rem;
+          background: #222222;
+          border-radius: 12px;
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
         }
 
         .campaign-header {
@@ -119,52 +109,56 @@ export default function CampaignPage() {
         }
 
         .campaign-title {
-          font-size: 3rem;
-          font-weight: 900;
+          font-size: 3.5rem;
+          font-weight: 800;
           color: white;
-          margin-bottom: 0.3rem;
-          line-height: 1.1;
+          margin-bottom: 0.1rem;
+          line-height: 1;
         }
 
         .campaign-subtitle {
+          font-family: serif;
           font-style: italic;
-          color: rgba(255, 255, 255, 0.7);
-          font-size: 2.5rem;
-          font-weight: 400;
-          margin-bottom: 1rem;
+          color: white;
+          font-size: 3.5rem;
+          font-weight: 300;
+          margin-bottom: 0.5rem;
+          line-height: 1;
+          opacity: 0.9;
         }
 
         .campaign-description {
-          color: rgba(255, 255, 255, 0.6);
-          font-size: 0.95rem;
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 0.9rem;
           line-height: 1.6;
+          max-width: 400px;
+          margin: 0 auto;
         }
 
         .campaign-form {
           display: flex;
           flex-direction: column;
-          gap: 1rem;
+          gap: 0.8rem;
         }
 
         .form-input,
         .form-select,
         .form-textarea {
           width: 100%;
-          padding: 1rem 1.2rem;
-          background: rgba(255, 255, 255, 0.05);
-          border: 1px solid rgba(255, 255, 255, 0.15);
+          padding: 1.1rem 1.25rem;
+          background: #050505;
+          border: 1px solid rgba(255, 255, 255, 0.08);
           border-radius: 8px;
           color: white;
           font-size: 0.95rem;
           outline: none;
-          transition: all 0.3s;
+          transition: border-color 0.2s ease;
         }
 
         .form-input:focus,
         .form-select:focus,
         .form-textarea:focus {
-          border-color: rgba(255, 255, 255, 0.3);
-          background: rgba(255, 255, 255, 0.08);
+          border-color: rgba(255, 255, 255, 0.2);
         }
 
         .form-input::placeholder,
@@ -182,9 +176,10 @@ export default function CampaignPage() {
           color: rgba(255, 255, 255, 0.8);
         }
 
-        .form-select option {
-          background: #1a1a1a;
-          color: white;
+        select.form-select option {
+          background-color: #ffffff !important;
+          color: #000000 !important;
+          padding: 10px;
         }
 
         .form-textarea {
@@ -195,22 +190,22 @@ export default function CampaignPage() {
         .submit-button {
           -webkit-appearance: none;
           appearance: none;
-          padding: 1.4rem 2rem;
-          background: white;
-          color: #0a0a0a;
+          min-height: 75px;
+          padding: 1.5rem 2rem;
+          background: #e61e25 !important;
+          color: #ffffff !important;
           font-weight: 800;
-          border-radius: 50px;
+          border-radius: 12px !important;
           border: none;
-          font-size: 1.15rem;
+          font-size: 1.25rem;
           cursor: pointer;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          margin-top: 1rem;
           width: 100%;
           display: flex;
           align-items: center;
           justify-content: center;
-          text-transform: uppercase;
           letter-spacing: 1px;
+          text-transform: uppercase;
         }
 
         .submit-button:hover {
@@ -275,7 +270,7 @@ export default function CampaignPage() {
       <div className="campaign-page">
         <Link href="/">
           <div className="back-button-campaign">
-            <ArrowLeft size={24} color="white" />
+            <ArrowLeft size={32} />
           </div>
         </Link>
 
@@ -424,14 +419,16 @@ export default function CampaignPage() {
               required
             />
 
-            <motion.button
-              variants={fadeInUp}
-              type="submit"
-              className="submit-button"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? 'Sending...' : 'Submit Request'}
-            </motion.button>
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
+              <motion.button
+                variants={fadeInUp}
+                type="submit"
+                className="submit-button"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Sending...' : 'Submit Request'}
+              </motion.button>
+            </div>
           </motion.form>
         </motion.div>
       </div>

@@ -1,83 +1,92 @@
 "use client";
 
 import Link from 'next/link';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export default function Footer() {
+  const [currentYear, setCurrentYear] = useState<number | null>(null);
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
+
   return (
-    <footer style={{ background: '#1a1a1a', color: 'white', padding: '10rem 2rem', marginTop: '4rem' }}>
+    <footer style={{ background: '#1a1a1a', color: 'white', padding: '6rem 2rem 4rem 2rem' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '5rem', marginBottom: '5rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '4rem', marginBottom: '4rem' }}>
           {/* Brand Section */}
           <div>
-            <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem', color: 'white', display: 'flex', alignItems: 'center', gap: '4px' }}>
-              <svg width="32" height="32" viewBox="0 0 32 32" style={{ display: 'inline-block' }}>
-                <circle cx="16" cy="16" r="13" fill="none" stroke="white" strokeWidth="4"/>
-                <rect x="18" y="3" width="10" height="10" fill="#e61e25" rx="1"/>
-              </svg>
-              <span style={{ color: 'white' }}>ne Click</span>
+            <h3 style={{ fontSize: '1.6rem', fontWeight: 900, marginBottom: '1.8rem', color: 'white', display: 'flex', alignItems: 'center', gap: '8px', letterSpacing: '-0.5px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                <svg width="34" height="34" viewBox="0 0 32 32" style={{ display: 'inline-block' }}>
+                  <circle cx="16" cy="16" r="13" fill="none" stroke="white" strokeWidth="4"/>
+                  <rect x="18" y="3" width="10" height="10" fill="#e61e25" rx="1"/>
+                </svg>
+                <span style={{ color: 'white' }}>ne Click</span>
+              </div>
             </h3>
-            <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '1.5rem', lineHeight: '1.6' }}>
-              Premium advertising solutions across the UAE. Delivering high-impact visual communication services.
+            <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '2rem', lineHeight: '1.9', fontSize: '1.05rem', maxWidth: '320px' }}>
+              Premium advertising solutions across the UAE. Delivering high-impact visual communication services since 2012.
             </p>
-            <div style={{ display: 'flex', gap: '1rem' }}>
-              <a href="https://www.facebook.com/oneclickadv" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.7)', transition: 'color 0.3s', cursor: 'pointer' }} onMouseEnter={(e) => e.currentTarget.style.color = '#e61e25'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.7)'}>
-                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <div style={{ display: 'flex', gap: '1.2rem' }}>
+              <a href="https://www.facebook.com/oneclickadv" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.6)', transition: 'all 0.3s ease' }} onMouseEnter={(e) => e.currentTarget.style.color = '#e61e25'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.6)'}>
+                <Facebook size={22} />
               </a>
-              <a href="https://www.instagram.com/oneclickadv" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.7)', transition: 'color 0.3s', cursor: 'pointer' }} onMouseEnter={(e) => e.currentTarget.style.color = '#e61e25'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.7)'}>
-                <svg width="24" height="24" fill="rgba(255,255,255,0.9)" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/></svg>
+              <a href="https://www.instagram.com/oneclickadv" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.6)', transition: 'all 0.3s ease' }} onMouseEnter={(e) => e.currentTarget.style.color = '#e61e25'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.6)'}>
+                <Instagram size={22} />
               </a>
-              <a href="https://twitter.com/oneclickadv" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.7)', transition: 'color 0.3s', cursor: 'pointer' }} onMouseEnter={(e) => e.currentTarget.style.color = '#e61e25'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.7)'}>
-                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417a9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+              <a href="https://twitter.com/oneclickadv" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.6)', transition: 'all 0.3s ease' }} onMouseEnter={(e) => e.currentTarget.style.color = '#e61e25'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.6)'}>
+                <Twitter size={22} />
               </a>
             </div>
           </div>
 
-          {/* Services Section */}
+          {/* Services Column */}
           <div>
-            <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>Services</h4>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-              <li><Link href="/services#branding" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#e61e25'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.7)'}>Branding</Link></li>
-              <li><Link href="/services#graphics" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#e61e25'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.7)'}>Graphics</Link></li>
-              <li><Link href="/services#signage" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#e61e25'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.7)'}>Signage</Link></li>
-              <li><Link href="/services#vehicle" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#e61e25'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.7)'}>Vehicle Wraps</Link></li>
-            </ul>
-          </div>
-
-          {/* Company Section */}
-          <div>
-            <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>Company</h4>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-              <li><Link href="/about" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#e61e25'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.7)'}>About</Link></li>
-              <li><Link href="/services" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#e61e25'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.7)'}>Services</Link></li>
-              <li><Link href="/contact" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#e61e25'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.7)'}>Contact</Link></li>
-              <li><Link href="/blog" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#e61e25'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.7)'}>Blog</Link></li>
-            </ul>
-          </div>
-
-          {/* Contact Section */}
-          <div>
-            <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>Contact</h4>
+            <h4 style={{ fontSize: '1.1rem', fontWeight: 900, marginBottom: '2rem', color: 'white', textTransform: 'uppercase', letterSpacing: '1px' }}>Services</h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <li style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                <Phone size={18} style={{ color: '#e61e25', flexShrink: 0 }} />
-                <a href="tel:+971524065110" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#e61e25'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.7)'}>+971 52 406 5110</a>
+              <li><Link href="/services#branding" style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none', fontSize: '1rem', transition: 'all 0.3s' }} onMouseEnter={(e) => (e.currentTarget.style.color = '#e61e25', e.currentTarget.style.paddingLeft = '8px')} onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)', e.currentTarget.style.paddingLeft = '0')}>Branding</Link></li>
+              <li><Link href="/services#graphics" style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none', fontSize: '1rem', transition: 'all 0.3s' }} onMouseEnter={(e) => (e.currentTarget.style.color = '#e61e25', e.currentTarget.style.paddingLeft = '8px')} onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)', e.currentTarget.style.paddingLeft = '0')}>Graphics</Link></li>
+              <li><Link href="/services#signage" style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none', fontSize: '1rem', transition: 'all 0.3s' }} onMouseEnter={(e) => (e.currentTarget.style.color = '#e61e25', e.currentTarget.style.paddingLeft = '8px')} onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)', e.currentTarget.style.paddingLeft = '0')}>Signage</Link></li>
+              <li><Link href="/services#vehicle" style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none', fontSize: '1rem', transition: 'all 0.3s' }} onMouseEnter={(e) => (e.currentTarget.style.color = '#e61e25', e.currentTarget.style.paddingLeft = '8px')} onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)', e.currentTarget.style.paddingLeft = '0')}>Vehicle Wraps</Link></li>
+            </ul>
+          </div>
+
+          {/* Quick Links Column */}
+          <div>
+            <h4 style={{ fontSize: '1.1rem', fontWeight: 900, marginBottom: '2rem', color: 'white', textTransform: 'uppercase', letterSpacing: '1px' }}>Quick Links</h4>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <li><Link href="/about" style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none', fontSize: '1rem', transition: 'all 0.3s' }} onMouseEnter={(e) => (e.currentTarget.style.color = '#e61e25', e.currentTarget.style.paddingLeft = '8px')} onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)', e.currentTarget.style.paddingLeft = '0')}>About Us</Link></li>
+              <li><Link href="/services" style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none', fontSize: '1rem', transition: 'all 0.3s' }} onMouseEnter={(e) => (e.currentTarget.style.color = '#e61e25', e.currentTarget.style.paddingLeft = '8px')} onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)', e.currentTarget.style.paddingLeft = '0')}>Our Services</Link></li>
+              <li><Link href="/contact" style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none', fontSize: '1rem', transition: 'all 0.3s' }} onMouseEnter={(e) => (e.currentTarget.style.color = '#e61e25', e.currentTarget.style.paddingLeft = '8px')} onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)', e.currentTarget.style.paddingLeft = '0')}>Contact</Link></li>
+              <li><Link href="/blog" style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none', fontSize: '1rem', transition: 'all 0.3s' }} onMouseEnter={(e) => (e.currentTarget.style.color = '#e61e25', e.currentTarget.style.paddingLeft = '8px')} onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)', e.currentTarget.style.paddingLeft = '0')}>Latest News</Link></li>
+            </ul>
+          </div>
+
+          {/* Contact Column */}
+          <div>
+            <h4 style={{ fontSize: '1.1rem', fontWeight: 900, marginBottom: '2rem', color: 'white', textTransform: 'uppercase', letterSpacing: '1px' }}>Contact</h4>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
+                <Phone size={20} style={{ color: '#e61e25', flexShrink: 0 }} />
+                <a href="tel:+971524065110" style={{ color: 'white', textDecoration: 'none', fontSize: '1.05rem', fontWeight: 500, transition: 'color 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#e61e25'} onMouseLeave={(e) => e.currentTarget.style.color = 'white'}>+971 52 406 5110</a>
               </li>
-              <li style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                <Mail size={18} style={{ color: '#e61e25', flexShrink: 0 }} />
-                <a href="mailto:hello@oneclickadv.ae" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#e61e25'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.7)'}>hello@oneclickadv.ae</a>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
+                <Mail size={20} style={{ color: '#e61e25', flexShrink: 0 }} />
+                <a href="mailto:hello@oneclickadv.ae" style={{ color: 'white', textDecoration: 'none', fontSize: '1.05rem', fontWeight: 500, transition: 'color 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#e61e25'} onMouseLeave={(e) => e.currentTarget.style.color = 'white'}>hello@oneclickadv.ae</a>
               </li>
-              <li style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                <MapPin size={18} style={{ color: '#e61e25', flexShrink: 0 }} />
-                <a href="https://www.google.com/maps/search/?api=1&query=Dubai+UAE" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#e61e25'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.7)'}>Dubai, UAE</a>
+              <li style={{ display: 'flex', alignItems: 'start', gap: '1.2rem' }}>
+                <MapPin size={20} style={{ color: '#e61e25', flexShrink: 0, marginTop: '4px' }} />
+                <a href="https://www.google.com/maps/search/?api=1&query=Dubai+UAE" target="_blank" rel="noopener noreferrer" style={{ color: 'white', textDecoration: 'none', fontSize: '1.05rem', fontWeight: 500, lineHeight: 1.5, transition: 'color 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#e61e25'} onMouseLeave={(e) => e.currentTarget.style.color = 'white'}>Dubai, UAE</a>
               </li>
             </ul>
           </div>
         </div>
 
         {/* Footer Bottom */}
-        <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '4rem', paddingBottom: '2rem', textAlign: 'center', color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem' }}>
-          &copy; {new Date().getFullYear()} One Click Advertisement. All Rights Reserved.
+        <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '3rem', textAlign: 'center', color: 'rgba(255,255,255,0.4)', fontSize: '0.95rem', fontWeight: 500 }}>
+          &copy; {currentYear || new Date().getFullYear()} One Click Advertisement. All Rights Reserved.
         </div>
       </div>
     </footer>

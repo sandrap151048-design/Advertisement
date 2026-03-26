@@ -11,7 +11,6 @@ export default function AdminPage() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [currentPath, setCurrentPath] = useState('');
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isContactModalOpen, setIsContactModalOpen] = useState(false);
     const [stats, setStats] = useState({
         contacts: 0,
@@ -158,121 +157,7 @@ export default function AdminPage() {
     };
 
     return (
-        <div className="admin-layout">
-            {/* Mobile Menu Overlay */}
-            {isMobileMenuOpen && (
-                <div 
-                    className="admin-mobile-overlay"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                />
-            )}
-
-            {/* Sidebar */}
-            <aside className={`admin-sidebar ${isMobileMenuOpen ? 'admin-sidebar-open' : ''}`}>
-                <motion.div 
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    style={{ marginBottom: '3rem', marginTop: '1rem' }}
-                >
-                    <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                        <motion.div
-                            whileHover={{ scale: 1.05 }}
-                            transition={{ type: "spring" as const, stiffness: 400 }}
-                            style={{
-                                width: '45px',
-                                height: '45px',
-                                borderRadius: '12px',
-                                background: 'linear-gradient(135deg, #2c4a5e, #e61e25)',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                color: 'white',
-                                fontWeight: 800,
-                                fontSize: '1.1rem',
-                                boxShadow: '0 4px 12px rgba(255, 107, 53, 0.4)'
-                            }}
-                        >
-                            OC
-                        </motion.div>
-                        <div>
-                            <div>
-                                <span style={{ color: '#e61e25', fontWeight: 700, fontSize: '1.1rem' }}>One</span>
-                                <span style={{ color: 'white', fontWeight: 700, fontSize: '1.1rem' }}> Click</span>
-                            </div>
-                            <div style={{ fontSize: '0.65rem', fontWeight: 500, color: '#facc15', letterSpacing: '1.5px', textTransform: 'uppercase', lineHeight: 1, marginTop: '2px' }}>
-                                Admin Portal
-                            </div>
-                        </div>
-                    </Link>
-                </motion.div>
-
-                <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', flex: 1 }}>
-                    <Link href="/admin" style={{ textDecoration: 'none' }} onClick={() => setIsMobileMenuOpen(false)}>
-                        <motion.div 
-                            whileHover={{ x: 5 }}
-                            className="nav-item" 
-                            style={getNavItemStyle('/admin')}
-                        >
-                            <Home size={22} color={getNavIconColor('/admin')} /> 
-                            <span style={getNavTextStyle('/admin')}>Dashboard</span>
-                        </motion.div>
-                    </Link>
-                    <Link href="/admin/contacts" style={{ textDecoration: 'none' }} onClick={() => setIsMobileMenuOpen(false)}>
-                        <motion.div 
-                            whileHover={{ x: 5, background: 'rgba(255, 255, 255, 0.05)' }}
-                            className="nav-item" 
-                            style={getNavItemStyle('/admin/contacts')}
-                        >
-                            <MessageSquare size={22} color={getNavIconColor('/admin/contacts')} /> 
-                            <span style={getNavTextStyle('/admin/contacts')}>Contact Forms</span>
-                        </motion.div>
-                    </Link>
-                    <Link href="/admin/services" style={{ textDecoration: 'none' }} onClick={() => setIsMobileMenuOpen(false)}>
-                        <motion.div 
-                            whileHover={{ x: 5, background: 'rgba(255, 255, 255, 0.05)' }}
-                            className="nav-item" 
-                            style={getNavItemStyle('/admin/services')}
-                        >
-                            <Briefcase size={22} color={getNavIconColor('/admin/services')} /> 
-                            <span style={getNavTextStyle('/admin/services')}>Services</span>
-                        </motion.div>
-                    </Link>
-                    <Link href="/admin/campaigns" style={{ textDecoration: 'none' }} onClick={() => setIsMobileMenuOpen(false)}>
-                        <motion.div 
-                            whileHover={{ x: 5, background: 'rgba(255, 255, 255, 0.05)' }}
-                            className="nav-item" 
-                            style={getNavItemStyle('/admin/campaigns')}
-                        >
-                            <TrendingUp size={22} color={getNavIconColor('/admin/campaigns')} /> 
-                            <span style={getNavTextStyle('/admin/campaigns')}>Campaigns</span>
-                        </motion.div>
-                    </Link>
-                </nav>
-
-                <motion.div 
-                    whileHover={{ x: 5 }}
-                    className="admin-logout-button"
-                >
-                    <div 
-                        onClick={handleLogout}
-                        className="nav-item" 
-                        style={{ 
-                            display: 'flex', 
-                            alignItems: 'center', 
-                            gap: '1rem', 
-                            padding: '1rem 1.2rem', 
-                            borderRadius: '12px', 
-                            cursor: 'pointer'
-                        }}
-                    >
-                        <LogOut size={22} color="#ef4444" /> 
-                        <span style={{ fontWeight: 500, color: '#ef4444' }}>Logout</span>
-                    </div>
-                </motion.div>
-            </aside>
-
-            {/* Main Content */}
-            <main className="admin-main">
+        <div style={{ padding: '0' }}>
                 {/* Header */}
                 <motion.header 
                     initial={{ opacity: 0, y: -20 }}
@@ -326,24 +211,6 @@ export default function AdminPage() {
                             Contact Info
                         </motion.button>
                         
-                        {/* Mobile Menu Toggle */}
-                        <button
-                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className="admin-mobile-toggle"
-                            style={{
-                                display: 'none',
-                                background: '#2c4a5e',
-                                border: 'none',
-                                borderRadius: '8px',
-                                padding: '0.75rem',
-                                color: 'white',
-                                cursor: 'pointer',
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }}
-                        >
-                            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-                        </button>
                         <motion.div 
                             whileHover={{ scale: 1.05 }}
                             onClick={() => router.push('/admin/login')}
@@ -957,8 +824,6 @@ export default function AdminPage() {
                         </div>
                     </div>
                 </footer>
-            </main>
-
             <style jsx>{`
                 @keyframes spin {
                     to { transform: rotate(360deg); }

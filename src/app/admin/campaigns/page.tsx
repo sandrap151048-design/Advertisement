@@ -99,58 +99,8 @@ export default function CampaignsPage() {
     { href: '/admin/campaigns', label: 'Campaigns', icon: <TrendingUp size={20} /> },
   ];
 
-  return (
-    <div style={{ display: 'flex', minHeight: '100vh', background: '#f5f7fa', fontFamily: "'DM Sans', sans-serif" }}>
-      <style jsx global>{`
-        * { scrollbar-width: none; -ms-overflow-style: none; }
-        *::-webkit-scrollbar { display: none; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-      `}</style>
-
-      {/* Sidebar */}
-      <aside style={{
-        width: '260px', minHeight: '100vh', background: 'linear-gradient(180deg, #0f1923 0%, #1a2f3d 100%)',
-        padding: '2rem 1.2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem',
-        position: 'sticky', top: 0, height: '100vh', flexShrink: 0
-      }}>
-        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '2.5rem' }}>
-          <div style={{ width: 42, height: 42, borderRadius: 12, background: 'linear-gradient(135deg, #2c4a5e, #e61e25)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, color: 'white', fontSize: '1rem' }}>OC</div>
-          <div>
-            <div><span style={{ color: '#e61e25', fontWeight: 700 }}>One</span><span style={{ color: 'white', fontWeight: 700 }}> Click</span></div>
-            <div style={{ fontSize: '0.6rem', color: '#facc15', letterSpacing: '1.5px', textTransform: 'uppercase' }}>Admin Portal</div>
-          </div>
-        </Link>
-
-        <nav style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
-          {navLinks.map(link => {
-            const isActive = typeof window !== 'undefined' && window.location.pathname === link.href;
-            return (
-              <Link key={link.href} href={link.href} style={{ textDecoration: 'none' }}>
-                <div style={{
-                  display: 'flex', alignItems: 'center', gap: '0.8rem', padding: '0.85rem 1rem',
-                  borderRadius: 10, color: isActive ? '#e61e25' : 'rgba(255,255,255,0.65)',
-                  background: isActive ? 'rgba(255,107,53,0.15)' : 'transparent',
-                  borderLeft: isActive ? '3px solid #e61e25' : '3px solid transparent',
-                  fontWeight: isActive ? 600 : 400, transition: 'all 0.2s', fontSize: '0.92rem'
-                }}>
-                  {link.icon}{link.label}
-                </div>
-              </Link>
-            );
-          })}
-        </nav>
-
-        <button onClick={handleLogout} style={{
-          display: 'flex', alignItems: 'center', gap: '0.8rem', padding: '0.85rem 1rem',
-          background: 'rgba(239,68,68,0.1)', border: 'none', borderRadius: 10,
-          color: '#ef4444', cursor: 'pointer', fontWeight: 600, fontSize: '0.92rem', width: '100%'
-        }}>
-          <LogOut size={20} /> Logout
-        </button>
-      </aside>
-
-      {/* Main */}
-      <main style={{ flex: 1, padding: '2rem 2.5rem', overflowY: 'auto' }}>
+    return (
+      <div style={{ padding: '0' }}>
         {/* Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
           <div>
@@ -316,7 +266,6 @@ export default function CampaignsPage() {
             })}
           </div>
         )}
-      </main>
     </div>
   );
 }

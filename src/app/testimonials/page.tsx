@@ -124,7 +124,7 @@ export default function ProjectsPage() {
       <div style={{ background: '#f4f4f0', minHeight: '100vh' }}>
 
         {/* ─── Hero ─── */}
-        <section style={{ position: 'relative', height: '80vh', minHeight: 600, overflow: 'hidden', paddingTop: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <section style={{ position: 'relative', height: '100vh', minHeight: 600, overflow: 'hidden', paddingTop: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <img
             src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1800&q=80"
             alt="Hero"
@@ -137,14 +137,7 @@ export default function ProjectsPage() {
             transition={{ duration: 0.9, ease: 'easeOut' as const }}
             style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: '2rem', maxWidth: 900 }}
           >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              style={{ display: 'inline-block', background: 'rgba(255,107,53,0.9)', color: 'white', padding: '0.4rem 1.2rem', borderRadius: 50, fontSize: '0.8rem', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '1.5rem' }}
-            >
-              Our Portfolio
-            </motion.div>
+            {/* Removed Our Portfolio Badge */}
             <h1 style={{ fontSize: 'clamp(3rem,8vw,5.5rem)', fontWeight: 900, color: 'white', lineHeight: 1.05, letterSpacing: '-2px', margin: '0 0 1rem' }}>
               Campaigns That<br />
               <span style={{ color: '#e61e25' }}>Make an Impact</span>

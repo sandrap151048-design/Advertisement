@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import { useState, FormEvent } from 'react';
 
@@ -23,9 +23,8 @@ export default function ContactPage() {
     name: '',
     phone: '',
     email: '',
+    company: '',
     service: '',
-    location: '',
-    duration: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -45,7 +44,7 @@ export default function ContactPage() {
       const data = await res.json();
       if (res.ok) {
         setSubmitStatus({ success: true, message: data.message });
-        setFormData({ name: '', phone: '', email: '', service: '', location: '', duration: '', message: '' });
+        setFormData({ name: '', phone: '', email: '', company: '', service: '', message: '' });
       } else {
         setSubmitStatus({ success: false, message: data.error || 'Something went wrong.' });
       }
@@ -70,18 +69,18 @@ export default function ContactPage() {
         .contact-page {
           background: #f5f5f5;
           min-height: 100vh;
+          font-family: 'DM Sans', sans-serif;
         }
 
+        /* Hero Section */
         .contact-hero {
           position: relative;
-          height: 80vh;
+          height: 100vh;
           min-height: 600px;
           display: flex;
           align-items: center;
-          justify-content: space-between;
           overflow: hidden;
-          padding-top: 100px;
-          padding: 0 4rem;
+          padding: 0 10%;
         }
 
         .contact-hero-bg {
@@ -94,13 +93,13 @@ export default function ContactPage() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          filter: brightness(0.5);
+          filter: brightness(0.6);
         }
 
         .contact-hero-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 100%);
+          background: rgba(0, 0, 0, 0.4);
           z-index: 1;
         }
 
@@ -108,376 +107,394 @@ export default function ContactPage() {
           position: relative;
           z-index: 2;
           color: white;
-          max-width: 600px;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 4rem;
+        }
+
+        .hero-left {
+          flex: 1;
+        }
+
+        .hero-right {
+          flex: 1;
+          max-width: 450px;
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+          text-align: left;
         }
 
         .contact-hero-title {
-          font-size: clamp(3rem, 8vw, 5rem);
-          font-weight: 900;
+          font-size: clamp(2.5rem, 6vw, 4.2rem);
+          font-weight: 800;
           line-height: 1.1;
-          margin-bottom: 1.5rem;
-          letter-spacing: -2px;
+          letter-spacing: -1px;
+          margin-bottom: 0;
         }
 
         .contact-hero-text {
-          font-size: 1.1rem;
+          font-size: 1.15rem;
           color: rgba(255,255,255,0.9);
-          line-height: 1.6;
-          margin-bottom: 2rem;
+          line-height: 1.7;
+          font-weight: 400;
         }
 
         .hero-cta-button {
           display: inline-flex;
           align-items: center;
-          gap: 0.8rem;
-          padding: 1rem 2rem;
+          justify-content: center;
+          padding: 0.8rem 1.8rem;
           background: white;
           color: #1a1a1a;
           font-weight: 700;
-          border-radius: 8px;
+          border-radius: 50px;
           text-decoration: none;
           transition: all 0.3s ease;
-          font-size: 1rem;
-          border: none;
-          cursor: pointer;
+          font-size: 0.9rem;
+          width: fit-content;
         }
 
-        .hero-cta-button:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 20px rgba(255,255,255,0.3);
-        }
-
-        .contact-content {
-          padding: 4rem 2rem;
-          max-width: 1400px;
+        /* Get In Touch Section */
+        .touch-container {
+          max-width: 1200px;
           margin: 0 auto;
-        }
-
-        .get-in-touch-section {
           display: grid;
-          grid-template-columns: 1fr 1.2fr;
+          grid-template-columns: 1fr 1fr;
+          padding: 6rem 2rem;
           gap: 2rem;
-          margin-bottom: 4rem;
         }
 
-        .touch-info {
-          padding: 4rem 3rem;
-          background: white;
-          border-radius: 20px;
+        .touch-left {
+          background: #ffffff;
+          padding: 5rem 4rem;
+          border-radius: 24px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        .touch-info h2 {
-          font-size: 2.5rem;
-          font-weight: 900;
-          color: #1a1a1a;
-          margin-bottom: 0.5rem;
-          line-height: 1.2;
-        }
-
-        .touch-info h2 .italic {
-          font-style: italic;
-          color: #666;
-        }
-
-        .touch-info p {
-          font-size: 1rem;
-          color: #666;
-          line-height: 1.8;
-          margin-bottom: 2rem;
-        }
-
-        .contact-details {
-          background: #2c4a5e;
-          padding: 4rem 3rem;
-          color: white;
+        .touch-right {
+          background: #1e293b;
+          padding: 5rem 4rem;
           border-radius: 0;
+          border: 1px solid rgba(255,255,255,0.2);
+          color: white;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        .contact-detail-item {
+        .touch-left h2 {
+          font-size: clamp(2.5rem, 5vw, 4rem);
+          font-weight: 800;
+          line-height: 1;
+          margin-bottom: 1.5rem;
+          color: #1a1a1a;
+        }
+
+        .touch-left h2 .italic {
+          font-style: italic;
+          font-weight: 400;
+          color: #333;
+        }
+
+        .touch-left p {
+          font-size: 1.1rem;
+          color: #666;
+          line-height: 1.6;
+        }
+
+        .contact-info-list {
+          display: flex;
+          flex-direction: column;
+          gap: 2.5rem;
+        }
+
+        .info-item {
           display: flex;
           align-items: center;
-          gap: 1rem;
-          margin-bottom: 2rem;
+          gap: 1.5rem;
+          font-size: 1.1rem;
+          font-weight: 500;
         }
 
-        .contact-detail-item svg {
-          flex-shrink: 0;
-        }
-
-        .contact-detail-item div {
-          flex: 1;
-        }
-
-        .contact-detail-item a {
+        .info-item a, .info-item span {
           color: white;
           text-decoration: none;
-          font-size: 1.1rem;
-          font-weight: 600;
+          transition: opacity 0.3s;
         }
 
-        .contact-detail-item a:hover {
-          text-decoration: underline;
+        .info-item a:hover {
+          opacity: 0.8;
         }
 
-        .form-section {
+        .info-item-icon {
+          color: #e61e25;
+        }
+
+        /* Form Section */
+        .campaign-section {
           background: #0a0a0a;
-          padding: 6rem 2rem;
+          padding: 8rem 2rem;
           color: white;
           text-align: center;
         }
 
-        .form-container {
-          max-width: 500px;
-          margin: 0 auto;
-          padding: 3rem 2.5rem;
-          border: 1px solid rgba(255,255,255,0.15);
-          border-radius: 16px;
-          background: rgba(20, 20, 20, 0.5);
-          backdrop-filter: blur(10px);
+        .campaign-title h2 {
+          font-size: clamp(3rem, 7vw, 5rem);
+          font-weight: 800;
+          margin-bottom: 0.5rem;
+          line-height: 1;
         }
 
-        .form-section h2 {
-          font-size: clamp(2.5rem, 5vw, 3.5rem);
-          font-weight: 900;
-          margin-bottom: 0.3rem;
-          color: white;
-        }
-
-        .form-section h2 .italic {
+        .campaign-title .italic {
           font-style: italic;
-          color: rgba(255,255,255,0.7);
           font-weight: 400;
+          color: rgba(255,255,255,0.7);
         }
 
-        .form-section p {
+        .campaign-subtitle {
+          font-size: 1.1rem;
           color: rgba(255,255,255,0.6);
-          margin-bottom: 2.5rem;
-          font-size: 0.95rem;
+          margin-bottom: 4rem;
+        }
+
+        .form-wrapper {
+          max-width: 600px;
+          margin: 0 auto;
+          padding: 3rem;
+          background: rgba(255,255,255,0.02);
+          border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 12px;
         }
 
         .contact-form {
           display: flex;
           flex-direction: column;
-          gap: 1rem;
+          gap: 1.5rem;
         }
 
-        .form-input,
-        .form-select,
-        .form-textarea {
+        .form-input, .form-select, .form-textarea {
           width: 100%;
           padding: 1rem 1.2rem;
-          background: rgba(255,255,255,0.05);
+          background: #000;
           border: 1px solid rgba(255,255,255,0.15);
-          border-radius: 8px;
+          border-radius: 4px;
           color: white;
           font-size: 0.95rem;
           outline: none;
-          transition: all 0.3s;
-        }
-
-        .form-input:focus,
-        .form-select:focus,
-        .form-textarea:focus {
-          border-color: rgba(255,255,255,0.3);
-          background: rgba(255,255,255,0.08);
-        }
-
-        .form-input::placeholder,
-        .form-textarea::placeholder {
-          color: rgba(255,255,255,0.4);
-        }
-
-        .form-select {
-          cursor: pointer;
-          appearance: none;
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='rgba(255,255,255,0.6)' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-          background-repeat: no-repeat;
-          background-position: right 1rem center;
-          padding-right: 3rem;
-          color: rgba(255,255,255,0.8);
         }
 
         .form-select option {
-          background: #1a1a1a !important;
-          color: white !important;
+          background: #ffffff !important;
+          color: #000000 !important;
         }
 
-        .form-textarea {
-          min-height: 100px;
-          resize: vertical;
+        .submit-button-wrap {
+          display: flex;
+          justify-content: center;
+          margin-top: 1rem;
         }
 
         .submit-button {
-          -webkit-appearance: none;
-          appearance: none;
-          padding: 1.4rem 2rem;
+          padding: 0.8rem 2.5rem;
           background: white;
-          color: #0a0a0a;
-          font-weight: 800;
+          color: black;
+          font-weight: 700;
           border-radius: 50px;
           border: none;
-          font-size: 1.15rem;
           cursor: pointer;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          margin-top: 1rem;
-          width: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          text-transform: uppercase;
-          letter-spacing: 1px;
+          transition: all 0.3s;
+          font-size: 0.9rem;
         }
 
         .submit-button:hover {
+          background: #f0f0f0;
           transform: translateY(-2px);
-          box-shadow: 0 8px 20px rgba(255,255,255,0.25);
-          background: rgba(255,255,255,0.95);
         }
 
-        .submit-button:disabled {
-          opacity: 0.6;
-          cursor: not-allowed;
+        /* Footer */
+        .footer-black {
+          background: #0a0a0a;
+          padding: 6rem 10% 4rem 10%;
+          color: white;
         }
 
-        @media (max-width: 768px) {
-          .contact-hero {
-            margin-top: 60px;
-            height: 50vh;
-            padding: 0 2rem;
+        .footer-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 4rem;
+          margin-bottom: 4rem;
+        }
+
+        .footer-col h4 {
+          font-size: 1.1rem;
+          font-weight: 700;
+          margin-bottom: 2rem;
+          color: white;
+        }
+
+        .footer-col ul {
+          display: flex;
+          flex-direction: column;
+          gap: 0.8rem;
+        }
+
+        .footer-col a {
+          color: rgba(255,255,255,0.7);
+          text-decoration: none;
+          font-size: 0.9rem;
+          transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+          color: #e61e25;
+        }
+
+        .footer-bottom {
+          border-top: 1px solid rgba(255,255,255,0.1);
+          padding-top: 3rem;
+          text-align: center;
+          color: rgba(255,255,255,0.5);
+          font-size: 0.85rem;
+        }
+
+        @media (max-width: 1024px) {
+          .contact-hero-content {
             flex-direction: column;
-            justify-content: center;
+            text-align: center;
+            gap: 2rem;
           }
-
-          .get-in-touch-section {
-            grid-template-columns: 1fr;
+          .hero-right {
+            text-align: center;
+            align-items: center;
           }
-
-          .touch-info,
-          .contact-details {
-            padding: 2rem;
+          .touch-container {
+            flex-direction: column;
+          }
+          .touch-left, .touch-right {
+            border-radius: 20px;
           }
         }
       `}</style>
 
       <div className="contact-page">
-
         {/* Hero Section */}
         <section className="contact-hero">
           <div className="contact-hero-bg">
             <img 
-              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80" 
-              alt="Contact Us - One Click Billboard" 
+              src="/contact-hero-v4.png" 
+              alt="Ultra HD Professional City Advertising" 
             />
           </div>
           <div className="contact-hero-overlay"></div>
           
-          <motion.div 
-            className="contact-hero-content"
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
-          >
-            <motion.h1 className="contact-hero-title" variants={fadeInUp}>
-              Contact<br />Us
-            </motion.h1>
-          </motion.div>
+          <div className="contact-hero-content">
+            <motion.div 
+              className="hero-left"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h1 className="contact-hero-title">Contact<br /><span style={{ color: '#e61e25' }}>Us</span></h1>
+            </motion.div>
 
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
-            style={{ position: 'relative', zIndex: 2, color: 'white', maxWidth: '400px' }}
-          >
-            <p className="contact-hero-text">
-              Let's start your advertising campaign and bring your brand into the spotlight. We are dedicated to providing the best advertising solutions that drive results for your business. Reach out today and let's make an impact together.
-            </p>
-            <Link href="/campaign" className="hero-cta-button" style={{ display: 'inline-block', textDecoration: 'none' }}>
-              Start Your Campaign
-            </Link>
-          </motion.div>
+            <motion.div 
+              className="hero-right"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <p className="contact-hero-text">
+                Partner with Dubai's leading advertising experts to create high-impact visual communications that resonate.
+                From strategic brand identity to massive digital billboard solutions, we transform your vision into 
+                unforgettable urban experiences that bring your brand into the spotlight.
+              </p>
+              <Link href="#campaign" className="hero-cta-button">
+                Start Your Campaign
+              </Link>
+            </motion.div>
+          </div>
         </section>
 
         {/* Get In Touch Section */}
-        <section className="contact-content">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
+        <section className="touch-container">
+          <motion.div 
+            className="touch-left"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            variants={staggerContainer}
-            className="get-in-touch-section"
           >
-            <motion.div className="touch-info" variants={fadeInUp}>
-              <h2>
-                Get <br />
-                <span className="italic">In Touch</span>
-              </h2>
-              <p>
-                Reach out to us for enquiries, support, or to start your advertising campaign.
-              </p>
-            </motion.div>
-
-            <motion.div className="contact-details" variants={fadeInUp}>
-              <div className="contact-detail-item">
-                <Mail size={24} />
-                <div>
-                  <a href="mailto:hello@oneclick.adv.ae">hello@oneclick.adv.ae</a>
-                </div>
-              </div>
-              <div className="contact-detail-item">
-                <Phone size={24} />
-                <div>
-                  <a href="tel:+971524065110">+971 52 406 5110</a>
-                </div>
-              </div>
-              <div className="contact-detail-item">
-                <MapPin size={24} />
-                <div>
-                  <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer">
-                    Dubai, United Arab Emirates
-                  </a>
-                </div>
-              </div>
-            </motion.div>
+            <h2>Get<br /><span className="italic">In Touch</span></h2>
+            <p>Reach out to us for enquiries, support, or to start your advertising campaign.</p>
           </motion.div>
 
-          {/* Form Section */}
-          <motion.section 
-            id="contact-form"
-            className="form-section"
+          <motion.div 
+            className="touch-right"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            <div className="contact-info-list">
+              <div className="info-item">
+                <Mail className="info-item-icon" size={24} />
+                <a href="mailto:hello@oneclickadv.ae">hello@oneclickadv.ae</a>
+              </div>
+              <div className="info-item">
+                <Phone className="info-item-icon" size={24} />
+                <a href="tel:+971524065110">+971 52 406 5110</a>
+              </div>
+              <div className="info-item">
+                <MapPin className="info-item-icon" size={24} />
+                <span>Dubai, United Arab Emirates</span>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* Campaign Form Section */}
+        <section id="campaign" className="campaign-section">
+          <motion.div 
+            className="campaign-title"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={staggerContainer}
+            variants={fadeInUp}
           >
-            <div className="form-container">
-              <motion.h2 variants={fadeInUp}>
-                Start Your <br />
-                <span className="italic">Campaign</span>
-              </motion.h2>
-              <motion.p variants={fadeInUp}>
-                Tell us about your requirements and we'll get back to you quickly
-              </motion.p>
+            <h2>Start Your <span className="italic">Campaign</span></h2>
+            <p className="campaign-subtitle">Tell us about your requirements and we'll get back to you quickly</p>
+          </motion.div>
 
-              {submitStatus && (
-                <motion.div 
-                  variants={fadeInUp}
-                  style={{ 
-                    padding: '1rem', 
-                    borderRadius: '8px', 
-                    background: submitStatus.success ? 'rgba(34, 197, 94, 0.1)' : 'rgba(239, 68, 68, 0.1)', 
-                    color: submitStatus.success ? '#4ade80' : '#f87171', 
-                    border: `1px solid ${submitStatus.success ? '#4ade8033' : '#f8717133'}`, 
-                    marginBottom: '1.5rem',
-                    textAlign: 'center'
-                  }}
-                >
-                  {submitStatus.message}
-                </motion.div>
-              )}
-
-              <motion.form className="contact-form" onSubmit={handleSubmit} variants={staggerContainer}>
-                <motion.input
-                  variants={fadeInUp}
+          <div className="form-wrapper">
+            {submitStatus?.success ? (
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }} 
+                animate={{ opacity: 1, scale: 1 }}
+                style={{ textAlign: 'center', padding: '2rem' }}
+              >
+                <div style={{ background: '#22c55e', width: 60, height: 60, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <h3>Request Submitted!</h3>
+                <p>Thank you. Our experts will contact you shortly.</p>
+                <button onClick={() => setSubmitStatus(null)} className="submit-button" style={{ marginTop: '1.5rem' }}>Send Another</button>
+              </motion.div>
+            ) : (
+              <motion.form 
+                className="contact-form" 
+                onSubmit={handleSubmit}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={staggerContainer}
+              >
+                <input
                   type="text"
                   placeholder="Name"
                   className="form-input"
@@ -485,9 +502,7 @@ export default function ContactPage() {
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
                 />
-                
-                <motion.input
-                  variants={fadeInUp}
+                <input
                   type="tel"
                   placeholder="Phone Number"
                   className="form-input"
@@ -495,9 +510,7 @@ export default function ContactPage() {
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   required
                 />
-                
-                <motion.input
-                  variants={fadeInUp}
+                <input
                   type="email"
                   placeholder="Email"
                   className="form-input"
@@ -505,9 +518,14 @@ export default function ContactPage() {
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
                 />
-                
-                <motion.select
-                  variants={fadeInUp}
+                <input
+                  type="text"
+                  placeholder="Company Name (optional)"
+                  className="form-input"
+                  value={formData.company}
+                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                />
+                <select
                   className="form-select"
                   value={formData.service}
                   onChange={(e) => setFormData({ ...formData, service: e.target.value })}
@@ -520,90 +538,67 @@ export default function ContactPage() {
                   <option value="signage">Signage</option>
                   <option value="exhibition">Exhibition & POS</option>
                   <option value="cladding">Cladding & Facade</option>
-                </motion.select>
-                
-                <motion.input
-                  variants={fadeInUp}
-                  type="text"
-                  placeholder="Company Name (optional)"
-                  className="form-input"
-                  value={formData.location}
-                  onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                />
-                
-                <motion.textarea
-                  variants={fadeInUp}
+                </select>
+                <textarea
                   placeholder="Message"
                   className="form-textarea"
+                  style={{ minHeight: 120 }}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   required
                 />
-                
-                <motion.button
-                  variants={fadeInUp}
-                  type="submit"
-                  className="submit-button"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? 'Sending...' : 'Submit Request'}
-                </motion.button>
+                <div className="submit-button-wrap">
+                  <button type="submit" className="submit-button" disabled={isSubmitting}>
+                    {isSubmitting ? 'Sending...' : 'Submit Request'}
+                  </button>
+                </div>
               </motion.form>
-            </div>
-          </motion.section>
+            )}
+          </div>
         </section>
 
         {/* Footer */}
-        <footer style={{ background: '#1a1a1a', color: 'white', padding: '6rem 2rem 4rem 2rem' }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '3.5rem', marginBottom: '3.5rem' }}>
-              {/* Services Section */}
-              <div>
-                <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>Services</h4>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                  <li><Link href="/services/billboards" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Retail Signage</Link></li>
-                  <li><Link href="/services/billboards" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Billboards</Link></li>
-                  <li><Link href="/services/vehicle-branding" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Vehicle Branding</Link></li>
-                  <li><Link href="/services/campaign-solutions" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Campaign Solutions</Link></li>
-                </ul>
-              </div>
-
-              {/* Company Section */}
-              <div>
-                <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>Company</h4>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                  <li><Link href="/about" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>About Us</Link></li>
-                  <li><Link href="/services" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Our Work</Link></li>
-                  <li><Link href="/testimonials" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Locations</Link></li>
-                  <li><Link href="/contact" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Contact</Link></li>
-                </ul>
-              </div>
-
-              {/* Support Section */}
-              <div>
-                <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>Support</h4>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                  <li><Link href="/contact" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>How It Works</Link></li>
-                  <li><Link href="/contact" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>FAQs</Link></li>
-                  <li><Link href="/contact" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Terms & Conditions</Link></li>
-                  <li><Link href="/contact" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Privacy Policy</Link></li>
-                </ul>
-              </div>
-
-              {/* Connect Section */}
-              <div>
-                <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>Connect with us</h4>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                  <li><a href="tel:+971524065110" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>+971 52 406 5110</a></li>
-                  <li><a href="mailto:hello@oneclickadv.ae" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>hello@oneclickadv.ae</a></li>
-                </ul>
-              </div>
+        <footer className="footer-black">
+          <div className="footer-grid">
+            <div className="footer-col">
+              <h4>Services</h4>
+              <ul>
+                <li><Link href="/services">Brand Identity</Link></li>
+                <li><Link href="/services">Digital Printing</Link></li>
+                <li><Link href="/services">Vehicle Branding</Link></li>
+                <li><Link href="/services">Display Solutions</Link></li>
+                <li><Link href="/services">Signage</Link></li>
+                <li><Link href="/services">Facade & Cladding</Link></li>
+              </ul>
             </div>
-
-            {/* Footer Bottom */}
-            <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2.5rem', textAlign: 'center', color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem' }}>
-              <span>© 2025 One Click. All rights reserved.</span>
+            <div className="footer-col">
+              <h4>Company</h4>
+              <ul>
+                <li><Link href="/about">About Us</Link></li>
+                <li><Link href="/projects">Our Work</Link></li>
+                <li><Link href="/locations">Locations</Link></li>
+                <li><Link href="/contact">Contact</Link></li>
+              </ul>
             </div>
+            <div className="footer-col">
+              <h4>Support</h4>
+              <ul>
+                <li><Link href="/how-it-works">How It Works</Link></li>
+                <li><Link href="/faqs">FAQs</Link></li>
+                <li><Link href="/terms">Terms & Conditions</Link></li>
+                <li><Link href="/privacy">Privacy Policy</Link></li>
+              </ul>
+            </div>
+            <div className="footer-col">
+              <h4>Connect with us</h4>
+              <ul>
+                <li><a href="tel:+971524065110"><Phone size={14} style={{ marginRight: 8, verticalAlign: 'middle' }} />+971 52 406 5110</a></li>
+                <li><a href="mailto:hello@oneclickadv.ae"><Mail size={14} style={{ marginRight: 8, verticalAlign: 'middle' }} />hello@oneclickadv.ae</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="footer-bottom">
+            <p>© 2026 One Click. All rights reserved.</p>
           </div>
         </footer>
       </div>

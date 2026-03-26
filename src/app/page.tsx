@@ -99,7 +99,7 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentLocationIndex((prev) => (prev + 1) % locations.length);
-    }, 4000);
+    }, 2500);
     return () => clearInterval(interval);
   }, [locations.length]);
 
@@ -759,7 +759,12 @@ export default function Home() {
           animate="visible"
           variants={staggerContainer}
         >
-          <motion.h1 variants={fadeInDown}>
+          <motion.h1 
+            variants={fadeInDown}
+            style={{ 
+              fontFamily: "'Bricolage Grotesque', sans-serif"
+            }}
+          >
             <span className="highlight">At</span>tractive
           </motion.h1>
           <motion.p variants={fadeInUp}>
@@ -916,9 +921,9 @@ export default function Home() {
                   scale: currentLocationIndex === index ? 1 : 1.1
                 }}
                 transition={{ 
-                  duration: 0.8, 
+                  duration: 0.2, 
                   ease: "easeInOut",
-                  delay: currentLocationIndex === index ? 0.2 : 0
+                  delay: currentLocationIndex === index ? 0 : 0
                 }}
                 style={{
                   position: index === 0 ? 'relative' : 'absolute',
@@ -1350,7 +1355,7 @@ export default function Home() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '3.5rem', marginBottom: '3.5rem' }}>
             {/* Brand Section */}
             <div>
-              <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white', display: 'flex', alignItems: 'center', gap: '4px' }}>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white', display: 'flex', alignItems: 'center', gap: '4px', fontFamily: "'Bricolage Grotesque', sans-serif" }}>
                 <svg width="32" height="32" viewBox="0 0 32 32" style={{ display: 'inline-block' }}>
                   <circle cx="16" cy="16" r="13" fill="none" stroke="white" strokeWidth="4"/>
                   <rect x="18" y="3" width="10" height="10" fill="#e61e25" rx="1"/>

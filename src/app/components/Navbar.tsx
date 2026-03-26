@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { ChevronDown, Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -16,509 +17,176 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
+  const categories = ['Branding', 'Digital', 'Signage', 'Vehicle', 'Events', 'Interior'];
 
   return (
     <>
       <style jsx global>{`
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-3px);
-          }
+        .nav-link, .dropdown-item, .btn-login, .mobile-toggle, .navbar-logo {
+          outline: none !important;
+          -webkit-tap-highlight-color: transparent !important;
+        }
+
+        .navbar-wrapper {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          width: 100%;
+          z-index: 1000;
+          display: flex;
+          justify-content: center;
+          padding: 15px 40px;
+          transition: all 0.4s ease;
         }
 
         .floating-navbar {
-          position: absolute;
-          top: 0;
-          left: 40px;
-          right: 40px;
-          z-index: 1000;
-          background: rgba(0, 0, 0, 0.95);
-          backdrop-filter: blur(20px);
-          -webkit-backdrop-filter: blur(20px);
-          border-radius: 16px;
-          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          width: 100%;
           max-width: 1400px;
-          margin: 10px auto 0 auto;
+          background: rgba(10, 10, 10, 0.9);
+          backdrop-filter: blur(25px);
+          -webkit-backdrop-filter: blur(25px);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 12px;
+          padding: 0 10px;
+          transition: all 0.4s ease;
+        }
+
+        .navbar-wrapper.scrolled {
+          padding: 10px 40px;
         }
 
         .floating-navbar.scrolled {
-          background: rgba(0, 0, 0, 0.98);
+          background: rgba(10, 10, 10, 0.85);
+          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+          border-color: rgba(230, 30, 37, 0.2);
         }
 
         .navbar-container {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 12px 30px;
-          gap: 2rem;
-        }
-
-        /* Logo Section */
-        .navbar-logo {
-          flex: 0 0 auto;
-          display: flex;
-          align-items: center;
-          text-decoration: none;
-          transition: transform 0.3s ease;
-        }
-
-        .navbar-logo:hover {
-          transform: scale(1.05);
-        }
-
-        .logo-text {
-          display: flex;
-          flex-direction: column;
-          line-height: 1;
+          display: flex; align-items: center; justify-content: space-between;
+          padding: 10px 30px;
         }
 
         .logo-main {
-          font-size: 1.3rem;
-          font-weight: 800;
-          color: #ffffff;
-          letter-spacing: -0.5px;
+          font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.3rem; font-weight: 800;
+          color: white; display: flex; align-items: center; gap: -3px; text-decoration: none;
+        }
+        .logo-tagline { 
+          font-size: 0.55rem; font-weight: 700; color: rgba(255,255,255,0.4);
+          text-transform: uppercase; letter-spacing: 2.5px; margin-top: 1px;
         }
 
-        .logo-main .accent {
-          color: #e61e25;
+        .navbar-nav { display: flex; align-items: center; gap: 32px; }
+        .nav-link { 
+          position: relative; color: white; text-decoration: none; font-size: 0.95rem; font-weight: 600;
+          padding: 10px 0; transition: color 0.3s; display: flex; align-items: center; gap: 4px;
         }
+        .nav-link:hover { color: #e61e25; }
+        .nav-link::after { 
+          content: ''; position: absolute; bottom: 8px; left: 0; width: 0; height: 2px;
+          background: #e61e25; transition: width 0.3s;
+        }
+        .nav-link:hover::after { width: 100%; }
 
-        .logo-tagline {
-          font-size: 0.6rem;
-          font-weight: 600;
-          color: rgba(255, 255, 255, 0.7);
-          letter-spacing: 1.8px;
-          text-transform: uppercase;
-          margin-top: 2px;
+        .dropdown-container { position: relative; cursor: pointer; }
+        .dropdown-menu {
+          position: absolute; top: 100%; left: -20px; background: #111; border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 8px; padding: 12px; min-width: 220px; opacity: 0; visibility: hidden;
+          transform: translateY(10px); transition: all 0.3s;
+          box-shadow: 0 20px 40px rgba(0,0,0,0.6); display: grid; gap: 4px;
         }
-
-        /* Center Navigation */
-        .navbar-nav {
-          flex: 1;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 28px;
+        .dropdown-container:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        
+        .dropdown-item {
+          color: rgba(255,255,255,0.7); text-decoration: none; padding: 10px 18px; border-radius: 4px;
+          font-size: 0.85rem; font-weight: 600; transition: all 0.2s;
         }
-
-        .nav-link {
-          position: relative;
-          color: #ffffff;
-          text-decoration: none;
-          font-size: 0.95rem;
-          font-weight: 600;
-          letter-spacing: 0.3px;
-          transition: color 0.3s ease;
-          padding: 0.5rem 0;
-          outline: none;
-        }
-
-        .nav-link:focus {
-          outline: none;
-        }
-
-        .nav-link::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 0;
-          height: 2px;
-          background: #e61e25;
-          transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .nav-link:hover {
-          color: #e61e25;
-        }
-
-        .nav-link:hover::after {
-          width: 100%;
-        }
-
-        .nav-link:active::after {
-          width: 100%;
-          background: #DC2626;
-        }
-
-        /* Right Actions */
-        .navbar-actions {
-          flex: 0 0 auto;
-          display: flex;
-          align-items: center;
-          gap: 12px;
-        }
-
-        .btn-campaign {
-          padding: 10px 24px;
-          color: #ffffff;
-          text-decoration: none;
-          font-size: 0.95rem;
-          font-weight: 600;
-          border: none;
-          background: transparent;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          letter-spacing: 0.3px;
-          position: relative;
-          outline: none;
-        }
-
-        .btn-campaign:focus {
-          outline: none;
-        }
-
-        .btn-campaign::after {
-          content: '';
-          position: absolute;
-          bottom: 8px;
-          left: 24px;
-          right: 24px;
-          height: 2px;
-          background: #e61e25;
-          transform: scaleX(0);
-          transition: transform 0.3s ease;
-        }
-
-        .btn-campaign:hover {
-          color: #e61e25;
-        }
-
-        .btn-campaign:hover::after {
-          transform: scaleX(1);
-        }
-
-        .btn-campaign:active::after {
-          transform: scaleX(1);
-          background: #DC2626;
-        }
+        .dropdown-item:hover { background: rgba(230,30,37,0.1); color: #e61e25; transform: translateX(5px); }
 
         .btn-login {
-          padding: 10px 20px;
-          background: #e61e25;
-          color: white;
-          text-decoration: none;
-          font-size: 0.95rem;
-          font-weight: 600;
-          border-radius: 8px;
-          border: none;
-          cursor: pointer;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          letter-spacing: 0.3px;
-          outline: none;
+          padding: 10px 24px; background: #e61e25; color: white; text-decoration: none;
+          font-size: 0.9rem; font-weight: 700; border-radius: 4px; transition: all 0.3s;
         }
+        .btn-login:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(230,30,37,0.3); }
 
-        .btn-login:focus {
-          outline: none;
-        }
-
-        .btn-login:hover {
-          background: #e55a25;
-          transform: scale(1.05);
-          box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
-        }
-
-        .btn-login:active {
-          transform: scale(0.98);
-        }
-
-        /* Mobile Menu Toggle */
-        .mobile-toggle {
-          display: none;
-          flex-direction: column;
-          gap: 5px;
-          background: none;
-          border: none;
-          cursor: pointer;
-          padding: 0.5rem;
-          transition: transform 0.3s ease;
-        }
-
-        .mobile-toggle:hover {
-          transform: scale(1.1);
-        }
-
-        .mobile-toggle span {
-          width: 24px;
-          height: 2.5px;
-          background: #ffffff;
-          border-radius: 2px;
-          transition: all 0.3s ease;
-        }
-
-        .mobile-toggle.open span:nth-child(1) {
-          transform: rotate(45deg) translate(6px, 6px);
-        }
-
-        .mobile-toggle.open span:nth-child(2) {
-          opacity: 0;
-        }
-
-        .mobile-toggle.open span:nth-child(3) {
-          transform: rotate(-45deg) translate(6px, -6px);
-        }
-
-        /* Mobile Menu */
-        .mobile-menu {
-          position: fixed;
-          top: 90px;
-          left: 40px;
-          right: 40px;
-          background: rgba(0, 0, 0, 0.98);
-          backdrop-filter: blur(20px);
-          -webkit-backdrop-filter: blur(20px);
-          padding: 2rem;
-          border-radius: 16px;
-          transform: translateY(-20px);
-          opacity: 0;
-          visibility: hidden;
-          display: none;
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
-          max-height: calc(100vh - 120px);
-          overflow-y: auto;
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          max-width: 1400px;
-          margin: 0 auto;
-        }
-
-        .mobile-menu.open {
-          transform: translateY(0);
-          opacity: 1;
-          visibility: visible;
-          display: block;
-        }
-
-        .mobile-nav-links {
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-          margin-bottom: 2rem;
-        }
-
-        .mobile-nav-link {
-          color: #ffffff;
-          text-decoration: none;
-          font-size: 1.1rem;
-          font-weight: 600;
-          padding: 1rem;
-          border-radius: 15px;
-          transition: all 0.3s ease;
-          letter-spacing: 0.3px;
-          outline: none;
-        }
-
-        .mobile-nav-link:focus {
-          outline: none;
-        }
-
-        .mobile-nav-link:hover {
-          background: rgba(255, 107, 53, 0.15);
-          color: #e61e25;
-          transform: translateX(8px);
-        }
-
-        .mobile-actions {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-        }
-
-        .mobile-actions .btn-campaign {
-          width: 100%;
-          text-align: center;
-          padding: 1rem;
-          background: rgba(255, 107, 53, 0.15);
-          border-radius: 15px;
-          outline: none;
-        }
-
-        .mobile-actions .btn-campaign:focus {
-          outline: none;
-        }
-
-        .mobile-actions .btn-campaign::after {
-          display: none;
-        }
-
-        .mobile-actions .btn-login {
-          width: 100%;
-          text-align: center;
-          padding: 1rem;
-        }
-
-        /* Responsive */
+        .mobile-toggle { display: none; color: white; cursor: pointer; }
+        
         @media (max-width: 1024px) {
-          .navbar-nav {
-            gap: 20px;
-          }
-
-          .nav-link {
-            font-size: 0.9rem;
-          }
-
-          .btn-campaign,
-          .btn-login {
-            padding: 9px 18px;
-            font-size: 0.9rem;
-          }
+          .navbar-nav, .navbar-actions { display: none; }
+          .mobile-toggle { display: block; }
+          .navbar-container { padding: 10px 20px; }
+          .navbar-wrapper { padding: 10px 20px; }
         }
 
-        @media (max-width: 768px) {
-          .floating-navbar {
-            top: 0;
-            left: 20px;
-            right: 20px;
-            margin: 8px auto 0 auto;
-          }
-
-          .navbar-container {
-            padding: 10px 20px;
-          }
-
-          .navbar-nav,
-          .navbar-actions {
-            display: none;
-          }
-
-          .mobile-toggle {
-            display: flex;
-          }
-
-          .logo-main {
-            font-size: 1.2rem;
-          }
-
-          .logo-tagline {
-            font-size: 0.55rem;
-          }
-
-          .mobile-menu {
-            top: 75px;
-            left: 20px;
-            right: 20px;
-          }
+        .mobile-menu {
+          position: fixed; inset: 0; top: 75px; background: rgba(10, 10, 10, 0.98);
+          backdrop-filter: blur(25px); padding: 30px; transform: scale(0.98); opacity: 0;
+          visibility: hidden; transition: all 0.3s; z-index: 999;
+          border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); margin: 0 20px;
+          height: fit-content;
         }
-
-        @media (max-width: 480px) {
-          .floating-navbar {
-            top: 0;
-            left: 15px;
-            right: 15px;
-            margin: 5px auto 0 auto;
-          }
-
-          .navbar-container {
-            padding: 8px 18px;
-          }
-
-          .logo-main {
-            font-size: 1.1rem;
-          }
-
-          .logo-tagline {
-            font-size: 0.5rem;
-            letter-spacing: 1.5px;
-          }
-
-          .mobile-toggle span {
-            width: 22px;
-          }
-
-          .mobile-menu {
-            top: 65px;
-            left: 15px;
-            right: 15px;
-            padding: 1.5rem;
-          }
-        }
-
-        /* Smooth scrolling offset for fixed navbar */
-        html {
-          scroll-padding-top: 100px;
+        .mobile-menu.open { transform: scale(1); opacity: 1; visibility: visible; }
+        .mobile-nav-link {
+          display: block; color: white; text-decoration: none; font-size: 1.3rem; font-weight: 800;
+          padding: 15px 10px; border-bottom: 1px solid rgba(255,255,255,0.05);
         }
       `}</style>
 
-      <nav className={`floating-navbar ${isScrolled ? 'scrolled' : ''}`}>
-        <div className="navbar-container">
-          {/* Logo */}
-          <Link href="/" className="navbar-logo">
-            <div className="logo-text">
+      <div className={`navbar-wrapper ${isScrolled ? 'scrolled' : ''}`}>
+        <nav className={`floating-navbar ${isScrolled ? 'scrolled' : ''}`}>
+          <div className="navbar-container">
+            <Link href="/" className="navbar-logo" style={{ textDecoration: 'none' }}>
               <div className="logo-main">
-                <span className="logo-circle">
-                  <svg width="28" height="28" viewBox="0 0 28 28" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '2px' }}>
-                    <circle cx="14" cy="14" r="12" fill="none" stroke="#ffffff" strokeWidth="4"/>
-                    <rect x="16" y="2" width="8" height="8" fill="#e61e25" rx="1"/>
-                  </svg>
-                </span>
-                <span style={{ color: '#ffffff' }}>ne Click</span>
+                <svg width="24" height="24" viewBox="0 0 28 28">
+                  <circle cx="14" cy="14" r="12" fill="none" stroke="white" strokeWidth="4"/>
+                  <rect x="16" y="2" width="8" height="8" fill="#e61e25" rx="1"/>
+                </svg>
+                <span>ne Click</span>
               </div>
               <div className="logo-tagline">Advertisement</div>
+            </Link>
+
+            <div className="navbar-nav">
+              <Link href="/" className="nav-link">Home</Link>
+              <div className="dropdown-container">
+                <div className="nav-link">
+                  Projects <ChevronDown size={14} />
+                </div>
+                <div className="dropdown-menu">
+                  <Link href="/projects" className="dropdown-item">All Work</Link>
+                  {categories.map(cat => (
+                    <Link key={cat} href={`/projects?filter=${cat}`} className="dropdown-item">
+                      {cat} Branding
+                    </Link>
+                  ))}
+                </div>
+              </div>
+              <Link href="/services" className="nav-link">Services</Link>
+              <Link href="/about" className="nav-link">About</Link>
+              <Link href="/contact" className="nav-link">Contact</Link>
             </div>
-          </Link>
 
-          {/* Center Navigation */}
-          <div className="navbar-nav">
-            <Link href="/" className="nav-link">Home</Link>
-            <Link href="/services" className="nav-link">Services</Link>
-            <Link href="/testimonials" className="nav-link">Projects</Link>
-            <Link href="/contact" className="nav-link">Contact</Link>
-            <Link href="/about" className="nav-link">About Us</Link>
+            <div className="navbar-actions" style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+              <Link href="/register" style={{ color: 'white', textDecoration: 'none', fontWeight: 600, fontSize: '0.85rem' }}>Register</Link>
+              <Link href="/admin/login" className="btn-login">Login</Link>
+            </div>
+
+            <button className="mobile-toggle" onClick={toggleMobileMenu} style={{ background: 'none', border: 'none' }}>
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
+        </nav>
+      </div>
 
-          {/* Right Actions */}
-          <div className="navbar-actions">
-            <Link href="/register" className="btn-campaign">
-              Register
-            </Link>
-            <Link href="/admin/login" className="btn-login">
-              Login
-            </Link>
-          </div>
-
-          {/* Mobile Toggle */}
-          <button 
-            className={`mobile-toggle ${isMobileMenuOpen ? 'open' : ''}`}
-            onClick={toggleMobileMenu}
-            aria-label="Toggle menu"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile Menu */}
       <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
-        <div className="mobile-nav-links">
-          <Link href="/" className="mobile-nav-link" onClick={closeMobileMenu}>Home</Link>
-          <Link href="/services" className="mobile-nav-link" onClick={closeMobileMenu}>Services</Link>
-          <Link href="/testimonials" className="mobile-nav-link" onClick={closeMobileMenu}>Projects</Link>
-          <Link href="/contact" className="mobile-nav-link" onClick={closeMobileMenu}>Contact</Link>
-          <Link href="/about" className="mobile-nav-link" onClick={closeMobileMenu}>About Us</Link>
-        </div>
-        
-        <div className="mobile-actions">
-          <Link href="/register" className="btn-campaign" onClick={closeMobileMenu}>
-            Register
-          </Link>
-          <Link href="/admin/login" className="btn-login" onClick={closeMobileMenu}>
-            Login
-          </Link>
-        </div>
+        <Link href="/" className="mobile-nav-link" onClick={closeMobileMenu}>Home</Link>
+        <Link href="/projects" className="mobile-nav-link" onClick={closeMobileMenu}>Explore Projects</Link>
+        <Link href="/services" className="mobile-nav-link" onClick={closeMobileMenu}>Our Services</Link>
+        <Link href="/contact" className="mobile-nav-link" onClick={closeMobileMenu}>Get in Touch</Link>
+        <Link href="/admin/login" className="mobile-nav-link" onClick={closeMobileMenu}>Admin Login</Link>
       </div>
     </>
   );

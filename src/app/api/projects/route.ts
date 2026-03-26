@@ -1,70 +1,78 @@
-import { NextResponse } from 'next/server';
-import { getDatabase } from '@/lib/mongodb';
-import { ObjectId } from 'mongodb';
+import { NextRequest, NextResponse } from 'next/server';
+import fs from 'fs';
+import path from 'path';
+
+const DATA_FILE = path.join(process.cwd(), 'data', 'projects.json');
+
+function readProjects() {
+  try {
+    if (!fs.existsSync(DATA_FILE)) {
+      fs.mkdirSync(path.dirname(DATA_FILE), { recursive: true });
+      fs.writeFileSync(DATA_FILE, '[]', 'utf-8');
+    }
+    return JSON.parse(fs.readFileSync(DATA_FILE, 'utf-8'));
+  } catch {
+    return [];
+  }
+}
+
+function writeProjects(projects: object[]) {
+  fs.mkdirSync(path.dirname(DATA_FILE), { recursive: true });
+  fs.writeFileSync(DATA_FILE, JSON.stringify(projects, null, 2), 'utf-8');
+}
 
 export async function GET() {
-    try {
-        const db = await getDatabase();
-        const projects = await db.collection('projects')
-            .find({})
-            .sort({ createdAt: -1 })
-            .toArray();
-        return NextResponse.json(projects || []);
-    } catch (error) {
-        console.error('Projects API Error:', error);
-        // Return empty array instead of error to prevent UI crash
-        return NextResponse.json([]);
-    }
+  try {
+    const projects = readProjects();
+    const sorted = [...projects].sort(
+      (a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime()
+    );
+    return NextResponse.json({ projects: sorted }, { status: 200 });
+  } catch (error) {
+    console.error('Fetch projects error:', error);
+    return NextResponse.json(
+      { error: 'Failed to fetch projects' },
+      { status: 500 }
+    );
+  }
 }
 
-export async function POST(request: Request) {
-    try {
-        const body = await request.json();
-        const { title, category, image, description } = body;
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json();
+    const { title, description, category, image, clientName } = body;
 
-        if (!title || !category || !image) {
-            return NextResponse.json(
-                { error: 'Title, category, and image are required' },
-                { status: 400 }
-            );
-        }
-
-        const db = await getDatabase();
-        const project = {
-            title,
-            category,
-            image,
-            description: description || '',
-            createdAt: new Date()
-        };
-
-        const result = await db.collection('projects').insertOne(project);
-
-        return NextResponse.json({
-            message: 'Project added successfully',
-            id: result.insertedId
-        });
-    } catch (error) {
-        console.error('Error adding project:', error);
-        return NextResponse.json({ error: 'Failed to add project' }, { status: 500 });
+    if (!title || !description || !category) {
+      return NextResponse.json(
+        { error: 'Missing required fields' },
+        { status: 400 }
+      );
     }
-}
 
-export async function DELETE(request: Request) {
-    try {
-        const { searchParams } = new URL(request.url);
-        const id = searchParams.get('id');
+    const projects = readProjects();
+    const project = {
+      id: Date.now().toString(),
+      title,
+      description,
+      category,
+      image,
+      clientName: clientName || null,
+      status: 'published',
+      createdAt: new Date().toISOString()
+    };
 
-        if (!id) {
-            return NextResponse.json({ error: 'ID is required' }, { status: 400 });
-        }
+    projects.push(project);
+    writeProjects(projects);
 
-        const db = await getDatabase();
-        await db.collection('projects').deleteOne({ _id: new ObjectId(id) });
-
-        return NextResponse.json({ message: 'Project deleted successfully' });
-    } catch (error) {
-        console.error('Error deleting project:', error);
-        return NextResponse.json({ error: 'Failed to delete project' }, { status: 500 });
-    }
+    return NextResponse.json(
+      { message: 'Project created successfully!', project },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error('Project creation error:', error);
+    return NextResponse.json(
+      { error: 'Failed to create project' },
+      { status: 500 }
+    );
+  }
 }

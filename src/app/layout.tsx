@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import './mobile-responsive.css';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 
@@ -44,6 +45,8 @@ export default function RootLayout({
         <main>
           {children}
         </main>
+
+        {!hideNavbar && <Footer />}
       </body>
     </html>
   );
