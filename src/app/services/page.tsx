@@ -195,7 +195,7 @@ export default function ServicesPage() {
         .hero-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%);
+          background: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.1) 100%);
           z-index: 1;
         }
 
@@ -214,6 +214,7 @@ export default function ServicesPage() {
           line-height: 1.1;
           margin-bottom: 1.5rem;
           letter-spacing: -2px;
+          text-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
         .hero-title .highlight {
@@ -710,11 +711,11 @@ export default function ServicesPage() {
       <div className="services-page">
         {/* Hero Section */}
         <section className="hero-services">
-          <div className="hero-bg" style={{ backgroundColor: '#f5f5f5' }}>
+          <div className="hero-bg" style={{ backgroundColor: '#ffffff' }}>
             <img 
-              src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1800&q=80" 
-              alt="One Click Services - Vibrant Morning" 
-              style={{ filter: 'brightness(0.55) contrast(1.05)' }}
+              src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1800&q=80" 
+              alt="One Click Services - Bright Professional Urban" 
+              style={{ filter: 'brightness(1) contrast(1.05)' }}
             />
           </div>
           <div className="hero-overlay"></div>
