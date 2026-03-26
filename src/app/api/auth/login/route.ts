@@ -11,14 +11,21 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Accept any email and password
-        return NextResponse.json({
-            success: true,
-            user: {
-                email: email,
-                name: 'Admin'
-            }
-        });
+        // Verify fixed credentials
+        if (email === 'admin@gmail.com' && password === 'password123456') {
+            return NextResponse.json({
+                success: true,
+                user: {
+                    email: 'admin@gmail.com',
+                    name: 'Admin'
+                }
+            });
+        }
+
+        return NextResponse.json(
+            { error: 'Invalid administrative credentials. Access denied.' },
+            { status: 401 }
+        );
 
     } catch (error) {
         console.error('Login error:', error);

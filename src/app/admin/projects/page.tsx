@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
     Plus, 
@@ -28,6 +29,7 @@ interface Project {
 }
 
 export default function AdminProjectsPage() {
+    const router = useRouter();
     const [projects, setProjects] = useState<Project[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
@@ -50,8 +52,16 @@ export default function AdminProjectsPage() {
     const categories = ['All', 'Branding', 'Digital', 'Signage', 'Vehicle', 'Events', 'Interior'];
 
     useEffect(() => {
+        const auth = localStorage.getItem('adminAuth');
+        const userStr = localStorage.getItem('adminUser');
+        const user = userStr ? JSON.parse(userStr) : null;
+
+        if (auth !== 'true' || user?.email !== 'admin@gmail.com') {
+            router.push('/admin/login');
+            return;
+        }
         fetchProjects();
-    }, []);
+    }, [router]);
 
     const fetchProjects = async () => {
         setIsLoading(true);

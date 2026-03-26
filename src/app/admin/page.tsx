@@ -20,7 +20,10 @@ export default function AdminPage() {
 
     useEffect(() => {
         const authToken = localStorage.getItem('adminAuth');
-        if (authToken === 'true') {
+        const adminUserStr = localStorage.getItem('adminUser');
+        const adminUser = adminUserStr ? JSON.parse(adminUserStr) : null;
+
+        if (authToken === 'true' && adminUser?.email === 'admin@gmail.com') {
             setIsAuthenticated(true);
             fetchStats();
             fetchRecentContacts();

@@ -49,7 +49,10 @@ export default function CampaignsPage() {
 
   useEffect(() => {
     const auth = localStorage.getItem('adminAuth');
-    if (auth !== 'true') {
+    const userStr = localStorage.getItem('adminUser');
+    const user = userStr ? JSON.parse(userStr) : null;
+
+    if (auth !== 'true' || user?.email !== 'admin@gmail.com') {
       router.push('/admin/login');
       return;
     }
