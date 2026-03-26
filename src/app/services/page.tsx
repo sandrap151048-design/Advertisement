@@ -195,7 +195,7 @@ export default function ServicesPage() {
         .hero-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.3) 100%);
+          background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%);
           z-index: 1;
         }
 
@@ -713,9 +713,9 @@ export default function ServicesPage() {
         <section className="hero-services">
           <div className="hero-bg" style={{ backgroundColor: '#0a0a0a' }}>
             <img 
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1800&q=80" 
-              alt="Services - Professional Advertising Hub" 
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              src="https://i.pinimg.com/736x/6f/c3/83/6fc383b3d9a28795b28b59cdcc6187a3.jpg" 
+              alt="Services - Aesthetically Impactful Display" 
+              style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.7)' }}
             />
           </div>
           <div className="hero-overlay"></div>
