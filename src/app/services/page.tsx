@@ -94,7 +94,7 @@ export default function ServicesPage() {
 
   const fetchServices = async () => {
     try {
-      const response = await fetch('/api/services');
+      const response = await fetch('/api/services', { cache: 'no-store' });
       const data = await response.json();
       setDbServices(data || []);
     } catch (error) {

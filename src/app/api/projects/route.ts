@@ -4,6 +4,9 @@ import path from 'path';
 
 const DATA_FILE = path.join(process.cwd(), 'data', 'projects.json');
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 function readProjects() {
   try {
     if (!fs.existsSync(DATA_FILE)) {
