@@ -188,7 +188,46 @@ export default function AdminPage() {
                             {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
                         </p>
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                        {/* Company Contact Info */}
+                        <motion.div 
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            className="admin-contact-info"
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '1.2rem',
+                                padding: '0.6rem 1.2rem',
+                                background: '#f8fafc',
+                                borderRadius: '12px',
+                                border: '1px solid rgba(0,0,0,0.05)',
+                                marginRight: '1rem'
+                            }}
+                        >
+                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                                <Mail size={16} color="#e61e25" />
+                                <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#475569' }}>hello@oneclickadv.ae</span>
+                             </div>
+                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                                <Phone size={16} color="#e61e25" />
+                                <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#475569' }}>+971 52 406 5110</span>
+                             </div>
+                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                                <MapPin size={16} color="#e61e25" />
+                                <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#475569' }}>Dubai, UAE</span>
+                             </div>
+                        </motion.div>
+
+                        <style jsx>{`
+                            @media (max-width: 1024px) {
+                                .admin-contact-info {
+                                    display: none !important;
+                                }
+                            }
+                        `}</style>
+
+
                         {/* Go to Website Button */}
                         <motion.button
                             whileHover={{ scale: 1.05 }}
