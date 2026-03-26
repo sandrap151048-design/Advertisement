@@ -242,9 +242,9 @@ export default function ProjectsPage() {
           <img
             src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1800&q=80"
             alt="Hero"
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.45)' }}
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.65)' }}
           />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(26,58,82,0.6) 0%, rgba(0,0,0,0.3) 100%)' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(26,58,82,0.4) 0%, rgba(0,0,0,0.1) 100%)' }} />
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
