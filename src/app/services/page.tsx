@@ -89,6 +89,14 @@ export default function ServicesPage() {
 
   useEffect(() => {
     setCurrentYear(new Date().getFullYear());
+    // Immediately load cached services from localStorage for instant rendering
+    try {
+      const cached = localStorage.getItem('cachedDbServices');
+      if (cached) {
+        setDbServices(JSON.parse(cached));
+      }
+    } catch {}
+    // Then fetch fresh data from API
     fetchServices();
   }, []);
 
@@ -96,8 +104,15 @@ export default function ServicesPage() {
     try {
       const timestamp = new Date().getTime();
       const response = await fetch(`/api/services?t=${timestamp}`, { cache: 'no-store', headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' } });
-      const data = await response.json();
-      setDbServices(data || []);
+      if (response.ok) {
+        const data = await response.json();
+        const servicesList = Array.isArray(data) ? data : [];
+        setDbServices(servicesList);
+        // Cache to localStorage for instant load next time
+        try {
+          localStorage.setItem('cachedDbServices', JSON.stringify(servicesList));
+        } catch {}
+      }
     } catch (error) {
       console.error('Error fetching services:', error);
     }
