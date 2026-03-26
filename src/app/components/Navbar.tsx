@@ -136,8 +136,8 @@ export default function Navbar() {
               <Link href="/" className="nav-link">Home</Link>
               <Link href="/projects" className="nav-link">Projects</Link>
               <Link href="/services" className="nav-link">Services</Link>
-              <Link href="/about" className="nav-link">About</Link>
               <Link href="/contact" className="nav-link">Contact</Link>
+              <Link href="/about" className="nav-link">About</Link>
             </div>
 
             <div className="navbar-actions" style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
@@ -156,6 +156,7 @@ export default function Navbar() {
         <Link href="/projects" className="mobile-nav-link" onClick={closeMobileMenu}>Explore Projects</Link>
         <Link href="/services" className="mobile-nav-link" onClick={closeMobileMenu}>Our Services</Link>
         <Link href="/contact" className="mobile-nav-link" onClick={closeMobileMenu}>Get in Touch</Link>
+        <Link href="/about" className="mobile-nav-link" onClick={closeMobileMenu}>About</Link>
         <Link href="/admin/login" className="mobile-nav-link" onClick={closeMobileMenu}>Login</Link>
       </div>
     </>
