@@ -107,10 +107,51 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } }
 };
 
+interface AdminProject {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  image?: string;
+  clientName?: string;
+  createdAt: string;
+}
+
 export default function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState<CategoryKey>('Brand Identity');
   const [hoveredImg, setHoveredImg] = useState<number | null>(null);
+  const [adminProjects, setAdminProjects] = useState<AdminProject[]>([]);
   const current = projectsByCategory[activeCategory];
+
+  useEffect(() => {
+    // Immediately load cached projects from localStorage for instant rendering
+    try {
+      const cached = localStorage.getItem('cachedAdminProjects');
+      if (cached) {
+        setAdminProjects(JSON.parse(cached));
+      }
+    } catch {}
+    // Then fetch fresh data from API
+    const fetchProjects = async () => {
+      try {
+        const timestamp = new Date().getTime();
+        const response = await fetch(`/api/projects?t=${timestamp}`, {
+          cache: 'no-store',
+          headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' }
+        });
+        if (response.ok) {
+          const data = await response.json();
+          const list: AdminProject[] = Array.isArray(data.projects) ? data.projects : [];
+          setAdminProjects(list);
+          try { localStorage.setItem('cachedAdminProjects', JSON.stringify(list)); } catch {}
+        }
+      } catch (error) {
+        console.error('Error fetching admin projects:', error);
+      }
+    };
+    fetchProjects();
+  }, []);
+
 
   return (
     <>
@@ -311,6 +352,88 @@ export default function ProjectsPage() {
             </motion.div>
           </AnimatePresence>
         </section>
+
+        {/* ─── Admin Projects Section ─── */}
+        {adminProjects.length > 0 && (
+          <section style={{ maxWidth: 1400, margin: '0 auto', padding: '2rem 2rem 5rem 2rem' }}>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              style={{ textAlign: 'center', marginBottom: '3.5rem' }}
+            >
+              <h2 style={{ fontSize: 'clamp(2.5rem,5vw,3.5rem)', fontWeight: 900, color: '#1a1a1a', lineHeight: 1.1, margin: '0 0 1rem' }}>
+                Our <em style={{ fontStyle: 'italic', color: '#888', fontWeight: 400 }}>Work</em>
+              </h2>
+              <p style={{ color: '#777', fontSize: '1rem', maxWidth: 600, margin: '0 auto', lineHeight: 1.8 }}>
+                A showcase of projects delivered by our team across the UAE.
+              </p>
+            </motion.div>
+
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1.5rem' }}
+            >
+              {adminProjects.map((project, i) => (
+                <motion.div
+                  key={project.id || i}
+                  variants={itemVariants}
+                  whileHover={{ y: -8, boxShadow: '0 24px 50px rgba(0,0,0,0.15)' }}
+                  style={{
+                    background: 'white',
+                    borderRadius: 20,
+                    overflow: 'hidden',
+                    boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
+                    cursor: 'pointer',
+                    transition: 'box-shadow 0.3s ease'
+                  }}
+                >
+                  {/* Image */}
+                  <div style={{ position: 'relative', height: 220, overflow: 'hidden' }}>
+                    <img
+                      src={project.image || 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80'}
+                      alt={project.title}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.5s ease' }}
+                      onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.06)')}
+                      onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
+                    />
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%)' }} />
+                    {/* Category badge */}
+                    <div style={{
+                      position: 'absolute', top: '1rem', left: '1rem',
+                      background: '#e61e25', color: 'white',
+                      padding: '0.3rem 0.8rem', borderRadius: 50,
+                      fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.5px'
+                    }}>
+                      {project.category}
+                    </div>
+                  </div>
+                  {/* Content */}
+                  <div style={{ padding: '1.5rem' }}>
+                    <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#1a1a1a', margin: '0 0 0.5rem' }}>
+                      {project.title}
+                    </h3>
+                    <p style={{ color: '#666', fontSize: '0.9rem', lineHeight: 1.7, margin: '0 0 1rem' }}>
+                      {project.description}
+                    </p>
+                    {project.clientName && (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#e61e2520', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 700, color: '#e61e25' }}>
+                          {project.clientName.charAt(0).toUpperCase()}
+                        </div>
+                        <span style={{ fontSize: '0.85rem', color: '#888', fontWeight: 600 }}>{project.clientName}</span>
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </section>
+        )}
 
         {/* ─── CTA Banner ─── */}
         <motion.section
