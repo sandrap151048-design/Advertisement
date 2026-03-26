@@ -234,23 +234,25 @@ export default function Home() {
         }
 
         .btn-primary {
-          background: #1a1a1a;
+          background: #e61e25;
           color: white;
+          box-shadow: 0 4px 15px rgba(230, 30, 37, 0.3);
         }
 
         .btn-primary:hover {
-          background: #333333;
+          background: #ff2d35;
           transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(230, 30, 37, 0.4);
         }
 
         .btn-secondary {
           background: transparent;
           color: white;
-          border: 2px solid white;
+          border: 2px solid #e61e25;
         }
 
         .btn-secondary:hover {
-          background: rgba(255,255,255,0.1);
+          background: rgba(230, 30, 37, 0.1);
           transform: translateY(-2px);
         }
 

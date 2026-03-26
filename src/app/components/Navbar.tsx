@@ -30,26 +30,17 @@ export default function Navbar() {
 
         .navbar-wrapper {
           position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          width: 100%;
-          z-index: 1000;
-          display: flex;
-          justify-content: center;
-          padding: 15px 40px;
+          top: 0; left: 0; right: 0; width: 100%; z-index: 1000;
+          display: flex; justify-content: center; padding: 20px 40px;
           transition: all 0.4s ease;
         }
 
         .floating-navbar {
-          width: 100%;
-          max-width: 1400px;
+          width: 100%; max-width: 1400px;
           background: rgba(10, 10, 10, 0.9);
-          backdrop-filter: blur(25px);
-          -webkit-backdrop-filter: blur(25px);
+          backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
           border: 1px solid rgba(255, 255, 255, 0.1);
-          border-radius: 12px;
-          padding: 0 10px;
+          border-radius: 16px; padding: 0 10px;
           transition: all 0.4s ease;
         }
 
@@ -58,9 +49,9 @@ export default function Navbar() {
         }
 
         .floating-navbar.scrolled {
-          background: rgba(10, 10, 10, 0.85);
-          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-          border-color: rgba(230, 30, 37, 0.2);
+          background: rgba(0, 0, 0, 0.9);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+          border-color: rgba(230, 30, 37, 0.3);
         }
 
         .navbar-container {
@@ -69,18 +60,20 @@ export default function Navbar() {
         }
 
         .logo-main {
-          font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.3rem; font-weight: 800;
-          color: white; display: flex; align-items: center; gap: -3px; text-decoration: none;
+          font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.4rem; font-weight: 800;
+          color: white; display: flex; align-items: center; gap: 6px; text-decoration: none;
         }
+        
         .logo-tagline { 
-          font-size: 0.55rem; font-weight: 700; color: rgba(255,255,255,0.4);
-          text-transform: uppercase; letter-spacing: 2.5px; margin-top: 1px;
+          font-size: 0.6rem; font-weight: 700; color: rgba(255,255,255,0.4);
+          text-transform: uppercase; letter-spacing: 2px; margin-top: 1px;
         }
 
         .navbar-nav { display: flex; align-items: center; gap: 32px; }
+        
         .nav-link { 
           position: relative; color: white; text-decoration: none; font-size: 0.95rem; font-weight: 600;
-          padding: 10px 0; transition: color 0.3s; display: flex; align-items: center; gap: 4px;
+          padding: 10px 0; transition: color 0.3s;
         }
         .nav-link:hover { color: #e61e25; }
         .nav-link::after { 
@@ -91,31 +84,37 @@ export default function Navbar() {
 
         .btn-login {
           padding: 10px 24px; background: #e61e25; color: white; text-decoration: none;
-          font-size: 0.9rem; font-weight: 700; border-radius: 4px; transition: all 0.3s;
+          font-size: 0.9rem; font-weight: 700; border-radius: 6px; transition: all 0.3s;
         }
         .btn-login:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(230,30,37,0.3); }
 
         .mobile-toggle { display: none; color: white; cursor: pointer; }
         
         @media (max-width: 1024px) {
-          .navbar-nav, .navbar-actions { display: none; }
-          .mobile-toggle { display: block; }
-          .navbar-container { padding: 10px 20px; }
-          .navbar-wrapper { padding: 10px 20px; }
+           .navbar-nav { display: none; }
+           .mobile-toggle { display: block; }
+           .navbar-wrapper { padding: 10px 20px; }
+           /* Position the menu right under the pill navbar on mobile */
+           .mobile-menu { top: 85px !important; }
         }
 
         .mobile-menu {
-          position: fixed; inset: 0; top: 75px; background: rgba(10, 10, 10, 0.98);
-          backdrop-filter: blur(25px); padding: 30px; transform: scale(0.98); opacity: 0;
-          visibility: hidden; transition: all 0.3s; z-index: 999;
-          border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); margin: 0 20px;
-          height: fit-content;
+          position: fixed; top: 100px; left: 20px; right: 20px;
+          background: rgba(10, 10, 10, 0.98);
+          backdrop-filter: blur(30px); padding: 2rem; 
+          border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1);
+          opacity: 0; visibility: hidden; transform: translateY(-20px);
+          transition: all 0.3s ease; 
+          z-index: 999;
+          display: flex; flex-direction: column; gap: 1rem;
         }
-        .mobile-menu.open { transform: scale(1); opacity: 1; visibility: visible; }
+        .mobile-menu.open { opacity: 1; visibility: visible; transform: translateY(0); }
+
         .mobile-nav-link {
-          display: block; color: white; text-decoration: none; font-size: 1.3rem; font-weight: 800;
-          padding: 15px 10px; border-bottom: 1px solid rgba(255,255,255,0.05);
+          display: block; color: white; text-decoration: none; font-size: 1.2rem; font-weight: 700;
+          padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);
         }
+
       `}</style>
 
       <div className={`navbar-wrapper ${isScrolled ? 'scrolled' : ''}`}>
