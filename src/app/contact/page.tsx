@@ -498,10 +498,11 @@ export default function ContactPage() {
       <div className="contact-page">
         {/* Hero Section */}
         <section className="contact-hero">
-          <div className="contact-hero-bg">
+          <div className="contact-hero-bg" style={{ backgroundColor: '#0e1111' }}>
             <img 
-              src="https://images.unsplash.com/photo-1504384308090-c89eec248a94?w=1800&q=80" 
-              alt="Contact One Click - Dark Professional Office" 
+              src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1800&q=80" 
+              alt="Contact One Click - Night Boardroom" 
+              style={{ filter: 'brightness(0.3) contrast(1.15)' }}
             />
           </div>
           <div className="contact-hero-overlay"></div>

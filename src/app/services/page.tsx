@@ -710,10 +710,11 @@ export default function ServicesPage() {
       <div className="services-page">
         {/* Hero Section */}
         <section className="hero-services">
-          <div className="hero-bg">
+          <div className="hero-bg" style={{ backgroundColor: '#0a0a0a' }}>
             <img 
-              src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1800&q=80" 
-              alt="Stand Out Everywhere - Dark Professional" 
+              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&q=80" 
+              alt="One Click Services - High-Impact Urban" 
+              style={{ filter: 'brightness(0.35) contrast(1.1)' }}
             />
           </div>
           <div className="hero-overlay"></div>
