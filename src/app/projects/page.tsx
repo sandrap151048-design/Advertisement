@@ -115,7 +115,7 @@ function ProjectsContent() {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    background: url('https://images.unsplash.com/photo-1610484826967-09c5720778c7?w=1600&q=80') center/cover no-repeat;
+                    background: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1600&q=80') center/cover no-repeat;
                     overflow: hidden;
                     text-align: center;
                 }
@@ -242,7 +242,7 @@ function ProjectsContent() {
                 .project-overview-bg {
                     position: relative;
                     padding: 160px 0;
-                    background: url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1600&q=80') center/cover no-repeat;
+                    background: url('https://images.unsplash.com/photo-1542744094-24638eff58bb?w=1600&q=80') center/cover no-repeat;
                     display: flex;
                     align-items: center;
                     justify-content: center;

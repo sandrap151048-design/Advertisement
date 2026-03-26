@@ -771,7 +771,7 @@ export default function Home() {
             We create high-impact advertising that makes your brand visible, memorable, and impossible to ignore.
           </motion.p>
           <motion.div className="hero-buttons" variants={fadeInUp}>
-            <Link href="/campaign" className="btn btn-primary">
+            <Link href="/contact#campaign" className="btn btn-primary">
               Start Your Campaign <ArrowRight size={20} />
             </Link>
             <Link href="/contact" className="btn btn-secondary">
@@ -1031,6 +1031,78 @@ export default function Home() {
           </motion.div>
         </motion.div>
       </section>
+
+      {/* About Section */}
+      <section className="section" style={{ background: '#ffffff', padding: 'clamp(4rem, 8vw, 8rem) clamp(1rem, 4vw, 2rem)' }}>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+          className="container"
+        >
+          <div className="built-content">
+            <motion.div 
+              className="built-text" 
+              variants={swipeLeft}
+            >
+              <h2 style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)', fontWeight: 900, lineHeight: 1.1, marginBottom: '2rem' }}>
+                About <br />
+                <span style={{ color: '#e61e25' }}>One Click</span>
+              </h2>
+              <div style={{ borderLeft: '4px solid #e61e25', paddingLeft: '2rem', marginBottom: '2.5rem' }}>
+                <p style={{ fontSize: '1.25rem', fontWeight: 600, color: '#1a1a1a', marginBottom: '1.5rem', lineHeight: 1.4 }}>
+                  Leading the Future of Advertising across the UAE.
+                </p>
+                <p style={{ color: '#666', fontSize: '1.1rem', lineHeight: 1.8 }}>
+                  Established with a vision to redefine visual communication, One Click Advertisement has grown into the region's most trusted partner for high-impact brand presence. We specialize in transforming bold concepts into landmark urban installations that capture attention and drive measurable growth.
+                </p>
+              </div>
+              <motion.div variants={fadeInUp}>
+                <Link href="/contact" className="btn btn-primary" style={{ padding: '1.2rem 3rem', borderRadius: '50px' }}>
+                  Get Started Today <ArrowRight size={22} />
+                </Link>
+              </motion.div>
+            </motion.div>
+            
+            <motion.div 
+              className="built-image" 
+              variants={swipeRight}
+              whileHover={{ scale: 1.02, transition: { duration: 0.4 } }}
+              style={{ position: 'relative', borderRadius: '32px', height: '600px', boxShadow: '0 20px 50px rgba(0,0,0,0.1)' }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1522071823991-b515d26e4a63?w=1200&q=80"
+                alt="Our Team - Expertise in Action"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+              {/* Stats Overlay */}
+              <div style={{
+                position: 'absolute',
+                bottom: '2rem',
+                left: '-2rem',
+                background: 'white',
+                padding: '2rem',
+                borderRadius: '24px',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.15)',
+                display: 'flex',
+                gap: '2.5rem',
+                zIndex: 2
+              }}>
+                <div>
+                  <div style={{ color: '#e61e25', fontSize: '2rem', fontWeight: 900 }}>12+</div>
+                  <div style={{ color: '#666', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px' }}>Years Exp</div>
+                </div>
+                <div>
+                  <div style={{ color: '#1a1a1a', fontSize: '2rem', fontWeight: 900 }}>500+</div>
+                  <div style={{ color: '#666', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px' }}>Projects</div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
+      </section>
+
 
       {/* We Reach Section */}
       <section className="we-reach-section">
