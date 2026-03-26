@@ -15,8 +15,7 @@ export async function GET() {
         return NextResponse.json(services || []);
     } catch (error) {
         console.error('Services API Error:', error);
-        // Return empty array instead of error to prevent UI crash
-        return NextResponse.json([]);
+        return NextResponse.json({ error: 'Failed to fetch services' }, { status: 500 });
     }
 }
 
