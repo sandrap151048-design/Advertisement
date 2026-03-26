@@ -296,10 +296,65 @@ export default function Home() {
         }
 
         .we-build-title {
-          font-size: clamp(2.5rem, 6vw, 4rem);
+          font-size: clamp(2.2rem, 6vw, 4rem);
           font-weight: 900;
-          margin-bottom: 1rem;
-          line-height: 1.2;
+          margin-bottom: 3rem;
+          line-height: 1.1;
+        }
+
+        /* Responsive Fixes */
+        @media (max-width: 1024px) {
+          .container {
+            padding: 0 2rem;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .hero-section {
+            height: auto;
+            min-height: 100vh;
+            padding: 100px 1rem 60px 1rem;
+          }
+
+          .hero-content h1 {
+            font-size: 3.5rem;
+            letter-spacing: -1px;
+          }
+          
+          .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+          }
+
+          .hero-buttons {
+            flex-direction: column;
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto;
+          }
+
+          .btn {
+            width: 100%;
+            justify-content: center;
+          }
+
+          .section {
+            padding: 4rem 1.5rem;
+          }
+
+          .we-build-title {
+             font-size: 2.5rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+           .hero-content h1 {
+            font-size: 2.8rem;
+          }
+          
+          .section-title {
+            font-size: 2.2rem;
+          }
         }
 
         .we-build-title .italic {
