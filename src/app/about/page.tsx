@@ -322,7 +322,7 @@ export default function AboutPage() {
               </span>
             </motion.h1>
             <motion.p className="about-hero-subtitle" variants={fadeInUp}>
-              A premier UAE-based advertising agency delivering world-class visual communication and high-impact brand experiences since 2012.
+              Build your visibility with a premier UAE-based advertising agency delivering world-class visual communication and high-impact brand experiences since 2012.
             </motion.p>
           </motion.div>
         </section>

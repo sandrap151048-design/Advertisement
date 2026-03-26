@@ -754,7 +754,7 @@ export default function ServicesPage() {
               Launch your advertising campaign with high-impact placements across prime locations - fast, simple, and effective.
             </motion.p>
             <motion.div variants={fadeInUp}>
-              <Link href="/register" className="cta-button">
+              <Link href="/contact#campaign" className="cta-button">
                 Get started <ArrowRight size={20} />
               </Link>
             </motion.div>

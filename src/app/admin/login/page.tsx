@@ -2,7 +2,8 @@
 
 import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, ArrowLeft } from 'lucide-react';
+import Link from 'next/link';
 
 export default function AdminLoginPage() {
     const router = useRouter();
@@ -98,6 +99,7 @@ export default function AdminLoginPage() {
                     align-items: center;
                     gap: 8px;
                     margin-bottom: 2rem;
+
                     font-family: 'Bricolage Grotesque', sans-serif;
                     font-weight: 800;
                     font-size: 1.3rem;
@@ -279,9 +281,29 @@ export default function AdminLoginPage() {
             `}</style>
 
             <div className="login-left">
+                <Link href="/" style={{
+                    position: 'absolute',
+                    top: '2rem',
+                    left: '2rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    color: 'rgba(255,255,255,0.6)',
+                    textDecoration: 'none',
+                    fontSize: '0.9rem',
+                    fontWeight: 600,
+                    transition: 'all 0.3s'
+                }} className="back-btn"
+                   onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
+                   onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
+                >
+                    <ArrowLeft size={18} /> Back to Home
+                </Link>
+
                 <div className="login-form-container">
                     <div className="login-logo">
                         <svg width="32" height="32" viewBox="0 0 28 28">
+
                             <circle cx="14" cy="14" r="12" fill="none" stroke="#ffffff" strokeWidth="4"/>
                             <rect x="16" y="2" width="8" height="8" fill="#e61e25" rx="1"/>
                         </svg>
