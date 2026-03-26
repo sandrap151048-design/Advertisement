@@ -120,15 +120,15 @@ export default function Navbar() {
       <div className={`navbar-wrapper ${isScrolled ? 'scrolled' : ''}`}>
         <nav className={`floating-navbar ${isScrolled ? 'scrolled' : ''}`}>
           <div className="navbar-container">
-            <Link href="/" className="navbar-logo" style={{ textDecoration: 'none' }}>
-              <div className="logo-main">
-                <svg width="24" height="24" viewBox="0 0 28 28">
-                  <circle cx="14" cy="14" r="12" fill="none" stroke="white" strokeWidth="4"/>
-                  <rect x="16" y="2" width="8" height="8" fill="#e61e25" rx="1"/>
+            <Link href="/" className="navbar-logo" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column' }}>
+              <div className="logo-main" style={{ display: 'flex', alignItems: 'center', gap: '0' }}>
+                <svg width="26" height="26" viewBox="0 0 28 28" style={{ marginRight: '-1px' }}>
+                  <circle cx="14" cy="14" r="11" fill="none" stroke="white" strokeWidth="4"/>
+                  <rect x="16" y="2" width="9" height="9" fill="#e61e25" rx="1"/>
                 </svg>
-                <span>ne Click</span>
+                <span style={{ marginLeft: '-1px' }}>ne Click</span>
               </div>
-              <div className="logo-tagline">Advertisement</div>
+              <div className="logo-tagline" style={{ color: '#888', fontWeight: '900', letterSpacing: '4px', fontSize: '0.65rem' }}>ADVERTISEMENT</div>
             </Link>
 
             <div className="navbar-nav">
