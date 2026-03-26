@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle, Users, Award, Globe, TrendingUp, Target, Palette, Settings, Rocket } from 'lucide-react';
+import { ArrowRight, CheckCircle, Users, Award, Globe, TrendingUp, Target, Palette, Settings, Rocket, Layout, Building2 } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -379,6 +379,134 @@ export default function AboutPage() {
             padding: 1rem 2rem;
             font-size: 1rem;
           }
+
+          .process-grid, .work-grid {
+            grid-template-columns: 1fr !important;
+          }
+
+          .process-step {
+            padding: 2rem !important;
+          }
+
+          .section-heading-main {
+            font-size: 2.8rem !important;
+          }
+          .section-heading-sub {
+            font-size: 2rem !important;
+          }
+        }
+
+        .process-section, .work-section {
+          padding: 8rem 0;
+          text-align: center;
+        }
+
+        .section-heading-main {
+          font-size: 4rem;
+          font-weight: 900;
+          margin-bottom: 0.5rem;
+          line-height: 1;
+        }
+
+        .section-heading-sub {
+          font-size: 3rem;
+          font-family: 'Playfair Display', serif;
+          font-style: italic;
+          color: #1a1a1a;
+          margin-bottom: 1.5rem;
+        }
+
+        .section-desc {
+          max-width: 600px;
+          margin: 0 auto 4rem;
+          color: #666;
+          line-height: 1.6;
+          font-size: 1.1rem;
+        }
+
+        .process-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1.5rem;
+          margin-top: 3rem;
+        }
+
+        .process-step {
+          background: #fdfdfd;
+          padding: 3rem 2rem;
+          border-radius: 12px;
+          border: 1px solid #eee;
+          transition: all 0.3s ease;
+          position: relative;
+        }
+
+        .process-step:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+          border-color: #e61e25;
+        }
+
+        .process-icon {
+          width: 50px;
+          height: 50px;
+          background: #f5f5f5;
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto 1.5rem;
+          color: #111;
+        }
+
+        .process-step h3 {
+          font-size: 1.5rem;
+          font-weight: 800;
+          margin-bottom: 1rem;
+        }
+
+        .process-step p {
+          color: #777;
+          font-size: 0.95rem;
+          line-height: 1.6;
+        }
+
+        .work-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 2rem;
+          margin-top: 4rem;
+        }
+
+        .work-card {
+          text-align: center;
+        }
+
+        .work-img-container {
+          width: 100%;
+          height: 180px;
+          border-radius: 12px;
+          overflow: hidden;
+          margin-bottom: 1rem;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .work-img-container img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.5s ease;
+        }
+
+        .work-card:hover .work-img-container img {
+          transform: scale(1.1);
+        }
+
+        .work-card h4 {
+          font-size: 0.95rem;
+          font-weight: 800;
+          color: #111;
+          line-height: 1.4;
+          padding: 0 0.5rem;
         }
 
         @media (max-width: 480px) {
@@ -475,6 +603,63 @@ export default function AboutPage() {
               </motion.div>
             </div>
           </motion.div>
+
+          {/* Our Process Section */}
+          <section className="process-section">
+            <div className="container">
+              <motion.h2 className="section-heading-main" variants={fadeInUp}>Our</motion.h2>
+              <motion.h3 className="section-heading-sub" variants={fadeInUp}>Process</motion.h3>
+              <motion.p className="section-desc" variants={fadeInUp}>
+                A simple and efficient approach to launch your advertising campaign.
+              </motion.p>
+
+              <motion.div className="process-grid" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+                {[
+                  { title: 'Plan', desc: 'We understand your goals and recommend the right placements.', icon: <Layout size={24} /> },
+                  { title: 'Design', desc: 'We create visuals that match your brand and campaign needs.', icon: <ArrowRight size={24} /> },
+                  { title: 'Execute', desc: 'We manage production and installation across selected locations.', icon: <Building2 size={24} /> },
+                  { title: 'Launch', desc: 'Your campaign goes live and reaches real audiences.', icon: <Globe size={24} /> }
+                ].map((step, idx) => (
+                  <motion.div key={idx} className="process-step" variants={fadeInUp}>
+                    <div className="process-icon">{step.icon}</div>
+                    <h3>{step.title}</h3>
+                    <p>{step.desc}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Where We Work Section */}
+          <section className="work-section">
+            <div className="container">
+              <motion.h2 className="section-heading-main" variants={fadeInUp}>Where</motion.h2>
+              <motion.h3 className="section-heading-sub" variants={fadeInUp}>We Work</motion.h3>
+              <motion.p className="section-desc" variants={fadeInUp}>
+                Our advertising placements span across high-traffic urban locations, ensuring your brand reaches the right audience in the spaces that matter most.
+              </motion.p>
+
+              <motion.div className="work-grid" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+                {[
+                  { title: 'Retail & Shopping Malls', img: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=600&q=80' },
+                  { title: 'Corporate & Business Centers', img: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=600&q=80' },
+                  { title: 'Hospitality (Hotels, Cafés & Restaurants)', img: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80' },
+                  { title: 'Real Estate & Property Developers', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80' },
+                  { title: 'Automotive & Logistics', img: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&q=80' },
+                  { title: 'Healthcare & Clinics', img: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80' },
+                  { title: 'Schools & Educational Institutions', img: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80' },
+                  { title: 'Government & Semi-Government Entities', img: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80' }
+                ].map((item, idx) => (
+                  <motion.div key={idx} className="work-card" variants={fadeInUp}>
+                    <div className="work-img-container">
+                      <img src={item.img} alt={item.title} />
+                    </div>
+                    <h4>{item.title}</h4>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </section>
 
           {/* Why Choose One Click - Accordion */}
           <motion.div
