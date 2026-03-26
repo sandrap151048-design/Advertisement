@@ -195,7 +195,7 @@ export default function ServicesPage() {
         .hero-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.1) 100%);
+          background: rgba(255, 255, 255, 0.4);
           z-index: 1;
         }
 
@@ -203,7 +203,7 @@ export default function ServicesPage() {
           position: relative;
           z-index: 2;
           text-align: center;
-          color: white;
+          color: #1a1a1a;
           max-width: 900px;
           padding: 2rem;
         }
@@ -214,7 +214,7 @@ export default function ServicesPage() {
           line-height: 1.1;
           margin-bottom: 1.5rem;
           letter-spacing: -2px;
-          text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+          color: #1a1a1a;
         }
 
         .hero-title .highlight {
@@ -223,7 +223,7 @@ export default function ServicesPage() {
 
         .hero-subtitle {
           font-size: clamp(1rem, 2vw, 1.2rem);
-          color: rgba(255,255,255,0.9);
+          color: #666;
           max-width: 600px;
           margin: 0 auto 2rem auto;
           line-height: 1.6;
@@ -713,8 +713,8 @@ export default function ServicesPage() {
         <section className="hero-services">
           <div className="hero-bg" style={{ backgroundColor: '#ffffff' }}>
             <img 
-              src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1800&q=80" 
-              alt="One Click Services - Bright Professional Urban" 
+              src="https://images.unsplash.com/photo-1497215842964-22254f4efad1?w=1800&q=80" 
+              alt="One Click Services - Bright High Key" 
               style={{ filter: 'brightness(1) contrast(1.05)' }}
             />
           </div>
