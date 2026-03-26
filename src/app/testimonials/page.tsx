@@ -240,7 +240,7 @@ export default function ProjectsPage() {
         {/* ─── Hero ─── */}
         <section style={{ position: 'relative', height: '100vh', minHeight: 600, overflow: 'hidden', paddingTop: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <img
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1800&q=80"
+            src="https://images.unsplash.com/photo-1504384308090-c89eec248a94?w=1800&q=80"
             alt="Hero"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.65)' }}
           />

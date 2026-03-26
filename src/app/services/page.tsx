@@ -713,9 +713,9 @@ export default function ServicesPage() {
         <section className="hero-services">
           <div className="hero-bg" style={{ backgroundColor: '#0a0a0a' }}>
             <img 
-              src="https://images.unsplash.com/photo-1449156001935-d25a83bc2724?w=1800&q=80" 
-              alt="Services - High Impact Media Flow" 
-              style={{ filter: 'brightness(0.6)', width: '100%', height: '100%', objectFit: 'cover' }}
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1800&q=80" 
+              alt="Services - Professional Advertising Hub" 
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
           </div>
           <div className="hero-overlay"></div>
