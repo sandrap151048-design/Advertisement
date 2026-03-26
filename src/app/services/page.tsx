@@ -183,13 +183,10 @@ export default function ServicesPage() {
           position: absolute;
           inset: 0;
           z-index: 0;
-        }
-
-        .hero-bg img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          filter: brightness(0.5);
+          background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1800&q=80');
+          background-size: cover;
+          background-position: center;
+          filter: brightness(0.65);
         }
 
         .hero-overlay {
@@ -711,13 +708,7 @@ export default function ServicesPage() {
       <div className="services-page">
         {/* Hero Section */}
         <section className="hero-services">
-          <div className="hero-bg" style={{ backgroundColor: '#0a0a0a' }}>
-            <img 
-              src="https://images.unsplash.com/photo-1542744095-2918e2f7fdfb?w=1800&q=80" 
-              alt="Services - Iconic Outdoor Media" 
-              style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.65)' }}
-            />
-          </div>
+          <div className="hero-bg"></div>
           <div className="hero-overlay"></div>
           <motion.div 
             className="hero-content"
