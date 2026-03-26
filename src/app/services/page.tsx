@@ -195,7 +195,7 @@ export default function ServicesPage() {
         .hero-overlay {
           position: absolute;
           inset: 0;
-          background: rgba(255, 255, 255, 0.4);
+          background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.3) 100%);
           z-index: 1;
         }
 
@@ -203,7 +203,7 @@ export default function ServicesPage() {
           position: relative;
           z-index: 2;
           text-align: center;
-          color: #1a1a1a;
+          color: white;
           max-width: 900px;
           padding: 2rem;
         }
@@ -214,7 +214,7 @@ export default function ServicesPage() {
           line-height: 1.1;
           margin-bottom: 1.5rem;
           letter-spacing: -2px;
-          color: #1a1a1a;
+          color: white;
         }
 
         .hero-title .highlight {
@@ -223,7 +223,7 @@ export default function ServicesPage() {
 
         .hero-subtitle {
           font-size: clamp(1rem, 2vw, 1.2rem);
-          color: #666;
+          color: rgba(255,255,255,0.9);
           max-width: 600px;
           margin: 0 auto 2rem auto;
           line-height: 1.6;
@@ -711,11 +711,11 @@ export default function ServicesPage() {
       <div className="services-page">
         {/* Hero Section */}
         <section className="hero-services">
-          <div className="hero-bg" style={{ backgroundColor: '#f0f0f0' }}>
+          <div className="hero-bg" style={{ backgroundColor: '#0a0a0a' }}>
             <img 
-              src="https://images.unsplash.com/photo-1542744095-2918e2f7fdfb?w=1800&q=80" 
-              alt="One Click Services - Outdoor Media" 
-              style={{ filter: 'brightness(0.95) contrast(1.1)', width: '100%', height: '100%', objectFit: 'cover' }}
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1800&q=80" 
+              alt="Services - One Click Advertisement" 
+              style={{ filter: 'brightness(0.6)', width: '100%', height: '100%', objectFit: 'cover' }}
             />
           </div>
           <div className="hero-overlay"></div>
