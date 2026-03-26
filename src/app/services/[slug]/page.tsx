@@ -238,7 +238,7 @@ export default function DynamicServicePage() {
         .hero-content {
           display: grid;
           grid-template-columns: 1fr 1.2fr;
-          gap: 2rem;
+          gap: 4rem;
           align-items: center;
         }
 
