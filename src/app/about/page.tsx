@@ -251,18 +251,40 @@ export default function AboutPage() {
           content: '';
           position: absolute;
           inset: 0;
-          background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1600&q=80');
+          background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1600&q=80');
           background-size: cover;
           background-position: center;
-          filter: brightness(0.4);
+          filter: brightness(0.35);
           z-index: 0;
+        }
+
+        .cta-content {
+          position: relative;
+          z-index: 2;
+          max-width: 800px;
+          margin: 0 auto;
+        }
+
+        .cta-section h2 {
+          font-size: clamp(2.5rem, 6vw, 4rem);
+          font-weight: 900;
+          margin-bottom: 2rem;
+          line-height: 1.1;
+          letter-spacing: -2px;
+        }
+
+        .cta-section p {
+          font-size: clamp(1.1rem, 2vw, 1.4rem);
+          color: rgba(255,255,255,0.9);
+          margin-bottom: 3rem;
+          line-height: 1.6;
         }
 
         .cta-button {
           display: inline-flex;
           align-items: center;
           gap: 0.8rem;
-          padding: 1.2rem 3rem;
+          padding: 1.2rem 3.5rem;
           background: white;
           color: #1a1a1a;
           font-weight: 800;
