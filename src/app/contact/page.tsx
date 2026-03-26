@@ -373,14 +373,126 @@ export default function ContactPage() {
           .hero-right {
             text-align: center;
             align-items: center;
+            max-width: 100%;
           }
           .touch-container {
-            flex-direction: column;
+            grid-template-columns: 1fr;
           }
           .touch-left, .touch-right {
             border-radius: 20px;
           }
         }
+
+        @media (max-width: 768px) {
+          .contact-hero {
+            padding: 0 5%;
+            min-height: 70vh;
+            height: auto;
+            padding-top: 100px;
+            padding-bottom: 3rem;
+          }
+
+          .contact-hero-content {
+            flex-direction: column;
+            gap: 1.5rem;
+            text-align: center;
+          }
+
+          .contact-hero-title {
+            font-size: 3rem;
+            letter-spacing: -1px;
+          }
+
+          .contact-hero-text {
+            font-size: 1rem;
+          }
+
+          .hero-right {
+            align-items: center;
+          }
+
+          .hero-cta-button {
+            margin: 0 auto;
+            text-align: center;
+          }
+
+          .touch-container {
+            grid-template-columns: 1fr;
+            padding: 3rem 1.5rem;
+            gap: 1.5rem;
+          }
+
+          .touch-left {
+            padding: 3rem 2rem;
+          }
+
+          .touch-right {
+            padding: 3rem 2rem;
+            border-radius: 20px;
+          }
+
+          .campaign-section {
+            padding: 5rem 1.5rem;
+          }
+
+          .campaign-title h2 {
+            font-size: 2.5rem;
+          }
+
+          .form-wrapper {
+            padding: 2rem 1.5rem;
+          }
+
+          .footer-black {
+            padding: 4rem 5% 3rem 5%;
+          }
+
+          .footer-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+          }
+
+          .info-item {
+            font-size: 0.95rem;
+            gap: 1rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .contact-hero {
+            padding: 100px 1.2rem 2rem;
+          }
+
+          .contact-hero-title {
+            font-size: 2.2rem;
+          }
+
+          .contact-hero-text {
+            font-size: 0.9rem;
+          }
+
+          .touch-left h2 {
+            font-size: 2rem;
+          }
+
+          .touch-left {
+            padding: 2.5rem 1.5rem;
+          }
+
+          .touch-right {
+            padding: 2.5rem 1.5rem;
+          }
+
+          .campaign-title h2 {
+            font-size: 2rem;
+          }
+
+          .footer-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+          }
+        }
+
       `}</style>
 
       <div className="contact-page">

@@ -281,17 +281,112 @@ export default function AboutPage() {
 
         @media (max-width: 768px) {
           .about-hero {
-            height: 60vh;
+            height: 70vh;
+            min-height: 500px;
+          }
+
+          .about-hero-title {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            letter-spacing: -2px;
+          }
+
+          .about-hero-title svg {
+            width: 48px !important;
+            height: 48px !important;
+          }
+
+          .about-hero-subtitle {
+            font-size: 0.95rem;
+            padding: 0 0.5rem;
+          }
+
+          .about-content {
+            padding: 3rem 1.2rem;
           }
 
           .section-layout {
             grid-template-columns: 1fr;
+            gap: 2rem;
+          }
+
+          .section-info {
+            position: relative;
+            top: auto;
+            padding: 2rem;
+          }
+
+          .section-info h2 {
+            font-size: 2rem;
+          }
+
+          .section-images {
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+          }
+
+          .section-image {
+            height: 200px;
           }
 
           .accordion-section {
-            padding: 3rem 1.5rem;
+            padding: 2.5rem 1.2rem;
+            border-radius: 20px;
+          }
+
+          .accordion-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            letter-spacing: -0.5px;
+          }
+
+          .accordion-title svg {
+            width: 32px !important;
+            height: 32px !important;
+          }
+
+          .accordion-header {
+            font-size: 1.1rem;
+          }
+
+          .cta-section {
+            padding: 5rem 1.5rem;
+            border-radius: 20px;
+          }
+
+          .cta-button {
+            padding: 1rem 2rem;
+            font-size: 1rem;
           }
         }
+
+        @media (max-width: 480px) {
+          .about-hero {
+            height: 60vh;
+          }
+
+          .about-hero-title {
+            font-size: 2rem;
+            letter-spacing: -1px;
+          }
+
+          .section-images {
+            grid-template-columns: 1fr;
+          }
+
+          .section-image {
+            height: 220px;
+          }
+
+          .accordion-title {
+            font-size: 1.6rem;
+          }
+
+          .accordion-header {
+            font-size: 1rem;
+            padding: 1rem 0;
+          }
+        }
+
       `}</style>
 
       <div className="about-page">

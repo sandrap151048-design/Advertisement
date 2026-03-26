@@ -608,29 +608,103 @@ export default function ServicesPage() {
         /* Responsive */
         @media (max-width: 768px) {
           .hero-services {
-            margin-top: 80px;
-            height: 60vh;
+            height: 70vh;
+            min-height: 500px;
+            padding-top: 80px;
+          }
+
+          .hero-title {
+            font-size: clamp(2rem, 8vw, 3rem);
+            letter-spacing: -1px;
+          }
+
+          .hero-subtitle {
+            font-size: 0.95rem;
+            padding: 0 1rem;
+          }
+
+          .services-section {
+            padding: 3rem 1rem 0 1rem;
           }
 
           .services-grid {
             grid-template-columns: 1fr;
             gap: 1.5rem;
+            padding: 0 0.5rem;
           }
 
           .service-card {
-            height: auto;
-            min-height: 250px;
+            height: 260px;
+          }
+
+          .service-title {
+            font-size: 1.4rem;
+          }
+
+          .why-choose-section {
+            padding: 3rem 1rem 4rem 1rem;
           }
 
           .why-choose-container {
             grid-template-columns: 1fr;
-            gap: 3rem;
+            gap: 2rem;
+          }
+
+          .why-choose-content h2 {
+            font-size: 2rem;
+            text-align: center;
+          }
+
+          .why-choose-content p {
+            text-align: center;
           }
 
           .cta-section {
-            height: 50vh;
+            height: auto;
+            min-height: 350px;
+            padding: 4rem 1rem;
+          }
+
+          .cta-title {
+            font-size: 2rem;
+          }
+
+          .cta-subtitle {
+            font-size: 0.95rem;
+          }
+
+          .cta-button {
+            padding: 0.9rem 2rem;
+            font-size: 0.95rem;
           }
         }
+
+        @media (max-width: 480px) {
+          .hero-services {
+            height: 60vh;
+          }
+
+          .hero-title {
+            font-size: 1.9rem;
+          }
+
+          .services-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .service-card {
+            height: 220px;
+          }
+
+          .service-title {
+            font-size: 1.2rem;
+          }
+
+          .service-overlay {
+            padding: 1.2rem;
+          }
+        }
+
       `}</style>
 
       <div className="services-page">

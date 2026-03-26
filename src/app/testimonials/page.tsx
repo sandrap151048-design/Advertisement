@@ -160,6 +160,79 @@ export default function ProjectsPage() {
         *::-webkit-scrollbar { display: none; }
         @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
         @keyframes shimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
+
+        @media (max-width: 768px) {
+          /* Hero */
+          section[style*="height: 100vh"] {
+            padding-top: 80px !important;
+          }
+
+          /* Category tabs */
+          div[style*="staggerChildren"] > div {
+            justify-content: flex-start;
+            overflow-x: auto;
+            flex-wrap: nowrap;
+            padding-bottom: 0.5rem;
+          }
+
+          /* Split layout: stack vertically */
+          div[style*="gridTemplateColumns: '1fr 1.6fr'"] {
+            grid-template-columns: 1fr !important;
+            gap: 2rem !important;
+          }
+
+          /* Image grid: 1 column on mobile */
+          div[style*="gridTemplateColumns: 'repeat(2,1fr)'"] {
+            grid-template-columns: 1fr !important;
+            gap: 1rem !important;
+          }
+
+          /* Admin projects grid: 1 column */
+          div[style*="repeat(auto-fill, minmax(320px, 1fr))"] {
+            grid-template-columns: 1fr !important;
+            gap: 1.2rem !important;
+          }
+
+          /* Sticky panel: remove sticky on mobile */
+          div[style*="position: 'sticky'"] {
+            position: relative !important;
+            top: auto !important;
+          }
+
+          /* Headings */
+          h1[style*="clamp(3rem"] {
+            font-size: 2.5rem !important;
+            letter-spacing: -1px !important;
+          }
+
+          h2[style*="clamp(2.5rem"] {
+            font-size: 2rem !important;
+          }
+
+          h3[style*="font-size: '3rem'"] {
+            font-size: 2rem !important;
+          }
+
+          /* CTA section */
+          section[style*="padding: '6rem 2rem'"] {
+            padding: 4rem 1.5rem !important;
+          }
+
+          /* Footer */
+          footer {
+            padding: 4rem 1.5rem 3rem !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          h1[style*="clamp(3rem"] {
+            font-size: 2rem !important;
+          }
+
+          h2[style*="clamp(2.5rem"] {
+            font-size: 1.8rem !important;
+          }
+        }
       `}</style>
 
       <div style={{ background: '#f4f4f0', minHeight: '100vh' }}>
