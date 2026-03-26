@@ -74,7 +74,7 @@ export default function AdminLoginPage() {
 
                 .login-right {
                     flex: 1;
-                    background-image: url('/login-model-bw.png');
+                    background-image: url('/admin-billboard.png');
                     background-size: cover;
                     background-position: center;
                     position: relative;
@@ -360,9 +360,6 @@ export default function AdminLoginPage() {
                             </button>
                         </div>
 
-                        <div className="create-account">
-                            Need an account? <a href="/register">Create one</a>
-                        </div>
                     </form>
                 </div>
             </div>

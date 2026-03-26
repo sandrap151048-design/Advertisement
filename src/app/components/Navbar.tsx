@@ -20,8 +20,6 @@ export default function Navbar() {
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
-  const categories = ['Branding', 'Digital', 'Signage', 'Vehicle', 'Events', 'Interior'];
-
   return (
     <>
       <style jsx global>{`
@@ -91,21 +89,6 @@ export default function Navbar() {
         }
         .nav-link:hover::after { width: 100%; }
 
-        .dropdown-container { position: relative; cursor: pointer; }
-        .dropdown-menu {
-          position: absolute; top: 100%; left: -20px; background: #111; border: 1px solid rgba(255,255,255,0.1);
-          border-radius: 8px; padding: 12px; min-width: 220px; opacity: 0; visibility: hidden;
-          transform: translateY(10px); transition: all 0.3s;
-          box-shadow: 0 20px 40px rgba(0,0,0,0.6); display: grid; gap: 4px;
-        }
-        .dropdown-container:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-        
-        .dropdown-item {
-          color: rgba(255,255,255,0.7); text-decoration: none; padding: 10px 18px; border-radius: 4px;
-          font-size: 0.85rem; font-weight: 600; transition: all 0.2s;
-        }
-        .dropdown-item:hover { background: rgba(230,30,37,0.1); color: #e61e25; transform: translateX(5px); }
-
         .btn-login {
           padding: 10px 24px; background: #e61e25; color: white; text-decoration: none;
           font-size: 0.9rem; font-weight: 700; border-radius: 4px; transition: all 0.3s;
@@ -151,27 +134,14 @@ export default function Navbar() {
 
             <div className="navbar-nav">
               <Link href="/" className="nav-link">Home</Link>
-              <div className="dropdown-container">
-                <div className="nav-link">
-                  Projects <ChevronDown size={14} />
-                </div>
-                <div className="dropdown-menu">
-                  <Link href="/projects" className="dropdown-item">All Work</Link>
-                  {categories.map(cat => (
-                    <Link key={cat} href={`/projects?filter=${cat}`} className="dropdown-item">
-                      {cat} Branding
-                    </Link>
-                  ))}
-                </div>
-              </div>
+              <Link href="/projects" className="nav-link">Projects</Link>
               <Link href="/services" className="nav-link">Services</Link>
               <Link href="/about" className="nav-link">About</Link>
               <Link href="/contact" className="nav-link">Contact</Link>
             </div>
 
             <div className="navbar-actions" style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-              <Link href="/register" style={{ color: 'white', textDecoration: 'none', fontWeight: 600, fontSize: '0.85rem' }}>Register</Link>
-              <Link href="/admin/login" className="btn-login">Login</Link>
+              <Link href="/admin/login" className="btn-login">Admin Login</Link>
             </div>
 
             <button className="mobile-toggle" onClick={toggleMobileMenu} style={{ background: 'none', border: 'none' }}>

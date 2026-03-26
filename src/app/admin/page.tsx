@@ -65,7 +65,7 @@ export default function AdminPage() {
     const handleLogout = () => {
         localStorage.removeItem('adminAuth');
         localStorage.removeItem('adminUser');
-        router.push('/admin/login');
+        router.push('/');
     };
 
     const isActivePath = (path: string) => {
@@ -186,11 +186,11 @@ export default function AdminPage() {
                         </p>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                        {/* Contact Info Button */}
+                        {/* Go to Website Button */}
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            onClick={() => setIsContactModalOpen(true)}
+                            onClick={() => router.push('/')}
                             style={{
                                 background: 'linear-gradient(135deg, #2c4a5e 0%, #e61e25 100%)',
                                 border: 'none',
@@ -207,8 +207,8 @@ export default function AdminPage() {
                                 transition: 'all 0.3s ease'
                             }}
                         >
-                            <Phone size={18} />
-                            Contact Info
+                            <Home size={18} />
+                            Go to Website
                         </motion.button>
                         
                         <motion.div 

@@ -14,7 +14,7 @@ export default function AdminSidebar() {
     const handleLogout = () => {
         localStorage.removeItem('adminAuth');
         localStorage.removeItem('adminUser');
-        router.push('/admin/login');
+        router.push('/');
     };
 
     const isActivePath = (path: string) => {

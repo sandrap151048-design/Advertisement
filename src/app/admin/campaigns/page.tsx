@@ -89,7 +89,7 @@ export default function CampaignsPage() {
   const handleLogout = () => {
     localStorage.removeItem('adminAuth');
     localStorage.removeItem('adminUser');
-    router.push('/admin/login');
+    router.push('/');
   };
 
   const navLinks = [
