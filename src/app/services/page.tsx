@@ -713,8 +713,8 @@ export default function ServicesPage() {
         <section className="hero-services">
           <div className="hero-bg" style={{ backgroundColor: '#0a0a0a' }}>
             <img 
-              src="https://i.pinimg.com/736x/6f/c3/83/6fc383b3d9a28795b28b59cdcc6187a3.jpg" 
-              alt="Services - Aesthetically Impactful Display" 
+              src="https://i.pinimg.com/736x/e6/88/6e/e6886e0381ed885a85cbe6d8f13f7d20.jpg" 
+              alt="Services - Aesthetic Branding" 
               style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.7)' }}
             />
           </div>
