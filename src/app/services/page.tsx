@@ -104,12 +104,15 @@ export default function ServicesPage() {
   };
 
   // Combine hardcoded services with database services, ignoring blank database entries
-  const allServices = [...services, ...dbServices.filter((s:any) => s.name).map((service:any) => ({
-    title: service.name,
-    image: service.items && service.items[0] ? service.items[0] : "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80",
-    description: service.description,
-    link: "#"
-  }))];
+  const allServices = [...services, ...dbServices.filter((s:any) => s.name).map((service:any) => {
+    const slug = service.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    return {
+      title: service.name,
+      image: service.items && service.items[0] ? service.items[0] : "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80",
+      description: service.description,
+      link: `/services/${slug}`
+    };
+  })];
 
   const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = e.currentTarget;
