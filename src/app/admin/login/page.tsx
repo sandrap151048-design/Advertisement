@@ -6,7 +6,7 @@ import { Eye, EyeOff } from 'lucide-react';
 
 export default function AdminLoginPage() {
     const router = useRouter();
-    const [formData, setFormData] = useState({ email: '', password: '' });
+    const [formData, setFormData] = useState({ email: 'admin@gmail.com', password: 'password123456' });
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
@@ -300,8 +300,8 @@ export default function AdminLoginPage() {
                                 placeholder="Email"
                                 className="form-input"
                                 value={formData.email}
-                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                required
+                                readOnly
+                                style={{ cursor: 'not-allowed', opacity: 0.8 }}
                             />
                         </div>
 

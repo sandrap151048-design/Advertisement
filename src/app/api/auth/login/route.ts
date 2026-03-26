@@ -11,8 +11,10 @@ export async function POST(request: NextRequest) {
             );
         }
 
+        const normalizedEmail = email.trim().toLowerCase();
+
         // Verify fixed credentials
-        if (email === 'admin@gmail.com' && password === 'password123456') {
+        if (normalizedEmail === 'admin@gmail.com' && password === 'password123456') {
             return NextResponse.json({
                 success: true,
                 user: {
