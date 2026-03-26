@@ -712,8 +712,8 @@ export default function ServicesPage() {
         <section className="hero-services">
           <div className="hero-bg">
             <img 
-              src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1600&q=80" 
-              alt="Stand Out Everywhere - High Impact Services" 
+              src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1800&q=80" 
+              alt="Stand Out Everywhere - Dark Professional" 
             />
           </div>
           <div className="hero-overlay"></div>

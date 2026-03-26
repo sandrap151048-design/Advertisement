@@ -500,8 +500,8 @@ export default function ContactPage() {
         <section className="contact-hero">
           <div className="contact-hero-bg">
             <img 
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1800&q=80" 
-              alt="Contact One Click - Premium Dark Office" 
+              src="https://images.unsplash.com/photo-1504384308090-c89eec248a94?w=1800&q=80" 
+              alt="Contact One Click - Dark Professional Office" 
             />
           </div>
           <div className="contact-hero-overlay"></div>
