@@ -45,7 +45,7 @@ export default function Footer() {
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
               <li><Link href="/how-it-works" style={{ color: '#888', textDecoration: 'none', fontSize: '1rem', transition: 'color 0.3s' }}>How it Works</Link></li>
               <li><Link href="/faq" style={{ color: '#888', textDecoration: 'none', fontSize: '1rem', transition: 'color 0.3s' }}>FAQs</Link></li>
-              <li><Link href="/privacy" style={{ color: '#888', textDecoration: 'none', fontSize: '1rem', transition: 'color 0.3s' }}>Terms & Conditions</Link></li>
+              <li><Link href="/terms" style={{ color: '#888', textDecoration: 'none', fontSize: '1rem', transition: 'color 0.3s' }}>Terms & Conditions</Link></li>
               <li><Link href="/privacy" style={{ color: '#888', textDecoration: 'none', fontSize: '1rem', transition: 'color 0.3s' }}>Privacy Policy</Link></li>
             </ul>
           </div>
