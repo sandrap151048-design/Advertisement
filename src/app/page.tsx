@@ -248,11 +248,11 @@ export default function Home() {
         .btn-secondary {
           background: transparent;
           color: white;
-          border: 2px solid #e61e25;
+          border: 2px solid white;
         }
 
         .btn-secondary:hover {
-          background: rgba(230, 30, 37, 0.1);
+          background: rgba(255, 255, 255, 0.1);
           transform: translateY(-2px);
         }
 
