@@ -1342,7 +1342,7 @@ export default function Home() {
             Launch your outdoor campaign with high-impact placements across prime locations - fast, simple, and effective.
           </motion.p>
           <motion.div variants={fadeInUp}>
-            <Link href="/campaign" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.8rem', padding: '1rem 2.5rem', background: 'white', color: '#1a1a1a', fontWeight: 700, borderRadius: '8px', textDecoration: 'none', transition: 'all 0.3s ease', fontSize: '1rem' }}>
+            <Link href="/contact#campaign" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.8rem', padding: '1rem 2.5rem', background: 'white', color: '#1a1a1a', fontWeight: 700, borderRadius: '8px', textDecoration: 'none', transition: 'all 0.3s ease', fontSize: '1rem' }}>
               Start your campaign <ArrowRight size={20} />
             </Link>
           </motion.div>

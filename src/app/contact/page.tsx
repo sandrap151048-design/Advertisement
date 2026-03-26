@@ -557,50 +557,6 @@ export default function ContactPage() {
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="footer-black">
-          <div className="footer-grid">
-            <div className="footer-col">
-              <h4>Services</h4>
-              <ul>
-                <li><Link href="/services">Brand Identity</Link></li>
-                <li><Link href="/services">Digital Printing</Link></li>
-                <li><Link href="/services">Vehicle Branding</Link></li>
-                <li><Link href="/services">Display Solutions</Link></li>
-                <li><Link href="/services">Signage</Link></li>
-                <li><Link href="/services">Facade & Cladding</Link></li>
-              </ul>
-            </div>
-            <div className="footer-col">
-              <h4>Company</h4>
-              <ul>
-                <li><Link href="/about">About Us</Link></li>
-                <li><Link href="/projects">Our Work</Link></li>
-                <li><Link href="/locations">Locations</Link></li>
-                <li><Link href="/contact">Contact</Link></li>
-              </ul>
-            </div>
-            <div className="footer-col">
-              <h4>Support</h4>
-              <ul>
-                <li><Link href="/how-it-works">How It Works</Link></li>
-                <li><Link href="/faqs">FAQs</Link></li>
-                <li><Link href="/terms">Terms & Conditions</Link></li>
-                <li><Link href="/privacy">Privacy Policy</Link></li>
-              </ul>
-            </div>
-            <div className="footer-col">
-              <h4>Connect with us</h4>
-              <ul>
-                <li><a href="tel:+971524065110"><Phone size={14} style={{ marginRight: 8, verticalAlign: 'middle' }} />+971 52 406 5110</a></li>
-                <li><a href="mailto:hello@oneclickadv.ae"><Mail size={14} style={{ marginRight: 8, verticalAlign: 'middle' }} />hello@oneclickadv.ae</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <p>© 2026 One Click. All rights reserved.</p>
-          </div>
-        </footer>
       </div>
     </>
   );
