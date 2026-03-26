@@ -219,13 +219,13 @@ export default function AdminPage() {
                              </div>
                         </motion.div>
 
-                        <style jsx>{`
+                        <style dangerouslySetInnerHTML={{ __html: `
                             @media (max-width: 1024px) {
                                 .admin-contact-info {
                                     display: none !important;
                                 }
                             }
-                        `}</style>
+                        ` }} />
 
 
                         {/* Go to Website Button */}
