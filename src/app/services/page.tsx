@@ -713,9 +713,9 @@ export default function ServicesPage() {
         <section className="hero-services">
           <div className="hero-bg" style={{ backgroundColor: '#0a0a0a' }}>
             <img 
-              src="https://i.pinimg.com/736x/e6/88/6e/e6886e0381ed885a85cbe6d8f13f7d20.jpg" 
-              alt="Services - Aesthetic Branding" 
-              style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.7)' }}
+              src="https://images.unsplash.com/photo-1542744095-2918e2f7fdfb?w=1800&q=80" 
+              alt="Services - Iconic Outdoor Media" 
+              style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.65)' }}
             />
           </div>
           <div className="hero-overlay"></div>
@@ -830,8 +830,8 @@ export default function ServicesPage() {
         <section className="cta-section">
           <div className="cta-bg">
             <img 
-              src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1600&q=80" 
-              alt="Ready to make your brand" 
+              src="https://images.unsplash.com/photo-1514565131-fce0801e5785?w=1600&q=80" 
+              alt="Ready to make your brand impossible to ignore" 
             />
           </div>
           <div className="cta-overlay"></div>
