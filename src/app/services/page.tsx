@@ -711,11 +711,11 @@ export default function ServicesPage() {
       <div className="services-page">
         {/* Hero Section */}
         <section className="hero-services">
-          <div className="hero-bg" style={{ backgroundColor: '#ffffff' }}>
+          <div className="hero-bg" style={{ backgroundColor: '#f0f0f0' }}>
             <img 
-              src="https://images.unsplash.com/photo-1497215842964-22254f4efad1?w=1800&q=80" 
-              alt="One Click Services - Bright High Key" 
-              style={{ filter: 'brightness(1) contrast(1.05)' }}
+              src="https://images.unsplash.com/photo-1542744095-2918e2f7fdfb?w=1800&q=80" 
+              alt="One Click Services - Outdoor Media" 
+              style={{ filter: 'brightness(0.95) contrast(1.1)', width: '100%', height: '100%', objectFit: 'cover' }}
             />
           </div>
           <div className="hero-overlay"></div>
