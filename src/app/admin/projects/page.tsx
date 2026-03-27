@@ -223,7 +223,14 @@ export default function AdminProjectsPage() {
                         >
                             <div style={{ height: '180px', width: '100%', position: 'relative', background: '#f5f5f5' }}>
                                 {project.image ? (
-                                    <img src={project.image} alt={project.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                    <img 
+                                        src={project.image} 
+                                        alt={project.title} 
+                                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                        onError={(e) => {
+                                            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80';
+                                        }}
+                                    />
                                 ) : (
                                     <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ccc' }}>
                                         <ImageIcon size={48} />

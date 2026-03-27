@@ -754,7 +754,13 @@ export default function ServicesPage() {
                   onMouseMove={handleCardMouseMove}
                   onClick={(e) => handleCardClick(e, service.link)}
                 >
-                  <img src={service.image} alt={service.title} />
+                  <img 
+                    src={service.image} 
+                    alt={service.title} 
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80';
+                    }}
+                  />
                   <div className="service-overlay">
                     <h3 className="service-title">{service.title}</h3>
                     <p className="service-desc">{service.description}</p>

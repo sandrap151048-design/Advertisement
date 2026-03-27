@@ -460,7 +460,15 @@ function ProjectsContent() {
                                         <div className={`cluster-images ${project.images.length === 1 ? 'single' : ''}`}>
                                             {project.images.length > 0 ? (
                                                 project.images.map((img, i) => (
-                                                    <img key={i} src={img} alt={`${project.title} ${i + 1}`} className="cluster-img" />
+                                                    <img 
+                                                        key={i} 
+                                                        src={img} 
+                                                        alt={`${project.title} ${i + 1}`} 
+                                                        className="cluster-img" 
+                                                        onError={(e) => {
+                                                            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80';
+                                                        }}
+                                                    />
                                                 ))
                                             ) : (
                                                 <div className="cluster-img-placeholder">

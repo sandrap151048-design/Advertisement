@@ -206,7 +206,14 @@ export default function ServicesPage() {
                             >
                                 <div style={{ height: '160px', width: '100%', position: 'relative', background: '#eee' }}>
                                     {service.image ? (
-                                        <img src={service.image} alt={service.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                        <img 
+                                            src={service.image} 
+                                            alt={service.name} 
+                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                            onError={(e) => {
+                                                (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80';
+                                            }}
+                                        />
                                     ) : (
                                         <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999' }}>
                                             <Briefcase size={40} />
