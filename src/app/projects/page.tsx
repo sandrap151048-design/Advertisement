@@ -23,18 +23,18 @@ interface Project {
 const ALL_PROJECTS: Project[] = [
     {
         id: 'def-1',
-        title: 'Brand Identity',
-        description: 'Explore our branding projects featuring logo applications, interior branding, and complete identity systems designed to create strong, consistent, and memorable brand experiences across the UAE.',
+        title: 'Brand Identity Showcase',
+        description: 'Complete visual identity transformation featuring premium logo design, color theory application, and comprehensive brand guidelines for a global corporate client.',
         category: 'Brand Identity',
         images: [
-            'https://images.unsplash.com/photo-1572044162444-ad60f128bde3?w=800&q=80',
-            'https://images.unsplash.com/photo-1558403194-611308249627?w=800&q=80'
+            'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80',
+            'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80'
         ]
     },
     {
         id: 'def-2',
-        title: 'Digital Printing',
-        description: 'High-precision digital printing solutions for large format displays, wall graphics, and promotional materials that capture attention with vibrant colors and sharp details.',
+        title: 'Digital Printing Excellence',
+        description: 'High-precision large format printing for luxury retail displays, capturing vibrant colors and sharp details to maximize visual pull in high-traffic shopping malls.',
         category: 'Digital Printing',
         images: [
             'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80',
@@ -43,8 +43,8 @@ const ALL_PROJECTS: Project[] = [
     },
     {
         id: 'def-2-2',
-        title: 'Indoor Banner Display',
-        description: 'Vibrant indoor banner solutions for retail and corporate events, featuring high-impact graphics and durable finishes that ensure your message stands out in any environment.',
+        title: 'Indoor Creative Displays',
+        description: 'Innovative indoor banner solutions for corporate environments, utilizing premium materials and high-definition printing to deliver clear and professional brand messaging.',
         category: 'Digital Printing',
         images: [
             'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&q=80',
@@ -53,38 +53,48 @@ const ALL_PROJECTS: Project[] = [
     },
     {
         id: 'def-3',
-        title: 'Vehicle Branding',
-        description: 'Premium vehicle wraps and fleet branding that turn your company vehicles into mobile billboards, maximizing brand exposure across Dubai and Abu Dhabi.',
+        title: 'Premium Vehicle Wraps',
+        description: 'State-of-the-art vehicle branding for commercial fleets, using high-durability vinyl to ensure long-lasting brand visibility across the UAE.',
         category: 'Vehicle Branding',
         images: [
-            'https://images.unsplash.com/photo-1603380353725-f8a4d39cc41e?w=800&q=80',
-            'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80'
+            'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80',
+            'https://images.unsplash.com/photo-1603380353725-f8a4d39cc41e?w=800&q=80'
         ]
     },
     {
         id: 'def-4',
-        title: 'Signage Solutions',
-        description: 'Custom-engineered 3D LED signage, commercial signboards, and wayfinding systems built to international standards for maximum durability and night-time visibility.',
+        title: 'Strategic Signage Systems',
+        description: 'High-visibility 3D LED signage installations designed for maximum impact in premium commercial districts, ensuring your brand stays visible 24/7.',
         category: 'Signage',
         images: [
             'https://images.unsplash.com/photo-1542744094-24638eff58bb?w=800&q=80',
-            'https://images.unsplash.com/photo-1581447100511-c0536294e19b?w=800&q=80'
+            'https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&q=80'
+        ]
+    },
+    {
+        id: 'def-4-2',
+        title: 'Commercial Wayfinding',
+        description: 'Comprehensive wayfinding and directional signage solutions for large-scale developments, merging functionality with sophisticated design.',
+        category: 'Signage',
+        images: [
+            'https://images.unsplash.com/photo-1581447100511-c0536294e19b?w=800&q=80',
+            'https://images.unsplash.com/photo-1574634534894-89d7576c8259?w=800&q=80'
         ]
     },
     {
         id: 'def-5',
-        title: 'Display Solutions',
-        description: 'Innovative point-of-sale displays and exhibition stands focused on customer engagement and product showcasing in high-traffic retail environments.',
+        title: 'POS Display Solutions',
+        description: 'Custom-designed point-of-sale displays focused on driving customer engagement and maximizing product visibility in competitive retail settings.',
         category: 'Display Solutions',
         images: [
             'https://images.unsplash.com/photo-1531053326607-9d349096d887?w=800&q=80',
-            'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&q=80'
+            'https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800&q=80'
         ]
     },
     {
         id: 'def-6',
-        title: 'Facade & Cladding',
-        description: 'Turnkey architectural finishes including high-quality ACP cladding and shopfront facade branding that elevate the visual identity of commercial buildings.',
+        title: 'Architectural Facades',
+        description: 'Premium building facade solutions combining high-quality ACP cladding with integrated signage to create a powerful architectural identity.',
         category: 'Facade & Cladding',
         images: [
             'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
