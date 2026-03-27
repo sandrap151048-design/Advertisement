@@ -24,7 +24,7 @@ const ALL_PROJECTS: Project[] = [
     {
         id: 'def-1',
         title: 'Brand Identity',
-        description: 'Explore our branding projects featuring logo applications, interior branding, and complete identity systems designed to create strong, consistent, and memorable brand experiences.',
+        description: 'Explore our branding projects featuring logo applications, interior branding, and complete identity systems designed to create strong, consistent, and memorable brand experiences across the UAE.',
         category: 'Brand Identity',
         images: [
             'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80',
@@ -42,9 +42,19 @@ const ALL_PROJECTS: Project[] = [
         ]
     },
     {
+        id: 'def-2-2',
+        title: 'Indoor Banner Display',
+        description: 'Vibrant indoor banner solutions for retail and corporate events, featuring high-impact graphics and durable finishes that ensure your message stands out in any environment.',
+        category: 'Digital Printing',
+        images: [
+            'https://images.unsplash.com/photo-1603511110328-360d5b415a77?w=800&q=80',
+            'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80'
+        ]
+    },
+    {
         id: 'def-3',
         title: 'Vehicle Branding',
-        description: 'Premium vehicle wraps and fleet branding that turn your company vehicles into mobile billboards, maximizing brand exposure across the UAE.',
+        description: 'Premium vehicle wraps and fleet branding that turn your company vehicles into mobile billboards, maximizing brand exposure across Dubai and Abu Dhabi.',
         category: 'Vehicle Branding',
         images: [
             'https://images.unsplash.com/photo-1562611400-053644026360?w=800&q=80',
@@ -54,11 +64,31 @@ const ALL_PROJECTS: Project[] = [
     {
         id: 'def-4',
         title: 'Signage Solutions',
-        description: 'Custom-engineered 3D LED signage, commercial signboards, and wayfinding systems built to international standards for maximum durability and visibility.',
+        description: 'Custom-engineered 3D LED signage, commercial signboards, and wayfinding systems built to international standards for maximum durability and night-time visibility.',
         category: 'Signage',
         images: [
-            'https://images.unsplash.com/photo-1581447100511-c0536294e19b?w=800&q=80',
-            'https://images.unsplash.com/photo-1574634534894-89d7576c8259?w=800&q=80'
+            'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80',
+            'https://images.unsplash.com/photo-1581447100511-c0536294e19b?w=800&q=80'
+        ]
+    },
+    {
+        id: 'def-5',
+        title: 'Display Solutions',
+        description: 'Innovative point-of-sale displays and exhibition stands focused on customer engagement and product showcasing in high-traffic retail environments.',
+        category: 'Display Solutions',
+        images: [
+            'https://images.unsplash.com/photo-1531053326607-9d349096d887?w=800&q=80',
+            'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&q=80'
+        ]
+    },
+    {
+        id: 'def-6',
+        title: 'Facade & Cladding',
+        description: 'Turnkey architectural finishes including high-quality ACP cladding and shopfront facade branding that elevate the visual identity of commercial buildings.',
+        category: 'Facade & Cladding',
+        images: [
+            'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
+            'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80'
         ]
     }
 ];
