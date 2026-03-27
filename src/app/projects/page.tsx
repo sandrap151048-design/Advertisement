@@ -20,30 +20,7 @@ interface Project {
     detailsTitle?: string;
 }
 
-const ALL_PROJECTS: Project[] = [
-    {
-        id: '1',
-        title: 'Brand Identity',
-        detailsTitle: 'Brand Identity',
-        description: 'Explore our branding projects featuring high-impact logo identity, visual branding, and complete commercial identities that deliver a strong brand impression and maximize your business presence.',
-        category: 'Brand Identity',
-        images: [
-            'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80',
-            'https://images.unsplash.com/photo-1542744094-24638eff58bb?w=800&q=80'
-        ]
-    },
-    {
-        id: '2',
-        title: 'Signage Solutions',
-        detailsTitle: 'Downtown Digital',
-        description: 'State-of-the-art 3D LED signage installations and high-impact digital displays that dominate busy commercial locations and maximize night-time visibility.',
-        category: 'Signage',
-        images: [
-            'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80',
-            'https://images.unsplash.com/photo-1542744094-24638eff58bb?w=800&q=80'
-        ]
-    }
-];
+const ALL_PROJECTS: Project[] = [];
 
 function ProjectsContent() {
     const router = useRouter();
@@ -93,11 +70,11 @@ function ProjectsContent() {
     const CATEGORY_IMAGES: { [key: string]: string[] } = {
         'Brand Identity': [
             'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80',
-            'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80'
+            'https://images.unsplash.com/photo-1558403194-611308249627?w=800&q=80'
         ],
         'Digital Printing': [
             'https://images.unsplash.com/photo-1562564055-71e051d33c19?w=800&q=80',
-            'https://images.unsplash.com/photo-1549416878-b9ca95e26903?w=800&q=80'
+            'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80'
         ],
         'Vehicle Branding': [
             'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80',
@@ -109,7 +86,7 @@ function ProjectsContent() {
         ],
         'Signages': [
             'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80',
-            'https://images.unsplash.com/photo-1542744094-24638eff58bb?w=800&q=80'
+            'https://images.unsplash.com/photo-1581447100511-c0536294e19b?w=800&q=80'
         ],
         'Façade & Cladding': [
             'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
