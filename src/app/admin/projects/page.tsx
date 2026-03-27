@@ -178,7 +178,7 @@ export default function AdminProjectsPage() {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem', gap: '1.5rem' }}>
                 <div>
                     <h1 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#1a1a1a', marginBottom: '0.5rem' }}>
-                        Portfolio <span style={{ color: '#e61e25' }}>Management</span>
+                        Projects <span style={{ color: '#e61e25' }}>Management</span>
                     </h1>
                 </div>
                 <motion.button 
