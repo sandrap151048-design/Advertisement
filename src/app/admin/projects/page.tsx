@@ -76,6 +76,23 @@ export default function AdminProjectsPage() {
         setIsLoading(false);
     };
 
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            // Check file size (limit 2MB for Base64)
+            if (file.size > 2 * 1024 * 1024) {
+                alert('File is too large! Please select an image smaller than 2MB.');
+                e.target.value = '';
+                return;
+            }
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setFormData({ ...formData, image: reader.result as string });
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     const handleAddProject = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
@@ -85,15 +102,19 @@ export default function AdminProjectsPage() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
             });
+            const data = await res.json();
             if (res.ok) {
                 setSuccessMessage('Project added successfully!');
                 setIsAddModalOpen(false);
-                setFormData({ title: '', description: '', category: 'Branding', image: '', clientName: '' });
+                setFormData({ title: '', description: '', category: 'Brand Identity', image: '', clientName: '' });
                 fetchProjects();
                 setTimeout(() => setSuccessMessage(''), 3000);
+            } else {
+                alert('Error: ' + (data.error || 'Failed to create project'));
             }
         } catch (error) {
             console.error('Error adding project:', error);
+            alert('Something went wrong. Please check your connection and try again.');
         }
         setIsSubmitting(false);
     };
@@ -131,17 +152,6 @@ export default function AdminProjectsPage() {
             }
         } catch (error) {
             console.error('Error deleting project:', error);
-        }
-    };
-
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setFormData({ ...formData, image: reader.result as string });
-            };
-            reader.readAsDataURL(file);
         }
     };
 
