@@ -226,6 +226,20 @@ export default function AdminProjectsPage() {
                                     </span>
                                 </div>
                                 <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#1a1a1a' }}>{project.title}</h3>
+                                {project.image && (
+                                    <p style={{ 
+                                        fontSize: '0.7rem', 
+                                        color: '#999', 
+                                        background: '#f8fafc', 
+                                        padding: '4px 8px', 
+                                        borderRadius: '4px',
+                                        margin: '0.5rem 0',
+                                        wordBreak: 'break-all',
+                                        fontFamily: 'monospace'
+                                    }}>
+                                        {project.image}
+                                    </p>
+                                )}
                                 <p style={{ color: '#666', fontSize: '0.9rem', margin: '1rem 0', lineHeight: 1.5, flex: 1 }}>{project.description}</p>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid #eee', paddingTop: '1rem', alignItems: 'center' }}>
                                     <div style={{ display: 'flex', gap: '0.5rem' }}>

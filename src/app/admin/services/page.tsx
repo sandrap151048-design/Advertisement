@@ -219,6 +219,20 @@ export default function ServicesPage() {
                                     <h3 style={{ fontSize: '1.2rem', marginBottom: '0.8rem', color: '#1a1a1a', fontWeight: 800 }}>
                                         {service.name}
                                     </h3>
+                                    {service.image && (
+                                        <p style={{ 
+                                            fontSize: '0.7rem', 
+                                            color: '#999', 
+                                            background: '#f5f5f5', 
+                                            padding: '4px 8px', 
+                                            borderRadius: '4px',
+                                            marginBottom: '1rem',
+                                            wordBreak: 'break-all',
+                                            fontFamily: 'monospace'
+                                        }}>
+                                            {service.image}
+                                        </p>
+                                    )}
                                     <p style={{ color: '#666', fontSize: '0.85rem', lineHeight: '1.6', flex: 1, marginBottom: '1rem' }}>
                                         {service.description}
                                     </p>
