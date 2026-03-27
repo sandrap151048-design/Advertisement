@@ -20,7 +20,48 @@ interface Project {
     detailsTitle?: string;
 }
 
-const ALL_PROJECTS: Project[] = [];
+const ALL_PROJECTS: Project[] = [
+    {
+        id: 'def-1',
+        title: 'Brand Identity',
+        description: 'Explore our branding projects featuring logo applications, interior branding, and complete identity systems designed to create strong, consistent, and memorable brand experiences.',
+        category: 'Brand Identity',
+        images: [
+            'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80',
+            'https://images.unsplash.com/photo-1558403194-611308249627?w=800&q=80'
+        ]
+    },
+    {
+        id: 'def-2',
+        title: 'Digital Printing',
+        description: 'High-precision digital printing solutions for large format displays, wall graphics, and promotional materials that capture attention with vibrant colors and sharp details.',
+        category: 'Digital Printing',
+        images: [
+            'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80',
+            'https://images.unsplash.com/photo-1572044162444-ad60f128bde3?w=800&q=80'
+        ]
+    },
+    {
+        id: 'def-3',
+        title: 'Vehicle Branding',
+        description: 'Premium vehicle wraps and fleet branding that turn your company vehicles into mobile billboards, maximizing brand exposure across the UAE.',
+        category: 'Vehicle Branding',
+        images: [
+            'https://images.unsplash.com/photo-1562611400-053644026360?w=800&q=80',
+            'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80'
+        ]
+    },
+    {
+        id: 'def-4',
+        title: 'Signage Solutions',
+        description: 'Custom-engineered 3D LED signage, commercial signboards, and wayfinding systems built to international standards for maximum durability and visibility.',
+        category: 'Signage',
+        images: [
+            'https://images.unsplash.com/photo-1581447100511-c0536294e19b?w=800&q=80',
+            'https://images.unsplash.com/photo-1574634534894-89d7576c8259?w=800&q=80'
+        ]
+    }
+];
 
 function ProjectsContent() {
     const router = useRouter();
@@ -30,7 +71,7 @@ function ProjectsContent() {
 
     const categories = [
         'All', 'Brand Identity', 'Digital Printing', 'Vehicle Branding', 
-        'Display Solutions', 'Signages', 'Façade & Cladding'
+        'Display Solutions', 'Signage', 'Facade & Cladding'
     ];
 
     useEffect(() => {
@@ -84,11 +125,11 @@ function ProjectsContent() {
             'https://images.unsplash.com/photo-1531053326607-9d349096d887?w=800&q=80',
             'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&q=80'
         ],
-        'Signages': [
+        'Signage': [
             'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80',
             'https://images.unsplash.com/photo-1581447100511-c0536294e19b?w=800&q=80'
         ],
-        'Façade & Cladding': [
+        'Facade & Cladding': [
             'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
             'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80'
         ]
