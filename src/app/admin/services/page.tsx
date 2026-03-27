@@ -99,6 +99,17 @@ export default function ServicesPage() {
         }
     };
 
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setFormData({ ...formData, image: reader.result as string });
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     const handleLogout = () => {
         localStorage.removeItem('adminAuth');
         localStorage.removeItem('adminUser');
@@ -357,13 +368,12 @@ export default function ServicesPage() {
                                 </div>
                                 <div>
                                     <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem' }}>
-                                        Image URL
+                                        Image (Direct Upload)
                                     </label>
                                     <input
-                                        type="text"
-                                        value={formData.image}
-                                        onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                                        placeholder="https://images.unsplash.com/..."
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={handleFileChange}
                                         style={{
                                             width: '100%',
                                             padding: '0.8rem',
@@ -373,6 +383,11 @@ export default function ServicesPage() {
                                             fontSize: '0.95rem'
                                         }}
                                     />
+                                    {formData.image && (
+                                        <div style={{ marginTop: '1rem', height: '100px', borderRadius: '8px', overflow: 'hidden' }}>
+                                            <img src={formData.image} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                        </div>
+                                    )}
                                 </div>
                                 <div>
                                     <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem' }}>

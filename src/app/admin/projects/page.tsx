@@ -134,6 +134,17 @@ export default function AdminProjectsPage() {
         }
     };
 
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setFormData({ ...formData, image: reader.result as string });
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     const openEditModal = (project: Project) => {
         setCurrentProject(project);
         setFormData({
@@ -325,15 +336,20 @@ export default function AdminProjectsPage() {
                                 </div>
 
                                 <div style={{ marginBottom: '1.2rem' }}>
-                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem', color: '#333' }}>Image URL</label>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem', color: '#333' }}>
+                                        Image (Direct Upload)
+                                    </label>
                                     <input 
-                                        type="text"
-                                        required
-                                        value={formData.image}
-                                        onChange={e => setFormData({...formData, image: e.target.value})}
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={handleFileChange}
                                         style={{ width: '100%', padding: '0.8rem 1rem', borderRadius: '10px', border: '1px solid #ddd', color: '#000', background: '#ffffff' }}
-                                        placeholder="https://images.unsplash.com/..."
                                     />
+                                    {formData.image && (
+                                        <div style={{ marginTop: '1rem', height: '100px', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee' }}>
+                                            <img src={formData.image} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                        </div>
+                                    )}
                                 </div>
 
                                 <div style={{ marginBottom: '2rem' }}>
