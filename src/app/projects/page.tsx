@@ -47,11 +47,48 @@ const ALL_PROJECTS: Project[] = [
 
 function ProjectsContent() {
     const router = useRouter();
-    const [filterCategory, setFilterCategory] = useState('Brand Identity');
+    const [filterCategory, setFilterCategory] = useState('All');
+    const [dynamicProjects, setDynamicProjects] = useState<Project[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
     const categories = [
-        'Brand Identity', 'Digital Printing', 'Vehicle Branding', 
+        'All', 'Brand Identity', 'Digital Printing', 'Vehicle Branding', 
         'Display Solutions', 'Signages', 'Façade & Cladding'
     ];
+
+    useEffect(() => {
+        fetchDynamicProjects();
+    }, []);
+
+    const fetchDynamicProjects = async () => {
+        setIsLoading(true);
+        try {
+            const res = await fetch('/api/projects');
+            const data = await res.json();
+            if (data.projects) {
+                // Adapt dynamic projects to public interface
+                const adapted = data.projects.map((p: any) => ({
+                    id: p.id,
+                    title: p.title,
+                    description: p.description,
+                    category: p.category,
+                    images: p.image ? [p.image] : [],
+                    detailsTitle: p.title
+                }));
+                setDynamicProjects(adapted);
+            }
+        } catch (error) {
+            console.error('Error fetching dynamic projects:', error);
+        }
+        setIsLoading(false);
+    };
+
+    const combinedProjects = [...ALL_PROJECTS, ...dynamicProjects];
+
+    const filteredProjects = combinedProjects.filter(p => {
+        if (filterCategory === 'All') return true;
+        return p.category.toLowerCase().includes(filterCategory.toLowerCase());
+    });
 
     const CATEGORY_IMAGES: { [key: string]: string[] } = {
         'Brand Identity': [
@@ -79,8 +116,6 @@ function ProjectsContent() {
             'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80'
         ]
     };
-
-    const projectImages = CATEGORY_IMAGES[filterCategory] || CATEGORY_IMAGES['Brand Identity'];
 
     const fadeInUp = {
         hidden: { opacity: 0, y: 30 },
@@ -345,20 +380,43 @@ function ProjectsContent() {
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: -20 }}
                             transition={{ duration: 0.5 }}
+                            style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}
                         >
-                            {/* In a real app, I'd filter ALL_PROJECTS by category here */}
-                            <div className="project-cluster">
-                                <div className="cluster-text">
-                                    <h2 className="cluster-title">{filterCategory}</h2>
-                                    <p className="cluster-desc">
-                                        Explore our {filterCategory.toLowerCase()} projects featuring high-impact logo identity, visual branding, and complete commercial identities that deliver a strong brand impression and maximize your business presence in the UAE market.
-                                    </p>
+                            {isLoading ? (
+                                <div style={{ display: 'flex', justifyContent: 'center', padding: '5rem' }}>
+                                    <Loader2 className="animate-spin" size={40} color="#e61e25" />
                                 </div>
-                                <div className="cluster-images">
-                                    <img src={projectImages[0]} alt="Work 1" className="cluster-img" />
-                                    <img src={projectImages[1]} alt="Work 2" className="cluster-img" />
+                            ) : filteredProjects.length > 0 ? (
+                                filteredProjects.map((project, idx) => (
+                                    <div key={project.id || idx} className="project-cluster" style={{ flexDirection: idx % 2 === 0 ? 'row' : 'row-reverse' }}>
+                                        <div className="cluster-text">
+                                            <h2 className="cluster-title">{project.title}</h2>
+                                            <p className="cluster-desc">
+                                                {project.description}
+                                            </p>
+                                            <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: '#e61e25', fontWeight: 800, textDecoration: 'none', marginTop: '1rem', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                                                Enquire Now <ArrowRight size={18} />
+                                            </Link>
+                                        </div>
+                                        <div className="cluster-images">
+                                            {project.images.length > 0 ? (
+                                                project.images.map((img, i) => (
+                                                    <img key={i} src={img} alt={`${project.title} ${i + 1}`} className="cluster-img" />
+                                                ))
+                                            ) : (
+                                                <div style={{ background: '#f5f5f5', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '300px' }}>
+                                                    <ImageIcon size={48} color="#ccc" />
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                ))
+                            ) : (
+                                <div style={{ textAlign: 'center', padding: '5rem', background: '#f9f9f9', borderRadius: '24px' }}>
+                                    <h3 style={{ fontSize: '1.5rem', color: '#666', marginBottom: '1rem' }}>No projects found in this category</h3>
+                                    <button onClick={() => setFilterCategory('All')} style={{ background: '#e61e25', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '12px', fontWeight: 700, cursor: 'pointer' }}>View All Projects</button>
                                 </div>
-                            </div>
+                            )}
                         </motion.div>
                     </AnimatePresence>
                 </div>
