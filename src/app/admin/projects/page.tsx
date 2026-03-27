@@ -214,14 +214,14 @@ export default function AdminProjectsPage() {
                     <Loader2 className="animate-spin" size={40} color="#e61e25" />
                 </div>
             ) : (
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '2rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '1.5rem' }}>
                     {filteredProjects.map((project) => (
                         <motion.div 
                             layout
                             key={project.id} 
-                            style={{ background: 'white', borderRadius: '20px', overflow: 'hidden', border: '1px solid #f0f0f0', boxShadow: '0 4px 15px rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column' }}
+                            style={{ background: 'white', borderRadius: '16px', overflow: 'hidden', border: '1px solid #f0f0f0', boxShadow: '0 4px 12px rgba(0,0,0,0.04)', display: 'flex', flexDirection: 'column' }}
                         >
-                            <div style={{ height: '180px', width: '100%', position: 'relative', background: '#f5f5f5' }}>
+                            <div style={{ height: '140px', width: '100%', position: 'relative', background: '#f5f5f5' }}>
                                 {project.image ? (
                                     <img 
                                         src={project.image} 
@@ -233,17 +233,17 @@ export default function AdminProjectsPage() {
                                     />
                                 ) : (
                                     <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ccc' }}>
-                                        <ImageIcon size={48} />
+                                        <ImageIcon size={32} />
                                     </div>
                                 )}
                             </div>
-                            <div style={{ padding: '1.5rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                                <div style={{ marginBottom: '1rem' }}>
-                                    <span style={{ background: 'rgba(230, 30, 37, 0.1)', color: '#e61e25', padding: '4px 12px', borderRadius: '20px', fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px' }}>
+                            <div style={{ padding: '1.2rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                                <div style={{ marginBottom: '0.8rem' }}>
+                                    <span style={{ background: 'rgba(230, 30, 37, 0.1)', color: '#e61e25', padding: '3px 10px', borderRadius: '20px', fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                                         {project.category}
                                     </span>
                                 </div>
-                                <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#1a1a1a' }}>{project.title}</h3>
+                                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1a1a1a' }}>{project.title}</h3>
                                 {project.image && (
                                     <p style={{ 
                                         fontSize: '0.7rem', 
