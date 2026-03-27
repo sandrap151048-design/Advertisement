@@ -139,7 +139,7 @@ export default function ServicesPage() {
                 )}
                 <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
                     <div>
-                        <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#1a1a1a', fontFamily: "'Outfit', sans-serif" }}>Services Management</h1>
+                        <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#1a1a1a', fontFamily: "'Outfit', sans-serif" }}>Services <span style={{ color: '#e61e25' }}>Management</span></h1>
                         <p style={{ color: '#666', fontSize: '0.9rem' }}>Manage your public service offerings</p>
                     </div>
                     <button 
