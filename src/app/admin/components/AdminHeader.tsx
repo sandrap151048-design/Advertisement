@@ -15,7 +15,22 @@ export default function AdminHeader({ title, subtitle, actionButton }: AdminHead
     const currentDate = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
     return (
-        <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '2.5rem', borderBottom: '1px solid rgba(0,0,0,0.05)', marginBottom: '2.5rem' }}>
+        <header style={{ 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center', 
+            padding: '1.5rem 2rem', 
+            borderBottom: '1px solid rgba(0,0,0,0.05)', 
+            marginBottom: '2.5rem',
+            position: 'sticky',
+            top: 0,
+            zIndex: 100,
+            background: 'rgba(255, 255, 255, 0.8)',
+            backdropFilter: 'blur(12px)',
+            marginLeft: '-2rem',
+            marginRight: '-2rem',
+            marginTop: '-2rem'
+        }}>
             <div>
                 <motion.div 
                     initial={{ opacity: 0, x: -20 }}
