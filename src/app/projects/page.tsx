@@ -27,7 +27,7 @@ const ALL_PROJECTS: Project[] = [
         description: 'Explore our branding projects featuring logo applications, interior branding, and complete identity systems designed to create strong, consistent, and memorable brand experiences across the UAE.',
         category: 'Brand Identity',
         images: [
-            'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80',
+            'https://images.unsplash.com/photo-1572044162444-ad60f128bde3?w=800&q=80',
             'https://images.unsplash.com/photo-1558403194-611308249627?w=800&q=80'
         ]
     },
@@ -38,7 +38,7 @@ const ALL_PROJECTS: Project[] = [
         category: 'Digital Printing',
         images: [
             'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80',
-            'https://images.unsplash.com/photo-1572044162444-ad60f128bde3?w=800&q=80'
+            'https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&q=80'
         ]
     },
     {
@@ -47,7 +47,7 @@ const ALL_PROJECTS: Project[] = [
         description: 'Vibrant indoor banner solutions for retail and corporate events, featuring high-impact graphics and durable finishes that ensure your message stands out in any environment.',
         category: 'Digital Printing',
         images: [
-            'https://images.unsplash.com/photo-1603511110328-360d5b415a77?w=800&q=80',
+            'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&q=80',
             'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80'
         ]
     },
@@ -57,7 +57,7 @@ const ALL_PROJECTS: Project[] = [
         description: 'Premium vehicle wraps and fleet branding that turn your company vehicles into mobile billboards, maximizing brand exposure across Dubai and Abu Dhabi.',
         category: 'Vehicle Branding',
         images: [
-            'https://images.unsplash.com/photo-1562611400-053644026360?w=800&q=80',
+            'https://images.unsplash.com/photo-1603380353725-f8a4d39cc41e?w=800&q=80',
             'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80'
         ]
     },
@@ -67,7 +67,7 @@ const ALL_PROJECTS: Project[] = [
         description: 'Custom-engineered 3D LED signage, commercial signboards, and wayfinding systems built to international standards for maximum durability and night-time visibility.',
         category: 'Signage',
         images: [
-            'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80',
+            'https://images.unsplash.com/photo-1542744094-24638eff58bb?w=800&q=80',
             'https://images.unsplash.com/photo-1581447100511-c0536294e19b?w=800&q=80'
         ]
     },
@@ -442,9 +442,6 @@ function ProjectsContent() {
                                             <p className="cluster-desc">
                                                 {project.description}
                                             </p>
-                                            <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: '#e61e25', fontWeight: 800, textDecoration: 'none', marginTop: '1rem', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
-                                                Enquire Now <ArrowRight size={18} />
-                                            </Link>
                                         </div>
                                         <div className="cluster-images">
                                             {project.images.length > 0 ? (
