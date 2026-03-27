@@ -31,32 +31,27 @@ export default function Navbar() {
         .navbar-wrapper {
           position: fixed;
           top: 0; left: 0; right: 0; width: 100%; z-index: 1000;
-          display: flex; justify-content: center; padding: 20px 40px;
+          background: rgba(10, 10, 10, 0.9);
+          backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
           transition: all 0.4s ease;
         }
 
         .floating-navbar {
           width: 100%; max-width: 1400px;
-          background: rgba(10, 10, 10, 0.9);
-          backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          border-radius: 16px; padding: 0 10px;
+          margin: 0 auto;
           transition: all 0.4s ease;
         }
 
         .navbar-wrapper.scrolled {
-          padding: 10px 40px;
-        }
-
-        .floating-navbar.scrolled {
-          background: rgba(0, 0, 0, 0.9);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-          border-color: rgba(230, 30, 37, 0.3);
+          background: rgba(0, 0, 0, 0.95);
+          border-bottom: 1px solid rgba(230, 30, 37, 0.4);
+          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
         }
 
         .navbar-container {
           display: flex; align-items: center; justify-content: space-between;
-          padding: 10px 30px;
+          padding: 15px 40px;
         }
 
         .logo-main {
