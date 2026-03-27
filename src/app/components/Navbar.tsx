@@ -29,7 +29,7 @@ export default function Navbar() {
         }
 
         .navbar-wrapper {
-          position: fixed;
+          position: absolute;
           top: 0; left: 0; right: 0; width: 100%; z-index: 1000;
           display: flex; justify-content: center; padding: 20px 40px;
           transition: all 0.4s ease;
@@ -42,16 +42,6 @@ export default function Navbar() {
           border: 1px solid rgba(255, 255, 255, 0.1);
           border-radius: 16px; padding: 0 10px;
           transition: all 0.4s ease;
-        }
-
-        .navbar-wrapper.scrolled {
-          padding: 10px 40px;
-        }
-
-        .floating-navbar.scrolled {
-          background: rgba(0, 0, 0, 0.9);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-          border-color: rgba(230, 30, 37, 0.3);
         }
 
         .navbar-container {
