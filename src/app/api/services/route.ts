@@ -22,7 +22,7 @@ export async function GET() {
 export async function POST(request: Request) {
     try {
         const body = await request.json();
-        const { name, description, category, items } = body;
+        const { name, description, category, items, image } = body;
 
         if (!name || !description || !category) {
             return NextResponse.json(
@@ -36,6 +36,7 @@ export async function POST(request: Request) {
             name,
             description,
             category,
+            image: image || '',
             items: items ? items.filter((item: string) => item.trim()) : [],
             createdAt: new Date()
         };

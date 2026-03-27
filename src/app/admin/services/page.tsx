@@ -12,6 +12,7 @@ interface Service {
     name: string;
     description: string;
     category: string;
+    image?: string;
     items?: string[];
     createdAt: string;
 }
@@ -27,6 +28,7 @@ export default function ServicesPage() {
         name: '',
         description: '',
         category: '',
+        image: '',
         items: ['', '', '', '']
     });
 
@@ -65,7 +67,7 @@ export default function ServicesPage() {
 
             if (response.ok) {
                 setShowAddModal(false);
-                setFormData({ name: '', description: '', category: '', items: ['', '', '', ''] });
+                setFormData({ name: '', description: '', category: '', image: '', items: ['', '', '', ''] });
                 setSuccessMessage('Service added successfully!');
                 setTimeout(() => setSuccessMessage(''), 3000);
                 fetchServices();
@@ -106,7 +108,7 @@ export default function ServicesPage() {
     if (!isAuthenticated) return null;
 
     return (
-        <div style={{ padding: '0' }}>
+        <div style={{ padding: '2rem', background: '#f8fafc', minHeight: '100vh', paddingBottom: '100px' }}>
                 {successMessage && (
                     <div style={{
                         position: 'fixed',
@@ -124,14 +126,13 @@ export default function ServicesPage() {
                         {successMessage}
                     </div>
                 )}
-                <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '1.5rem', borderBottom: '1px solid rgba(44, 74, 94, 0.2)' }}>
+                <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
                     <div>
-                        <h1 style={{ fontSize: '1.8rem', marginBottom: '0.3rem', fontWeight: 800, fontFamily: "'Outfit', sans-serif", color: '#1a1a1a' }}>
-Services <span style={{ color: '#e61e25', fontWeight: 700 }}>Management</span></h1>
-                        <p style={{ color: '#666666', fontSize: '0.9rem', fontFamily: "'Space Grotesk', sans-serif" }}>Manage your service offerings</p>
+                        <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#1a1a1a', fontFamily: "'Outfit', sans-serif" }}>Services Management</h1>
+                        <p style={{ color: '#666', fontSize: '0.9rem' }}>Manage your public service offerings</p>
                     </div>
-                    <button
-                        onClick={() => setShowAddModal(true)}
+                    <button 
+                        onClick={() => setShowAddModal(true)} 
                         style={{ 
                             display: 'flex', 
                             alignItems: 'center', 
@@ -190,58 +191,69 @@ Services <span style={{ color: '#e61e25', fontWeight: 700 }}>Management</span></
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 className="glass-card"
-                                style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column' }}
+                                style={{ padding: '0', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}
                             >
-                                <div style={{ marginBottom: '1rem' }}>
-                                    <span style={{ 
-                                        background: 'rgba(124, 58, 237, 0.1)', 
-                                        color: 'var(--color-primary)',
-                                        padding: '0.3rem 0.8rem',
-                                        borderRadius: '6px',
-                                        fontSize: '0.75rem',
-                                        fontWeight: 600,
-                                        textTransform: 'uppercase'
-                                    }}>
-                                        {service.category}
-                                    </span>
+                                <div style={{ height: '160px', width: '100%', position: 'relative', background: '#eee' }}>
+                                    {service.image ? (
+                                        <img src={service.image} alt={service.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                    ) : (
+                                        <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999' }}>
+                                            <Briefcase size={40} />
+                                        </div>
+                                    )}
                                 </div>
-                                <h3 style={{ fontSize: '1.2rem', marginBottom: '0.8rem', color: 'var(--color-text-main)', fontFamily: "'Syne', sans-serif" }}>
-                                    {service.name}
-                                </h3>
-                                <p style={{ color: 'var(--color-text-muted)', fontSize: '0.9rem', lineHeight: '1.6', flex: 1, marginBottom: '1rem', fontFamily: "'Manrope', sans-serif" }}>
-                                    {service.description}
-                                </p>
-                                {service.items && service.items.length > 0 && (
-                                    <ul style={{ color: 'var(--color-text-muted)', paddingLeft: '0', listStyleType: 'none', fontSize: '0.85rem', lineHeight: '1.8', marginBottom: '1rem' }}>
-                                        {service.items.filter(item => item.trim()).map((item, idx) => (
-                                            <li key={idx} style={{ marginBottom: '0.5rem', paddingLeft: '1.2rem', position: 'relative' }}>
-                                                <span style={{ position: 'absolute', left: 0, color: 'var(--color-primary)', fontWeight: 'bold' }}>•</span>
-                                                {item}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
-                                <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid var(--color-card-border)' }}>
-                                    <button
-                                        onClick={() => handleDelete(service._id)}
-                                        style={{
-                                            flex: 1,
-                                            background: 'rgba(239, 68, 68, 0.1)',
-                                            border: '1px solid rgba(239, 68, 68, 0.3)',
-                                            color: '#ef4444',
-                                            padding: '0.6rem',
-                                            borderRadius: '8px',
-                                            cursor: 'pointer',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            gap: '0.5rem',
-                                            fontSize: '0.85rem',
-                                            fontWeight: 600
-                                        }}
-                                    >
-                                        <Trash2 size={16} /> Delete
-                                    </button>
+                                <div style={{ padding: '1.5rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                                    <div style={{ marginBottom: '0.5rem' }}>
+                                        <span style={{ 
+                                            background: 'rgba(230, 30, 37, 0.1)', 
+                                            color: '#e61e25',
+                                            padding: '0.2rem 0.6rem',
+                                            borderRadius: '4px',
+                                            fontSize: '0.7rem',
+                                            fontWeight: 700,
+                                            textTransform: 'uppercase'
+                                        }}>
+                                            {service.category}
+                                        </span>
+                                    </div>
+                                    <h3 style={{ fontSize: '1.2rem', marginBottom: '0.8rem', color: '#1a1a1a', fontWeight: 800 }}>
+                                        {service.name}
+                                    </h3>
+                                    <p style={{ color: '#666', fontSize: '0.85rem', lineHeight: '1.6', flex: 1, marginBottom: '1rem' }}>
+                                        {service.description}
+                                    </p>
+                                    {service.items && service.items.length > 0 && (
+                                        <ul style={{ color: 'var(--color-text-muted)', paddingLeft: '0', listStyleType: 'none', fontSize: '0.85rem', lineHeight: '1.8', marginBottom: '1rem' }}>
+                                            {service.items.filter(item => item.trim()).map((item, idx) => (
+                                                <li key={idx} style={{ marginBottom: '0.5rem', paddingLeft: '1.2rem', position: 'relative' }}>
+                                                    <span style={{ position: 'absolute', left: 0, color: 'var(--color-primary)', fontWeight: 'bold' }}>•</span>
+                                                    {item}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                    <div style={{ display: 'flex', gap: '0.5rem', marginTop: 'auto', paddingTop: '1rem', borderTop: '1px solid #eee' }}>
+                                        <button
+                                            onClick={() => handleDelete(service._id)}
+                                            style={{
+                                                flex: 1,
+                                                background: 'rgba(239, 68, 68, 0.1)',
+                                                border: '1px solid rgba(239, 68, 68, 0.3)',
+                                                color: '#ef4444',
+                                                padding: '0.6rem',
+                                                borderRadius: '8px',
+                                                cursor: 'pointer',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                gap: '0.5rem',
+                                                fontSize: '0.85rem',
+                                                fontWeight: 600
+                                            }}
+                                        >
+                                            <Trash2 size={16} /> Delete
+                                        </button>
+                                    </div>
                                 </div>
                             </motion.div>
                         ))}
@@ -326,6 +338,25 @@ Services <span style={{ color: '#e61e25', fontWeight: 700 }}>Management</span></
                                             background: 'rgba(124, 58, 237, 0.03)',
                                             fontSize: '0.95rem',
                                             resize: 'vertical'
+                                        }}
+                                    />
+                                </div>
+                                <div>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem' }}>
+                                        Image URL
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={formData.image}
+                                        onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                                        placeholder="https://images.unsplash.com/..."
+                                        style={{
+                                            width: '100%',
+                                            padding: '0.8rem',
+                                            borderRadius: '8px',
+                                            border: '1px solid var(--color-card-border)',
+                                            background: 'rgba(124, 58, 237, 0.03)',
+                                            fontSize: '0.95rem'
                                         }}
                                     />
                                 </div>

@@ -123,7 +123,7 @@ export default function ServicesPage() {
     const slug = service.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
     return {
       title: service.name,
-      image: service.items && service.items[0] ? service.items[0] : "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80",
+      image: service.image || "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80",
       description: service.description,
       link: `/services/${slug}`
     };

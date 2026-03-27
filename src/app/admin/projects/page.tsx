@@ -208,16 +208,25 @@ export default function AdminProjectsPage() {
                         <motion.div 
                             layout
                             key={project.id} 
-                            style={{ background: 'white', borderRadius: '20px', overflow: 'hidden', border: '1px solid #f0f0f0', boxShadow: '0 4px 15px rgba(0,0,0,0.05)' }}
+                            style={{ background: 'white', borderRadius: '20px', overflow: 'hidden', border: '1px solid #f0f0f0', boxShadow: '0 4px 15px rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column' }}
                         >
-                            <div style={{ padding: '1.5rem' }}>
+                            <div style={{ height: '180px', width: '100%', position: 'relative', background: '#f5f5f5' }}>
+                                {project.image ? (
+                                    <img src={project.image} alt={project.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                ) : (
+                                    <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ccc' }}>
+                                        <ImageIcon size={48} />
+                                    </div>
+                                )}
+                            </div>
+                            <div style={{ padding: '1.5rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
                                 <div style={{ marginBottom: '1rem' }}>
                                     <span style={{ background: 'rgba(230, 30, 37, 0.1)', color: '#e61e25', padding: '4px 12px', borderRadius: '20px', fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px' }}>
                                         {project.category}
                                     </span>
                                 </div>
                                 <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#1a1a1a' }}>{project.title}</h3>
-                                <p style={{ color: '#666', fontSize: '0.9rem', margin: '1rem 0', lineHeight: 1.5 }}>{project.description}</p>
+                                <p style={{ color: '#666', fontSize: '0.9rem', margin: '1rem 0', lineHeight: 1.5, flex: 1 }}>{project.description}</p>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid #eee', paddingTop: '1rem', alignItems: 'center' }}>
                                     <div style={{ display: 'flex', gap: '0.5rem' }}>
                                         <button onClick={() => openEditModal(project)} style={{ padding: '8px', borderRadius: '8px', border: 'none', background: '#f8fafc', color: '#64748b', cursor: 'pointer' }} title="Edit"><Edit2 size={16} /></button>
@@ -298,6 +307,18 @@ export default function AdminProjectsPage() {
                                         value={formData.clientName}
                                         onChange={e => setFormData({...formData, clientName: e.target.value})}
                                         style={{ width: '100%', padding: '0.8rem 1rem', borderRadius: '10px', border: '1px solid #ddd', color: '#000', background: '#ffffff' }}
+                                    />
+                                </div>
+
+                                <div style={{ marginBottom: '1.2rem' }}>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem', color: '#333' }}>Image URL</label>
+                                    <input 
+                                        type="text"
+                                        required
+                                        value={formData.image}
+                                        onChange={e => setFormData({...formData, image: e.target.value})}
+                                        style={{ width: '100%', padding: '0.8rem 1rem', borderRadius: '10px', border: '1px solid #ddd', color: '#000', background: '#ffffff' }}
+                                        placeholder="https://images.unsplash.com/..."
                                     />
                                 </div>
 
