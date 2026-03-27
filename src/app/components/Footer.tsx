@@ -32,8 +32,8 @@ export default function Footer() {
           <div>
             <h4 style={{ fontSize: '1.2rem', fontWeight: 800, marginBottom: '2.5rem', color: 'white', letterSpacing: '-0.5px' }}>Company</h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
-              <li><Link href="/about" style={{ color: '#888', textDecoration: 'none', fontSize: '1rem', transition: 'color 0.3s' }}>About Us</Link></li>
-              <li><Link href="/projects" style={{ color: '#888', textDecoration: 'none', fontSize: '1rem', transition: 'color 0.3s' }}>Our Work</Link></li>
+              <li><Link href="/about" style={{ color: '#888', textDecoration: 'none', fontSize: '1rem', transition: 'color 0.3s' }}>About</Link></li>
+              <li><Link href="/projects" style={{ color: '#888', textDecoration: 'none', fontSize: '1rem', transition: 'color 0.3s' }}>Projects</Link></li>
               <li><Link href="/locations" style={{ color: '#888', textDecoration: 'none', fontSize: '1rem', transition: 'color 0.3s' }}>Locations</Link></li>
               <li><Link href="/contact" style={{ color: '#888', textDecoration: 'none', fontSize: '1rem', transition: 'color 0.3s' }}>Contact</Link></li>
             </ul>
@@ -67,8 +67,18 @@ export default function Footer() {
         </div>
 
         {/* Footer Bottom */}
-        <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '40px', textAlign: 'center', color: '#666', fontSize: '0.9rem', fontWeight: 500 }}>
-          &copy; {currentYear || new Date().getFullYear()} One Click. All rights reserved.
+        <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '40px', textAlign: 'center', color: '#666', fontSize: '0.9rem', fontWeight: 500, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
+          <Link href="/" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0', fontSize: '1.6rem', fontWeight: 800, color: 'white', fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+              <svg width="28" height="28" viewBox="0 0 28 28" style={{ marginRight: '-1px' }}>
+                <circle cx="14" cy="14" r="11" fill="none" stroke="white" strokeWidth="4"/>
+                <rect x="16" y="2" width="9" height="9" fill="#e61e25" rx="1"/>
+              </svg>
+              <span style={{ marginLeft: '-1px' }}>ne Click</span>
+            </div>
+            <div style={{ color: '#888', fontWeight: '900', letterSpacing: '4px', fontSize: '0.65rem', marginTop: '4px' }}>ADVERTISEMENT</div>
+          </Link>
+          &copy; {currentYear || new Date().getFullYear()} One Click Advertisement. All rights reserved.
         </div>
       </div>
 

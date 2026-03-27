@@ -547,13 +547,13 @@ export default function ServicesPage() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          filter: brightness(0.4);
+          filter: brightness(0.7);
         }
 
         .cta-overlay {
           position: absolute;
           inset: 0;
-          background: rgba(0,0,0,0.5);
+          background: rgba(0,0,0,0.4);
           z-index: 1;
         }
 
@@ -562,7 +562,7 @@ export default function ServicesPage() {
           z-index: 2;
           text-align: center;
           color: white;
-          max-width: 800px;
+          max-width: 100%;
           padding: 2rem;
         }
 
@@ -821,7 +821,7 @@ export default function ServicesPage() {
         <section className="cta-section">
           <div className="cta-bg">
             <img 
-              src="https://images.unsplash.com/photo-1514565131-fce0801e5785?w=1600&q=80" 
+              src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1600&q=80" 
               alt="Ready to make your brand impossible to ignore" 
             />
           </div>

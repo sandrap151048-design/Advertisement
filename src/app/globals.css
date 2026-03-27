@@ -46,6 +46,7 @@ select:focus {
 html {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
+  scroll-padding-top: 100px; /* Offset for fixed navbar */
 }
 
 html::-webkit-scrollbar {

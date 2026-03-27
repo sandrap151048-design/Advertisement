@@ -16,6 +16,7 @@ import {
     Loader2
 } from 'lucide-react';
 import Link from 'next/link';
+import AdminFooter from '../components/AdminFooter';
 
 interface Project {
     id: string;
@@ -329,6 +330,7 @@ export default function AdminProjectsPage() {
                 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
                 .animate-spin { animation: spin 1s linear infinite; }
             `}</style>
+            <AdminFooter />
         </div>
     );
 }

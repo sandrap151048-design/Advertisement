@@ -387,6 +387,7 @@ export default function Home() {
           overflow: hidden;
           cursor: pointer;
           transition: transform 0.3s ease;
+          position: relative;
         }
 
         .portfolio-item:hover {
@@ -397,6 +398,38 @@ export default function Home() {
           width: 100%;
           height: 100%;
           object-fit: cover;
+        }
+
+        .portfolio-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 100%);
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          align-items: flex-start;
+          padding: 1.5rem;
+          color: white;
+          text-align: left;
+          transition: all 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+          background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.3) 100%);
+        }
+
+        .portfolio-title {
+          font-size: 1.4rem;
+          font-weight: 800;
+          margin-bottom: 0.5rem;
+          color: white;
+          line-height: 1.2;
+        }
+
+        .portfolio-desc {
+          font-size: 0.95rem;
+          color: rgba(255,255,255,0.85);
+          line-height: 1.4;
         }
 
         /* For Brands Section */
@@ -724,6 +757,14 @@ export default function Home() {
             grid-template-columns: 1fr;
           }
 
+          .portfolio-title {
+            font-size: 1.2rem;
+          }
+
+          .portfolio-desc {
+            font-size: 0.85rem;
+          }
+
           .section-title {
             font-size: 1.8rem;
           }
@@ -822,7 +863,7 @@ export default function Home() {
               fontFamily: "'Bricolage Grotesque', sans-serif"
             }}
           >
-            <span className="highlight">At</span>tractive
+            <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}><span className="highlight">At</span>tractive</span>
           </motion.h1>
           <motion.p variants={fadeInUp}>
             We create high-impact advertising that makes your brand visible, memorable, and impossible to ignore.
@@ -858,12 +899,42 @@ export default function Home() {
           
           <motion.div className="portfolio-grid" variants={staggerContainer}>
             {[
-              { id: 1, url: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80', alt: 'Branding Design' },
-              { id: 2, url: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&q=80', alt: 'Digital Graphics' },
-              { id: 3, url: 'https://images.unsplash.com/photo-1611532736579-6b16e2b50449?w=400&q=80', alt: 'Vehicle Wrap' },
-              { id: 4, url: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=400&q=80', alt: 'Signage' },
-              { id: 5, url: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80', alt: 'Exhibition' },
-              { id: 6, url: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80', alt: 'Facade Design' }
+              { 
+                id: 1, 
+                url: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80', 
+                title: 'Branding & Corporate Identity',
+                desc: 'Brand implementation, rollout & corporate identity applications'
+              },
+              { 
+                id: 2, 
+                url: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80', 
+                title: 'Digital Printed Graphics',
+                desc: 'Large format printing & interior graphics'
+              },
+              { 
+                id: 3, 
+                url: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=80', 
+                title: 'Vehicle Graphics & Fleet Branding',
+                desc: 'Full & partial vehicle wraps for mobile advertising'
+              },
+              { 
+                id: 4, 
+                url: 'https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=600&q=80', 
+                title: 'Signage Production & Installation',
+                desc: 'Indoor & outdoor signage solutions'
+              },
+              { 
+                id: 5, 
+                url: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80', 
+                title: 'Exhibition, Display & POS',
+                desc: 'Exhibition stands, kiosks & point of sale displays'
+              },
+              { 
+                id: 6, 
+                url: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80', 
+                title: 'Cladding & Facade Solutions',
+                desc: 'ACP cladding & architectural facade branding'
+              }
             ].map((item, index) => (
               <motion.div 
                 key={item.id} 
@@ -873,8 +944,12 @@ export default function Home() {
               >
                 <img 
                   src={item.url}
-                  alt={item.alt}
+                  alt={item.title}
                 />
+                <div className="portfolio-overlay">
+                  <h3 className="portfolio-title">{item.title}</h3>
+                  <p className="portfolio-desc">{item.desc}</p>
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -1378,7 +1453,7 @@ export default function Home() {
         {/* Background Image */}
         <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
           <img 
-            src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1600&q=80" 
+            src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1600&q=80" 
             alt="City Background"
             style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.4)' }}
           />

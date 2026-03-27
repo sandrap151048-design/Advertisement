@@ -440,7 +440,7 @@ export default function DynamicServicePage() {
 
         .locations-header {
           text-align: center;
-          margin-bottom: 3rem;
+          margin-bottom: 0;
         }
 
         .locations-title {
@@ -462,8 +462,8 @@ export default function DynamicServicePage() {
           color: #333;
           font-size: 1rem;
           line-height: 1.6;
-          max-width: 800px;
-          margin: 0 auto 3rem auto;
+          max-width: 100%;
+          margin: 0 auto;
         }
 
         .locations-map-container {
@@ -485,8 +485,8 @@ export default function DynamicServicePage() {
         .cta-section {
           background: #1a1a1a;
           padding: 3rem 2rem;
-          margin: 0 auto 4rem auto;
-          max-width: 800px;
+          margin: 0 auto;
+          max-width: 100%;
           border-radius: 20px;
           text-align: center;
           color: white;
@@ -664,57 +664,7 @@ export default function DynamicServicePage() {
         </motion.section>
 
         {/* Service Locations */}
-        <motion.section
-          className="locations-section"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerContainer}
-        >
-          <motion.div className="locations-header" variants={fadeInUp}>
-            <h2 className="locations-title">Service</h2>
-            <div className="locations-subtitle">Locations</div>
-            <p className="locations-description">
-              We provide our services across Dubai, Abu Dhabi, Sharjah, Ajman, and the Northern Emirates, ensuring reliable support and professional execution throughout the UAE.
-            </p>
-          </motion.div>
-
-          <motion.div className="locations-map-container" variants={fadeInUp}>
-            <svg viewBox="0 0 800 400" style={{ width: '100%', height: 'auto' }}>
-              <rect width="800" height="400" fill="#f8f9fa"/>
-              <path d="M 150 200 L 200 180 L 280 160 L 350 150 L 420 155 L 480 165 L 540 180 L 580 200 L 600 230 L 590 270 L 560 300 L 500 320 L 420 330 L 350 325 L 280 310 L 220 280 L 180 250 Z" 
-                    fill="#e9ecef" stroke="#dee2e6" strokeWidth="2"/>
-              <g>
-                <circle cx="480" cy="240" r="30" fill="rgba(255, 107, 53, 0.2)"/>
-                <circle cx="480" cy="240" r="8" fill="#e61e25"/>
-                <text x="480" y="280" textAnchor="middle" fill="#1a1a1a" fontSize="16" fontWeight="600">Dubai</text>
-              </g>
-              <g>
-                <circle cx="350" cy="260" r="30" fill="rgba(255, 107, 53, 0.2)"/>
-                <circle cx="350" cy="260" r="8" fill="#e61e25"/>
-                <text x="350" y="300" textAnchor="middle" fill="#1a1a1a" fontSize="16" fontWeight="600">Abu Dhabi</text>
-              </g>
-              <g>
-                <circle cx="520" cy="210" r="30" fill="rgba(255, 107, 53, 0.2)"/>
-                <circle cx="520" cy="210" r="8" fill="#e61e25"/>
-                <text x="520" y="195" textAnchor="middle" fill="#1a1a1a" fontSize="16" fontWeight="600">Sharjah</text>
-              </g>
-              <g>
-                <circle cx="540" cy="190" r="30" fill="rgba(255, 107, 53, 0.2)"/>
-                <circle cx="540" cy="190" r="8" fill="#e61e25"/>
-                <text x="540" y="175" textAnchor="middle" fill="#1a1a1a" fontSize="16" fontWeight="600">Ajman</text>
-              </g>
-              <g>
-                <circle cx="580" cy="160" r="30" fill="rgba(255, 107, 53, 0.2)"/>
-                <circle cx="580" cy="160" r="8" fill="#e61e25"/>
-                <text x="580" y="145" textAnchor="middle" fill="#1a1a1a" fontSize="14" fontWeight="600">Northern</text>
-                <text x="580" y="160" textAnchor="middle" fill="#1a1a1a" fontSize="14" fontWeight="600">Emirates</text>
-              </g>
-              <text x="100" y="220" fill="#6c757d" fontSize="14" fontWeight="500">Arabian Gulf</text>
-              <text x="650" y="320" fill="#6c757d" fontSize="14" fontWeight="500">Oman</text>
-            </svg>
-          </motion.div>
-        </motion.section>
+        
 
         {/* CTA Section */}
         <motion.section

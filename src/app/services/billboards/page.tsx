@@ -44,28 +44,7 @@ const accordionItems = [
   }
 ];
 
-const locations = [
-  {
-    name: "City centers",
-    image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&q=80"
-  },
-  {
-    name: "Highways",
-    image: "https://images.unsplash.com/photo-1502489597346-dad15683d4c2?w=400&q=80"
-  },
-  {
-    name: "Commercial streets",
-    image: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=400&q=80"
-  },
-  {
-    name: "Shopping districts",
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&q=80"
-  },
-  {
-    name: "Transit hubs",
-    image: "https://images.unsplash.com/photo-1464207687429-7505649dae38?w=400&q=80"
-  }
-];
+
 
 export default function BillboardsPage() {
   const [openAccordion, setOpenAccordion] = useState<number | null>(0);
@@ -599,38 +578,7 @@ export default function BillboardsPage() {
         </motion.section>
 
         {/* Available Locations */}
-        <motion.section 
-          className="locations-section"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerContainer}
-        >
-          <div className="locations-container">
-            <motion.div className="locations-title" variants={fadeInUp}>
-              <h2>
-                Available<br />
-                <span className="italic">Locations</span>
-              </h2>
-            </motion.div>
-
-            <motion.div className="locations-grid" variants={staggerContainer}>
-              {locations.map((location, index) => (
-                <motion.div
-                  key={index}
-                  className="location-card"
-                  variants={fadeInUp}
-                  whileHover={{ y: -8 }}
-                >
-                  <img src={location.image} alt={location.name} />
-                  <div className="location-overlay">
-                    <div className="location-name">{location.name}</div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </motion.section>
+        
 
         {/* Contact Form */}
         <motion.section 

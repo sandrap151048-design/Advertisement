@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import AdminFooter from '../components/AdminFooter';
 import { motion } from 'framer-motion';
 import {
   Home, MessageSquare, Briefcase, TrendingUp, LogOut,
@@ -269,6 +270,7 @@ export default function CampaignsPage() {
             })}
           </div>
         )}
+        <AdminFooter />
     </div>
   );
 }

@@ -418,7 +418,7 @@ export default function ContactPage() {
 
           .touch-container {
             grid-template-columns: 1fr;
-            padding: 3rem 1.5rem;
+            padding: 5rem 1.5rem 3rem 1.5rem;
             gap: 1.5rem;
           }
 

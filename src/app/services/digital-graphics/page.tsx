@@ -44,12 +44,7 @@ export default function DigitalGraphicsPage() {
     { title: "Premium Materials", desc: "UV-resistant, weatherproof materials for UAE climate" }
   ];
 
-  const locations = [
-    { name: "Dubai", image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400&q=80" },
-    { name: "Abu Dhabi", image: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=400&q=80" },
-    { name: "Sharjah", image: "https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=400&q=80" },
-    { name: "Ajman", image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&q=80" }
-  ];
+  
 
   return (
     <>
@@ -138,7 +133,7 @@ export default function DigitalGraphicsPage() {
         }
 
         .hero-image-large {
-          border-radius: 20px;
+          border-radius: 0;
           overflow: hidden;
           height: 350px;
           box-shadow: 0 8px 30px rgba(0,0,0,0.15);
@@ -251,12 +246,12 @@ export default function DigitalGraphicsPage() {
           margin: 0 auto 2rem auto;
           max-width: 1200px;
           background: white;
-          border-radius: 20px;
+          border-radius: 0;
         }
 
         .locations-header {
           text-align: center;
-          margin-bottom: 3rem;
+          margin-bottom: 0;
         }
 
         .locations-title {
@@ -278,8 +273,8 @@ export default function DigitalGraphicsPage() {
           color: #333;
           font-size: 1rem;
           line-height: 1.6;
-          max-width: 800px;
-          margin: 0 auto 3rem auto;
+          max-width: 100%;
+          margin: 0 auto;
         }
 
         .locations-map-container {
@@ -301,9 +296,9 @@ export default function DigitalGraphicsPage() {
         .cta-section {
           background: #1a1a1a;
           padding: 3rem 2rem;
-          margin: 0 auto 4rem auto;
-          max-width: 800px;
-          border-radius: 20px;
+          margin: 0 auto;
+          max-width: 100%;
+          border-radius: 0;
           text-align: center;
           color: white;
         }
@@ -494,75 +489,7 @@ export default function DigitalGraphicsPage() {
         </motion.section>
 
         {/* Service Locations */}
-        <motion.section
-          className="locations-section"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerContainer}
-        >
-          <motion.div className="locations-header" variants={fadeInUp}>
-            <h2 className="locations-title">Service</h2>
-            <div className="locations-subtitle">Locations</div>
-            <p className="locations-description">
-              We provide our services across Dubai, Abu Dhabi, Sharjah, Ajman, and the Northern Emirates, ensuring reliable support and professional execution throughout the UAE.
-            </p>
-          </motion.div>
-
-          <motion.div className="locations-map-container" variants={fadeInUp}>
-            <svg viewBox="0 0 800 400" style={{ width: '100%', height: 'auto' }}>
-              {/* Background */}
-              <rect width="800" height="400" fill="#f8f9fa"/>
-              
-              {/* UAE Map Outline (simplified) */}
-              <path d="M 150 200 L 200 180 L 280 160 L 350 150 L 420 155 L 480 165 L 540 180 L 580 200 L 600 230 L 590 270 L 560 300 L 500 320 L 420 330 L 350 325 L 280 310 L 220 280 L 180 250 Z" 
-                    fill="#e9ecef" 
-                    stroke="#dee2e6" 
-                    strokeWidth="2"/>
-              
-              {/* Location Markers */}
-              {/* Dubai */}
-              <g>
-                <circle cx="480" cy="240" r="30" fill="rgba(255, 107, 53, 0.2)"/>
-                <circle cx="480" cy="240" r="8" fill="#e61e25"/>
-                <text x="480" y="280" textAnchor="middle" fill="#1a1a1a" fontSize="16" fontWeight="600">Dubai</text>
-              </g>
-              
-              {/* Abu Dhabi */}
-              <g>
-                <circle cx="350" cy="260" r="30" fill="rgba(255, 107, 53, 0.2)"/>
-                <circle cx="350" cy="260" r="8" fill="#e61e25"/>
-                <text x="350" y="300" textAnchor="middle" fill="#1a1a1a" fontSize="16" fontWeight="600">Abu Dhabi</text>
-              </g>
-              
-              {/* Sharjah */}
-              <g>
-                <circle cx="520" cy="210" r="30" fill="rgba(255, 107, 53, 0.2)"/>
-                <circle cx="520" cy="210" r="8" fill="#e61e25"/>
-                <text x="520" y="195" textAnchor="middle" fill="#1a1a1a" fontSize="16" fontWeight="600">Sharjah</text>
-              </g>
-              
-              {/* Ajman */}
-              <g>
-                <circle cx="540" cy="190" r="30" fill="rgba(255, 107, 53, 0.2)"/>
-                <circle cx="540" cy="190" r="8" fill="#e61e25"/>
-                <text x="540" y="175" textAnchor="middle" fill="#1a1a1a" fontSize="16" fontWeight="600">Ajman</text>
-              </g>
-              
-              {/* Northern Emirates */}
-              <g>
-                <circle cx="580" cy="160" r="30" fill="rgba(255, 107, 53, 0.2)"/>
-                <circle cx="580" cy="160" r="8" fill="#e61e25"/>
-                <text x="580" y="145" textAnchor="middle" fill="#1a1a1a" fontSize="14" fontWeight="600">Northern</text>
-                <text x="580" y="160" textAnchor="middle" fill="#1a1a1a" fontSize="14" fontWeight="600">Emirates</text>
-              </g>
-              
-              {/* Labels */}
-              <text x="100" y="220" fill="#6c757d" fontSize="14" fontWeight="500">Arabian Gulf</text>
-              <text x="650" y="320" fill="#6c757d" fontSize="14" fontWeight="500">Oman</text>
-            </svg>
-          </motion.div>
-        </motion.section>
+        
 
         {/* CTA Section */}
         <motion.section
@@ -589,62 +516,7 @@ export default function DigitalGraphicsPage() {
           </motion.div>
         </motion.section>
 
-        {/* Footer */}
-        <footer style={{ background: '#1a1a1a', color: 'white', padding: '6rem 4rem 4rem 4rem', maxWidth: '100%', margin: '0', borderRadius: '0' }}>
-          <div style={{ maxWidth: '100%', margin: '0 auto' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '3.5rem', marginBottom: '3.5rem' }}>
-              <div>
-                <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                  <svg width="32" height="32" viewBox="0 0 32 32" style={{ display: 'inline-block' }}>
-                    <circle cx="16" cy="16" r="13" fill="none" stroke="white" strokeWidth="4"/>
-                    <rect x="18" y="3" width="10" height="10" fill="#e61e25" rx="1"/>
-                  </svg>
-                  <span style={{ color: 'white' }}>ne Click</span>
-                </h3>
-                <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '1.5rem', lineHeight: '1.8', fontSize: '1rem' }}>
-                  Premium advertising solutions across the UAE. Delivering high-impact visual communication services.
-                </p>
-              </div>
-              <div>
-                <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>Services</h4>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                  <li><Link href="/services/branding" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Branding</Link></li>
-                  <li><Link href="/services/digital-graphics" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Graphics</Link></li>
-                  <li><Link href="/services/signage" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Signage</Link></li>
-                  <li><Link href="/services/vehicle-graphics" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Vehicle Wraps</Link></li>
-                </ul>
-              </div>
-              <div>
-                <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>Company</h4>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                  <li><Link href="/about" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>About</Link></li>
-                  <li><Link href="/services" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Services</Link></li>
-                  <li><Link href="/contact" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>Contact</Link></li>
-                </ul>
-              </div>
-              <div>
-                <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>Contact</h4>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  <li style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                    <Phone size={18} style={{ color: '#e61e25', flexShrink: 0 }} />
-                    <a href="tel:+971524065110" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>+971 52 406 5110</a>
-                  </li>
-                  <li style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                    <Mail size={18} style={{ color: '#e61e25', flexShrink: 0 }} />
-                    <a href="mailto:hello@oneclickadv.ae" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 0.3s' }}>hello@oneclickadv.ae</a>
-                  </li>
-                  <li style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                    <MapPin size={18} style={{ color: '#e61e25', flexShrink: 0 }} />
-                    <span style={{ color: 'rgba(255,255,255,0.7)' }}>Dubai, UAE</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2.5rem', textAlign: 'center', color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem' }}>
-              &copy; {new Date().getFullYear()} One Click Advertisement. All Rights Reserved.
-            </div>
-          </div>
-        </footer>
+        
       </div>
     </>
   );

@@ -130,25 +130,14 @@ export default function AdminSidebar() {
             />
 
             <div style={{ marginBottom: '3.5rem', padding: '0 0.5rem' }}>
-                <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                    <div style={{
-                        width: '48px',
-                        height: '48px',
-                        borderRadius: '12px',
-                        background: 'linear-gradient(135deg, #222 0%, #e61e25 100%)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: 'white',
-                        fontWeight: 800,
-                        fontSize: '1.2rem',
-                        boxShadow: '0 8px 15px rgba(230, 30, 37, 0.3)'
-                    }}>
-                        OC
-                    </div>
-                    <div>
-                        <div style={{ color: '#e61e25', fontWeight: 700, fontSize: '1.2rem', lineHeight: 1.1 }}>One Click</div>
-                        <div style={{ fontSize: '0.65rem', fontWeight: 600, color: '#facc15', letterSpacing: '2px', textTransform: 'uppercase', marginTop: '2px' }}>Admin Portal</div>
+                <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0' }}>
+                    <svg width="32" height="32" viewBox="0 0 28 28" style={{ marginRight: '-1px' }}>
+                        <circle cx="14" cy="14" r="11" fill="none" stroke="white" strokeWidth="4"/>
+                        <rect x="16" y="2" width="9" height="9" fill="#e61e25" rx="1"/>
+                    </svg>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                        <div style={{ color: 'white', fontWeight: 800, fontSize: '1.4rem', letterSpacing: '-0.5px', marginLeft: '-1px', lineHeight: '1.1' }}>ne Click</div>
+                        <div style={{ color: '#e61e25', fontSize: '0.75rem', fontWeight: 800, letterSpacing: '2px', textTransform: 'uppercase', marginTop: '2px' }}>Admin Portal</div>
                     </div>
                 </Link>
             </div>

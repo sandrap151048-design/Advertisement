@@ -169,6 +169,352 @@ export default function AboutPage() {
           transform: scale(1.1);
         }
 
+        .vision-mission-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+          margin-bottom: 5rem;
+        }
+
+        .vm-card {
+          background: white;
+          padding: 3.5rem;
+          border-radius: 32px;
+          box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+          border: 1px solid rgba(0,0,0,0.05);
+          transition: all 0.4s ease;
+        }
+
+        .vm-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+          border-color: #0070f3;
+        }
+
+        .vm-icon {
+          width: 60px;
+          height: 60px;
+          background: #f0f7ff;
+          border-radius: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #0070f3;
+          margin-bottom: 2rem;
+        }
+
+        .vm-card h3 {
+          font-size: 2rem;
+          font-weight: 900;
+          margin-bottom: 1.5rem;
+          color: #1a1a1a;
+          letter-spacing: -1px;
+        }
+
+        .vm-card p {
+          color: #666;
+          line-height: 1.8;
+          font-size: 1.1rem;
+        }
+
+        .services-detail-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2rem;
+          margin-top: 4rem;
+        }
+
+        .service-detail-card {
+          background: white;
+          padding: 2.5rem;
+          border-radius: 24px;
+          border: 1px solid rgba(0,0,0,0.05);
+          transition: all 0.4s ease;
+        }
+
+        .service-detail-card:hover {
+          border-color: #e61e25;
+          box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+        }
+
+        .service-detail-card h3 {
+          font-size: 1.4rem;
+          font-weight: 900;
+          margin-bottom: 1.5rem;
+          color: #1a1a1a;
+          line-height: 1.3;
+          height: 3.5rem;
+          display: flex;
+          align-items: center;
+        }
+
+        .service-bullets {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        .service-bullets li {
+          position: relative;
+          padding-left: 1.5rem;
+          margin-bottom: 0.8rem;
+          color: #666;
+          font-size: 0.95rem;
+          line-height: 1.4;
+        }
+
+        .service-bullets li::before {
+          content: '→';
+          position: absolute;
+          left: 0;
+          color: #e61e25;
+          font-weight: bold;
+        }
+
+        .process-section, .work-section {
+          padding: 8rem 0;
+          text-align: center;
+        }
+
+        .section-heading-main {
+          font-size: 4rem;
+          font-weight: 900;
+          margin-bottom: 0.5rem;
+          line-height: 1;
+        }
+
+        .section-heading-sub {
+          font-size: 3rem;
+          font-family: 'Playfair Display', serif;
+          font-style: italic;
+          color: #1a1a1a;
+          margin-bottom: 1.5rem;
+        }
+
+        .section-desc {
+          max-width: 600px;
+          margin: 0 auto 4rem;
+          color: #666;
+          line-height: 1.6;
+          font-size: 1.1rem;
+        }
+
+        .process-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1.5rem;
+          margin-top: 4rem;
+          position: relative;
+        }
+
+        .process-step {
+          background: white;
+          padding: 2.5rem 1.8rem;
+          border-radius: 12px;
+          border: 1px solid #d1d5db;
+          transition: all 0.4s ease;
+          position: relative;
+          z-index: 2;
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+          text-align: left;
+          height: 100%;
+        }
+
+        .process-header {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+
+        .process-icon {
+          width: 48px;
+          height: 48px;
+          background: #f3f4f6;
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #1e3a8a; /* Dark Blue */
+          flex-shrink: 0;
+          border: 1px solid #e5e7eb;
+          transition: all 0.3s ease;
+        }
+
+        .process-step h3 {
+          font-size: 1.8rem;
+          font-weight: 600;
+          color: #111;
+          margin: 0;
+        }
+
+        .process-step p {
+          color: #4b5563;
+          font-size: 1rem;
+          line-height: 1.6;
+          margin: 0;
+        }
+
+        /* Sequential line crossing ONLY in the gap between cards */
+        .step-connector {
+          position: absolute;
+          top: 48px; /* Aligned with icon center */
+          left: 100%;
+          width: 1.5rem; /* Exactly the gap width */
+          height: 3px;
+          background: #e5e7eb;
+          z-index: 1;
+        }
+
+        .step-progress-line {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          background: #1e3a8a; /* Dark Blue */
+          box-shadow: 0 0 10px rgba(30,58,138,0.3);
+        }
+
+        .process-step:hover {
+          border-color: #1e3a8a;
+          transform: translateY(-5px);
+        }
+
+        .process-step:hover .process-icon {
+          background: #1e3a8a;
+          color: white;
+        }
+
+        @media (max-width: 1024px) {
+          .step-connector {
+            display: none;
+          }
+        }
+
+        .work-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 2rem;
+          margin-top: 4rem;
+        }
+
+        .work-card {
+          text-align: center;
+        }
+
+        .work-img-container {
+          width: 100%;
+          height: 180px;
+          border-radius: 12px;
+          overflow: hidden;
+          margin-bottom: 1rem;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .work-img-container img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.5s ease;
+        }
+
+        .work-card:hover .work-img-container img {
+          transform: scale(1.1);
+        }
+
+        .work-card h4 {
+          font-size: 0.95rem;
+          font-weight: 800;
+          color: #111;
+          line-height: 1.4;
+          padding: 0 0.5rem;
+        }
+
+        .compliance-section {
+          background: #111;
+          color: white;
+          padding: 6rem 3rem;
+          border-radius: 40px;
+          margin: 6rem 0;
+        }
+
+        .compliance-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+          align-items: center;
+        }
+
+        .compliance-info h2 {
+          font-size: 3rem;
+          font-weight: 900;
+          margin-bottom: 2rem;
+          letter-spacing: -1.5px;
+        }
+
+        .compliance-info p {
+          color: #aaa;
+          font-size: 1.2rem;
+          line-height: 1.8;
+          margin-bottom: 2rem;
+        }
+
+        .compliance-list {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1.5rem;
+        }
+
+        .compliance-item {
+          background: rgba(255,255,255,0.05);
+          padding: 1.5rem;
+          border-radius: 16px;
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          border: 1px solid rgba(255,255,255,0.1);
+          transition: all 0.3s ease;
+        }
+
+        .compliance-item:hover {
+          background: rgba(255,255,255,0.1);
+          border-color: #e61e25;
+        }
+
+        .compliance-item span {
+          color: #fff;
+          font-weight: 700;
+          font-size: 1rem;
+        }
+
+        .commitment-banner {
+          background: white;
+          color: #333;
+          padding: 4rem;
+          border-radius: 32px;
+          text-align: center;
+          margin-bottom: 5rem;
+          border: 1px solid #f0f0f0;
+          box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+        }
+
+        .commitment-banner h2 {
+          font-size: 2.5rem;
+          font-weight: 900;
+          margin-bottom: 1.5rem;
+          color: #e61e25; /* Commitment in Red */
+        }
+
+        .commitment-banner p {
+          font-size: 1.3rem;
+          max-width: 800px;
+          margin: 0 auto;
+          line-height: 1.6;
+          color: #1e3a8a; /* Text in Blue */
+          font-weight: 500;
+        }
+
         .accordion-section {
           background: white;
           padding: 5rem 3rem;
@@ -191,10 +537,6 @@ export default function AboutPage() {
           padding: 2rem 0;
         }
 
-        .accordion-item:last-child {
-          border-bottom: none;
-        }
-
         .accordion-header {
           display: flex;
           justify-content: space-between;
@@ -204,11 +546,6 @@ export default function AboutPage() {
           font-weight: 800;
           color: #1a1a1a;
           transition: all 0.3s;
-        }
-
-        .accordion-header:hover {
-          color: #e61e25;
-          padding-left: 10px;
         }
 
         .accordion-icon {
@@ -273,274 +610,41 @@ export default function AboutPage() {
           letter-spacing: -2px;
         }
 
-        .cta-section p {
-          font-size: clamp(1.1rem, 2vw, 1.4rem);
-          color: rgba(255,255,255,0.9);
-          margin-bottom: 3rem;
-          line-height: 1.6;
-        }
-
-        .cta-button {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.8rem;
-          padding: 1.2rem 3.5rem;
-          background: white;
-          color: #1a1a1a;
-          font-weight: 800;
-          border-radius: 50px;
-          text-decoration: none;
-          transition: all 0.3s ease;
-          font-size: 1.1rem;
-        }
-
-        .cta-button:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 15px 30px rgba(255,107,53,0.3);
-          background: #e61e25;
-          color: white;
-        }
-
-        @media (max-width: 768px) {
-          .about-hero {
-            height: 70vh;
-            min-height: 500px;
-          }
-
-          .about-hero-title {
-            font-size: clamp(2.5rem, 8vw, 4rem);
-            letter-spacing: -2px;
-          }
-
-          .about-hero-title svg {
-            width: 48px !important;
-            height: 48px !important;
-          }
-
-          .about-hero-subtitle {
-            font-size: 0.95rem;
-            padding: 0 0.5rem;
-          }
-
-          .about-content {
-            padding: 3rem 1.2rem;
-          }
-
+        @media (max-width: 1024px) {
           .section-layout {
             grid-template-columns: 1fr;
-            gap: 2rem;
           }
-
-          .section-info {
-            position: relative;
-            top: auto;
-            padding: 2rem;
+          .services-detail-grid, .work-grid {
+            grid-template-columns: repeat(2, 1fr);
           }
-
-          .section-info h2 {
-            font-size: 2rem;
-          }
-
-          .section-images {
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-          }
-
-          .section-image {
-            height: 200px;
-          }
-
-          .accordion-section {
-            padding: 2.5rem 1.2rem;
-            border-radius: 20px;
-          }
-
-          .accordion-title {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            letter-spacing: -0.5px;
-          }
-
-          .accordion-title svg {
-            width: 32px !important;
-            height: 32px !important;
-          }
-
-          .accordion-header {
-            font-size: 1.1rem;
-          }
-
-          .cta-section {
-            padding: 5rem 1.5rem;
-            border-radius: 20px;
-          }
-
-          .cta-button {
-            padding: 1rem 2rem;
-            font-size: 1rem;
-          }
-
-          .process-grid, .work-grid {
-            grid-template-columns: 1fr !important;
-          }
-
-          .process-step {
-            padding: 2rem !important;
-          }
-
-          .section-heading-main {
-            font-size: 2.8rem !important;
-          }
-          .section-heading-sub {
-            font-size: 2rem !important;
-          }
-        }
-
-        .process-section, .work-section {
-          padding: 8rem 0;
-          text-align: center;
-        }
-
-        .section-heading-main {
-          font-size: 4rem;
-          font-weight: 900;
-          margin-bottom: 0.5rem;
-          line-height: 1;
-        }
-
-        .section-heading-sub {
-          font-size: 3rem;
-          font-family: 'Playfair Display', serif;
-          font-style: italic;
-          color: #1a1a1a;
-          margin-bottom: 1.5rem;
-        }
-
-        .section-desc {
-          max-width: 600px;
-          margin: 0 auto 4rem;
-          color: #666;
-          line-height: 1.6;
-          font-size: 1.1rem;
-        }
-
-        .process-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 1.5rem;
-          margin-top: 3rem;
-        }
-
-        .process-step {
-          background: #fdfdfd;
-          padding: 3rem 2rem;
-          border-radius: 12px;
-          border: 1px solid #eee;
-          transition: all 0.3s ease;
-          position: relative;
-        }
-
-        .process-step:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-          border-color: #e61e25;
-        }
-
-        .process-icon {
-          width: 50px;
-          height: 50px;
-          background: #f5f5f5;
-          border-radius: 8px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin: 0 auto 1.5rem;
-          color: #111;
-        }
-
-        .process-step h3 {
-          font-size: 1.5rem;
-          font-weight: 800;
-          margin-bottom: 1rem;
-        }
-
-        .process-step p {
-          color: #777;
-          font-size: 0.95rem;
-          line-height: 1.6;
-        }
-
-        .work-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 2rem;
-          margin-top: 4rem;
-        }
-
-        .work-card {
-          text-align: center;
-        }
-
-        .work-img-container {
-          width: 100%;
-          height: 180px;
-          border-radius: 12px;
-          overflow: hidden;
-          margin-bottom: 1rem;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-        }
-
-        .work-img-container img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.5s ease;
-        }
-
-        .work-card:hover .work-img-container img {
-          transform: scale(1.1);
-        }
-
-        .work-card h4 {
-          font-size: 0.95rem;
-          font-weight: 800;
-          color: #111;
-          line-height: 1.4;
-          padding: 0 0.5rem;
-        }
-
-        @media (max-width: 480px) {
-          .about-hero {
-            height: 60vh;
-          }
-
-          .about-hero-title {
-            font-size: 2rem;
-            letter-spacing: -1px;
-          }
-
-          .section-images {
+          .process-grid {
             grid-template-columns: 1fr;
           }
-
-          .section-image {
-            height: 220px;
+          .step-connector {
+            display: none;
           }
-
-          .accordion-title {
-            font-size: 1.6rem;
-          }
-
-          .accordion-header {
-            font-size: 1rem;
-            padding: 1rem 0;
+          .compliance-grid, .vision-mission-grid {
+            grid-template-columns: 1fr;
           }
         }
 
+        @media (max-width: 640px) {
+          .services-detail-grid, .work-grid {
+            grid-template-columns: 1fr;
+          }
+          .compliance-list {
+            grid-template-columns: 1fr;
+          }
+          .commitment-banner {
+            padding: 3rem 1.5rem;
+          }
+          .about-hero-title {
+            font-size: 2.5rem;
+          }
+        }
       `}</style>
 
       <div className="about-page">
-
         {/* Hero Section */}
         <section className="about-hero">
           <div className="about-hero-bg">
@@ -558,9 +662,9 @@ export default function AboutPage() {
           >
             <motion.h1 className="about-hero-title" variants={fadeInUp}>
               About{' '}
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', verticalAlign: 'middle' }}>
-                <svg width="80" height="80" viewBox="0 0 32 32" style={{ display: 'inline-block' }}>
-                  <circle cx="16" cy="16" r="13" fill="none" stroke="white" strokeWidth="4"/>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', verticalAlign: 'middle' }}>
+                <svg width="0.8em" height="0.8em" viewBox="0 0 32 32" style={{ display: 'inline-block' }}>
+                  <circle cx="16" cy="16" r="13" fill="none" stroke="white" strokeWidth="3"/>
                   <rect x="18" y="3" width="10" height="10" fill="#e61e25" rx="1"/>
                 </svg>
                 <span style={{ color: 'white' }}>ne Click</span>
@@ -574,7 +678,7 @@ export default function AboutPage() {
 
         {/* About Content */}
         <section className="about-content">
-          {/* Who We Are */}
+          {/* Company Profile / Who We Are */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -584,14 +688,17 @@ export default function AboutPage() {
             <div className="section-layout">
               <motion.div className="section-info" variants={fadeInUp}>
                 <h2 style={{ letterSpacing: '-1px' }}>
-                  Who <br />
-                  <span className="italic">We Are</span>
+                  Company <br />
+                  <span className="italic">Profile</span>
                 </h2>
                 <p>
-                  One Click Advertisement is a premier full-service advertising company specializing in high-impact visual communication. With over a decade of expertise in the UAE market, we transform bold ideas into stunning reality.
+                  One Click Advertisement is a full-service advertising and branding company delivering end-to-end visual communication solutions. We specialize in transforming spaces, surfaces, and screens into powerful brand experiences.
                 </p>
                 <p style={{ marginTop: '1.5rem' }}>
-                  We provide end-to-end solutions — from initial creative concept and authority approvals to precision manufacturing and professional installation across Dubai and the Northern Emirates.
+                  From high-quality printing to large-scale digital displays, we ensure your brand gets noticed—clearly, creatively, and professionally. We are a UAE-based advertising and branding solutions company delivering high-quality visual communication services to businesses across Dubai, Abu Dhabi, Sharjah, Ajman, and the Northern Emirates.
+                </p>
+                <p style={{ marginTop: '1.5rem' }}>
+                  With a commitment to international standards and local market compliance, we provide complete turnkey solutions — from design and production to installation and maintenance.
                 </p>
               </motion.div>
 
@@ -604,6 +711,85 @@ export default function AboutPage() {
             </div>
           </motion.div>
 
+          {/* Vision & Mission */}
+          <div className="vision-mission-grid">
+            <motion.div 
+              className="vm-card"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+            >
+              <div className="vm-icon"><TrendingUp size={32} /></div>
+              <h3>Our Vision</h3>
+              <p>To be recognized as a reliable and innovative branding and signage partner in the UAE, delivering world-class visual solutions that enhance brand presence and support business growth.</p>
+            </motion.div>
+            <motion.div 
+              className="vm-card"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+            >
+              <div className="vm-icon"><Target size={32} /></div>
+              <h3>Our Mission</h3>
+              <p>To deliver creative, compliant, and high-quality advertising solutions that meet UAE authority requirements while exceeding client expectations in terms of durability, safety, and visual impact.</p>
+            </motion.div>
+          </div>
+
+          {/* Core Services Detailed */}
+          <section className="work-section" style={{ paddingBottom: '0' }}>
+            <motion.h2 className="section-heading-main" variants={fadeInUp}>Our Core</motion.h2>
+            <motion.h3 className="section-heading-sub" variants={fadeInUp}>Services</motion.h3>
+            <motion.p className="section-desc" variants={fadeInUp}>
+              We deliver world-class visual solutions that enhance brand presence and support business growth across various platforms.
+            </motion.p>
+
+            <motion.div 
+              className="services-detail-grid"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              {[
+                {
+                  title: 'Branding & Corporate Identity',
+                  items: ['Brand implementation & rollout', 'Corporate identity applications', 'Office branding & interior graphics', 'Brand consistency across multiple locations']
+                },
+                {
+                  title: 'Digital Printed Graphics',
+                  items: ['Large format digital printing', 'Wall, glass & window graphics', 'Frosted film & privacy films', 'Floor & promotional graphics', 'Wallpaper & interior branding']
+                },
+                {
+                  title: 'Vehicle Graphics & Fleet Branding',
+                  items: ['Full & partial vehicle wraps', 'Corporate fleet branding', 'Reflective & safety graphics', 'Promotional vehicle advertising']
+                },
+                {
+                  title: 'Signage Production & Installation',
+                  items: ['Indoor & outdoor signage', 'Illuminated & non-illuminated signboards', '3D letter signs (acrylic, metal, LED)', 'Directional, wayfinding & safety signage', 'Mall, retail & commercial signage']
+                },
+                {
+                  title: 'Exhibition, Display & POS Solutions',
+                  items: ['Exhibition stands & kiosks', 'Pop-up systems & backdrops', 'Roll-up & X-banners', 'Point of Sale (POS) & in-store displays']
+                },
+                {
+                  title: 'Cladding & Facade Solutions',
+                  items: ['ACP cladding works', 'Aluminum & composite panel cladding', 'Shopfront & facade branding', 'Decorative architectural finishes', 'Signage-integrated facade solutions']
+                }
+              ].map((service, idx) => (
+                <motion.div key={idx} className="service-detail-card" variants={fadeInUp}>
+                  <h3>{service.title}</h3>
+                  <ul className="service-bullets">
+                    {service.items.map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ul>
+                </motion.div>
+              ))}
+            </motion.div>
+          </section>
+
           {/* Our Process Section */}
           <section className="process-section">
             <div className="container">
@@ -613,17 +799,37 @@ export default function AboutPage() {
                 A simple and efficient approach to launch your advertising campaign.
               </motion.p>
 
-              <motion.div className="process-grid" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+              <motion.div 
+                className="process-grid" 
+                variants={staggerContainer} 
+                initial="hidden" 
+                whileInView="visible" 
+                viewport={{ once: true }}
+              >
                 {[
                   { title: 'Plan', desc: 'We understand your goals and recommend the right placements.', icon: <Layout size={24} /> },
-                  { title: 'Design', desc: 'We create visuals that match your brand and campaign needs.', icon: <ArrowRight size={24} /> },
-                  { title: 'Execute', desc: 'We manage production and installation across selected locations.', icon: <Building2 size={24} /> },
-                  { title: 'Launch', desc: 'Your campaign goes live and reaches real audiences.', icon: <Globe size={24} /> }
+                  { title: 'Design', desc: 'We create visuals that match your brand and campaign needs.', icon: <Palette size={24} /> },
+                  { title: 'Execute', desc: 'We manage production and installation across selected locations.', icon: <Settings size={24} /> },
+                  { title: 'Launch', desc: 'Your campaign goes live and reaches real audiences.', icon: <Rocket size={24} /> }
                 ].map((step, idx) => (
-                  <motion.div key={idx} className="process-step" variants={fadeInUp}>
-                    <div className="process-icon">{step.icon}</div>
-                    <h3>{step.title}</h3>
+                  <motion.div key={idx} className="process-step" variants={fadeInUp} style={{ position: 'relative' }}>
+                    <div className="process-header">
+                      <div className="process-icon">{step.icon}</div>
+                      <h3>{step.title}</h3>
+                    </div>
                     <p>{step.desc}</p>
+                    
+                    {idx < 3 && (
+                      <div className="step-connector">
+                        <motion.div 
+                          className="step-progress-line"
+                          initial={{ width: 0 }}
+                          whileInView={{ width: '100%' }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.8, delay: 0.8 + (idx * 0.5), ease: "easeInOut" }}
+                        />
+                      </div>
+                    )}
                   </motion.div>
                 ))}
               </motion.div>
@@ -647,7 +853,7 @@ export default function AboutPage() {
                   { title: 'Real Estate & Property Developers', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80' },
                   { title: 'Automotive & Logistics', img: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&q=80' },
                   { title: 'Healthcare & Clinics', img: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80' },
-                  { title: 'Schools & Educational Institutions', img: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80' },
+                  { title: 'Schools & Educational Institutions', img: '/images/about_school.png' },
                   { title: 'Government & Semi-Government Entities', img: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80' }
                 ].map((item, idx) => (
                   <motion.div key={idx} className="work-card" variants={fadeInUp}>
@@ -660,6 +866,50 @@ export default function AboutPage() {
               </motion.div>
             </div>
           </section>
+
+          {/* Compliance Section */}
+          <motion.div 
+            className="compliance-section"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+          >
+            <div className="compliance-grid">
+              <div className="compliance-info">
+                <h2>Compliance & Authority Approvals</h2>
+                <p>We are experienced in working in accordance with UAE municipality and mall regulations, ensuring smooth approvals and proper installation.</p>
+                <div className="compliance-list">
+                  <div className="compliance-item"><CheckCircle size={20} color="#e61e25" /> <span>Dubai Municipality</span></div>
+                  <div className="compliance-item"><CheckCircle size={20} color="#e61e25" /> <span>RTA Guidelines</span></div>
+                  <div className="compliance-item"><CheckCircle size={20} color="#e61e25" /> <span>Mall Management</span></div>
+                  <div className="compliance-item"><CheckCircle size={20} color="#e61e25" /> <span>Safety Standards</span></div>
+                </div>
+              </div>
+              <div style={{ display: 'grid', placeItems: 'center' }}>
+                 <div style={{ padding: '2rem', background: 'rgba(255,255,255,0.05)', borderRadius: '32px', border: '1px solid rgba(255,255,255,0.1)' }}>
+                    <p style={{ fontSize: '1.1rem', color: '#fff', textAlign: 'center', fontStyle: 'italic', maxWidth: '400px' }}>
+                      "We ensure all projects meet UAE authority requirements for durability, safety, and long-term visual impact."
+                    </p>
+                 </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Commitment Banner */}
+          <motion.div 
+            className="commitment-banner"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+          >
+            <h2 style={{ fontSize: '3.5rem', fontWeight: 900 }}>
+              <span style={{ color: '#000', fontFamily: "'Bricolage Grotesque', sans-serif" }}>Our </span>
+              <span style={{ color: '#e61e25', fontFamily: "'Playfair Display', serif", fontStyle: 'italic' }}>Commitment</span>
+            </h2>
+            <p>We are committed to delivering professional workmanship, premium finishing, and long-lasting branding solutions that withstand the UAE climate while maintaining strong visual impact.</p>
+          </motion.div>
 
           {/* Why Choose One Click - Accordion */}
           <motion.div

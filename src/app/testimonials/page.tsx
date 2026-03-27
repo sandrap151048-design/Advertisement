@@ -568,47 +568,7 @@ export default function ProjectsPage() {
           </div>
         </motion.section>
 
-        {/* Footer */}
-        <footer style={{ background: '#1a1a1a', color: 'white', padding: '6rem 2rem 4rem 2rem' }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '3.5rem', marginBottom: '3.5rem' }}>
-              <div>
-                <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>
-                  <span style={{ color: '#e61e25' }}>One</span> Click Advertisement
-                </h3>
-                <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '1.5rem', lineHeight: '1.8', fontSize: '1rem' }}>
-                  Premium advertising solutions across the UAE. Delivering high-impact visual communication services.
-                </p>
-              </div>
-              <div>
-                <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>Services</h4>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                  {['Branding', 'Digital Printing', 'Signage', 'Vehicle Wraps'].map(s => (
-                    <li key={s}><Link href="/services" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none' }}>{s}</Link></li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>Company</h4>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                  {[['About', '/about'], ['Services', '/services'], ['Contact', '/contact']].map(([l, h]) => (
-                    <li key={l}><Link href={h} style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none' }}>{l}</Link></li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'white' }}>Support</h4>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                  <li><a href="tel:+971524065110" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none' }}>+971 52 406 5110</a></li>
-                  <li><a href="mailto:hello@oneclickadv.ae" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none' }}>hello@oneclickadv.ae</a></li>
-                </ul>
-              </div>
-            </div>
-            <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2.5rem', textAlign: 'center', color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem' }}>
-              © 2024 One Click Advertisement. All Rights Reserved.
-            </div>
-          </div>
-        </footer>
+        
       </div>
     </>
   );

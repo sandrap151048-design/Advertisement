@@ -43,28 +43,7 @@ const accordionItems = [
   }
 ];
 
-const locations = [
-  {
-    name: "Brand Launches",
-    image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&q=80"
-  },
-  {
-    name: "Product Promotions",
-    image: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=400&q=80"
-  },
-  {
-    name: "Event Marketing",
-    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&q=80"
-  },
-  {
-    name: "Seasonal Campaigns",
-    image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=400&q=80"
-  },
-  {
-    name: "Corporate Branding",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80"
-  }
-];
+
 
 export default function CampaignSolutionsPage() {
   const [openAccordion, setOpenAccordion] = useState<number | null>(0);
@@ -594,38 +573,7 @@ export default function CampaignSolutionsPage() {
           </div>
         </motion.section>
 
-        <motion.section 
-          className="locations-section"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerContainer}
-        >
-          <div className="locations-container">
-            <motion.div className="locations-title" variants={fadeInUp}>
-              <h2>
-                Campaign<br />
-                <span className="italic">Types</span>
-              </h2>
-            </motion.div>
-
-            <motion.div className="locations-grid" variants={staggerContainer}>
-              {locations.map((location, index) => (
-                <motion.div
-                  key={index}
-                  className="location-card"
-                  variants={fadeInUp}
-                  whileHover={{ y: -8 }}
-                >
-                  <img src={location.image} alt={location.name} />
-                  <div className="location-overlay">
-                    <div className="location-name">{location.name}</div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </motion.section>
+        
 
         <motion.section 
           className="contact-section"

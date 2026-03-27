@@ -43,28 +43,7 @@ const accordionItems = [
   }
 ];
 
-const locations = [
-  {
-    name: "Shopping malls",
-    image: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=400&q=80"
-  },
-  {
-    name: "Retail stores",
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&q=80"
-  },
-  {
-    name: "Restaurants",
-    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&q=80"
-  },
-  {
-    name: "Boutiques",
-    image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400&q=80"
-  },
-  {
-    name: "Showrooms",
-    image: "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=400&q=80"
-  }
-];
+
 
 export default function RetailSignagePage() {
   const [openAccordion, setOpenAccordion] = useState<number | null>(0);
@@ -594,38 +573,7 @@ export default function RetailSignagePage() {
           </div>
         </motion.section>
 
-        <motion.section 
-          className="locations-section"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerContainer}
-        >
-          <div className="locations-container">
-            <motion.div className="locations-title" variants={fadeInUp}>
-              <h2>
-                Available<br />
-                <span className="italic">Locations</span>
-              </h2>
-            </motion.div>
-
-            <motion.div className="locations-grid" variants={staggerContainer}>
-              {locations.map((location, index) => (
-                <motion.div
-                  key={index}
-                  className="location-card"
-                  variants={fadeInUp}
-                  whileHover={{ y: -8 }}
-                >
-                  <img src={location.image} alt={location.name} />
-                  <div className="location-overlay">
-                    <div className="location-name">{location.name}</div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </motion.section>
+        
 
         <motion.section 
           className="contact-section"

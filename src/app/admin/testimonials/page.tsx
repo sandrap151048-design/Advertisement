@@ -5,6 +5,7 @@ import { Home, MessageSquare, Briefcase, LogOut, Plus, Trash2, Layers, MapPin, P
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import AdminFooter from '../components/AdminFooter';
 
 interface Project {
     _id: string;
@@ -452,49 +453,7 @@ export default function ProjectsPage() {
                 )}
 
                 {/* Admin Footer */}
-                <footer style={{ marginTop: '3rem', padding: '5rem 0', background: '#2c4a5e', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-                    <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
-                        <div style={{ marginBottom: '5rem' }}>
-                            <div>
-                                <h3 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '0.5rem', color: 'white' }}>
-                                    <span style={{ color: '#e61e25' }}>One</span> Click
-                                </h3>
-                                <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '2px', margin: 0 }}>
-                                    PREMIUM OUTDOOR MEDIA SOLUTIONS
-                                </p>
-                            </div>
-                        </div>
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-                            <div>
-                                <h4 style={{ marginBottom: '1rem', fontSize: '1rem', color: 'white' }}>Quick Links</h4>
-                                <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem', listStyle: 'none', padding: 0 }}>
-                                    <li><a href="/" style={{ color: 'inherit', textDecoration: 'none' }}>Home</a></li>
-                                    <li><a href="/services" style={{ color: 'inherit', textDecoration: 'none' }}>Services</a></li>
-                                    <li><a href="/testimonials" style={{ color: 'inherit', textDecoration: 'none' }}>Projects</a></li>
-                                    <li><a href="/contact" style={{ color: 'inherit', textDecoration: 'none' }}>Contact</a></li>
-                                </ul>
-                            </div>
-
-                            <div>
-                                <h4 style={{ marginBottom: '1rem', fontSize: '1rem', color: 'white' }}>Contact Us</h4>
-                                <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem', listStyle: 'none', padding: 0 }}>
-                                    <li style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}>
-                                        <MapPin size={18} color="#facc15" /> Dubai, UAE
-                                    </li>
-                                    <li style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}>
-                                        <Phone size={18} color="#facc15" /> +971 52 406 5110
-                                    </li>
-                                    <li style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}>
-                                        <Mail size={18} color="#facc15" /> hello@oneclickadv.ae
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div style={{ textAlign: 'center', paddingTop: '2rem', marginTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.5)', fontSize: '0.85rem' }}>
-                            &copy; {new Date().getFullYear()} One Click Advertisement. All Rights Reserved.
-                        </div>
-                    </div>
-                </footer>
+                <AdminFooter />
             </main>
         </div>
     );
