@@ -324,6 +324,10 @@ function ProjectsContent() {
                     grid-template-columns: 1fr 1fr;
                     gap: 20px;
                 }
+
+                .cluster-images.single {
+                    grid-template-columns: 1fr;
+                }
                 .cluster-img {
                     width: 100%;
                     height: 500px;
@@ -453,14 +457,14 @@ function ProjectsContent() {
                                                 {project.description}
                                             </p>
                                         </div>
-                                        <div className="cluster-images">
+                                        <div className={`cluster-images ${project.images.length === 1 ? 'single' : ''}`}>
                                             {project.images.length > 0 ? (
                                                 project.images.map((img, i) => (
                                                     <img key={i} src={img} alt={`${project.title} ${i + 1}`} className="cluster-img" />
                                                 ))
                                             ) : (
-                                                <div style={{ background: '#f5f5f5', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '300px' }}>
-                                                    <ImageIcon size={48} color="#ccc" />
+                                                <div className="cluster-img-placeholder">
+                                                    <span>No image available</span>
                                                 </div>
                                             )}
                                         </div>
