@@ -226,28 +226,7 @@ export default function AdminProjectsPage() {
                 </motion.button>
             </div>
 
-            {/* ── Frontend Preview ── */}
-            <div style={{ background: 'white', borderRadius: '16px', padding: '1.5rem', marginBottom: '2rem', border: '1px solid #f0f0f0', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.2rem' }}>
-                    <Eye size={18} color="#e61e25" />
-                    <h2 style={{ fontSize: '1rem', fontWeight: 800, color: '#1a1a1a' }}>Frontend Projects Preview</h2>
-                    <span style={{ fontSize: '0.75rem', color: '#999', fontWeight: 500 }}>— as shown on the public home page</span>
-                    <Link href="/#projects" target="_blank" style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#e61e25', fontWeight: 700, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px', padding: '4px 10px', border: '1px solid rgba(230,30,37,0.3)', borderRadius: '6px' }}>
-                        Open Live Page ↗
-                    </Link>
-                </div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '1rem' }}>
-                    {frontendProjects.map((p, i) => (
-                        <div key={i} style={{ borderRadius: '12px', overflow: 'hidden', position: 'relative', height: '160px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
-                            <img src={p.url} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.05) 100%)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0.75rem' }}>
-                                <p style={{ color: 'white', fontWeight: 800, fontSize: '0.78rem', lineHeight: 1.3, marginBottom: '0.2rem' }}>{p.title}</p>
-                                <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.63rem', lineHeight: 1.3 }}>{p.desc}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
+
 
             <div style={{ background: 'white', padding: '1.2rem', borderRadius: '16px', marginBottom: '2rem', display: 'flex', gap: '1rem', alignItems: 'center', border: '1px solid #f0f0f0' }}>
                 <div style={{ flex: 1, position: 'relative' }}>
