@@ -333,10 +333,15 @@ function ProjectsContent() {
                 }
                 .cluster-img {
                     width: 100%;
-                    height: 500px;
+                    height: 650px;
                     object-fit: cover;
-                    border-radius: 12px;
-                    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                    border-radius: 20px;
+                    box-shadow: 0 15px 45px rgba(0,0,0,0.1);
+                    transition: all 0.5s ease;
+                }
+                .cluster-img:hover {
+                    box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+                    transform: scale(1.02);
                 }
                 
                 .project-overview-bg {
@@ -393,7 +398,7 @@ function ProjectsContent() {
                 
                 @media (max-width: 1024px) {
                     .project-cluster { grid-template-columns: 1fr; gap: 20px; }
-                    .cluster-img { height: 320px; }
+                    .cluster-img { height: 450px; }
                     .cluster-images { grid-template-columns: 1fr; }
                     .container { padding: 0 40px; }
                     .title-our { font-size: 2.8rem; }
@@ -405,7 +410,7 @@ function ProjectsContent() {
                     .hero-works-h1 { font-size: 2.8rem; word-break: break-word; line-height: 1.1; margin-bottom: 1.5rem; }
                     .hero-works-tagline { font-size: 1rem; }
                     .project-cluster { margin-bottom: 5rem; display: flex !important; flex-direction: column !important; }
-                    .cluster-img { height: 280px; }
+                    .cluster-img { height: 400px; }
                     .cluster-images { grid-template-columns: 1fr; gap: 1rem; order: 2 !important; }
                     .cluster-text { padding: 2.5rem 1.5rem; order: 1 !important; text-align: center; }
                     .cluster-title { font-size: 1.8rem; margin-bottom: 1rem; }
@@ -423,7 +428,7 @@ function ProjectsContent() {
                     .hero-works-h1 { font-size: 2.22rem; }
                     .title-our { font-size: 2rem; }
                     .cluster-title { font-size: 1.5rem; }
-                    .cluster-img { height: 220px; }
+                    .cluster-img { height: 350px; }
                 }
             `}</style>
 
