@@ -75,8 +75,7 @@ export default function Navbar() {
           zIndex: 99999,
           display: 'flex',
           justifyContent: 'center',
-          padding: isScrolled ? '8px 16px' : '16px 16px',
-          transition: 'padding 0.4s ease',
+          padding: '12px 16px',
           pointerEvents: 'none',   /* allow clicks through the wrapper gap */
         }}
       >
