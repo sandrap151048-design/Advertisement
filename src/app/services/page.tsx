@@ -269,8 +269,8 @@ export default function ServicesPage() {
 
         .service-card {
           position: relative;
-          height: 380px;
-          border-radius: 18px;
+          height: 480px;
+          border-radius: 20px;
           overflow: hidden;
           cursor: pointer;
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -295,7 +295,7 @@ export default function ServicesPage() {
           content: '';
           position: absolute;
           inset: 0;
-          background: radial-gradient(circle at center, rgba(124, 58, 237, 0.2), transparent 70%);
+          background: radial-gradient(circle at center, rgba(230, 30, 37, 0.2), transparent 70%);
           opacity: 0;
           transition: opacity 0.5s ease;
           pointer-events: none;
@@ -303,10 +303,10 @@ export default function ServicesPage() {
         }
 
         .service-card:hover {
-          transform: translateY(-6px);
+          transform: translateY(-8px);
           background: rgba(255, 255, 255, 0.08);
-          box-shadow: 0 0 20px rgba(255, 255, 255, 0.1), 0 12px 30px rgba(0, 0, 0, 0.15);
-          border-color: rgba(255, 255, 255, 0.15);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+          border-color: rgba(230, 30, 37, 0.3);
         }
 
         .service-card:hover::before {
@@ -316,22 +316,22 @@ export default function ServicesPage() {
         .service-card.clicked {
           transform: scale(1.05);
           background: rgba(255, 255, 255, 0.15);
-          box-shadow: 0 0 40px rgba(124, 58, 237, 0.3), 0 15px 40px rgba(0, 0, 0, 0.3);
-          border-color: rgba(124, 58, 237, 0.4);
+          box-shadow: 0 0 40px rgba(230, 30, 37, 0.3), 0 15px 40px rgba(0, 0, 0, 0.3);
+          border-color: rgba(230, 30, 37, 0.4);
         }
 
         @keyframes cardPulse {
           0% {
             transform: scale(1);
-            box-shadow: 0 0 20px rgba(124, 58, 237, 0.2), 0 12px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 20px rgba(230, 30, 37, 0.2), 0 12px 30px rgba(0, 0, 0, 0.2);
           }
           50% {
             transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(124, 58, 237, 0.3), 0 15px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 40px rgba(230, 30, 37, 0.3), 0 15px 40px rgba(0, 0, 0, 0.3);
           }
           100% {
             transform: scale(1);
-            box-shadow: 0 0 20px rgba(124, 58, 237, 0.2), 0 12px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 20px rgba(230, 30, 37, 0.2), 0 12px 30px rgba(0, 0, 0, 0.2);
           }
         }
 
@@ -355,36 +355,41 @@ export default function ServicesPage() {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          transition: transform 0.6s ease;
+        }
+
+        .service-card:hover img {
+          transform: scale(1.1);
         }
 
         .service-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.25) 100%);
+          background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 100%);
           display: flex;
           flex-direction: column;
           justify-content: flex-end;
           align-items: flex-start;
-          padding: 2rem;
+          padding: 2.5rem;
           color: white;
           z-index: 2;
           transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .service-card:hover .service-overlay {
-          background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.2) 100%);
+          background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 100%);
         }
 
         .service-card.clicked .service-overlay {
           justify-content: center;
           align-items: center;
-          background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(20,0,40,0.85) 100%);
+          background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(40,0,0,0.85) 100%);
         }
 
         .service-title {
-          font-size: 1.8rem;
+          font-size: 2.2rem;
           font-weight: 800;
-          margin-bottom: 0.5rem;
+          margin-bottom: 0.8rem;
           transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
           text-shadow: 0 2px 8px rgba(0,0,0,0.5);
           position: relative;
@@ -393,7 +398,7 @@ export default function ServicesPage() {
 
         .service-card:hover .service-title {
           color: #ffffff;
-          text-shadow: 0 0 15px rgba(255,255,255,0.4), 0 2px 8px rgba(0,0,0,0.5);
+          text-shadow: 0 0 15px rgba(230,30,37,0.4), 0 2px 8px rgba(0,0,0,0.5);
           transform: translateY(-3px);
         }
 
@@ -404,7 +409,7 @@ export default function ServicesPage() {
           text-align: center;
           margin-bottom: 0;
           color: #ffffff;
-          text-shadow: 0 0 30px rgba(124, 58, 237, 0.8), 0 0 60px rgba(124, 58, 237, 0.4), 0 4px 12px rgba(0,0,0,0.8);
+          text-shadow: 0 0 30px rgba(230, 30, 37, 0.8), 0 0 60px rgba(230, 30, 37, 0.4), 0 4px 12px rgba(0,0,0,0.8);
           letter-spacing: 1px;
         }
 
@@ -424,15 +429,15 @@ export default function ServicesPage() {
         }
 
         .service-desc {
-          font-size: 0.95rem;
-          color: rgba(255,255,255,0.75);
+          font-size: 1rem;
+          color: rgba(255,255,255,0.85);
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           position: relative;
           z-index: 3;
         }
 
         .service-card:hover .service-desc {
-          color: rgba(255,255,255,0.9);
+          color: rgba(255,255,255,1);
           transform: translateY(-2px);
         }
 
@@ -504,7 +509,7 @@ export default function ServicesPage() {
         }
 
         .accordion-header:hover {
-          background: rgba(124, 58, 237, 0.05);
+          background: rgba(230, 30, 37, 0.05);
         }
 
         .accordion-icon {
@@ -636,16 +641,16 @@ export default function ServicesPage() {
 
           .services-grid {
             grid-template-columns: 1fr;
-            gap: 1.5rem;
+            gap: 2rem;
             padding: 0 0.5rem;
           }
 
           .service-card {
-            height: 250px;
+            height: 380px;
           }
 
           .service-title {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
           }
 
           .why-choose-section {
@@ -669,16 +674,16 @@ export default function ServicesPage() {
 
         @media (max-width: 480px) {
           .hero-title {
-            font-size: 2.2rem;
+            font-size: 2.22rem;
             line-height: 1.2;
           }
 
           .service-card {
-            height: 220px;
+            height: 350px;
           }
 
           .service-title {
-            font-size: 1.35rem;
+            font-size: 1.65rem;
           }
         }
 
