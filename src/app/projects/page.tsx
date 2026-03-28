@@ -371,19 +371,24 @@ function ProjectsContent() {
                     display: inline-flex;
                     align-items: center;
                     gap: 12px;
-                    padding: 1rem 2.5rem;
-                    background: #f0f0f0;
-                    color: #1a1a1a;
+                    padding: 1rem 2.8rem;
+                    background: #e61e25;
+                    color: white;
                     font-weight: 800;
-                    border-radius: 50px;
+                    border-radius: 8px;
                     text-decoration: none;
                     transition: all 0.3s ease;
                     font-size: 1.1rem;
                     margin-top: 2rem;
+                    box-shadow: 0 4px 15px rgba(230, 30, 37, 0.3);
+                    border: none;
+                    cursor: pointer;
                 }
                 .cta-btn-pill:hover {
-                    background: white;
+                    background: #ff2d35;
                     transform: translateY(-4px);
+                    box-shadow: 0 8px 25px rgba(230, 30, 37, 0.4);
+                    color: white;
                 }
                 
                 @media (max-width: 1024px) {
@@ -397,21 +402,21 @@ function ProjectsContent() {
 
                 @media (max-width: 768px) {
                     .hero-works { height: auto; min-height: 70vh; padding: 120px 20px 60px; }
-                    .hero-works-h1 { font-size: clamp(2rem, 8vw, 3rem); word-break: break-word; }
-                    .hero-works-tagline { font-size: 1rem; }
+                    .hero-works-h1 { font-size: clamp(2.2rem, 8vw, 3.2rem); word-break: break-word; line-height: 1.1; }
+                    .hero-works-tagline { font-size: 1.05rem; }
                     .project-cluster { margin-bottom: 40px; }
-                    .cluster-img { height: 240px; }
-                    .cluster-images { grid-template-columns: 1fr; gap: 12px; }
-                    .cluster-title { font-size: 1.6rem; }
-                    .cluster-text { padding: 1.5rem; }
+                    .cluster-img { height: clamp(220px, 40vh, 300px); }
+                    .cluster-images { grid-template-columns: 1fr; gap: 15px; }
+                    .cluster-title { font-size: 1.65rem; margin-bottom: 0.8rem; }
+                    .cluster-text { padding: 1.5rem 0.5rem; }
                     .section-header { padding: 50px 0 40px 0; }
-                    .title-our { font-size: 2.2rem; }
-                    .title-projects { font-size: 1.8rem; }
-                    .category-nav { gap: 8px; margin-bottom: 40px; }
-                    .cat-btn { padding: 0.5rem 1.2rem; font-size: 0.8rem; }
+                    .title-our { font-size: 2.3rem; }
+                    .title-projects { font-size: 1.9rem; }
+                    .category-nav { gap: 8px; margin-bottom: 40px; flex-wrap: wrap; justify-content: center; }
+                    .cat-btn { padding: 0.6rem 1.4rem; font-size: 0.85rem; }
                     .project-overview-bg { padding: 80px 0; margin-top: 60px; }
-                    .project-overview-glass { padding: 2.5rem 1.5rem; border-radius: 20px; margin: 0 20px; }
-                    .cta-btn-pill { width: 100%; justify-content: center; }
+                    .project-overview-glass { padding: 3rem 1.5rem; border-radius: 20px; margin: 0 15px; }
+                    .cta-btn-pill { width: 100%; justify-content: center; border-radius: 8px; }
                 }
 
                 @media (max-width: 480px) {

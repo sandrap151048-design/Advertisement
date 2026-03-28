@@ -70,10 +70,9 @@ body {
   -ms-overflow-style: none; /* IE and Edge */
 }
 
-/* Improved fade-in for page content */
+/* Improved fade-in for page content - safely updated */
 body {
-  opacity: 0;
-  transition: opacity 0.5s ease;
+  opacity: 1;
 }
 
 body.loaded {
@@ -81,7 +80,7 @@ body.loaded {
 }
 
 body:not(.loaded) main {
-  opacity: 0;
+  opacity: 1 !important; /* safe override so content is never hidden if JS fails */
 }
 
 body.loaded main {

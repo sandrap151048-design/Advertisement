@@ -50,16 +50,7 @@ body {
   display: block !important;
 }
 
-/* Navbar always visible at top */
-.navbar-wrapper {
-  z-index: 9999 !important;
-  position: fixed !important;
-}
-
-/* Mobile menu above everything */
-.mobile-menu {
-  z-index: 9998 !important;
-}
+/* Navbar and Mobile Menu handled via inline styles in Navbar.tsx for maximum reliability */
 
 
 /* ============================================

@@ -177,6 +177,7 @@ export default function ServicesPage() {
           justify-content: center;
           overflow: hidden;
           padding-top: 100px;
+          background-color: #111;
         }
 
         .hero-bg {
@@ -487,8 +488,8 @@ export default function ServicesPage() {
         }
 
         .accordion-item.open {
-          border-color: #7C3AED;
-          box-shadow: 0 4px 12px rgba(124, 58, 237, 0.1);
+          border-color: #e61e25;
+          box-shadow: 0 4px 12px rgba(230, 30, 37, 0.1);
         }
 
         .accordion-header {
@@ -532,31 +533,21 @@ export default function ServicesPage() {
 
         .cta-section {
           position: relative;
-          height: 60vh;
-          min-height: 400px;
+          min-height: 50vh;
           display: flex;
           align-items: center;
           justify-content: center;
           overflow: hidden;
-        }
-
-        .cta-bg {
-          position: absolute;
-          inset: 0;
-          z-index: 0;
-        }
-
-        .cta-bg img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          filter: brightness(0.7);
+          background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1600&q=80');
+          background-size: cover;
+          background-position: center;
+          background-color: #111;
         }
 
         .cta-overlay {
           position: absolute;
           inset: 0;
-          background: rgba(0,0,0,0.4);
+          background: rgba(0,0,0,0.65);
           z-index: 1;
         }
 
@@ -565,23 +556,20 @@ export default function ServicesPage() {
           z-index: 2;
           text-align: center;
           color: white;
-          max-width: 100%;
-          padding: 2rem;
+          max-width: 900px;
+          padding: clamp(3rem, 6vw, 4rem) 1.5rem;
+          width: 100%;
         }
 
         .cta-title {
-          font-size: clamp(2rem, 5vw, 3rem);
+          font-size: clamp(1.85rem, 5vw, 3.2rem);
           font-weight: 900;
           margin-bottom: 1rem;
           line-height: 1.2;
         }
 
-        .cta-title .italic {
-          font-style: italic;
-        }
-
         .cta-subtitle {
-          font-size: 1.1rem;
+          font-size: clamp(0.95rem, 2vw, 1.15rem);
           color: rgba(255,255,255,0.9);
           margin-bottom: 2rem;
           line-height: 1.6;
@@ -592,18 +580,20 @@ export default function ServicesPage() {
           align-items: center;
           gap: 0.8rem;
           padding: 1rem 2.5rem;
-          background: white;
-          color: #1a1a1a;
+          background: #e61e25;
+          color: white;
           font-weight: 700;
-          border-radius: 50px;
+          border-radius: 8px;
           text-decoration: none;
           transition: all 0.3s ease;
           font-size: 1rem;
+          box-shadow: 0 4px 15px rgba(230, 30, 37, 0.3);
         }
 
         .cta-button:hover {
           transform: translateY(-2px);
-          box-shadow: 0 8px 20px rgba(255,255,255,0.3);
+          background: #ff2d35;
+          box-shadow: 0 8px 25px rgba(230, 30, 37, 0.4);
         }
 
         /* Responsive */

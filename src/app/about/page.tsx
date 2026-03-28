@@ -187,19 +187,19 @@ export default function AboutPage() {
 
         .vm-card:hover {
           transform: translateY(-8px);
-          box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-          border-color: #0070f3;
+          box-shadow: 0 20px 50px rgba(230, 30, 37, 0.1);
+          border-color: #e61e25;
         }
 
         .vm-icon {
           width: 60px;
           height: 60px;
-          background: #f0f7ff;
+          background: rgba(230, 30, 37, 0.08);
           border-radius: 20px;
           display: flex;
           align-items: center;
           justify-content: center;
-          color: #0070f3;
+          color: #e61e25;
           margin-bottom: 2rem;
         }
 
@@ -331,14 +331,14 @@ export default function AboutPage() {
         .process-icon {
           width: 48px;
           height: 48px;
-          background: #f3f4f6;
+          background: rgba(230, 30, 37, 0.05);
           border-radius: 8px;
           display: flex;
           align-items: center;
           justify-content: center;
-          color: #1e3a8a; /* Dark Blue */
+          color: #e61e25;
           flex-shrink: 0;
-          border: 1px solid #e5e7eb;
+          border: 1px solid rgba(230, 30, 37, 0.1);
           transition: all 0.3s ease;
         }
 
@@ -372,17 +372,17 @@ export default function AboutPage() {
           top: 0;
           left: 0;
           height: 100%;
-          background: #1e3a8a; /* Dark Blue */
-          box-shadow: 0 0 10px rgba(30,58,138,0.3);
+          background: #e61e25;
+          box-shadow: 0 0 10px rgba(230, 30, 37, 0.3);
         }
 
         .process-step:hover {
-          border-color: #1e3a8a;
+          border-color: #e61e25;
           transform: translateY(-5px);
         }
 
         .process-step:hover .process-icon {
-          background: #1e3a8a;
+          background: #e61e25;
           color: white;
         }
 
@@ -511,7 +511,7 @@ export default function AboutPage() {
           max-width: 800px;
           margin: 0 auto;
           line-height: 1.6;
-          color: #1e3a8a; /* Text in Blue */
+          color: #1a1a1a;
           font-weight: 500;
         }
 
@@ -591,7 +591,7 @@ export default function AboutPage() {
           background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1600&q=80');
           background-size: cover;
           background-position: center;
-          filter: brightness(0.35);
+          filter: brightness(0.4);
           z-index: 0;
         }
 
