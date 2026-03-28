@@ -613,22 +613,29 @@ export default function AboutPage() {
         @media (max-width: 1024px) {
           .about-hero {
             height: auto;
-            min-height: 55vh;
-            padding: 140px 20px 60px;
+            min-height: 50vh;
+            padding: 140px 1.5rem 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
             text-align: center;
-            display: flex;
-            align-items: center;
           }
           .about-hero-content {
-            padding-left: 0;
-            margin: 0 auto;
-            width: 100%;
+            padding-left: 0 !important;
+            margin: 0 auto !important;
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
           }
           .about-hero-title {
-            font-size: clamp(2.5rem, 12vw, 4rem);
+            font-size: clamp(2.5rem, 12vw, 4.2rem) !important;
             letter-spacing: -1px;
             text-align: center;
+            line-height: 1.1;
+            margin: 0 auto;
           }
           .section-layout {
             grid-template-columns: 1fr;
@@ -730,7 +737,12 @@ export default function AboutPage() {
             animate="visible"
             variants={staggerContainer}
           >
-            <motion.h1 className="about-hero-title" variants={fadeInUp}>
+            <motion.h1 
+              className="about-hero-title"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
               About{' '}
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', verticalAlign: 'middle' }}>
                 <svg width="0.8em" height="0.8em" viewBox="0 0 32 32" style={{ display: 'inline-block' }}>
