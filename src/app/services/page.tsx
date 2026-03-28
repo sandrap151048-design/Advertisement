@@ -21,42 +21,42 @@ const staggerContainer = {
 const services = [
   {
     title: "Branding & Corporate Identity",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1634942537034-22317300300f?w=1000&q=90",
     description: "Brand implementation, rollout & corporate identity applications",
     details: ["Brand implementation & rollout", "Corporate identity applications", "Office branding & interior graphics", "Brand consistency across multiple locations"],
     link: "/services/branding"
   },
   {
     title: "Digital Printed Graphics",
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1572044162444-ad60f128bde2?w=1000&q=90",
     description: "Large format printing & interior graphics",
     details: ["Large format digital printing", "Wall, glass & window graphics", "Frosted film & privacy films", "Floor & promotional graphics", "Wallpaper & interior branding"],
     link: "/services/digital-graphics"
   },
   {
     title: "Vehicle Graphics & Fleet Branding",
-    image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1000&q=90",
     description: "Full & partial vehicle wraps for mobile advertising",
     details: ["Full & partial vehicle wraps", "Corporate fleet branding", "Reflective & safety graphics", "Promotional vehicle advertising"],
     link: "/services/vehicle-branding"
   },
   {
     title: "Signage Production & Installation",
-    image: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=1000&q=90",
     description: "Indoor & outdoor signage solutions",
     details: ["Indoor & outdoor signage", "Illuminated & non-illuminated signboards", "3D letter signs (acrylic, metal, LED)", "Directional, wayfinding & safety signage", "Mall, retail & commercial signage"],
     link: "/services/signage"
   },
   {
     title: "Exhibition, Display & POS",
-    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1582192732961-bb3d96924294?w=1000&q=90",
     description: "Exhibition stands, kiosks & point of sale displays",
     details: ["Exhibition stands & kiosks", "Pop-up systems & backdrops", "Roll-up & X-banners", "Point of Sale (POS) & in-store displays"],
     link: "/services/exhibition"
   },
   {
     title: "Cladding & Facade Solutions",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1000&q=90",
     description: "ACP cladding & architectural facade branding",
     details: ["ACP cladding works", "Aluminum & composite panel cladding", "Shopfront & facade branding", "Decorative architectural finishes", "Signage-integrated facade solutions"],
     link: "/services/cladding"
@@ -269,7 +269,7 @@ export default function ServicesPage() {
 
         .service-card {
           position: relative;
-          height: 300px;
+          height: 380px;
           border-radius: 18px;
           overflow: hidden;
           cursor: pointer;
