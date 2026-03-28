@@ -359,8 +359,12 @@ export default function Home() {
           }
 
           .portfolio-grid {
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
+          }
+
+          .portfolio-item {
+            height: 220px;
           }
 
           .for-brands-section,
@@ -392,6 +396,10 @@ export default function Home() {
           .portfolio-grid {
             grid-template-columns: 1fr;
           }
+
+          .portfolio-item {
+            height: 200px;
+          }
         }
 
 
@@ -412,30 +420,37 @@ export default function Home() {
         /* Portfolio Grid */
         .portfolio-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: 2rem;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.5rem;
           margin-bottom: 3rem;
           overflow: hidden;
         }
 
         .portfolio-item {
-          aspect-ratio: 1;
+          height: 260px;
           background: #e0e0e0;
-          border-radius: 12px;
+          border-radius: 16px;
           overflow: hidden;
           cursor: pointer;
-          transition: transform 0.3s ease;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
           position: relative;
+          box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
         .portfolio-item:hover {
-          transform: scale(1.05);
+          transform: translateY(-6px);
+          box-shadow: 0 12px 40px rgba(0,0,0,0.18);
         }
 
         .portfolio-item img {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          transition: transform 0.5s ease;
+        }
+
+        .portfolio-item:hover img {
+          transform: scale(1.06);
         }
 
         .portfolio-overlay {
@@ -814,9 +829,7 @@ export default function Home() {
           className="container"
         >
           <motion.h2 className="we-build-title" variants={bounceInDown}>
-            We build <br />
-            <span className="italic">unmissable brand</span> <br />
-            presence
+            We build <span className="italic">unmissable brand</span> presence
           </motion.h2>
           <motion.p className="we-build-subtitle" variants={slideDown}>
             From concept to execution, we deliver advertising solutions that capture attention and drive results.

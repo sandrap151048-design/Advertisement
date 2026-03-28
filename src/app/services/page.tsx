@@ -261,16 +261,16 @@ export default function ServicesPage() {
 
         .services-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-          gap: 2rem;
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          gap: 1.5rem;
           max-width: 1200px;
           margin: 0 auto;
         }
 
         .service-card {
           position: relative;
-          height: 480px;
-          border-radius: 20px;
+          height: 320px;
+          border-radius: 16px;
           overflow: hidden;
           cursor: pointer;
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -370,7 +370,7 @@ export default function ServicesPage() {
           flex-direction: column;
           justify-content: flex-end;
           align-items: flex-start;
-          padding: 2.5rem;
+          padding: 1.5rem;
           color: white;
           z-index: 2;
           transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -387,9 +387,9 @@ export default function ServicesPage() {
         }
 
         .service-title {
-          font-size: 2.2rem;
+          font-size: 1.55rem;
           font-weight: 800;
-          margin-bottom: 0.8rem;
+          margin-bottom: 0.5rem;
           transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
           text-shadow: 0 2px 8px rgba(0,0,0,0.5);
           position: relative;
@@ -646,11 +646,11 @@ export default function ServicesPage() {
           }
 
           .service-card {
-            height: 380px;
+            height: 260px;
           }
 
           .service-title {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
           }
 
           .why-choose-section {
@@ -679,11 +679,11 @@ export default function ServicesPage() {
           }
 
           .service-card {
-            height: 350px;
+            height: 240px;
           }
 
           .service-title {
-            font-size: 1.65rem;
+            font-size: 1.3rem;
           }
         }
 
