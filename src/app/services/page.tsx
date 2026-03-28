@@ -533,21 +533,31 @@ export default function ServicesPage() {
 
         .cta-section {
           position: relative;
-          min-height: 50vh;
+          min-height: 60vh;
           display: flex;
           align-items: center;
           justify-content: center;
           overflow: hidden;
-          background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1600&q=80');
-          background-size: cover;
-          background-position: center;
-          background-color: #111;
+          background-color: #000;
+        }
+
+        .cta-bg {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+        }
+
+        .cta-bg img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: brightness(0.4);
         }
 
         .cta-overlay {
           position: absolute;
           inset: 0;
-          background: rgba(0,0,0,0.65);
+          background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
           z-index: 1;
         }
 
