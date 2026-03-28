@@ -511,3 +511,65 @@ body {
     padding: 1rem !important;
   }
 }
+
+/* ============================================
+   TABS SECTION RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  .tabs-content-grid {
+    gap: 3rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .tabs-nav-wrapper {
+    gap: 0.8rem !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .tabs-nav-item {
+    padding: 0.8rem 1.5rem !important;
+    font-size: 0.95rem !important;
+    flex: 1 1 auto !important;
+    min-width: 100px !important;
+  }
+
+  .tabs-content-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+    text-align: center !important;
+  }
+
+  .tabs-image-wrapper {
+    height: 300px !important; /* Smaller on mobile */
+    margin-top: 1rem !important;
+    order: -1 !important; /* Image on top of text for mobile */
+  }
+
+  /* Center the "Learn More" links in the tabs content */
+  .tabs-content-grid div:first-child {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .tabs-content-grid h2 {
+    font-size: 2.5rem !important;
+    margin-bottom: 1rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .tabs-nav-item {
+    padding: 0.7rem 1rem !important;
+    font-size: 0.85rem !important;
+  }
+
+  .tabs-image-wrapper {
+    height: 240px !important;
+  }
+
+  .tabs-content-grid h2 {
+    font-size: 2.2rem !important;
+  }
+}

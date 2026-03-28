@@ -1139,16 +1139,19 @@ export default function Home() {
           {/* Tabs */}
           <motion.div 
             variants={fadeInDown}
+            className="tabs-nav-wrapper"
             style={{ 
               display: 'flex', 
               gap: '1rem', 
               marginBottom: '3rem',
               justifyContent: 'center',
-              flexWrap: 'wrap'
+              flexWrap: 'wrap',
+              width: '100%'
             }}
           >
             <div 
               onClick={() => setActiveTab('whyus')}
+              className={`tabs-nav-item ${activeTab === 'whyus' ? 'active' : ''}`}
               style={{ 
                 padding: '1rem 3rem', 
                 background: activeTab === 'whyus' ? '#1a1a1a' : 'white', 
@@ -1157,13 +1160,15 @@ export default function Home() {
                 fontSize: '1.1rem',
                 fontWeight: 600,
                 cursor: 'pointer',
-                transition: 'all 0.3s ease'
+                transition: 'all 0.3s ease',
+                textAlign: 'center'
               }}
             >
               Why Us
             </div>
             <div 
               onClick={() => setActiveTab('reach')}
+              className={`tabs-nav-item ${activeTab === 'reach' ? 'active' : ''}`}
               style={{ 
                 padding: '1rem 3rem', 
                 background: activeTab === 'reach' ? '#1a1a1a' : 'white', 
@@ -1172,13 +1177,15 @@ export default function Home() {
                 fontSize: '1.1rem',
                 fontWeight: 600,
                 cursor: 'pointer',
-                transition: 'all 0.3s ease'
+                transition: 'all 0.3s ease',
+                textAlign: 'center'
               }}
             >
               Reach
             </div>
             <div 
               onClick={() => setActiveTab('solutions')}
+              className={`tabs-nav-item ${activeTab === 'solutions' ? 'active' : ''}`}
               style={{ 
                 padding: '1rem 3rem', 
                 background: activeTab === 'solutions' ? '#1a1a1a' : 'white', 
@@ -1187,7 +1194,8 @@ export default function Home() {
                 fontSize: '1.1rem',
                 fontWeight: 600,
                 cursor: 'pointer',
-                transition: 'all 0.3s ease'
+                transition: 'all 0.3s ease',
+                textAlign: 'center'
               }}
             >
               Solutions
@@ -1200,6 +1208,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
+            className="tabs-content-grid"
             style={{ 
               display: 'grid', 
               gridTemplateColumns: '1fr 1fr', 
@@ -1242,7 +1251,7 @@ export default function Home() {
                     Learn more <ArrowRight size={20} />
                   </Link>
                 </div>
-                <div style={{ 
+                <div className="tabs-image-wrapper" style={{ 
                   width: '100%', 
                   height: '400px', 
                   background: '#e0e0e0', 
@@ -1293,7 +1302,7 @@ export default function Home() {
                     Get in touch <ArrowRight size={20} />
                   </Link>
                 </div>
-                <div style={{ 
+                <div className="tabs-image-wrapper" style={{ 
                   width: '100%', 
                   height: '400px', 
                   background: '#e0e0e0', 
@@ -1344,7 +1353,7 @@ export default function Home() {
                     View services <ArrowRight size={20} />
                   </Link>
                 </div>
-                <div style={{ 
+                <div className="tabs-image-wrapper" style={{ 
                   width: '100%', 
                   height: '400px', 
                   background: '#e0e0e0', 
@@ -1352,7 +1361,7 @@ export default function Home() {
                   overflow: 'hidden'
                 }}>
                   <img 
-                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80"
+                    src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80"
                     alt="Complete Solutions"
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
