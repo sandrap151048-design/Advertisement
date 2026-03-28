@@ -1374,18 +1374,20 @@ export default function Home() {
       </section>
 
       {/* CTA Section with Background */}
-      <section style={{ position: 'relative', minHeight: '70vh', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-        {/* Background Image */}
-        <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-          <img 
-            src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1600&q=80" 
-            alt="City Background"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.4)' }}
-          />
-        </div>
-        
+      <section style={{ 
+        position: 'relative', 
+        minHeight: '70vh', 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        overflow: 'hidden',
+        backgroundImage: "url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1600&q=80')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundColor: '#111'
+      }}>
         {/* Overlay */}
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 1 }}></div>
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.65)', zIndex: 1 }}></div>
         
         {/* Content */}
         <motion.div
@@ -1393,16 +1395,16 @@ export default function Home() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={staggerContainer}
-          style={{ position: 'relative', zIndex: 2, textAlign: 'center', color: 'white', padding: '2rem', maxWidth: '900px' }}
+          style={{ position: 'relative', zIndex: 2, textAlign: 'center', color: 'white', padding: 'clamp(3rem, 6vw, 4rem) clamp(1.5rem, 4vw, 2rem)', maxWidth: '900px', width: '100%' }}
         >
-          <motion.h2 variants={bounceInDown} style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 900, marginBottom: '1.5rem', lineHeight: 1.2 }}>
+          <motion.h2 variants={bounceInDown} style={{ fontSize: 'clamp(1.8rem, 5vw, 3.5rem)', fontWeight: 900, marginBottom: '1.5rem', lineHeight: 1.2 }}>
             Ready to make your brand <span style={{ fontStyle: 'italic' }}>impossible to ignore?</span>
           </motion.h2>
-          <motion.p variants={slideDown} style={{ color: 'rgba(255,255,255,0.9)', marginBottom: '2rem', fontSize: '1.1rem', maxWidth: '700px', margin: '0 auto 2rem auto', lineHeight: 1.6 }}>
+          <motion.p variants={slideDown} style={{ color: 'rgba(255,255,255,0.9)', marginBottom: '2rem', fontSize: 'clamp(0.95rem, 2vw, 1.1rem)', maxWidth: '700px', margin: '0 auto 2rem auto', lineHeight: 1.6 }}>
             Launch your outdoor campaign with high-impact placements across prime locations - fast, simple, and effective.
           </motion.p>
           <motion.div variants={fadeInUp}>
-            <Link href="/contact#campaign" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.8rem', padding: '1rem 2.5rem', background: 'white', color: '#1a1a1a', fontWeight: 700, borderRadius: '8px', textDecoration: 'none', transition: 'all 0.3s ease', fontSize: '1rem' }}>
+            <Link href="/contact#campaign" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.8rem', padding: '1rem 2.5rem', background: '#e61e25', color: 'white', fontWeight: 700, borderRadius: '8px', textDecoration: 'none', transition: 'all 0.3s ease', fontSize: '1rem', boxShadow: '0 4px 20px rgba(230,30,37,0.4)' }}>
               Start your campaign <ArrowRight size={20} />
             </Link>
           </motion.div>
