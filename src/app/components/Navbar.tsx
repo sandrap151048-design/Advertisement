@@ -170,11 +170,11 @@ export default function Navbar() {
           pointerEvents: isMobileMenuOpen ? 'all' : 'none',
         }}
       >
-        <Link href="/" className="mobile-nav-link" onClick={closeMobileMenu}>🏠 Home</Link>
-        <Link href="/projects" className="mobile-nav-link" onClick={closeMobileMenu}>🎨 Projects</Link>
-        <Link href="/services" className="mobile-nav-link" onClick={closeMobileMenu}>⚡ Services</Link>
-        <Link href="/contact" className="mobile-nav-link" onClick={closeMobileMenu}>📬 Contact</Link>
-        <Link href="/about" className="mobile-nav-link" onClick={closeMobileMenu}>ℹ️ About</Link>
+        <Link href="/" className="mobile-nav-link" onClick={closeMobileMenu}>Home</Link>
+        <Link href="/projects" className="mobile-nav-link" onClick={closeMobileMenu}>Projects</Link>
+        <Link href="/services" className="mobile-nav-link" onClick={closeMobileMenu}>Services</Link>
+        <Link href="/contact" className="mobile-nav-link" onClick={closeMobileMenu}>Contact</Link>
+        <Link href="/about" className="mobile-nav-link" onClick={closeMobileMenu}>About</Link>
         <Link href="/admin/login" className="mobile-nav-link mobile-nav-link-login" onClick={closeMobileMenu}>Admin Login</Link>
       </div>
 
