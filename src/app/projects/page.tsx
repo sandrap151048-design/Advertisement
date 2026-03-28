@@ -223,23 +223,26 @@ function ProjectsContent() {
                     z-index: 2;
                 }
                 .hero-works-h1 {
-                    font-size: clamp(3rem, 8vw, 6rem);
+                    font-size: clamp(2.5rem, 8vw, 5rem);
                     font-weight: 900;
                     color: white;
                     letter-spacing: -2px;
-                    line-height: 1;
+                    line-height: 1.05;
                     margin-bottom: 2rem;
                     text-transform: uppercase;
+                    word-break: keep-all;
+                    overflow-wrap: break-word;
                 }
                 .hero-works-h1 span {
                     color: #e61e25;
                 }
                 .hero-works-tagline {
                     color: white;
-                    font-size: 1.5rem;
+                    font-size: clamp(1rem, 4vw, 1.5rem);
                     letter-spacing: 2px;
                     opacity: 0.9;
                     font-weight: 500;
+                    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
                 }
                 
                 .section-header {
@@ -303,15 +306,15 @@ function ProjectsContent() {
                 }
                 .cluster-text {
                     background: white;
-                    padding: 60px;
+                    padding: clamp(1.5rem, 5vw, 4rem);
                     border: 1px solid rgba(0,0,0,0.05);
                     border-radius: 24px;
                     box-shadow: 0 20px 50px rgba(0,0,0,0.03);
                 }
                 .cluster-title {
-                    font-size: 3rem;
+                    font-size: clamp(1.8rem, 6vw, 3rem);
                     font-weight: 800;
-                    margin-bottom: 2rem;
+                    margin-bottom: 1.5rem;
                     letter-spacing: -1px;
                 }
                 .cluster-desc {
@@ -384,8 +387,37 @@ function ProjectsContent() {
                 }
                 
                 @media (max-width: 1024px) {
-                    .project-cluster { grid-template-columns: 1fr; }
-                    .cluster-img { height: 350px; }
+                    .project-cluster { grid-template-columns: 1fr; gap: 20px; }
+                    .cluster-img { height: 320px; }
+                    .cluster-images { grid-template-columns: 1fr; }
+                    .container { padding: 0 20px; }
+                    .title-our { font-size: 2.8rem; }
+                    .title-projects { font-size: 2.4rem; }
+                }
+
+                @media (max-width: 768px) {
+                    .hero-works { height: auto; min-height: 70vh; padding: 120px 20px 60px; }
+                    .hero-works-h1 { font-size: clamp(2rem, 8vw, 3rem); word-break: break-word; }
+                    .hero-works-tagline { font-size: 1rem; }
+                    .project-cluster { margin-bottom: 40px; }
+                    .cluster-img { height: 240px; }
+                    .cluster-images { grid-template-columns: 1fr; gap: 12px; }
+                    .cluster-title { font-size: 1.6rem; }
+                    .cluster-text { padding: 1.5rem; }
+                    .section-header { padding: 50px 0 40px 0; }
+                    .title-our { font-size: 2.2rem; }
+                    .title-projects { font-size: 1.8rem; }
+                    .category-nav { gap: 8px; margin-bottom: 40px; }
+                    .cat-btn { padding: 0.5rem 1.2rem; font-size: 0.8rem; }
+                    .project-overview-bg { padding: 80px 0; margin-top: 60px; }
+                    .project-overview-glass { padding: 2.5rem 1.5rem; border-radius: 20px; margin: 0 20px; }
+                    .cta-btn-pill { width: 100%; justify-content: center; }
+                }
+
+                @media (max-width: 480px) {
+                    .cluster-img { height: 200px; }
+                    .hero-works-h1 { font-size: 2rem; letter-spacing: -1px; }
+                    .cluster-title { font-size: 1.4rem; }
                 }
             `}</style>
 

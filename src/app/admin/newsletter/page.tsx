@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Mail, Trash2, Download, Users, TrendingUp, Calendar, Search } from 'lucide-react';
+import { Mail, Trash2, Download, Users, TrendingUp, Calendar, Search, ArrowLeft } from 'lucide-react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 interface Subscriber {
@@ -98,6 +99,9 @@ export default function AdminNewsletterPage() {
                 gap: '1rem'
             }}>
                 <div>
+                    <Link href="/admin" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#666', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, marginBottom: '1rem', transition: 'all 0.3s' }} className="hover-red">
+                        <ArrowLeft size={18} /> Back to Dashboard
+                    </Link>
                     <h1 style={{ 
                         fontSize: '2.5rem', 
                         fontWeight: 800, 
@@ -403,6 +407,9 @@ export default function AdminNewsletterPage() {
                     </div>
                 )}
             </div>
+            <style jsx global>{`
+                .hover-red:hover { color: #e61e25 !important; }
+            `}</style>
         </div>
     );
 }

@@ -206,12 +206,14 @@ export default function ServicesPage() {
         }
 
         .hero-title {
-          font-size: clamp(3rem, 8vw, 5rem);
+          font-size: clamp(2.5rem, 8vw, 5rem);
           font-weight: 900;
-          line-height: 1.1;
+          line-height: 1.05;
           margin-bottom: 1.5rem;
           letter-spacing: -2px;
           color: white;
+          word-break: keep-all;
+          overflow-wrap: break-word;
         }
 
         .hero-title .highlight {
@@ -224,6 +226,7 @@ export default function ServicesPage() {
           max-width: 600px;
           margin: 0 auto 2rem auto;
           line-height: 1.6;
+          text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         .services-section {
@@ -604,21 +607,27 @@ export default function ServicesPage() {
         }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+          .why-choose-container { grid-template-columns: 1fr; gap: 3rem; }
+        }
+
         @media (max-width: 768px) {
           .hero-services {
-            height: 70vh;
-            min-height: 500px;
-            padding-top: 80px;
+            height: auto;
+            min-height: 100vh;
+            padding: 120px 1.5rem 60px 1.5rem;
           }
 
           .hero-title {
-            font-size: clamp(2rem, 8vw, 3rem);
+            font-size: clamp(2.2rem, 10vw, 3.2rem);
             letter-spacing: -1px;
+            margin-bottom: 1rem;
           }
 
           .hero-subtitle {
-            font-size: 0.95rem;
-            padding: 0 1rem;
+            font-size: 1rem;
+            padding: 0;
+            margin-bottom: 1.5rem;
           }
 
           .services-section {
@@ -632,11 +641,11 @@ export default function ServicesPage() {
           }
 
           .service-card {
-            height: 260px;
+            height: 250px;
           }
 
           .service-title {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
           }
 
           .why-choose-section {
@@ -649,45 +658,19 @@ export default function ServicesPage() {
           }
 
           .why-choose-content h2 {
-            font-size: 2rem;
-            text-align: center;
+            font-size: 2.2rem;
+            text-align: left;
           }
 
           .why-choose-content p {
-            text-align: center;
-          }
-
-          .cta-section {
-            height: auto;
-            min-height: 350px;
-            padding: 4rem 1rem;
-          }
-
-          .cta-title {
-            font-size: 2rem;
-          }
-
-          .cta-subtitle {
-            font-size: 0.95rem;
-          }
-
-          .cta-button {
-            padding: 0.9rem 2rem;
-            font-size: 0.95rem;
+            text-align: left;
           }
         }
 
         @media (max-width: 480px) {
-          .hero-services {
-            height: 60vh;
-          }
-
           .hero-title {
-            font-size: 1.9rem;
-          }
-
-          .services-grid {
-            grid-template-columns: 1fr;
+            font-size: 2.2rem;
+            line-height: 1.2;
           }
 
           .service-card {
@@ -695,11 +678,7 @@ export default function ServicesPage() {
           }
 
           .service-title {
-            font-size: 1.2rem;
-          }
-
-          .service-overlay {
-            padding: 1.2rem;
+            font-size: 1.35rem;
           }
         }
 

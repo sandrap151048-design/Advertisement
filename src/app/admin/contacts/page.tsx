@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Home, LogOut, MessageSquare, Briefcase, Trash2, Mail, Phone, Calendar, MapPin } from 'lucide-react';
+import { Home, LogOut, MessageSquare, Briefcase, Trash2, Mail, Phone, Calendar, MapPin, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -72,6 +72,9 @@ export default function ContactsPage() {
         <div style={{ padding: '2rem' }}>
                 <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '1.5rem', borderBottom: '1px solid rgba(44, 74, 94, 0.2)' }}>
                     <div>
+                        <Link href="/admin" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#666', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, marginBottom: '1rem', transition: 'all 0.3s' }} className="hover-red">
+                            <ArrowLeft size={18} /> Back to Dashboard
+                        </Link>
                         <h1 style={{ fontSize: '1.8rem', marginBottom: '0.5rem', fontFamily: "'Bricolage Grotesque', sans-serif", color: '#1a1a1a' }}>Contact <span style={{ color: '#e61e25', fontWeight: 700 }}>Forms</span></h1>
                         <p style={{ color: '#666666', fontSize: '0.9rem', fontFamily: "'Manrope', sans-serif" }}>Manage customer inquiries and messages</p>
                     </div>
@@ -161,6 +164,9 @@ export default function ContactsPage() {
 
                 {/* Admin Footer */}
                 <AdminFooter />
+            <style jsx global>{`
+                .hover-red:hover { color: #e61e25 !important; }
+            `}</style>
         </div>
     );
 }

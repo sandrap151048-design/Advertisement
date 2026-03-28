@@ -7,7 +7,7 @@ import AdminFooter from '../components/AdminFooter';
 import { motion } from 'framer-motion';
 import {
   Home, MessageSquare, Briefcase, TrendingUp, LogOut,
-  Phone, Mail, Building2, Clock, User, FileText, Tag, RefreshCw, Search
+  Phone, Mail, Building2, Clock, User, FileText, Tag, RefreshCw, Search, ArrowLeft
 } from 'lucide-react';
 
 interface Campaign {
@@ -108,6 +108,9 @@ export default function CampaignsPage() {
         {/* Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
           <div>
+            <Link href="/admin" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#666', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, marginBottom: '1rem', transition: 'all 0.3s' }} className="hover-red">
+                <ArrowLeft size={18} /> Back to Dashboard
+            </Link>
             <h1 style={{ fontSize: '2rem', fontWeight: 800, color: '#1a1a1a', margin: 0 }}>
               Campaign <span style={{ color: '#e61e25' }}>Requests</span>
             </h1>
@@ -271,6 +274,9 @@ export default function CampaignsPage() {
           </div>
         )}
         <AdminFooter />
+        <style jsx global>{`
+          .hover-red:hover { color: #e61e25 !important; }
+        `}</style>
     </div>
   );
 }

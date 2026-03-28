@@ -13,7 +13,8 @@ import {
     Layout,
     CheckCircle,
     X,
-    Loader2
+    Loader2,
+    ArrowLeft
 } from 'lucide-react';
 import Link from 'next/link';
 import AdminFooter from '../components/AdminFooter';
@@ -198,6 +199,9 @@ export default function AdminProjectsPage() {
 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem', gap: '1.5rem' }}>
                 <div>
+                    <Link href="/admin" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#666', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, marginBottom: '1.5rem', transition: 'all 0.3s' }} className="hover-red">
+                        <ArrowLeft size={18} /> Back to Dashboard
+                    </Link>
                     <h1 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#1a1a1a', marginBottom: '0.5rem' }}>
                         Projects <span style={{ color: '#e61e25' }}>Management</span>
                     </h1>
@@ -378,15 +382,27 @@ export default function AdminProjectsPage() {
                                     />
                                 </div>
 
-                                <button 
-                                    disabled={isSubmitting}
-                                    style={{
-                                        width: '100%', padding: '1rem', background: '#e61e25', color: '#ffffff', border: 'none',
-                                        borderRadius: '12px', fontWeight: 800, cursor: 'pointer', boxShadow: '0 4px 12px rgba(230, 30, 37, 0.3)'
-                                    }}
-                                >
-                                    {isSubmitting ? <Loader2 className="animate-spin" size={20} /> : (isEditModalOpen ? 'Save Changes' : 'Create Project')}
-                                </button>
+                                <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
+                                    <button 
+                                        type="button"
+                                        onClick={() => { setIsAddModalOpen(false); setIsEditModalOpen(false); }}
+                                        style={{
+                                            flex: 1, padding: '1rem', background: '#f8fafc', color: '#64748b', border: '1px solid #e2e8f0',
+                                            borderRadius: '12px', fontWeight: 700, cursor: 'pointer'
+                                        }}
+                                    >
+                                        Cancel
+                                    </button>
+                                    <button 
+                                        disabled={isSubmitting}
+                                        style={{
+                                            flex: 2, padding: '1rem', background: '#e61e25', color: '#ffffff', border: 'none',
+                                            borderRadius: '12px', fontWeight: 800, cursor: 'pointer', boxShadow: '0 4px 12px rgba(230, 30, 37, 0.3)'
+                                        }}
+                                    >
+                                        {isSubmitting ? <Loader2 className="animate-spin" size={20} /> : (isEditModalOpen ? 'Save Changes' : 'Create Project')}
+                                    </button>
+                                </div>
                             </form>
                         </motion.div>
                     </motion.div>
@@ -394,6 +410,7 @@ export default function AdminProjectsPage() {
             </AnimatePresence>
 
             <style jsx global>{`
+                .hover-red:hover { color: #e61e25 !important; }
                 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
                 .animate-spin { animation: spin 1s linear infinite; }
             `}</style>

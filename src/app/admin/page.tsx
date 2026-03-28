@@ -18,6 +18,7 @@ export default function AdminPage() {
         services: 0
     });
     const [recentContacts, setRecentContacts] = useState<any[]>([]);
+    const [selectedContact, setSelectedContact] = useState<any | null>(null);
 
     useEffect(() => {
         const authToken = localStorage.getItem('adminAuth');
@@ -366,6 +367,7 @@ export default function AdminPage() {
                                     initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: i * 0.1 }}
+                                    onClick={() => setSelectedContact(contact)}
                                     style={{
                                         padding: '1rem',
                                         background: 'rgba(255, 107, 53, 0.1)',
@@ -373,20 +375,159 @@ export default function AdminPage() {
                                         border: '1px solid rgba(255, 107, 53, 0.3)',
                                         display: 'flex',
                                         justifyContent: 'space-between',
-                                        alignItems: 'center'
+                                        alignItems: 'center',
+                                        cursor: 'pointer',
+                                        transition: 'all 0.2s ease'
                                     }}
+                                    whileHover={{ scale: 1.02, boxShadow: '0 4px 16px rgba(230,30,37,0.15)' }}
+                                    whileTap={{ scale: 0.98 }}
                                 >
                                     <div>
                                         <p style={{ fontWeight: 600, marginBottom: '0.2rem', color: '#1a1a1a', fontFamily: "'DM Sans', sans-serif" }}>{contact.name}</p>
                                         <p style={{ fontSize: '0.85rem', color: '#666666', fontFamily: "'Manrope', sans-serif" }}>{contact.email}</p>
                                     </div>
-                                    <CheckCircle size={20} color="#e61e25" />
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                        <span style={{ fontSize: '0.75rem', color: '#e61e25', fontWeight: 600 }}>View</span>
+                                        <CheckCircle size={20} color="#e61e25" />
+                                    </div>
                                 </motion.div>
                             )) : (
                                 <p style={{ color: '#666666', textAlign: 'center', padding: '2rem' }}>No recent contacts</p>
                             )}
                         </div>
                     </motion.div>
+
+                    {/* Contact Detail Modal */}
+                    {selectedContact && (
+                        <div
+                            onClick={() => setSelectedContact(null)}
+                            style={{
+                                position: 'fixed', inset: 0,
+                                background: 'rgba(0,0,0,0.55)',
+                                zIndex: 9999,
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                padding: '1.5rem'
+                            }}
+                        >
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.92, y: 20 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                exit={{ opacity: 0, scale: 0.9 }}
+                                transition={{ type: 'spring', damping: 20, stiffness: 200 }}
+                                onClick={(e) => e.stopPropagation()}
+                                style={{
+                                    background: '#ffffff',
+                                    borderRadius: '24px',
+                                    padding: '2.5rem',
+                                    maxWidth: '520px',
+                                    width: '100%',
+                                    boxShadow: '0 24px 64px rgba(0,0,0,0.18)',
+                                    border: '1px solid rgba(230,30,37,0.1)',
+                                    position: 'relative'
+                                }}
+                            >
+                                {/* Close button */}
+                                <button
+                                    onClick={() => setSelectedContact(null)}
+                                    style={{
+                                        position: 'absolute', top: '1.5rem', right: '1.5rem',
+                                        background: '#f5f5f5', border: 'none', borderRadius: '50%',
+                                        width: '36px', height: '36px', cursor: 'pointer',
+                                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                        fontSize: '1.2rem', color: '#666', transition: 'all 0.2s'
+                                    }}
+                                >
+                                    ✕
+                                </button>
+
+                                {/* Avatar */}
+                                <div style={{
+                                    width: '60px', height: '60px',
+                                    borderRadius: '50%',
+                                    background: 'linear-gradient(135deg, #e61e25, #ff6b6b)',
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                    marginBottom: '1.5rem',
+                                    fontSize: '1.6rem', fontWeight: 800, color: 'white'
+                                }}>
+                                    {(selectedContact.name || 'U').charAt(0).toUpperCase()}
+                                </div>
+
+                                <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#111827', marginBottom: '0.3rem', fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+                                    {selectedContact.name || 'Unknown'}
+                                </h2>
+                                <p style={{ color: '#e61e25', fontWeight: 600, fontSize: '0.85rem', marginBottom: '2rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Contact Submission</p>
+
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+                                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', padding: '1rem', background: '#f9fafb', borderRadius: '12px' }}>
+                                        <Mail size={18} color="#e61e25" style={{ marginTop: '2px', flexShrink: 0 }} />
+                                        <div>
+                                            <p style={{ fontSize: '0.75rem', color: '#6b7280', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '0.2rem' }}>Email</p>
+                                            <p style={{ color: '#111827', fontWeight: 600, wordBreak: 'break-all' }}>{selectedContact.email || '—'}</p>
+                                        </div>
+                                    </div>
+
+                                    {selectedContact.phone && (
+                                        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', padding: '1rem', background: '#f9fafb', borderRadius: '12px' }}>
+                                            <Phone size={18} color="#e61e25" style={{ marginTop: '2px', flexShrink: 0 }} />
+                                            <div>
+                                                <p style={{ fontSize: '0.75rem', color: '#6b7280', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '0.2rem' }}>Phone</p>
+                                                <p style={{ color: '#111827', fontWeight: 600 }}>{selectedContact.phone}</p>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {selectedContact.message && (
+                                        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', padding: '1rem', background: '#f9fafb', borderRadius: '12px' }}>
+                                            <MessageSquare size={18} color="#e61e25" style={{ marginTop: '2px', flexShrink: 0 }} />
+                                            <div>
+                                                <p style={{ fontSize: '0.75rem', color: '#6b7280', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '0.3rem' }}>Message</p>
+                                                <p style={{ color: '#374151', lineHeight: 1.6, fontSize: '0.95rem' }}>{selectedContact.message}</p>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {selectedContact.createdAt && (
+                                        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', padding: '1rem', background: '#f9fafb', borderRadius: '12px' }}>
+                                            <Clock size={18} color="#e61e25" style={{ marginTop: '2px', flexShrink: 0 }} />
+                                            <div>
+                                                <p style={{ fontSize: '0.75rem', color: '#6b7280', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '0.2rem' }}>Submitted</p>
+                                                <p style={{ color: '#111827', fontWeight: 600 }}>{new Date(selectedContact.createdAt).toLocaleString()}</p>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem' }}>
+                                    <a
+                                        href={`mailto:${selectedContact.email}`}
+                                        style={{
+                                            flex: 1, padding: '0.875rem', background: '#e61e25',
+                                            color: 'white', border: 'none', borderRadius: '12px',
+                                            fontWeight: 700, cursor: 'pointer', textDecoration: 'none',
+                                            textAlign: 'center', fontSize: '0.95rem', display: 'flex',
+                                            alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+                                            transition: 'all 0.2s'
+                                        }}
+                                    >
+                                        <Mail size={16} /> Reply via Email
+                                    </a>
+                                    <button
+                                        onClick={() => setSelectedContact(null)}
+                                        style={{
+                                            padding: '0.875rem 1.5rem', background: '#f5f5f5',
+                                            color: '#374151', border: 'none', borderRadius: '12px',
+                                            fontWeight: 600, cursor: 'pointer', fontSize: '0.95rem',
+                                            transition: 'all 0.2s'
+                                        }}
+                                    >
+                                        Close
+                                    </button>
+                                </div>
+                            </motion.div>
+                        </div>
+                    )}
 
                     {/* Analytics Overview */}
                     <motion.div 

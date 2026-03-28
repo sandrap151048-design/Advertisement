@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Edit2, Globe, Clock, ArrowRight } from 'lucide-react';
+import { Mail, Phone, MapPin, Edit2, Globe, Clock, ArrowRight, ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 interface AdminHeaderProps {
     title: string;
@@ -16,7 +17,10 @@ export default function AdminHeader({ title, subtitle, actionButton }: AdminHead
 
     return (
         <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '2.5rem', borderBottom: '1px solid rgba(0,0,0,0.05)', marginBottom: '2.5rem' }}>
-            <div>
+            <div style={{ flex: 1 }}>
+                <Link href="/admin" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#666', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, marginBottom: '1rem', transition: 'all 0.3s' }} className="hover-red">
+                    <ArrowLeft size={18} /> Back to Dashboard
+                </Link>
                 <motion.div 
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -75,6 +79,9 @@ export default function AdminHeader({ title, subtitle, actionButton }: AdminHead
                     </div>
                 )}
             </div>
+            <style jsx global>{`
+                .hover-red:hover { color: #e61e25 !important; }
+            `}</style>
         </header>
     );
 }

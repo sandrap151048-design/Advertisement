@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Home, LogOut, MessageSquare, Briefcase, Plus, Trash2, Edit, Layers, MapPin, Phone, Mail } from 'lucide-react';
+import { Home, LogOut, MessageSquare, Briefcase, Plus, Trash2, Edit, Layers, MapPin, Phone, Mail, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -139,6 +139,9 @@ export default function ServicesPage() {
                 )}
                 <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
                     <div>
+                        <Link href="/admin" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#666', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, marginBottom: '1rem', transition: 'all 0.3s' }} className="hover-red">
+                            <ArrowLeft size={18} /> Back to Dashboard
+                        </Link>
                         <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#1a1a1a', fontFamily: "'Outfit', sans-serif" }}>Services <span style={{ color: '#e61e25' }}>Management</span></h1>
                         <p style={{ color: '#666', fontSize: '0.9rem' }}>Manage your public service offerings</p>
                     </div>
@@ -435,6 +438,9 @@ export default function ServicesPage() {
                 )}
                 {/* Admin Footer */}
                 <AdminFooter />
+            <style jsx global>{`
+                .hover-red:hover { color: #e61e25 !important; }
+            `}</style>
         </div>
     );
 }

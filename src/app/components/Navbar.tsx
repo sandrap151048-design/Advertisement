@@ -29,19 +29,24 @@ export default function Navbar() {
         }
 
         .navbar-wrapper {
-          position: absolute;
+          position: fixed;
           top: 0; left: 0; right: 0; width: 100%; z-index: 1000;
           display: flex; justify-content: center; padding: 20px 40px;
-          transition: all 0.4s ease;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navbar-wrapper.scrolled {
+          padding: 10px 40px;
         }
 
         .floating-navbar {
           width: 100%; max-width: 1400px;
-          background: rgba(10, 10, 10, 0.9);
-          backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+          background: rgba(10, 10, 10, 0.85);
+          backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
           border: 1px solid rgba(255, 255, 255, 0.1);
           border-radius: 16px; padding: 0 10px;
           transition: all 0.4s ease;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .navbar-container {
@@ -75,50 +80,105 @@ export default function Navbar() {
         .btn-login {
           padding: 10px 24px; background: #e61e25; color: white; text-decoration: none;
           font-size: 0.9rem; font-weight: 700; border-radius: 6px; transition: all 0.3s;
+          white-space: nowrap;
         }
         .btn-login:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(230,30,37,0.3); }
 
-        .mobile-toggle { display: none; color: white; cursor: pointer; }
-        
-        @media (max-width: 1024px) {
-           .navbar-nav { display: none; }
-           .mobile-toggle { display: block; }
-           .navbar-wrapper { padding: 10px 20px; }
-           /* Position the menu right under the pill navbar on mobile */
-           .mobile-menu { top: 85px !important; }
-        }
+        .mobile-toggle { display: none; color: white; cursor: pointer; padding: 8px; }
 
         .mobile-menu {
-          position: fixed; top: 100px; left: 20px; right: 20px;
-          background: rgba(10, 10, 10, 0.98);
-          backdrop-filter: blur(30px); padding: 2rem; 
-          border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1);
-          opacity: 0; visibility: hidden; transform: translateY(-20px);
-          transition: all 0.3s ease; 
-          z-index: 999;
-          display: flex; flex-direction: column; gap: 1rem;
+          position: fixed; 
+          top: 100px; 
+          left: 20px; 
+          right: 20px;
+          background: rgba(15, 15, 15, 0.98);
+          backdrop-filter: blur(30px); 
+          -webkit-backdrop-filter: blur(30px);
+          padding: 1.5rem; 
+          border-radius: 20px; 
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          opacity: 0; 
+          visibility: hidden; 
+          transform: translateY(-20px);
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+          z-index: 1100;
+          display: flex; 
+          flex-direction: column; 
+          gap: 0.5rem;
+          box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
-        .mobile-menu.open { opacity: 1; visibility: visible; transform: translateY(0); }
+        
+        .mobile-menu.open { 
+          opacity: 1; 
+          visibility: visible; 
+          transform: translateY(0); 
+        }
 
         .mobile-nav-link {
-          display: block; color: white; text-decoration: none; font-size: 1.2rem; font-weight: 700;
-          padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);
+          display: block; 
+          color: white !important; 
+          text-decoration: none; 
+          font-size: 1.1rem; 
+          font-weight: 700;
+          padding: 1rem 1.25rem; 
+          border-radius: 12px;
+          transition: all 0.2s ease;
+          background: rgba(255,255,255,0.03);
+          z-index: 1101;
+        }
+        
+        .mobile-nav-link:active, .mobile-nav-link:hover {
+          background: rgba(230, 30, 37, 0.2);
+          color: #e61e25 !important;
         }
 
+        .mobile-nav-link-login {
+          background: #e61e25;
+          margin-top: 0.5rem;
+          text-align: center;
+          color: white !important;
+        }
+        
+        .mobile-nav-link-login:active, .mobile-nav-link-login:hover {
+          background: #ff2d35;
+          color: white !important;
+        }
+
+        @media (max-width: 1024px) {
+           .navbar-nav { display: none; }
+           .mobile-toggle { display: flex; align-items: center; justify-content: center; }
+           .navbar-wrapper { padding: 15px 15px; }
+           .navbar-wrapper.scrolled { padding: 10px 15px; }
+           .navbar-container { padding: 8px 15px; }
+           .logo-main { font-size: 1.1rem; }
+           .logo-tagline { font-size: 0.55rem; letter-spacing: 1px; }
+           .navbar-actions { display: none !important; }
+           
+           .mobile-menu { 
+             top: 85px !important;
+             left: 15px !important;
+             right: 15px !important;
+             visibility: hidden;
+           }
+           .mobile-menu.open {
+             visibility: visible !important;
+             display: flex !important;
+           }
+        }
       `}</style>
 
       <div className={`navbar-wrapper ${isScrolled ? 'scrolled' : ''}`}>
         <nav className={`floating-navbar ${isScrolled ? 'scrolled' : ''}`}>
           <div className="navbar-container">
-            <Link href="/" className="navbar-logo" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column' }}>
+            <Link href="/" className="navbar-logo" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', minWidth: '150px' }}>
               <div className="logo-main" style={{ display: 'flex', alignItems: 'center', gap: '0' }}>
-                <svg width="26" height="26" viewBox="0 0 28 28" style={{ marginRight: '-1px' }}>
+                <svg width="22" height="22" viewBox="0 0 28 28" style={{ marginRight: '-1px' }}>
                   <circle cx="14" cy="14" r="11" fill="none" stroke="white" strokeWidth="4"/>
                   <rect x="16" y="2" width="9" height="9" fill="#e61e25" rx="1"/>
                 </svg>
-                <span style={{ marginLeft: '-1px' }}>ne Click</span>
+                <span style={{ marginLeft: '-1px', fontSize: '1.2rem' }}>ne Click</span>
               </div>
-              <div className="logo-tagline" style={{ color: '#888', fontWeight: '900', letterSpacing: '4px', fontSize: '0.65rem' }}>ADVERTISEMENT</div>
+              <div className="logo-tagline" style={{ color: '#888', fontWeight: '900', letterSpacing: '2px', fontSize: '0.55rem' }}>ADVERTISEMENT</div>
             </Link>
 
             <div className="navbar-nav">
@@ -133,8 +193,8 @@ export default function Navbar() {
               <Link href="/admin/login" className="btn-login">Login</Link>
             </div>
 
-            <button className="mobile-toggle" onClick={toggleMobileMenu} style={{ background: 'none', border: 'none' }}>
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            <button className="mobile-toggle" onClick={toggleMobileMenu} aria-label="Toggle Menu" style={{ background: 'none', border: 'none' }}>
+              {isMobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
             </button>
           </div>
         </nav>
@@ -146,8 +206,10 @@ export default function Navbar() {
         <Link href="/services" className="mobile-nav-link" onClick={closeMobileMenu}>Our Services</Link>
         <Link href="/contact" className="mobile-nav-link" onClick={closeMobileMenu}>Get in Touch</Link>
         <Link href="/about" className="mobile-nav-link" onClick={closeMobileMenu}>About</Link>
-        <Link href="/admin/login" className="mobile-nav-link" onClick={closeMobileMenu}>Login</Link>
+        <Link href="/admin/login" className="mobile-nav-link mobile-nav-link-login" onClick={closeMobileMenu}>Admin Login</Link>
       </div>
+
+
     </>
   );
 }

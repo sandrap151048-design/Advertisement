@@ -19,7 +19,6 @@ body {
 
 /* Prevent horizontal scrolling */
 * {
-  max-width: 100%;
   box-sizing: border-box;
 }
 
@@ -32,6 +31,36 @@ body {
   margin: 0 auto !important;
   overflow-x: hidden !important;
 }
+
+/* ============================================
+   GLOBAL IMAGE FILL FIXES
+   ============================================ */
+
+/* Portfolio and service card images must always fill containers */
+.portfolio-item img,
+.service-card img,
+.cluster-img,
+.for-brands-image img,
+.prime-locations-image img,
+.we-reach-image img,
+.built-image img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* Navbar always visible at top */
+.navbar-wrapper {
+  z-index: 9999 !important;
+  position: fixed !important;
+}
+
+/* Mobile menu above everything */
+.mobile-menu {
+  z-index: 9998 !important;
+}
+
 
 /* ============================================
    TABLET RESPONSIVE (768px - 1024px)
@@ -121,30 +150,37 @@ body {
   /* Grid layouts */
   .grid-2,
   .grid-3,
-  .grid-4 {
+  .grid-4,
+  .portfolio-grid,
+  .footer-grid,
+  .for-brands-section,
+  .prime-locations,
+  .we-reach-content,
+  .built-content {
     grid-template-columns: 1fr !important;
-    gap: 1.5rem !important;
+    gap: 2rem !important;
   }
 
   /* Cards */
-  .glass-card {
-    padding: 2rem 1.5rem !important;
+  .glass-card, .portfolio-item {
+    padding: 1.5rem !important;
     margin: 0 !important;
     width: 100% !important;
   }
 
   /* Buttons */
   .btn {
-    padding: 1rem 2rem !important;
+    padding: 0.875rem 1.5rem !important;
     font-size: 1rem !important;
     width: 100% !important;
-    max-width: 300px !important;
+    max-width: 320px !important;
     margin: 0 auto !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     text-align: center !important;
   }
+
 
   /* Section spacing */
   .section {

@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Plus, Edit, Trash2, Eye, Calendar, User, Search, Filter } from 'lucide-react';
+import { Plus, Edit, Trash2, Eye, Calendar, User, Search, Filter, ArrowLeft } from 'lucide-react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 interface BlogPost {
@@ -154,6 +155,9 @@ export default function AdminBlogPage() {
                 gap: '1rem'
             }}>
                 <div>
+                    <Link href="/admin" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#666', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, marginBottom: '1rem', transition: 'all 0.3s' }} className="hover-red">
+                        <ArrowLeft size={18} /> Back to Dashboard
+                    </Link>
                     <h1 style={{ 
                         fontSize: '2.5rem', 
                         fontWeight: 800, 
@@ -544,6 +548,10 @@ export default function AdminBlogPage() {
                     }}
                 />
             )}
+            <style jsx global>{`
+                .hover-red:hover { color: #e61e25 !important; }
+                @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+            `}</style>
         </div>
     );
 }

@@ -193,23 +193,25 @@ export default function Home() {
           padding: 2rem;
         }
 
-        .hero-content h1 {
-          font-size: clamp(3rem, 10vw, 7rem);
-          font-weight: 900;
-          line-height: 1.1;
-          margin-bottom: 1.5rem;
-          letter-spacing: -2px;
-        }
-
         .hero-content .highlight {
           color: #e61e25;
         }
 
+        .hero-content h1 {
+          font-size: clamp(2.5rem, 8vw, 6rem);
+          font-weight: 900;
+          line-height: 1.05;
+          margin-bottom: 1.5rem;
+          letter-spacing: -2px;
+          word-break: break-word;
+        }
+
         .hero-content p {
-          font-size: clamp(1rem, 2.5vw, 1.3rem);
+          font-size: clamp(1rem, 2.2vw, 1.25rem);
           color: rgba(255,255,255,0.95);
           margin-bottom: 2rem;
           line-height: 1.6;
+          text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         .hero-buttons {
@@ -231,6 +233,7 @@ export default function Home() {
           display: inline-flex;
           align-items: center;
           gap: 0.5rem;
+          white-space: nowrap;
         }
 
         .btn-primary {
@@ -271,6 +274,7 @@ export default function Home() {
           font-weight: 900;
           margin-bottom: 1rem;
           text-align: center;
+          line-height: 1.2;
         }
 
         .section-subtitle {
@@ -285,14 +289,12 @@ export default function Home() {
         .container {
           max-width: 1200px;
           margin: 0 auto;
-          overflow: hidden;
         }
 
         /* We Build Section */
         .we-build-section {
           text-align: center;
           padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
-          overflow: hidden;
         }
 
         .we-build-title {
@@ -303,34 +305,42 @@ export default function Home() {
         }
 
         /* Responsive Fixes */
+        /* Combined Tablet & Mobile Responsive */
         @media (max-width: 1024px) {
           .container {
-            padding: 0 2rem;
+            padding: 0 1.5rem;
           }
-        }
-
-        @media (max-width: 768px) {
+          
           .hero-section {
             height: auto;
             min-height: 100vh;
-            padding: 100px 1rem 60px 1rem;
+            padding: 120px 1.5rem 60px 1.5rem;
+            display: flex;
+            align-items: center;
           }
 
           .hero-content h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.2rem, 9vw, 4rem);
             letter-spacing: -1px;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            word-break: break-word;
           }
           
           .hero-content p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
           }
 
           .hero-buttons {
             flex-direction: column;
             width: 100%;
-            max-width: 320px;
+            max-width: 300px;
             margin: 0 auto;
+            gap: 1rem;
           }
 
           .btn {
@@ -343,19 +353,45 @@ export default function Home() {
           }
 
           .we-build-title {
-             font-size: 2.5rem;
+            font-size: clamp(2rem, 6vw, 3rem);
+          }
+
+          .portfolio-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+          }
+
+          .for-brands-section,
+          .prime-locations,
+          .we-reach-content,
+          .built-content {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            text-align: center;
+          }
+          
+          .for-brands-image,
+          .prime-locations-image,
+          .we-reach-image,
+          .built-image {
+            height: 350px;
           }
         }
 
         @media (max-width: 480px) {
-           .hero-content h1 {
-            font-size: 2.8rem;
+          .hero-content h1 {
+            font-size: 2.5rem;
           }
           
           .section-title {
-            font-size: 2.2rem;
+            font-size: 2rem;
+          }
+          
+          .portfolio-grid {
+            grid-template-columns: 1fr;
           }
         }
+
 
         .we-build-title .italic {
           font-style: italic;
@@ -690,119 +726,6 @@ export default function Home() {
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-          .hero-section {
-            margin-top: 60px;
-            height: 80vh;
-          }
-
-          .for-brands-section,
-          .prime-locations,
-          .we-reach-content,
-          .built-content {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-          }
-
-          .portfolio-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-          }
-
-          .for-brands-image,
-          .prime-locations-image,
-          .we-reach-image,
-          .built-image {
-            height: 300px;
-          }
-
-          .hero-buttons {
-            flex-direction: column;
-            align-items: center;
-          }
-
-          .btn {
-            width: 100%;
-            max-width: 300px;
-            justify-content: center;
-          }
-
-          .we-build-title {
-            font-size: 2rem;
-          }
-
-          .section-title {
-            font-size: 2rem;
-          }
-
-          .for-brands-content h2,
-          .prime-locations-content h2,
-          .we-reach-text h2,
-          .built-text h2 {
-            font-size: 2rem;
-          }
-
-          .footer-content {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .hero-content h1 {
-            font-size: 2rem;
-          }
-
-          .portfolio-grid {
-            grid-template-columns: 1fr;
-          }
-
-          .portfolio-title {
-            font-size: 1.2rem;
-          }
-
-          .portfolio-desc {
-            font-size: 0.85rem;
-          }
-
-          .section-title {
-            font-size: 1.8rem;
-          }
-
-          .we-build-title {
-            font-size: 1.8rem;
-          }
-
-          .for-brands-content h2,
-          .prime-locations-content h2,
-          .we-reach-text h2,
-          .built-text h2 {
-            font-size: 1.8rem;
-          }
-
-          .hero-content p,
-          .we-build-subtitle,
-          .for-brands-content p,
-          .prime-locations-content p,
-          .we-reach-text p,
-          .built-text p {
-            font-size: 0.95rem;
-          }
-
-          .btn {
-            padding: 0.9rem 2rem;
-            font-size: 0.95rem;
-          }
-
-          .footer-content {
-            gap: 2.5rem;
-          }
-
-          .footer-section h3,
-          .footer-section h4 {
-            font-size: 1rem;
-          }
-        }
 
         /* Tablet Landscape */
         @media (min-width: 769px) and (max-width: 1024px) {
@@ -863,7 +786,7 @@ export default function Home() {
               fontFamily: "'Bricolage Grotesque', sans-serif"
             }}
           >
-            <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}><span className="highlight">At</span>tractive</span>
+            <span className="highlight">At</span>tractive
           </motion.h1>
           <motion.p variants={fadeInUp}>
             We create high-impact advertising that makes your brand visible, memorable, and impossible to ignore.
@@ -1438,10 +1361,10 @@ export default function Home() {
 
           {/* Responsive styles */}
           <style jsx>{`
-            @media (max-width: 768px) {
+            @media (max-width: 1024px) {
               div[style*="gridTemplateColumns"] {
                 grid-template-columns: 1fr !important;
-                gap: 2rem !important;
+                gap: 2.5rem !important;
               }
             }
           `}</style>
