@@ -1036,9 +1036,9 @@ export default function Home() {
                   <div style={{
                     width: '60px',
                     height: '4px',
-                    background: 'linear-gradient(90deg, #7C3AED, #A855F7)',
+                    background: '#e61e25',
                     borderRadius: '2px',
-                    boxShadow: '0 0 10px rgba(124, 58, 237, 0.8)'
+                    boxShadow: '0 0 10px rgba(230, 30, 37, 0.6)'
                   }} />
                 </motion.div>
               </motion.div>
@@ -1064,12 +1064,12 @@ export default function Home() {
                     height: '0.6rem',
                     borderRadius: '0.3rem',
                     background: currentLocationIndex === index 
-                      ? 'linear-gradient(90deg, #7C3AED, #A855F7)' 
+                      ? '#e61e25' 
                       : 'rgba(255,255,255,0.5)',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
                     boxShadow: currentLocationIndex === index 
-                      ? '0 0 12px rgba(124, 58, 237, 0.8)' 
+                      ? '0 0 12px rgba(230, 30, 37, 0.8)' 
                       : 'none'
                   }}
                 />

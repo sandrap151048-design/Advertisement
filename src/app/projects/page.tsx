@@ -395,34 +395,35 @@ function ProjectsContent() {
                     .project-cluster { grid-template-columns: 1fr; gap: 20px; }
                     .cluster-img { height: 320px; }
                     .cluster-images { grid-template-columns: 1fr; }
-                    .container { padding: 0 20px; }
+                    .container { padding: 0 40px; }
                     .title-our { font-size: 2.8rem; }
                     .title-projects { font-size: 2.4rem; }
                 }
 
                 @media (max-width: 768px) {
-                    .hero-works { height: auto; min-height: 70vh; padding: 120px 20px 60px; }
-                    .hero-works-h1 { font-size: clamp(2.2rem, 8vw, 3.2rem); word-break: break-word; line-height: 1.1; }
-                    .hero-works-tagline { font-size: 1.05rem; }
-                    .project-cluster { margin-bottom: 40px; }
-                    .cluster-img { height: clamp(220px, 40vh, 300px); }
-                    .cluster-images { grid-template-columns: 1fr; gap: 15px; }
-                    .cluster-title { font-size: 1.65rem; margin-bottom: 0.8rem; }
-                    .cluster-text { padding: 1.5rem 0.5rem; }
-                    .section-header { padding: 50px 0 40px 0; }
-                    .title-our { font-size: 2.3rem; }
-                    .title-projects { font-size: 1.9rem; }
-                    .category-nav { gap: 8px; margin-bottom: 40px; flex-wrap: wrap; justify-content: center; }
-                    .cat-btn { padding: 0.6rem 1.4rem; font-size: 0.85rem; }
-                    .project-overview-bg { padding: 80px 0; margin-top: 60px; }
-                    .project-overview-glass { padding: 3rem 1.5rem; border-radius: 20px; margin: 0 15px; }
-                    .cta-btn-pill { width: 100%; justify-content: center; border-radius: 8px; }
+                    .hero-works { height: auto; min-height: 60vh; padding: 120px 20px 60px; }
+                    .hero-works-h1 { font-size: 2.8rem; word-break: break-word; line-height: 1.1; margin-bottom: 1.5rem; }
+                    .hero-works-tagline { font-size: 1rem; }
+                    .project-cluster { margin-bottom: 5rem; display: flex !important; flex-direction: column !important; }
+                    .cluster-img { height: 280px; }
+                    .cluster-images { grid-template-columns: 1fr; gap: 1rem; order: 2 !important; }
+                    .cluster-text { padding: 2.5rem 1.5rem; order: 1 !important; text-align: center; }
+                    .cluster-title { font-size: 1.8rem; margin-bottom: 1rem; }
+                    .section-header { padding: 4rem 0 3rem 0; }
+                    .title-our { font-size: 2.2rem; }
+                    .title-projects { font-size: 1.8rem; }
+                    .category-nav { gap: 10px; margin-bottom: 3rem; }
+                    .cat-btn { padding: 0.6rem 1.25rem; font-size: 0.8rem; }
+                    .project-overview-bg { padding: 5rem 0; margin-top: 3rem; }
+                    .project-overview-glass { padding: 3rem 1.5rem; border-radius: 20px; }
+                    .cta-btn-pill { width: 100%; justify-content: center; margin-top: 1.5rem; }
                 }
 
                 @media (max-width: 480px) {
-                    .cluster-img { height: 200px; }
-                    .hero-works-h1 { font-size: 2rem; letter-spacing: -1px; }
-                    .cluster-title { font-size: 1.4rem; }
+                    .hero-works-h1 { font-size: 2.22rem; }
+                    .title-our { font-size: 2rem; }
+                    .cluster-title { font-size: 1.5rem; }
+                    .cluster-img { height: 220px; }
                 }
             `}</style>
 

@@ -3,12 +3,12 @@
 :root {
   --color-bg-start: #1a1a1f;
   --color-bg-end: #1a1a1f;
-  --color-primary: #7C3AED;
-  --color-secondary: #22D3EE;
+  --color-primary: #e61e25;
+  --color-secondary: #ff4d4d;
   --color-text-main: #FFFFFF;
   --color-text-muted: #A1A1AA;
   --color-card-bg: rgba(30, 30, 40, 0.8);
-  --color-card-border: rgba(124, 58, 237, 0.3);
+  --color-card-border: rgba(230, 30, 37, 0.3);
   --color-accent: #FACC15;
   /* Fonts per section */
   --font-navbar: 'Manrope', sans-serif;
@@ -176,9 +176,9 @@ ul {
 }
 
 .btn-outline:hover {
-  background: rgba(26, 26, 31, 0.1);
-  border-color: #7C3AED;
-  color: #7C3AED !important;
+  background: rgba(230, 30, 37, 0.1);
+  border-color: #e61e25;
+  color: #e61e25 !important;
   transform: translateY(-2px);
 }
 
@@ -187,19 +187,19 @@ ul {
   background: rgba(30, 30, 40, 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(124, 58, 237, 0.3);
+  border: 1px solid rgba(230, 30, 37, 0.3);
   border-radius: 20px;
   padding: 2.5rem;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   height: 100%;
-  box-shadow: 0 4px 6px -1px rgba(124, 58, 237, 0.1), 0 2px 4px -1px rgba(124, 58, 237, 0.05);
+  box-shadow: 0 4px 6px -1px rgba(230, 30, 37, 0.1), 0 2px 4px -1px rgba(230, 30, 37, 0.05);
   color: var(--color-text-main);
 }
 
 .glass-card:hover {
   transform: translateY(-8px);
-  border-color: var(--color-secondary);
-  box-shadow: 0 20px 25px -5px rgba(34, 211, 238, 0.2), 0 10px 10px -5px rgba(34, 211, 238, 0.1);
+  border-color: #e61e25;
+  box-shadow: 0 20px 25px -5px rgba(230, 30, 37, 0.2), 0 10px 10px -5px rgba(230, 30, 37, 0.1);
   background: rgba(40, 40, 50, 0.9);
 }
 
@@ -246,11 +246,11 @@ ul {
 /* Mobile menu toggle button */
 .mobile-menu-toggle {
   display: none;
-  background: rgba(124, 58, 237, 0.2);
-  border: 2px solid var(--color-primary);
+  background: rgba(230, 30, 37, 0.2);
+  border: 2px solid #e61e25;
   cursor: pointer;
   padding: 0.75rem;
-  color: var(--color-primary);
+  color: #e61e25;
   z-index: 1001;
   border-radius: 8px;
   transition: all 0.3s ease;

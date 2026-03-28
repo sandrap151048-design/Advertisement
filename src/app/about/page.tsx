@@ -611,8 +611,20 @@ export default function AboutPage() {
         }
 
         @media (max-width: 1024px) {
+          .about-hero {
+            height: auto;
+            min-height: 60vh;
+            padding: 120px 20px 60px;
+          }
           .section-layout {
             grid-template-columns: 1fr;
+            gap: 2rem;
+          }
+          .section-info {
+            position: relative;
+            top: 0;
+            padding: 2rem;
+            text-align: center;
           }
           .services-detail-grid, .work-grid {
             grid-template-columns: repeat(2, 1fr);
@@ -626,11 +638,34 @@ export default function AboutPage() {
           .compliance-grid, .vision-mission-grid {
             grid-template-columns: 1fr;
           }
+          .vm-card {
+            padding: 2rem;
+            text-align: center;
+          }
+          .vm-icon {
+            margin: 0 auto 1.5rem;
+          }
+          .about-hero-title {
+            font-size: clamp(2.5rem, 12vw, 4rem);
+            letter-spacing: -2px;
+          }
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .services-detail-grid, .work-grid {
             grid-template-columns: 1fr;
+          }
+          .section-images {
+            grid-template-columns: 1fr;
+          }
+          .section-image {
+            height: 250px;
+          }
+          .section-heading-main {
+            font-size: 2.8rem;
+          }
+          .section-heading-sub {
+            font-size: 2.22rem;
           }
           .compliance-list {
             grid-template-columns: 1fr;
@@ -638,8 +673,33 @@ export default function AboutPage() {
           .commitment-banner {
             padding: 3rem 1.5rem;
           }
+          .commitment-banner h2 {
+            font-size: 1.8rem;
+          }
+          .commitment-banner p {
+            font-size: 1.05rem;
+          }
+          .accordion-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+          }
+          .accordion-header {
+            font-size: 1.1rem;
+          }
+          .cta-section h2 {
+            font-size: 2.2rem;
+          }
+        }
+
+        @media (max-width: 480px) {
           .about-hero-title {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
+          }
+          .section-info h2 {
+            font-size: 2rem;
+          }
+          .vm-card h3 {
+            font-size: 1.6rem;
           }
         }
       `}</style>

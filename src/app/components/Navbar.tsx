@@ -65,7 +65,7 @@ export default function Navbar() {
       `}</style>
 
       {/* ===== NAVBAR WRAPPER — Always fixed, always on top ===== */}
-      <div
+      <nav
         style={{
           position: 'fixed',
           top: 0,
@@ -73,80 +73,69 @@ export default function Navbar() {
           right: 0,
           width: '100%',
           zIndex: 99999,
-          display: 'flex',
-          justifyContent: 'center',
-          padding: isScrolled ? '8px 16px' : '16px 16px',
-          transition: 'padding 0.4s ease',
-          pointerEvents: 'none',   /* allow clicks through the wrapper gap */
+          background: isScrolled ? 'rgba(8, 8, 8, 0.98)' : 'rgba(8, 8, 8, 0.4)',
+          backdropFilter: 'blur(24px)',
+          WebkitBackdropFilter: 'blur(24px)',
+          borderBottom: isScrolled ? '1px solid rgba(255,255,255,0.1)' : 'none',
+          boxShadow: isScrolled ? '0 8px 32px rgba(0,0,0,0.4)' : 'none',
+          transition: 'all 0.4s ease',
         }}
       >
-        <nav
+        <div
           style={{
-            width: '100%',
             maxWidth: '1400px',
-            background: 'rgba(8, 8, 8, 0.96)',
-            backdropFilter: 'blur(24px)',
-            WebkitBackdropFilter: 'blur(24px)',
-            border: '1px solid rgba(255,255,255,0.1)',
-            borderRadius: '16px',
-            boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
-            pointerEvents: 'all',   /* re-enable clicks on the nav pill */
+            margin: '0 auto',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: isScrolled ? '12px 24px' : '20px 24px',
+            transition: 'padding 0.4s ease',
           }}
         >
-          <div
+          {/* Logo */}
+          <Link href="/" className="navbar-logo" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0' }}>
+              <svg width="24" height="24" viewBox="0 0 28 28">
+                <circle cx="14" cy="14" r="11" fill="none" stroke="white" strokeWidth="4"/>
+                <rect x="18" y="2" width="9" height="9" fill="#e61e25" rx="1"/>
+              </svg>
+              <span style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800, fontSize: '1.4rem', color: 'white', marginLeft: '-1px' }}>ne Click</span>
+            </div>
+            <div style={{ color: 'rgba(255,255,255,0.5)', fontWeight: 700, letterSpacing: '3px', fontSize: '0.6rem', textTransform: 'uppercase', marginTop: '1px' }}>ADVERTISEMENT</div>
+          </Link>
+
+          {/* Desktop Nav Links */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '40px' }} className="desktop-nav">
+            <Link href="/" className="nav-link">Home</Link>
+            <Link href="/projects" className="nav-link">Projects</Link>
+            <Link href="/services" className="nav-link">Services</Link>
+            <Link href="/contact" className="nav-link">Contact</Link>
+            <Link href="/about" className="nav-link">About</Link>
+          </div>
+
+          {/* Desktop Login Button */}
+          <div className="desktop-nav">
+            <Link href="/admin/login" className="btn-login">Login</Link>
+          </div>
+
+          {/* Mobile Hamburger */}
+          <button
+            onClick={toggleMobileMenu}
+            aria-label="Toggle Menu"
+            className="mobile-toggle"
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              padding: '10px 20px',
+              display: 'none',
+              background: 'none',
+              border: 'none',
+              color: 'white',
+              cursor: 'pointer',
+              padding: '6px',
             }}
           >
-            {/* Logo */}
-            <Link href="/" className="navbar-logo" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0' }}>
-                <svg width="22" height="22" viewBox="0 0 28 28">
-                  <circle cx="14" cy="14" r="11" fill="none" stroke="white" strokeWidth="4"/>
-                  <rect x="16" y="2" width="9" height="9" fill="#e61e25" rx="1"/>
-                </svg>
-                <span style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800, fontSize: '1.2rem', color: 'white', marginLeft: '-1px' }}>ne Click</span>
-              </div>
-              <div style={{ color: 'rgba(255,255,255,0.4)', fontWeight: 700, letterSpacing: '2px', fontSize: '0.5rem', textTransform: 'uppercase', marginTop: '1px' }}>ADVERTISEMENT</div>
-            </Link>
-
-            {/* Desktop Nav Links */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }} className="desktop-nav">
-              <Link href="/" className="nav-link">Home</Link>
-              <Link href="/projects" className="nav-link">Projects</Link>
-              <Link href="/services" className="nav-link">Services</Link>
-              <Link href="/contact" className="nav-link">Contact</Link>
-              <Link href="/about" className="nav-link">About</Link>
-            </div>
-
-            {/* Desktop Login Button */}
-            <div className="desktop-nav">
-              <Link href="/admin/login" className="btn-login">Login</Link>
-            </div>
-
-            {/* Mobile Hamburger */}
-            <button
-              onClick={toggleMobileMenu}
-              aria-label="Toggle Menu"
-              className="mobile-toggle"
-              style={{
-                display: 'none',
-                background: 'none',
-                border: 'none',
-                color: 'white',
-                cursor: 'pointer',
-                padding: '6px',
-                borderRadius: '8px',
-              }}
-            >
-              {isMobileMenuOpen ? <X size={26} color="white" /> : <Menu size={26} color="white" />}
-            </button>
-          </div>
-        </nav>
-      </div>
+            {isMobileMenuOpen ? <X size={28} color="white" /> : <Menu size={28} color="white" />}
+          </button>
+        </div>
+      </nav>
 
       {/* Mobile Dropdown Menu */}
       <div

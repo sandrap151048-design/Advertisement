@@ -365,10 +365,19 @@ export default function ContactPage() {
         }
 
         @media (max-width: 1024px) {
+          .contact-hero {
+            height: auto;
+            min-height: 60vh;
+            padding: 120px 20px 60px;
+          }
           .contact-hero-content {
             flex-direction: column;
             text-align: center;
             gap: 2rem;
+          }
+          .hero-left, .hero-right {
+            flex: none;
+            width: 100%;
           }
           .hero-right {
             text-align: center;
@@ -380,116 +389,60 @@ export default function ContactPage() {
           }
           .touch-left, .touch-right {
             border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+          }
+          .contact-info-list {
+            align-items: center;
+          }
+          .info-item {
+            justify-content: center;
           }
         }
 
         @media (max-width: 768px) {
-          .contact-hero {
-            padding: 0 5%;
-            min-height: 70vh;
-            height: auto;
-            padding-top: 100px;
-            padding-bottom: 3rem;
-          }
-
-          .contact-hero-content {
-            flex-direction: column;
-            gap: 1.5rem;
-            text-align: center;
-          }
-
           .contact-hero-title {
-            font-size: 3rem;
+            font-size: 2.8rem;
             letter-spacing: -1px;
           }
-
           .contact-hero-text {
             font-size: 1rem;
           }
-
-          .hero-right {
-            align-items: center;
-          }
-
           .hero-cta-button {
             margin: 0 auto;
-            text-align: center;
+            width: 100%;
+            max-width: 280px;
           }
-
           .touch-container {
-            grid-template-columns: 1fr;
-            padding: 5rem 1.5rem 3rem 1.5rem;
-            gap: 1.5rem;
+            padding: 4rem 1.5rem;
           }
-
-          .touch-left {
-            padding: 3rem 2rem;
-          }
-
-          .touch-right {
-            padding: 3rem 2rem;
-            border-radius: 20px;
-          }
-
           .campaign-section {
             padding: 5rem 1.5rem;
           }
-
           .campaign-title h2 {
-            font-size: 2.5rem;
+            font-size: 2.22rem;
           }
-
           .form-wrapper {
             padding: 2rem 1.5rem;
           }
-
           .footer-black {
             padding: 4rem 5% 3rem 5%;
           }
-
           .footer-grid {
             grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-          }
-
-          .info-item {
-            font-size: 0.95rem;
-            gap: 1rem;
+            gap: 2rem;
           }
         }
 
         @media (max-width: 480px) {
-          .contact-hero {
-            padding: 100px 1.2rem 2rem;
-          }
-
           .contact-hero-title {
             font-size: 2.2rem;
           }
-
-          .contact-hero-text {
-            font-size: 0.9rem;
-          }
-
           .touch-left h2 {
             font-size: 2rem;
           }
-
-          .touch-left {
-            padding: 2.5rem 1.5rem;
-          }
-
-          .touch-right {
-            padding: 2.5rem 1.5rem;
-          }
-
-          .campaign-title h2 {
-            font-size: 2rem;
-          }
-
           .footer-grid {
             grid-template-columns: 1fr;
-            gap: 2rem;
           }
         }
 
