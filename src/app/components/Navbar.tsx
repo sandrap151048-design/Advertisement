@@ -41,12 +41,12 @@ export default function Navbar() {
 
         .floating-navbar {
           width: 100%; max-width: 1400px;
-          background: rgba(10, 10, 10, 0.85);
+          background: rgba(10, 10, 10, 0.92);
           backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
           border: 1px solid rgba(255, 255, 255, 0.1);
           border-radius: 16px; padding: 0 10px;
           transition: all 0.4s ease;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+          box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
         .navbar-container {
@@ -147,13 +147,23 @@ export default function Navbar() {
         @media (max-width: 1024px) {
            .navbar-nav { display: none; }
            .mobile-toggle { display: flex; align-items: center; justify-content: center; }
-           .navbar-wrapper { padding: 15px 15px; }
-           .navbar-wrapper.scrolled { padding: 10px 15px; }
-           .navbar-container { padding: 8px 15px; }
+           .navbar-wrapper {
+             padding: 12px 12px !important;
+             z-index: 9999 !important;
+             position: fixed !important;
+           }
+           .navbar-wrapper.scrolled { padding: 8px 12px !important; }
+           .navbar-container { padding: 8px 12px; }
            .logo-main { font-size: 1.1rem; }
            .logo-tagline { font-size: 0.55rem; letter-spacing: 1px; }
            .navbar-actions { display: none !important; }
            
+           /* Solid dark background on mobile so it's always visible */
+           .floating-navbar {
+             background: rgba(5, 5, 5, 0.98) !important;
+             border-color: rgba(255,255,255,0.08) !important;
+           }
+
            .mobile-menu { 
              top: 85px !important;
              left: 15px !important;

@@ -157,11 +157,13 @@ export default function Home() {
           position: relative;
           width: 100%;
           height: 100vh;
+          min-height: 600px;
           display: flex;
           align-items: center;
           justify-content: center;
           overflow: hidden;
           padding-top: 70px;
+          background: #111111; /* dark fallback always */
         }
 
         .hero-background {
