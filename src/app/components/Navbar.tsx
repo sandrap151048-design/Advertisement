@@ -67,8 +67,8 @@ export default function Navbar() {
       {/* ===== NAVBAR WRAPPER — Always fixed, always on top ===== */}
       <div
         style={{
-          position: 'fixed',
-          top: 0,
+          position: 'absolute',
+          top: 32, // Added top offset to keep the floating pill's elegant gap
           left: 0,
           right: 0,
           width: '100%',
