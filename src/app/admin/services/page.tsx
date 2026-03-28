@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Home, LogOut, MessageSquare, Briefcase, Plus, Trash2, Edit, Layers, MapPin, Phone, Mail, ArrowLeft } from 'lucide-react';
+import { Home, LogOut, MessageSquare, Briefcase, Plus, Trash2, Edit, Layers, MapPin, Phone, Mail, ArrowLeft, Eye, X, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -17,14 +17,32 @@ interface Service {
     createdAt: string;
 }
 
+const frontendServices = [
+  { title: "Branding & Corporate Identity", image: "https://images.unsplash.com/photo-1634942537034-22317300300f?w=400&q=80", description: "Brand implementation, rollout & corporate identity applications" },
+  { title: "Digital Printed Graphics", image: "https://images.unsplash.com/photo-1572044162444-ad60f128bde2?w=400&q=80", description: "Large format printing & interior graphics" },
+  { title: "Vehicle Graphics & Fleet Branding", image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&q=80", description: "Full & partial vehicle wraps for mobile advertising" },
+  { title: "Signage Production & Installation", image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400&q=80", description: "Indoor & outdoor signage solutions" },
+  { title: "Exhibition, Display & POS", image: "https://images.unsplash.com/photo-1582192732961-bb3d96924294?w=400&q=80", description: "Exhibition stands, kiosks & point of sale displays" },
+  { title: "Cladding & Facade Solutions", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80", description: "ACP cladding & architectural facade branding" },
+];
+
 export default function ServicesPage() {
     const router = useRouter();
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [services, setServices] = useState<Service[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [showAddModal, setShowAddModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [editingService, setEditingService] = useState<Service | null>(null);
     const [successMessage, setSuccessMessage] = useState('');
     const [formData, setFormData] = useState({
+        name: '',
+        description: '',
+        category: '',
+        image: '',
+        items: ['', '', '', '']
+    });
+    const [editFormData, setEditFormData] = useState({
         name: '',
         description: '',
         category: '',
@@ -79,6 +97,42 @@ export default function ServicesPage() {
         }
     };
 
+    const handleEdit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!editingService) return;
+        try {
+            const response = await fetch(`/api/services?id=${editingService._id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(editFormData)
+            });
+
+            if (response.ok) {
+                setShowEditModal(false);
+                setEditingService(null);
+                setSuccessMessage('Service updated successfully!');
+                setTimeout(() => setSuccessMessage(''), 3000);
+                fetchServices();
+            }
+        } catch (error) {
+            console.error('Error updating service:', error);
+            setSuccessMessage('Failed to update service');
+            setTimeout(() => setSuccessMessage(''), 3000);
+        }
+    };
+
+    const openEditModal = (service: Service) => {
+        setEditingService(service);
+        setEditFormData({
+            name: service.name,
+            description: service.description,
+            category: service.category,
+            image: service.image || '',
+            items: service.items?.length ? [...service.items, ...Array(4).fill('')].slice(0, 4) : ['', '', '', '']
+        });
+        setShowEditModal(true);
+    };
+
     const handleDelete = async (id: string) => {
         if (!confirm('Are you sure you want to delete this service?')) return;
 
@@ -99,12 +153,13 @@ export default function ServicesPage() {
         }
     };
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, isEdit = false) => {
         const file = e.target.files?.[0];
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
-                setFormData({ ...formData, image: reader.result as string });
+                if (isEdit) setEditFormData({ ...editFormData, image: reader.result as string });
+                else setFormData({ ...formData, image: reader.result as string });
             };
             reader.readAsDataURL(file);
         }
@@ -117,6 +172,53 @@ export default function ServicesPage() {
     };
 
     if (!isAuthenticated) return null;
+
+    const ModalForm = ({ data, setData, onSubmit, onFileChange, title, submitLabel }: any) => (
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, backdropFilter: 'blur(4px)' }}
+            onClick={() => { setShowAddModal(false); setShowEditModal(false); }}>
+            <div style={{ maxWidth: '520px', width: '92%', background: 'white', borderRadius: '20px', padding: '2rem', maxHeight: '90vh', overflowY: 'auto', boxShadow: '0 25px 50px rgba(0,0,0,0.2)' }}
+                onClick={(e) => e.stopPropagation()}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+                    <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#1a1a1a' }}>{title}</h2>
+                    <button onClick={() => { setShowAddModal(false); setShowEditModal(false); }} style={{ border: 'none', background: '#f5f5f5', borderRadius: '8px', padding: '6px', cursor: 'pointer', color: '#666' }}><X size={20} /></button>
+                </div>
+                <form onSubmit={onSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    {[{ label: 'Service Name', key: 'name', placeholder: 'e.g., Digital Signage' }, { label: 'Category', key: 'category', placeholder: 'e.g., Signage, Branding' }].map(({ label, key, placeholder }) => (
+                        <div key={key}>
+                            <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: 600, fontSize: '0.88rem', color: '#333' }}>{label}</label>
+                            <input type="text" required value={data[key]} onChange={(e) => setData({ ...data, [key]: e.target.value })} placeholder={placeholder}
+                                style={{ width: '100%', padding: '0.75rem', borderRadius: '10px', border: '1px solid #ddd', fontSize: '0.9rem', color: '#000' }} />
+                        </div>
+                    ))}
+                    <div>
+                        <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: 600, fontSize: '0.88rem', color: '#333' }}>Description</label>
+                        <textarea required value={data.description} onChange={(e) => setData({ ...data, description: e.target.value })} placeholder="Describe the service..." rows={3}
+                            style={{ width: '100%', padding: '0.75rem', borderRadius: '10px', border: '1px solid #ddd', fontSize: '0.9rem', resize: 'vertical', color: '#000' }} />
+                    </div>
+                    <div>
+                        <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: 600, fontSize: '0.88rem', color: '#333' }}>Image Upload</label>
+                        <input type="file" accept="image/*" onChange={onFileChange}
+                            style={{ width: '100%', padding: '0.75rem', borderRadius: '10px', border: '1px solid #ddd', fontSize: '0.9rem' }} />
+                        {data.image && <div style={{ marginTop: '0.75rem', height: '90px', borderRadius: '10px', overflow: 'hidden' }}><img src={data.image} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>}
+                    </div>
+                    <div>
+                        <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: 600, fontSize: '0.88rem', color: '#333' }}>Service Features</label>
+                        {data.items.map((item: string, index: number) => (
+                            <input key={index} type="text" value={item} onChange={(e) => { const newItems = [...data.items]; newItems[index] = e.target.value; setData({ ...data, items: newItems }); }}
+                                placeholder={`Feature ${index + 1} (optional)`}
+                                style={{ width: '100%', padding: '0.65rem', borderRadius: '8px', border: '1px solid #ddd', fontSize: '0.9rem', marginBottom: '0.5rem', color: '#000' }} />
+                        ))}
+                    </div>
+                    <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
+                        <button type="button" onClick={() => { setShowAddModal(false); setShowEditModal(false); }}
+                            style={{ flex: 1, padding: '0.85rem', background: '#f5f5f5', border: 'none', borderRadius: '10px', fontWeight: 700, cursor: 'pointer', color: '#666' }}>Cancel</button>
+                        <button type="submit"
+                            style={{ flex: 2, padding: '0.85rem', background: '#e61e25', border: 'none', borderRadius: '10px', color: 'white', fontWeight: 700, cursor: 'pointer', boxShadow: '0 4px 12px rgba(230,30,37,0.3)' }}>{submitLabel}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    );
 
     return (
         <div style={{ padding: '2rem', background: '#f8fafc', minHeight: '100vh', paddingBottom: '100px' }}>
