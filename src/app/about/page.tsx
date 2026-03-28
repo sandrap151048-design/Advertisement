@@ -613,8 +613,22 @@ export default function AboutPage() {
         @media (max-width: 1024px) {
           .about-hero {
             height: auto;
-            min-height: 60vh;
-            padding: 120px 20px 60px;
+            min-height: 55vh;
+            padding: 140px 20px 60px;
+            justify-content: center;
+            text-align: center;
+            display: flex;
+            align-items: center;
+          }
+          .about-hero-content {
+            padding-left: 0;
+            margin: 0 auto;
+            width: 100%;
+          }
+          .about-hero-title {
+            font-size: clamp(2.5rem, 12vw, 4rem);
+            letter-spacing: -1px;
+            text-align: center;
           }
           .section-layout {
             grid-template-columns: 1fr;
@@ -644,10 +658,6 @@ export default function AboutPage() {
           }
           .vm-icon {
             margin: 0 auto 1.5rem;
-          }
-          .about-hero-title {
-            font-size: clamp(2.5rem, 12vw, 4rem);
-            letter-spacing: -2px;
           }
         }
 
