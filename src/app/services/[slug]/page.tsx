@@ -187,7 +187,7 @@ export default function DynamicServicePage() {
 
   return (
     <>
-      <style jsx>{`
+      <style jsx global>{`
 
         .service-detail-page {
           background: #f5f5f5;

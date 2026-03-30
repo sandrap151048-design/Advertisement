@@ -154,7 +154,7 @@ export default function ServicesPage() {
 
   return (
     <>
-      <style jsx>{`
+      <style jsx global>{`
 
         .services-page {
           background: #ffffff;

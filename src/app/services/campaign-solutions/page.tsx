@@ -74,7 +74,7 @@ export default function CampaignSolutionsPage() {
 
   return (
     <>
-      <style jsx>{`
+      <style jsx global>{`
 
         .billboard-page {
           background: #f5f5f5;

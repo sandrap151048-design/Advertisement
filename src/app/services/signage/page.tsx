@@ -49,7 +49,7 @@ export default function SignagePage() {
 
   return (
     <>
-      <style jsx>{`
+      <style jsx global>{`
 
         .service-detail-page {
           background: #f5f5f5;

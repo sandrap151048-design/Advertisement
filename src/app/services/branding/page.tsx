@@ -50,7 +50,7 @@ export default function BrandingPage() {
 
   return (
     <>
-      <style jsx>{`
+      <style jsx global>{`
 
         .service-detail-page {
           background: #f5f5f5;
