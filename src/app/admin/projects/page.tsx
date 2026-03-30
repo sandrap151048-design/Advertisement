@@ -94,6 +94,7 @@ export default function AdminProjectsPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
     const [filterCategory, setFilterCategory] = useState('All');
+    const [isAuthorized, setIsAuthorized] = useState(false);
     
     // Modal states
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -120,10 +121,15 @@ export default function AdminProjectsPage() {
             router.push('/admin/login');
             return;
         }
+        setIsAuthorized(true);
         fetchProjects();
     }, [router]);
 
-    const fetchProjects = async () => {
+    if (!isAuthorized) {
+        return <div style={{ minHeight: '100vh', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Loader2 className="animate-spin" size={48} color="#e61e25" /></div>;
+    }
+
+    async function fetchProjects() {
         setIsLoading(true);
         try {
             const res = await fetch('/api/projects');
@@ -133,7 +139,7 @@ export default function AdminProjectsPage() {
             console.error('Fetch error:', error);
         }
         setIsLoading(false);
-    };
+    }
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];

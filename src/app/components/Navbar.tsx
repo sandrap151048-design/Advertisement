@@ -68,7 +68,7 @@ export default function Navbar() {
       <div
         style={{
           position: 'absolute',
-          top: 32, // Added top offset to keep the floating pill's elegant gap
+          top: 8, // Moved higher for a cleaner floating effect
           left: 0,
           right: 0,
           width: '100%',

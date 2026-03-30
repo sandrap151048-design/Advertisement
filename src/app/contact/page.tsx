@@ -265,9 +265,9 @@ export default function ContactPage() {
         }
 
         .form-wrapper {
-          max-width: 600px;
+          max-width: 500px;
           margin: 0 auto;
-          padding: 3rem;
+          padding: 2rem;
           background: rgba(255,255,255,0.02);
           border: 1px solid rgba(255,255,255,0.1);
           border-radius: 12px;
@@ -276,7 +276,7 @@ export default function ContactPage() {
         .contact-form {
           display: flex;
           flex-direction: column;
-          gap: 1.5rem;
+          gap: 1rem;
         }
 
         .form-input, .form-select, .form-textarea {

@@ -182,7 +182,8 @@ export default function AdminPage() {
                     }}
                 >
                     <div>
-                        <h1 style={{ fontSize: '2rem', marginBottom: '0.3rem', fontWeight: 800, fontFamily: "'Outfit', sans-serif", color: '#1a1a1a' }}>
+<div onClick={() => window.location.href='/'} style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', marginBottom: '1rem' }}><div style={{ display: 'flex', alignItems: 'center', gap: '0', fontSize: '1.5rem', fontWeight: 900, color: '#1a1a1a', fontFamily: "'Bricolage Grotesque', sans-serif" }}><svg width="26" height="26" viewBox="0 0 28 28" style={{ marginRight: '-1px' }}><circle cx="14" cy="14" r="11" fill="none" stroke="#1a1a1a" strokeWidth="4"/><rect x="16" y="2" width="9" height="9" fill="#e61e25" rx="1"/></svg><span style={{ marginLeft: '-1px' }}>ne Click</span></div><div style={{ color: '#888', fontWeight: '900', letterSpacing: '4px', fontSize: '0.65rem' }}>ADVERTISEMENT</div></div>
+<h1 style={{ fontSize: '2rem', marginBottom: '0.3rem', fontWeight: 800, fontFamily: "'Outfit', sans-serif", color: '#1a1a1a' }}>
                             Welcome Back, <span style={{ color: '#e61e25' }}>Admin</span>
                         </h1>
                         <p style={{ color: '#666666', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontFamily: "'DM Sans', sans-serif" }}>

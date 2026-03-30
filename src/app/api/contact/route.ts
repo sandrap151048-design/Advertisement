@@ -28,11 +28,12 @@ export async function POST(req: Request) {
             { success: true, message: 'Message received successfully!', data: { id: newSubmission.insertedId } },
             { status: 201 }
         );
-    } catch (error: any) {
-        console.error('Contact API Error:', error);
+    } catch (error: unknown) {
+        const err = error as any;
+        console.error('Contact API Error:', err);
         
         // Check if it's an authentication error
-        if (error.code === 8000 || error.codeName === 'AtlasError') {
+        if (err.code === 8000 || err.codeName === 'AtlasError') {
             return NextResponse.json(
                 { error: 'Database connection error. Please check your credentials.' },
                 { status: 503 }

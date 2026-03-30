@@ -12,26 +12,30 @@ function processDir(dir) {
       
       const hasFooter = content.includes('{/* Footer */}');
       
-      if (hasFooter) {
+      if (hasFooter || content.includes('className="billboard-page"')) {
           console.log(`Processing: ${fullPath}`);
           
           // Remove the Footer block entirely
           content = content.replace(/\{\/\* Footer \*\/\}\s*<footer[\s\S]*?<\/footer>/, '');
           
           // Add the import if not present
-          if (!content.includes('ServiceLocations')) {
-              let relativePath = '../../components/ServiceLocations';
-              content = content.replace(/import Link from 'next\/link';/, `import Link from 'next/link';\nimport ServiceLocations from '${relativePath}';`);
+          if (!content.includes('ServiceMap')) {
+              let relativePath = '@/app/components/ServiceMap';
+              content = content.replace(/import Link from 'next\/link';/, `import Link from 'next/link';\nimport ServiceMap from '${relativePath}';`);
           }
           
-          // Inject <ServiceLocations /> before the final closing div layout
-          // The files end with: 
-          //      </div>
-          //    </>
-          //  );
-          // }
-          if (!content.includes('<ServiceLocations />')) {
-                content = content.replace(/(<\/div>\s*<\/>\s*\);\s*\})$/, '  <ServiceLocations />\n      $1');
+          // Fix motion variants
+          content = content.replace(/transition: \{ duration: 0.6 \}/g, 'transition: { duration: 0.6 } as any');
+          content = content.replace(/transition: \{ staggerChildren: 0.15, delayChildren: 0.2 \}/g, 'transition: { staggerChildren: 0.15, delayChildren: 0.2 } as any');
+
+          // Inject <ServiceMap /> before the final closing div layout or contact section
+          if (!content.includes('<ServiceMap />')) {
+                // Look for the gap marker
+                if (content.includes('{/* Service Locations */}')) {
+                    content = content.replace(/\{\/\* Service Locations \*\/\}\s*/, '{/* Service Locations */}\n        <ServiceMap />\n');
+                } else {
+                    content = content.replace(/(<\/div>\s*<\/>\s*\);\s*\})$/, '  <ServiceMap />\n      $1');
+                }
           }
           
           fs.writeFileSync(fullPath, content);
@@ -41,6 +45,6 @@ function processDir(dir) {
   }
 }
 
-// Start from the services root, excluding the main services/page.tsx which we already fixed
+// Start from the services root
 processDir('c:\\Users\\LENOVO\\Desktop\\advertisement\\src\\app\\services\\');
 console.log('Refactoring complete!');

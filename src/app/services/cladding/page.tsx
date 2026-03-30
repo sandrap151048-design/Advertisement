@@ -295,10 +295,7 @@ export default function CladdingPage() {
 
         .cta-section {
           background: #1a1a1a;
-          padding: 3rem 2rem;
-          margin: 0 auto;
-          max-width: 100%;
-          border-radius: 0;
+          padding: 4rem 2rem;
           text-align: center;
           color: white;
         }

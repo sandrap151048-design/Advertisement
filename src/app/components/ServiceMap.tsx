@@ -91,7 +91,7 @@ export default function ServiceMap() {
           viewport={{ once: true }}
           variants={{
             hidden: { opacity: 0, y: 30 },
-            visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+            visible: { opacity: 1, y: 0, transition: { duration: 0.6 } as any }
           }}
         >
           <h2 className="locations-title">Service</h2>

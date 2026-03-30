@@ -18,6 +18,7 @@ interface Project {
     category: string;
     images: string[];
     detailsTitle?: string;
+    isSmall?: boolean;
 }
 
 const ALL_PROJECTS: Project[] = [
@@ -29,7 +30,8 @@ const ALL_PROJECTS: Project[] = [
         images: [
             'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80',
             'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80'
-        ]
+        ],
+        isSmall: true
     },
     {
         id: 'def-2',
@@ -39,7 +41,8 @@ const ALL_PROJECTS: Project[] = [
         images: [
             'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80',
             'https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&q=80'
-        ]
+        ],
+        isSmall: true
     },
     {
         id: 'def-2-2',
@@ -58,6 +61,7 @@ const ALL_PROJECTS: Project[] = [
         category: 'Vehicle Branding',
         images: [
             'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80',
+            'https://images.unsplash.com/photo-1603380353725-f8a4d39cc41e?w=800&q=80'
         ]
     },
     {
@@ -67,6 +71,7 @@ const ALL_PROJECTS: Project[] = [
         category: 'Signage',
         images: [
             'https://images.unsplash.com/photo-1542744094-24638eff58bb?w=800&q=80',
+            'https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&q=80'
         ]
     },
     {
@@ -86,6 +91,7 @@ const ALL_PROJECTS: Project[] = [
         category: 'Display Solutions',
         images: [
             'https://images.unsplash.com/photo-1531053326607-9d349096d887?w=800&q=80',
+            'https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800&q=80'
         ]
     },
     {
@@ -95,6 +101,7 @@ const ALL_PROJECTS: Project[] = [
         category: 'Facade & Cladding',
         images: [
             'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
+            'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80'
         ]
     }
 ];
@@ -247,17 +254,22 @@ function ProjectsContent() {
                     background: #fdfdfd;
                 }
                 .title-our {
-                    font-size: 3.5rem;
+                    font-size: clamp(2rem, 8vw, 3.5rem);
                     font-weight: 800;
-                    margin-bottom: 0.2rem;
+                    margin-bottom: 2rem;
                     color: #000;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 15px;
+                    flex-wrap: wrap;
                 }
                 .title-projects {
                     font-family: 'Playfair Display', serif;
                     font-style: italic;
-                    font-size: 3rem;
-                    color: #000;
-                    margin-bottom: 2rem;
+                    font-weight: 400;
+                    font-size: clamp(1.8rem, 7vw, 3rem);
+                    color: #e61e25;
                 }
                 .header-desc {
                     max-width: 800px;
@@ -334,6 +346,9 @@ function ProjectsContent() {
                     border-radius: 20px;
                     box-shadow: 0 15px 45px rgba(0,0,0,0.1);
                     transition: all 0.5s ease;
+                }
+                .cluster-images.small .cluster-img {
+                    height: 480px;
                 }
                 .cluster-img:hover {
                     box-shadow: 0 30px 60px rgba(0,0,0,0.2);
@@ -452,8 +467,9 @@ function ProjectsContent() {
 
             <section className="section-header">
                 <div className="container">
-                    <div className="title-our">Our</div>
-                    <div className="title-projects">Projects</div>
+                    <div className="title-our">
+                        Our <span className="title-projects">Projects</span>
+                    </div>
                     <p className="header-desc">
                         Explore real world advertising campaigns crafted to maximize visibility, attract attention, and deliver strong brand impact across prime locations.
                     </p>
@@ -496,7 +512,7 @@ function ProjectsContent() {
                                                 {project.description}
                                             </p>
                                         </div>
-                                        <div className={`cluster-images ${project.images.length === 1 ? 'single' : ''}`}>
+                                        <div className={`cluster-images ${project.images.length === 1 ? 'single' : ''} ${project.isSmall ? 'small' : ''}`}>
                                             {project.images.length > 0 ? (
                                                 project.images.map((img, i) => (
                                                     <img 

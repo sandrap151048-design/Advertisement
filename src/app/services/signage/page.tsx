@@ -4,17 +4,18 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, ChevronDown, Phone, Mail, MapPin, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import ServiceMap from '@/app/components/ServiceMap';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } as any }
 };
 
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 } as any
   }
 };
 
@@ -295,10 +296,7 @@ export default function SignagePage() {
 
         .cta-section {
           background: #1a1a1a;
-          padding: 3rem 2rem;
-          margin: 0 auto;
-          max-width: 100%;
-          border-radius: 0;
+          padding: 4rem 2rem;
           text-align: center;
           color: white;
         }
@@ -489,8 +487,7 @@ export default function SignagePage() {
         </motion.section>
 
         {/* Service Locations */}
-        
-
+        <ServiceMap />
         {/* CTA Section */}
         <motion.section
           className="cta-section"

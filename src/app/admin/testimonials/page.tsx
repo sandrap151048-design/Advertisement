@@ -106,57 +106,7 @@ export default function ProjectsPage() {
     return (
         <div className="admin-layout">
             {/* Sidebar */}
-            <aside className="admin-sidebar" style={{ display: 'flex', flexDirection: 'column', background: 'linear-gradient(180deg, #2c4a5e 0%, #1a2f3d 100%)' }}>
-                <div style={{ marginBottom: '3rem', marginTop: '1rem', padding: '0 1rem' }}>
-                    <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                        <div style={{
-                            width: '45px',
-                            height: '45px',
-                            borderRadius: '12px',
-                            background: 'linear-gradient(135deg, #2c4a5e, #e61e25)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            color: 'white',
-                            fontWeight: 800,
-                            fontSize: '1.1rem',
-                            boxShadow: '0 4px 12px rgba(255, 107, 53, 0.4)'
-                        }}>
-                            OC
-                        </div>
-                        <div>
-                            <div>
-                                <span style={{ color: '#e61e25', fontWeight: 700, fontSize: '1.1rem' }}>One</span>
-                                <span style={{ color: 'white', fontWeight: 700, fontSize: '1.1rem' }}> Click</span>
-                            </div>
-                            <div style={{ fontSize: '0.65rem', fontWeight: 500, color: 'rgba(255,255,255,0.5)', letterSpacing: '1.5px', textTransform: 'uppercase', lineHeight: 1, marginTop: '2px' }}>
-                                Admin Portal
-                            </div>
-                        </div>
-                    </Link>
-                </div>
-
-                <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', flex: 1 }}>
-                    <Link href="/admin" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', color: 'rgba(255,255,255,0.7)', cursor: 'pointer', transition: 'all 0.3s', textDecoration: 'none' }}>
-                        <Home size={20} color="rgba(255,255,255,0.6)" /> Dashboard
-                    </Link>
-                    <Link href="/admin/contacts" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', color: 'rgba(255,255,255,0.7)', cursor: 'pointer', transition: 'all 0.3s', textDecoration: 'none' }}>
-                        <MessageSquare size={20} color="rgba(255,255,255,0.6)" /> Contact Forms
-                    </Link>
-                    <Link href="/admin/services" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', color: 'rgba(255,255,255,0.7)', cursor: 'pointer', transition: 'all 0.3s', textDecoration: 'none' }}>
-                        <Briefcase size={20} color="rgba(255,255,255,0.6)" /> Services
-                    </Link>
-                    <Link href="/admin/testimonials" className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', background: 'rgba(255, 107, 53, 0.2)', color: 'white', cursor: 'pointer', borderLeft: '3px solid #e61e25', textDecoration: 'none' }}>
-                        <Layers size={20} color="#e61e25" /> Projects
-                    </Link>
-                </nav>
-
-                <div style={{ marginTop: 'auto' }}>
-                    <div onClick={handleLogout} className="nav-item" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '4px', color: '#ef4444', cursor: 'pointer', transition: 'all 0.3s', border: '1px solid rgba(239, 68, 68, 0.3)', background: 'rgba(239, 68, 68, 0.1)' }}>
-                        <LogOut size={20} color="#ef4444" /> Logout
-                    </div>
-                </div>
-            </aside>
+            
 
             {/* Main Content */}
             <main className="admin-main" style={{ display: 'flex', flexDirection: 'column', gap: '2rem', height: '100vh', overflowY: 'auto' }}>

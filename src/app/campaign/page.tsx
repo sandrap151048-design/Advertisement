@@ -7,14 +7,14 @@ import { useState, FormEvent } from 'react';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } as any }
 };
 
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 } as any
   }
 };
 
@@ -111,9 +111,9 @@ export default function CampaignPage() {
         }
 
         .campaign-container {
-          max-width: 550px;
+          max-width: 450px;
           width: 100%;
-          padding: 3rem 2rem;
+          padding: 2rem;
           background: #0f0f0f;
           border-radius: 12px;
           border: 1px solid rgba(255, 255, 255, 0.05);
@@ -126,7 +126,7 @@ export default function CampaignPage() {
         }
 
         .campaign-title {
-          font-size: 3rem;
+          font-size: 2.5rem;
           font-weight: 800;
           color: white;
           margin-bottom: 0.1rem;
@@ -137,7 +137,7 @@ export default function CampaignPage() {
           font-family: serif;
           font-style: italic;
           color: white;
-          font-size: 3rem;
+          font-size: 2.22rem;
           font-weight: 300;
           margin-bottom: 0.5rem;
           line-height: 1;
@@ -155,7 +155,7 @@ export default function CampaignPage() {
         .campaign-form {
           display: flex;
           flex-direction: column;
-          gap: 0.8rem;
+          gap: 0.6rem;
         }
 
         .form-input,

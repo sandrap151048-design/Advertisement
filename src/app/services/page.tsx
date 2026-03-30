@@ -21,7 +21,7 @@ const staggerContainer = {
 const services = [
   {
     title: "Branding & Corporate Identity",
-    image: "https://images.unsplash.com/photo-1634942537034-22317300300f?w=1000&q=90",
+    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=90",
     description: "Brand implementation, rollout & corporate identity applications",
     details: ["Brand implementation & rollout", "Corporate identity applications", "Office branding & interior graphics", "Brand consistency across multiple locations"],
     link: "/services/branding"
@@ -537,13 +537,10 @@ export default function ServicesPage() {
         }
 
         .cta-section {
-          position: relative;
-          min-height: 60vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-          background-color: #000;
+          background: #1a1a1a;
+          padding: 4rem 2rem;
+          text-align: center;
+          color: white;
         }
 
         .cta-bg {
@@ -556,7 +553,7 @@ export default function ServicesPage() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          filter: brightness(0.4);
+          filter: brightness(0.7);
         }
 
         .cta-overlay {
@@ -720,8 +717,7 @@ export default function ServicesPage() {
           >
             <motion.div className="section-header" variants={fadeInUp}>
               <h2 className="section-title">
-                Our <br />
-                <span className="italic">Services</span>
+                Our <span className="italic">Services</span>
               </h2>
               <p className="section-subtitle">
                 Flexible advertising solutions tailored to your brand.

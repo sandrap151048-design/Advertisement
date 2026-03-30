@@ -8,27 +8,27 @@ import { useRouter } from 'next/navigation';
 import AdminFooter from '../components/AdminFooter';
 
 interface Service {
-    _id: string;
+    _id?: string;
     name: string;
     description: string;
     category: string;
     image?: string;
     items?: string[];
-    createdAt: string;
+    createdAt?: string;
 }
 
 const frontendServices = [
-  { title: "Branding & Corporate Identity", image: "https://images.unsplash.com/photo-1634942537034-22317300300f?w=400&q=80", description: "Brand implementation, rollout & corporate identity applications" },
-  { title: "Digital Printed Graphics", image: "https://images.unsplash.com/photo-1572044162444-ad60f128bde2?w=400&q=80", description: "Large format printing & interior graphics" },
-  { title: "Vehicle Graphics & Fleet Branding", image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&q=80", description: "Full & partial vehicle wraps for mobile advertising" },
-  { title: "Signage Production & Installation", image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400&q=80", description: "Indoor & outdoor signage solutions" },
-  { title: "Exhibition, Display & POS", image: "https://images.unsplash.com/photo-1582192732961-bb3d96924294?w=400&q=80", description: "Exhibition stands, kiosks & point of sale displays" },
-  { title: "Cladding & Facade Solutions", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80", description: "ACP cladding & architectural facade branding" },
+  { _id: "f-1", name: "Branding & Corporate Identity", image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=90", description: "Brand implementation, rollout & corporate identity applications", category: "Branding" },
+  { _id: "f-2", name: "Digital Printed Graphics", image: "https://images.unsplash.com/photo-1572044162444-ad60f128bde2?w=400&q=80", description: "Large format printing & interior graphics", category: "Digital Printing" },
+  { _id: "f-3", name: "Vehicle Graphics & Fleet Branding", image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&q=80", description: "Full & partial vehicle wraps for mobile advertising", category: "Vehicle Branding" },
+  { _id: "f-4", name: "Signage Production & Installation", image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400&q=80", description: "Indoor & outdoor signage solutions", category: "Signage" },
+  { _id: "f-5", name: "Exhibition, Display & POS", image: "https://images.unsplash.com/photo-1582192732961-bb3d96924294?w=400&q=80", description: "Exhibition stands, kiosks & point of sale displays", category: "Display Solutions" },
+  { _id: "f-6", name: "Cladding & Facade Solutions", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80", description: "ACP cladding & architectural facade branding", category: "Facade & Cladding" },
+  { _id: "f-7", name: "Premium Outdoor Media", image: "https://images.unsplash.com/photo-1542744094-24638eff58bb?w=400&q=80", description: "High-quality outdoor signage & large format billboards", category: "Outdoor Media" },
 ];
 
 export default function ServicesPage() {
     const router = useRouter();
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [services, setServices] = useState<Service[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [showAddModal, setShowAddModal] = useState(false);
@@ -49,29 +49,47 @@ export default function ServicesPage() {
         image: '',
         items: ['', '', '', '']
     });
-
+    const [isAuthorized, setIsAuthorized] = useState(false);
+    const [filterCategory, setFilterCategory] = useState('All');
+    
     useEffect(() => {
-        const authToken = localStorage.getItem('adminAuth');
-        if (authToken === 'true') {
-            setIsAuthenticated(true);
-            fetchServices();
-        } else {
+        const auth = localStorage.getItem('adminAuth');
+        const userStr = localStorage.getItem('adminUser');
+        const user = userStr ? JSON.parse(userStr) : null;
+
+        if (auth !== 'true' || user?.email !== 'admin@gmail.com') {
             router.push('/admin/login');
+            return;
         }
+        setIsAuthorized(true);
+        fetchServices();
     }, [router]);
 
-    const fetchServices = async () => {
+    if (!isAuthorized) {
+        return <div style={{ minHeight: '100vh', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Loader2 className="animate-spin" size={48} color="#e61e25" /></div>;
+    }
+
+    async function fetchServices() {
         try {
             const timestamp = new Date().getTime();
             const response = await fetch(`/api/services?t=${timestamp}`, { cache: 'no-store', headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' } });
             const data = await response.json();
-            setServices(Array.isArray(data) ? data : []);
+            
+            const apiServices = Array.isArray(data) ? data : [];
+            // Merge static and api services, avoid duplicates by name
+            const combined = [...frontendServices];
+            apiServices.forEach((api: any) => {
+                if (!combined.some(f => f.name.toLowerCase() === api.name.toLowerCase())) {
+                    combined.push(api);
+                }
+            });
+            setServices(combined);
         } catch (error) {
             console.error('Error fetching services:', error);
-            setServices([]);
+            setServices([...frontendServices] as any);
         }
         setIsLoading(false);
-    };
+    }
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -180,8 +198,6 @@ export default function ServicesPage() {
         localStorage.removeItem('adminUser');
         router.push('/admin/login');
     };
-
-    if (!isAuthenticated) return null;
 
     const ModalForm = ({ data, setData, onSubmit, onFileChange, title, submitLabel }: any) => (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, backdropFilter: 'blur(4px)' }}
@@ -311,9 +327,9 @@ export default function ServicesPage() {
                     </div>
                 ) : (
                     <div className="services-grid">
-                        {services.map((service) => (
+                        {services.map((service, index) => (
                             <motion.div
-                                key={service._id}
+                                key={service._id || index}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 className="service-card"
@@ -338,7 +354,7 @@ export default function ServicesPage() {
                                             <Edit2 size={16} /> Edit
                                         </button>
                                         <button
-                                            onClick={(e) => { e.stopPropagation(); handleDelete(service._id); }}
+                                            onClick={(e) => { e.stopPropagation(); service._id && handleDelete(service._id); }}
                                             className="action-btn delete"
                                         >
                                             <Trash2 size={16} /> Delete

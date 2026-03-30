@@ -3,19 +3,20 @@
 import { motion } from 'framer-motion';
 import { ChevronDown, ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
+import ServiceMap from '@/app/components/ServiceMap';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } as any }
 };
 
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 } as any
   }
 };
 
@@ -362,6 +363,7 @@ export default function BillboardsPage() {
         .contact-section {
           background: #1a1a1a;
           padding: 4rem 2rem;
+          text-align: center;
           color: white;
         }
 
