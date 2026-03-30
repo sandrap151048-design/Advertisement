@@ -8,6 +8,8 @@ import Footer from './components/Footer';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 
+import StyledJsxRegistry from '../lib/registry';
+
 export default function RootLayout({
   children,
 }: {
@@ -34,19 +36,21 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       </head>
       <body>
-        {!hideNavbar && (
-          <>
-            <div className="bg-orb orb-1"></div>
-            <div className="bg-orb orb-2"></div>
-            <Navbar />
-          </>
-        )}
+        <StyledJsxRegistry>
+          {!hideNavbar && (
+            <>
+              <div className="bg-orb orb-1"></div>
+              <div className="bg-orb orb-2"></div>
+              <Navbar />
+            </>
+          )}
 
-        <main>
-          {children}
-        </main>
+          <main>
+            {children}
+          </main>
 
-        {!hideNavbar && <Footer />}
+          {!hideNavbar && <Footer />}
+        </StyledJsxRegistry>
       </body>
     </html>
   );

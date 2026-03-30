@@ -556,11 +556,7 @@ export default function DynamicServicePage() {
       `}</style>
 
       <div className="service-detail-page">
-        <Link href="/services">
-          <button className="back-button">
-            <ArrowLeft size={20} />
-          </button>
-        </Link>
+        <Link href="/services" className="back-button"><ArrowLeft size={20} /></Link>
 
         {/* Hero Section */}
         <motion.section

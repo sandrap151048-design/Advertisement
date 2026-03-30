@@ -486,11 +486,7 @@ export default function VehicleBrandingPage() {
       `}</style>
 
       <div className="billboard-page">
-        <Link href="/services">
-          <button className="back-button">
-            <ArrowLeft size={24} color="#1a1a1a" />
-          </button>
-        </Link>
+        <Link href="/services" className="back-button"><ArrowLeft size={24} color="#1a1a1a" /></Link>
 
         <motion.section 
           className="hero-section"

@@ -78,7 +78,7 @@ export default function Footer() {
             </div>
             <div style={{ color: '#888', fontWeight: '900', letterSpacing: '4px', fontSize: '0.65rem', marginTop: '4px' }}>ADVERTISEMENT</div>
           </Link>
-          &copy; {currentYear || new Date().getFullYear()} One Click Advertisement. All rights reserved.
+          <span suppressHydrationWarning>&copy; {currentYear || new Date().getFullYear()} One Click Advertisement. All rights reserved.</span>
         </div>
       </div>
 
