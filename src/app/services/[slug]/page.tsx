@@ -583,7 +583,7 @@ export default function DynamicServicePage() {
                 <img 
                   key={index}
                   src={image} 
-                  alt={`${service.name} ${index + 1}`}
+                  alt={service.name}
                   className={currentImageIndex === index ? 'active' : ''}
                 />
               ))}

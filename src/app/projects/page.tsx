@@ -58,7 +58,6 @@ const ALL_PROJECTS: Project[] = [
         category: 'Vehicle Branding',
         images: [
             'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80',
-            'https://images.unsplash.com/photo-1603380353725-f8a4d39cc41e?w=800&q=80'
         ]
     },
     {
@@ -68,7 +67,6 @@ const ALL_PROJECTS: Project[] = [
         category: 'Signage',
         images: [
             'https://images.unsplash.com/photo-1542744094-24638eff58bb?w=800&q=80',
-            'https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&q=80'
         ]
     },
     {
@@ -88,7 +86,6 @@ const ALL_PROJECTS: Project[] = [
         category: 'Display Solutions',
         images: [
             'https://images.unsplash.com/photo-1531053326607-9d349096d887?w=800&q=80',
-            'https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800&q=80'
         ]
     },
     {
@@ -98,7 +95,6 @@ const ALL_PROJECTS: Project[] = [
         category: 'Facade & Cladding',
         images: [
             'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
-            'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80'
         ]
     }
 ];
@@ -506,7 +502,7 @@ function ProjectsContent() {
                                                     <img 
                                                         key={i} 
                                                         src={img} 
-                                                        alt={`${project.title} ${i + 1}`} 
+                                                        alt={project.title} 
                                                         className="cluster-img" 
                                                         onError={(e) => {
                                                             (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80';

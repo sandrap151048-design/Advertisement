@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Home, LogOut, MessageSquare, Briefcase, Plus, Trash2, Edit, Layers, MapPin, Phone, Mail, ArrowLeft, Eye, X, Loader2 } from 'lucide-react';
+import { Home, LogOut, MessageSquare, Briefcase, Plus, Trash2, Edit2, Layers, MapPin, Phone, Mail, ArrowLeft, Eye, X, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -165,6 +165,16 @@ export default function ServicesPage() {
         }
     };
 
+    const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        const card = e.currentTarget;
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        
+        card.style.setProperty('--mouse-x', `${x}%`);
+        card.style.setProperty('--mouse-y', `${y}%`);
+    };
+
     const handleLogout = () => {
         localStorage.removeItem('adminAuth');
         localStorage.removeItem('adminUser');
@@ -300,79 +310,36 @@ export default function ServicesPage() {
                         </button>
                     </div>
                 ) : (
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem' }}>
+                    <div className="services-grid">
                         {services.map((service) => (
                             <motion.div
                                 key={service._id}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="glass-card"
-                                style={{ padding: '0', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}
+                                className="service-card"
+                                onMouseMove={handleCardMouseMove}
                             >
-                                <div style={{ height: '160px', width: '100%', position: 'relative', background: '#eee' }}>
-                                    {service.image ? (
-                                        <img 
-                                            src={service.image} 
-                                            alt={service.name} 
-                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                                            onError={(e) => {
-                                                (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80';
-                                            }}
-                                        />
-                                    ) : (
-                                        <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999' }}>
-                                            <Briefcase size={40} />
-                                        </div>
-                                    )}
-                                </div>
-                                <div style={{ padding: '1.5rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                                    <div style={{ marginBottom: '0.5rem' }}>
-                                        <span style={{ 
-                                            background: 'rgba(230, 30, 37, 0.1)', 
-                                            color: '#e61e25',
-                                            padding: '0.2rem 0.6rem',
-                                            borderRadius: '4px',
-                                            fontSize: '0.7rem',
-                                            fontWeight: 700,
-                                            textTransform: 'uppercase'
-                                        }}>
-                                            {service.category}
-                                        </span>
-                                    </div>
-                                    <h3 style={{ fontSize: '1.2rem', marginBottom: '0.8rem', color: '#1a1a1a', fontWeight: 800 }}>
-                                        {service.name}
-                                    </h3>
-                                    <p style={{ color: '#666', fontSize: '0.85rem', lineHeight: '1.6', flex: 1, marginBottom: '1rem' }}>
-                                        {service.description}
-                                    </p>
-                                    {service.items && service.items.length > 0 && (
-                                        <ul style={{ color: 'var(--color-text-muted)', paddingLeft: '0', listStyleType: 'none', fontSize: '0.85rem', lineHeight: '1.8', marginBottom: '1rem' }}>
-                                            {service.items.filter(item => item.trim()).map((item, idx) => (
-                                                <li key={idx} style={{ marginBottom: '0.5rem', paddingLeft: '1.2rem', position: 'relative' }}>
-                                                    <span style={{ position: 'absolute', left: 0, color: 'var(--color-primary)', fontWeight: 'bold' }}>•</span>
-                                                    {item}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    )}
-                                    <div style={{ display: 'flex', gap: '0.5rem', marginTop: 'auto', paddingTop: '1rem', borderTop: '1px solid #eee' }}>
+                                <img 
+                                    src={service.image} 
+                                    alt={service.name} 
+                                    onError={(e) => {
+                                        (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80';
+                                    }}
+                                />
+                                <div className="service-overlay">
+                                    <h3 className="service-title">{service.name}</h3>
+                                    <p className="service-desc">{service.description}</p>
+                                    
+                                    <div className="admin-actions">
                                         <button
-                                            onClick={() => handleDelete(service._id)}
-                                            style={{
-                                                flex: 1,
-                                                background: 'rgba(239, 68, 68, 0.1)',
-                                                border: '1px solid rgba(239, 68, 68, 0.3)',
-                                                color: '#ef4444',
-                                                padding: '0.6rem',
-                                                borderRadius: '8px',
-                                                cursor: 'pointer',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                gap: '0.5rem',
-                                                fontSize: '0.85rem',
-                                                fontWeight: 600
-                                            }}
+                                            onClick={(e) => { e.stopPropagation(); openEditModal(service); }}
+                                            className="action-btn edit"
+                                        >
+                                            <Edit2 size={16} /> Edit
+                                        </button>
+                                        <button
+                                            onClick={(e) => { e.stopPropagation(); handleDelete(service._id); }}
+                                            className="action-btn delete"
                                         >
                                             <Trash2 size={16} /> Delete
                                         </button>
@@ -542,6 +509,162 @@ export default function ServicesPage() {
                 <AdminFooter />
             <style jsx global>{`
                 .hover-red:hover { color: #e61e25 !important; }
+
+                .services-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                    gap: 2rem;
+                    max-width: 1400px;
+                    margin: 0 auto;
+                }
+
+                .service-card {
+                    position: relative;
+                    height: 380px;
+                    border-radius: 20px;
+                    overflow: hidden;
+                    cursor: pointer;
+                    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                    background: #000;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                    will-change: transform, box-shadow;
+                }
+
+                .service-card::before {
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(230, 30, 37, 0.15), transparent 80%);
+                    opacity: 0;
+                    transition: opacity 0.4s ease;
+                    pointer-events: none;
+                    z-index: 1;
+                }
+
+                .service-card:hover {
+                    transform: translateY(-10px);
+                    box-shadow: 0 20px 40px rgba(230, 30, 37, 0.15);
+                    border-color: rgba(230, 30, 37, 0.3);
+                }
+
+                .service-card:hover::before {
+                    opacity: 1;
+                }
+
+                .service-card img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+
+                .service-card:hover img {
+                    transform: scale(1.1);
+                    filter: brightness(0.7);
+                }
+
+                .service-overlay {
+                    position: absolute;
+                    inset: 0;
+                    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    padding: 2rem;
+                    color: white;
+                    z-index: 2;
+                    transition: all 0.4s ease;
+                }
+
+                .service-card:hover .service-overlay {
+                    background: linear-gradient(to top, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.3) 100%);
+                }
+
+                .service-title {
+                    font-size: 1.7rem;
+                    font-weight: 800;
+                    margin-bottom: 0.6rem;
+                    color: white;
+                    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+                    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                }
+
+                .service-card:hover .service-title {
+                    color: #ffffff;
+                    text-shadow: 0 0 20px rgba(230,30,37,0.6);
+                    transform: translateY(-5px);
+                }
+
+                .service-desc {
+                    font-size: 1rem;
+                    color: rgba(255,255,255,0.85);
+                    line-height: 1.5;
+                    margin-bottom: 1.5rem;
+                    transition: all 0.4s ease;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                }
+
+                .service-card:hover .service-desc {
+                    color: white;
+                    transform: translateY(-3px);
+                }
+
+                .admin-actions {
+                    display: flex;
+                    gap: 1rem;
+                    opacity: 0.6;
+                    transition: all 0.3s ease;
+                    margin-top: 1rem;
+                }
+
+                .service-card:hover .admin-actions {
+                    opacity: 1;
+                    transform: translateY(-2px);
+                }
+
+                .action-btn {
+                    padding: 10px 20px;
+                    border-radius: 10px;
+                    border: 1px solid rgba(255,255,255,0.2);
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 8px;
+                    transition: all 0.3s;
+                    backdrop-filter: blur(12px);
+                    font-size: 0.85rem;
+                    font-weight: 700;
+                    color: white;
+                }
+
+                .action-btn.edit {
+                    background: rgba(255, 255, 255, 0.15);
+                }
+
+                .action-btn.edit:hover {
+                    background: white;
+                    color: #1a1a1a;
+                }
+
+                .action-btn.delete {
+                    background: rgba(230, 30, 37, 0.2);
+                    border-color: rgba(230,30,37,0.4);
+                }
+
+                .action-btn.delete:hover {
+                    background: #e61e25;
+                    border-color: #e61e25;
+                }
+
+                @media (max-width: 768px) {
+                    .services-grid { grid-template-columns: 1fr; }
+                    .service-card { height: 300px; }
+                }
             `}</style>
         </div>
     );
