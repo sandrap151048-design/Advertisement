@@ -1,56 +1,28 @@
-'use client';
+import type { Metadata } from "next";
+import "./globals.css";
+import ClientLayoutWrapper from "./components/ClientLayoutWrapper";
 
-import type { Metadata } from 'next';
-import './globals.css';
-import './mobile-responsive.css';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import { usePathname } from 'next/navigation';
-import { useEffect } from 'react';
-
-import StyledJsxRegistry from '../lib/registry';
+export const metadata: Metadata = {
+  title: "One Click Advertisement | Premium Outdoor Advertising in UAE",
+  description: "High-impact outdoor advertising solutions across prime locations in the UAE. From billboards to vehicle branding, we make brands impossible to ignore.",
+  keywords: ["outdoor advertising", "billboards UAE", "signage Dubai", "vehicle branding", "One Click Advertisement"],
+};
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
-  const pathname = usePathname();
-  const isAdminRoute = pathname?.startsWith('/admin');
-  const isRegisterRoute = pathname === '/register';
-  const isCampaignRoute = pathname === '/campaign';
-  const hideNavbar = isAdminRoute || isRegisterRoute || isCampaignRoute;
-
-  useEffect(() => {
-    // Add loaded class to body after mount to prevent flash
-    document.body.classList.add('loaded');
-  }, []);
-
+}>) {
   return (
     <html lang="en">
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-        <meta name="theme-color" content="#e61e25" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body>
-        <StyledJsxRegistry>
-          {!hideNavbar && (
-            <>
-              <div className="bg-orb orb-1"></div>
-              <div className="bg-orb orb-2"></div>
-              <Navbar />
-            </>
-          )}
-
-          <main>
-            {children}
-          </main>
-
-          {!hideNavbar && <Footer />}
-        </StyledJsxRegistry>
+        <ClientLayoutWrapper>
+          {children}
+        </ClientLayoutWrapper>
       </body>
     </html>
   );

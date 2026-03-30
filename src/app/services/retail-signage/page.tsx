@@ -74,15 +74,7 @@ export default function RetailSignagePage() {
 
   return (
     <>
-      <style jsx global>{`
-        * {
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-        }
-
-        *::-webkit-scrollbar {
-          display: none;
-        }
+      <style jsx>{`
 
         .billboard-page {
           background: #f5f5f5;

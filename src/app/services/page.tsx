@@ -154,15 +154,7 @@ export default function ServicesPage() {
 
   return (
     <>
-      <style jsx global>{`
-        * {
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-        }
-
-        *::-webkit-scrollbar {
-          display: none;
-        }
+      <style jsx>{`
 
         .services-page {
           background: #ffffff;

@@ -49,15 +49,7 @@ export default function DigitalGraphicsPage() {
 
   return (
     <>
-      <style jsx global>{`
-        * {
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-        }
-
-        *::-webkit-scrollbar {
-          display: none;
-        }
+      <style jsx>{`
 
         .service-detail-page {
           background: #f5f5f5;
