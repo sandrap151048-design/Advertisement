@@ -197,6 +197,7 @@ export default function ServicesPage() {
           color: white;
           max-width: 900px;
           padding: 2rem;
+          margin: 0 auto;
         }
 
         .hero-title {
@@ -267,9 +268,9 @@ export default function ServicesPage() {
           overflow: hidden;
           cursor: pointer;
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          background: rgba(0, 0, 0, 0.05);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          background: #ffffff;
+          border: 1px solid rgba(0, 0, 0, 0.05);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
           will-change: transform, box-shadow;
         }
 
@@ -296,9 +297,9 @@ export default function ServicesPage() {
         }
 
         .service-card:hover {
-          transform: translateY(-8px);
-          background: rgba(255, 255, 255, 0.08);
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+          transform: translateY(-10px);
+          background: #ffffff;
+          box-shadow: 0 20px 40px rgba(230, 30, 37, 0.15);
           border-color: rgba(230, 30, 37, 0.3);
         }
 
@@ -530,10 +531,14 @@ export default function ServicesPage() {
         }
 
         .cta-section {
-          background: #1a1a1a;
-          padding: 4rem 2rem;
-          text-align: center;
-          color: white;
+          position: relative;
+          padding: 8rem 2rem;
+          min-height: 400px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          background: #111;
         }
 
         .cta-bg {
