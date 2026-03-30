@@ -169,7 +169,7 @@ export default function ServicesPage() {
           align-items: center;
           justify-content: center;
           overflow: hidden;
-          padding-top: 100px;
+          padding-top: 140px;
           background-color: #111;
         }
 

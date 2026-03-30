@@ -13,9 +13,7 @@ export default function ServiceMap() {
       <style jsx>{`
         .locations-section {
           width: 100vw;
-          position: relative;
-          left: 50%;
-          transform: translateX(-50%);
+          margin-left: calc(-50vw + 50%);
           background: #ffffff;
           text-align: center;
           padding: 8rem 0 0 0;

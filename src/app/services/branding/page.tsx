@@ -55,12 +55,12 @@ export default function BrandingPage() {
         .service-detail-page {
           background: #f5f5f5;
           min-height: 100vh;
-          padding-top: 100px;
+          padding-top: 140px;
         }
 
         .back-button {
           position: fixed;
-          top: 120px;
+          top: 140px;
           left: 40px;
           z-index: 100;
           background: white;
