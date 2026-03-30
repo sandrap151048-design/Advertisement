@@ -67,6 +67,32 @@ export default function AdminSidebar() {
                     position: relative;
                     z-index: 1000;
                     transition: transform 0.3s ease;
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                }
+
+                /* Custom scrollbar — matches services page card premium style */
+                .admin-sidebar::-webkit-scrollbar {
+                    width: 5px;
+                }
+                .admin-sidebar::-webkit-scrollbar-track {
+                    background: rgba(255, 255, 255, 0.04);
+                    border-radius: 10px;
+                }
+                .admin-sidebar::-webkit-scrollbar-thumb {
+                    background: linear-gradient(180deg, #e61e25 0%, #ff4d4d 100%);
+                    border-radius: 10px;
+                    box-shadow: 0 0 6px rgba(230, 30, 37, 0.5);
+                    transition: background 0.3s ease;
+                }
+                .admin-sidebar::-webkit-scrollbar-thumb:hover {
+                    background: linear-gradient(180deg, #ff2d35 0%, #ff6b6b 100%);
+                    box-shadow: 0 0 10px rgba(230, 30, 37, 0.8);
+                }
+                /* Firefox */
+                .admin-sidebar {
+                    scrollbar-width: thin;
+                    scrollbar-color: #e61e25 rgba(255, 255, 255, 0.04);
                 }
 
                 @media (max-width: 1024px) {
