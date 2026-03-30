@@ -242,57 +242,7 @@ export default function SignagePage() {
           line-height: 1.6;
         }
 
-        .locations-section {
-          padding: 3rem 2rem;
-          margin: 0 auto 2rem auto;
-          max-width: 1200px;
-          background: white;
-          border-radius: 0;
-        }
-
-        .locations-header {
-          text-align: center;
-          margin-bottom: 0;
-        }
-
-        .locations-title {
-          font-size: 2.5rem;
-          font-weight: 900;
-          margin-bottom: 0.5rem;
-          color: #000;
-        }
-
-        .locations-subtitle {
-          font-style: italic;
-          color: #000;
-          font-size: 2rem;
-          font-weight: 400;
-          margin-bottom: 1.5rem;
-        }
-
-        .locations-description {
-          color: #333;
-          font-size: 1rem;
-          line-height: 1.6;
-          max-width: 100%;
-          margin: 0 auto;
-        }
-
-        .locations-map-container {
-          width: 100%;
-          max-width: 900px;
-          margin: 0 auto;
-          position: relative;
-          border-radius: 12px;
-          overflow: hidden;
-          background: #f0f0f0;
-        }
-
-        .locations-map-container img {
-          width: 100%;
-          height: auto;
-          display: block;
-        }
+        
 
         .cta-section {
           background: #1a1a1a;
@@ -398,17 +348,11 @@ export default function SignagePage() {
             gap: 2rem;
           }
 
-          .locations-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
+          
 
-          .locations-title {
-            font-size: 2rem;
-          }
+          
 
-          .locations-subtitle {
-            font-size: 1.5rem;
-          }
+          
         }
       `}</style>
 

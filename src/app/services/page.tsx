@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ChevronDown, ArrowRight, Phone, Mail, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import ServiceMap from '@/app/components/ServiceMap';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
