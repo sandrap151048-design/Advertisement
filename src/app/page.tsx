@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, FormEvent, useEffect } from 'react';
-import { motion, Variants } from 'framer-motion';
+import { motion, Variants, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight, MapPin, Phone, Mail, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import './black-cards.css';
@@ -73,22 +73,40 @@ export default function Home() {
   const [currentLocationIndex, setCurrentLocationIndex] = useState(0);
   const [openBrandAccordion, setOpenBrandAccordion] = useState<number | null>(0);
 
+  // 3D Parallax Mouse Tracking
+  const mouseX = useMotionValue(0.5);
+  const mouseY = useMotionValue(0.5);
+  const springConfig = { damping: 20, stiffness: 100 };
+  const springX = useSpring(mouseX, springConfig);
+  const springY = useSpring(mouseY, springConfig);
+  
+  const rotateX = useTransform(springY, [0, 1], [10, -10]);
+  const rotateY = useTransform(springX, [0, 1], [-10, 10]);
+  const bgX = useTransform(springX, [0, 1], [-20, 20]);
+  const bgY = useTransform(springY, [0, 1], [-20, 20]);
+
+  const handleHeroMouseMove = (e: React.MouseEvent) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      mouseX.set((e.clientX - rect.left) / rect.width);
+      mouseY.set((e.clientY - rect.top) / rect.height);
+  };
+
   const locations = [
     { 
       name: 'Dubai Marina', 
-      image: 'https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?w=600&q=80'
+      image: '/projects-hero-bg.png'
     },
     { 
       name: 'Abu Dhabi Corniche', 
-      image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&q=80'
+      image: '/services-hero-bg.png'
     },
     { 
       name: 'Downtown Dubai', 
-      image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80'
+      image: '/home-hero-bg.png'
     },
     { 
       name: 'Jumeirah Beach', 
-      image: 'https://images.unsplash.com/photo-1546412414-e1885259563a?w=600&q=80'
+      image: '/about-hero-bg.png'
     }
   ];
 
@@ -163,12 +181,13 @@ export default function Home() {
           justify-content: center;
           overflow: hidden;
           padding-top: 70px;
-          background: #111111; /* dark fallback always */
+          background: #050505;
+          perspective: 1200px;
         }
 
         .hero-background {
           position: absolute;
-          inset: 0;
+          inset: -30px; /* Oversize for parallax */
           z-index: 0;
         }
 
@@ -182,7 +201,7 @@ export default function Home() {
         .hero-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.3) 100%);
+          background: radial-gradient(circle at center, rgba(30,0,0,0.3) 0%, rgba(0,0,0,0.9) 100%);
           z-index: 1;
         }
 
@@ -193,19 +212,26 @@ export default function Home() {
           color: white;
           max-width: 900px;
           padding: 2rem;
+          transform-style: preserve-3d;
+          pointer-events: none;
         }
-
+        
         .hero-content .highlight {
           color: #e61e25;
+          display: inline-block;
+          transform: translateZ(100px);
+          text-shadow: 0 0 30px rgba(230,30,37,0.5);
         }
 
         .hero-content h1 {
-          font-size: clamp(2.5rem, 8vw, 6rem);
-          font-weight: 900;
+          font-size: clamp(2.5rem, 8vw, 6.5rem);
+          font-weight: 950;
           line-height: 1.05;
           margin-bottom: 1.5rem;
           letter-spacing: -2px;
           word-break: break-word;
+          transform: translateZ(60px);
+          text-shadow: 0 10px 40px rgba(0,0,0,0.8);
         }
 
         .hero-content p {
@@ -213,7 +239,9 @@ export default function Home() {
           color: rgba(255,255,255,0.95);
           margin-bottom: 2rem;
           line-height: 1.6;
-          text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+          text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+          transform: translateZ(30px);
+          font-weight: 500;
         }
 
         .hero-buttons {
@@ -221,12 +249,14 @@ export default function Home() {
           gap: 1rem;
           justify-content: center;
           flex-wrap: wrap;
+          transform: translateZ(40px);
+          pointer-events: auto;
         }
 
         .btn {
           padding: 1rem 2.5rem;
           font-size: 1rem;
-          font-weight: 700;
+          font-weight: 800;
           border-radius: 8px;
           border: none;
           cursor: pointer;
@@ -783,21 +813,29 @@ export default function Home() {
       `}</style>
 
       {/* Hero Section */}
-      <section className="hero-section">
-        <div className="hero-background">
+      <section className="hero-section" onMouseMove={handleHeroMouseMove}>
+        <motion.div 
+          className="hero-background"
+          style={{ x: bgX, y: bgY }}
+        >
           <img 
-            src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1600&q=80" 
+            src="/cta-bg-premium.png" 
             alt="City Background" 
           />
-        </div>
+        </motion.div>
         <div className="hero-overlay"></div>
+
         <motion.div 
           className="hero-content"
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+          style={{ rotateX, rotateY }}
+          initial={{ opacity: 0, rotateX: 20, y: 100, scale: 0.8 }}
+          animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
+          transition={{ duration: 1.2, type: "spring", bounce: 0.3 }}
         >
           <motion.h1 
+            initial={{ z: -150, opacity: 0 }}
+            animate={{ z: 0, opacity: 1 }}
+            transition={{ duration: 1.2, delay: 0.3 }}
             variants={fadeInDown}
             style={{ 
               fontFamily: "'Bricolage Grotesque', sans-serif"
@@ -839,37 +877,37 @@ export default function Home() {
             {[
               { 
                 id: 1, 
-                url: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80', 
+                url: '/signage-branding.png', 
                 title: 'Branding & Corporate Identity',
                 desc: 'Brand implementation, rollout & corporate identity applications'
               },
               { 
                 id: 2, 
-                url: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80', 
+                url: '/signage-digital-print.png', 
                 title: 'Digital Printed Graphics',
                 desc: 'Large format printing & interior graphics'
               },
               { 
                 id: 3, 
-                url: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=80', 
+                url: '/signage-vehicle.png', 
                 title: 'Vehicle Graphics & Fleet Branding',
                 desc: 'Full & partial vehicle wraps for mobile advertising'
               },
               { 
                 id: 4, 
-                url: 'https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=600&q=80', 
+                url: '/signage-production.png', 
                 title: 'Signage Production & Installation',
                 desc: 'Indoor & outdoor signage solutions'
               },
               { 
                 id: 5, 
-                url: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80', 
+                url: '/signage-exhibition.png', 
                 title: 'Exhibition, Display & POS',
                 desc: 'Exhibition stands, kiosks & point of sale displays'
               },
               { 
                 id: 6, 
-                url: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80', 
+                url: '/signage-cladding.png', 
                 title: 'Cladding & Facade Solutions',
                 desc: 'ACP cladding & architectural facade branding'
               }
@@ -1133,7 +1171,7 @@ export default function Home() {
             whileHover={{ scale: 1.02, x: -5, transition: { duration: 0.3 } }}
           >
             <img 
-              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=500&q=80"
+              src="/about-hero-bg.png"
               alt="Cities"
             />
           </motion.div>
@@ -1272,7 +1310,7 @@ export default function Home() {
                   overflow: 'hidden'
                 }}>
                   <img 
-                    src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=600&q=80"
+                    src="/signage-branding.png"
                     alt="Built for Visibility"
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
@@ -1323,7 +1361,7 @@ export default function Home() {
                   overflow: 'hidden'
                 }}>
                   <img 
-                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80"
+                    src="/about-hero-bg.png"
                     alt="Nationwide Coverage"
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
@@ -1374,7 +1412,7 @@ export default function Home() {
                   overflow: 'hidden'
                 }}>
                   <img 
-                    src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80"
+                    src="/services-hero-bg.png"
                     alt="Complete Solutions"
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
@@ -1403,7 +1441,7 @@ export default function Home() {
         alignItems: 'center', 
         justifyContent: 'center', 
         overflow: 'hidden',
-        backgroundImage: "url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1600&q=80')",
+        backgroundImage: "url('/projects-hero-bg.png')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundColor: '#111'

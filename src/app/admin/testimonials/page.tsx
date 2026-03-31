@@ -335,7 +335,7 @@ export default function ProjectsPage() {
                                         required
                                         value={formData.image}
                                         onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                                        placeholder="https://images.unsplash.com/..."
+                                        placeholder="/signage-production.png"
                                         style={{
                                             width: '100%',
                                             padding: '0.8rem',

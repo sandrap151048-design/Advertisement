@@ -24,10 +24,10 @@ export default function SignagePage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const heroImages = [
-    "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&q=80",
-    "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
-    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
-    "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80"
+    "/signage-production.png",
+    "/signage-branding.png",
+    "/signage-digital-print.png",
+    "/signage-exhibition.png"
   ];
 
   useEffect(() => {

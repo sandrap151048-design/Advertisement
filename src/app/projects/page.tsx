@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, Suspense } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, Suspense, useRef } from 'react';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { 
     ArrowRight, 
     Image as ImageIcon,
@@ -28,8 +28,8 @@ const ALL_PROJECTS: Project[] = [
         description: 'Complete visual identity transformation featuring premium logo design, color theory application, and comprehensive brand guidelines for a global corporate client.',
         category: 'Brand Identity',
         images: [
-            'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80',
-            'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80'
+            '/signage-branding.png',
+            '/about-hero-bg.png'
         ],
         isSmall: true
     },
@@ -39,8 +39,8 @@ const ALL_PROJECTS: Project[] = [
         description: 'High-precision large format printing for luxury retail displays, capturing vibrant colors and sharp details to maximize visual pull in high-traffic shopping malls.',
         category: 'Digital Printing',
         images: [
-            'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80',
-            'https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&q=80'
+            '/signage-digital-print.png',
+            '/services-hero-bg.png'
         ],
         isSmall: true
     },
@@ -50,8 +50,8 @@ const ALL_PROJECTS: Project[] = [
         description: 'Innovative indoor banner solutions for corporate environments, utilizing premium materials and high-definition printing to deliver clear and professional brand messaging.',
         category: 'Digital Printing',
         images: [
-            'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&q=80',
-            'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80'
+            '/signage-exhibition.png',
+            '/home-hero-bg.png'
         ]
     },
     {
@@ -60,8 +60,8 @@ const ALL_PROJECTS: Project[] = [
         description: 'State-of-the-art vehicle branding for commercial fleets, using high-durability vinyl to ensure long-lasting brand visibility across the UAE.',
         category: 'Vehicle Branding',
         images: [
-            'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80',
-            'https://images.unsplash.com/photo-1603380353725-f8a4d39cc41e?w=800&q=80'
+            '/signage-vehicle.png',
+            '/cta-bg-premium.png'
         ]
     },
     {
@@ -70,8 +70,8 @@ const ALL_PROJECTS: Project[] = [
         description: 'High-visibility 3D LED signage installations designed for maximum impact in premium commercial districts, ensuring your brand stays visible 24/7.',
         category: 'Signage',
         images: [
-            'https://images.unsplash.com/photo-1542744094-24638eff58bb?w=800&q=80',
-            'https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&q=80'
+            '/signage-production.png',
+            '/services-hero-bg.png'
         ]
     },
     {
@@ -80,8 +80,8 @@ const ALL_PROJECTS: Project[] = [
         description: 'Comprehensive wayfinding and directional signage solutions for large-scale developments, merging functionality with sophisticated design.',
         category: 'Signage',
         images: [
-            'https://images.unsplash.com/photo-1581447100511-c0536294e19b?w=800&q=80',
-            'https://images.unsplash.com/photo-1574634534894-89d7576c8259?w=800&q=80'
+            '/projects-hero-bg.png',
+            '/signage-production.png'
         ]
     },
     {
@@ -90,8 +90,8 @@ const ALL_PROJECTS: Project[] = [
         description: 'Custom-designed point-of-sale displays focused on driving customer engagement and maximizing product visibility in competitive retail settings.',
         category: 'Display Solutions',
         images: [
-            'https://images.unsplash.com/photo-1531053326607-9d349096d887?w=800&q=80',
-            'https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800&q=80'
+            '/signage-exhibition.png',
+            '/about-hero-bg.png'
         ]
     },
     {
@@ -100,8 +100,8 @@ const ALL_PROJECTS: Project[] = [
         description: 'Premium building facade solutions combining high-quality ACP cladding with integrated signage to create a powerful architectural identity.',
         category: 'Facade & Cladding',
         images: [
-            'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
-            'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80'
+            '/signage-cladding.png',
+            '/home-hero-bg.png'
         ]
     }
 ];
@@ -111,6 +111,23 @@ function ProjectsContent() {
     const [filterCategory, setFilterCategory] = useState('All');
     const [dynamicProjects, setDynamicProjects] = useState<Project[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+
+    const mouseX = useMotionValue(0.5);
+    const mouseY = useMotionValue(0.5);
+    const springConfig = { damping: 25, stiffness: 150 };
+    const springX = useSpring(mouseX, springConfig);
+    const springY = useSpring(mouseY, springConfig);
+    
+    const rotateX = useTransform(springY, [0, 1], [15, -15]);
+    const rotateY = useTransform(springX, [0, 1], [-15, 15]);
+    const bgX = useTransform(springX, [0, 1], [-20, 20]);
+    const bgY = useTransform(springY, [0, 1], [-20, 20]);
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        mouseX.set((e.clientX - rect.left) / rect.width);
+        mouseY.set((e.clientY - rect.top) / rect.height);
+    };
 
     const categories = [
         'All', 'Brand Identity', 'Digital Printing', 'Vehicle Branding', 
@@ -153,28 +170,28 @@ function ProjectsContent() {
 
     const CATEGORY_IMAGES: { [key: string]: string[] } = {
         'Brand Identity': [
-            'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80',
-            'https://images.unsplash.com/photo-1558403194-611308249627?w=800&q=80'
+            '/signage-branding.png',
+            '/about-hero-bg.png'
         ],
         'Digital Printing': [
-            'https://images.unsplash.com/photo-1562564055-71e051d33c19?w=800&q=80',
-            'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80'
+            '/signage-digital-print.png',
+            '/services-hero-bg.png'
         ],
         'Vehicle Branding': [
-            'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80',
-            'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80'
+            '/signage-vehicle.png',
+            '/cta-bg-premium.png'
         ],
         'Display Solutions': [
-            'https://images.unsplash.com/photo-1531053326607-9d349096d887?w=800&q=80',
-            'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&q=80'
+            '/signage-exhibition.png',
+            '/home-hero-bg.png'
         ],
         'Signage': [
-            'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80',
-            'https://images.unsplash.com/photo-1581447100511-c0536294e19b?w=800&q=80'
+            '/signage-production.png',
+            '/projects-hero-bg.png'
         ],
         'Facade & Cladding': [
-            'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
-            'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80'
+            '/signage-cladding.png',
+            '/cta-bg-premium.png'
         ]
     };
 
@@ -211,47 +228,67 @@ function ProjectsContent() {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    background: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1600&q=80') center/cover no-repeat;
+                    background: #050505;
                     overflow: hidden;
                     text-align: center;
+                    perspective: 1500px;
+                }
+                .hero-works-bg {
+                    position: absolute;
+                    inset: -30px;
+                    z-index: 0;
+                }
+                .hero-works-bg img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    filter: brightness(0.6) contrast(1.1);
                 }
                 .hero-works-overlay {
                     position: absolute;
                     inset: 0;
-                    background: rgba(0,0,0,0.5);
+                    background: radial-gradient(circle at center, rgba(30,0,0,0.2) 0%, rgba(0,0,0,0.9) 100%);
                     z-index: 1;
                 }
                 .hero-works-content {
                     position: relative;
-                    z-index: 2;
+                    z-index: 5;
+                    transform-style: preserve-3d;
+                    pointer-events: none;
                 }
                 .hero-works-h1 {
-                    font-size: clamp(2.5rem, 8vw, 5rem);
-                    font-weight: 900;
+                    font-size: clamp(3rem, 10vw, 7.5rem);
+                    font-weight: 950;
                     color: white;
-                    letter-spacing: -2px;
-                    line-height: 1.05;
+                    letter-spacing: -3px;
+                    line-height: 1;
                     margin-bottom: 2rem;
                     text-transform: uppercase;
                     word-break: keep-all;
                     overflow-wrap: break-word;
+                    transform: translateZ(100px);
+                    text-shadow: 0 15px 50px rgba(0,0,0,0.8);
                 }
                 .hero-works-h1 span {
                     color: #e61e25;
+                    display: inline-block;
+                    transform: translateZ(150px);
                 }
                 .hero-works-tagline {
-                    color: white;
-                    font-size: clamp(1rem, 4vw, 1.5rem);
-                    letter-spacing: 2px;
+                    color: rgba(255,255,255,0.9);
+                    font-size: clamp(1.2rem, 4vw, 1.8rem);
+                    letter-spacing: 6px;
                     opacity: 0.9;
                     font-weight: 500;
-                    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+                    text-transform: uppercase;
+                    transform: translateZ(60px);
+                    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
                 }
                 
                 .section-header {
                     padding: 80px 0 60px 0;
                     text-align: center;
-                    background: #fdfdfd;
+                    background: #ffffff;
                 }
                 .title-our {
                     font-size: clamp(2rem, 8vw, 3.5rem);
@@ -300,9 +337,10 @@ function ProjectsContent() {
                     font-size: 0.85rem;
                 }
                 .cat-btn.active {
-                    background: #111;
+                    background: #e61e25;
                     color: white;
-                    border-color: #111;
+                    border-color: #e61e25;
+                    box-shadow: 0 4px 12px rgba(230, 30, 37, 0.2);
                 }
                 
                 .project-cluster {
@@ -358,7 +396,7 @@ function ProjectsContent() {
                 .project-overview-bg {
                     position: relative;
                     padding: 160px 0;
-                    background: url('https://images.unsplash.com/photo-1542744094-24638eff58bb?w=1600&q=80') center/cover no-repeat;
+                    background: url('/projects-hero-bg.png') center/cover no-repeat;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -443,26 +481,51 @@ function ProjectsContent() {
                 }
             `}</style>
 
-            <header className="hero-works">
+            <header className="hero-works" onMouseMove={handleMouseMove}>
+                <motion.div 
+                    className="hero-works-bg"
+                    style={{ x: bgX, y: bgY }}
+                >
+                    <img 
+                        src="/signage-vehicle.png" 
+                        alt="3D Signage Display" 
+                    />
+                </motion.div>
                 <div className="hero-works-overlay"></div>
-                <div className="hero-works-content">
+
+                <motion.div 
+                    className="hero-works-content"
+                    style={{ rotateX, rotateY }}
+                    initial={{ opacity: 0, rotateX: 30, y: 100, scale: 0.8 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ duration: 1.2, type: "spring", bounce: 0.3 }}
+                >
                     <motion.h1 
                         className="hero-works-h1"
-                        initial={{ opacity: 0, y: 50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
+                        initial={{ z: -200, rotateY: -20, opacity: 0 }}
+                        animate={{ z: 0, rotateY: 0, opacity: 1 }}
+                        transition={{ duration: 1.2, delay: 0.3, type: "spring", bounce: 0.4 }}
                     >
-                        Our <span>Impact</span>
+                        Our <motion.span
+                            animate={{ 
+                                textShadow: [
+                                    "0px 0px 10px rgba(230,30,37,0.5)",
+                                    "0px 0px 40px rgba(230,30,37,1)",
+                                    "0px 0px 10px rgba(230,30,37,0.5)"
+                                ]
+                            }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                        >Impact</motion.span>
                     </motion.h1>
                     <motion.div 
                         className="hero-works-tagline"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.5, duration: 0.8 }}
+                        initial={{ opacity: 0, y: 30, z: -100 }}
+                        animate={{ opacity: 1, y: 0, z: 0 }}
+                        transition={{ delay: 0.7, duration: 0.8 }}
                     >
                         Real campaigns. Real impact.
                     </motion.div>
-                </div>
+                </motion.div>
             </header>
 
             <section className="section-header">
@@ -521,7 +584,7 @@ function ProjectsContent() {
                                                         alt={project.title} 
                                                         className="cluster-img" 
                                                         onError={(e) => {
-                                                            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80';
+                                                            (e.target as HTMLImageElement).src = '/projects-hero-bg.png';
                                                         }}
                                                     />
                                                 ))

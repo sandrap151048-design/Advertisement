@@ -44,7 +44,7 @@ export default function BlogPage() {
             author: 'Design Team',
             date: '2024-03-10',
             category: 'Design Trends',
-            image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+            image: '/signage-branding.png',
             readTime: '5 min read'
         },
         {
@@ -55,7 +55,7 @@ export default function BlogPage() {
             author: 'Marketing Team',
             date: '2024-03-08',
             category: 'Case Studies',
-            image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+            image: '/signage-digital-print.png',
             readTime: '8 min read'
         },
         {
@@ -66,7 +66,7 @@ export default function BlogPage() {
             author: 'Legal Team',
             date: '2024-03-05',
             category: 'Regulations',
-            image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
+            image: '/signage-cladding.png',
             readTime: '6 min read'
         },
         {
@@ -77,7 +77,7 @@ export default function BlogPage() {
             author: 'Technical Team',
             date: '2024-03-03',
             category: 'Maintenance Tips',
-            image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80',
+            image: '/signage-production.png',
             readTime: '4 min read'
         }
     ];
@@ -117,16 +117,29 @@ export default function BlogPage() {
         <>
             {/* Hero Section */}
             <section className="hero-section container" style={{ 
-                minHeight: '50vh', 
-                paddingTop: '8rem', 
-                paddingBottom: '4rem',
-                background: 'linear-gradient(135deg, rgba(124, 58, 237, 0.05) 0%, rgba(167, 139, 250, 0.05) 100%)'
+                minHeight: '60vh', 
+                paddingTop: '10rem', 
+                paddingBottom: '6rem',
+                position: 'relative',
+                overflow: 'hidden',
+                background: '#050505',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
             }}>
+                <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+                    <img 
+                        src="/admin-billboard.png" 
+                        alt="Blog Insights" 
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.4) contrast(1.1)' }} 
+                    />
+                </div>
+                <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, rgba(30,0,0,0.2) 0%, rgba(0,0,0,0.9) 100%)', zIndex: 1 }} />
                 <motion.div 
                     initial="hidden" 
                     animate="visible" 
                     variants={staggerContainer} 
-                    style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}
+                    style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}
                 >
                     <motion.div 
                         variants={fadeInUp} 
@@ -135,19 +148,20 @@ export default function BlogPage() {
                             alignItems: 'center', 
                             gap: '8px', 
                             marginBottom: '1.5rem', 
-                            background: 'rgba(124, 58, 237, 0.1)', 
+                            background: 'rgba(230, 30, 37, 0.2)', 
                             padding: '0.6rem 1.5rem', 
                             borderRadius: '50px', 
-                            border: '1px solid rgba(124, 58, 237, 0.2)' 
+                            border: '1px solid rgba(230, 30, 37, 0.3)',
+                            backdropFilter: 'blur(10px)'
                         }}
                     >
-                        <BookOpen size={18} color="var(--color-primary)" />
+                        <BookOpen size={18} color="#e61e25" />
                         <span style={{ 
                             fontSize: '0.85rem', 
                             fontWeight: 700, 
                             letterSpacing: '2px', 
                             textTransform: 'uppercase', 
-                            color: 'var(--color-primary)' 
+                            color: 'white' 
                         }}>
                             BLOG & RESOURCES
                         </span>
@@ -158,22 +172,26 @@ export default function BlogPage() {
                         className="hero-title" 
                         style={{ 
                             fontFamily: "'Plus Jakarta Sans', sans-serif", 
-                            fontSize: 'clamp(2.5rem, 5vw, 4rem)', 
-                            fontWeight: 800, 
+                            fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', 
+                            fontWeight: 900, 
                             marginBottom: '1.5rem',
-                            lineHeight: '1.1'
+                            lineHeight: '1.05',
+                            color: 'white',
+                            textShadow: '0 10px 30px rgba(0,0,0,0.5)'
                         }}
                     >
-                        Insights & <span style={{ color: 'var(--color-primary)' }}>Expertise</span>
+                        Insights & <span style={{ color: '#e61e25' }}>Expertise</span>
                     </motion.h1>
 
                     <motion.p 
                         variants={fadeInUp} 
                         style={{ 
-                            color: 'var(--color-text-muted)', 
-                            fontSize: '1.2rem', 
-                            lineHeight: '1.7',
-                            marginBottom: '2rem'
+                            color: 'rgba(255,255,255,0.9)', 
+                            fontSize: '1.25rem', 
+                            lineHeight: '1.6',
+                            marginBottom: '2rem',
+                            fontWeight: 500,
+                            textShadow: '0 2px 10px rgba(0,0,0,0.3)'
                         }}
                     >
                         Stay updated with the latest trends, insights, and best practices in the advertising industry. 

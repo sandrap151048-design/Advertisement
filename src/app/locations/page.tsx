@@ -9,25 +9,25 @@ const locations = [
     city: "Dubai",
     region: "Headquarters",
     description: "The heart of innovation and premium outdoor advertising. Controlling prime spots across Sheikh Zayed Road and Downtown.",
-    image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80"
+    image: "/projects-hero-bg.png"
   },
   {
     city: "Abu Dhabi",
     region: "Capital Presence",
     description: "Strategic placement across the capital's busiest commercial hubs and government districts.",
-    image: "https://images.unsplash.com/photo-1544971587-b842c27f8e14?w=800&q=80"
+    image: "/services-hero-bg.png"
   },
   {
     city: "Sharjah",
     region: "Cultural Hub",
     description: "High-traffic billboards and digital displays connecting the northern emirates with the cultural heart of Sharjah.",
-    image: "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=800&q=80"
+    image: "/about-hero-bg.png"
   },
   {
     city: "Ajman & Northern Emirates",
     region: "Strategic Reach",
     description: "Comprehensive coverage across Ajman, UAQ, RAK, and Fujairah for total UAE market dominance.",
-    image: "https://images.unsplash.com/photo-1549416878-b9ca95e26903?w=800&q=80"
+    image: "/home-hero-bg.png"
   }
 ];
 
@@ -38,17 +38,70 @@ export default function LocationsPage() {
   };
 
   return (
-    <div style={{ background: '#f8f8f8', minHeight: '100vh', paddingTop: '100px' }}>
+    <div style={{ background: '#ffffff', minHeight: '100vh' }}>
       {/* Hero */}
-      <section style={{ padding: '4rem 2rem', textAlign: 'center', background: '#ffffff', borderBottom: '1px solid #eee' }}>
-        <motion.div initial="hidden" animate="visible" variants={fadeInUp} style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#e61e25', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.8rem', marginBottom: '1rem' }}>
-            <MapPin size={16} /> Our UAE Network
+      <section style={{ 
+        position: 'relative',
+        padding: '10rem 2rem 6rem', 
+        textAlign: 'center', 
+        background: '#050505',
+        overflow: 'hidden',
+        minHeight: '60vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}>
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+          <img 
+            src="/cta-bg-premium.png" 
+            alt="UAE Network" 
+            style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.35) contrast(1.1)' }} 
+          />
+        </div>
+        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, rgba(30,0,0,0.2) 0%, rgba(0,0,0,0.85) 100%)', zIndex: 1 }} />
+        
+        <motion.div 
+          initial="hidden" 
+          animate="visible" 
+          variants={fadeInUp} 
+          style={{ maxWidth: '800px', margin: '0 auto', position: 'relative', zIndex: 2 }}
+        >
+          <div style={{ 
+            display: 'inline-flex', 
+            alignItems: 'center', 
+            gap: '8px', 
+            color: 'white', 
+            fontWeight: 800, 
+            textTransform: 'uppercase', 
+            letterSpacing: '2px', 
+            fontSize: '0.85rem', 
+            marginBottom: '1.5rem',
+            background: 'rgba(230, 30, 37, 0.2)',
+            padding: '0.6rem 1.5rem',
+            borderRadius: '50px',
+            border: '1px solid rgba(230, 30, 37, 0.3)',
+            backdropFilter: 'blur(10px)'
+          }}>
+            <MapPin size={16} color="#e61e25" /> Our UAE Network
           </div>
-          <h1 style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 900, letterSpacing: '-2px', marginBottom: '1.5rem', color: '#1a1a1a' }}>
+          <h1 style={{ 
+            fontSize: 'clamp(2.5rem, 8vw, 5rem)', 
+            fontWeight: 950, 
+            letterSpacing: '-2px', 
+            marginBottom: '1.5rem', 
+            color: 'white',
+            lineHeight: 1,
+            textShadow: '0 10px 30px rgba(0,0,0,0.5)'
+          }}>
             Strategic <span style={{ color: '#e61e25' }}>Locations</span>
           </h1>
-          <p style={{ fontSize: '1.2rem', color: '#666', lineHeight: 1.6 }}>
+          <p style={{ 
+            fontSize: '1.25rem', 
+            color: 'rgba(255,255,255,0.9)', 
+            lineHeight: 1.6,
+            fontWeight: 500,
+            textShadow: '0 2px 10px rgba(0,0,0,0.3)'
+          }}>
             Command attention in the UAE's most high-traffic locations. From iconic landmarks to busy commercial arteries, we put your brand where the world is watching.
           </p>
         </motion.div>

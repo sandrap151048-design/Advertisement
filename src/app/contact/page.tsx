@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import { useState, FormEvent } from 'react';
@@ -29,6 +29,24 @@ export default function ContactPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{ success?: boolean; message?: string } | null>(null);
+
+  // 3D Parallax Mouse Tracking
+  const mouseX = useMotionValue(0.5);
+  const mouseY = useMotionValue(0.5);
+  const springConfig = { damping: 20, stiffness: 100 };
+  const springX = useSpring(mouseX, springConfig);
+  const springY = useSpring(mouseY, springConfig);
+  
+  const rotateX = useTransform(springY, [0, 1], [10, -10]);
+  const rotateY = useTransform(springX, [0, 1], [-10, 10]);
+  const bgX = useTransform(springX, [0, 1], [-20, 20]);
+  const bgY = useTransform(springY, [0, 1], [-20, 20]);
+  
+  const handleHeroMouseMove = (e: React.MouseEvent) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      mouseX.set((e.clientX - rect.left) / rect.width);
+      mouseY.set((e.clientY - rect.top) / rect.height);
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -67,12 +85,10 @@ export default function ContactPage() {
         }
 
         .contact-page {
-          background: #f5f5f5;
+          background: #ffffff;
           min-height: 100vh;
-          font-family: 'DM Sans', sans-serif;
         }
 
-        /* Hero Section */
         .contact-hero {
           position: relative;
           height: 100vh;
@@ -81,11 +97,13 @@ export default function ContactPage() {
           align-items: center;
           overflow: hidden;
           padding: 0 10%;
+          perspective: 1500px;
+          background: #050505;
         }
 
         .contact-hero-bg {
           position: absolute;
-          inset: 0;
+          inset: -30px;
           z-index: 0;
         }
 
@@ -93,29 +111,32 @@ export default function ContactPage() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          filter: brightness(0.6);
+          filter: brightness(0.6) contrast(1.1);
         }
 
         .contact-hero-overlay {
           position: absolute;
           inset: 0;
-          background: rgba(0, 0, 0, 0.4);
+          background: radial-gradient(circle at 70% 50%, rgba(30,0,0,0.1) 0%, rgba(0,0,0,0.9) 100%);
           z-index: 1;
         }
 
         .contact-hero-content {
           position: relative;
-          z-index: 2;
+          z-index: 5;
           color: white;
           width: 100%;
           display: flex;
           justify-content: space-between;
           align-items: center;
           gap: 4rem;
+          transform-style: preserve-3d;
+          pointer-events: none;
         }
 
         .hero-left {
           flex: 1;
+          transform: translateZ(80px);
         }
 
         .hero-right {
@@ -125,6 +146,7 @@ export default function ContactPage() {
           flex-direction: column;
           gap: 2rem;
           text-align: left;
+          transform: translateZ(40px);
         }
 
         .contact-hero-title {
@@ -146,15 +168,22 @@ export default function ContactPage() {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          padding: 0.8rem 1.8rem;
-          background: white;
-          color: #1a1a1a;
-          font-weight: 700;
-          border-radius: 50px;
+          padding: 1.1rem 2.8rem;
+          background: #e61e25;
+          color: white;
+          font-weight: 800;
+          border-radius: 12px;
           text-decoration: none;
           transition: all 0.3s ease;
-          font-size: 0.9rem;
+          font-size: 1rem;
           width: fit-content;
+          box-shadow: 0 10px 25px rgba(230, 30, 37, 0.3);
+          pointer-events: auto;
+        }
+        .hero-cta-button:hover {
+          background: #ff2d35;
+          transform: translateY(-3px) scale(1.02);
+          box-shadow: 0 15px 35px rgba(230, 30, 37, 0.4);
         }
 
         /* Get In Touch Section */
@@ -178,15 +207,15 @@ export default function ContactPage() {
         }
 
         .touch-right {
-          background: #1e293b;
+          background: #111111;
           padding: 5rem 4rem;
-          border-radius: 0;
-          border: 1px solid rgba(255,255,255,0.2);
+          border-radius: 24px;
+          border: 1px solid rgba(230, 30, 37, 0.2);
           color: white;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+          box-shadow: 0 15px 45px rgba(0,0,0,0.1);
         }
 
         .touch-left h2 {
@@ -200,7 +229,7 @@ export default function ContactPage() {
         .touch-left h2 .italic {
           font-style: italic;
           font-weight: 400;
-          color: #333;
+          color: #e61e25;
         }
 
         .touch-left p {
@@ -450,17 +479,22 @@ export default function ContactPage() {
 
       <div className="contact-page">
         {/* Hero Section */}
-        <section className="contact-hero">
-          <div className="contact-hero-bg" style={{ backgroundColor: '#1a1a1a' }}>
+        <section className="contact-hero" onMouseMove={handleHeroMouseMove}>
+          <motion.div 
+            className="contact-hero-bg"
+            style={{ x: bgX, y: bgY }}
+          >
             <img 
-              src="https://images.unsplash.com/photo-1444723121867-7a241cacace9?w=1800&q=80" 
+              src="/signage-cladding.png" 
               alt="Contact One Click - Night Dynamic City" 
-              style={{ filter: 'brightness(0.5) contrast(1.1)' }}
             />
-          </div>
+          </motion.div>
           <div className="contact-hero-overlay"></div>
-          
-          <div className="contact-hero-content">
+
+          <motion.div 
+            className="contact-hero-content"
+            style={{ rotateX, rotateY }}
+          >
             <motion.div 
               className="hero-left"
               initial={{ opacity: 0, x: -50 }}
@@ -485,7 +519,7 @@ export default function ContactPage() {
                 Start Your Campaign
               </Link>
             </motion.div>
-          </div>
+          </motion.div>
         </section>
 
         {/* Get In Touch Section */}

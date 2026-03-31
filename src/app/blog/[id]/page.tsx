@@ -51,7 +51,7 @@ export default function BlogPostPage() {
             author: 'Design Team',
             date: '2024-03-10',
             category: 'Design Trends',
-            image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+            image: '/signage-branding.png',
             readTime: '5 min read'
         },
         {
@@ -95,7 +95,7 @@ export default function BlogPostPage() {
             author: 'Marketing Team',
             date: '2024-03-08',
             category: 'Case Studies',
-            image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+            image: '/signage-digital-print.png',
             readTime: '8 min read'
         }
     ];

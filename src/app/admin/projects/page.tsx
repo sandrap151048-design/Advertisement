@@ -26,7 +26,7 @@ const ALL_PROJECTS: Project[] = [
         title: 'Brand Identity Showcase',
         description: 'Complete visual identity transformation featuring premium logo design, color theory application, and comprehensive brand guidelines for a global corporate client.',
         category: 'Brand Identity',
-        image: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80',
+        image: '/signage-branding.png',
         status: 'published',
         createdAt: new Date().toISOString()
     },
@@ -35,7 +35,7 @@ const ALL_PROJECTS: Project[] = [
         title: 'Digital Printing Excellence',
         description: 'High-precision large format printing for luxury retail displays, capturing vibrant colors and sharp details to maximize visual pull in high-traffic shopping malls.',
         category: 'Digital Printing',
-        image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80',
+        image: '/signage-digital-print.png',
         status: 'published',
         createdAt: new Date().toISOString()
     },
@@ -44,7 +44,7 @@ const ALL_PROJECTS: Project[] = [
         title: 'Premium Vehicle Wraps',
         description: 'State-of-the-art vehicle branding for commercial fleets, using high-durability vinyl to ensure long-lasting brand visibility across the UAE.',
         category: 'Vehicle Branding',
-        image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80',
+        image: '/signage-vehicle.png',
         status: 'published',
         createdAt: new Date().toISOString()
     },
@@ -53,7 +53,7 @@ const ALL_PROJECTS: Project[] = [
         title: 'Strategic Signage Systems',
         description: 'High-visibility 3D LED signage installations designed for maximum impact in premium commercial districts, ensuring your brand stays visible 24/7.',
         category: 'Signage',
-        image: 'https://images.unsplash.com/photo-1542744094-24638eff58bb?w=800&q=80',
+        image: '/signage-production.png',
         status: 'published',
         createdAt: new Date().toISOString()
     },
@@ -62,7 +62,7 @@ const ALL_PROJECTS: Project[] = [
         title: 'POS Display Solutions',
         description: 'Custom-designed point-of-sale displays focused on driving customer engagement and maximizing product visibility in competitive retail settings.',
         category: 'Display Solutions',
-        image: 'https://images.unsplash.com/photo-1531053326607-9d349096d887?w=800&q=80',
+        image: '/signage-exhibition.png',
         status: 'published',
         createdAt: new Date().toISOString()
     },
@@ -71,7 +71,7 @@ const ALL_PROJECTS: Project[] = [
         title: 'Architectural Facades',
         description: 'Premium building facade solutions combining high-quality ACP cladding with integrated signage to create a powerful architectural identity.',
         category: 'Facade & Cladding',
-        image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
+        image: '/signage-cladding.png',
         status: 'published',
         createdAt: new Date().toISOString()
     }
@@ -454,7 +454,7 @@ export default function AdminProjectsPage() {
                                         alt={project.title} 
                                         className="cluster-img"
                                         onError={(e) => {
-                                            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80';
+                                            (e.target as HTMLImageElement).src = '/projects-hero-bg.png';
                                         }}
                                     />
                                 ) : (

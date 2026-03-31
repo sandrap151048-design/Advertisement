@@ -31,40 +31,40 @@ interface ServiceData {
 
 const categoryImages: Record<string, string[]> = {
   signage: [
-    "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&q=80",
-    "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80",
-    "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80",
-    "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
+    "/signage-production.png",
+    "/signage-cladding.png",
+    "/signage-branding.png",
+    "/projects-hero-bg.png"
   ],
   branding: [
-    "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
-    "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80",
-    "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80",
-    "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80"
+    "/signage-branding.png",
+    "/about-hero-bg.png",
+    "/services-hero-bg.png",
+    "/projects-hero-bg.png"
   ],
   graphics: [
-    "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80",
-    "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80",
-    "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80",
-    "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&q=80"
+    "/signage-digital-print.png",
+    "/signage-vehicle.png",
+    "/home-hero-bg.png",
+    "/cta-bg-premium.png"
   ],
   vehicle: [
-    "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80",
-    "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80",
-    "https://images.unsplash.com/photo-1549317661-bd32c8ce0abe?w=800&q=80",
-    "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80"
+    "/signage-vehicle.png",
+    "/home-hero-bg.png",
+    "/cta-bg-premium.png",
+    "/signage-branding.png"
   ],
   exhibition: [
-    "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80",
-    "https://images.unsplash.com/photo-1531058020387-3be344556be6?w=800&q=80",
-    "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&q=80",
-    "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&q=80"
+    "/signage-exhibition.png",
+    "/home-hero-bg.png",
+    "/about-hero-bg.png",
+    "/services-hero-bg.png"
   ],
   default: [
-    "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80",
-    "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80",
-    "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
-    "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80"
+    "/home-hero-bg.png",
+    "/about-hero-bg.png",
+    "/services-hero-bg.png",
+    "/projects-hero-bg.png"
   ]
 };
 

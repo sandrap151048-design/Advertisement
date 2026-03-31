@@ -1,63 +1,80 @@
 "use client";
 
-import { motion } from 'framer-motion';
+import { motion, Variants, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ChevronDown, ArrowRight, Phone, Mail, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import ServiceMap from '@/app/components/ServiceMap';
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+const fadeInUp: Variants = {
+  hidden: { 
+    opacity: 0, 
+    y: 60,
+    scale: 0.9,
+    filter: 'blur(10px)'
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    scale: 1,
+    filter: 'blur(0px)',
+    transition: { 
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1] as any
+    } 
+  }
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+    transition: { 
+      staggerChildren: 0.2,
+      delayChildren: 0.1
+    }
   }
 };
 
 const services = [
   {
     title: "Branding & Corporate Identity",
-    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=90",
+    image: "/signage-branding.png",
     description: "Brand implementation, rollout & corporate identity applications",
     details: ["Brand implementation & rollout", "Corporate identity applications", "Office branding & interior graphics", "Brand consistency across multiple locations"],
     link: "/services/branding"
   },
   {
     title: "Digital Printed Graphics",
-    image: "https://images.unsplash.com/photo-1572044162444-ad60f128bde2?w=1000&q=90",
+    image: "/signage-digital-print.png",
     description: "Large format printing & interior graphics",
     details: ["Large format digital printing", "Wall, glass & window graphics", "Frosted film & privacy films", "Floor & promotional graphics", "Wallpaper & interior branding"],
     link: "/services/digital-graphics"
   },
   {
     title: "Vehicle Graphics & Fleet Branding",
-    image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1000&q=90",
+    image: "/signage-vehicle.png",
     description: "Full & partial vehicle wraps for mobile advertising",
     details: ["Full & partial vehicle wraps", "Corporate fleet branding", "Reflective & safety graphics", "Promotional vehicle advertising"],
     link: "/services/vehicle-branding"
   },
   {
     title: "Signage Production & Installation",
-    image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=1000&q=90",
+    image: "/signage-production.png",
     description: "Indoor & outdoor signage solutions",
     details: ["Indoor & outdoor signage", "Illuminated & non-illuminated signboards", "3D letter signs (acrylic, metal, LED)", "Directional, wayfinding & safety signage", "Mall, retail & commercial signage"],
     link: "/services/signage"
   },
   {
     title: "Exhibition, Display & POS",
-    image: "https://images.unsplash.com/photo-1582192732961-bb3d96924294?w=1000&q=90",
+    image: "/signage-exhibition.png",
     description: "Exhibition stands, kiosks & point of sale displays",
     details: ["Exhibition stands & kiosks", "Pop-up systems & backdrops", "Roll-up & X-banners", "Point of Sale (POS) & in-store displays"],
     link: "/services/exhibition"
   },
   {
     title: "Cladding & Facade Solutions",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1000&q=90",
+    image: "/signage-cladding.png",
     description: "ACP cladding & architectural facade branding",
     details: ["ACP cladding works", "Aluminum & composite panel cladding", "Shopfront & facade branding", "Decorative architectural finishes", "Signage-integrated facade solutions"],
     link: "/services/cladding"
@@ -87,6 +104,24 @@ export default function ServicesPage() {
   const [openAccordion, setOpenAccordion] = useState<number | null>(0);
   const [currentYear, setCurrentYear] = useState<number | null>(null);
   const [dbServices, setDbServices] = useState<any[]>([]);
+
+  // 3D Parallax Mouse Tracking
+  const mouseX = useMotionValue(0.5);
+  const mouseY = useMotionValue(0.5);
+  const springConfig = { damping: 20, stiffness: 100 };
+  const springX = useSpring(mouseX, springConfig);
+  const springY = useSpring(mouseY, springConfig);
+  
+  const rotateX = useTransform(springY, [0, 1], [12, -12]);
+  const rotateY = useTransform(springX, [0, 1], [-12, 12]);
+  const bgX = useTransform(springX, [0, 1], [-20, 20]);
+  const bgY = useTransform(springY, [0, 1], [-20, 20]);
+  
+  const handleHeroMouseMove = (e: React.MouseEvent) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      mouseX.set((e.clientX - rect.left) / rect.width);
+      mouseY.set((e.clientY - rect.top) / rect.height);
+  };
 
   useEffect(() => {
     setCurrentYear(new Date().getFullYear());
@@ -124,7 +159,7 @@ export default function ServicesPage() {
     const slug = service.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
     return {
       title: service.name,
-      image: service.image || "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80",
+      image: service.image || "/services-hero-bg.png",
       description: service.description,
       link: `/services/${slug}`
     };
@@ -143,13 +178,31 @@ export default function ServicesPage() {
   const handleCardClick = (e: React.MouseEvent<HTMLDivElement>, link: string) => {
     const card = e.currentTarget;
     
+    // Create ripple effect
+    const ripple = document.createElement('span');
+    const rect = card.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
+    
+    ripple.style.width = ripple.style.height = `${size}px`;
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+    ripple.classList.add('ripple-effect');
+    
+    card.appendChild(ripple);
+    
     // Add clicked animation
     card.classList.add('clicked');
     
     // Navigate after animation
     setTimeout(() => {
       window.location.href = link;
-    }, 400);
+    }, 600);
+    
+    setTimeout(() => {
+      ripple.remove();
+    }, 1000);
   };
 
   return (
@@ -170,23 +223,27 @@ export default function ServicesPage() {
           justify-content: center;
           overflow: hidden;
           padding-top: 140px;
-          background-color: #111;
+          background-color: #050505;
+          perspective: 1500px;
         }
 
-        .hero-bg {
+        .hero-background {
           position: absolute;
-          inset: 0;
+          inset: -30px;
           z-index: 0;
-          background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1800&q=80');
-          background-size: cover;
-          background-position: center;
-          filter: brightness(0.65);
+        }
+
+        .hero-background img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: brightness(0.6) contrast(1.1);
         }
 
         .hero-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%);
+          background: linear-gradient(135deg, rgba(30,0,0,0.15) 0%, rgba(0,0,0,0.85) 100%);
           z-index: 1;
         }
 
@@ -198,98 +255,107 @@ export default function ServicesPage() {
           max-width: 900px;
           padding: 2rem;
           margin: 0 auto;
+          transform-style: preserve-3d;
+          pointer-events: none;
         }
 
         .hero-title {
-          font-size: clamp(2.5rem, 8vw, 5rem);
-          font-weight: 900;
+          font-size: clamp(2.5rem, 8vw, 5.5rem);
+          font-weight: 950;
           line-height: 1.05;
           margin-bottom: 1.5rem;
           letter-spacing: -2px;
           color: white;
           word-break: keep-all;
           overflow-wrap: break-word;
+          transform: translateZ(100px);
+          text-shadow: 0 15px 40px rgba(0,0,0,0.8);
         }
 
         .hero-title .highlight {
           color: #e61e25;
+          display: inline-block;
+          transform: translateZ(150px);
+          text-shadow: 0 0 30px rgba(230,30,37,0.6);
         }
 
         .hero-subtitle {
-          font-size: clamp(1rem, 2vw, 1.2rem);
-          color: rgba(255,255,255,0.9);
+          font-size: clamp(1rem, 2vw, 1.3rem);
+          color: rgba(255,255,255,0.95);
           max-width: 600px;
           margin: 0 auto 2rem auto;
           line-height: 1.6;
-          text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+          text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+          transform: translateZ(60px);
+          font-weight: 500;
         }
 
         .services-section {
-          padding: 4rem 1rem 0 1rem;
-          background: #f5f5f5;
+          padding: 6rem 1.5rem;
+          background: #ffffff;
         }
 
         .section-header {
           text-align: center;
-          margin-bottom: 3rem;
+          margin-bottom: 5rem;
         }
 
         .section-title {
-          font-size: clamp(2rem, 5vw, 3rem);
+          font-size: clamp(2.5rem, 5vw, 3.5rem);
           font-weight: 900;
           margin-bottom: 1rem;
           color: #1a1a1a;
+          letter-spacing: -1px;
         }
 
         .section-title .italic {
           font-style: italic;
-          color: #666;
+          color: #e61e25;
         }
 
         .section-subtitle {
-          font-size: 1rem;
+          font-size: 1.1rem;
           color: #666;
           max-width: 600px;
           margin: 0 auto;
+          line-height: 1.6;
         }
 
-        .services-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-          gap: 1.5rem;
-          max-width: 1200px;
-          margin: 0 auto;
+        .services-deck {
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 600px;
+          max-width: 100vw;
+          margin: 4rem auto;
+          perspective: 1000px;
         }
 
         .service-card {
-          position: relative;
-          height: 320px;
-          border-radius: 16px;
+          position: absolute;
+          width: 300px;
+          height: 420px;
+          border-radius: 20px;
           overflow: hidden;
           cursor: pointer;
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          background: #ffffff;
-          border: 1px solid rgba(0, 0, 0, 0.05);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-          will-change: transform, box-shadow;
+          transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          background: rgba(255, 255, 255, 0.9);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+          backdrop-filter: blur(10px);
+          will-change: transform, box-shadow, z-index;
+          transform-origin: bottom center;
+          transform: translateX(calc(var(--offset) * 160px)) 
+                     translateY(calc(var(--offset) * var(--offset) * 12px)) 
+                     rotate(calc(var(--offset) * 8deg));
         }
 
         .service-card::before {
           content: '';
           position: absolute;
           inset: 0;
-          background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.15), transparent 60%);
-          opacity: 0;
-          transition: opacity 0.3s ease;
-          pointer-events: none;
-          z-index: 1;
-        }
-
-        .service-card::after {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: radial-gradient(circle at center, rgba(230, 30, 37, 0.2), transparent 70%);
+          background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(230, 30, 37, 0.1), transparent 40%);
           opacity: 0;
           transition: opacity 0.5s ease;
           pointer-events: none;
@@ -297,9 +363,13 @@ export default function ServicesPage() {
         }
 
         .service-card:hover {
-          transform: translateY(-10px);
-          background: #ffffff;
-          box-shadow: 0 20px 40px rgba(230, 30, 37, 0.15);
+          transform-origin: bottom center;
+          transform: translateX(calc(var(--offset) * 160px)) 
+                     translateY(-50px) 
+                     rotate(0deg) 
+                     scale(1.15);
+          z-index: 100 !important;
+          box-shadow: 0 40px 80px rgba(230, 30, 37, 0.2), 0 0 0 2px rgba(230, 30, 37, 0.5);
           border-color: rgba(230, 30, 37, 0.3);
         }
 
@@ -308,39 +378,24 @@ export default function ServicesPage() {
         }
 
         .service-card.clicked {
-          transform: scale(1.05);
-          background: rgba(255, 255, 255, 0.15);
-          box-shadow: 0 0 40px rgba(230, 30, 37, 0.3), 0 15px 40px rgba(0, 0, 0, 0.3);
-          border-color: rgba(230, 30, 37, 0.4);
+          transform: scale(1.08);
+          z-index: 50;
+          box-shadow: 0 0 100px rgba(230, 30, 37, 0.4);
         }
 
-        @keyframes cardPulse {
-          0% {
-            transform: scale(1);
-            box-shadow: 0 0 20px rgba(230, 30, 37, 0.2), 0 12px 30px rgba(0, 0, 0, 0.2);
-          }
-          50% {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(230, 30, 37, 0.3), 0 15px 40px rgba(0, 0, 0, 0.3);
-          }
-          100% {
-            transform: scale(1);
-            box-shadow: 0 0 20px rgba(230, 30, 37, 0.2), 0 12px 30px rgba(0, 0, 0, 0.2);
-          }
+        .ripple-effect {
+          position: absolute;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.4);
+          transform: scale(0);
+          animation: ripple 0.8s linear;
+          pointer-events: none;
+          z-index: 10;
         }
 
-        .service-card.clicked::after {
-          opacity: 1;
-        }
-
-        @keyframes spotlightPulse {
-          0% {
-            opacity: 0;
-          }
-          50% {
-            opacity: 1;
-          }
-          100% {
+        @keyframes ripple {
+          to {
+            transform: scale(4);
             opacity: 0;
           }
         }
@@ -349,7 +404,7 @@ export default function ServicesPage() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: transform 0.6s ease;
+          transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .service-card:hover img {
@@ -359,94 +414,65 @@ export default function ServicesPage() {
         .service-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 100%);
+          background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%);
           display: flex;
           flex-direction: column;
           justify-content: flex-end;
-          align-items: flex-start;
-          padding: 1.5rem;
+          padding: 2.5rem;
           color: white;
           z-index: 2;
-          transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .service-card:hover .service-overlay {
-          background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 100%);
+          background: linear-gradient(to top, rgba(230, 30, 37, 0.8) 0%, rgba(0,0,0,0.4) 100%);
         }
 
         .service-card.clicked .service-overlay {
           justify-content: center;
           align-items: center;
-          background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(40,0,0,0.85) 100%);
+          background: rgba(230, 30, 37, 0.95);
         }
 
         .service-title {
-          font-size: 1.55rem;
+          font-size: 1.8rem;
           font-weight: 800;
-          margin-bottom: 0.5rem;
-          transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-          text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-          position: relative;
-          z-index: 3;
+          margin-bottom: 0.8rem;
+          transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+          text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         .service-card:hover .service-title {
-          color: #ffffff;
-          text-shadow: 0 0 15px rgba(230,30,37,0.4), 0 2px 8px rgba(0,0,0,0.5);
-          transform: translateY(-3px);
+          transform: translateY(-5px);
         }
 
         .service-card.clicked .service-title {
-          font-size: 2.8rem;
-          font-weight: 900;
-          transform: translate(0, 0);
+          font-size: 2.5rem;
           text-align: center;
-          margin-bottom: 0;
-          color: #ffffff;
-          text-shadow: 0 0 30px rgba(230, 30, 37, 0.8), 0 0 60px rgba(230, 30, 37, 0.4), 0 4px 12px rgba(0,0,0,0.8);
-          letter-spacing: 1px;
-        }
-
-        @keyframes titleToCenter {
-          0% {
-            transform: translate(0, 0);
-            font-size: 1.8rem;
-          }
-          50% {
-            transform: translate(0, 0);
-            font-size: 2.8rem;
-          }
-          100% {
-            transform: translate(0, 0);
-            font-size: 1.8rem;
-          }
+          transform: scale(1.1);
         }
 
         .service-desc {
           font-size: 1rem;
-          color: rgba(255,255,255,0.85);
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          position: relative;
-          z-index: 3;
+          color: rgba(255,255,255,0.9);
+          line-height: 1.6;
+          transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+          max-width: 90%;
         }
 
         .service-card:hover .service-desc {
-          color: rgba(255,255,255,1);
-          transform: translateY(-2px);
+          opacity: 1;
+          transform: translateY(-5px);
         }
 
         .service-card.clicked .service-desc {
           opacity: 0;
-          transform: translateY(10px);
-          transition: all 0.3s ease;
+          display: none;
         }
 
         .why-choose-section {
-          padding: 6rem 1rem 8rem 1rem;
-          background: #ffffff;
-          min-height: 70vh;
-          display: flex;
-          align-items: center;
+          padding: 8rem 1.5rem;
+          background: #fdfdfd;
         }
 
         .why-choose-container {
@@ -686,20 +712,50 @@ export default function ServicesPage() {
 
       <div className="services-page">
         {/* Hero Section */}
-        <section className="hero-services">
-          <div className="hero-bg"></div>
+        <section className="hero-services" onMouseMove={handleHeroMouseMove}>
+          <motion.div 
+            className="hero-background"
+            style={{ x: bgX, y: bgY }}
+          >
+            <img 
+              src="/signage-production.png" 
+              alt="Services Background" 
+            />
+          </motion.div>
           <div className="hero-overlay"></div>
+
           <motion.div 
             className="hero-content"
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+            style={{ rotateX, rotateY }}
+            initial={{ opacity: 0, rotateX: 20, y: 100, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
+            transition={{ duration: 1.2, type: "spring", bounce: 0.3 }}
           >
-            <motion.h1 className="hero-title" variants={fadeInUp}>
+            <motion.h1 
+              className="hero-title" 
+              initial={{ z: -150, rotateY: -15, opacity: 0 }}
+              animate={{ z: 0, rotateY: 0, opacity: 1 }}
+              transition={{ duration: 1.2, delay: 0.3, type: "spring", bounce: 0.4 }}
+            >
               Stand Out <br />
-              Every<span className="highlight">where</span>
+              Every<motion.span 
+                className="highlight"
+                animate={{ 
+                    textShadow: [
+                        "0px 0px 10px rgba(230,30,37,0.5)",
+                        "0px 0px 40px rgba(230,30,37,1)",
+                        "0px 0px 10px rgba(230,30,37,0.5)"
+                    ]
+                }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+              >where</motion.span>
             </motion.h1>
-            <motion.p className="hero-subtitle" variants={fadeInUp}>
+            <motion.p 
+              className="hero-subtitle" 
+              initial={{ opacity: 0, y: 30, z: -50 }}
+              animate={{ opacity: 1, y: 0, z: 0 }}
+              transition={{ delay: 0.7, duration: 0.8 }}
+            >
               High-impact outdoor advertising designed to make your brand visible, memorable, and impossible to ignore across the places that matter most.
             </motion.p>
           </motion.div>
@@ -722,29 +778,38 @@ export default function ServicesPage() {
               </p>
             </motion.div>
 
-            <motion.div className="services-grid" variants={staggerContainer}>
-              {allServices.map((service, index) => (
-                <motion.div
+            <motion.div className="services-deck" variants={fadeInUp}>
+              {allServices.map((service, index) => {
+                const total = allServices.length;
+                const offset = index - (total - 1) / 2;
+                const absOffset = Math.abs(offset);
+                const zIndex = 50 - Math.floor(absOffset * 10);
+                
+                return (
+                <div
                   key={index}
                   className="service-card"
-                  variants={fadeInUp}
-                  whileHover={{ y: -5 }}
                   onMouseMove={handleCardMouseMove}
                   onClick={(e) => handleCardClick(e, service.link)}
+                  style={{
+                    '--offset': offset,
+                    '--abs-offset': absOffset,
+                    zIndex: zIndex
+                  } as any}
                 >
                   <img 
                     src={service.image} 
                     alt={service.title} 
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80';
+                      (e.target as HTMLImageElement).src = '/services-hero-bg.png';
                     }}
                   />
                   <div className="service-overlay">
                     <h3 className="service-title">{service.title}</h3>
                     <p className="service-desc">{service.description}</p>
                   </div>
-                </motion.div>
-              ))}
+                </div>
+              )})}
             </motion.div>
           </motion.div>
         </section>
@@ -805,7 +870,7 @@ export default function ServicesPage() {
         <section className="cta-section">
           <div className="cta-bg">
             <img 
-              src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1600&q=80" 
+              src="/projects-hero-bg.png" 
               alt="Ready to make your brand impossible to ignore" 
             />
           </div>

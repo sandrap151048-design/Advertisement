@@ -40,7 +40,7 @@ export default function AdminBlogPage() {
             author: 'Design Team',
             date: '2024-03-10',
             category: 'Design Trends',
-            image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+            image: '/signage-production.png',
             status: 'published',
             readTime: '5 min read'
         },
@@ -52,7 +52,7 @@ export default function AdminBlogPage() {
             author: 'Marketing Team',
             date: '2024-03-08',
             category: 'Case Studies',
-            image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+            image: '/signage-digital-print.png',
             status: 'published',
             readTime: '8 min read'
         },
@@ -64,7 +64,7 @@ export default function AdminBlogPage() {
             author: 'Legal Team',
             date: '2024-03-05',
             category: 'Regulations',
-            image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
+            image: '/signage-cladding.png',
             status: 'draft',
             readTime: '6 min read'
         }
@@ -570,7 +570,7 @@ function BlogEditor({ post, onClose, onSave }: BlogEditorProps) {
         content: post?.content || '',
         author: post?.author || 'Admin',
         category: post?.category || 'Design Trends',
-        image: post?.image || 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+        image: post?.image || '/signage-branding.png',
         status: post?.status || 'draft' as 'published' | 'draft'
     });
 

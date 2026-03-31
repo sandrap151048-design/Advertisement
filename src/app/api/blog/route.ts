@@ -41,7 +41,7 @@ let blogPosts: BlogPost[] = [
         author: 'Design Team',
         date: '2024-03-10',
         category: 'Design Trends',
-        image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+        image: '/signage-branding.png',
         status: 'published',
         readTime: '5 min read'
     },
@@ -86,7 +86,7 @@ let blogPosts: BlogPost[] = [
         author: 'Marketing Team',
         date: '2024-03-08',
         category: 'Case Studies',
-        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+        image: '/signage-digital-print.png',
         status: 'published',
         readTime: '8 min read'
     },
@@ -112,7 +112,7 @@ let blogPosts: BlogPost[] = [
         author: 'Legal Team',
         date: '2024-03-05',
         category: 'Regulations',
-        image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
+        image: '/signage-cladding.png',
         status: 'published',
         readTime: '6 min read'
     },
@@ -171,7 +171,7 @@ let blogPosts: BlogPost[] = [
         author: 'Technical Team',
         date: '2024-03-09',
         category: 'Maintenance Tips',
-        image: 'https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&q=80',
+        image: '/signage-production.png',
         status: 'published',
         readTime: '7 min read'
     },
@@ -251,7 +251,7 @@ let blogPosts: BlogPost[] = [
         author: 'Installation Team',
         date: '2024-03-07',
         category: 'Maintenance Tips',
-        image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80',
+        image: '/signage-vehicle.png',
         status: 'published',
         readTime: '6 min read'
     },
@@ -367,7 +367,7 @@ let blogPosts: BlogPost[] = [
         author: 'Coastal Specialist Team',
         date: '2024-03-06',
         category: 'Maintenance Tips',
-        image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=800&q=80',
+        image: '/signage-exhibition.png',
         status: 'published',
         readTime: '8 min read'
     },
@@ -523,7 +523,7 @@ let blogPosts: BlogPost[] = [
         author: 'Electrical Team',
         date: '2024-03-04',
         category: 'Maintenance Tips',
-        image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80',
+        image: '/services-hero-bg.png',
         status: 'published',
         readTime: '9 min read'
     }

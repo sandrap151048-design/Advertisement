@@ -18,13 +18,13 @@ interface Service {
 }
 
 const frontendServices = [
-  { _id: "f-1", name: "Branding & Corporate Identity", image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=90", description: "Brand implementation, rollout & corporate identity applications", category: "Branding" },
-  { _id: "f-2", name: "Digital Printed Graphics", image: "https://images.unsplash.com/photo-1572044162444-ad60f128bde2?w=400&q=80", description: "Large format printing & interior graphics", category: "Digital Printing" },
-  { _id: "f-3", name: "Vehicle Graphics & Fleet Branding", image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&q=80", description: "Full & partial vehicle wraps for mobile advertising", category: "Vehicle Branding" },
-  { _id: "f-4", name: "Signage Production & Installation", image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400&q=80", description: "Indoor & outdoor signage solutions", category: "Signage" },
-  { _id: "f-5", name: "Exhibition, Display & POS", image: "https://images.unsplash.com/photo-1582192732961-bb3d96924294?w=400&q=80", description: "Exhibition stands, kiosks & point of sale displays", category: "Display Solutions" },
-  { _id: "f-6", name: "Cladding & Facade Solutions", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80", description: "ACP cladding & architectural facade branding", category: "Facade & Cladding" },
-  { _id: "f-7", name: "Premium Outdoor Media", image: "https://images.unsplash.com/photo-1542744094-24638eff58bb?w=400&q=80", description: "High-quality outdoor signage & large format billboards", category: "Outdoor Media" },
+  { _id: "f-1", name: "Branding & Corporate Identity", image: "/signage-branding.png", description: "Brand implementation, rollout & corporate identity applications", category: "Branding" },
+  { _id: "f-2", name: "Digital Printed Graphics", image: "/signage-digital-print.png", description: "Large format printing & interior graphics", category: "Digital Printing" },
+  { _id: "f-3", name: "Vehicle Graphics & Fleet Branding", image: "/signage-vehicle.png", description: "Full & partial vehicle wraps for mobile advertising", category: "Vehicle Branding" },
+  { _id: "f-4", name: "Signage Production & Installation", image: "/signage-production.png", description: "Indoor & outdoor signage solutions", category: "Signage" },
+  { _id: "f-5", name: "Exhibition, Display & POS", image: "/signage-exhibition.png", description: "Exhibition stands, kiosks & point of sale displays", category: "Display Solutions" },
+  { _id: "f-6", name: "Cladding & Facade Solutions", image: "/signage-cladding.png", description: "ACP cladding & architectural facade branding", category: "Facade & Cladding" },
+  { _id: "f-7", name: "Premium Outdoor Media", image: "/services-hero-bg.png", description: "High-quality outdoor signage & large format billboards", category: "Outdoor Media" },
 ];
 
 export default function ServicesPage() {
@@ -339,7 +339,7 @@ export default function ServicesPage() {
                                     src={service.image} 
                                     alt={service.name} 
                                     onError={(e) => {
-                                        (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80';
+                                        (e.target as HTMLImageElement).src = '/services-hero-bg.png';
                                     }}
                                 />
                                 <div className="service-overlay">

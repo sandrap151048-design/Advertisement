@@ -29,10 +29,10 @@ const projectsByCategory: Record<CategoryKey, {
     description: 'Explore our branding projects featuring logo applications, interior branding, and complete identity systems designed to create strong, consistent, and memorable brand experiences.',
     accent: '#2c4a5e',
     images: [
-      { title: 'DIOR Luxury Billboard', tag: 'Luxury', image: 'https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&q=80' },
-      { title: 'Times Square LED Display', tag: 'LED', image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80' },
-      { title: 'Corporate Branding', tag: 'Corporate', image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80' },
-      { title: 'Brand Launch Campaign', tag: 'Campaign', image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80' }
+      { title: 'DIOR Luxury Billboard', tag: 'Luxury', image: '/projects-hero-bg.png' },
+      { title: 'Times Square LED Display', tag: 'LED', image: '/services-hero-bg.png' },
+      { title: 'Corporate Branding', tag: 'Corporate', image: '/about-hero-bg.png' },
+      { title: 'Brand Launch Campaign', tag: 'Campaign', image: '/signage-branding.png' }
     ]
   },
   'Digital Printing': {
@@ -41,10 +41,10 @@ const projectsByCategory: Record<CategoryKey, {
     description: 'High-resolution digital print solutions for banners, posters, window graphics, and large-format displays that bring your brand visuals to life with vibrant, lasting quality.',
     accent: '#e61e25',
     images: [
-      { title: 'Large Format Banner', tag: 'Banner', image: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=800&q=80' },
-      { title: 'Window Graphics', tag: 'Window', image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=800&q=80' },
-      { title: 'Exhibition Panels', tag: 'Exhibition', image: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800&q=80' },
-      { title: 'Retail Poster Display', tag: 'Retail', image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80' }
+      { title: 'Large Format Banner', tag: 'Banner', image: '/signage-digital-print.png' },
+      { title: 'Window Graphics', tag: 'Window', image: '/signage-exhibition.png' },
+      { title: 'Exhibition Panels', tag: 'Exhibition', image: '/about-hero-bg.png' },
+      { title: 'Retail Poster Display', tag: 'Retail', image: '/services-hero-bg.png' }
     ]
   },
   'Vehicle Branding': {
@@ -53,10 +53,10 @@ const projectsByCategory: Record<CategoryKey, {
     description: 'Mobile advertising solutions that turn every vehicle into a powerful marketing tool. Reach thousands of potential customers daily with eye-catching fleet wraps and luxury vinyl graphics.',
     accent: '#1a8a6a',
     images: [
-      { title: 'Fleet Full Wrap', tag: 'Fleet', image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80' },
-      { title: 'Delivery Van Branding', tag: 'Van', image: 'https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=800&q=80' },
-      { title: 'Bus Advertisement', tag: 'Transit', image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80' },
-      { title: 'Sports Car Wrap', tag: 'Luxury', image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&q=80' }
+      { title: 'Fleet Full Wrap', tag: 'Fleet', image: '/signage-vehicle.png' },
+      { title: 'Delivery Van Branding', tag: 'Van', image: '/home-hero-bg.png' },
+      { title: 'Bus Advertisement', tag: 'Transit', image: '/cta-bg-premium.png' },
+      { title: 'Sports Car Wrap', tag: 'Luxury', image: '/signage-branding.png' }
     ]
   },
   'Display Solutions': {
@@ -65,10 +65,10 @@ const projectsByCategory: Record<CategoryKey, {
     description: 'Innovative display solutions including LED screens, digital kiosks, interactive displays, and POS materials that capture attention and engage customers at point of purchase.',
     accent: '#7c3aed',
     images: [
-      { title: 'LED Video Wall', tag: 'LED', image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80' },
-      { title: 'Interactive Kiosk', tag: 'Interactive', image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80' },
-      { title: 'Retail POS Display', tag: 'POS', image: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&q=80' },
-      { title: 'Exhibition Booth', tag: 'Exhibition', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80' }
+      { title: 'LED Video Wall', tag: 'LED', image: '/services-hero-bg.png' },
+      { title: 'Interactive Kiosk', tag: 'Interactive', image: '/signage-branding.png' },
+      { title: 'Retail POS Display', tag: 'POS', image: '/signage-exhibition.png' },
+      { title: 'Exhibition Booth', tag: 'Exhibition', image: '/home-hero-bg.png' }
     ]
   },
   'Signage': {
@@ -77,10 +77,10 @@ const projectsByCategory: Record<CategoryKey, {
     description: 'From illuminated signs to laser-cut lettering, our signage solutions combine precision engineering with stunning aesthetics, ensuring your brand stands out day and night.',
     accent: '#d97706',
     images: [
-      { title: 'Illuminated Channel Letters', tag: 'Illuminated', image: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&q=80' },
-      { title: 'Wayfinding System', tag: 'Wayfinding', image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80' },
-      { title: 'Office Signage', tag: 'Office', image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80' },
-      { title: 'Outdoor Pylon', tag: 'Outdoor', image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80' }
+      { title: 'Illuminated Channel Letters', tag: 'Illuminated', image: '/signage-production.png' },
+      { title: 'Wayfinding System', tag: 'Wayfinding', image: '/projects-hero-bg.png' },
+      { title: 'Office Signage', tag: 'Office', image: '/signage-cladding.png' },
+      { title: 'Outdoor Pylon', tag: 'Outdoor', image: '/about-hero-bg.png' }
     ]
   },
   'Facade & Cladding': {
@@ -89,10 +89,10 @@ const projectsByCategory: Record<CategoryKey, {
     description: 'Transform building exteriors with premium cladding and facade graphics that communicate brand authority at an architectural scale—ideal for commercial towers and retail hubs.',
     accent: '#0e7490',
     images: [
-      { title: 'Commercial Tower Wrap', tag: 'Tower', image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80' },
-      { title: 'Mall Facade Graphics', tag: 'Mall', image: 'https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&q=80' },
-      { title: 'Hotel Exterior Branding', tag: 'Hotel', image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800&q=80' },
-      { title: 'Retail Park Cladding', tag: 'Retail', image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80' }
+      { title: 'Commercial Tower Wrap', tag: 'Tower', image: '/signage-cladding.png' },
+      { title: 'Mall Facade Graphics', tag: 'Mall', image: '/projects-hero-bg.png' },
+      { title: 'Hotel Exterior Branding', tag: 'Hotel', image: '/services-hero-bg.png' },
+      { title: 'Retail Park Cladding', tag: 'Retail', image: '/signage-branding.png' }
     ]
   }
 };
@@ -240,9 +240,9 @@ export default function ProjectsPage() {
         {/* ─── Hero ─── */}
         <section style={{ position: 'relative', height: '100vh', minHeight: 600, overflow: 'hidden', paddingTop: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <img
-            src="https://images.unsplash.com/photo-1444723121867-7a241cacace9?w=1800&q=80"
-            alt="Hero"
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.65)' }}
+            src="/signage-exhibition.png"
+            alt="Impact Portfolio"
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.5) contrast(1.1)' }}
           />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(26,58,82,0.4) 0%, rgba(0,0,0,0.1) 100%)' }} />
           <motion.div
@@ -468,7 +468,7 @@ export default function ProjectsPage() {
                   {/* Image */}
                   <div style={{ position: 'relative', height: 220, overflow: 'hidden' }}>
                     <img
-                      src={project.image || 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80'}
+                      src={project.image || '/projects-hero-bg.png'}
                       alt={project.title}
                       style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.5s ease' }}
                       onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.06)')}
@@ -516,7 +516,7 @@ export default function ProjectsPage() {
           style={{ position: 'relative', padding: '6rem 2rem', overflow: 'hidden', textAlign: 'center', color: 'white' }}
         >
           <img
-            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80"
+            src="/cta-bg-premium.png"
             alt="CTA"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.25)' }}
           />

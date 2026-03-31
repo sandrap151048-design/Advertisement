@@ -24,10 +24,10 @@ export default function BrandingPage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const heroImages = [
-    "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
-    "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80",
-    "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80",
-    "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80"
+    "/signage-branding.png",
+    "/about-hero-bg.png",
+    "/services-hero-bg.png",
+    "/home-hero-bg.png"
   ];
 
   // Auto-swipe images
