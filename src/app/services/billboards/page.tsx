@@ -79,7 +79,7 @@ export default function BillboardsPage() {
       <style jsx global>{`
 
         .billboard-page {
-          background: #050505;
+          background: transparent;
           min-height: 100vh;
           padding-top: 140px;
           color: white;

@@ -85,7 +85,7 @@ export default function ContactPage() {
         }
 
         .contact-page {
-          background: #050505;
+          background: transparent;
           min-height: 100vh;
           color: white;
         }
@@ -99,7 +99,7 @@ export default function ContactPage() {
           overflow: hidden;
           padding: 0 10%;
           perspective: 1500px;
-          background: #050505;
+          background: transparent;
         }
 
         .contact-hero-bg {
@@ -156,6 +156,7 @@ export default function ContactPage() {
           line-height: 1.1;
           letter-spacing: -1px;
           margin-bottom: 0;
+          text-transform: uppercase !important;
         }
 
         .contact-hero-text {
@@ -163,6 +164,7 @@ export default function ContactPage() {
           color: rgba(255,255,255,0.9);
           line-height: 1.7;
           font-weight: 400;
+          text-transform: uppercase !important;
         }
 
         .hero-cta-button {

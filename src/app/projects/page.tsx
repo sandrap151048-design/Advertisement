@@ -228,7 +228,7 @@ function ProjectsContent() {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    background: #050505;
+                    background: transparent;
                     overflow: hidden;
                     text-align: center;
                     perspective: 1500px;

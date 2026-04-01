@@ -167,7 +167,7 @@ export default function Home() {
 
         body {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-          background: #050505;
+          background: transparent;
           color: white;
         }
 
@@ -181,7 +181,7 @@ export default function Home() {
           justify-content: center;
           overflow: hidden;
           padding-top: 70px;
-          background: #050505;
+          background: transparent;
           perspective: 1200px;
         }
 

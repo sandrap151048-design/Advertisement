@@ -56,7 +56,7 @@ html::-webkit-scrollbar {
 body {
   margin: 0;
   padding: 0;
-  background: #050505;
+  background: radial-gradient(circle at 20% 20%, #1a0b0b, #0b0b0d 40%, #080808 100%);
   background-attachment: fixed;
   color: #ffffff;
   font-family: var(--font-body);
@@ -417,17 +417,22 @@ ul {
   }
 }
 
-.hero-title {
+.hero-title,
+.hero-content h1 {
   font-size: clamp(3rem, 6vw, 5rem);
   line-height: 1.1;
   margin-bottom: 1.5rem;
+  text-transform: uppercase !important;
 }
 
-.hero-description {
+.hero-description,
+.hero-content p,
+.hero-subtitle {
   font-size: 1.25rem;
   color: var(--color-text-muted);
   margin-bottom: 2.5rem;
   max-width: 600px;
+  text-transform: uppercase !important;
 }
 
 /* Data Tables for Admin */
@@ -1913,7 +1918,7 @@ iframe {
   }
 
   .admin-sidebar .nav-item:hover {
-    background: rgba(0, 0, 0, 0.9) !important;
+    background: transparent !important;
     transform: translateX(5px) !important;
   }
 
@@ -2168,7 +2173,7 @@ iframe {
 
   .admin-sidebar .nav-item:hover,
   .admin-sidebar .nav-item:active {
-    background: rgba(0, 0, 0, 0.9) !important;
+    background: transparent !important;
     transform: translateX(4px) !important;
   }
 
@@ -4045,7 +4050,7 @@ input::placeholder, textarea::placeholder {
   .glass-card {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    background: rgba(0, 0, 0, 0.9) !important;
+    background: transparent !important;
   }
 }
 

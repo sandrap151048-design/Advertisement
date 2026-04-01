@@ -52,7 +52,7 @@ export default function ExhibitionPage() {
       <style jsx global>{`
 
         .service-detail-page {
-          background: #050505;
+          background: transparent;
           min-height: 100vh;
           padding-top: 140px;
           color: white;

@@ -121,7 +121,7 @@ export default function AboutPage() {
     <>
       <style jsx global>{`
         .about-page {
-          background: #050505;
+          background: transparent;
           color: #ffffff;
           overflow-x: hidden;
         }
@@ -133,7 +133,7 @@ export default function AboutPage() {
           display: flex;
           align-items: center;
           justify-content: center;
-          background: #050505;
+          background: transparent;
           color: white;
           overflow: hidden;
           perspective: 1200px;

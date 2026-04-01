@@ -210,7 +210,7 @@ export default function ServicesPage() {
       <style jsx global>{`
 
         .services-page {
-          background: rgba(0, 0, 0, 0.95);
+          background: transparent;
           min-height: 100vh;
           color: white;
         }
@@ -224,7 +224,7 @@ export default function ServicesPage() {
           justify-content: center;
           overflow: hidden;
           padding-top: 140px;
-          background-color: #050505;
+          background-color: transparent;
           perspective: 1500px;
         }
 
@@ -431,7 +431,7 @@ export default function ServicesPage() {
 
         .why-choose-section {
           padding: 8rem 1.5rem;
-          background: rgba(0, 0, 0, 0.9);
+          background: transparent;
           backdrop-filter: blur(10px);
           color: white;
         }
