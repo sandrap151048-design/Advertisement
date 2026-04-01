@@ -922,37 +922,43 @@ export default function Home() {
                 id: 1, 
                 icon: <MapPin size={32} color="#e61e25" />, 
                 title: 'Branding & Corporate Identity',
-                desc: 'Brand implementation, rollout & corporate identity applications'
+                desc: 'Brand implementation, rollout & corporate identity applications',
+                image: '/signage-branding.png'
               },
               { 
                 id: 2, 
                 icon: <Mail size={32} color="#e61e25" />, 
                 title: 'Digital Printed Graphics',
-                desc: 'Large format printing & interior graphics'
+                desc: 'Large format printing & interior graphics',
+                image: '/signage-digital-print.png'
               },
               { 
                 id: 3, 
                 icon: <Phone size={32} color="#e61e25" />, 
                 title: 'Vehicle Graphics & Fleet Branding',
-                desc: 'Full & partial vehicle wraps for mobile advertising'
+                desc: 'Full & partial vehicle wraps for mobile advertising',
+                image: '/signage-vehicle.png'
               },
               { 
                 id: 4, 
                 icon: <ArrowRight size={32} color="#e61e25" />, 
                 title: 'Signage Production & Installation',
-                desc: 'Indoor & outdoor signage solutions'
+                desc: 'Indoor & outdoor signage solutions',
+                image: '/signage-production.png'
               },
               { 
                 id: 5, 
                 icon: <MapPin size={32} color="#e61e25" />, 
                 title: 'Exhibition, Display & POS',
-                desc: 'Exhibition stands, kiosks & point of sale displays'
+                desc: 'Exhibition stands, kiosks & point of sale displays',
+                image: '/signage-exhibition.png'
               },
               { 
                 id: 6, 
                 icon: <ArrowRight size={32} color="#e61e25" />, 
                 title: 'Cladding & Facade Solutions',
-                desc: 'ACP cladding & architectural facade branding'
+                desc: 'ACP cladding & architectural facade branding',
+                image: '/signage-cladding.png'
               }
             ].map((item, index) => (
               <motion.div 
@@ -960,6 +966,11 @@ export default function Home() {
                 className="portfolio-item" 
                 variants={index % 2 === 0 ? swipeLeft : swipeRight}
                 whileHover={{ scale: 1.02 }}
+                style={{
+                  backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.85)), url(${item.image})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
               >
                 <h3 className="portfolio-title">
                   {item.title.split('&')[0].trim()}

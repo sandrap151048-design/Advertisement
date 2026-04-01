@@ -333,37 +333,84 @@ export default function ServicesPage() {
         }
 
         .service-card {
-          width: 100%;
-          height: 420px;
+          min-height: 420px;
+          background: #1c222d;
           border-radius: 20px;
           overflow: hidden;
           cursor: pointer;
-          transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-          background: #000000;
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
+          transition: all 0.4s ease;
           position: relative;
-        }
-
-        .service-card::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(230, 30, 37, 0.1), transparent 40%);
-          opacity: 0;
-          transition: opacity 0.5s ease;
-          pointer-events: none;
-          z-index: 1;
+          padding: 3rem 2.5rem;
+          display: flex;
+          flex-direction: column;
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          justify-content: flex-start;
+          text-decoration: none;
         }
 
         .service-card:hover {
-          transform: translateY(-15px);
-          box-shadow: 0 40px 80px rgba(230, 30, 37, 0.3), 0 0 0 2px rgba(230, 30, 37, 0.4);
-          border-color: rgba(230, 30, 37, 0.4);
+          transform: translateY(-10px);
+          box-shadow: 0 40px 80px rgba(0,0,0,0.6);
         }
 
-        .service-card:hover::before {
-          opacity: 1;
+        .service-title {
+          font-size: 1.8rem !important;
+          font-weight: 800;
+          margin-bottom: 2.5rem !important;
+          color: white !important;
+          line-height: 1.1;
+          text-align: left;
+          width: 100%;
+          text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .service-divider {
+          width: 100%;
+          height: 1px;
+          background: rgba(255, 255, 255, 0.2);
+          margin-bottom: 2.5rem;
+        }
+
+        .service-desc {
+          font-size: 1.05rem;
+          color: rgba(255, 255, 255, 0.9);
+          line-height: 1.6;
+          text-align: left;
+          margin-bottom: auto;
+          max-width: 280px;
+          text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .service-scallop {
+          position: absolute;
+          bottom: -1px;
+          right: -1px;
+          width: 100px;
+          height: 100px;
+          background: white;
+          border-top-left-radius: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 10;
+          transition: all 0.3s ease;
+        }
+
+        .service-number {
+          font-size: 1.5rem;
+          font-weight: 900;
+          color: #1c222d;
+          margin-top: 15px;
+          margin-left: 15px;
+          transition: all 0.3s ease;
+        }
+        
+        .service-card:hover .service-scallop {
+          background: #e61e25;
+        }
+        
+        .service-card:hover .service-number {
+          color: white;
         }
 
         .service-card.clicked {
@@ -380,85 +427,6 @@ export default function ServicesPage() {
           animation: ripple 0.8s linear;
           pointer-events: none;
           z-index: 10;
-        }
-
-        @keyframes ripple {
-          to {
-            transform: scale(4);
-            opacity: 0;
-          }
-        }
-
-        .service-card img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .service-card:hover img {
-          transform: scale(1.1);
-        }
-
-        .service-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.2) 100%);
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-end;
-          padding: 2.2rem;
-          color: white;
-          z-index: 2;
-          transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .service-card:hover .service-overlay {
-          background: linear-gradient(to top, rgba(230, 30, 37, 0.85) 0%, rgba(0,0,0,0.5) 100%);
-        }
-
-        .service-card.clicked .service-overlay {
-          justify-content: center;
-          align-items: center;
-          background: #e61e25;
-        }
-
-        .service-title {
-          font-size: 1.6rem;
-          font-weight: 900;
-          margin-bottom: 0.8rem;
-          color: white;
-          transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-          text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-
-        .service-card:hover .service-title {
-          transform: translateY(-3px);
-        }
-
-        .service-card.clicked .service-title {
-          font-size: 2.5rem;
-          text-align: center;
-          transform: scale(1.1);
-          color: white;
-        }
-
-        .service-desc {
-          font-size: 1.05rem;
-          color: rgba(255,255,255,1);
-          line-height: 1.6;
-          transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-          max-width: 95%;
-        }
-
-        .service-card:hover .service-desc {
-          opacity: 1;
-          transform: translateY(-5px);
-        }
-
-        .service-card.clicked .service-desc {
-          opacity: 0;
-          display: none;
         }
 
         .why-choose-section {
@@ -768,28 +736,33 @@ export default function ServicesPage() {
                 <div
                   key={index}
                   className="service-card"
-                  onMouseMove={handleCardMouseMove}
                   onClick={(e) => handleCardClick(e, service.link)}
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.85)), url(${service.image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                  }}
                 >
-                  <img 
-                    src={service.image} 
-                    alt={service.title} 
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = '/services-hero-bg.png';
-                    }}
-                  />
-                  <div className="service-overlay">
-                     <h3 className="service-title">
-                       {service.title.includes('&') ? (
-                          <>
-                            <span style={{ color: 'white' }}>{service.title.split('&')[0].trim()}</span>
-                            <span style={{ color: 'white' }}> & {service.title.split('&')[1].trim()}</span>
-                          </>
-                       ) : (
-                         <span style={{ color: 'white' }}>{service.title}</span>
-                       )}
-                     </h3>
-                    <p className="service-desc" style={{ color: 'white' }}>{service.description}</p>
+                  <h3 className="service-title">
+                    {service.title.includes('&') ? (
+                      <>
+                        {service.title.split('&')[0].trim()}
+                        <span style={{ color: '#e61e25' }}> & </span>
+                        {service.title.split('&')[1].trim()}
+                      </>
+                    ) : (
+                      service.title
+                    )}
+                  </h3>
+                  
+                  <div className="service-divider"></div>
+
+                  <p className="service-desc">{service.description}</p>
+                  
+                  <div className="service-scallop">
+                    <div className="service-number">
+                      {String(index + 1).padStart(2, '0')}
+                    </div>
                   </div>
                 </div>
               )})}
