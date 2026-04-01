@@ -396,7 +396,10 @@ function ProjectsContent() {
                 .project-overview-bg {
                     position: relative;
                     padding: 160px 0;
-                    background: url('/projects-hero-bg.png') center/cover no-repeat;
+                    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/dubai-hero-building.jpg');
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -487,8 +490,8 @@ function ProjectsContent() {
                     style={{ x: bgX, y: bgY }}
                 >
                     <img 
-                        src="/signage-vehicle.png" 
-                        alt="3D Signage Display" 
+                        src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2670&auto=format&fit=crop" 
+                        alt="Retail Signage Impact" 
                     />
                 </motion.div>
                 <div className="hero-works-overlay"></div>

@@ -360,8 +360,8 @@ export default function SignagePage() {
         >
           <div className="hero-content">
             <motion.div className="hero-text" variants={fadeInUp}>
-              <h1>Signage Production</h1>
-              <div className="subtitle">& Installation</div>
+              <h1 style={{ color: '#1a1a1a' }}>Signage Production</h1>
+              <div className="subtitle" style={{ color: '#1a1a1a' }}>& Installation</div>
               <p>
                 Indoor & outdoor signage solutions that withstand the UAE climate while maintaining premium aesthetics and visibility.
               </p>

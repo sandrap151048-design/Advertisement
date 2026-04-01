@@ -29,8 +29,8 @@ export default function Navbar() {
 
         .nav-link {
           position: relative; color: white; text-decoration: none;
-          font-size: 0.95rem; font-weight: 600;
-          padding: 10px 0; transition: color 0.3s;
+          font-size: 0.88rem; font-weight: 600;
+          padding: 8px 0; transition: color 0.3s;
         }
         .nav-link:hover { color: #e61e25; }
         .nav-link::after {
@@ -40,8 +40,8 @@ export default function Navbar() {
         .nav-link:hover::after { width: 100%; }
 
         .btn-login {
-          padding: 10px 24px; background: #e61e25; color: white;
-          text-decoration: none; font-size: 0.9rem; font-weight: 700;
+          padding: 8px 18px; background: #e61e25; color: white;
+          text-decoration: none; font-size: 0.85rem; font-weight: 700;
           border-radius: 6px; transition: all 0.3s; white-space: nowrap;
         }
         .btn-login:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(230,30,37,0.3); }
@@ -82,12 +82,12 @@ export default function Navbar() {
         <nav
           style={{
             width: '100%',
-            maxWidth: '1400px',
+            maxWidth: '1200px',
             background: 'rgba(8, 8, 8, 0.96)',
             backdropFilter: 'blur(24px)',
             WebkitBackdropFilter: 'blur(24px)',
             border: '1px solid rgba(255,255,255,0.1)',
-            borderRadius: '16px',
+            borderRadius: '12px',
             boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
             pointerEvents: 'all',   /* re-enable clicks on the nav pill */
           }}
@@ -97,23 +97,22 @@ export default function Navbar() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              padding: '10px 20px',
+              padding: '6px 16px',
             }}
           >
             {/* Logo */}
             <Link href="/" className="navbar-logo" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0' }}>
-                <svg width="22" height="22" viewBox="0 0 28 28">
+                <svg width="18" height="18" viewBox="0 0 28 28">
                   <circle cx="14" cy="14" r="11" fill="none" stroke="white" strokeWidth="4"/>
                   <rect x="18" y="2" width="9" height="9" fill="#e61e25" rx="1"/>
                 </svg>
-                <span style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800, fontSize: '1.2rem', color: 'white', marginLeft: '-1px' }}>ne Click</span>
+                <span style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800, fontSize: '1rem', color: 'white', marginLeft: '-1px' }}>ne Click</span>
               </div>
-              <div style={{ color: 'rgba(255,255,255,0.4)', fontWeight: 700, letterSpacing: '2px', fontSize: '0.5rem', textTransform: 'uppercase', marginTop: '1px' }}>ADVERTISEMENT</div>
+              <div style={{ color: 'rgba(255,255,255,0.4)', fontWeight: 700, letterSpacing: '1.5px', fontSize: '0.45rem', textTransform: 'uppercase', marginTop: '0px' }}>ADVERTISEMENT</div>
             </Link>
-
             {/* Desktop Nav Links */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }} className="desktop-nav">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }} className="desktop-nav">
               <Link href="/" className="nav-link">Home</Link>
               <Link href="/projects" className="nav-link">Projects</Link>
               <Link href="/services" className="nav-link">Services</Link>
@@ -123,7 +122,7 @@ export default function Navbar() {
 
             {/* Desktop Login Button */}
             <div className="desktop-nav">
-              <Link href="/admin/login" className="btn-login">Login</Link>
+              <Link href="/admin/login" className="btn-login" style={{ padding: '8px 20px', fontSize: '0.85rem' }}>Login</Link>
             </div>
 
             {/* Mobile Hamburger */}

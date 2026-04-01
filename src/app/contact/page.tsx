@@ -284,7 +284,7 @@ export default function ContactPage() {
         .campaign-title .italic {
           font-style: italic;
           font-weight: 400;
-          color: rgba(255,255,255,0.7);
+          color: #e61e25;
         }
 
         .campaign-subtitle {
@@ -594,64 +594,76 @@ export default function ContactPage() {
                 viewport={{ once: true }}
                 variants={staggerContainer}
               >
-                <input
-                  type="text"
-                  placeholder="Name"
-                  className="form-input"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  required
-                />
-                <input
-                  type="tel"
-                  placeholder="Phone Number"
-                  className="form-input"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  required
-                />
-                <input
-                  type="email"
-                  placeholder="Email"
-                  className="form-input"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  required
-                />
-                <input
-                  type="text"
-                  placeholder="Company Name (optional)"
-                  className="form-input"
-                  value={formData.company}
-                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                />
-                <select
-                  className="form-select"
-                  value={formData.service}
-                  onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                  required
-                >
-                  <option value="">Service (Brand Identity)</option>
-                  <option value="branding">Brand Identity</option>
-                  <option value="digital-graphics">Digital Graphics</option>
-                  <option value="vehicle-graphics">Vehicle Graphics</option>
-                  <option value="signage">Signage</option>
-                  <option value="exhibition">Exhibition & POS</option>
-                  <option value="cladding">Cladding & Facade</option>
-                </select>
-                <textarea
-                  placeholder="Message"
-                  className="form-textarea"
-                  style={{ minHeight: 120 }}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  required
-                />
-                <div className="submit-button-wrap">
+                <motion.div variants={fadeInUp}>
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    className="form-input"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    required
+                  />
+                </motion.div>
+                <motion.div variants={fadeInUp}>
+                  <input
+                    type="tel"
+                    placeholder="Phone Number"
+                    className="form-input"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    required
+                  />
+                </motion.div>
+                <motion.div variants={fadeInUp}>
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    className="form-input"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    required
+                  />
+                </motion.div>
+                <motion.div variants={fadeInUp}>
+                  <input
+                    type="text"
+                    placeholder="Company Name (optional)"
+                    className="form-input"
+                    value={formData.company}
+                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                  />
+                </motion.div>
+                <motion.div variants={fadeInUp}>
+                  <select
+                    className="form-select"
+                    value={formData.service}
+                    onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                    required
+                  >
+                    <option value="">Service (Brand Identity)</option>
+                    <option value="branding">Brand Identity</option>
+                    <option value="digital-graphics">Digital Graphics</option>
+                    <option value="vehicle-graphics">Vehicle Graphics</option>
+                    <option value="signage">Signage</option>
+                    <option value="exhibition">Exhibition & POS</option>
+                    <option value="cladding">Cladding & Facade</option>
+                  </select>
+                </motion.div>
+                <motion.div variants={fadeInUp}>
+                  <textarea
+                    placeholder="Message"
+                    className="form-textarea"
+                    style={{ minHeight: 120 }}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    required
+                  />
+                </motion.div>
+                <motion.div className="submit-button-wrap" variants={fadeInUp}>
                   <button type="submit" className="submit-button" disabled={isSubmitting}>
                     {isSubmitting ? 'Sending...' : 'Submit Request'}
                   </button>
-                </div>
+                </motion.div>
               </motion.form>
             )}
           </div>

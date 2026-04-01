@@ -447,72 +447,96 @@ export default function Home() {
           margin-right: auto;
         }
 
-        /* Portfolio Grid */
+        /* Portfolio Grid Redesign - Exact Match */
         .portfolio-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 1.5rem;
           margin-bottom: 3rem;
-          overflow: hidden;
+          padding: 1rem;
         }
 
         .portfolio-item {
-          height: 260px;
-          background: #e0e0e0;
-          border-radius: 16px;
+          min-height: 380px;
+          background: #1c222d;
+          border-radius: 20px;
           overflow: hidden;
           cursor: pointer;
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          transition: all 0.4s ease;
           position: relative;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+          padding: 3rem 2.5rem;
+          display: flex;
+          flex-direction: column;
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          justify-content: flex-start;
         }
 
         .portfolio-item:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 12px 40px rgba(0,0,0,0.18);
-        }
-
-        .portfolio-item img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.5s ease;
-        }
-
-        .portfolio-item:hover img {
-          transform: scale(1.06);
-        }
-
-        .portfolio-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 100%);
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-end;
-          align-items: flex-start;
-          padding: 1.5rem;
-          color: white;
-          text-align: left;
-          transition: all 0.3s ease;
-        }
-
-        .portfolio-item:hover .portfolio-overlay {
-          background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.3) 100%);
+          transform: translateY(-10px);
+          box-shadow: 0 40px 80px rgba(0,0,0,0.6);
         }
 
         .portfolio-title {
-          font-size: 1.4rem;
+          font-size: 1.8rem !important;
           font-weight: 800;
-          margin-bottom: 0.5rem;
-          color: white;
-          line-height: 1.2;
+          margin-bottom: 2.5rem !important;
+          color: white !important;
+          line-height: 1.1;
+          text-align: left;
+          width: 100%;
+        }
+
+        .portfolio-divider {
+          width: 100%;
+          height: 1px;
+          background: rgba(255, 255, 255, 0.1);
+          margin-bottom: 2.5rem;
         }
 
         .portfolio-desc {
-          font-size: 0.95rem;
-          color: rgba(255,255,255,0.85);
-          line-height: 1.4;
+          font-size: 1rem;
+          color: rgba(255, 255, 255, 0.7);
+          line-height: 1.6;
+          text-align: left;
+          margin-bottom: auto;
+          max-width: 240px;
+        }
+
+        /* The signature white scalloped corner */
+        .portfolio-scallop {
+          position: absolute;
+          bottom: -1px;
+          right: -1px;
+          width: 100px;
+          height: 100px;
+          background: white;
+          /* Creating the scalloped 'leaf' shape */
+          border-top-left-radius: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 10;
+        }
+
+        .portfolio-number {
+          font-size: 1.5rem;
+          font-weight: 900;
+          color: #1c222d; /* Inverted for visibility on white */
+          margin-top: 15px;
+          margin-left: 15px;
+        }
+        
+        .portfolio-item:hover .portfolio-scallop {
+          background: #e61e25;
+        }
+        
+        .portfolio-item:hover .portfolio-number {
+          color: white;
+        }
+
+        .portfolio-icon-wrapper,
+        .portfolio-item img {
+          display: none !important;
         }
 
         /* For Brands Section */
@@ -665,12 +689,14 @@ export default function Home() {
           font-size: clamp(2rem, 5vw, 3rem);
           font-weight: 900;
           margin-bottom: 1rem;
+          color: #ffffff;
         }
 
         .we-reach-text p {
-          color: rgba(255,255,255,0.8);
+          color: #ffffff;
           margin-bottom: 2rem;
           line-height: 1.6;
+          opacity: 0.95;
         }
 
         .we-reach-image {
@@ -796,19 +822,33 @@ export default function Home() {
           }
         }
 
-        /* Large Screens */
-        @media (min-width: 1441px) {
-          .hero-content h1 {
-            font-size: 8rem;
-          }
+        .leaf-image-container {
+          position: relative;
+          width: 100%;
+          height: 480px;
+          margin: 0 auto;
+        }
 
-          .we-build-title {
-            font-size: 4.5rem;
-          }
+        .leaf-image-wrapper {
+          position: absolute;
+          inset: 0;
+          border-radius: 80px 0 80px 0;
+          overflow: hidden;
+          z-index: 2;
+          background: #e0e0e0;
+          box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+          border: 1px solid rgba(0,0,0,0.05);
+        }
 
-          .section-title {
-            font-size: 4rem;
-          }
+        .leaf-image-wrapper img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.5s ease;
+        }
+
+        .leaf-image-container:hover .leaf-image-wrapper img {
+          transform: scale(1.05);
         }
       `}</style>
 
@@ -819,8 +859,8 @@ export default function Home() {
           style={{ x: bgX, y: bgY }}
         >
           <img 
-            src="/cta-bg-premium.png" 
-            alt="City Background" 
+            src="/dubai-hero-building.jpg" 
+            alt="Dubai Skyscraper" 
           />
         </motion.div>
         <div className="hero-overlay"></div>
@@ -875,39 +915,39 @@ export default function Home() {
           
           <motion.div className="portfolio-grid" variants={staggerContainer}>
             {[
-              { 
+               { 
                 id: 1, 
-                url: '/signage-branding.png', 
+                icon: <MapPin size={32} color="#e61e25" />, 
                 title: 'Branding & Corporate Identity',
                 desc: 'Brand implementation, rollout & corporate identity applications'
               },
               { 
                 id: 2, 
-                url: '/signage-digital-print.png', 
+                icon: <Mail size={32} color="#e61e25" />, 
                 title: 'Digital Printed Graphics',
                 desc: 'Large format printing & interior graphics'
               },
               { 
                 id: 3, 
-                url: '/signage-vehicle.png', 
+                icon: <Phone size={32} color="#e61e25" />, 
                 title: 'Vehicle Graphics & Fleet Branding',
                 desc: 'Full & partial vehicle wraps for mobile advertising'
               },
               { 
                 id: 4, 
-                url: '/signage-production.png', 
+                icon: <ArrowRight size={32} color="#e61e25" />, 
                 title: 'Signage Production & Installation',
                 desc: 'Indoor & outdoor signage solutions'
               },
               { 
                 id: 5, 
-                url: '/signage-exhibition.png', 
+                icon: <MapPin size={32} color="#e61e25" />, 
                 title: 'Exhibition, Display & POS',
                 desc: 'Exhibition stands, kiosks & point of sale displays'
               },
               { 
                 id: 6, 
-                url: '/signage-cladding.png', 
+                icon: <ArrowRight size={32} color="#e61e25" />, 
                 title: 'Cladding & Facade Solutions',
                 desc: 'ACP cladding & architectural facade branding'
               }
@@ -916,15 +956,22 @@ export default function Home() {
                 key={item.id} 
                 className="portfolio-item" 
                 variants={index % 2 === 0 ? swipeLeft : swipeRight}
-                whileHover={{ scale: 1.05, x: index % 2 === 0 ? 10 : -10, transition: { duration: 0.3 } }}
+                whileHover={{ scale: 1.02 }}
               >
-                <img 
-                  src={item.url}
-                  alt={item.title}
-                />
-                <div className="portfolio-overlay">
-                  <h3 className="portfolio-title">{item.title}</h3>
-                  <p className="portfolio-desc">{item.desc}</p>
+                <h3 className="portfolio-title">
+                  {item.title.split('&')[0].trim()}
+                  <span style={{ color: '#e61e25' }}> & </span>
+                  {item.title.split('&')[1]?.trim() || ''}
+                </h3>
+
+                <div className="portfolio-divider"></div>
+                
+                <p className="portfolio-desc">{item.desc}</p>
+
+                <div className="portfolio-scallop">
+                  <div className="portfolio-number">
+                    {String(index + 1).padStart(2, '0')}
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -1171,7 +1218,7 @@ export default function Home() {
             whileHover={{ scale: 1.02, x: -5, transition: { duration: 0.3 } }}
           >
             <img 
-              src="/about-hero-bg.png"
+              src="/images/cities_reach.png"
               alt="Cities"
             />
           </motion.div>
@@ -1302,18 +1349,13 @@ export default function Home() {
                     Learn more <ArrowRight size={20} />
                   </Link>
                 </div>
-                <div className="tabs-image-wrapper" style={{ 
-                  width: '100%', 
-                  height: '400px', 
-                  background: '#e0e0e0', 
-                  borderRadius: '12px',
-                  overflow: 'hidden'
-                }}>
-                  <img 
-                    src="/signage-branding.png"
-                    alt="Built for Visibility"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
+                <div className="leaf-image-container">
+                  <div className="leaf-image-wrapper">
+                    <img 
+                      src="/signage-branding.png"
+                      alt="Built for Visibility"
+                    />
+                  </div>
                 </div>
               </>
             )}
@@ -1353,18 +1395,13 @@ export default function Home() {
                     Get in touch <ArrowRight size={20} />
                   </Link>
                 </div>
-                <div className="tabs-image-wrapper" style={{ 
-                  width: '100%', 
-                  height: '400px', 
-                  background: '#e0e0e0', 
-                  borderRadius: '12px',
-                  overflow: 'hidden'
-                }}>
-                  <img 
-                    src="/about-hero-bg.png"
-                    alt="Nationwide Coverage"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
+                <div className="leaf-image-container">
+                  <div className="leaf-image-wrapper">
+                    <img 
+                      src="/about-hero-bg.png"
+                      alt="Nationwide Coverage"
+                    />
+                  </div>
                 </div>
               </>
             )}
@@ -1404,18 +1441,13 @@ export default function Home() {
                     View services <ArrowRight size={20} />
                   </Link>
                 </div>
-                <div className="tabs-image-wrapper" style={{ 
-                  width: '100%', 
-                  height: '400px', 
-                  background: '#e0e0e0', 
-                  borderRadius: '12px',
-                  overflow: 'hidden'
-                }}>
-                  <img 
-                    src="/services-hero-bg.png"
-                    alt="Complete Solutions"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
+                <div className="leaf-image-container">
+                  <div className="leaf-image-wrapper">
+                    <img 
+                      src="/services-hero-bg.png"
+                      alt="Complete Solutions"
+                    />
+                  </div>
                 </div>
               </>
             )}

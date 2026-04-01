@@ -286,36 +286,41 @@ export default function AboutPage() {
         .services-summary-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 1.5rem;
+          gap: 1.2rem;
           margin-top: 2rem;
+          align-items: stretch;
         }
 
         .service-summary-card {
-          background: white;
+          background: rgba(255, 255, 255, 0.05);
+          backdrop-filter: blur(12px);
           padding: 2.5rem;
           border-radius: 20px;
-          border: 1px solid #eee;
-          transition: all 0.5s ease;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+          color: white;
+          position: relative;
+          z-index: 2;
         }
 
         .service-summary-card:hover {
           border-color: #e61e25;
-          box-shadow: 0 15px 30px rgba(230,30,37,0.08);
-          transform: translateY(-5px);
+          box-shadow: 0 15px 40px rgba(230,30,37,0.1);
+          transform: translateY(-8px);
         }
 
         .service-summary-card h4 {
           font-size: 1.5rem;
           font-weight: 800;
           margin-bottom: 0.8rem;
-          color: #1a1a1a;
+          color: #ffffff;
         }
 
         .service-summary-card p {
-          color: #666;
+          color: rgba(255, 255, 255, 0.7);
           line-height: 1.6;
-          margin-bottom: 1.5rem;
-          font-size: 1rem;
+          margin-bottom: 0;
+          font-size: 0.95rem;
         }
 
         .service-summary-card .learn-more {
@@ -342,7 +347,7 @@ export default function AboutPage() {
         .section-header h2 {
           font-size: 4rem;
           font-weight: 900;
-          color: #1a1a1a;
+          color: inherit;
           margin-bottom: 0.5rem;
           letter-spacing: -2px;
         }
@@ -355,7 +360,7 @@ export default function AboutPage() {
         }
 
         .section-header p {
-          color: #333;
+          color: inherit;
           font-size: 1.1rem;
           font-weight: 600;
           margin-bottom: 0.5rem;
@@ -726,7 +731,17 @@ export default function AboutPage() {
         </section>
 
         {/* Core Services Summary */}
-        <section className="content-section" style={{ background: '#fcfcfc', borderTop: '1px solid #eee' }}>
+        <section className="content-section" style={{ 
+          position: 'relative',
+          padding: '8rem 2rem',
+          background: 'linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url(https://images.unsplash.com/photo-1549216348-12c85f7ea368?q=80&w=2070&auto=format&fit=crop)',
+          backgroundSize: 'cover',
+          backgroundAttachment: 'fixed',
+          backgroundPosition: 'center',
+          color: 'white',
+          borderTop: '1px solid rgba(255,255,255,0.1)'
+        }}>
+          <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, rgba(230,30,37,0.1) 0%, transparent 80%)', pointerEvents: 'none' }}></div>
           <motion.div 
             className="section-header"
             initial="hidden"
@@ -749,7 +764,6 @@ export default function AboutPage() {
               <motion.div key={idx} className="service-summary-card" variants={fadeInUp}>
                 <h4>{service.title}</h4>
                 <p>{service.desc}</p>
-                <Link href="/services" className="learn-more">Learn More <ArrowRight size={14} /></Link>
               </motion.div>
             ))}
           </motion.div>

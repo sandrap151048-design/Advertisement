@@ -245,12 +245,12 @@ export default function DynamicServicePage() {
           font-weight: 900;
           margin-bottom: 0;
           line-height: 1;
-          color: #000;
+          color: #e61e25;
         }
 
         .hero-text .subtitle {
           font-style: italic;
-          color: #000;
+          color: #e61e25;
           font-size: 3.5rem;
           font-weight: 400;
           margin-bottom: 1.5rem;

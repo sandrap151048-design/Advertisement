@@ -334,21 +334,21 @@ export default function ServicesPage() {
 
         .service-card {
           position: absolute;
-          width: 300px;
-          height: 420px;
-          border-radius: 20px;
+          width: 260px;
+          height: 380px;
+          border-radius: 16px;
           overflow: hidden;
           cursor: pointer;
           transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-          background: rgba(255, 255, 255, 0.9);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+          background: rgba(10, 10, 10, 0.95);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
           backdrop-filter: blur(10px);
           will-change: transform, box-shadow, z-index;
           transform-origin: bottom center;
-          transform: translateX(calc(var(--offset) * 160px)) 
-                     translateY(calc(var(--offset) * var(--offset) * 12px)) 
-                     rotate(calc(var(--offset) * 8deg));
+          transform: translateX(calc(var(--offset) * 130px)) 
+                     translateY(calc(var(--offset) * var(--offset) * 8px)) 
+                     rotate(calc(var(--offset) * 6deg));
         }
 
         .service-card::before {
@@ -364,10 +364,10 @@ export default function ServicesPage() {
 
         .service-card:hover {
           transform-origin: bottom center;
-          transform: translateX(calc(var(--offset) * 160px)) 
-                     translateY(-50px) 
+          transform: translateX(calc(var(--offset) * 130px)) 
+                     translateY(-40px) 
                      rotate(0deg) 
-                     scale(1.15);
+                     scale(1.1);
           z-index: 100 !important;
           box-shadow: 0 40px 80px rgba(230, 30, 37, 0.2), 0 0 0 2px rgba(230, 30, 37, 0.5);
           border-color: rgba(230, 30, 37, 0.3);
@@ -414,18 +414,18 @@ export default function ServicesPage() {
         .service-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%);
+          background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.2) 100%);
           display: flex;
           flex-direction: column;
           justify-content: flex-end;
-          padding: 2.5rem;
+          padding: 2.2rem;
           color: white;
           z-index: 2;
           transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .service-card:hover .service-overlay {
-          background: linear-gradient(to top, rgba(230, 30, 37, 0.8) 0%, rgba(0,0,0,0.4) 100%);
+          background: linear-gradient(to top, rgba(230, 30, 37, 0.85) 0%, rgba(0,0,0,0.5) 100%);
         }
 
         .service-card.clicked .service-overlay {
@@ -435,15 +435,16 @@ export default function ServicesPage() {
         }
 
         .service-title {
-          font-size: 1.8rem;
+          font-size: 1.5rem;
           font-weight: 800;
-          margin-bottom: 0.8rem;
+          margin-bottom: 0.6rem;
+          color: #e61e25;
           transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-          text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+          text-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .service-card:hover .service-title {
-          transform: translateY(-5px);
+          transform: translateY(-3px);
         }
 
         .service-card.clicked .service-title {
@@ -558,42 +559,26 @@ export default function ServicesPage() {
 
         .cta-section {
           position: relative;
-          padding: 8rem 2rem;
-          min-height: 400px;
+          padding: 10rem 2rem;
+          min-height: 500px;
           display: flex;
           align-items: center;
           justify-content: center;
           overflow: hidden;
-          background: #111;
-        }
-
-        .cta-bg {
-          position: absolute;
-          inset: 0;
-          z-index: 0;
-        }
-
-        .cta-bg img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          filter: brightness(0.7);
-        }
-
-        .cta-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
-          z-index: 1;
+          background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.4)), url('/images/cities_reach.png');
+          background-size: cover;
+          background-position: center;
+          background-attachment: fixed;
+          color: white;
+          border-top: 1px solid rgba(255,255,255,0.1);
         }
 
         .cta-content {
           position: relative;
-          z-index: 2;
+          z-index: 5;
           text-align: center;
-          color: white;
           max-width: 900px;
-          padding: clamp(3rem, 6vw, 4rem) 1.5rem;
+          padding: 4rem 1.5rem;
           width: 100%;
         }
 
@@ -805,7 +790,16 @@ export default function ServicesPage() {
                     }}
                   />
                   <div className="service-overlay">
-                    <h3 className="service-title">{service.title}</h3>
+                     <h3 className="service-title">
+                       {service.title.includes('&') ? (
+                         <>
+                           <span style={{ color: '#1a1a1a' }}>{service.title.split('&')[0].trim()}</span>
+                           <span style={{ color: '#e61e25' }}> & {service.title.split('&')[1].trim()}</span>
+                         </>
+                       ) : (
+                         <span style={{ color: '#1a1a1a' }}>{service.title}</span>
+                       )}
+                     </h3>
                     <p className="service-desc">{service.description}</p>
                   </div>
                 </div>
@@ -868,13 +862,6 @@ export default function ServicesPage() {
 
         {/* CTA Section */}
         <section className="cta-section">
-          <div className="cta-bg">
-            <img 
-              src="/projects-hero-bg.png" 
-              alt="Ready to make your brand impossible to ignore" 
-            />
-          </div>
-          <div className="cta-overlay"></div>
           <motion.div 
             className="cta-content"
             initial="hidden"
