@@ -56,9 +56,9 @@ html::-webkit-scrollbar {
 body {
   margin: 0;
   padding: 0;
-  background: #ffffff;
+  background: #050505;
   background-attachment: fixed;
-  color: #1a1a1a;
+  color: #ffffff;
   font-family: var(--font-body);
   line-height: 1.6;
   overflow-x: hidden;
@@ -193,23 +193,39 @@ ul {
 
 /* Card Style */
 .glass-card {
-  background: rgba(10, 10, 10, 0.95);
+  background: rgba(10, 10, 10, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
   padding: 2rem;
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
   height: 100%;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
   color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(230,30,37,0.05) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
 }
 
 .glass-card:hover {
-  transform: translateY(-8px);
-  border-color: #e61e25;
-  box-shadow: 0 25px 60px rgba(230, 30, 37, 0.2);
-  background: rgba(15, 15, 15, 0.98);
+  transform: translateY(-10px);
+  border-color: rgba(230, 30, 37, 0.5);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(230,30,37,0.2), 0 0 30px rgba(230,30,37,0.1);
+  background: rgba(18, 18, 18, 0.95);
+}
+
+.glass-card:hover::before {
+  opacity: 1;
 }
 
 /* Layout util */

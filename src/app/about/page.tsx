@@ -121,8 +121,8 @@ export default function AboutPage() {
     <>
       <style jsx global>{`
         .about-page {
-          background: #ffffff;
-          color: #1a1a1a;
+          background: #050505;
+          color: #ffffff;
           overflow-x: hidden;
         }
 
@@ -223,7 +223,7 @@ export default function AboutPage() {
         .profile-text p {
           font-size: 1.05rem;
           line-height: 1.7;
-          color: #555;
+          color: rgba(255,255,255,0.75);
           margin-bottom: 1.5rem;
         }
 
@@ -252,16 +252,17 @@ export default function AboutPage() {
         .vm-card {
           padding: 2.5rem;
           border-radius: 20px;
-          background: #fdfdfd;
-          border: 1px solid #eee;
+          background: rgba(255,255,255,0.04);
+          border: 1px solid rgba(255,255,255,0.1);
           transition: all 0.4s ease;
+          color: white;
         }
 
         .vm-card:hover {
-          background: #ffffff;
-          box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+          background: rgba(230,30,37,0.06);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.4);
           border-color: #e61e25;
-          transform: translateY(-5px);
+          transform: translateY(-8px);
         }
 
         .vm-card .icon {
@@ -280,7 +281,7 @@ export default function AboutPage() {
         .vm-card p {
           font-size: 1rem;
           line-height: 1.6;
-          color: #555;
+          color: rgba(255,255,255,0.7);
         }
 
         .services-summary-grid {
@@ -334,7 +335,7 @@ export default function AboutPage() {
         }
 
         .process-section {
-          background: #f5f6f8;
+          background: #0a0a0a;
           padding: 8rem 2rem;
           text-align: center;
         }
@@ -354,7 +355,7 @@ export default function AboutPage() {
 
         .section-header h2 .italic {
           font-style: italic;
-          color: #1a1a1a;
+          color: rgba(255,255,255,0.6);
           font-weight: 400;
           margin-left: 10px;
         }
@@ -367,7 +368,7 @@ export default function AboutPage() {
         }
 
         .section-header .steps-label {
-          color: #333;
+          color: rgba(255,255,255,0.5);
           font-size: 1.1rem;
           font-weight: 600;
         }
@@ -388,14 +389,7 @@ export default function AboutPage() {
         }
 
         .process-static-line {
-          position: absolute;
-          top: 50%;
-          left: 0;
-          width: 100%;
-          height: 3px;
-          background: #e5e7eb;
-          transform: translateY(-50%);
-          z-index: 0;
+          display: none;
         }
 
         .process-animated-line {
@@ -424,11 +418,11 @@ export default function AboutPage() {
         }
 
         .process-step {
-          background: white;
+          background: #141414;
           padding: 2.5rem 1.5rem;
           border-radius: 12px;
-          border: 1px solid #d1d5db;
-          transition: all 0.3s ease;
+          border: 1px solid rgba(255,255,255,0.08);
+          transition: all 0.4s ease;
           text-align: left;
           min-height: 280px;
           display: flex;
@@ -436,13 +430,14 @@ export default function AboutPage() {
           position: relative;
           overflow: hidden;
           z-index: 2;
+          color: white;
         }
 
-
         .process-step:hover {
-          border-color: #3b82f6;
-          box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-          transform: translateY(-5px);
+          border-color: #e61e25;
+          box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+          transform: translateY(-8px);
+          background: #1f1111;
         }
 
         .step-header {
@@ -455,28 +450,28 @@ export default function AboutPage() {
         .step-icon-box {
           width: 50px;
           height: 50px;
-          background: #f3f4f6;
-          color: #374151;
+          background: rgba(255,255,255,0.08);
+          color: white;
           display: flex;
           align-items: center;
           justify-content: center;
           border-radius: 8px;
-          border: 1px solid #e5e7eb;
+          border: 1px solid rgba(255,255,255,0.1);
           transition: border-color 0.3s ease;
         }
 
         .process-step:hover .step-icon-box {
-          border-color: #3b82f6;
+          border-color: #e61e25;
         }
 
         .process-step h4 {
           font-size: 1.8rem;
           font-weight: 700;
-          color: #111;
+          color: white;
         }
 
         .process-step p {
-          color: #4b5563;
+          color: rgba(255,255,255,0.7);
           line-height: 1.5;
           font-size: 1.05rem;
         }
@@ -524,7 +519,8 @@ export default function AboutPage() {
 
         .industries-section {
           padding: 8rem 2rem;
-          background: #ffffff;
+          background: #0a0a0a;
+          color: white;
         }
 
         .industries-grid {
@@ -535,20 +531,21 @@ export default function AboutPage() {
 
         .industry-card {
           padding: 2rem;
-          background: #f9f9f9;
+          background: rgba(255,255,255,0.04);
           border-radius: 20px;
           display: flex;
           align-items: center;
           gap: 15px;
-          transition: all 0.3s ease;
-          border: 1px solid #eee;
+          transition: all 0.4s ease;
+          border: 1px solid rgba(255,255,255,0.08);
+          color: white;
         }
 
         .industry-card:hover {
-          background: white;
+          background: rgba(230,30,37,0.08);
           border-color: #e61e25;
-          box-shadow: 0 10px 20px rgba(230, 30, 37, 0.05);
-          transform: translateY(-5px);
+          box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+          transform: translateY(-8px);
         }
 
         .industry-card .icon {

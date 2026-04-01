@@ -492,8 +492,8 @@ function ProjectsContent() {
                     style={{ x: bgX, y: bgY }}
                 >
                     <img 
-                        src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2670&auto=format&fit=crop" 
-                        alt="Retail Signage Impact" 
+                        src="/professional_agency_team.png" 
+                        alt="Professional Agency Team" 
                     />
                 </motion.div>
                 <div className="hero-works-overlay"></div>

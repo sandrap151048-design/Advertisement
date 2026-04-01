@@ -167,8 +167,8 @@ export default function Home() {
 
         body {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-          background: #ffffff;
-          color: #1a1a1a;
+          background: #050505;
+          color: white;
         }
 
         .hero-section {
@@ -294,7 +294,7 @@ export default function Home() {
         /* Section Styles */
         .section {
           padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
-          background: #ffffff;
+          background: transparent;
         }
 
         .section-dark {
@@ -312,7 +312,7 @@ export default function Home() {
 
         .section-subtitle {
           font-size: clamp(0.9rem, 2vw, 1.1rem);
-          color: #666666;
+          color: rgba(255,255,255,0.7);
           text-align: center;
           max-width: 700px;
           margin: 0 auto 3rem auto;
@@ -436,12 +436,12 @@ export default function Home() {
 
         .we-build-title .italic {
           font-style: italic;
-          color: #666666;
+          color: rgba(255,255,255,0.7);
         }
 
         .we-build-subtitle {
           font-size: 1rem;
-          color: #666666;
+          color: rgba(255,255,255,0.7);
           margin-bottom: 2rem;
           max-width: 600px;
           margin-left: auto;
@@ -554,7 +554,7 @@ export default function Home() {
           font-weight: 900;
           margin-bottom: 1rem;
           line-height: 1.2;
-          color: white;
+          color: #e61e25;
         }
 
         .for-brands-content p {
@@ -571,15 +571,16 @@ export default function Home() {
         }
 
         .accordion-item-brand {
-          background: white;
+          background: #1c222d;
           border-radius: 12px;
           overflow: hidden;
           transition: all 0.3s ease;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+          border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .accordion-item-brand:hover {
-          box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+          box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+          border-color: rgba(230, 30, 37, 0.3);
         }
 
         .accordion-header-brand {
@@ -590,17 +591,17 @@ export default function Home() {
           cursor: pointer;
           font-weight: 600;
           font-size: 1.1rem;
-          color: #1a1a1a;
+          color: white;
           transition: all 0.3s ease;
         }
 
         .accordion-header-brand:hover {
-          background: rgba(0,0,0,0.02);
+          background: rgba(255,255,255,0.05);
         }
 
         .accordion-icon-brand {
           transition: transform 0.3s ease;
-          color: #666;
+          color: #e61e25;
         }
 
         .accordion-icon-brand.open {
@@ -619,7 +620,7 @@ export default function Home() {
 
         .accordion-content-inner-brand {
           padding: 0 2rem 1.5rem 2rem;
-          color: #666;
+          color: rgba(255, 255, 255, 0.7);
           line-height: 1.6;
           font-size: 0.95rem;
         }
@@ -668,7 +669,7 @@ export default function Home() {
         }
 
         .prime-locations-content p {
-          color: #666666;
+          color: rgba(255,255,255,0.7);
           margin-bottom: 2rem;
           line-height: 1.6;
         }
@@ -718,7 +719,7 @@ export default function Home() {
         /* Built for Visibility */
         .built-section {
           padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
-          background: #f5f5f5;
+          background: transparent;
         }
 
         .built-content {
@@ -735,7 +736,7 @@ export default function Home() {
         }
 
         .built-text p {
-          color: #666666;
+          color: rgba(255,255,255,0.7);
           margin-bottom: 2rem;
           line-height: 1.6;
         }
@@ -1254,8 +1255,8 @@ export default function Home() {
               className={`tabs-nav-item ${activeTab === 'whyus' ? 'active' : ''}`}
               style={{ 
                 padding: '1rem 3rem', 
-                background: activeTab === 'whyus' ? '#1a1a1a' : 'white', 
-                color: activeTab === 'whyus' ? 'white' : '#1a1a1a', 
+                background: activeTab === 'whyus' ? '#e61e25' : 'rgba(255,255,255,0.1)', 
+                color: 'white', 
                 borderRadius: '50px',
                 fontSize: '1.1rem',
                 fontWeight: 600,
@@ -1271,8 +1272,8 @@ export default function Home() {
               className={`tabs-nav-item ${activeTab === 'reach' ? 'active' : ''}`}
               style={{ 
                 padding: '1rem 3rem', 
-                background: activeTab === 'reach' ? '#1a1a1a' : 'white', 
-                color: activeTab === 'reach' ? 'white' : '#1a1a1a', 
+                background: activeTab === 'reach' ? '#e61e25' : 'rgba(255,255,255,0.1)', 
+                color: 'white', 
                 borderRadius: '50px',
                 fontSize: '1.1rem',
                 fontWeight: 600,
@@ -1288,8 +1289,8 @@ export default function Home() {
               className={`tabs-nav-item ${activeTab === 'solutions' ? 'active' : ''}`}
               style={{ 
                 padding: '1rem 3rem', 
-                background: activeTab === 'solutions' ? '#1a1a1a' : 'white', 
-                color: activeTab === 'solutions' ? 'white' : '#1a1a1a', 
+                background: activeTab === 'solutions' ? '#e61e25' : 'rgba(255,255,255,0.1)', 
+                color: 'white', 
                 borderRadius: '50px',
                 fontSize: '1.1rem',
                 fontWeight: 600,

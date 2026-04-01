@@ -85,8 +85,9 @@ export default function ContactPage() {
         }
 
         .contact-page {
-          background: #ffffff;
+          background: #050505;
           min-height: 100vh;
+          color: white;
         }
 
         .contact-hero {
@@ -197,17 +198,25 @@ export default function ContactPage() {
         }
 
         .touch-left {
-          background: #ffffff;
+          background: rgba(255,255,255,0.04);
           padding: 5rem 4rem;
           border-radius: 24px;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+          border: 1px solid rgba(255,255,255,0.08);
+          box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+          transition: all 0.4s ease;
+        }
+
+        .touch-left:hover {
+          border-color: rgba(230,30,37,0.3);
+          transform: translateY(-5px);
+          box-shadow: 0 25px 60px rgba(0,0,0,0.5);
         }
 
         .touch-right {
-          background: #111111;
+          background: #0d0d0d;
           padding: 5rem 4rem;
           border-radius: 24px;
           border: 1px solid rgba(230, 30, 37, 0.2);
@@ -215,7 +224,14 @@ export default function ContactPage() {
           display: flex;
           flex-direction: column;
           justify-content: center;
-          box-shadow: 0 15px 45px rgba(0,0,0,0.1);
+          box-shadow: 0 15px 45px rgba(0,0,0,0.3);
+          transition: all 0.4s ease;
+        }
+
+        .touch-right:hover {
+          border-color: #e61e25;
+          transform: translateY(-5px);
+          box-shadow: 0 25px 60px rgba(230,30,37,0.15);
         }
 
         .touch-left h2 {
@@ -223,7 +239,7 @@ export default function ContactPage() {
           font-weight: 800;
           line-height: 1;
           margin-bottom: 1.5rem;
-          color: #1a1a1a;
+          color: #ffffff;
         }
 
         .touch-left h2 .italic {
@@ -234,7 +250,7 @@ export default function ContactPage() {
 
         .touch-left p {
           font-size: 1.1rem;
-          color: #666;
+          color: rgba(255,255,255,0.7);
           line-height: 1.6;
         }
 
