@@ -298,7 +298,8 @@ export default function Home() {
         }
 
         .section-dark {
-          background: #f5f5f5;
+          background: rgba(0, 0, 0, 0.85); /* Semi-transparent black */
+          backdrop-filter: blur(10px);
         }
 
         .section-title {
@@ -553,10 +554,11 @@ export default function Home() {
           font-weight: 900;
           margin-bottom: 1rem;
           line-height: 1.2;
+          color: white;
         }
 
         .for-brands-content p {
-          color: #666;
+          color: rgba(255, 255, 255, 0.8) !important;
           font-size: 1rem;
           line-height: 1.6;
           margin-bottom: 2rem;
@@ -1226,7 +1228,7 @@ export default function Home() {
       </section>
 
       {/* Tabbed Section - Why Us, Reach, Solutions */}
-      <section className="section" style={{ background: '#f5f5f5', padding: 'clamp(4rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem)' }}>
+      <section className="section" style={{ background: 'rgba(0, 0, 0, 0.9)', backdropFilter: 'blur(10px)', padding: 'clamp(4rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem)' }}>
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -1321,12 +1323,13 @@ export default function Home() {
                     fontSize: 'clamp(2.5rem, 5vw, 4rem)', 
                     fontWeight: 900, 
                     marginBottom: '1.5rem',
-                    lineHeight: 1.2
+                    lineHeight: 1.2,
+                    color: 'white'
                   }}>
                     Built for Visibility
                   </h2>
                   <p style={{ 
-                    color: '#666666', 
+                    color: 'rgba(255, 255, 255, 0.8)', 
                     fontSize: '1.1rem', 
                     lineHeight: 1.8,
                     marginBottom: '2rem'
@@ -1339,7 +1342,7 @@ export default function Home() {
                       display: 'inline-flex', 
                       alignItems: 'center', 
                       gap: '0.5rem',
-                      color: '#1a1a1a',
+                      color: 'white',
                       textDecoration: 'none',
                       fontWeight: 600,
                       fontSize: '1rem',
@@ -1367,12 +1370,13 @@ export default function Home() {
                     fontSize: 'clamp(2.5rem, 5vw, 4rem)', 
                     fontWeight: 900, 
                     marginBottom: '1.5rem',
-                    lineHeight: 1.2
+                    lineHeight: 1.2,
+                    color: 'white'
                   }}>
                     Nationwide Coverage
                   </h2>
                   <p style={{ 
-                    color: '#666666', 
+                    color: 'rgba(255, 255, 255, 0.8)', 
                     fontSize: '1.1rem', 
                     lineHeight: 1.8,
                     marginBottom: '2rem'
@@ -1385,7 +1389,7 @@ export default function Home() {
                       display: 'inline-flex', 
                       alignItems: 'center', 
                       gap: '0.5rem',
-                      color: '#1a1a1a',
+                      color: 'white',
                       textDecoration: 'none',
                       fontWeight: 600,
                       fontSize: '1rem',
@@ -1413,7 +1417,8 @@ export default function Home() {
                     fontSize: 'clamp(2.5rem, 5vw, 4rem)', 
                     fontWeight: 900, 
                     marginBottom: '1.5rem',
-                    lineHeight: 1.2
+                    lineHeight: 1.2,
+                    color: 'white'
                   }}>
                     Complete Solutions
                   </h2>
@@ -1431,7 +1436,7 @@ export default function Home() {
                       display: 'inline-flex', 
                       alignItems: 'center', 
                       gap: '0.5rem',
-                      color: '#1a1a1a',
+                      color: 'white',
                       textDecoration: 'none',
                       fontWeight: 600,
                       fontSize: '1rem',

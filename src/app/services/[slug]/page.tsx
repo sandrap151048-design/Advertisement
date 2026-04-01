@@ -190,9 +190,10 @@ export default function DynamicServicePage() {
       <style jsx global>{`
 
         .service-detail-page {
-          background: #f5f5f5;
+          background: #050505;
           min-height: 100vh;
           padding-top: 140px;
+          color: white;
         }
 
         .back-button {
@@ -200,17 +201,19 @@ export default function DynamicServicePage() {
           top: 140px;
           left: 40px;
           z-index: 100;
-          background: white;
-          width: 40px;
-          height: 40px;
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(10px);
+          width: 45px;
+          height: 45px;
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          box-shadow: 0 4px 20px rgba(0,0,0,0.3);
           cursor: pointer;
           transition: all 0.3s ease;
-          border: none;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          color: white;
         }
 
         .back-button:hover {
@@ -241,11 +244,12 @@ export default function DynamicServicePage() {
         }
 
         .hero-text h1 {
-          font-size: 3.5rem;
-          font-weight: 900;
+          font-size: 4rem;
+          font-weight: 950;
           margin-bottom: 0;
           line-height: 1;
-          color: #e61e25;
+          color: white;
+          letter-spacing: -2px;
         }
 
         .hero-text .subtitle {
@@ -255,12 +259,13 @@ export default function DynamicServicePage() {
           font-weight: 400;
           margin-bottom: 1.5rem;
           line-height: 1;
+          text-shadow: 0 0 20px rgba(230, 30, 37, 0.3);
         }
 
         .hero-text p {
-          color: #333;
-          line-height: 1.6;
-          font-size: 0.95rem;
+          color: rgba(255, 255, 255, 0.82);
+          line-height: 1.8;
+          font-size: 1.1rem;
           max-width: 90%;
         }
 
@@ -304,10 +309,11 @@ export default function DynamicServicePage() {
         }
 
         .why-choose-title {
-          font-size: 2.5rem;
-          font-weight: 900;
-          line-height: 1.2;
-          color: #000;
+          font-size: 2.8rem;
+          font-weight: 950;
+          line-height: 1.1;
+          color: white;
+          letter-spacing: -1px;
         }
 
         .accordion-list {
@@ -317,18 +323,18 @@ export default function DynamicServicePage() {
         }
 
         .accordion-item {
-          border: 1px solid #e0e0e0;
+          border: 1px solid rgba(255, 255, 255, 0.1);
           border-radius: 12px;
           overflow: hidden;
-          background: transparent;
+          background: rgba(255, 255, 255, 0.03);
           transition: all 0.3s ease;
         }
 
         .accordion-item.open {
-          background: white;
+          background: rgba(230, 30, 37, 0.08);
           border-color: #e61e25;
-          box-shadow: 0 4px 12px rgba(255, 107, 53, 0.15);
-          transform: translateX(5px);
+          box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+          transform: translateX(8px);
         }
 
         .accordion-header {
@@ -338,10 +344,10 @@ export default function DynamicServicePage() {
           align-items: center;
           cursor: pointer;
           font-weight: 600;
-          font-size: 1.1rem;
+          font-size: 1.15rem;
           transition: all 0.3s ease;
-          background: white;
-          border-radius: 12px;
+          background: transparent;
+          color: white;
         }
 
         .accordion-header:hover {
@@ -369,8 +375,9 @@ export default function DynamicServicePage() {
 
         .accordion-content-inner {
           padding: 0 1.5rem 1.5rem 1.5rem;
-          color: #666;
-          line-height: 1.6;
+          color: rgba(255, 255, 255, 0.7);
+          line-height: 1.7;
+          font-size: 1rem;
         }
 
         .items-section {
@@ -387,15 +394,16 @@ export default function DynamicServicePage() {
         }
 
         .item-card {
-          background: white;
-          border-radius: 16px;
-          padding: 2rem;
-          box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-          border: 1px solid #eee;
-          transition: all 0.3s ease;
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 20px;
+          padding: 2.2rem;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
           display: flex;
           align-items: center;
-          gap: 1rem;
+          gap: 1.5rem;
+          backdrop-filter: blur(10px);
         }
 
         .item-card:hover {
@@ -419,9 +427,10 @@ export default function DynamicServicePage() {
         }
 
         .item-card .item-text {
-          font-size: 1.05rem;
-          font-weight: 600;
-          color: #1a1a1a;
+          font-size: 1.15rem;
+          font-weight: 700;
+          color: #ffffff;
+          letter-spacing: -0.5px;
         }
 
         
@@ -533,10 +542,10 @@ export default function DynamicServicePage() {
             viewport={{ once: true }}
             variants={staggerContainer}
           >
-            <motion.h2 variants={fadeInUp} style={{ fontSize: '2.5rem', fontWeight: 900, color: '#000', marginBottom: '0.5rem' }}>
-              What We <span style={{ fontStyle: 'italic', fontWeight: 400 }}>Offer</span>
+            <motion.h2 variants={fadeInUp} style={{ fontSize: '2.5rem', fontWeight: 950, color: 'white', marginBottom: '1.5rem', letterSpacing: '-1px' }}>
+              What We <span style={{ fontStyle: 'italic', fontWeight: 400, color: '#e61e25' }}>Offer</span>
             </motion.h2>
-            <motion.p variants={fadeInUp} style={{ color: '#666', fontSize: '1.05rem', maxWidth: '600px' }}>
+            <motion.p variants={fadeInUp} style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '1.1rem', maxWidth: '600px', lineHeight: 1.6 }}>
               Comprehensive solutions tailored to your specific requirements
             </motion.p>
             <motion.div className="items-grid" variants={fadeInUp}>

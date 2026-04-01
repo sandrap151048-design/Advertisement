@@ -52,9 +52,10 @@ export default function DigitalGraphicsPage() {
       <style jsx global>{`
 
         .service-detail-page {
-          background: #f5f5f5;
+          background: #050505;
           min-height: 100vh;
           padding-top: 140px;
+          color: white;
         }
 
         .back-button {
@@ -62,17 +63,19 @@ export default function DigitalGraphicsPage() {
           top: 140px;
           left: 40px;
           z-index: 100;
-          background: white;
-          width: 40px;
-          height: 40px;
+          background: rgba(255,255,255,0.1);
+          backdrop-filter: blur(10px);
+          width: 45px;
+          height: 45px;
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          box-shadow: 0 4px 20px rgba(0,0,0,0.3);
           cursor: pointer;
           transition: all 0.3s ease;
           border: none;
+          color: white;
         }
 
         .back-button:hover {
@@ -106,12 +109,12 @@ export default function DigitalGraphicsPage() {
           font-weight: 900;
           margin-bottom: 0;
           line-height: 1;
-          color: #000;
+          color: white;
         }
 
         .hero-text .subtitle {
           font-style: italic;
-          color: #000;
+          color: #e61e25;
           font-size: 3.5rem;
           font-weight: 400;
           margin-bottom: 1.5rem;
@@ -119,9 +122,9 @@ export default function DigitalGraphicsPage() {
         }
 
         .hero-text p {
-          color: #333;
-          line-height: 1.6;
-          font-size: 0.95rem;
+          color: rgba(255,255,255,0.82);
+          line-height: 1.8;
+          font-size: 1.1rem;
           max-width: 90%;
         }
 
@@ -168,7 +171,7 @@ export default function DigitalGraphicsPage() {
           font-size: 2.5rem;
           font-weight: 900;
           line-height: 1.2;
-          color: #000;
+          color: white;
         }
 
         .accordion-list {
@@ -178,18 +181,18 @@ export default function DigitalGraphicsPage() {
         }
 
         .accordion-item {
-          border: 1px solid #e0e0e0;
+          border: 1px solid rgba(255,255,255,0.1);
           border-radius: 12px;
           overflow: hidden;
-          background: transparent;
+          background: rgba(255,255,255,0.03);
           transition: all 0.3s ease;
         }
 
         .accordion-item.open {
-          background: white;
+          background: rgba(230,30,37,0.08);
           border-color: #e61e25;
-          box-shadow: 0 4px 12px rgba(255, 107, 53, 0.15);
-          transform: translateX(5px);
+          box-shadow: 0 4px 25px rgba(0,0,0,0.2);
+          transform: translateX(8px);
         }
 
         .accordion-header {
@@ -201,12 +204,13 @@ export default function DigitalGraphicsPage() {
           font-weight: 600;
           font-size: 1.1rem;
           transition: all 0.3s ease;
-          background: white;
-          border-radius: 12px;
+          background: transparent;
+          color: white;
+        color: white;
         }
 
         .accordion-header:hover {
-          background: rgba(255, 107, 53, 0.05);
+          background: rgba(230,30,37,0.05);
           transform: translateX(3px);
         }
 
@@ -230,7 +234,9 @@ export default function DigitalGraphicsPage() {
 
         .accordion-content-inner {
           padding: 0 1.5rem 1.5rem 1.5rem;
-          color: #666;
+          color: rgba(255,255,255,0.7);
+          line-height: 1.7;
+          font-size: 1rem;
           line-height: 1.6;
         }
 

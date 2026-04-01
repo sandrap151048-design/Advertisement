@@ -215,7 +215,7 @@ function ProjectsContent() {
     };
 
     return (
-        <div style={{ background: '#ffffff', minHeight: '100vh', color: '#1a1a1a' }}>
+        <div style={{ background: 'rgba(5, 5, 5, 0.98)', minHeight: '100vh', color: 'white', backdropFilter: 'blur(10px)' }}>
             <style jsx global>{`
                 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap');
                 
@@ -288,13 +288,13 @@ function ProjectsContent() {
                 .section-header {
                     padding: 80px 0 60px 0;
                     text-align: center;
-                    background: #ffffff;
+                    background: transparent;
                 }
                 .title-our {
                     font-size: clamp(2rem, 8vw, 3.5rem);
                     font-weight: 800;
                     margin-bottom: 2rem;
-                    color: #000;
+                    color: white;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -311,7 +311,7 @@ function ProjectsContent() {
                 .header-desc {
                     max-width: 800px;
                     margin: 0 auto;
-                    color: #444;
+                    color: rgba(255, 255, 255, 0.8);
                     font-size: 1.1rem;
                     line-height: 1.6;
                     font-weight: 500;
@@ -329,8 +329,8 @@ function ProjectsContent() {
                     padding: 0.6rem 1.8rem;
                     border-radius: 4px;
                     border: 1px solid #ddd;
-                    background: white;
-                    color: #444;
+                    background: rgba(255, 255, 255, 0.1);
+                    color: white;
                     font-weight: 600;
                     cursor: pointer;
                     transition: all 0.3s;
@@ -351,20 +351,22 @@ function ProjectsContent() {
                     align-items: center;
                 }
                 .cluster-text {
-                    background: white;
+                    background: rgba(255, 255, 255, 0.05);
                     padding: clamp(1.5rem, 5vw, 4rem);
-                    border: 1px solid rgba(0,0,0,0.05);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
                     border-radius: 24px;
-                    box-shadow: 0 20px 50px rgba(0,0,0,0.03);
+                    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+                    color: white;
                 }
                 .cluster-title {
                     font-size: clamp(1.8rem, 6vw, 3rem);
                     font-weight: 800;
                     margin-bottom: 1.5rem;
                     letter-spacing: -1px;
+                    color: white;
                 }
                 .cluster-desc {
-                    color: #666;
+                    color: rgba(255, 255, 255, 0.7);
                     line-height: 1.8;
                     font-size: 1.05rem;
                 }
@@ -600,7 +602,7 @@ function ProjectsContent() {
                                     </div>
                                 ))
                             ) : (
-                                <div style={{ textAlign: 'center', padding: '5rem', background: '#f9f9f9', borderRadius: '24px' }}>
+                                <div style={{ textAlign: 'center', padding: '5rem', background: 'rgba(255,255,255,0.05)', borderRadius: '24px' }}>
                                     <h3 style={{ fontSize: '1.5rem', color: '#666', marginBottom: '1rem' }}>No projects found in this category</h3>
                                     <button onClick={() => setFilterCategory('All')} style={{ background: '#e61e25', color: 'white', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '12px', fontWeight: 700, cursor: 'pointer' }}>View All Projects</button>
                                 </div>

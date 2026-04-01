@@ -77,9 +77,10 @@ export default function CampaignSolutionsPage() {
       <style jsx global>{`
 
         .billboard-page {
-          background: #f5f5f5;
+          background: #050505;
           min-height: 100vh;
           padding-top: 140px;
+          color: white;
         }
 
         .back-button {
@@ -94,10 +95,11 @@ export default function CampaignSolutionsPage() {
           display: flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          box-shadow: 0 4px 20px rgba(0,0,0,0.3);
           cursor: pointer;
           transition: all 0.3s ease;
           border: none;
+          color: white;
         }
 
         .back-button:hover {
@@ -227,7 +229,7 @@ export default function CampaignSolutionsPage() {
         }
 
         .accordion-item {
-          border: 1px solid #e0e0e0;
+          border: 1px solid rgba(255,255,255,0.1);
           border-radius: 12px;
           overflow: hidden;
           background: white;
@@ -248,6 +250,7 @@ export default function CampaignSolutionsPage() {
           font-weight: 600;
           font-size: 1.1rem;
           transition: all 0.3s ease;
+        color: white;
         }
 
         .accordion-header:hover {
@@ -274,7 +277,7 @@ export default function CampaignSolutionsPage() {
 
         .accordion-content-inner {
           padding: 0 1.5rem 1.5rem 1.5rem;
-          color: #666;
+          color: rgba(255,255,255,0.7);
           line-height: 1.6;
         }
 

@@ -210,8 +210,9 @@ export default function ServicesPage() {
       <style jsx global>{`
 
         .services-page {
-          background: #ffffff;
+          background: rgba(0, 0, 0, 0.95);
           min-height: 100vh;
+          color: white;
         }
 
         .hero-services {
@@ -292,7 +293,8 @@ export default function ServicesPage() {
 
         .services-section {
           padding: 6rem 1.5rem;
-          background: #ffffff;
+          background: rgba(0, 0, 0, 0.8);
+          backdrop-filter: blur(10px);
         }
 
         .section-header {
@@ -304,7 +306,7 @@ export default function ServicesPage() {
           font-size: clamp(2.5rem, 5vw, 3.5rem);
           font-weight: 900;
           margin-bottom: 1rem;
-          color: #1a1a1a;
+          color: #ffffff;
           letter-spacing: -1px;
         }
 
@@ -315,40 +317,32 @@ export default function ServicesPage() {
 
         .section-subtitle {
           font-size: 1.1rem;
-          color: #666;
+          color: rgba(255, 255, 255, 0.7);
           max-width: 600px;
           margin: 0 auto;
           line-height: 1.6;
         }
 
         .services-deck {
-          position: relative;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          min-height: 600px;
-          max-width: 100vw;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          gap: 2.5rem;
+          max-width: 1300px;
           margin: 4rem auto;
-          perspective: 1000px;
+          padding: 0 20px;
         }
 
         .service-card {
-          position: absolute;
-          width: 260px;
-          height: 380px;
-          border-radius: 16px;
+          width: 100%;
+          height: 420px;
+          border-radius: 20px;
           overflow: hidden;
           cursor: pointer;
-          transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-          background: rgba(10, 10, 10, 0.95);
+          transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+          background: #000000;
           border: 1px solid rgba(255, 255, 255, 0.1);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-          backdrop-filter: blur(10px);
-          will-change: transform, box-shadow, z-index;
-          transform-origin: bottom center;
-          transform: translateX(calc(var(--offset) * 130px)) 
-                     translateY(calc(var(--offset) * var(--offset) * 8px)) 
-                     rotate(calc(var(--offset) * 6deg));
+          box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
+          position: relative;
         }
 
         .service-card::before {
@@ -363,14 +357,9 @@ export default function ServicesPage() {
         }
 
         .service-card:hover {
-          transform-origin: bottom center;
-          transform: translateX(calc(var(--offset) * 130px)) 
-                     translateY(-40px) 
-                     rotate(0deg) 
-                     scale(1.1);
-          z-index: 100 !important;
-          box-shadow: 0 40px 80px rgba(230, 30, 37, 0.2), 0 0 0 2px rgba(230, 30, 37, 0.5);
-          border-color: rgba(230, 30, 37, 0.3);
+          transform: translateY(-15px);
+          box-shadow: 0 40px 80px rgba(230, 30, 37, 0.3), 0 0 0 2px rgba(230, 30, 37, 0.4);
+          border-color: rgba(230, 30, 37, 0.4);
         }
 
         .service-card:hover::before {
@@ -431,16 +420,16 @@ export default function ServicesPage() {
         .service-card.clicked .service-overlay {
           justify-content: center;
           align-items: center;
-          background: rgba(230, 30, 37, 0.95);
+          background: #e61e25;
         }
 
         .service-title {
-          font-size: 1.5rem;
-          font-weight: 800;
-          margin-bottom: 0.6rem;
-          color: #e61e25;
+          font-size: 1.6rem;
+          font-weight: 900;
+          margin-bottom: 0.8rem;
+          color: white;
           transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-          text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+          text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
         .service-card:hover .service-title {
@@ -451,14 +440,15 @@ export default function ServicesPage() {
           font-size: 2.5rem;
           text-align: center;
           transform: scale(1.1);
+          color: white;
         }
 
         .service-desc {
-          font-size: 1rem;
-          color: rgba(255,255,255,0.9);
+          font-size: 1.05rem;
+          color: rgba(255,255,255,1);
           line-height: 1.6;
           transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-          max-width: 90%;
+          max-width: 95%;
         }
 
         .service-card:hover .service-desc {
@@ -473,7 +463,9 @@ export default function ServicesPage() {
 
         .why-choose-section {
           padding: 8rem 1.5rem;
-          background: #fdfdfd;
+          background: rgba(0, 0, 0, 0.9);
+          backdrop-filter: blur(10px);
+          color: white;
         }
 
         .why-choose-container {
@@ -490,10 +482,11 @@ export default function ServicesPage() {
           font-weight: 900;
           margin-bottom: 1.5rem;
           line-height: 1.2;
+          color: white;
         }
 
         .why-choose-content p {
-          color: #666;
+          color: rgba(255, 255, 255, 0.7);
           font-size: 1rem;
           line-height: 1.6;
           margin-bottom: 2rem;
@@ -506,10 +499,10 @@ export default function ServicesPage() {
         }
 
         .accordion-item {
-          border: 1px solid #e0e0e0;
+          border: 1px solid rgba(255, 255, 255, 0.1);
           border-radius: 12px;
           overflow: hidden;
-          background: white;
+          background: rgba(255, 255, 255, 0.05);
           transition: all 0.3s ease;
         }
 
@@ -526,6 +519,7 @@ export default function ServicesPage() {
           cursor: pointer;
           font-weight: 600;
           font-size: 1.1rem;
+          color: white;
           transition: all 0.3s ease;
         }
 
@@ -776,11 +770,6 @@ export default function ServicesPage() {
                   className="service-card"
                   onMouseMove={handleCardMouseMove}
                   onClick={(e) => handleCardClick(e, service.link)}
-                  style={{
-                    '--offset': offset,
-                    '--abs-offset': absOffset,
-                    zIndex: zIndex
-                  } as any}
                 >
                   <img 
                     src={service.image} 
@@ -792,15 +781,15 @@ export default function ServicesPage() {
                   <div className="service-overlay">
                      <h3 className="service-title">
                        {service.title.includes('&') ? (
-                         <>
-                           <span style={{ color: '#1a1a1a' }}>{service.title.split('&')[0].trim()}</span>
-                           <span style={{ color: '#e61e25' }}> & {service.title.split('&')[1].trim()}</span>
-                         </>
+                          <>
+                            <span style={{ color: 'white' }}>{service.title.split('&')[0].trim()}</span>
+                            <span style={{ color: 'white' }}> & {service.title.split('&')[1].trim()}</span>
+                          </>
                        ) : (
-                         <span style={{ color: '#1a1a1a' }}>{service.title}</span>
+                         <span style={{ color: 'white' }}>{service.title}</span>
                        )}
                      </h3>
-                    <p className="service-desc">{service.description}</p>
+                    <p className="service-desc" style={{ color: 'white' }}>{service.description}</p>
                   </div>
                 </div>
               )})}
@@ -822,10 +811,10 @@ export default function ServicesPage() {
                 Why Choose{' '}
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
                   <svg width="40" height="40" viewBox="0 0 40 40" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-                    <circle cx="20" cy="20" r="17" fill="none" stroke="#1a1a1a" strokeWidth="4"/>
+                    <circle cx="20" cy="20" r="17" fill="none" stroke="white" strokeWidth="4"/>
                     <rect x="23" y="3" width="13" height="13" fill="#e61e25" rx="1"/>
                   </svg>
-                  <span style={{ color: '#1a1a1a' }}>ne Click</span>
+                  <span style={{ color: 'white' }}>ne Click</span>
                 </span>
               </h2>
               <p>
