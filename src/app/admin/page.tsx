@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Home, Users, MessageSquare, Briefcase, TrendingUp, Activity, Clock, CheckCircle, Mail, Phone, ShieldCheck } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -82,14 +82,14 @@ export default function AdminPage() {
 
     if (!isAuthenticated) return null;
 
-    const containerVariants = {
+    const containerVariants: Variants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
     };
 
-    const itemVariants = {
+    const itemVariants: Variants = {
         hidden: { y: 20, opacity: 0 },
-        visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 100 } }
+        visible: { y: 0, opacity: 1, transition: { type: "spring" as const, stiffness: 100 } }
     };
 
     return (
