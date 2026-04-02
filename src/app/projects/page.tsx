@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, Suspense, useRef, useMemo, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { 
     ArrowRight, 
     Image as ImageIcon,
@@ -111,6 +111,24 @@ function ProjectsContent() {
     const [filterCategory, setFilterCategory] = useState('All');
     const [dynamicProjects, setDynamicProjects] = useState<Project[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+
+    // 3D Parallax Mouse Tracking
+    const mouseX = useMotionValue(0.5);
+    const mouseY = useMotionValue(0.5);
+    const springConfig = { damping: 20, stiffness: 100 };
+    const springX = useSpring(mouseX, springConfig);
+    const springY = useSpring(mouseY, springConfig);
+    
+    const rotateX = useTransform(springY, [0, 1], [10, -10]);
+    const rotateY = useTransform(springX, [0, 1], [-10, 10]);
+    const bgX = useTransform(springX, [0, 1], [-20, 20]);
+    const bgY = useTransform(springY, [0, 1], [-20, 20]);
+
+    const handleHeroMouseMove = (e: React.MouseEvent) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        mouseX.set((e.clientX - rect.left) / rect.width);
+        mouseY.set((e.clientY - rect.top) / rect.height);
+    };
 
     const handleCategoryChange = useCallback((category: string) => {
         setFilterCategory(category);
@@ -231,8 +249,8 @@ function ProjectsContent() {
     };
 
     const fadeInUp = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+        hidden: { opacity: 0, y: 15 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.3 } }
     };
 
     const handleLogout = () => {
@@ -245,7 +263,7 @@ function ProjectsContent() {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+            transition: { staggerChildren: 0.08, delayChildren: 0.1 }
         }
     };
 
@@ -550,27 +568,34 @@ function ProjectsContent() {
                 }
             `}</style>
 
-            <header className="hero-works">
-                <div className="hero-works-bg">
+            <header className="hero-works" onMouseMove={handleHeroMouseMove}>
+                <motion.div 
+                    className="hero-works-bg"
+                    style={{ x: bgX, y: bgY }}
+                    initial={{ scale: 1.1, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 2.0, ease: "easeOut" }}
+                >
                     <img 
                         src="/professional_agency_team.png" 
                         alt="Professional Agency Team"
                         loading="eager"
                     />
-                </div>
+                </motion.div>
                 <div className="hero-works-overlay"></div>
 
                 <motion.div 
                     className="hero-works-content"
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1.0, ease: "easeOut" }}
+                    style={{ rotateX, rotateY }}
+                    initial={{ opacity: 0, rotateX: 20, y: 100, scale: 0.8 }}
+                    animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
+                    transition={{ duration: 1.4, type: "spring", bounce: 0.3 }}
                 >
                     <motion.h1 
                         className="hero-works-h1"
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
+                        initial={{ opacity: 0, y: 30, z: -150 }}
+                        animate={{ opacity: 1, y: 0, z: 0 }}
+                        transition={{ duration: 1.0, delay: 0.4, type: "spring", bounce: 0.4 }}
                     >
                         Our <motion.span
                             animate={{ 
@@ -585,9 +610,9 @@ function ProjectsContent() {
                     </motion.h1>
                     <motion.div 
                         className="hero-works-tagline"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.6, duration: 0.6 }}
+                        initial={{ opacity: 0, y: 20, z: -50 }}
+                        animate={{ opacity: 1, y: 0, z: 0 }}
+                        transition={{ delay: 0.6, duration: 0.8 }}
                     >
                         Real campaigns. Real impact.
                     </motion.div>
@@ -664,18 +689,18 @@ function ProjectsContent() {
                                         style={{ flexDirection: idx % 2 === 0 ? 'row' : 'row-reverse' }}
                                         initial={{ 
                                             opacity: 0, 
-                                            y: 40,
-                                            scale: 0.95
+                                            y: 25,
+                                            scale: 0.98
                                         }}
                                         whileInView={{ 
                                             opacity: 1, 
                                             y: 0,
                                             scale: 1
                                         }}
-                                        viewport={{ once: true, margin: "-50px" }}
+                                        viewport={{ once: true, margin: "-30px" }}
                                         transition={{ 
-                                            duration: 0.8, 
-                                            delay: idx * 0.1,
+                                            duration: 0.5, 
+                                            delay: idx * 0.08,
                                             ease: "easeOut"
                                         }}
                                     >
@@ -683,8 +708,8 @@ function ProjectsContent() {
                                             className="cluster-text"
                                             initial={{ 
                                                 opacity: 0, 
-                                                x: idx % 2 === 0 ? -30 : 30,
-                                                scale: 0.98
+                                                x: idx % 2 === 0 ? -20 : 20,
+                                                scale: 0.99
                                             }}
                                             whileInView={{ 
                                                 opacity: 1, 
@@ -693,8 +718,8 @@ function ProjectsContent() {
                                             }}
                                             viewport={{ once: true }}
                                             transition={{ 
-                                                duration: 0.7, 
-                                                delay: idx * 0.1 + 0.2,
+                                                duration: 0.4, 
+                                                delay: idx * 0.08 + 0.1,
                                                 ease: "easeOut"
                                             }}
                                         >
@@ -727,8 +752,8 @@ function ProjectsContent() {
                                             className={`cluster-images ${project.images.length === 1 ? 'single' : ''} ${project.isSmall ? 'small' : ''}`}
                                             initial={{ 
                                                 opacity: 0, 
-                                                x: idx % 2 === 0 ? 30 : -30,
-                                                scale: 0.98
+                                                x: idx % 2 === 0 ? 20 : -20,
+                                                scale: 0.99
                                             }}
                                             whileInView={{ 
                                                 opacity: 1, 
@@ -737,8 +762,8 @@ function ProjectsContent() {
                                             }}
                                             viewport={{ once: true }}
                                             transition={{ 
-                                                duration: 0.8, 
-                                                delay: idx * 0.1 + 0.3,
+                                                duration: 0.5, 
+                                                delay: idx * 0.08 + 0.15,
                                                 ease: "easeOut"
                                             }}
                                         >
@@ -752,7 +777,7 @@ function ProjectsContent() {
                                                         loading="lazy"
                                                         initial={{ 
                                                             opacity: 0, 
-                                                            scale: 0.95
+                                                            scale: 0.97
                                                         }}
                                                         whileInView={{ 
                                                             opacity: 1, 
@@ -760,13 +785,13 @@ function ProjectsContent() {
                                                         }}
                                                         viewport={{ once: true }}
                                                         transition={{ 
-                                                            duration: 0.6, 
-                                                            delay: idx * 0.1 + 0.4 + (i * 0.1),
+                                                            duration: 0.4, 
+                                                            delay: idx * 0.08 + 0.2 + (i * 0.05),
                                                             ease: "easeOut"
                                                         }}
                                                         whileHover={{ 
                                                             scale: 1.03,
-                                                            transition: { duration: 0.3, ease: "easeOut" }
+                                                            transition: { duration: 0.2, ease: "easeOut" }
                                                         }}
                                                         onError={(e) => {
                                                             (e.target as HTMLImageElement).src = '/projects-hero-bg.png';

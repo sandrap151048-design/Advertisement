@@ -62,6 +62,12 @@ export default function ServicesPage() {
             return;
         }
         setIsAuthorized(true);
+        
+        // Immediately show static services and set loading to false
+        setServices([...frontendServices] as any);
+        setIsLoading(false);
+        
+        // Fetch dynamic services in background without blocking UI
         fetchServices();
     }, [router]);
 
@@ -71,24 +77,55 @@ export default function ServicesPage() {
 
     async function fetchServices() {
         try {
-            const timestamp = new Date().getTime();
-            const response = await fetch(`/api/services?t=${timestamp}`, { cache: 'no-store', headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' } });
-            const data = await response.json();
+            // Check cache first
+            const cachedServices = sessionStorage.getItem('adminServicesCache');
+            const cacheTime = sessionStorage.getItem('adminServicesCacheTime');
+            const now = Date.now();
             
-            const apiServices = Array.isArray(data) ? data : [];
-            // Merge static and api services, avoid duplicates by name
-            const combined = [...frontendServices];
-            apiServices.forEach((api: any) => {
-                if (!combined.some(f => f.name.toLowerCase() === api.name.toLowerCase())) {
-                    combined.push(api);
-                }
+            // Use cache if it's less than 2 minutes old
+            if (cachedServices && cacheTime && (now - parseInt(cacheTime)) < 120000) {
+                const cached = JSON.parse(cachedServices);
+                const combined = [...frontendServices];
+                cached.forEach((api: any) => {
+                    if (!combined.some(f => f.name.toLowerCase() === api.name.toLowerCase())) {
+                        combined.push(api);
+                    }
+                });
+                setServices(combined);
+                return;
+            }
+
+            const timestamp = new Date().getTime();
+            const response = await fetch(`/api/services?t=${timestamp}`, { 
+                cache: 'no-store', 
+                headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' } 
             });
-            setServices(combined);
+            
+            if (response.ok) {
+                const data = await response.json();
+                const apiServices = Array.isArray(data) ? data.filter((s: any) => s && s.name) : [];
+                
+                // Merge static and api services, avoid duplicates by name
+                const combined = [...frontendServices];
+                apiServices.forEach((api: any) => {
+                    if (!combined.some(f => f.name.toLowerCase() === api.name.toLowerCase())) {
+                        combined.push(api);
+                    }
+                });
+                setServices(combined);
+                
+                // Cache the API services only
+                try {
+                    sessionStorage.setItem('adminServicesCache', JSON.stringify(apiServices));
+                    sessionStorage.setItem('adminServicesCacheTime', Date.now().toString());
+                } catch (cacheError) {
+                    console.warn('Failed to cache services:', cacheError);
+                }
+            }
         } catch (error) {
             console.error('Error fetching services:', error);
-            setServices([...frontendServices] as any);
+            // Keep static services on error
         }
-        setIsLoading(false);
     }
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -295,11 +332,7 @@ export default function ServicesPage() {
                     </button>
                 </header>
 
-                {isLoading ? (
-                    <div style={{ textAlign: 'center', padding: '3rem' }}>
-                        <p style={{ color: '#666666' }}>Loading services...</p>
-                    </div>
-                ) : services.length === 0 ? (
+                {services.length === 0 ? (
                     <div className="glass-card" style={{ padding: '3rem', textAlign: 'center' }}>
                         <Briefcase size={48} color="#666666" style={{ margin: '0 auto 1rem' }} />
                         <h3 style={{ marginBottom: '0.5rem' }}>No Services Yet</h3>
@@ -330,8 +363,9 @@ export default function ServicesPage() {
                         {services.map((service, index) => (
                             <motion.div
                                 key={service._id || index}
-                                initial={{ opacity: 0, y: 20 }}
+                                initial={{ opacity: 0, y: 15 }}
                                 animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.3, delay: index * 0.05 }}
                                 className="service-card"
                                 onMouseMove={handleCardMouseMove}
                             >

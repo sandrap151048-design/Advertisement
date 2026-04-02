@@ -9,7 +9,7 @@ import ServiceMap from '@/app/components/ServiceMap';
 const cardReveal: Variants = {
   hidden: { 
     opacity: 0, 
-    y: 20,
+    y: 15,
     scale: 0.99
   },
   visible: { 
@@ -17,7 +17,7 @@ const cardReveal: Variants = {
     y: 0,
     scale: 1,
     transition: { 
-      duration: 0.4,
+      duration: 0.3,
       ease: "easeOut"
     } 
   }
@@ -28,8 +28,8 @@ const staggerContainer: Variants = {
   visible: {
     opacity: 1,
     transition: { 
-      staggerChildren: 0.05,
-      delayChildren: 0.05
+      staggerChildren: 0.03,
+      delayChildren: 0.03
     }
   }
 };
@@ -740,18 +740,18 @@ export default function ServicesPage() {
                   onClick={(e) => handleCardClick(e, service.link)}
                   initial={{ 
                     opacity: 0, 
-                    y: 20,
-                    scale: 0.98
+                    y: 15,
+                    scale: 0.99
                   }}
                   whileInView={{ 
                     opacity: 1, 
                     y: 0,
                     scale: 1
                   }}
-                  viewport={{ once: true, margin: "-30px" }}
+                  viewport={{ once: true, margin: "-20px" }}
                   transition={{ 
-                    duration: 0.4,
-                    delay: index * 0.05,
+                    duration: 0.3,
+                    delay: index * 0.03,
                     ease: "easeOut"
                   }}
                   style={{
@@ -764,7 +764,7 @@ export default function ServicesPage() {
                     {service.title.includes('&') ? (
                       service.title === "Signage Production & Installation" ? (
                         <>
-                          <span style={{ color: '#e61e25' }}>Signage Production</span>
+                          <span style={{ color: 'white' }}>Signage Production</span>
                           <span style={{ color: '#e61e25' }}> & </span>
                           <span style={{ color: 'white' }}>Installation</span>
                         </>

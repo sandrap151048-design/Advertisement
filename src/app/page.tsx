@@ -536,7 +536,7 @@ export default function Home() {
 
         .portfolio-desc {
           font-size: 1rem;
-          color: rgba(255, 255, 255, 0.75);
+          color: white;
           line-height: 1.6;
           text-align: left;
           margin-bottom: auto;
@@ -1042,8 +1042,8 @@ export default function Home() {
                 <h3 className="portfolio-title">
                   {item.title.includes('&') ? (
                     <>
-                      <span style={{ color: '#e61e25' }}>{item.title.split('&')[0].trim()}</span>
-                      <span style={{ color: '#e61e25' }}> & </span>
+                      <span style={{ color: 'white' }}>{item.title.split('&')[0].trim()}</span>
+                      <span style={{ color: 'white' }}> & </span>
                       <span style={{ color: 'white' }}>{item.title.split('&')[1]?.trim()}</span>
                     </>
                   ) : item.title}
