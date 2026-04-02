@@ -435,17 +435,17 @@ export default function VehicleGraphicsPage() {
           variants={staggerContainer}
         >
           <motion.h2 className="cta-title" variants={fadeInUp}>
-            Start Your
-          </motion.h2>
-          <motion.div className="cta-subtitle" variants={fadeInUp}>
-            Campaign
+            Get in
+</motion.h2>
+<motion.div className="cta-subtitle" variants={fadeInUp}>
+Touch
           </motion.div>
           <motion.p className="cta-description" variants={fadeInUp}>
             Tell us about your requirements and we'll get back to you quickly
           </motion.p>
 
           <motion.div variants={fadeInUp} style={{ marginTop: '2rem' }}>
-            <Link href="/campaign" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.8rem', padding: '1.2rem 3rem', background: 'white', color: '#1c1c1c', fontWeight: 700, borderRadius: '12px', textDecoration: 'none', transition: 'all 0.3s ease', fontSize: '1.1rem', boxShadow: '0 4px 12px rgba(12, 12, 12,0.1)' }}>
+            <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.8rem', padding: '1.2rem 3rem', background: 'white', color: '#1c1c1c', fontWeight: 700, borderRadius: '12px', textDecoration: 'none', transition: 'all 0.3s ease', fontSize: '1.1rem', boxShadow: '0 4px 12px rgba(12, 12, 12,0.1)' }}>
               Submit Request <ArrowRight size={22} />
             </Link>
           </motion.div>

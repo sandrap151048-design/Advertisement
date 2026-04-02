@@ -585,7 +585,7 @@ export default function VehicleBrandingPage() {
             </motion.div>
 
             <motion.div variants={fadeInUp} style={{ marginTop: '2rem', textAlign: 'center' }}>
-              <Link href="/campaign" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.8rem', padding: '1.2rem 3rem', background: 'white', color: '#1c1c1c', fontWeight: 700, borderRadius: '12px', textDecoration: 'none', transition: 'all 0.3s ease', fontSize: '1.1rem', boxShadow: '0 4px 12px rgba(12, 12, 12,0.1)' }}>
+              <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.8rem', padding: '1.2rem 3rem', background: 'white', color: '#1c1c1c', fontWeight: 700, borderRadius: '12px', textDecoration: 'none', transition: 'all 0.3s ease', fontSize: '1.1rem', boxShadow: '0 4px 12px rgba(12, 12, 12,0.1)' }}>
                 Submit Request <ArrowRight size={22} />
               </Link>
             </motion.div>

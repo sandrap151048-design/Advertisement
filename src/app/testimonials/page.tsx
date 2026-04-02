@@ -546,7 +546,7 @@ export default function ProjectsPage() {
               transition={{ delay: 0.3 }}
               style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}
             >
-              <Link href="/campaign" style={{ textDecoration: 'none' }}>
+              <Link href="/contact" style={{ textDecoration: 'none' }}>
                 <motion.div
                   whileHover={{ scale: 1.05, y: -3 }}
                   whileTap={{ scale: 0.97 }}

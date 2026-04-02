@@ -187,12 +187,7 @@ export default function AdminSidebar() {
                         <span style={getNavTextStyle('/admin/services')}>Services</span>
                     </div>
                 </Link>
-                <Link href="/admin/campaigns" style={{ textDecoration: 'none' }} onClick={() => setIsMobileMenuOpen(false)}>
-                    <div style={getNavItemStyle('/admin/campaigns')}>
-                        <TrendingUp size={20} color={getNavIconColor('/admin/campaigns')} /> 
-                        <span style={getNavTextStyle('/admin/campaigns')}>Campaigns</span>
-                    </div>
-                </Link>
+                
                 <Link href="/admin/projects" style={{ textDecoration: 'none' }} onClick={() => setIsMobileMenuOpen(false)}>
                     <div style={getNavItemStyle('/admin/projects')}>
                         <Layout size={20} color={getNavIconColor('/admin/projects')} /> 
