@@ -12,7 +12,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer style={{ background: '#000000', color: 'white', padding: '100px 40px 60px 40px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+    <footer style={{ background: '#121212', color: 'white', padding: '100px 40px 60px 40px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '60px', marginBottom: '80px' }}>
           {/* Services Column */}

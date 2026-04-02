@@ -215,7 +215,7 @@ function ProjectsContent() {
     };
 
     return (
-        <div style={{ background: 'rgba(5, 5, 5, 0.98)', minHeight: '100vh', color: 'white', backdropFilter: 'blur(10px)' }}>
+        <div style={{ background: 'rgba(18, 18, 18, 0.98)', minHeight: '100vh', color: 'white', backdropFilter: 'blur(10px)' }}>
             <style jsx global>{`
                 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap');
                 
@@ -247,7 +247,7 @@ function ProjectsContent() {
                 .hero-works-overlay {
                     position: absolute;
                     inset: 0;
-                    background: radial-gradient(circle at center, rgba(30,0,0,0.2) 0%, rgba(0,0,0,0.9) 100%);
+                    background: radial-gradient(circle at center, rgba(30,0,0,0.2) 0%, rgba(12, 12, 12,0.9) 100%);
                     z-index: 1;
                 }
                 .hero-works-content {
@@ -267,7 +267,7 @@ function ProjectsContent() {
                     word-break: keep-all;
                     overflow-wrap: break-word;
                     transform: translateZ(100px);
-                    text-shadow: 0 15px 50px rgba(0,0,0,0.8);
+                    text-shadow: 0 15px 50px rgba(12, 12, 12,0.8);
                 }
                 .hero-works-h1 span {
                     color: #e61e25;
@@ -282,7 +282,7 @@ function ProjectsContent() {
                     font-weight: 500;
                     text-transform: uppercase;
                     transform: translateZ(60px);
-                    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+                    text-shadow: 0 4px 15px rgba(12, 12, 12,0.5);
                 }
                 
                 .section-header {
@@ -355,7 +355,7 @@ function ProjectsContent() {
                     padding: clamp(1.5rem, 5vw, 4rem);
                     border: 1px solid rgba(255, 255, 255, 0.1);
                     border-radius: 24px;
-                    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+                    box-shadow: 0 20px 50px rgba(12, 12, 12,0.2);
                     color: white;
                 }
                 .cluster-title {
@@ -384,21 +384,21 @@ function ProjectsContent() {
                     height: 650px;
                     object-fit: cover;
                     border-radius: 20px;
-                    box-shadow: 0 15px 45px rgba(0,0,0,0.1);
+                    box-shadow: 0 15px 45px rgba(12, 12, 12,0.1);
                     transition: all 0.5s ease;
                 }
                 .cluster-images.small .cluster-img {
                     height: 480px;
                 }
                 .cluster-img:hover {
-                    box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+                    box-shadow: 0 30px 60px rgba(12, 12, 12,0.2);
                     transform: scale(1.02);
                 }
                 
                 .project-overview-bg {
                     position: relative;
                     padding: 160px 0;
-                    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/dubai-hero-building.jpg');
+                    background-image: linear-gradient(rgba(12, 12, 12,0.5), rgba(12, 12, 12,0.5)), url('/dubai-hero-building.jpg');
                     background-size: cover;
                     background-position: center;
                     background-repeat: no-repeat;
@@ -411,14 +411,14 @@ function ProjectsContent() {
                 .project-overview-overlay {
                     position: absolute;
                     inset: 0;
-                    background: rgba(0,0,0,0.4);
+                    background: rgba(12, 12, 12,0.4);
                     z-index: 1;
                 }
                 .project-overview-glass {
                     position: relative;
                     z-index: 2;
                     max-width: 900px;
-                    background: rgba(0, 0, 0, 0.7);
+                    background: rgba(12, 12, 12, 0.7);
                     backdrop-filter: blur(30px);
                     -webkit-backdrop-filter: blur(30px);
                     padding: 5rem 3rem;

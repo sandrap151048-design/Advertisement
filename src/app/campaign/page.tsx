@@ -87,7 +87,7 @@ export default function CampaignPage() {
         }
 
         .campaign-page {
-          background: #0a0a0a;
+          background: #121212;
           min-height: 100vh;
           display: flex;
           align-items: center;
@@ -117,7 +117,7 @@ export default function CampaignPage() {
           background: #0f0f0f;
           border-radius: 12px;
           border: 1px solid rgba(255, 255, 255, 0.05);
-          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+          box-shadow: 0 20px 50px rgba(12, 12, 12, 0.6);
         }
 
         .campaign-header {
@@ -163,7 +163,7 @@ export default function CampaignPage() {
         .form-textarea {
           width: 100%;
           padding: 1.1rem 1.25rem;
-          background: #000000;
+          background: #121212;
           border: 1px solid rgba(255, 255, 255, 0.08);
           border-radius: 8px;
           color: white;
@@ -209,7 +209,7 @@ export default function CampaignPage() {
         }
 
         .status-overlay {
-          position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+          position: fixed; inset: 0; background: rgba(12, 12, 12,0.85);
           display: flex; align-items: center; justify-content: center; z-index: 9999;
           padding: 2rem; backdrop-filter: blur(10px);
         }

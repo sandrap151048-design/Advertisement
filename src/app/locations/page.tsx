@@ -44,7 +44,7 @@ export default function LocationsPage() {
         position: 'relative',
         padding: '10rem 2rem 6rem', 
         textAlign: 'center', 
-        background: '#050505',
+        background: '#121212',
         overflow: 'hidden',
         minHeight: '60vh',
         display: 'flex',
@@ -58,7 +58,7 @@ export default function LocationsPage() {
             style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.35) contrast(1.1)' }} 
           />
         </div>
-        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, rgba(30,0,0,0.2) 0%, rgba(0,0,0,0.85) 100%)', zIndex: 1 }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, rgba(30,0,0,0.2) 0%, rgba(12, 12, 12,0.85) 100%)', zIndex: 1 }} />
         
         <motion.div 
           initial="hidden" 
@@ -91,7 +91,7 @@ export default function LocationsPage() {
             marginBottom: '1.5rem', 
             color: 'white',
             lineHeight: 1,
-            textShadow: '0 10px 30px rgba(0,0,0,0.5)'
+            textShadow: '0 10px 30px rgba(12, 12, 12,0.5)'
           }}>
             Strategic <span style={{ color: '#e61e25' }}>Locations</span>
           </h1>
@@ -100,7 +100,7 @@ export default function LocationsPage() {
             color: 'rgba(255,255,255,0.9)', 
             lineHeight: 1.6,
             fontWeight: 500,
-            textShadow: '0 2px 10px rgba(0,0,0,0.3)'
+            textShadow: '0 2px 10px rgba(12, 12, 12,0.3)'
           }}>
             Command attention in the UAE's most high-traffic locations. From iconic landmarks to busy commercial arteries, we put your brand where the world is watching.
           </p>
@@ -118,16 +118,16 @@ export default function LocationsPage() {
               viewport={{ once: true }}
               variants={fadeInUp}
               whileHover={{ y: -10 }}
-              style={{ background: 'white', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column' }}
+              style={{ background: 'white', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(12, 12, 12,0.05)', display: 'flex', flexDirection: 'column' }}
             >
               <div style={{ height: '240px', overflow: 'hidden', position: 'relative' }}>
                 <img src={loc.image} alt={loc.city} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                <div style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'rgba(255,255,255,0.9)', backdropFilter: 'blur(10px)', padding: '0.4rem 0.8rem', borderRadius: '50px', fontSize: '0.75rem', fontWeight: 700, color: '#1a1a1a' }}>
+                <div style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'rgba(255,255,255,0.9)', backdropFilter: 'blur(10px)', padding: '0.4rem 0.8rem', borderRadius: '50px', fontSize: '0.75rem', fontWeight: 700, color: '#1c1c1c' }}>
                   {loc.region}
                 </div>
               </div>
               <div style={{ padding: '2rem', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                <h3 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '1rem', color: '#1a1a1a' }}>{loc.city}</h3>
+                <h3 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '1rem', color: '#1c1c1c' }}>{loc.city}</h3>
                 <p style={{ color: '#666', lineHeight: 1.7, fontSize: '1rem', marginBottom: '2rem', flexGrow: 1 }}>{loc.description}</p>
                 <Link href="/contact" style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#e61e25', textDecoration: 'none', fontWeight: 700, fontSize: '0.95rem' }}>
                   Inquire Now <ArrowRight size={18} />

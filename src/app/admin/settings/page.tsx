@@ -63,7 +63,7 @@ export default function SettingsPage() {
                             display: 'flex',
                             alignItems: 'center',
                             gap: '0.6rem',
-                            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                            boxShadow: '0 4px 12px rgba(12, 12, 12,0.15)',
                             transition: 'all 0.3s ease'
                         }}
                     >
@@ -77,7 +77,7 @@ export default function SettingsPage() {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    style={{ background: 'white', padding: '2.5rem', borderRadius: '24px', border: '1px solid #f1f5f9', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)' }}
+                    style={{ background: 'white', padding: '2.5rem', borderRadius: '24px', border: '1px solid #f1f5f9', boxShadow: '0 4px 6px -1px rgba(12, 12, 12, 0.05)' }}
                 >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
                         <div style={{ padding: '0.8rem', background: 'rgba(230, 30, 37, 0.1)', color: '#e61e25', borderRadius: '12px' }}>

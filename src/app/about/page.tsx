@@ -155,7 +155,7 @@ export default function AboutPage() {
         .hero-overlay {
           position: absolute;
           inset: 0;
-          background: radial-gradient(circle at center, rgba(10,0,0,0.4) 0%, rgba(5,5,5,0.95) 100%);
+          background: radial-gradient(circle at center, rgba(10,0,0,0.4) 0%, rgba(18, 18, 18,0.95) 100%);
           z-index: 1;
         }
 
@@ -176,7 +176,7 @@ export default function AboutPage() {
           margin-bottom: 2rem;
           letter-spacing: -3px;
           transform: translateZ(80px);
-          text-shadow: 0 10px 40px rgba(0,0,0,0.6);
+          text-shadow: 0 10px 40px rgba(12, 12, 12,0.6);
         }
 
         .hero-title span {
@@ -192,7 +192,7 @@ export default function AboutPage() {
           max-width: 750px;
           margin: 0 auto;
           line-height: 1.6;
-          text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+          text-shadow: 0 4px 15px rgba(12, 12, 12,0.5);
           transform: translateZ(40px);
           font-weight: 500;
         }
@@ -236,7 +236,7 @@ export default function AboutPage() {
           height: 450px;
           border-radius: 30px;
           object-fit: cover;
-          box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+          box-shadow: 0 30px 60px rgba(12, 12, 12,0.12);
         }
 
         .vision-mission-grid {
@@ -260,7 +260,7 @@ export default function AboutPage() {
 
         .vm-card:hover {
           background: rgba(230,30,37,0.06);
-          box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+          box-shadow: 0 20px 40px rgba(12, 12, 12,0.4);
           border-color: #e61e25;
           transform: translateY(-8px);
         }
@@ -335,7 +335,7 @@ export default function AboutPage() {
         }
 
         .process-section {
-          background: #0a0a0a;
+          background: #121212;
           padding: 8rem 2rem;
           text-align: center;
         }
@@ -435,7 +435,7 @@ export default function AboutPage() {
 
         .process-step:hover {
           border-color: #e61e25;
-          box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+          box-shadow: 0 15px 40px rgba(12, 12, 12,0.4);
           transform: translateY(-8px);
           background: #1f1111;
         }
@@ -519,7 +519,7 @@ export default function AboutPage() {
 
         .industries-section {
           padding: 8rem 2rem;
-          background: #0a0a0a;
+          background: #121212;
           color: white;
         }
 
@@ -544,7 +544,7 @@ export default function AboutPage() {
         .industry-card:hover {
           background: rgba(230,30,37,0.08);
           border-color: #e61e25;
-          box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+          box-shadow: 0 15px 30px rgba(12, 12, 12,0.3);
           transform: translateY(-8px);
         }
 
@@ -562,7 +562,7 @@ export default function AboutPage() {
         .commitment-section {
           padding: 10rem 2rem;
           text-align: center;
-          background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('/cta-bg-premium.png');
+          background: linear-gradient(rgba(12, 12, 12,0.8), rgba(12, 12, 12,0.8)), url('/cta-bg-premium.png');
           background-size: cover;
           background-attachment: fixed;
           color: white;
@@ -598,10 +598,10 @@ export default function AboutPage() {
         }
 
         .cta-button:hover {
-          background: #1a1a1a;
+          background: #1c1c1c;
           color: #e61e25;
           transform: scale(1.05);
-          box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+          box-shadow: 0 20px 40px rgba(12, 12, 12,0.3);
         }
 
         @media (max-width: 1024px) {
@@ -731,7 +731,7 @@ export default function AboutPage() {
         <section className="content-section" style={{ 
           position: 'relative',
           padding: '8rem 2rem',
-          background: 'linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url(https://images.unsplash.com/photo-1549216348-12c85f7ea368?q=80&w=2070&auto=format&fit=crop)',
+          background: 'linear-gradient(rgba(12, 12, 12,0.85), rgba(12, 12, 12,0.85)), url(https://images.unsplash.com/photo-1549216348-12c85f7ea368?q=80&w=2070&auto=format&fit=crop)',
           backgroundSize: 'cover',
           backgroundAttachment: 'fixed',
           backgroundPosition: 'center',

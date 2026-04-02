@@ -167,7 +167,7 @@ export default function Home() {
 
         body {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-          background: #050505;
+          background: #121212;
           color: white;
         }
 
@@ -181,7 +181,7 @@ export default function Home() {
           justify-content: center;
           overflow: hidden;
           padding-top: 70px;
-          background: #050505;
+          background: #121212;
           perspective: 1200px;
         }
 
@@ -201,7 +201,7 @@ export default function Home() {
         .hero-overlay {
           position: absolute;
           inset: 0;
-          background: radial-gradient(circle at center, rgba(30,0,0,0.3) 0%, rgba(0,0,0,0.9) 100%);
+          background: radial-gradient(circle at center, rgba(30,0,0,0.3) 0%, rgba(12, 12, 12,0.9) 100%);
           z-index: 1;
         }
 
@@ -231,7 +231,7 @@ export default function Home() {
           letter-spacing: -2px;
           word-break: break-word;
           transform: translateZ(60px);
-          text-shadow: 0 10px 40px rgba(0,0,0,0.8);
+          text-shadow: 0 10px 40px rgba(12, 12, 12,0.8);
         }
 
         .hero-content p {
@@ -239,7 +239,7 @@ export default function Home() {
           color: rgba(255,255,255,0.95);
           margin-bottom: 2rem;
           line-height: 1.6;
-          text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+          text-shadow: 0 4px 15px rgba(12, 12, 12,0.6);
           transform: translateZ(30px);
           font-weight: 500;
         }
@@ -299,7 +299,7 @@ export default function Home() {
         }
 
         .section-dark {
-          background: rgba(0, 0, 0, 0.85); /* Semi-transparent black */
+          background: rgba(12, 12, 12, 0.85); /* Semi-transparent black */
           backdrop-filter: blur(10px);
         }
 
@@ -331,7 +331,7 @@ export default function Home() {
         .we-build-section {
           text-align: center;
           padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
-          background: #1a1a1a;
+          background: #1c1c1c;
           position: relative;
         }
         
@@ -490,7 +490,7 @@ export default function Home() {
 
         .portfolio-item:hover {
           transform: translateY(-10px);
-          box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+          box-shadow: 0 40px 80px rgba(12, 12, 12,0.6);
         }
 
         .portfolio-title {
@@ -526,7 +526,7 @@ export default function Home() {
           right: -1px;
           width: 100px;
           height: 100px;
-          background: #050505;
+          background: #121212;
           /* Creating the scalloped 'leaf' shape */
           border-top-left-radius: 100px;
           display: flex;
@@ -595,7 +595,7 @@ export default function Home() {
         }
 
         .accordion-item-brand:hover {
-          box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+          box-shadow: 0 8px 30px rgba(12, 12, 12,0.5);
           border-color: rgba(230, 30, 37, 0.3);
         }
 
@@ -644,7 +644,7 @@ export default function Home() {
         .for-brands-image {
           width: 100%;
           height: 400px;
-          background: #050505;
+          background: #121212;
           border-radius: 12px;
           overflow: hidden;
         }
@@ -662,7 +662,7 @@ export default function Home() {
           gap: 3rem;
           align-items: center;
           padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
-          background: #1a1a1a;
+          background: #1c1c1c;
           position: relative;
         }
 
@@ -677,7 +677,7 @@ export default function Home() {
         .prime-locations-image {
           width: 100%;
           height: 400px;
-          background: #050505;
+          background: #121212;
           border-radius: 12px;
           overflow: hidden;
         }
@@ -702,7 +702,7 @@ export default function Home() {
 
         /* We Reach Section */
         .we-reach-section {
-          background: #1a1a1a;
+          background: #1c1c1c;
           color: white;
           padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
           position: relative;
@@ -754,7 +754,7 @@ export default function Home() {
         /* Built for Visibility */
         .built-section {
           padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
-          background: #1a1a1a;
+          background: #1c1c1c;
           position: relative;
         }
 
@@ -788,7 +788,7 @@ export default function Home() {
         .built-image {
           width: 100%;
           height: 400px;
-          background: #050505;
+          background: #121212;
           border-radius: 12px;
           overflow: hidden;
         }
@@ -801,7 +801,7 @@ export default function Home() {
 
         /* Footer */
         .footer {
-          background: #050505;
+          background: #121212;
           color: white;
           padding: 3rem clamp(1rem, 4vw, 2rem);
         }
@@ -882,9 +882,9 @@ export default function Home() {
           border-radius: 80px 0 80px 0;
           overflow: hidden;
           z-index: 2;
-          background: #050505;
-          box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-          border: 1px solid rgba(0,0,0,0.05);
+          background: #121212;
+          box-shadow: 0 20px 40px rgba(12, 12, 12,0.1);
+          border: 1px solid rgba(12, 12, 12,0.05);
         }
 
         .leaf-image-wrapper img {
@@ -1011,7 +1011,7 @@ export default function Home() {
                 variants={index % 2 === 0 ? swipeLeft : swipeRight}
                 whileHover={{ scale: 1.02 }}
                 style={{
-                  backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.85)), url(${item.image})`,
+                  backgroundImage: `linear-gradient(rgba(12, 12, 12,0.6), rgba(12, 12, 12,0.85)), url(${item.image})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center'
                 }}
@@ -1160,7 +1160,7 @@ export default function Home() {
                 <div style={{
                   position: 'absolute',
                   inset: 0,
-                  background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, transparent 100%)'
+                  background: 'linear-gradient(to top, rgba(12, 12, 12,0.7) 0%, rgba(12, 12, 12,0.3) 50%, transparent 100%)'
                 }} />
 
                 {/* Location Name */}
@@ -1184,7 +1184,7 @@ export default function Home() {
                     fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
                     fontWeight: 900,
                     marginBottom: '0.5rem',
-                    textShadow: '0 4px 12px rgba(0,0,0,0.5)',
+                    textShadow: '0 4px 12px rgba(12, 12, 12,0.5)',
                     letterSpacing: '-0.5px'
                   }}>
                     {location.name}
@@ -1284,7 +1284,7 @@ export default function Home() {
       </section>
 
       {/* Tabbed Section - Why Us, Reach, Solutions */}
-      <section className="section" style={{ background: 'rgba(0, 0, 0, 0.9)', backdropFilter: 'blur(10px)', padding: 'clamp(4rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem)' }}>
+      <section className="section" style={{ background: 'rgba(12, 12, 12, 0.9)', backdropFilter: 'blur(10px)', padding: 'clamp(4rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem)' }}>
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -1534,13 +1534,13 @@ export default function Home() {
         alignItems: 'center', 
         justifyContent: 'center', 
         overflow: 'hidden',
-        backgroundImage: "url('/projects-hero-bg.png')",
+        backgroundImage: "url('/cta-campaign-bg.png')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundColor: '#111'
       }}>
         {/* Overlay */}
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.65)', zIndex: 1 }}></div>
+        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, rgba(12, 12, 12, 0.4) 0%, rgba(12, 12, 12, 0.85) 100%)', zIndex: 1 }}></div>
         
         {/* Content */}
         <motion.div

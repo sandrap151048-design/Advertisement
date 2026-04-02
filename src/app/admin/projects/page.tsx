@@ -242,7 +242,7 @@ export default function AdminProjectsPage() {
     });
 
     return (
-        <div style={{ padding: '0', background: '#ffffff', minHeight: '100vh', color: '#1a1a1a' }}>
+        <div style={{ padding: '0', background: '#ffffff', minHeight: '100vh', color: '#1c1c1c' }}>
             <style jsx global>{`
                 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap');
                 
@@ -260,11 +260,11 @@ export default function AdminProjectsPage() {
                 }
 
                 .cluster-text {
-                    background: #1a1a1a;
+                    background: #1c1c1c;
                     padding: clamp(1.5rem, 4vw, 3.5rem);
-                    border: 1px solid rgba(0,0,0,0.05);
+                    border: 1px solid rgba(12, 12, 12,0.05);
                     border-radius: 24px;
-                    box-shadow: 0 20px 50px rgba(0,0,0,0.03);
+                    box-shadow: 0 20px 50px rgba(12, 12, 12,0.03);
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
@@ -276,7 +276,7 @@ export default function AdminProjectsPage() {
                     font-weight: 800;
                     margin-bottom: 1.5rem;
                     letter-spacing: -1px;
-                    color: #1a1a1a;
+                    color: #1c1c1c;
                 }
 
                 .cluster-desc {
@@ -297,12 +297,12 @@ export default function AdminProjectsPage() {
                     height: 550px;
                     object-fit: cover;
                     border-radius: 20px;
-                    box-shadow: 0 15px 45px rgba(0,0,0,0.1);
+                    box-shadow: 0 15px 45px rgba(12, 12, 12,0.1);
                     transition: all 0.5s ease;
                 }
 
                 .cluster-img:hover {
-                    box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+                    box-shadow: 0 30px 60px rgba(12, 12, 12,0.2);
                     transform: scale(1.02);
                 }
 
@@ -330,7 +330,7 @@ export default function AdminProjectsPage() {
 
                 .admin-btn.edit {
                     background: #f8fafc;
-                    color: #1a1a1a;
+                    color: #1c1c1c;
                     border: 1px solid #e2e8f0;
                 }
 
@@ -341,13 +341,13 @@ export default function AdminProjectsPage() {
 
                 .admin-btn:hover {
                     transform: translateY(-3px);
-                    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+                    box-shadow: 0 8px 20px rgba(12, 12, 12,0.1);
                 }
 
                 .admin-btn.edit:hover {
-                    background: #1a1a1a;
+                    background: #1c1c1c;
                     color: white;
-                    border-color: #1a1a1a;
+                    border-color: #1c1c1c;
                 }
 
                 .admin-btn.delete:hover {
@@ -394,7 +394,7 @@ export default function AdminProjectsPage() {
                         <Link href="/admin" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#666', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, marginBottom: '1.5rem', transition: 'all 0.3s' }} className="hover-red">
                             <ArrowLeft size={18} /> Back to Dashboard
                         </Link>
-                        <h1 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#1a1a1a', marginBottom: '0.5rem' }}>
+                        <h1 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#1c1c1c', marginBottom: '0.5rem' }}>
                             Projects <span style={{ color: '#e61e25' }}>Management</span>
                         </h1>
                     </div>
@@ -408,7 +408,7 @@ export default function AdminProjectsPage() {
                     </motion.button>
                 </div>
 
-                <div style={{ background: 'white', padding: '1.2rem', borderRadius: '16px', marginBottom: '4rem', display: 'flex', gap: '1rem', alignItems: 'center', border: '1px solid #f0f0f0', boxShadow: '0 4px 15px rgba(0,0,0,0.02)' }}>
+                <div style={{ background: 'white', padding: '1.2rem', borderRadius: '16px', marginBottom: '4rem', display: 'flex', gap: '1rem', alignItems: 'center', border: '1px solid #f0f0f0', boxShadow: '0 4px 15px rgba(12, 12, 12,0.02)' }}>
                     <div style={{ flex: 1, position: 'relative' }}>
                         <Search style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: '#999' }} size={18} />
                         <input type="text" placeholder="Search projects..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} style={{ width: '100%', padding: '0.9rem 1rem 0.9rem 3rem', border: '1px solid #eee', borderRadius: '12px', color: '#000', background: '#fcfcfc', fontSize: '0.95rem' }} />
@@ -477,7 +477,7 @@ export default function AdminProjectsPage() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         style={{
-                            position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)',
+                            position: 'fixed', inset: 0, background: 'rgba(12, 12, 12,0.5)',
                             display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2000, padding: '1rem', backdropFilter: 'blur(4px)'
                         }}
                     >
@@ -487,7 +487,7 @@ export default function AdminProjectsPage() {
                             exit={{ scale: 0.9, y: 20 }}
                             style={{
                                 background: 'white', borderRadius: '24px', width: '100%',
-                                maxWidth: '500px', padding: '2.5rem', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)',
+                                maxWidth: '500px', padding: '2.5rem', boxShadow: '0 25px 50px -12px rgba(12, 12, 12,0.25)',
                                 position: 'relative'
                             }}
                         >
@@ -498,7 +498,7 @@ export default function AdminProjectsPage() {
                                 <X size={24} />
                             </button>
 
-                            <h2 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#1a1a1a', marginBottom: '1.5rem' }}>
+                            <h2 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#1c1c1c', marginBottom: '1.5rem' }}>
                                 {isEditModalOpen ? 'Edit Project' : 'Add New Project'}
                             </h2>
 

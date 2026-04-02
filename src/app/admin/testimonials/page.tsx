@@ -119,7 +119,7 @@ export default function ProjectsPage() {
                         color: 'white',
                         padding: '1rem 1.5rem',
                         borderRadius: '8px',
-                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                        boxShadow: '0 4px 12px rgba(12, 12, 12, 0.15)',
                         zIndex: 9999,
                         fontWeight: 600,
                         fontSize: '0.95rem'
@@ -132,7 +132,7 @@ export default function ProjectsPage() {
                         <Link href="/admin" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#666', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, marginBottom: '1rem', transition: 'all 0.3s' }} className="hover-red">
                             <ArrowLeft size={18} /> Back to Dashboard
                         </Link>
-                        <h1 style={{ fontSize: '1.8rem', marginBottom: '0.5rem', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#1a1a1a' }}>Projects <span className="text-gradient">Management</span></h1>
+                        <h1 style={{ fontSize: '1.8rem', marginBottom: '0.5rem', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#1c1c1c' }}>Projects <span className="text-gradient">Management</span></h1>
                         <p style={{ color: '#666666', fontSize: '0.9rem', fontFamily: "'DM Sans', sans-serif" }}>Manage your advertising projects</p>
                     </div>
                     <button
@@ -229,7 +229,7 @@ export default function ProjectsPage() {
                                             {project.category}
                                         </span>
                                     </div>
-                                    <h3 style={{ fontSize: '1.2rem', marginBottom: '0.8rem', color: '#1a1a1a' }}>
+                                    <h3 style={{ fontSize: '1.2rem', marginBottom: '0.8rem', color: '#1c1c1c' }}>
                                         {project.title}
                                     </h3>
                                     {project.description && (
@@ -269,7 +269,7 @@ export default function ProjectsPage() {
                     <div style={{
                         position: 'fixed',
                         inset: 0,
-                        background: 'rgba(0,0,0,0.5)',
+                        background: 'rgba(12, 12, 12,0.5)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -282,10 +282,10 @@ export default function ProjectsPage() {
                             maxHeight: '90vh',
                             overflowY: 'auto'
                         }} onClick={(e) => e.stopPropagation()}>
-                            <h2 style={{ marginBottom: '1.5rem', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#1a1a1a' }}>Add New Project</h2>
+                            <h2 style={{ marginBottom: '1.5rem', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#1c1c1c' }}>Add New Project</h2>
                             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
                                 <div>
-                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem', color: '#1a1a1a' }}>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem', color: '#1c1c1c' }}>
                                         Project Title
                                     </label>
                                     <input
@@ -305,7 +305,7 @@ export default function ProjectsPage() {
                                     />
                                 </div>
                                 <div>
-                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem', color: '#1a1a1a' }}>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem', color: '#1c1c1c' }}>
                                         Category
                                     </label>
                                     <select
@@ -327,7 +327,7 @@ export default function ProjectsPage() {
                                     </select>
                                 </div>
                                 <div>
-                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem', color: '#1a1a1a' }}>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem', color: '#1c1c1c' }}>
                                         Image URL
                                     </label>
                                     <input
@@ -347,7 +347,7 @@ export default function ProjectsPage() {
                                     />
                                 </div>
                                 <div>
-                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem', color: '#1a1a1a' }}>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem', color: '#1c1c1c' }}>
                                         Description (Optional)
                                     </label>
                                     <textarea

@@ -244,7 +244,7 @@ export default function ProjectsPage() {
             alt="Impact Portfolio"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.5) contrast(1.1)' }}
           />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(26,58,82,0.4) 0%, rgba(0,0,0,0.1) 100%)' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(26,58,82,0.4) 0%, rgba(12, 12, 12,0.1) 100%)' }} />
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -273,7 +273,7 @@ export default function ProjectsPage() {
             transition={{ duration: 0.6 }}
             style={{ textAlign: 'center', marginBottom: '3.5rem' }}
           >
-            <h2 style={{ fontSize: 'clamp(2.5rem,5vw,3.5rem)', fontWeight: 900, color: '#1a1a1a', lineHeight: 1.1, margin: '0 0 1rem' }}>
+            <h2 style={{ fontSize: 'clamp(2.5rem,5vw,3.5rem)', fontWeight: 900, color: '#1c1c1c', lineHeight: 1.1, margin: '0 0 1rem' }}>
               Our <em style={{ fontStyle: 'italic', color: '#888', fontWeight: 400 }}>Projects</em>
             </h2>
             <p style={{ color: '#777', fontSize: '1rem', maxWidth: 600, margin: '0 auto', lineHeight: 1.8 }}>
@@ -332,7 +332,7 @@ export default function ProjectsPage() {
                   background: 'white',
                   borderRadius: 24,
                   padding: '3rem',
-                  boxShadow: '0 4px 30px rgba(0,0,0,0.08)',
+                  boxShadow: '0 4px 30px rgba(12, 12, 12,0.08)',
                   position: 'sticky',
                   top: 120,
                   borderTop: `5px solid ${current.accent}`
@@ -342,7 +342,7 @@ export default function ProjectsPage() {
                   <div style={{ display: 'inline-block', background: `${current.accent}18`, color: current.accent, padding: '0.3rem 0.9rem', borderRadius: 50, fontSize: '0.75rem', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '1rem' }}>
                     {activeCategory}
                   </div>
-                  <h3 style={{ fontSize: '3rem', fontWeight: 900, color: '#1a1a1a', lineHeight: 1.1, margin: 0 }}>
+                  <h3 style={{ fontSize: '3rem', fontWeight: 900, color: '#1c1c1c', lineHeight: 1.1, margin: 0 }}>
                     {current.title}<br />
                     <span style={{ color: current.accent }}>{current.subtitle}</span>
                   </h3>
@@ -366,14 +366,14 @@ export default function ProjectsPage() {
                     variants={itemVariants}
                     onHoverStart={() => setHoveredImg(i)}
                     onHoverEnd={() => setHoveredImg(null)}
-                    whileHover={{ y: -8, boxShadow: '0 24px 50px rgba(0,0,0,0.18)' }}
+                    whileHover={{ y: -8, boxShadow: '0 24px 50px rgba(12, 12, 12,0.18)' }}
                     style={{
                       position: 'relative',
                       height: i === 0 ? 340 : 260,
                       borderRadius: 20,
                       overflow: 'hidden',
                       cursor: 'pointer',
-                      boxShadow: '0 4px 16px rgba(0,0,0,0.1)'
+                      boxShadow: '0 4px 16px rgba(12, 12, 12,0.1)'
                     }}
                   >
                     <motion.img
@@ -384,7 +384,7 @@ export default function ProjectsPage() {
                       style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                     />
                     {/* Gradient overlay */}
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 55%, transparent 100%)' }} />
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(12, 12, 12,0.75) 0%, rgba(12, 12, 12,0.1) 55%, transparent 100%)' }} />
 
                     {/* Tag badge */}
                     <motion.div
@@ -406,7 +406,7 @@ export default function ProjectsPage() {
                       transition={{ duration: 0.25 }}
                       style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'white', borderRadius: '50%', width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                     >
-                      <ArrowUpRight size={18} color="#1a1a1a" />
+                      <ArrowUpRight size={18} color="#1c1c1c" />
                     </motion.div>
 
                     {/* Title */}
@@ -436,7 +436,7 @@ export default function ProjectsPage() {
               transition={{ duration: 0.6 }}
               style={{ textAlign: 'center', marginBottom: '3.5rem' }}
             >
-              <h2 style={{ fontSize: 'clamp(2.5rem,5vw,3.5rem)', fontWeight: 900, color: '#1a1a1a', lineHeight: 1.1, margin: '0 0 1rem' }}>
+              <h2 style={{ fontSize: 'clamp(2.5rem,5vw,3.5rem)', fontWeight: 900, color: '#1c1c1c', lineHeight: 1.1, margin: '0 0 1rem' }}>
                 Our <em style={{ fontStyle: 'italic', color: '#888', fontWeight: 400 }}>Work</em>
               </h2>
               <p style={{ color: '#777', fontSize: '1rem', maxWidth: 600, margin: '0 auto', lineHeight: 1.8 }}>
@@ -455,12 +455,12 @@ export default function ProjectsPage() {
                 <motion.div
                   key={project.id || i}
                   variants={itemVariants}
-                  whileHover={{ y: -8, boxShadow: '0 24px 50px rgba(0,0,0,0.15)' }}
+                  whileHover={{ y: -8, boxShadow: '0 24px 50px rgba(12, 12, 12,0.15)' }}
                   style={{
                     background: 'white',
                     borderRadius: 20,
                     overflow: 'hidden',
-                    boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
+                    boxShadow: '0 4px 16px rgba(12, 12, 12,0.08)',
                     cursor: 'pointer',
                     transition: 'box-shadow 0.3s ease'
                   }}
@@ -474,7 +474,7 @@ export default function ProjectsPage() {
                       onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.06)')}
                       onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
                     />
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%)' }} />
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(12, 12, 12,0.5) 0%, transparent 60%)' }} />
                     {/* Category badge */}
                     <div style={{
                       position: 'absolute', top: '1rem', left: '1rem',
@@ -487,7 +487,7 @@ export default function ProjectsPage() {
                   </div>
                   {/* Content */}
                   <div style={{ padding: '1.5rem' }}>
-                    <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#1a1a1a', margin: '0 0 0.5rem' }}>
+                    <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#1c1c1c', margin: '0 0 0.5rem' }}>
                       {project.title}
                     </h3>
                     <p style={{ color: '#666', fontSize: '0.9rem', lineHeight: 1.7, margin: '0 0 1rem' }}>

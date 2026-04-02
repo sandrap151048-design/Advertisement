@@ -122,7 +122,7 @@ export default function BlogPage() {
                 paddingBottom: '6rem',
                 position: 'relative',
                 overflow: 'hidden',
-                background: '#050505',
+                background: '#121212',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center'
@@ -134,7 +134,7 @@ export default function BlogPage() {
                         style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.4) contrast(1.1)' }} 
                     />
                 </div>
-                <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, rgba(30,0,0,0.2) 0%, rgba(0,0,0,0.9) 100%)', zIndex: 1 }} />
+                <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, rgba(30,0,0,0.2) 0%, rgba(12, 12, 12,0.9) 100%)', zIndex: 1 }} />
                 <motion.div 
                     initial="hidden" 
                     animate="visible" 
@@ -177,7 +177,7 @@ export default function BlogPage() {
                             marginBottom: '1.5rem',
                             lineHeight: '1.05',
                             color: 'white',
-                            textShadow: '0 10px 30px rgba(0,0,0,0.5)'
+                            textShadow: '0 10px 30px rgba(12, 12, 12,0.5)'
                         }}
                     >
                         Insights & <span style={{ color: '#e61e25' }}>Expertise</span>
@@ -191,7 +191,7 @@ export default function BlogPage() {
                             lineHeight: '1.6',
                             marginBottom: '2rem',
                             fontWeight: 500,
-                            textShadow: '0 2px 10px rgba(0,0,0,0.3)'
+                            textShadow: '0 2px 10px rgba(12, 12, 12,0.3)'
                         }}
                     >
                         Stay updated with the latest trends, insights, and best practices in the advertising industry. 
@@ -515,7 +515,7 @@ function NewsletterSignup() {
                     onMouseOver={(e) => {
                         if (!isSubmitting) {
                             e.currentTarget.style.transform = 'translateY(-2px)';
-                            e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.2)';
+                            e.currentTarget.style.boxShadow = '0 8px 25px rgba(12, 12, 12,0.2)';
                         }
                     }}
                     onMouseOut={(e) => {

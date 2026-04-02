@@ -90,14 +90,14 @@ export default function BillboardsPage() {
           top: 140px;
           left: 40px;
           z-index: 100;
-          background: #1a1a1a;
+          background: #1c1c1c;
           width: 48px;
           height: 48px;
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+          box-shadow: 0 4px 20px rgba(12, 12, 12,0.3);
           cursor: pointer;
           transition: all 0.3s ease;
           border: none;
@@ -106,11 +106,11 @@ export default function BillboardsPage() {
 
         .back-button:hover {
           transform: scale(1.1);
-          box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+          box-shadow: 0 6px 20px rgba(12, 12, 12,0.15);
         }
 
         .hero-section {
-          background: #1a1a1a;
+          background: #1c1c1c;
           padding: 8rem 2rem;
           min-height: 70vh;
           display: flex;
@@ -150,7 +150,7 @@ export default function BillboardsPage() {
           height: 400px;
           border-radius: 20px;
           overflow: hidden;
-          box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+          box-shadow: 0 20px 60px rgba(12, 12, 12,0.15);
         }
 
         .hero-carousel {
@@ -197,13 +197,13 @@ export default function BillboardsPage() {
         }
 
         .hero-dot.active {
-          background: #1a1a1a;
+          background: #1c1c1c;
           width: 24px;
           border-radius: 4px;
         }
 
         .why-choose-section {
-          background: #1a1a1a;
+          background: #1c1c1c;
           padding: 4rem 2rem;
           margin-bottom: 3rem;
         }
@@ -234,7 +234,7 @@ export default function BillboardsPage() {
           border: 1px solid rgba(255,255,255,0.1);
           border-radius: 12px;
           overflow: hidden;
-          background: #1a1a1a;
+          background: #1c1c1c;
           transition: all 0.3s ease;
         }
 
@@ -284,7 +284,7 @@ export default function BillboardsPage() {
         }
 
         .locations-section {
-          background: #1a1a1a;
+          background: #1c1c1c;
           padding: 4rem 2rem;
           margin-bottom: 3rem;
         }
@@ -326,7 +326,7 @@ export default function BillboardsPage() {
 
         .location-card:hover {
           transform: translateY(-8px);
-          box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+          box-shadow: 0 12px 30px rgba(12, 12, 12,0.2);
         }
 
         .location-card img {
@@ -343,7 +343,7 @@ export default function BillboardsPage() {
         .location-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+          background: linear-gradient(to top, rgba(12, 12, 12,0.7) 0%, transparent 100%);
           display: flex;
           align-items: flex-end;
           padding: 1.5rem;
@@ -356,7 +356,7 @@ export default function BillboardsPage() {
         }
 
         .contact-section {
-          background: #1a1a1a;
+          background: #1c1c1c;
           padding: 4rem 2rem;
           text-align: center;
           color: white;
@@ -431,8 +431,8 @@ export default function BillboardsPage() {
 
         .submit-button {
           padding: 1rem 2rem;
-          background: #1a1a1a;
-          color: #1a1a1a;
+          background: #1c1c1c;
+          color: #1c1c1c;
           border: none;
           border-radius: 50px;
           font-weight: 700;
@@ -483,7 +483,7 @@ export default function BillboardsPage() {
       `}</style>
 
       <div className="billboard-page">
-        <Link href="/services" className="back-button"><ArrowLeft size={24} color="#1a1a1a" /></Link>
+        <Link href="/services" className="back-button"><ArrowLeft size={24} color="#1c1c1c" /></Link>
 
         {/* Hero Section */}
         <motion.section 

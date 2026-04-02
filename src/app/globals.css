@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,600;1,9..40,400&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Manrope:wght@400;600;700;800&family=Outfit:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
 
 :root {
-  --color-bg-start: #1a1a1f;
-  --color-bg-end: #1a1a1f;
+  --color-bg-start: #121212;
+  --color-bg-end: #121212;
   --color-primary: #e61e25;
   --color-secondary: #ff4d4d;
   --color-text-main: #FFFFFF;
@@ -56,7 +56,7 @@ html::-webkit-scrollbar {
 body {
   margin: 0;
   padding: 0;
-  background: #050505;
+  background: #121212;
   background-attachment: fixed;
   color: #ffffff;
   font-family: var(--font-body);
@@ -105,7 +105,7 @@ h6 {
 
 /* Global text color overrides */
 .text-black {
-  color: #1a1a1a !important;
+  color: #1c1c1c !important;
 }
 
 .text-white {
@@ -193,7 +193,7 @@ ul {
 
 /* Card Style */
 .glass-card {
-  background: rgba(10, 10, 10, 0.85);
+  background: rgba(20, 20, 20, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -201,7 +201,7 @@ ul {
   padding: 2rem;
   transition: all 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
   height: 100%;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 15px 35px rgba(12, 12, 12, 0.5);
   color: #ffffff;
   position: relative;
   overflow: hidden;
@@ -220,8 +220,8 @@ ul {
 .glass-card:hover {
   transform: translateY(-10px);
   border-color: rgba(230, 30, 37, 0.5);
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(230,30,37,0.2), 0 0 30px rgba(230,30,37,0.1);
-  background: rgba(18, 18, 18, 0.95);
+  box-shadow: 0 30px 70px rgba(12, 12, 12, 0.6), 0 0 0 1px rgba(230,30,37,0.2), 0 0 30px rgba(230,30,37,0.1);
+  background: rgba(30, 30, 30, 0.95);
 }
 
 .glass-card:hover::before {
@@ -264,7 +264,7 @@ ul {
 .nav-divider {
   width: 1px;
   height: 28px;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(12, 12, 12, 0.1);
   margin: 0 0.3rem;
 }
 
@@ -296,12 +296,12 @@ ul {
 .admin-layout {
   display: flex;
   min-height: 100vh;
-  background: #1a1a1f;
+  background: #121212;
 }
 
 .admin-sidebar {
   width: 250px;
-  background: rgba(26, 26, 31, 0.98);
+  background: rgba(18, 18, 18, 0.98);
   border-right: 1px solid rgba(124, 58, 237, 0.3);
   padding: 2rem 1rem;
 }
@@ -309,7 +309,7 @@ ul {
 .admin-main {
   flex: 1;
   padding: 2rem;
-  background: #1a1a1f;
+  background: #121212;
 }
 
 .stat-card {
@@ -905,7 +905,7 @@ ul {
 
   .admin-sidebar-open {
     transform: translateX(0);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 20px rgba(12, 12, 12, 0.3);
   }
 
   .admin-mobile-overlay {
@@ -914,7 +914,7 @@ ul {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(12, 12, 12, 0.5);
     z-index: 1000;
     backdrop-filter: blur(4px);
   }
@@ -1775,7 +1775,7 @@ iframe {
 
   .admin-sidebar-open {
     transform: translateX(0);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 20px rgba(12, 12, 12, 0.3);
   }
 
   .admin-mobile-overlay {
@@ -1784,7 +1784,7 @@ iframe {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(12, 12, 12, 0.5);
     z-index: 1000;
     backdrop-filter: blur(4px);
   }
@@ -1899,7 +1899,7 @@ iframe {
     color: white !important;
     cursor: pointer !important;
     transition: all 0.3s !important;
-    background: rgba(0, 0, 0, 0.8) !important;
+    background: rgba(12, 12, 12, 0.8) !important;
     margin-bottom: 0.5rem !important;
     white-space: nowrap !important;
     font-size: 0.95rem !important;
@@ -2081,7 +2081,7 @@ iframe {
 
   .admin-sidebar-open {
     transform: translateX(0) !important;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3) !important;
+    box-shadow: 0 0 20px rgba(12, 12, 12, 0.3) !important;
   }
 
   .admin-mobile-overlay {
@@ -2090,7 +2090,7 @@ iframe {
     left: 0 !important;
     right: 0 !important;
     bottom: 0 !important;
-    background: rgba(0, 0, 0, 0.5) !important;
+    background: rgba(12, 12, 12, 0.5) !important;
     z-index: 1000 !important;
     backdrop-filter: blur(4px) !important;
     opacity: 0 !important;
@@ -2151,7 +2151,7 @@ iframe {
     color: white !important;
     cursor: pointer !important;
     transition: background-color 0.15s ease, transform 0.15s ease !important;
-    background: rgba(0, 0, 0, 0.8) !important;
+    background: rgba(12, 12, 12, 0.8) !important;
     margin-bottom: 0.25rem !important;
     white-space: nowrap !important;
     font-size: 0.9rem !important;
@@ -3041,7 +3041,7 @@ img {
 
 /* Enhanced admin table for dark theme */
 .admin-table {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(12, 12, 12, 0.8);
     border: 1px solid rgba(124, 58, 237, 0.3);
 }
 
@@ -3058,14 +3058,14 @@ img {
 
 /* Enhanced form inputs for dark theme */
 input, textarea, select {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(12, 12, 12, 0.8);
     border: 2px solid rgba(124, 58, 237, 0.3);
     color: var(--color-text-main);
 }
 
 input:focus, textarea:focus, select:focus {
     border-color: var(--color-secondary);
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(12, 12, 12, 0.9);
     box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.2);
 }
 
@@ -3157,12 +3157,12 @@ input::placeholder, textarea::placeholder {
 /* Enhanced print styles for dark theme */
 @media print {
     body {
-        background: #1a1a1a !important;
+        background: #1c1c1c !important;
         color: black !important;
     }
     
     .glass-card {
-        background: #1a1a1a !important;
+        background: #1c1c1c !important;
         border: 1px solid #ccc !important;
     }
 }
@@ -3342,8 +3342,8 @@ input::placeholder, textarea::placeholder {
 }
 /* Force black background for service cards */
 .black-service-card {
-  background: #000000 !important;
-  background-color: #000000 !important;
+  background: #121212 !important;
+  background-color: #121212 !important;
   background-image: none !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
@@ -3351,8 +3351,8 @@ input::placeholder, textarea::placeholder {
 
 .black-service-card,
 .black-service-card * {
-  background: #000000 !important;
-  background-color: #000000 !important;
+  background: #121212 !important;
+  background-color: #121212 !important;
 }
 
 .black-service-card h3 {
@@ -3605,7 +3605,7 @@ input::placeholder, textarea::placeholder {
 @media (hover: none) and (pointer: coarse) {
   .success-story-card:hover {
     transform: none !important;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+    box-shadow: 0 8px 32px rgba(12, 12, 12, 0.3) !important;
   }
   
   .success-story-card:active {
@@ -4378,7 +4378,7 @@ html {
 
 .hover-lift:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 40px rgba(12, 12, 12, 0.3);
 }
 
 /* Gradient animation */

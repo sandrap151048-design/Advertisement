@@ -7,7 +7,7 @@ export default function AdminFooter() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer style={{ marginTop: '5rem', padding: '5rem 0', background: '#000000', borderTop: '1px solid rgba(255,255,255,0.08)', color: 'white' }}>
+    <footer style={{ marginTop: '5rem', padding: '5rem 0', background: '#121212', borderTop: '1px solid rgba(255,255,255,0.08)', color: 'white' }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '4rem', marginBottom: '4rem' }}>
           {/* Logo Column */}

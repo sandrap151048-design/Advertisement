@@ -131,7 +131,7 @@ export default function AdminPage() {
                         margin: '0 auto 1rem',
                         animation: 'spin 1s linear infinite'
                     }} />
-                    <p style={{ color: '#1a1a1a', fontSize: '1.1rem', fontWeight: 600 }}>Loading Dashboard...</p>
+                    <p style={{ color: '#1c1c1c', fontSize: '1.1rem', fontWeight: 600 }}>Loading Dashboard...</p>
                 </motion.div>
             </div>
         );
@@ -177,13 +177,13 @@ export default function AdminPage() {
                         background: '#ffffff',
                         padding: '1.5rem 2rem',
                         borderRadius: '16px',
-                        boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+                        boxShadow: '0 1px 3px rgba(12, 12, 12, 0.1)',
                         marginBottom: '2rem'
                     }}
                 >
                     <div>
-<div onClick={() => window.location.href='/'} style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', marginBottom: '1rem' }}><div style={{ display: 'flex', alignItems: 'center', gap: '0', fontSize: '1.5rem', fontWeight: 900, color: '#1a1a1a', fontFamily: "'Bricolage Grotesque', sans-serif" }}><svg width="26" height="26" viewBox="0 0 28 28" style={{ marginRight: '-1px' }}><circle cx="14" cy="14" r="11" fill="none" stroke="#1a1a1a" strokeWidth="4"/><rect x="16" y="2" width="9" height="9" fill="#e61e25" rx="1"/></svg><span style={{ marginLeft: '-1px' }}>ne Click</span></div><div style={{ color: '#888', fontWeight: '900', letterSpacing: '4px', fontSize: '0.65rem' }}>ADVERTISEMENT</div></div>
-<h1 style={{ fontSize: '2rem', marginBottom: '0.3rem', fontWeight: 800, fontFamily: "'Outfit', sans-serif", color: '#1a1a1a' }}>
+<div onClick={() => window.location.href='/'} style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', marginBottom: '1rem' }}><div style={{ display: 'flex', alignItems: 'center', gap: '0', fontSize: '1.5rem', fontWeight: 900, color: '#1c1c1c', fontFamily: "'Bricolage Grotesque', sans-serif" }}><svg width="26" height="26" viewBox="0 0 28 28" style={{ marginRight: '-1px' }}><circle cx="14" cy="14" r="11" fill="none" stroke="#1c1c1c" strokeWidth="4"/><rect x="16" y="2" width="9" height="9" fill="#e61e25" rx="1"/></svg><span style={{ marginLeft: '-1px' }}>ne Click</span></div><div style={{ color: '#888', fontWeight: '900', letterSpacing: '4px', fontSize: '0.65rem' }}>ADVERTISEMENT</div></div>
+<h1 style={{ fontSize: '2rem', marginBottom: '0.3rem', fontWeight: 800, fontFamily: "'Outfit', sans-serif", color: '#1c1c1c' }}>
                             Welcome Back, <span style={{ color: '#e61e25' }}>Admin</span>
                         </h1>
                         <p style={{ color: '#666666', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontFamily: "'DM Sans', sans-serif" }}>
@@ -276,12 +276,12 @@ export default function AdminPage() {
                         <div key={i} onClick={() => router.push(stat.link)} style={{ textDecoration: 'none', cursor: 'pointer' }}>
                             <motion.div 
                                 variants={itemVariants}
-                                whileHover={{ y: -8, boxShadow: '0 12px 24px rgba(0,0,0,0.1)' }}
+                                whileHover={{ y: -8, boxShadow: '0 12px 24px rgba(12, 12, 12,0.1)' }}
                                 style={{
                                     background: '#ffffff',
                                     padding: '2rem',
                                     borderRadius: '20px',
-                                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
+                                    boxShadow: '0 4px 12px rgba(12, 12, 12, 0.08)',
                                     border: '1px solid rgba(44, 74, 94, 0.2)',
                                     cursor: 'pointer',
                                     transition: 'all 0.3s ease',
@@ -324,7 +324,7 @@ export default function AdminPage() {
                                     <h5 style={{ color: '#666666', fontWeight: 500, marginBottom: '0.5rem', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.5px', fontFamily: "'Space Grotesk', sans-serif" }}>
                                         {stat.title}
                                     </h5>
-                                    <h2 style={{ fontSize: '2.5rem', margin: 0, color: '#1a1a1a', fontWeight: 800, fontFamily: "'Outfit', sans-serif" }}>
+                                    <h2 style={{ fontSize: '2.5rem', margin: 0, color: '#1c1c1c', fontWeight: 800, fontFamily: "'Outfit', sans-serif" }}>
                                         {stat.value}
                                     </h2>
                                 </div>
@@ -353,11 +353,11 @@ export default function AdminPage() {
                             background: '#ffffff',
                             padding: '2rem',
                             borderRadius: '20px',
-                            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
+                            boxShadow: '0 4px 12px rgba(12, 12, 12, 0.08)',
                             border: '1px solid rgba(44, 74, 94, 0.2)'
                         }}
                     >
-                        <h3 style={{ marginBottom: '1.5rem', fontSize: '1.3rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '0.5rem', fontFamily: "'Syne', sans-serif", color: '#1a1a1a' }}>
+                        <h3 style={{ marginBottom: '1.5rem', fontSize: '1.3rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '0.5rem', fontFamily: "'Syne', sans-serif", color: '#1c1c1c' }}>
                             <Activity size={24} color="#e61e25" />
                             Recent Contacts
                         </h3>
@@ -384,7 +384,7 @@ export default function AdminPage() {
                                     whileTap={{ scale: 0.98 }}
                                 >
                                     <div>
-                                        <p style={{ fontWeight: 600, marginBottom: '0.2rem', color: '#1a1a1a', fontFamily: "'DM Sans', sans-serif" }}>{contact.name}</p>
+                                        <p style={{ fontWeight: 600, marginBottom: '0.2rem', color: '#1c1c1c', fontFamily: "'DM Sans', sans-serif" }}>{contact.name}</p>
                                         <p style={{ fontSize: '0.85rem', color: '#666666', fontFamily: "'Manrope', sans-serif" }}>{contact.email}</p>
                                     </div>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -404,7 +404,7 @@ export default function AdminPage() {
                             onClick={() => setSelectedContact(null)}
                             style={{
                                 position: 'fixed', inset: 0,
-                                background: 'rgba(0,0,0,0.55)',
+                                background: 'rgba(12, 12, 12,0.55)',
                                 zIndex: 9999,
                                 display: 'flex',
                                 alignItems: 'center',
@@ -424,7 +424,7 @@ export default function AdminPage() {
                                     padding: '2.5rem',
                                     maxWidth: '520px',
                                     width: '100%',
-                                    boxShadow: '0 24px 64px rgba(0,0,0,0.18)',
+                                    boxShadow: '0 24px 64px rgba(12, 12, 12,0.18)',
                                     border: '1px solid rgba(230,30,37,0.1)',
                                     position: 'relative'
                                 }}

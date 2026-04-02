@@ -224,7 +224,7 @@ export default function BlogPostPage() {
                     style={{ 
                         borderRadius: '20px', 
                         overflow: 'hidden',
-                        boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
+                        boxShadow: '0 20px 40px rgba(12, 12, 12,0.1)'
                     }}
                 >
                     <img 

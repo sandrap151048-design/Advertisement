@@ -38,7 +38,7 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <div style={{ backgroundColor: '#0a0a0a', color: 'white', minHeight: '100vh', paddingTop: '120px', paddingBottom: '100px' }}>
+    <div style={{ backgroundColor: '#121212', color: 'white', minHeight: '100vh', paddingTop: '120px', paddingBottom: '100px' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
         
         {/* Hero */}

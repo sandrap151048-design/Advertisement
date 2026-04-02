@@ -161,14 +161,14 @@ export default function DynamicServicePage() {
         gap: '2rem',
         padding: '2rem'
       }}>
-        <h1 style={{ fontSize: '3rem', fontWeight: 900, color: '#1a1a1a' }}>Service Not Found</h1>
+        <h1 style={{ fontSize: '3rem', fontWeight: 900, color: '#1c1c1c' }}>Service Not Found</h1>
         <p style={{ color: '#666', fontSize: '1.1rem' }}>The service you&apos;re looking for doesn&apos;t exist.</p>
         <Link href="/services" style={{
           display: 'inline-flex',
           alignItems: 'center',
           gap: '0.8rem',
           padding: '1rem 2.5rem',
-          background: '#1a1a1a',
+          background: '#1c1c1c',
           color: 'white',
           fontWeight: 700,
           borderRadius: '50px',
@@ -209,7 +209,7 @@ export default function DynamicServicePage() {
           display: flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+          box-shadow: 0 4px 20px rgba(12, 12, 12,0.3);
           cursor: pointer;
           transition: all 0.3s ease;
           border: 1px solid rgba(255, 255, 255, 0.1);
@@ -218,7 +218,7 @@ export default function DynamicServicePage() {
 
         .back-button:hover {
           transform: scale(1.1);
-          box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+          box-shadow: 0 6px 20px rgba(12, 12, 12,0.15);
         }
 
         .service-hero {
@@ -273,14 +273,14 @@ export default function DynamicServicePage() {
           border-radius: 20px;
           overflow: hidden;
           height: 350px;
-          box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+          box-shadow: 0 8px 30px rgba(12, 12, 12,0.15);
           position: relative;
           transition: all 0.4s ease;
         }
 
         .hero-image-large:hover {
           transform: translateY(-5px);
-          box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+          box-shadow: 0 12px 40px rgba(12, 12, 12,0.2);
         }
 
         .hero-image-large img {
@@ -333,7 +333,7 @@ export default function DynamicServicePage() {
         .accordion-item.open {
           background: rgba(230, 30, 37, 0.08);
           border-color: #e61e25;
-          box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 4px 25px rgba(12, 12, 12, 0.2);
           transform: translateX(8px);
         }
 
@@ -397,7 +397,7 @@ export default function DynamicServicePage() {
           background: rgba(255, 255, 255, 0.05);
           border-radius: 20px;
           padding: 2.2rem;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+          box-shadow: 0 10px 30px rgba(12, 12, 12,0.2);
           border: 1px solid rgba(255, 255, 255, 0.1);
           transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
           display: flex;
@@ -408,7 +408,7 @@ export default function DynamicServicePage() {
 
         .item-card:hover {
           transform: translateY(-4px);
-          box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+          box-shadow: 0 8px 25px rgba(12, 12, 12,0.1);
           border-color: #e61e25;
         }
 
@@ -436,7 +436,7 @@ export default function DynamicServicePage() {
         
 
         .cta-section {
-          background: #1a1a1a;
+          background: #1c1c1c;
           padding: 4rem 2rem;
           text-align: center;
           color: white;
@@ -631,13 +631,13 @@ export default function DynamicServicePage() {
               gap: '0.8rem',
               padding: '1.2rem 3rem',
               background: 'white',
-              color: '#1a1a1a',
+              color: '#1c1c1c',
               fontWeight: 700,
               borderRadius: '12px',
               textDecoration: 'none',
               transition: 'all 0.3s ease',
               fontSize: '1.1rem',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+              boxShadow: '0 4px 12px rgba(12, 12, 12,0.1)'
             }}>
               Get Started <ArrowRight size={22} />
             </Link>

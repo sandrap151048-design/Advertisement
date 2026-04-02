@@ -244,7 +244,7 @@ export default function ServicesPage() {
         .hero-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(135deg, rgba(30,0,0,0.15) 0%, rgba(0,0,0,0.85) 100%);
+          background: linear-gradient(135deg, rgba(30,0,0,0.15) 0%, rgba(12, 12, 12,0.85) 100%);
           z-index: 1;
         }
 
@@ -270,7 +270,7 @@ export default function ServicesPage() {
           word-break: keep-all;
           overflow-wrap: break-word;
           transform: translateZ(100px);
-          text-shadow: 0 15px 40px rgba(0,0,0,0.8);
+          text-shadow: 0 15px 40px rgba(12, 12, 12,0.8);
         }
 
         .hero-title .highlight {
@@ -286,14 +286,14 @@ export default function ServicesPage() {
           max-width: 600px;
           margin: 0 auto 2rem auto;
           line-height: 1.6;
-          text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+          text-shadow: 0 4px 15px rgba(12, 12, 12,0.6);
           transform: translateZ(60px);
           font-weight: 500;
         }
 
         .services-section {
           padding: 6rem 1.5rem;
-          background: rgba(0, 0, 0, 0.8);
+          background: rgba(12, 12, 12, 0.8);
           backdrop-filter: blur(10px);
         }
 
@@ -350,7 +350,7 @@ export default function ServicesPage() {
 
         .service-card:hover {
           transform: translateY(-10px);
-          box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+          box-shadow: 0 40px 80px rgba(12, 12, 12,0.6);
         }
 
         .service-title {
@@ -361,7 +361,7 @@ export default function ServicesPage() {
           line-height: 1.1;
           text-align: left;
           width: 100%;
-          text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+          text-shadow: 0 2px 10px rgba(12, 12, 12,0.5);
         }
 
         .service-divider {
@@ -378,7 +378,7 @@ export default function ServicesPage() {
           text-align: left;
           margin-bottom: auto;
           max-width: 280px;
-          text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+          text-shadow: 0 2px 8px rgba(12, 12, 12,0.5);
         }
 
         .service-scallop {
@@ -387,7 +387,7 @@ export default function ServicesPage() {
           right: -1px;
           width: 100px;
           height: 100px;
-          background: #1a1a1a;
+          background: #1c1c1c;
           border-top-left-radius: 100px;
           display: flex;
           align-items: center;
@@ -527,7 +527,7 @@ export default function ServicesPage() {
           align-items: center;
           justify-content: center;
           overflow: hidden;
-          background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.4)), url('/images/cities_reach.png');
+          background: linear-gradient(rgba(12, 12, 12,0.8), rgba(12, 12, 12,0.4)), url('/images/cities_reach.png');
           background-size: cover;
           background-position: center;
           background-attachment: fixed;
@@ -738,7 +738,7 @@ export default function ServicesPage() {
                   className="service-card"
                   onClick={(e) => handleCardClick(e, service.link)}
                   style={{
-                    backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.85)), url(${service.image})`,
+                    backgroundImage: `linear-gradient(rgba(12, 12, 12,0.6), rgba(12, 12, 12,0.85)), url(${service.image})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                   }}

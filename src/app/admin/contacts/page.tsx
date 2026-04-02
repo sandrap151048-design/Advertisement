@@ -75,7 +75,7 @@ export default function ContactsPage() {
                         <Link href="/admin" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#666', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, marginBottom: '1rem', transition: 'all 0.3s' }} className="hover-red">
                             <ArrowLeft size={18} /> Back to Dashboard
                         </Link>
-                        <h1 style={{ fontSize: '1.8rem', marginBottom: '0.5rem', fontFamily: "'Bricolage Grotesque', sans-serif", color: '#1a1a1a' }}>Contact <span style={{ color: '#e61e25', fontWeight: 700 }}>Forms</span></h1>
+                        <h1 style={{ fontSize: '1.8rem', marginBottom: '0.5rem', fontFamily: "'Bricolage Grotesque', sans-serif", color: '#1c1c1c' }}>Contact <span style={{ color: '#e61e25', fontWeight: 700 }}>Forms</span></h1>
                         <p style={{ color: '#666666', fontSize: '0.9rem', fontFamily: "'Manrope', sans-serif" }}>Manage customer inquiries and messages</p>
                     </div>
                     <div style={{ background: 'rgba(255, 107, 53, 0.1)', padding: '0.8rem 1.5rem', borderRadius: '8px', border: '1px solid rgba(255, 107, 53, 0.2)' }}>
@@ -153,7 +153,7 @@ export default function ContactsPage() {
                                     borderRadius: '8px',
                                     border: '1px solid rgba(255, 107, 53, 0.2)'
                                 }}>
-                                    <p style={{ color: '#1a1a1a', lineHeight: '1.6', margin: 0, fontFamily: "'Manrope', sans-serif" }}>
+                                    <p style={{ color: '#1c1c1c', lineHeight: '1.6', margin: 0, fontFamily: "'Manrope', sans-serif" }}>
                                         {contact.message}
                                     </p>
                                 </div>

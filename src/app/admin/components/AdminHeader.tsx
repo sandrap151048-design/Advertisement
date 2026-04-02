@@ -16,7 +16,7 @@ export default function AdminHeader({ title, subtitle, actionButton }: AdminHead
     const currentDate = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
     return (
-        <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '2.5rem', borderBottom: '1px solid rgba(0,0,0,0.05)', marginBottom: '2.5rem' }}>
+        <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '2.5rem', borderBottom: '1px solid rgba(12, 12, 12,0.05)', marginBottom: '2.5rem' }}>
             <div style={{ flex: 1 }}>
                 <Link href="/admin" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#666', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, marginBottom: '1rem', transition: 'all 0.3s' }} className="hover-red">
                     <ArrowLeft size={18} /> Back to Dashboard
@@ -48,7 +48,7 @@ export default function AdminHeader({ title, subtitle, actionButton }: AdminHead
                         background: '#ffffff',
                         borderRadius: '16px',
                         border: '1px solid #f1f5f9',
-                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
+                        boxShadow: '0 4px 6px -1px rgba(12, 12, 12, 0.05)',
                         cursor: 'pointer',
                         transition: 'all 0.3s ease'
                     }}

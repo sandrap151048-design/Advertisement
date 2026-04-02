@@ -111,7 +111,7 @@ export default function CampaignsPage() {
             <Link href="/admin" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#666', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, marginBottom: '1rem', transition: 'all 0.3s' }} className="hover-red">
                 <ArrowLeft size={18} /> Back to Dashboard
             </Link>
-            <h1 style={{ fontSize: '2rem', fontWeight: 800, color: '#1a1a1a', margin: 0 }}>
+            <h1 style={{ fontSize: '2rem', fontWeight: 800, color: '#1c1c1c', margin: 0 }}>
               Campaign <span style={{ color: '#e61e25' }}>Requests</span>
             </h1>
             <p style={{ color: '#888', margin: '0.3rem 0 0', fontSize: '0.95rem' }}>
@@ -136,7 +136,7 @@ export default function CampaignsPage() {
             { label: 'In Progress', value: campaigns.filter(c => c.status === 'in-progress').length, color: '#3b82f6' },
             { label: 'Completed', value: campaigns.filter(c => c.status === 'completed').length, color: '#10b981' },
           ].map((s, i) => (
-            <div key={i} style={{ background: 'white', borderRadius: 14, padding: '1.2rem 1.5rem', boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
+            <div key={i} style={{ background: 'white', borderRadius: 14, padding: '1.2rem 1.5rem', boxShadow: '0 2px 8px rgba(12, 12, 12,0.06)' }}>
               <div style={{ fontSize: '2rem', fontWeight: 800, color: s.color }}>{s.value}</div>
               <div style={{ fontSize: '0.85rem', color: '#888', marginTop: '0.2rem' }}>{s.label}</div>
             </div>
@@ -160,7 +160,7 @@ export default function CampaignsPage() {
           </div>
           <select value={serviceFilter} onChange={e => setServiceFilter(e.target.value)} style={{
             padding: '0.75rem 1rem', border: '1px solid #e0e0e0', borderRadius: 10,
-            background: 'white', fontSize: '0.9rem', outline: 'none', cursor: 'pointer', color: '#1a1a1a'
+            background: 'white', fontSize: '0.9rem', outline: 'none', cursor: 'pointer', color: '#1c1c1c'
           }}>
             <option value="all">All Services</option>
             {Object.entries(SERVICE_LABELS).map(([val, label]) => (
@@ -175,9 +175,9 @@ export default function CampaignsPage() {
             <div style={{ width: 50, height: 50, border: '4px solid rgba(255,107,53,0.2)', borderTop: '4px solid #e61e25', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
           </div>
         ) : filtered.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '4rem', background: 'white', borderRadius: 16, boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
+          <div style={{ textAlign: 'center', padding: '4rem', background: 'white', borderRadius: 16, boxShadow: '0 2px 8px rgba(12, 12, 12,0.06)' }}>
             <TrendingUp size={48} color="#ddd" style={{ marginBottom: '1rem' }} />
-            <h3 style={{ color: '#1a1a1a', marginBottom: '0.5rem' }}>
+            <h3 style={{ color: '#1c1c1c', marginBottom: '0.5rem' }}>
               {campaigns.length === 0 ? 'No Campaign Requests Yet' : 'No Results Found'}
             </h3>
             <p style={{ color: '#888' }}>
@@ -197,8 +197,8 @@ export default function CampaignsPage() {
                   transition={{ delay: i * 0.05 }}
                   style={{
                     background: 'white', borderRadius: 16,
-                    boxShadow: '0 2px 12px rgba(0,0,0,0.07)',
-                    overflow: 'hidden', border: '1px solid rgba(0,0,0,0.05)'
+                    boxShadow: '0 2px 12px rgba(12, 12, 12,0.07)',
+                    overflow: 'hidden', border: '1px solid rgba(12, 12, 12,0.05)'
                   }}
                 >
                   {/* Card Top Bar */}
@@ -212,7 +212,7 @@ export default function CampaignsPage() {
                           <User size={22} color={serviceColor} />
                         </div>
                         <div>
-                          <div style={{ fontWeight: 700, fontSize: '1.1rem', color: '#1a1a1a' }}>{campaign.name}</div>
+                          <div style={{ fontWeight: 700, fontSize: '1.1rem', color: '#1c1c1c' }}>{campaign.name}</div>
                           <div style={{ fontSize: '0.8rem', color: serviceColor, fontWeight: 600, marginTop: '0.1rem' }}>
                             {SERVICE_LABELS[campaign.service] || campaign.service}
                           </div>

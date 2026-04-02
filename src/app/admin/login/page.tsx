@@ -85,7 +85,7 @@ export default function AdminLoginPage() {
                     content: '';
                     position: absolute;
                     inset: 0;
-                    background: linear-gradient(to left, rgba(0,0,0,0.1), rgba(0,0,0,0.4));
+                    background: linear-gradient(to left, rgba(12, 12, 12,0.1), rgba(12, 12, 12,0.4));
                 }
 
                 .login-form-container {

@@ -59,7 +59,7 @@ export default function AdminSidebar() {
                 .admin-sidebar {
                     width: 100%;
                     height: 100%;
-                    background: linear-gradient(180deg, #111111 0%, #000000 100%);
+                    background: linear-gradient(180deg, #111111 0%, #121212 100%);
                     padding: 3rem 1.5rem;
                     display: flex;
                     flex-direction: column;
@@ -136,7 +136,7 @@ export default function AdminSidebar() {
                         display: block;
                         position: fixed;
                         inset: 0;
-                        background: rgba(0, 0, 0, 0.5);
+                        background: rgba(12, 12, 12, 0.5);
                         backdrop-filter: blur(4px);
                         z-index: 999;
                     }

@@ -36,7 +36,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <div style={{ backgroundColor: '#0a0a0a', color: 'white', minHeight: '100vh', paddingTop: '140px', paddingBottom: '100px' }}>
+    <div style={{ backgroundColor: '#121212', color: 'white', minHeight: '100vh', paddingTop: '140px', paddingBottom: '100px' }}>
       <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 2rem' }}>
         
         {/* Header */}

@@ -118,7 +118,7 @@ export default function ContactPage() {
         .contact-hero-overlay {
           position: absolute;
           inset: 0;
-          background: radial-gradient(circle at 70% 50%, rgba(30,0,0,0.1) 0%, rgba(0,0,0,0.9) 100%);
+          background: radial-gradient(circle at 70% 50%, rgba(30,0,0,0.1) 0%, rgba(12, 12, 12,0.9) 100%);
           z-index: 1;
         }
 
@@ -207,14 +207,14 @@ export default function ContactPage() {
           flex-direction: column;
           justify-content: center;
           border: 1px solid rgba(255,255,255,0.08);
-          box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+          box-shadow: 0 15px 40px rgba(12, 12, 12,0.3);
           transition: all 0.4s ease;
         }
 
         .touch-left:hover {
           border-color: rgba(230,30,37,0.3);
           transform: translateY(-5px);
-          box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+          box-shadow: 0 25px 60px rgba(12, 12, 12,0.5);
         }
 
         .touch-right {
@@ -226,7 +226,7 @@ export default function ContactPage() {
           display: flex;
           flex-direction: column;
           justify-content: center;
-          box-shadow: 0 15px 45px rgba(0,0,0,0.3);
+          box-shadow: 0 15px 45px rgba(12, 12, 12,0.3);
           transition: all 0.4s ease;
         }
 
@@ -286,7 +286,7 @@ export default function ContactPage() {
 
         /* Form Section */
         .campaign-section {
-          background: #0a0a0a;
+          background: #121212;
           padding: 8rem 2rem;
           color: white;
           text-align: center;
@@ -338,8 +338,8 @@ export default function ContactPage() {
         }
 
         .form-select option {
-          background: #1a1a1a !important;
-          color: #000000 !important;
+          background: #1c1c1c !important;
+          color: #121212 !important;
         }
 
         .submit-button-wrap {
@@ -350,7 +350,7 @@ export default function ContactPage() {
 
         .submit-button {
           padding: 0.8rem 2.5rem;
-          background: #1a1a1a;
+          background: #1c1c1c;
           color: black;
           font-weight: 700;
           border-radius: 50px;
@@ -361,13 +361,13 @@ export default function ContactPage() {
         }
 
         .submit-button:hover {
-          background: #1a1a1a;
+          background: #1c1c1c;
           transform: translateY(-2px);
         }
 
         /* Footer */
         .footer-black {
-          background: #0a0a0a;
+          background: #121212;
           padding: 6rem 10% 4rem 10%;
           color: white;
         }

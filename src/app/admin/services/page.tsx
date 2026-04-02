@@ -200,12 +200,12 @@ export default function ServicesPage() {
     };
 
     const ModalForm = ({ data, setData, onSubmit, onFileChange, title, submitLabel }: any) => (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, backdropFilter: 'blur(4px)' }}
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(12, 12, 12,0.55)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, backdropFilter: 'blur(4px)' }}
             onClick={() => { setShowAddModal(false); setShowEditModal(false); }}>
-            <div style={{ maxWidth: '520px', width: '92%', background: 'white', borderRadius: '20px', padding: '2rem', maxHeight: '90vh', overflowY: 'auto', boxShadow: '0 25px 50px rgba(0,0,0,0.2)' }}
+            <div style={{ maxWidth: '520px', width: '92%', background: 'white', borderRadius: '20px', padding: '2rem', maxHeight: '90vh', overflowY: 'auto', boxShadow: '0 25px 50px rgba(12, 12, 12,0.2)' }}
                 onClick={(e) => e.stopPropagation()}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-                    <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#1a1a1a' }}>{title}</h2>
+                    <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#1c1c1c' }}>{title}</h2>
                     <button onClick={() => { setShowAddModal(false); setShowEditModal(false); }} style={{ border: 'none', background: '#f5f5f5', borderRadius: '8px', padding: '6px', cursor: 'pointer', color: '#666' }}><X size={20} /></button>
                 </div>
                 <form onSubmit={onSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -257,7 +257,7 @@ export default function ServicesPage() {
                         color: 'white',
                         padding: '1rem 1.5rem',
                         borderRadius: '8px',
-                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                        boxShadow: '0 4px 12px rgba(12, 12, 12, 0.15)',
                         zIndex: 9999,
                         fontWeight: 600,
                         fontSize: '0.95rem'
@@ -270,7 +270,7 @@ export default function ServicesPage() {
                         <Link href="/admin" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#666', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, marginBottom: '1rem', transition: 'all 0.3s' }} className="hover-red">
                             <ArrowLeft size={18} /> Back to Dashboard
                         </Link>
-                        <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#1a1a1a', fontFamily: "'Outfit', sans-serif" }}>Services <span style={{ color: '#e61e25' }}>Management</span></h1>
+                        <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#1c1c1c', fontFamily: "'Outfit', sans-serif" }}>Services <span style={{ color: '#e61e25' }}>Management</span></h1>
                         <p style={{ color: '#666', fontSize: '0.9rem' }}>Manage your public service offerings</p>
                     </div>
                     <button 
@@ -371,7 +371,7 @@ export default function ServicesPage() {
                     <div style={{
                         position: 'fixed',
                         inset: 0,
-                        background: 'rgba(0,0,0,0.5)',
+                        background: 'rgba(12, 12, 12,0.5)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -543,7 +543,7 @@ export default function ServicesPage() {
                     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
                     background: #000;
                     border: 1px solid rgba(255, 255, 255, 0.1);
-                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                    box-shadow: 0 10px 30px rgba(12, 12, 12, 0.2);
                     will-change: transform, box-shadow;
                 }
 
@@ -583,7 +583,7 @@ export default function ServicesPage() {
                 .service-overlay {
                     position: absolute;
                     inset: 0;
-                    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%);
+                    background: linear-gradient(to top, rgba(12, 12, 12,0.95) 0%, rgba(12, 12, 12,0.4) 50%, rgba(12, 12, 12,0.1) 100%);
                     display: flex;
                     flex-direction: column;
                     justify-content: flex-end;
@@ -594,7 +594,7 @@ export default function ServicesPage() {
                 }
 
                 .service-card:hover .service-overlay {
-                    background: linear-gradient(to top, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.3) 100%);
+                    background: linear-gradient(to top, rgba(12, 12, 12,0.98) 0%, rgba(12, 12, 12,0.3) 100%);
                 }
 
                 .service-title {
@@ -602,7 +602,7 @@ export default function ServicesPage() {
                     font-weight: 800;
                     margin-bottom: 0.6rem;
                     color: white;
-                    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+                    text-shadow: 0 2px 10px rgba(12, 12, 12,0.5);
                     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
                 }
 
@@ -663,8 +663,8 @@ export default function ServicesPage() {
                 }
 
                 .action-btn.edit:hover {
-                    background: #1a1a1a;
-                    color: #1a1a1a;
+                    background: #1c1c1c;
+                    color: #1c1c1c;
                 }
 
                 .action-btn.delete {

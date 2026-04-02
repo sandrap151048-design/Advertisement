@@ -71,7 +71,7 @@ export default function DigitalGraphicsPage() {
           display: flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+          box-shadow: 0 4px 20px rgba(12, 12, 12,0.3);
           cursor: pointer;
           transition: all 0.3s ease;
           border: none;
@@ -80,7 +80,7 @@ export default function DigitalGraphicsPage() {
 
         .back-button:hover {
           transform: scale(1.1);
-          box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+          box-shadow: 0 6px 20px rgba(12, 12, 12,0.15);
         }
 
         .service-hero {
@@ -132,14 +132,14 @@ export default function DigitalGraphicsPage() {
           border-radius: 0;
           overflow: hidden;
           height: 350px;
-          box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+          box-shadow: 0 8px 30px rgba(12, 12, 12,0.15);
           position: relative;
           transition: all 0.4s ease;
         }
 
         .hero-image-large:hover {
           transform: translateY(-5px);
-          box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+          box-shadow: 0 12px 40px rgba(12, 12, 12,0.2);
         }
 
         .hero-image-large img {
@@ -191,7 +191,7 @@ export default function DigitalGraphicsPage() {
         .accordion-item.open {
           background: rgba(230,30,37,0.08);
           border-color: #e61e25;
-          box-shadow: 0 4px 25px rgba(0,0,0,0.2);
+          box-shadow: 0 4px 25px rgba(12, 12, 12,0.2);
           transform: translateX(8px);
         }
 
@@ -243,7 +243,7 @@ export default function DigitalGraphicsPage() {
         
 
         .cta-section {
-          background: #1a1a1a;
+          background: #1c1c1c;
           padding: 4rem 2rem;
           text-align: center;
           color: white;
@@ -297,14 +297,14 @@ export default function DigitalGraphicsPage() {
         }
 
         .form-select option {
-          background: #1a1a1a;
+          background: #1c1c1c;
           color: white;
         }
 
         .submit-button {
           padding: 1rem 2rem;
-          background: #1a1a1a;
-          color: #1a1a1a;
+          background: #1c1c1c;
+          color: #1c1c1c;
           border: none;
           border-radius: 8px;
           font-weight: 700;
@@ -445,7 +445,7 @@ export default function DigitalGraphicsPage() {
           </motion.p>
 
           <motion.div variants={fadeInUp} style={{ marginTop: '2rem' }}>
-            <Link href="/campaign" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.8rem', padding: '1.2rem 3rem', background: 'white', color: '#1a1a1a', fontWeight: 700, borderRadius: '12px', textDecoration: 'none', transition: 'all 0.3s ease', fontSize: '1.1rem', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+            <Link href="/campaign" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.8rem', padding: '1.2rem 3rem', background: 'white', color: '#1c1c1c', fontWeight: 700, borderRadius: '12px', textDecoration: 'none', transition: 'all 0.3s ease', fontSize: '1.1rem', boxShadow: '0 4px 12px rgba(12, 12, 12,0.1)' }}>
               Submit Request <ArrowRight size={22} />
             </Link>
           </motion.div>
