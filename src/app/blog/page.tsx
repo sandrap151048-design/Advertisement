@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 
 const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 60 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.2 } }
 };
 
 const staggerContainer: Variants = {
@@ -205,7 +205,7 @@ export default function BlogPage() {
                 <motion.div 
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.2 }}
                     style={{ 
                         display: 'flex', 
                         flexWrap: 'wrap', 
@@ -426,7 +426,7 @@ function NewsletterSignup() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.2 }}
             className="glass-card"
             style={{
                 background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))',

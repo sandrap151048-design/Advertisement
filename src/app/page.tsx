@@ -8,7 +8,7 @@ import './black-cards.css';
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } as any }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.2 } as any }
 };
 
 const fadeInDown: Variants = {
@@ -38,22 +38,22 @@ const revealDown: Variants = {
 
 const swipeLeft: Variants = {
   hidden: { opacity: 0, x: -100 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } as any }
+  visible: { opacity: 1, x: 0, transition: { duration: 0.2, ease: "easeOut" } as any }
 };
 
 const swipeRight: Variants = {
   hidden: { opacity: 0, x: 100 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } as any }
+  visible: { opacity: 1, x: 0, transition: { duration: 0.2, ease: "easeOut" } as any }
 };
 
 const swipeUp: Variants = {
   hidden: { opacity: 0, y: 100 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } as any }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.2, ease: "easeOut" } as any }
 };
 
 const swipeDown: Variants = {
   hidden: { opacity: 0, y: -100 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } as any }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.2, ease: "easeOut" } as any }
 };
 
 const staggerContainer: Variants = {
@@ -917,12 +917,12 @@ export default function Home() {
           style={{ rotateX, rotateY }}
           initial={{ opacity: 0, rotateX: 20, y: 100, scale: 0.8 }}
           animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
-          transition={{ duration: 1.2, type: "spring", bounce: 0.3 }}
+          transition={{ duration: 0.4, type: "spring", bounce: 0.3 }}
         >
           <motion.h1 
             initial={{ z: -150, opacity: 0 }}
             animate={{ z: 0, opacity: 1 }}
-            transition={{ duration: 1.2, delay: 0.3 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
             variants={fadeInDown}
             style={{ 
               fontFamily: "'Bricolage Grotesque', sans-serif"
@@ -1170,7 +1170,7 @@ export default function Home() {
                     opacity: currentLocationIndex === index ? 1 : 0,
                     y: currentLocationIndex === index ? 0 : 30
                   }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
+                  transition={{ duration: 0.2, delay: 0.4 }}
                   style={{
                     position: 'absolute',
                     bottom: '2rem',

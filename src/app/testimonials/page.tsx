@@ -270,7 +270,7 @@ export default function ProjectsPage() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.2 }}
             style={{ textAlign: 'center', marginBottom: '3.5rem' }}
           >
             <h2 style={{ fontSize: 'clamp(2.5rem,5vw,3.5rem)', fontWeight: 900, color: '#1c1c1c', lineHeight: 1.1, margin: '0 0 1rem' }}>
@@ -433,7 +433,7 @@ export default function ProjectsPage() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.2 }}
               style={{ textAlign: 'center', marginBottom: '3.5rem' }}
             >
               <h2 style={{ fontSize: 'clamp(2.5rem,5vw,3.5rem)', fontWeight: 900, color: '#1c1c1c', lineHeight: 1.1, margin: '0 0 1rem' }}>

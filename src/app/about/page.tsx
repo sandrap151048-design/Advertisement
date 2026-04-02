@@ -32,7 +32,7 @@ const fadeInUp: Variants = {
     y: 0, 
     scale: 1, 
     transition: { 
-      duration: 0.8,
+      duration: 0.3,
       ease: [0.22, 1, 0.36, 1]
     } 
   }
@@ -298,7 +298,7 @@ export default function AboutPage() {
           padding: 2.5rem;
           border-radius: 20px;
           border: 1px solid rgba(255, 255, 255, 0.1);
-          transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+          transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
           color: white;
           position: relative;
           z-index: 2;
@@ -639,13 +639,13 @@ export default function AboutPage() {
             style={{ rotateX, rotateY }}
             initial={{ opacity: 0, scale: 0.8, y: 50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 1.2, type: "spring", bounce: 0.3 }}
+            transition={{ duration: 0.4, type: "spring", bounce: 0.3 }}
           >
             <motion.h1 
               className="hero-title"
               initial={{ z: -200, opacity: 0 }}
               animate={{ z: 0, opacity: 1 }}
-              transition={{ duration: 1.2, delay: 0.2 }}
+              transition={{ duration: 0.4, delay: 0.2 }}
             >
               Transforming Ideas into <motion.span
                 animate={{ 
@@ -662,7 +662,7 @@ export default function AboutPage() {
               className="hero-desc"
               initial={{ opacity: 0, y: 20, z: -50 }}
               animate={{ opacity: 1, y: 0, z: 0 }}
-              transition={{ duration: 1, delay: 0.5 }}
+              transition={{ duration: 1, delay: 0.15 }}
             >
               One Click Advertisement is a full-service advertising and branding company delivering end-to-end visual communication solutions across the UAE.
             </motion.p>

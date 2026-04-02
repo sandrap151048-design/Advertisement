@@ -19,7 +19,7 @@ const fadeInUp: Variants = {
     scale: 1,
     filter: 'blur(0px)',
     transition: { 
-      duration: 0.8,
+      duration: 0.3,
       ease: [0.22, 1, 0.36, 1] as any
     } 
   }
@@ -676,13 +676,13 @@ export default function ServicesPage() {
             style={{ rotateX, rotateY }}
             initial={{ opacity: 0, rotateX: 20, y: 100, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
-            transition={{ duration: 1.2, type: "spring", bounce: 0.3 }}
+            transition={{ duration: 0.4, type: "spring", bounce: 0.3 }}
           >
             <motion.h1 
               className="hero-title" 
               initial={{ z: -150, rotateY: -15, opacity: 0 }}
               animate={{ z: 0, rotateY: 0, opacity: 1 }}
-              transition={{ duration: 1.2, delay: 0.3, type: "spring", bounce: 0.4 }}
+              transition={{ duration: 0.4, delay: 0.1, type: "spring", bounce: 0.4 }}
             >
               Stand Out <br />
               Every<motion.span 
@@ -701,7 +701,7 @@ export default function ServicesPage() {
               className="hero-subtitle" 
               initial={{ opacity: 0, y: 30, z: -50 }}
               animate={{ opacity: 1, y: 0, z: 0 }}
-              transition={{ delay: 0.7, duration: 0.8 }}
+              transition={{ delay: 0.7, duration: 0.3 }}
             >
               High-impact outdoor advertising designed to make your brand visible, memorable, and impossible to ignore across the places that matter most.
             </motion.p>

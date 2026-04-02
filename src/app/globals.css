@@ -4358,9 +4358,9 @@ html {
 
 .stagger-item:nth-child(1) { animation-delay: 0.1s; }
 .stagger-item:nth-child(2) { animation-delay: 0.2s; }
-.stagger-item:nth-child(3) { animation-delay: 0.3s; }
+.stagger-item:nth-child(3) { animation-delay: 0.1s; }
 .stagger-item:nth-child(4) { animation-delay: 0.4s; }
-.stagger-item:nth-child(5) { animation-delay: 0.5s; }
+.stagger-item:nth-child(5) { animation-delay: 0.15s; }
 .stagger-item:nth-child(6) { animation-delay: 0.6s; }
 
 /* Parallax effect for hero */
@@ -4425,3 +4425,59 @@ html {
   height: 300px;
 }
 
+@import url('./mobile-responsive.css');
+
+/* Admin Dashboard Specific Responsiveness */
+@media (max-width: 1024px) {
+  .admin-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1.5rem !important;
+    padding: 1.5rem !important;
+  }
+  
+  .admin-header > div {
+    width: 100% !important;
+  }
+  
+  .admin-header > div:last-child {
+    justify-content: flex-start !important;
+    gap: 1rem !important;
+  }
+
+  .admin-stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .admin-bottom-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Fix for overlapping buttons in admin header */
+  .admin-header .btn, 
+  .admin-header button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-main-content {
+    padding: 1rem !important;
+  }
+  
+  .admin-card {
+    padding: 1.25rem !important;
+  }
+
+  /* Table responsiveness */
+  .admin-table-container {
+    overflow-x: auto !important;
+    width: 100% !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .admin-table {
+    min-width: 600px !important;
+  }
+}

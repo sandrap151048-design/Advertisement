@@ -7,7 +7,7 @@ import { useState, FormEvent } from 'react';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.2 } }
 };
 
 const staggerContainer = {
@@ -517,7 +517,7 @@ export default function ContactPage() {
               className="hero-left"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.3 }}
             >
               <h1 className="contact-hero-title">Contact<br /><span style={{ color: '#e61e25' }}>Us</span></h1>
             </motion.div>
@@ -526,7 +526,7 @@ export default function ContactPage() {
               className="hero-right"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
             >
               <p className="contact-hero-text">
                 Partner with Dubai's leading advertising experts to create high-impact visual communications that resonate.

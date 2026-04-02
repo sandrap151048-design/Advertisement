@@ -298,7 +298,7 @@ export default function AdminProjectsPage() {
                     object-fit: cover;
                     border-radius: 20px;
                     box-shadow: 0 15px 45px rgba(12, 12, 12,0.1);
-                    transition: all 0.5s ease;
+                    transition: all 0.2s ease;
                 }
 
                 .cluster-img:hover {

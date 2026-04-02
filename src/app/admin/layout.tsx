@@ -35,11 +35,41 @@ export default function AdminLayout({
   }
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', overflow: 'hidden' }}>
-      <div style={{ width: '320px', flexShrink: 0, height: '100vh', position: 'sticky', top: 0 }}>
+    <div className="admin-container">
+      <style jsx>{`
+        .admin-container {
+          display: flex;
+          min-height: 100vh;
+          background: #121212;
+          overflow: hidden;
+        }
+        .sidebar-wrapper {
+          width: 320px;
+          flex-shrink: 0;
+          height: 100vh;
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+        }
+        .main-content {
+          flex: 1;
+          height: 100vh;
+          overflow-y: auto;
+          padding: 3rem;
+        }
+        @media (max-width: 1024px) {
+          .sidebar-wrapper {
+            width: 0;
+          }
+          .main-content {
+            padding: 5rem 1.5rem 2rem;
+          }
+        }
+      `}</style>
+      <div className="sidebar-wrapper">
         <AdminSidebar />
       </div>
-      <div style={{ flex: 1, height: '100vh', overflowY: 'auto', padding: '3rem' }}>
+      <div className="main-content">
         <div style={{ maxWidth: '1400px', margin: '0 auto', width: '100%' }}>
           {children}
         </div>

@@ -197,7 +197,7 @@ function ProjectsContent() {
 
     const fadeInUp = {
         hidden: { opacity: 0, y: 30 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+        visible: { opacity: 1, y: 0, transition: { duration: 0.2 } }
     };
 
     const handleLogout = () => {
@@ -385,7 +385,7 @@ function ProjectsContent() {
                     object-fit: cover;
                     border-radius: 20px;
                     box-shadow: 0 15px 45px rgba(12, 12, 12,0.1);
-                    transition: all 0.5s ease;
+                    transition: all 0.2s ease;
                 }
                 .cluster-images.small .cluster-img {
                     height: 480px;
@@ -503,13 +503,13 @@ function ProjectsContent() {
                     style={{ rotateX, rotateY }}
                     initial={{ opacity: 0, rotateX: 30, y: 100, scale: 0.8 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ duration: 1.2, type: "spring", bounce: 0.3 }}
+                    transition={{ duration: 0.4, type: "spring", bounce: 0.3 }}
                 >
                     <motion.h1 
                         className="hero-works-h1"
                         initial={{ z: -200, rotateY: -20, opacity: 0 }}
                         animate={{ z: 0, rotateY: 0, opacity: 1 }}
-                        transition={{ duration: 1.2, delay: 0.3, type: "spring", bounce: 0.4 }}
+                        transition={{ duration: 0.4, delay: 0.1, type: "spring", bounce: 0.4 }}
                     >
                         Our <motion.span
                             animate={{ 
@@ -526,7 +526,7 @@ function ProjectsContent() {
                         className="hero-works-tagline"
                         initial={{ opacity: 0, y: 30, z: -100 }}
                         animate={{ opacity: 1, y: 0, z: 0 }}
-                        transition={{ delay: 0.7, duration: 0.8 }}
+                        transition={{ delay: 0.7, duration: 0.3 }}
                     >
                         Real campaigns. Real impact.
                     </motion.div>
