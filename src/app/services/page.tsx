@@ -6,21 +6,17 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import ServiceMap from '@/app/components/ServiceMap';
 
-const fadeInUp: Variants = {
+const cardReveal: Variants = {
   hidden: { 
     opacity: 0, 
-    y: 60,
-    scale: 0.9,
-    filter: 'blur(10px)'
+    y: 40
   },
   visible: { 
     opacity: 1, 
     y: 0,
-    scale: 1,
-    filter: 'blur(0px)',
     transition: { 
       duration: 0.6,
-      ease: [0.22, 1, 0.36, 1] as any
+      ease: "easeOut"
     } 
   }
 };
@@ -30,8 +26,8 @@ const staggerContainer: Variants = {
   visible: {
     opacity: 1,
     transition: { 
-      staggerChildren: 0.3,
-      delayChildren: 0.5
+      staggerChildren: 0.15,
+      delayChildren: 0.2
     }
   }
 };
@@ -349,8 +345,9 @@ export default function ServicesPage() {
         }
 
         .service-card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 40px 80px rgba(12, 12, 12,0.6);
+          transform: translateY(-8px) scale(1.02);
+          box-shadow: 0 30px 60px rgba(230, 30, 37, 0.15);
+          border-color: rgba(230, 30, 37, 0.4);
         }
 
         .service-title {
@@ -716,7 +713,7 @@ export default function ServicesPage() {
             viewport={{ once: true }}
             variants={staggerContainer}
           >
-            <motion.div className="section-header" variants={fadeInUp}>
+            <motion.div className="section-header" variants={cardReveal}>
               <h2 className="section-title">
                 Our <span className="italic">Services</span>
               </h2>
@@ -725,7 +722,7 @@ export default function ServicesPage() {
               </p>
             </motion.div>
 
-            <motion.div className="services-deck" variants={fadeInUp}>
+            <div className="services-deck">
               {allServices.map((service, index) => {
                 const total = allServices.length;
                 const offset = index - (total - 1) / 2;
@@ -733,8 +730,9 @@ export default function ServicesPage() {
                 const zIndex = 50 - Math.floor(absOffset * 10);
                 
                 return (
-                <div
+                <motion.div
                   key={index}
+                  variants={cardReveal}
                   className="service-card"
                   onClick={(e) => handleCardClick(e, service.link)}
                   style={{
@@ -764,9 +762,9 @@ export default function ServicesPage() {
                       {String(index + 1).padStart(2, '0')}
                     </div>
                   </div>
-                </div>
+                </motion.div>
               )})}
-            </motion.div>
+            </div>
           </motion.div>
         </section>
 
@@ -779,7 +777,7 @@ export default function ServicesPage() {
             viewport={{ once: true }}
             variants={staggerContainer}
           >
-            <motion.div className="why-choose-content" variants={fadeInUp}>
+            <motion.div className="why-choose-content" variants={cardReveal}>
               <h2 style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
                 Why Choose{' '}
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
@@ -795,7 +793,7 @@ export default function ServicesPage() {
               </p>
             </motion.div>
 
-            <motion.div className="accordion" variants={fadeInUp}>
+            <motion.div className="accordion" variants={cardReveal}>
               {accordionItems.map((item, index) => (
                 <div
                   key={index}

@@ -350,8 +350,8 @@ export default function ContactPage() {
 
         .submit-button {
           padding: 0.8rem 2.5rem;
-          background: #1c1c1c;
-          color: black;
+          background: #e61e25;
+          color: white;
           font-weight: 700;
           border-radius: 50px;
           border: none;
@@ -361,7 +361,8 @@ export default function ContactPage() {
         }
 
         .submit-button:hover {
-          background: #1c1c1c;
+          background: #121212;
+          color: white;
           transform: translateY(-2px);
         }
 
