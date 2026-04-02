@@ -228,7 +228,7 @@ function ProjectsContent() {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            transition: { staggerChildren: 0.3, delayChildren: 0.5 }
+            transition: { staggerChildren: 0.3, delayChildren: 0.4 }
         }
     };
 
@@ -651,9 +651,9 @@ function ProjectsContent() {
                                         style={{ flexDirection: idx % 2 === 0 ? 'row' : 'row-reverse' }}
                                         initial={{ 
                                             opacity: 0, 
-                                            y: 120,
-                                            scale: 0.8,
-                                            rotateY: idx % 2 === 0 ? -15 : 15
+                                            y: 80,
+                                            scale: 0.9,
+                                            rotateY: idx % 2 === 0 ? -10 : 10
                                         }}
                                         whileInView={{ 
                                             opacity: 1, 
@@ -664,18 +664,18 @@ function ProjectsContent() {
                                         viewport={{ once: true, margin: "-100px" }}
                                         transition={{ 
                                             duration: 1.6, 
-                                            delay: Math.min(idx * 0.25, 1.0),
-                                            ease: "easeOut",
+                                            delay: Math.min(idx * 0.3, 0.9),
+                                            ease: [0.25, 0.46, 0.45, 0.94],
                                             type: "spring",
-                                            bounce: 0.4
+                                            bounce: 0.1
                                         }}
                                     >
                                         <motion.div 
                                             className="cluster-text"
                                             initial={{ 
                                                 opacity: 0, 
-                                                x: idx % 2 === 0 ? -80 : 80,
-                                                scale: 0.9
+                                                x: idx % 2 === 0 ? -60 : 60,
+                                                scale: 0.95
                                             }}
                                             whileInView={{ 
                                                 opacity: 1, 
@@ -684,9 +684,9 @@ function ProjectsContent() {
                                             }}
                                             viewport={{ once: true }}
                                             transition={{ 
-                                                duration: 1.2, 
-                                                delay: Math.min(idx * 0.25, 1.0) + 0.3,
-                                                ease: "easeOut"
+                                                duration: 1.3, 
+                                                delay: Math.min(idx * 0.3, 0.9) + 0.3,
+                                                ease: [0.25, 0.46, 0.45, 0.94]
                                             }}
                                         >
                                             <motion.h2 
@@ -718,9 +718,9 @@ function ProjectsContent() {
                                             className={`cluster-images ${project.images.length === 1 ? 'single' : ''} ${project.isSmall ? 'small' : ''}`}
                                             initial={{ 
                                                 opacity: 0, 
-                                                x: idx % 2 === 0 ? 80 : -80,
-                                                scale: 0.9,
-                                                rotateY: idx % 2 === 0 ? 10 : -10
+                                                x: idx % 2 === 0 ? 60 : -60,
+                                                scale: 0.95,
+                                                rotateY: idx % 2 === 0 ? 8 : -8
                                             }}
                                             whileInView={{ 
                                                 opacity: 1, 
@@ -730,11 +730,11 @@ function ProjectsContent() {
                                             }}
                                             viewport={{ once: true }}
                                             transition={{ 
-                                                duration: 1.4, 
-                                                delay: Math.min(idx * 0.25, 1.0) + 0.4,
-                                                ease: "easeOut",
+                                                duration: 1.5, 
+                                                delay: Math.min(idx * 0.3, 0.9) + 0.4,
+                                                ease: [0.25, 0.46, 0.45, 0.94],
                                                 type: "spring",
-                                                bounce: 0.3
+                                                bounce: 0.1
                                             }}
                                         >
                                             {project.images.length > 0 ? (
@@ -747,8 +747,8 @@ function ProjectsContent() {
                                                         loading="lazy"
                                                         initial={{ 
                                                             opacity: 0, 
-                                                            scale: 0.8,
-                                                            rotateZ: i % 2 === 0 ? -5 : 5
+                                                            scale: 0.9,
+                                                            rotateZ: i % 2 === 0 ? -3 : 3
                                                         }}
                                                         whileInView={{ 
                                                             opacity: 1, 
@@ -757,15 +757,15 @@ function ProjectsContent() {
                                                         }}
                                                         viewport={{ once: true }}
                                                         transition={{ 
-                                                            duration: 1.0, 
-                                                            delay: Math.min(idx * 0.25, 1.0) + 0.7 + (i * 0.2),
-                                                            ease: "easeOut",
+                                                            duration: 1.2, 
+                                                            delay: Math.min(idx * 0.3, 0.9) + 0.6 + (i * 0.2),
+                                                            ease: [0.25, 0.46, 0.45, 0.94],
                                                             type: "spring",
-                                                            bounce: 0.3
+                                                            bounce: 0.1
                                                         }}
                                                         whileHover={{ 
-                                                            scale: 1.05,
-                                                            transition: { duration: 0.3 }
+                                                            scale: 1.03,
+                                                            transition: { duration: 0.4, ease: "easeOut" }
                                                         }}
                                                         onError={(e) => {
                                                             (e.target as HTMLImageElement).src = '/projects-hero-bg.png';
