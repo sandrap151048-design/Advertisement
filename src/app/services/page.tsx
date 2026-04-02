@@ -9,14 +9,18 @@ import ServiceMap from '@/app/components/ServiceMap';
 const cardReveal: Variants = {
   hidden: { 
     opacity: 0, 
-    y: 40
+    y: 80,
+    scale: 0.9
   },
   visible: { 
     opacity: 1, 
     y: 0,
+    scale: 1,
     transition: { 
-      duration: 0.4,
-      ease: "easeOut"
+      duration: 1.2,
+      ease: "easeOut",
+      type: "spring",
+      bounce: 0.3
     } 
   }
 };
@@ -26,8 +30,8 @@ const staggerContainer: Variants = {
   visible: {
     opacity: 1,
     transition: { 
-      staggerChildren: 0.08,
-      delayChildren: 0.05
+      staggerChildren: 0.3,
+      delayChildren: 0.2
     }
   }
 };
@@ -659,6 +663,9 @@ export default function ServicesPage() {
           <motion.div 
             className="hero-background"
             style={{ x: bgX, y: bgY }}
+            initial={{ scale: 1.1, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 2.0, ease: "easeOut" }}
           >
             <img 
               src="/signage-production.png" 
@@ -672,13 +679,13 @@ export default function ServicesPage() {
             style={{ rotateX, rotateY }}
             initial={{ opacity: 0, rotateX: 20, y: 100, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
-            transition={{ duration: 1.0, type: "spring", bounce: 0.3 }}
+            transition={{ duration: 1.4, type: "spring", bounce: 0.3 }}
           >
             <motion.h1 
               className="hero-title" 
               initial={{ z: -150, rotateY: -15, opacity: 0 }}
               animate={{ z: 0, rotateY: 0, opacity: 1 }}
-              transition={{ duration: 1.0, delay: 0.3, type: "spring", bounce: 0.4 }}
+              transition={{ duration: 1.2, delay: 0.4, type: "spring", bounce: 0.4 }}
             >
               Stand Out <br />
               Every<motion.span 
@@ -690,14 +697,14 @@ export default function ServicesPage() {
                         "0px 0px 10px rgba(230,30,37,0.5)"
                     ]
                 }}
-                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
               >where</motion.span>
             </motion.h1>
             <motion.p 
               className="hero-subtitle" 
               initial={{ opacity: 0, y: 30, z: -50 }}
               animate={{ opacity: 1, y: 0, z: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
             >
               High-impact outdoor advertising designed to make your brand visible, memorable, and impossible to ignore across the places that matter most.
             </motion.p>
@@ -731,9 +738,28 @@ export default function ServicesPage() {
                 return (
                 <motion.div
                   key={index}
-                  variants={cardReveal}
                   className="service-card"
                   onClick={(e) => handleCardClick(e, service.link)}
+                  initial={{ 
+                    opacity: 0, 
+                    y: 100,
+                    scale: 0.8,
+                    rotateX: 20
+                  }}
+                  whileInView={{ 
+                    opacity: 1, 
+                    y: 0,
+                    scale: 1,
+                    rotateX: 0
+                  }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ 
+                    duration: 1.5,
+                    delay: index * 0.2,
+                    ease: "easeOut",
+                    type: "spring",
+                    bounce: 0.4
+                  }}
                   style={{
                     backgroundImage: `linear-gradient(rgba(12, 12, 12,0.6), rgba(12, 12, 12,0.85)), url(${service.image})`,
                     backgroundSize: 'cover',
@@ -742,11 +768,19 @@ export default function ServicesPage() {
                 >
                   <h3 className="service-title">
                     {service.title.includes('&') ? (
-                      <>
-                        <span style={{ color: 'white' }}>{service.title.split('&')[0].trim()}</span>
-                        <span style={{ color: '#e61e25' }}> & </span>
-                        <span style={{ color: 'white' }}>{service.title.split('&')[1].trim()}</span>
-                      </>
+                      service.title === "Signage Production & Installation" ? (
+                        <>
+                          <span style={{ color: '#e61e25' }}>Signage Production</span>
+                          <span style={{ color: '#e61e25' }}> & </span>
+                          <span style={{ color: 'white' }}>Installation</span>
+                        </>
+                      ) : (
+                        <>
+                          <span style={{ color: 'white' }}>{service.title.split('&')[0].trim()}</span>
+                          <span style={{ color: '#e61e25' }}> & </span>
+                          <span style={{ color: 'white' }}>{service.title.split('&')[1].trim()}</span>
+                        </>
+                      )
                     ) : (
                       service.title
                     )}
@@ -774,9 +808,14 @@ export default function ServicesPage() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={staggerContainer}
+            transition={{ staggerChildren: 0.4, delayChildren: 0.3 }}
           >
-            <motion.div className="why-choose-content" variants={cardReveal}>
+            <motion.div className="why-choose-content" 
+              initial={{ opacity: 0, x: -80 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+            >
               <h2 style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
                 Why Choose{' '}
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
@@ -800,7 +839,14 @@ export default function ServicesPage() {
                 ].map((point, i) => (
                   <motion.div 
                     key={i}
-                    variants={cardReveal}
+                    initial={{ opacity: 0, x: -50, scale: 0.9 }}
+                    whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ 
+                      duration: 1.0,
+                      delay: i * 0.15,
+                      ease: "easeOut"
+                    }}
                     style={{ 
                       display: 'flex', 
                       gap: '1.2rem', 
@@ -827,7 +873,12 @@ export default function ServicesPage() {
               </div>
             </motion.div>
 
-            <motion.div className="accordion" variants={cardReveal}>
+            <motion.div className="accordion" 
+              initial={{ opacity: 0, x: 80 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
+            >
               {accordionItems.map((item, index) => (
                 <div
                   key={index}

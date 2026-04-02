@@ -233,11 +233,33 @@ function ProjectsContent() {
     };
 
     return (
-        <div style={{ background: 'rgba(18, 18, 18, 0.98)', minHeight: '100vh', color: 'white', backdropFilter: 'blur(10px)' }}>
+        <div style={{ background: 'rgba(18, 18, 18, 0.98)', minHeight: '100vh', color: 'white', backdropFilter: 'blur(10px)', overflow: 'hidden' }}>
             <style jsx global>{`
                 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap');
                 
-                .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+                /* Hide all scrollbars on projects page */
+                * {
+                    scrollbar-width: none !important;
+                    -ms-overflow-style: none !important;
+                }
+                
+                *::-webkit-scrollbar {
+                    display: none !important;
+                    width: 0 !important;
+                    height: 0 !important;
+                }
+                
+                html, body {
+                    overflow-x: hidden !important;
+                    scrollbar-width: none !important;
+                    -ms-overflow-style: none !important;
+                }
+                
+                html::-webkit-scrollbar, body::-webkit-scrollbar {
+                    display: none !important;
+                }
+                
+                .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; overflow: hidden; }
                 
                 .hero-works {
                     position: relative;
@@ -342,6 +364,7 @@ function ProjectsContent() {
                     flex-wrap: wrap;
                     margin-bottom: 80px;
                     padding: 0 20px;
+                    overflow: hidden;
                 }
                 .cat-btn {
                     padding: 0.6rem 1.8rem;
@@ -368,6 +391,7 @@ function ProjectsContent() {
                     margin-bottom: 100px;
                     align-items: center;
                     contain: layout style paint;
+                    overflow: hidden;
                 }
                 .cluster-text {
                     background: rgba(255, 255, 255, 0.05);
@@ -377,6 +401,7 @@ function ProjectsContent() {
                     box-shadow: 0 20px 50px rgba(12, 12, 12,0.2);
                     color: white;
                     will-change: transform;
+                    overflow: hidden;
                 }
                 .cluster-title {
                     font-size: clamp(1.8rem, 6vw, 3rem);
@@ -522,13 +547,13 @@ function ProjectsContent() {
                     className="hero-works-content"
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    transition={{ duration: 1.0, ease: "easeOut" }}
                 >
                     <motion.h1 
                         className="hero-works-h1"
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
+                        transition={{ duration: 0.8, delay: 0.3 }}
                     >
                         Our <motion.span
                             animate={{ 
@@ -538,14 +563,14 @@ function ProjectsContent() {
                                     "0px 0px 10px rgba(230,30,37,0.5)"
                                 ]
                             }}
-                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                         >Impact</motion.span>
                     </motion.h1>
                     <motion.div 
                         className="hero-works-tagline"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.4, duration: 0.4 }}
+                        transition={{ delay: 0.6, duration: 0.6 }}
                     >
                         Real campaigns. Real impact.
                     </motion.div>
@@ -554,36 +579,64 @@ function ProjectsContent() {
 
             <section className="section-header">
                 <div className="container">
-                    <div className="title-our">
+                    <motion.div 
+                        className="title-our"
+                        initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.0, ease: "easeOut" }}
+                    >
                         Our <span className="title-projects">Projects</span>
-                    </div>
-                    <p className="header-desc">
+                    </motion.div>
+                    <motion.p 
+                        className="header-desc"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+                    >
                         Explore real world advertising campaigns crafted to maximize visibility, attract attention, and deliver strong brand impact across prime locations.
-                    </p>
+                    </motion.p>
                 </div>
             </section>
 
-            <div className="category-nav">
-                {categories.map(cat => (
-                    <button
+            <motion.div 
+                className="category-nav"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+            >
+                {categories.map((cat, index) => (
+                    <motion.button
                         key={cat}
                         onClick={() => handleCategoryChange(cat)}
                         className={`cat-btn ${filterCategory === cat ? 'active' : ''}`}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ 
+                            duration: 0.5, 
+                            delay: 0.7 + (index * 0.1),
+                            ease: "easeOut"
+                        }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                     >
                         {cat}
-                    </button>
+                    </motion.button>
                 ))}
-            </div>
+            </motion.div>
 
-            <section style={{ paddingBottom: '100px' }}>
-                <div className="container">
+            <section style={{ paddingBottom: '100px', overflow: 'hidden' }}>
+                <div className="container" style={{ overflow: 'hidden' }}>
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={filterCategory}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.2 }}
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -30 }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
                             style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}
                         >
                             {isLoading ? (
@@ -596,32 +649,124 @@ function ProjectsContent() {
                                         key={project.id || idx} 
                                         className="project-cluster" 
                                         style={{ flexDirection: idx % 2 === 0 ? 'row' : 'row-reverse' }}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true, margin: "-50px" }}
+                                        initial={{ 
+                                            opacity: 0, 
+                                            y: 120,
+                                            scale: 0.8,
+                                            rotateY: idx % 2 === 0 ? -15 : 15
+                                        }}
+                                        whileInView={{ 
+                                            opacity: 1, 
+                                            y: 0,
+                                            scale: 1,
+                                            rotateY: 0
+                                        }}
+                                        viewport={{ once: true, margin: "-100px" }}
                                         transition={{ 
-                                            duration: 0.3, 
-                                            delay: Math.min(idx * 0.05, 0.2),
-                                            ease: "easeOut"
+                                            duration: 1.6, 
+                                            delay: Math.min(idx * 0.25, 1.0),
+                                            ease: "easeOut",
+                                            type: "spring",
+                                            bounce: 0.4
                                         }}
                                     >
-                                        <div className="cluster-text">
-                                            <h2 className="cluster-title">
+                                        <motion.div 
+                                            className="cluster-text"
+                                            initial={{ 
+                                                opacity: 0, 
+                                                x: idx % 2 === 0 ? -80 : 80,
+                                                scale: 0.9
+                                            }}
+                                            whileInView={{ 
+                                                opacity: 1, 
+                                                x: 0,
+                                                scale: 1
+                                            }}
+                                            viewport={{ once: true }}
+                                            transition={{ 
+                                                duration: 1.2, 
+                                                delay: Math.min(idx * 0.25, 1.0) + 0.3,
+                                                ease: "easeOut"
+                                            }}
+                                        >
+                                            <motion.h2 
+                                                className="cluster-title"
+                                                initial={{ opacity: 0, y: 30 }}
+                                                whileInView={{ opacity: 1, y: 0 }}
+                                                viewport={{ once: true }}
+                                                transition={{ 
+                                                    duration: 0.8, 
+                                                    delay: Math.min(idx * 0.25, 1.0) + 0.6
+                                                }}
+                                            >
                                                 {project.title}
-                                            </h2>
-                                            <p className="cluster-desc">
+                                            </motion.h2>
+                                            <motion.p 
+                                                className="cluster-desc"
+                                                initial={{ opacity: 0, y: 20 }}
+                                                whileInView={{ opacity: 1, y: 0 }}
+                                                viewport={{ once: true }}
+                                                transition={{ 
+                                                    duration: 0.8, 
+                                                    delay: Math.min(idx * 0.25, 1.0) + 0.8
+                                                }}
+                                            >
                                                 {project.description}
-                                            </p>
-                                        </div>
-                                        <div className={`cluster-images ${project.images.length === 1 ? 'single' : ''} ${project.isSmall ? 'small' : ''}`}>
+                                            </motion.p>
+                                        </motion.div>
+                                        <motion.div 
+                                            className={`cluster-images ${project.images.length === 1 ? 'single' : ''} ${project.isSmall ? 'small' : ''}`}
+                                            initial={{ 
+                                                opacity: 0, 
+                                                x: idx % 2 === 0 ? 80 : -80,
+                                                scale: 0.9,
+                                                rotateY: idx % 2 === 0 ? 10 : -10
+                                            }}
+                                            whileInView={{ 
+                                                opacity: 1, 
+                                                x: 0,
+                                                scale: 1,
+                                                rotateY: 0
+                                            }}
+                                            viewport={{ once: true }}
+                                            transition={{ 
+                                                duration: 1.4, 
+                                                delay: Math.min(idx * 0.25, 1.0) + 0.4,
+                                                ease: "easeOut",
+                                                type: "spring",
+                                                bounce: 0.3
+                                            }}
+                                        >
                                             {project.images.length > 0 ? (
                                                 project.images.map((img, i) => (
-                                                    <img 
+                                                    <motion.img 
                                                         key={i} 
                                                         src={img} 
                                                         alt={project.title} 
                                                         className="cluster-img"
                                                         loading="lazy"
+                                                        initial={{ 
+                                                            opacity: 0, 
+                                                            scale: 0.8,
+                                                            rotateZ: i % 2 === 0 ? -5 : 5
+                                                        }}
+                                                        whileInView={{ 
+                                                            opacity: 1, 
+                                                            scale: 1,
+                                                            rotateZ: 0
+                                                        }}
+                                                        viewport={{ once: true }}
+                                                        transition={{ 
+                                                            duration: 1.0, 
+                                                            delay: Math.min(idx * 0.25, 1.0) + 0.7 + (i * 0.2),
+                                                            ease: "easeOut",
+                                                            type: "spring",
+                                                            bounce: 0.3
+                                                        }}
+                                                        whileHover={{ 
+                                                            scale: 1.05,
+                                                            transition: { duration: 0.3 }
+                                                        }}
                                                         onError={(e) => {
                                                             (e.target as HTMLImageElement).src = '/projects-hero-bg.png';
                                                         }}
@@ -632,7 +777,7 @@ function ProjectsContent() {
                                                     <span>No image available</span>
                                                 </div>
                                             )}
-                                        </div>
+                                        </motion.div>
                                     </motion.div>
                                 ))
                             ) : (
@@ -648,17 +793,42 @@ function ProjectsContent() {
 
             <section className="project-overview-bg">
                 <div className="project-overview-overlay"></div>
-                <div className="project-overview-glass">
-                    <h2 style={{ fontSize: '2.8rem', fontWeight: 900, color: 'white', marginBottom: '1.5rem', letterSpacing: '-1px' }}>
+                <motion.div 
+                    className="project-overview-glass"
+                    initial={{ opacity: 0, y: 80, scale: 0.9 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.2, ease: "easeOut" }}
+                >
+                    <motion.h2 
+                        style={{ fontSize: '2.8rem', fontWeight: 900, color: 'white', marginBottom: '1.5rem', letterSpacing: '-1px' }}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.3 }}
+                    >
                         Project Overview
-                    </h2>
-                    <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.2rem', lineHeight: 1.7, maxWidth: '750px', margin: '0 auto', fontWeight: 500 }}>
+                    </motion.h2>
+                    <motion.p 
+                        style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.2rem', lineHeight: 1.7, maxWidth: '750px', margin: '0 auto', fontWeight: 500 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.5 }}
+                    >
                         A strategically placed outdoor campaign built to maximize visibility, attract attention, and deliver a strong brand presence in a busy commercial location.
-                    </p>
-                    <Link href="/contact" className="cta-btn-pill">
-                        Get This for Your Brand <ArrowRight size={22} style={{ marginLeft: '10px' }} />
-                    </Link>
-                </div>
+                    </motion.p>
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.7 }}
+                    >
+                        <Link href="/contact" className="cta-btn-pill">
+                            Get This for Your Brand <ArrowRight size={22} style={{ marginLeft: '10px' }} />
+                        </Link>
+                    </motion.div>
+                </motion.div>
             </section>
         </div>
     );
