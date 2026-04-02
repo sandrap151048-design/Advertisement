@@ -53,7 +53,7 @@ export default function HowItWorks() {
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+            transition={{ delay: 0.3 }}
             style={{ fontSize: '1.2rem', color: '#888', maxWidth: '700px', margin: '0 auto', lineHeight: 1.6 }}
           >
             A seamless, end-to-end process from initial concept to high-impact physical execution across the UAE.

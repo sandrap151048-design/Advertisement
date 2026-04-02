@@ -42,14 +42,14 @@ export default function Navbar() {
         .btn-login {
           padding: 8px 18px; background: #e61e25; color: white;
           text-decoration: none; font-size: 0.85rem; font-weight: 700;
-          border-radius: 6px; transition: all 0.3s; white-space: nowrap;
+          border-radius: 6px; transition: all 0.6s; white-space: nowrap;
         }
         .btn-login:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(230,30,37,0.3); }
 
         .mobile-nav-link {
           display: block; color: white !important; text-decoration: none;
           font-size: 1.1rem; font-weight: 700; padding: 1rem 1.25rem;
-          border-radius: 12px; transition: all 0.2s ease;
+          border-radius: 12px; transition: all 0.6s ease;
           background: rgba(255,255,255,0.03);
         }
         .mobile-nav-link:active, .mobile-nav-link:hover {

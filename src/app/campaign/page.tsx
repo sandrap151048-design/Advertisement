@@ -7,14 +7,14 @@ import { useState, FormEvent } from 'react';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.2 } as any }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } as any }
 };
 
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 } as any
+    transition: { staggerChildren: 0.3, delayChildren: 0.5 } as any
   }
 };
 
@@ -195,7 +195,7 @@ export default function CampaignPage() {
           border: none;
           font-size: 1.1rem;
           cursor: pointer;
-          transition: all 0.3s;
+          transition: all 0.6s;
           width: 100%;
           display: flex;
           align-items: center;

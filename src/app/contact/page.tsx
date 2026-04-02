@@ -7,14 +7,14 @@ import { useState, FormEvent } from 'react';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.2 } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
 
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+    transition: { staggerChildren: 0.3, delayChildren: 0.5 }
   }
 };
 
@@ -177,7 +177,7 @@ export default function ContactPage() {
           font-weight: 800;
           border-radius: 12px;
           text-decoration: none;
-          transition: all 0.3s ease;
+          transition: all 0.6s ease;
           font-size: 1rem;
           width: fit-content;
           box-shadow: 0 10px 25px rgba(230, 30, 37, 0.3);
@@ -208,7 +208,7 @@ export default function ContactPage() {
           justify-content: center;
           border: 1px solid rgba(255,255,255,0.08);
           box-shadow: 0 15px 40px rgba(12, 12, 12,0.3);
-          transition: all 0.4s ease;
+          transition: all 0.6s ease;
         }
 
         .touch-left:hover {
@@ -227,7 +227,7 @@ export default function ContactPage() {
           flex-direction: column;
           justify-content: center;
           box-shadow: 0 15px 45px rgba(12, 12, 12,0.3);
-          transition: all 0.4s ease;
+          transition: all 0.6s ease;
         }
 
         .touch-right:hover {
@@ -356,7 +356,7 @@ export default function ContactPage() {
           border-radius: 50px;
           border: none;
           cursor: pointer;
-          transition: all 0.3s;
+          transition: all 0.6s;
           font-size: 0.9rem;
         }
 
@@ -517,7 +517,7 @@ export default function ContactPage() {
               className="hero-left"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.6 }}
             >
               <h1 className="contact-hero-title">Contact<br /><span style={{ color: '#e61e25' }}>Us</span></h1>
             </motion.div>
@@ -526,7 +526,7 @@ export default function ContactPage() {
               className="hero-right"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
             >
               <p className="contact-hero-text">
                 Partner with Dubai's leading advertising experts to create high-impact visual communications that resonate.
@@ -557,7 +557,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.3 }}
           >
             <div className="contact-info-list">
               <div className="info-item">

@@ -197,7 +197,7 @@ function ProjectsContent() {
 
     const fadeInUp = {
         hidden: { opacity: 0, y: 30 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.2 } }
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
     };
 
     const handleLogout = () => {
@@ -210,7 +210,7 @@ function ProjectsContent() {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            transition: { staggerChildren: 0.1, delayChildren: 0.1 }
+            transition: { staggerChildren: 0.3, delayChildren: 0.5 }
         }
     };
 
@@ -333,7 +333,7 @@ function ProjectsContent() {
                     color: white;
                     font-weight: 600;
                     cursor: pointer;
-                    transition: all 0.3s;
+                    transition: all 0.6s;
                     font-size: 0.85rem;
                 }
                 .cat-btn.active {
@@ -385,7 +385,7 @@ function ProjectsContent() {
                     object-fit: cover;
                     border-radius: 20px;
                     box-shadow: 0 15px 45px rgba(12, 12, 12,0.1);
-                    transition: all 0.2s ease;
+                    transition: all 0.6s ease;
                 }
                 .cluster-images.small .cluster-img {
                     height: 480px;
@@ -436,7 +436,7 @@ function ProjectsContent() {
                     font-weight: 800;
                     border-radius: 8px;
                     text-decoration: none;
-                    transition: all 0.3s ease;
+                    transition: all 0.6s ease;
                     font-size: 1.1rem;
                     margin-top: 2rem;
                     box-shadow: 0 4px 15px rgba(230, 30, 37, 0.3);
@@ -503,13 +503,13 @@ function ProjectsContent() {
                     style={{ rotateX, rotateY }}
                     initial={{ opacity: 0, rotateX: 30, y: 100, scale: 0.8 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ duration: 0.4, type: "spring", bounce: 0.3 }}
+                    transition={{ duration: 1.0, type: "spring", bounce: 0.3 }}
                 >
                     <motion.h1 
                         className="hero-works-h1"
                         initial={{ z: -200, rotateY: -20, opacity: 0 }}
                         animate={{ z: 0, rotateY: 0, opacity: 1 }}
-                        transition={{ duration: 0.4, delay: 0.1, type: "spring", bounce: 0.4 }}
+                        transition={{ duration: 1.0, delay: 0.3, type: "spring", bounce: 0.4 }}
                     >
                         Our <motion.span
                             animate={{ 
@@ -526,7 +526,7 @@ function ProjectsContent() {
                         className="hero-works-tagline"
                         initial={{ opacity: 0, y: 30, z: -100 }}
                         animate={{ opacity: 1, y: 0, z: 0 }}
-                        transition={{ delay: 0.7, duration: 0.3 }}
+                        transition={{ delay: 0.3, duration: 0.6 }}
                     >
                         Real campaigns. Real impact.
                     </motion.div>
@@ -564,7 +564,7 @@ function ProjectsContent() {
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: -20 }}
-                            transition={{ duration: 0.5 }}
+                            transition={{ duration: 1.0 }}
                             style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}
                         >
                             {isLoading ? (

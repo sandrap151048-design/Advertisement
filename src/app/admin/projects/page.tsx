@@ -298,7 +298,7 @@ export default function AdminProjectsPage() {
                     object-fit: cover;
                     border-radius: 20px;
                     box-shadow: 0 15px 45px rgba(12, 12, 12,0.1);
-                    transition: all 0.2s ease;
+                    transition: all 0.6s ease;
                 }
 
                 .cluster-img:hover {
@@ -324,7 +324,7 @@ export default function AdminProjectsPage() {
                     align-items: center;
                     justify-content: center;
                     gap: 10px;
-                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
                     font-size: 0.95rem;
                 }
 

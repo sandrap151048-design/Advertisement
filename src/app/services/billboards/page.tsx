@@ -9,14 +9,14 @@ import Image from 'next/image';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.2 } as any }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } as any }
 };
 
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 } as any
+    transition: { staggerChildren: 0.3, delayChildren: 0.5 } as any
   }
 };
 
@@ -99,7 +99,7 @@ export default function BillboardsPage() {
           justify-content: center;
           box-shadow: 0 4px 20px rgba(12, 12, 12,0.3);
           cursor: pointer;
-          transition: all 0.3s ease;
+          transition: all 0.6s ease;
           border: none;
           color: white;
         }
@@ -193,7 +193,7 @@ export default function BillboardsPage() {
           border-radius: 50%;
           background: rgba(255,255,255,0.5);
           cursor: pointer;
-          transition: all 0.3s ease;
+          transition: all 0.6s ease;
         }
 
         .hero-dot.active {
@@ -235,7 +235,7 @@ export default function BillboardsPage() {
           border-radius: 12px;
           overflow: hidden;
           background: #1c1c1c;
-          transition: all 0.3s ease;
+          transition: all 0.6s ease;
         }
 
         .accordion-item.open {
@@ -251,7 +251,7 @@ export default function BillboardsPage() {
           cursor: pointer;
           font-weight: 600;
           font-size: 1.1rem;
-          transition: all 0.3s ease;
+          transition: all 0.6s ease;
         color: white;
         }
 
@@ -321,7 +321,7 @@ export default function BillboardsPage() {
           border-radius: 16px;
           overflow: hidden;
           cursor: pointer;
-          transition: all 0.3s ease;
+          transition: all 0.6s ease;
         }
 
         .location-card:hover {
@@ -408,7 +408,7 @@ export default function BillboardsPage() {
           border-radius: 12px;
           color: white;
           font-size: 1rem;
-          transition: all 0.3s ease;
+          transition: all 0.6s ease;
         }
 
         .form-input:focus,
@@ -438,7 +438,7 @@ export default function BillboardsPage() {
           font-weight: 700;
           font-size: 1rem;
           cursor: pointer;
-          transition: all 0.3s ease;
+          transition: all 0.6s ease;
           margin-top: 1rem;
         }
 

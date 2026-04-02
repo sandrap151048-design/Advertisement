@@ -32,7 +32,7 @@ const fadeInUp: Variants = {
     y: 0, 
     scale: 1, 
     transition: { 
-      duration: 0.3,
+      duration: 0.6,
       ease: [0.22, 1, 0.36, 1]
     } 
   }
@@ -43,8 +43,8 @@ const staggerContainer: Variants = {
   visible: {
     opacity: 1,
     transition: { 
-      staggerChildren: 0.2, 
-      delayChildren: 0.1 
+      staggerChildren: 0.3, 
+      delayChildren: 0.5 
     }
   }
 };
@@ -254,7 +254,7 @@ export default function AboutPage() {
           border-radius: 20px;
           background: rgba(255,255,255,0.04);
           border: 1px solid rgba(255,255,255,0.1);
-          transition: all 0.4s ease;
+          transition: all 0.6s ease;
           color: white;
         }
 
@@ -298,7 +298,7 @@ export default function AboutPage() {
           padding: 2.5rem;
           border-radius: 20px;
           border: 1px solid rgba(255, 255, 255, 0.1);
-          transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+          transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
           color: white;
           position: relative;
           z-index: 2;
@@ -422,7 +422,7 @@ export default function AboutPage() {
           padding: 2.5rem 1.5rem;
           border-radius: 12px;
           border: 1px solid rgba(255,255,255,0.08);
-          transition: all 0.4s ease;
+          transition: all 0.6s ease;
           text-align: left;
           min-height: 280px;
           display: flex;
@@ -541,7 +541,7 @@ export default function AboutPage() {
           display: flex;
           align-items: center;
           gap: 15px;
-          transition: all 0.4s ease;
+          transition: all 0.6s ease;
           border: 1px solid rgba(255,255,255,0.08);
           color: white;
         }
@@ -599,7 +599,7 @@ export default function AboutPage() {
           font-weight: 800;
           font-size: 1.2rem;
           text-decoration: none;
-          transition: all 0.3s ease;
+          transition: all 0.6s ease;
         }
 
         .cta-button:hover {
@@ -644,13 +644,13 @@ export default function AboutPage() {
             style={{ rotateX, rotateY }}
             initial={{ opacity: 0, scale: 0.8, y: 50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.4, type: "spring", bounce: 0.3 }}
+            transition={{ duration: 1.0, type: "spring", bounce: 0.3 }}
           >
             <motion.h1 
               className="hero-title"
               initial={{ z: -200, opacity: 0 }}
               animate={{ z: 0, opacity: 1 }}
-              transition={{ duration: 0.4, delay: 0.2 }}
+              transition={{ duration: 1.0, delay: 0.3 }}
             >
               Transforming Ideas into <motion.span
                 animate={{ 
@@ -667,7 +667,7 @@ export default function AboutPage() {
               className="hero-desc"
               initial={{ opacity: 0, y: 20, z: -50 }}
               animate={{ opacity: 1, y: 0, z: 0 }}
-              transition={{ duration: 1, delay: 0.15 }}
+              transition={{ duration: 1, delay: 0.3 }}
             >
               One Click Advertisement is a full-service advertising and branding company delivering end-to-end visual communication solutions across the UAE.
             </motion.p>

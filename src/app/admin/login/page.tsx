@@ -132,7 +132,7 @@ export default function AdminLoginPage() {
                     color: white;
                     font-size: 0.95rem;
                     outline: none;
-                    transition: all 0.3s ease;
+                    transition: all 0.6s ease;
                 }
 
                 .form-input:focus {
@@ -167,7 +167,7 @@ export default function AdminLoginPage() {
                     font-size: 1rem;
                     font-weight: 700;
                     cursor: pointer;
-                    transition: all 0.3s;
+                    transition: all 0.6s;
                     margin-top: 1.2rem;
                 }
 
@@ -208,7 +208,7 @@ export default function AdminLoginPage() {
                     border: 1px solid rgba(255,255,255,0.1);
                     border-radius: 12px;
                     cursor: pointer;
-                    transition: all 0.3s ease;
+                    transition: all 0.6s ease;
                     display: flex;
                     align-items: center;
                     justify-content: center;

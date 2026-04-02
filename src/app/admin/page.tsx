@@ -84,7 +84,7 @@ export default function AdminPage() {
 
     const containerVariants: Variants = {
         hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+        visible: { opacity: 1, transition: { staggerChildren: 0.3 } }
     };
 
     const itemVariants: Variants = {

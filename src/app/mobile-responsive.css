@@ -388,8 +388,8 @@ body {
 @media (max-width: 768px) {
   /* Reduce motion complexity on mobile for better performance */
   * {
-    animation-duration: 0.3s !important;
-    transition-duration: 0.3s !important;
+    animation-duration: 0.6s !important;
+    transition-duration: 0.6s !important;
   }
   
   /* Disable complex animations on mobile */
@@ -415,7 +415,7 @@ body {
   
   /* Optimize button animations */
   .btn {
-    transition: all 0.2s ease !important;
+    transition: all 0.6s ease !important;
   }
   
   .btn:hover {
@@ -431,9 +431,9 @@ body {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
+    animation-duration: 0.6ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    transition-duration: 0.6ms !important;
   }
 }
 

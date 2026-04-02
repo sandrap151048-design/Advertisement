@@ -540,7 +540,7 @@ export default function ServicesPage() {
                     border-radius: 20px;
                     overflow: hidden;
                     cursor: pointer;
-                    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+                    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
                     background: #000;
                     border: 1px solid rgba(255, 255, 255, 0.1);
                     box-shadow: 0 10px 30px rgba(12, 12, 12, 0.2);
@@ -590,7 +590,7 @@ export default function ServicesPage() {
                     padding: 2rem;
                     color: white;
                     z-index: 2;
-                    transition: all 0.4s ease;
+                    transition: all 0.6s ease;
                 }
 
                 .service-card:hover .service-overlay {
@@ -603,7 +603,7 @@ export default function ServicesPage() {
                     margin-bottom: 0.6rem;
                     color: white;
                     text-shadow: 0 2px 10px rgba(12, 12, 12,0.5);
-                    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
                 }
 
                 .service-card:hover .service-title {
@@ -617,7 +617,7 @@ export default function ServicesPage() {
                     color: rgba(255,255,255,0.85);
                     line-height: 1.5;
                     margin-bottom: 1.5rem;
-                    transition: all 0.4s ease;
+                    transition: all 0.6s ease;
                     display: -webkit-box;
                     -webkit-line-clamp: 3;
                     -webkit-box-orient: vertical;
@@ -633,7 +633,7 @@ export default function ServicesPage() {
                     display: flex;
                     gap: 1rem;
                     opacity: 0.6;
-                    transition: all 0.3s ease;
+                    transition: all 0.6s ease;
                     margin-top: 1rem;
                 }
 
@@ -651,7 +651,7 @@ export default function ServicesPage() {
                     align-items: center;
                     justify-content: center;
                     gap: 8px;
-                    transition: all 0.3s;
+                    transition: all 0.6s;
                     backdrop-filter: blur(12px);
                     font-size: 0.85rem;
                     font-weight: 700;

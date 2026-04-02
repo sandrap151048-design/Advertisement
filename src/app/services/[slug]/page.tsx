@@ -9,14 +9,14 @@ import ServiceMap from '@/app/components/ServiceMap';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.2 } as any }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } as any }
 };
 
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 } as any
+    transition: { staggerChildren: 0.3, delayChildren: 0.5 } as any
   }
 };
 
@@ -211,7 +211,7 @@ export default function DynamicServicePage() {
           justify-content: center;
           box-shadow: 0 4px 20px rgba(12, 12, 12,0.3);
           cursor: pointer;
-          transition: all 0.3s ease;
+          transition: all 0.6s ease;
           border: 1px solid rgba(255, 255, 255, 0.1);
           color: white;
         }
@@ -275,7 +275,7 @@ export default function DynamicServicePage() {
           height: 350px;
           box-shadow: 0 8px 30px rgba(12, 12, 12,0.15);
           position: relative;
-          transition: all 0.4s ease;
+          transition: all 0.6s ease;
         }
 
         .hero-image-large:hover {
@@ -327,7 +327,7 @@ export default function DynamicServicePage() {
           border-radius: 12px;
           overflow: hidden;
           background: rgba(255, 255, 255, 0.03);
-          transition: all 0.3s ease;
+          transition: all 0.6s ease;
         }
 
         .accordion-item.open {
@@ -345,7 +345,7 @@ export default function DynamicServicePage() {
           cursor: pointer;
           font-weight: 600;
           font-size: 1.15rem;
-          transition: all 0.3s ease;
+          transition: all 0.6s ease;
           background: transparent;
           color: white;
         }
@@ -399,7 +399,7 @@ export default function DynamicServicePage() {
           padding: 2.2rem;
           box-shadow: 0 10px 30px rgba(12, 12, 12,0.2);
           border: 1px solid rgba(255, 255, 255, 0.1);
-          transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+          transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
           display: flex;
           align-items: center;
           gap: 1.5rem;

@@ -51,7 +51,7 @@ export default function FAQ() {
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.3 }}
             style={{ fontSize: '1.2rem', color: '#888', maxWidth: '700px', margin: '0 auto', lineHeight: 1.6 }}
           >
             Everything you need to know about scaling your brand presence in the UAE market.
@@ -107,7 +107,7 @@ export default function FAQ() {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                    transition={{ duration: 0.6, ease: 'easeInOut' }}
                   >
                     <div style={{ padding: '0 40px 40px 84px', color: '#888', fontSize: '1.1rem', lineHeight: 1.8 }}>
                       {faq.answer}

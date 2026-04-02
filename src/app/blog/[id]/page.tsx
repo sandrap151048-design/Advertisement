@@ -181,7 +181,7 @@ export default function BlogPostPage() {
                     <motion.div
                         initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.2 }}
+                        transition={{ duration: 0.6 }}
                     >
                         <Link 
                             href="/blog"
@@ -220,7 +220,7 @@ export default function BlogPostPage() {
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.2, delay: 0.2 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
                     style={{ 
                         borderRadius: '20px', 
                         overflow: 'hidden',
@@ -245,7 +245,7 @@ export default function BlogPostPage() {
                     <motion.div
                         initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.2, delay: 0.4 }}
+                        transition={{ duration: 0.6, delay: 0.3 }}
                         className="glass-card"
                         style={{ 
                             padding: '3rem',
@@ -268,7 +268,7 @@ export default function BlogPostPage() {
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.2 }}
+                    transition={{ duration: 0.6 }}
                 >
                     <h2 style={{ 
                         textAlign: 'center', 

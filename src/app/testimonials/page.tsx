@@ -99,12 +99,12 @@ const projectsByCategory: Record<CategoryKey, {
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+  visible: { opacity: 1, transition: { staggerChildren: 0.3 } }
 };
 
 const itemVariants = {
   hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } }
+  visible: { opacity: 1, y: 0, transition: { duration: 1.0, ease: 'easeOut' as const } }
 };
 
 interface AdminProject {
@@ -248,7 +248,7 @@ export default function ProjectsPage() {
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: 'easeOut' as const }}
+            transition={{ duration: 1.2, ease: 'easeOut' as const }}
             style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: '2rem', maxWidth: 900 }}
           >
             {/* Removed Our Portfolio Badge */}
@@ -270,7 +270,7 @@ export default function ProjectsPage() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.6 }}
             style={{ textAlign: 'center', marginBottom: '3.5rem' }}
           >
             <h2 style={{ fontSize: 'clamp(2.5rem,5vw,3.5rem)', fontWeight: 900, color: '#1c1c1c', lineHeight: 1.1, margin: '0 0 1rem' }}>
@@ -286,7 +286,7 @@ export default function ProjectsPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.3 }}
             style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '4rem' }}
           >
             {categories.map((cat) => {
@@ -323,7 +323,7 @@ export default function ProjectsPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.45, ease: 'easeOut' as const }}
+              transition={{ duration: 1.0, ease: 'easeOut' as const }}
               style={{ display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: '3rem', alignItems: 'start' }}
             >
               {/* Left Info Panel */}
@@ -380,7 +380,7 @@ export default function ProjectsPage() {
                       src={img.image}
                       alt={img.title}
                       animate={{ scale: hoveredImg === i ? 1.08 : 1 }}
-                      transition={{ duration: 0.5, ease: 'easeOut' as const }}
+                      transition={{ duration: 1.0, ease: 'easeOut' as const }}
                       style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                     />
                     {/* Gradient overlay */}
@@ -403,7 +403,7 @@ export default function ProjectsPage() {
                     {/* Open icon */}
                     <motion.div
                       animate={{ opacity: hoveredImg === i ? 1 : 0, y: hoveredImg === i ? 0 : 10 }}
-                      transition={{ duration: 0.25 }}
+                      transition={{ duration: 0.6 }}
                       style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'white', borderRadius: '50%', width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                     >
                       <ArrowUpRight size={18} color="#1c1c1c" />
@@ -413,7 +413,7 @@ export default function ProjectsPage() {
                     <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '1.25rem' }}>
                       <motion.div
                         animate={{ y: hoveredImg === i ? 0 : 4 }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.6 }}
                         style={{ fontWeight: 700, fontSize: '1rem', color: 'white', lineHeight: 1.3 }}
                       >
                         {img.title}
@@ -433,7 +433,7 @@ export default function ProjectsPage() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.6 }}
               style={{ textAlign: 'center', marginBottom: '3.5rem' }}
             >
               <h2 style={{ fontSize: 'clamp(2.5rem,5vw,3.5rem)', fontWeight: 900, color: '#1c1c1c', lineHeight: 1.1, margin: '0 0 1rem' }}>
@@ -534,7 +534,7 @@ export default function ProjectsPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+              transition={{ delay: 0.3 }}
               style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.8)', marginBottom: '2.5rem', lineHeight: 1.7 }}
             >
               A strategically placed outdoor campaign built to maximize visibility, attract attention, and deliver a strong brand impact across prime commercial locations.
@@ -543,7 +543,7 @@ export default function ProjectsPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.3 }}
               style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}
             >
               <Link href="/campaign" style={{ textDecoration: 'none' }}>

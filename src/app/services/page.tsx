@@ -19,7 +19,7 @@ const fadeInUp: Variants = {
     scale: 1,
     filter: 'blur(0px)',
     transition: { 
-      duration: 0.3,
+      duration: 0.6,
       ease: [0.22, 1, 0.36, 1] as any
     } 
   }
@@ -30,8 +30,8 @@ const staggerContainer: Variants = {
   visible: {
     opacity: 1,
     transition: { 
-      staggerChildren: 0.2,
-      delayChildren: 0.1
+      staggerChildren: 0.3,
+      delayChildren: 0.5
     }
   }
 };
@@ -338,7 +338,7 @@ export default function ServicesPage() {
           border-radius: 20px;
           overflow: hidden;
           cursor: pointer;
-          transition: all 0.4s ease;
+          transition: all 0.6s ease;
           position: relative;
           padding: 3rem 2.5rem;
           display: flex;
@@ -393,7 +393,7 @@ export default function ServicesPage() {
           align-items: center;
           justify-content: center;
           z-index: 10;
-          transition: all 0.3s ease;
+          transition: all 0.6s ease;
         }
 
         .service-number {
@@ -402,7 +402,7 @@ export default function ServicesPage() {
           color: white;
           margin-top: 15px;
           margin-left: 15px;
-          transition: all 0.3s ease;
+          transition: all 0.6s ease;
         }
         
         .service-card:hover .service-scallop {
@@ -471,7 +471,7 @@ export default function ServicesPage() {
           border-radius: 12px;
           overflow: hidden;
           background: rgba(255, 255, 255, 0.05);
-          transition: all 0.3s ease;
+          transition: all 0.6s ease;
         }
 
         .accordion-item.open {
@@ -488,7 +488,7 @@ export default function ServicesPage() {
           font-weight: 600;
           font-size: 1.1rem;
           color: white;
-          transition: all 0.3s ease;
+          transition: all 0.6s ease;
         }
 
         .accordion-header:hover {
@@ -568,7 +568,7 @@ export default function ServicesPage() {
           font-weight: 700;
           border-radius: 8px;
           text-decoration: none;
-          transition: all 0.3s ease;
+          transition: all 0.6s ease;
           font-size: 1rem;
           box-shadow: 0 4px 15px rgba(230, 30, 37, 0.3);
         }
@@ -676,13 +676,13 @@ export default function ServicesPage() {
             style={{ rotateX, rotateY }}
             initial={{ opacity: 0, rotateX: 20, y: 100, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
-            transition={{ duration: 0.4, type: "spring", bounce: 0.3 }}
+            transition={{ duration: 1.0, type: "spring", bounce: 0.3 }}
           >
             <motion.h1 
               className="hero-title" 
               initial={{ z: -150, rotateY: -15, opacity: 0 }}
               animate={{ z: 0, rotateY: 0, opacity: 1 }}
-              transition={{ duration: 0.4, delay: 0.1, type: "spring", bounce: 0.4 }}
+              transition={{ duration: 1.0, delay: 0.3, type: "spring", bounce: 0.4 }}
             >
               Stand Out <br />
               Every<motion.span 
@@ -701,7 +701,7 @@ export default function ServicesPage() {
               className="hero-subtitle" 
               initial={{ opacity: 0, y: 30, z: -50 }}
               animate={{ opacity: 1, y: 0, z: 0 }}
-              transition={{ delay: 0.7, duration: 0.3 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
             >
               High-impact outdoor advertising designed to make your brand visible, memorable, and impossible to ignore across the places that matter most.
             </motion.p>

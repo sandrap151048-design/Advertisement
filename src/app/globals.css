@@ -142,7 +142,7 @@ ul {
   border-radius: 50px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.6s ease;
   border: none;
   font-family: var(--font-heading);
   font-size: 1.1rem;
@@ -199,7 +199,7 @@ ul {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
   padding: 2rem;
-  transition: all 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   height: 100%;
   box-shadow: 0 15px 35px rgba(12, 12, 12, 0.5);
   color: #ffffff;
@@ -278,7 +278,7 @@ ul {
   color: #e61e25;
   z-index: 1001;
   border-radius: 8px;
-  transition: all 0.3s ease;
+  transition: all 0.6s ease;
   min-width: 48px;
   min-height: 48px;
   align-items: center;
@@ -754,9 +754,9 @@ ul {
   *,
   *::before,
   *::after {
-    animation-duration: 0.2ms !important;
+    animation-duration: 0.6ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.2s !important;
+    transition-duration: 0.6s !important;
   }
   
   /* Disable complex animations on mobile */
@@ -1898,7 +1898,7 @@ iframe {
     border-radius: 12px !important;
     color: white !important;
     cursor: pointer !important;
-    transition: all 0.3s !important;
+    transition: all 0.6s !important;
     background: rgba(12, 12, 12, 0.8) !important;
     margin-bottom: 0.5rem !important;
     white-space: nowrap !important;
@@ -2365,7 +2365,7 @@ iframe {
     justify-content: center;
     background: rgba(255,255,255,0.05);
     color: var(--color-primary);
-    transition: all 0.2s ease;
+    transition: all 0.6s ease;
     text-decoration: none;
 }
 
@@ -2597,9 +2597,9 @@ iframe {
 /* Reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
     * {
-        animation-duration: 0.01ms !important;
+        animation-duration: 0.6ms !important;
         animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+        transition-duration: 0.6ms !important;
     }
     
     .social-icon:hover,
@@ -2767,7 +2767,7 @@ img {
         font-size: 1.1rem;
         padding: 1rem 1.5rem;
         border-radius: 8px;
-        transition: all 0.2s ease;
+        transition: all 0.6s ease;
     }
     
     .mobile-nav-link:active {
@@ -3301,7 +3301,7 @@ input::placeholder, textarea::placeholder {
   align-items: center;
   justify-content: center;
   color: var(--color-primary);
-  transition: all 0.3s ease;
+  transition: all 0.6s ease;
 }
 
 .social-icon:hover {
@@ -3793,7 +3793,7 @@ input::placeholder, textarea::placeholder {
     transform: translateY(-100%) !important;
     opacity: 0 !important;
     visibility: hidden !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
     z-index: 1000 !important;
     padding: 2rem 0 !important;
     max-height: calc(100vh - 70px) !important;
@@ -3823,7 +3823,7 @@ input::placeholder, textarea::placeholder {
     font-size: 1.2rem !important;
     text-align: center !important;
     border-radius: 12px !important;
-    transition: all 0.3s ease !important;
+    transition: all 0.6s ease !important;
     border: 2px solid transparent !important;
     margin: 0 1rem 0.5rem 1rem !important;
     background: rgba(124, 58, 237, 0.1) !important;
@@ -4356,12 +4356,12 @@ html {
   animation: slideInUp 0.6s ease-out;
 }
 
-.stagger-item:nth-child(1) { animation-delay: 0.1s; }
-.stagger-item:nth-child(2) { animation-delay: 0.2s; }
-.stagger-item:nth-child(3) { animation-delay: 0.1s; }
-.stagger-item:nth-child(4) { animation-delay: 0.4s; }
-.stagger-item:nth-child(5) { animation-delay: 0.15s; }
-.stagger-item:nth-child(6) { animation-delay: 0.6s; }
+.stagger-item:nth-child(1) { animation-delay: 0.3s; }
+.stagger-item:nth-child(2) { animation-delay: 0.3s; }
+.stagger-item:nth-child(3) { animation-delay: 0.3s; }
+.stagger-item:nth-child(4) { animation-delay: 0.3s; }
+.stagger-item:nth-child(5) { animation-delay: 0.3s; }
+.stagger-item:nth-child(6) { animation-delay: 0.3s; }
 
 /* Parallax effect for hero */
 .parallax {
@@ -4373,7 +4373,7 @@ html {
 
 /* Smooth hover effects */
 .hover-lift {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hover-lift:hover {

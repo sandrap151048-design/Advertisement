@@ -8,17 +8,17 @@ import './black-cards.css';
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.2 } as any }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } as any }
 };
 
 const fadeInDown: Variants = {
   hidden: { opacity: 0, y: -20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } as any }
+  visible: { opacity: 1, y: 0, transition: { duration: 1.0 } as any }
 };
 
 const slideDown: Variants = {
   hidden: { opacity: 0, y: -60 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } as any }
+  visible: { opacity: 1, y: 0, transition: { duration: 1.0 } as any }
 };
 
 const dropIn: Variants = {
@@ -33,34 +33,34 @@ const bounceInDown: Variants = {
 
 const revealDown: Variants = {
   hidden: { opacity: 0, clipPath: 'inset(0 0 100% 0)' },
-  visible: { opacity: 1, clipPath: 'inset(0 0 0% 0)', transition: { duration: 0.5 } as any }
+  visible: { opacity: 1, clipPath: 'inset(0 0 0% 0)', transition: { duration: 1.0 } as any }
 };
 
 const swipeLeft: Variants = {
   hidden: { opacity: 0, x: -100 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.2, ease: "easeOut" } as any }
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } as any }
 };
 
 const swipeRight: Variants = {
   hidden: { opacity: 0, x: 100 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.2, ease: "easeOut" } as any }
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } as any }
 };
 
 const swipeUp: Variants = {
   hidden: { opacity: 0, y: 100 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.2, ease: "easeOut" } as any }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } as any }
 };
 
 const swipeDown: Variants = {
   hidden: { opacity: 0, y: -100 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.2, ease: "easeOut" } as any }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } as any }
 };
 
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.2 } as any
+    transition: { staggerChildren: 0.3, delayChildren: 0.5 } as any
   }
 };
 
@@ -260,7 +260,7 @@ export default function Home() {
           border-radius: 8px;
           border: none;
           cursor: pointer;
-          transition: all 0.3s ease;
+          transition: all 0.6s ease;
           text-decoration: none;
           display: inline-flex;
           align-items: center;
@@ -479,7 +479,7 @@ export default function Home() {
           border-radius: 20px;
           overflow: hidden;
           cursor: pointer;
-          transition: all 0.4s ease;
+          transition: all 0.6s ease;
           position: relative;
           padding: 3rem 2.5rem;
           display: flex;
@@ -590,7 +590,7 @@ export default function Home() {
           background: #1c222d;
           border-radius: 12px;
           overflow: hidden;
-          transition: all 0.3s ease;
+          transition: all 0.6s ease;
           border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
@@ -608,7 +608,7 @@ export default function Home() {
           font-weight: 600;
           font-size: 1.1rem;
           color: white;
-          transition: all 0.3s ease;
+          transition: all 0.6s ease;
         }
 
         .accordion-header-brand:hover {
@@ -917,12 +917,12 @@ export default function Home() {
           style={{ rotateX, rotateY }}
           initial={{ opacity: 0, rotateX: 20, y: 100, scale: 0.8 }}
           animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
-          transition={{ duration: 0.4, type: "spring", bounce: 0.3 }}
+          transition={{ duration: 1.0, type: "spring", bounce: 0.3 }}
         >
           <motion.h1 
             initial={{ z: -150, opacity: 0 }}
             animate={{ z: 0, opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
+            transition={{ duration: 1.0, delay: 0.3 }}
             variants={fadeInDown}
             style={{ 
               fontFamily: "'Bricolage Grotesque', sans-serif"
@@ -1121,7 +1121,7 @@ export default function Home() {
           <motion.div 
             className="prime-locations-image" 
             variants={swipeLeft}
-            whileHover={{ scale: 1.02, x: 5, transition: { duration: 0.3 } }}
+            whileHover={{ scale: 1.02, x: 5, transition: { duration: 0.6 } }}
             style={{ position: 'relative', overflow: 'hidden' }}
           >
             {locations.map((location, index) => (
@@ -1134,7 +1134,7 @@ export default function Home() {
                   scale: currentLocationIndex === index ? 1 : 1.1
                 }}
                 transition={{ 
-                  duration: 0.2, 
+                  duration: 0.6, 
                   ease: "easeInOut",
                   delay: currentLocationIndex === index ? 0 : 0
                 }}
@@ -1170,7 +1170,7 @@ export default function Home() {
                     opacity: currentLocationIndex === index ? 1 : 0,
                     y: currentLocationIndex === index ? 0 : 30
                   }}
-                  transition={{ duration: 0.2, delay: 0.4 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
                   style={{
                     position: 'absolute',
                     bottom: '2rem',
@@ -1235,7 +1235,7 @@ export default function Home() {
           <motion.div 
             className="prime-locations-content" 
             variants={swipeRight}
-            whileHover={{ x: -5, transition: { duration: 0.3 } }}
+            whileHover={{ x: -5, transition: { duration: 0.6 } }}
           >
             <h2>Prime Locations</h2>
             <p>
@@ -1260,7 +1260,7 @@ export default function Home() {
           <motion.div 
             className="we-reach-text" 
             variants={swipeLeft}
-            whileHover={{ x: 5, transition: { duration: 0.3 } }}
+            whileHover={{ x: 5, transition: { duration: 0.6 } }}
           >
             <h2>We reach across cities</h2>
             <p>
@@ -1273,7 +1273,7 @@ export default function Home() {
           <motion.div 
             className="we-reach-image" 
             variants={swipeRight}
-            whileHover={{ scale: 1.02, x: -5, transition: { duration: 0.3 } }}
+            whileHover={{ scale: 1.02, x: -5, transition: { duration: 0.6 } }}
           >
             <img 
               src="/images/cities_reach.png"
@@ -1363,7 +1363,7 @@ export default function Home() {
             key={activeTab}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 1.0 }}
             className="tabs-content-grid"
             style={{ 
               display: 'grid', 
