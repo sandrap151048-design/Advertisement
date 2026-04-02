@@ -195,13 +195,13 @@ export default function Home() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          filter: brightness(0.6) contrast(1.1);
+          filter: brightness(0.85) contrast(1.05);
         }
 
         .hero-overlay {
           position: absolute;
           inset: 0;
-          background: radial-gradient(circle at center, rgba(30,0,0,0.3) 0%, rgba(12, 12, 12,0.9) 100%);
+          background: radial-gradient(circle at center, rgba(10,0,0,0.35) 0%, rgba(5, 5, 5, 0.55) 100%);
           z-index: 1;
         }
 
@@ -231,7 +231,7 @@ export default function Home() {
           letter-spacing: -2px;
           word-break: break-word;
           transform: translateZ(60px);
-          text-shadow: 0 10px 40px rgba(12, 12, 12,0.8);
+          text-shadow: 0 2px 20px rgba(0,0,0,0.9), 0 4px 40px rgba(0,0,0,0.7);
         }
 
         .hero-content p {
@@ -906,8 +906,8 @@ export default function Home() {
           style={{ x: bgX, y: bgY }}
         >
           <img 
-            src="/city-hero-daytime-v2.png" 
-            alt="One Click Advertisement - Iconic Architectural Cityscape" 
+            src="/city-hero-sunset.png" 
+            alt="One Click Advertisement - City Skyline at Sunset" 
           />
         </motion.div>
         <div className="hero-overlay"></div>
