@@ -512,11 +512,10 @@ export default function Home() {
 
         .portfolio-desc {
           font-size: 1rem;
-          color: rgba(255, 255, 255, 0.7);
+          color: rgba(255, 255, 255, 0.75);
           line-height: 1.6;
           text-align: left;
           margin-bottom: auto;
-          max-width: 240px;
         }
 
         /* The signature white scalloped corner */
@@ -1017,9 +1016,13 @@ export default function Home() {
                 }}
               >
                 <h3 className="portfolio-title">
-                  {item.title.split('&')[0].trim()}
-                  <span style={{ color: '#e61e25' }}> & </span>
-                  {item.title.split('&')[1]?.trim() || ''}
+                  {item.title.includes('&') ? (
+                    <>
+                      {item.title.split('&')[0].trim()}
+                      <span style={{ color: '#e61e25' }}> & </span>
+                      {item.title.split('&')[1]?.trim()}
+                    </>
+                  ) : item.title}
                 </h3>
 
                 <div className="portfolio-divider"></div>
