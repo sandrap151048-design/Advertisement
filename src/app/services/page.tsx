@@ -743,9 +743,9 @@ export default function ServicesPage() {
                   <h3 className="service-title">
                     {service.title.includes('&') ? (
                       <>
-                        {service.title.split('&')[0].trim()}
+                        <span style={{ color: 'white' }}>{service.title.split('&')[0].trim()}</span>
                         <span style={{ color: '#e61e25' }}> & </span>
-                        {service.title.split('&')[1].trim()}
+                        <span style={{ color: 'white' }}>{service.title.split('&')[1].trim()}</span>
                       </>
                     ) : (
                       service.title

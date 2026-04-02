@@ -13,14 +13,37 @@ export default function AdminFooter() {
           {/* Logo Column */}
           <div>
             <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0', marginBottom: '1.5rem' }}>
-              <svg width="28" height="28" viewBox="0 0 28 28" style={{ marginRight: '-1px' }}>
-                <circle cx="14" cy="14" r="11" fill="none" stroke="white" strokeWidth="4"/>
-                <rect x="16" y="2" width="9" height="9" fill="#e61e25" rx="1"/>
-              </svg>
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <div style={{ color: 'white', fontWeight: 800, fontSize: '1.2rem', letterSpacing: '-0.5px', marginLeft: '-1px', lineHeight: '1.1' }}>ne Click</div>
-                <div style={{ color: '#e61e25', fontSize: '0.65rem', fontWeight: 800, letterSpacing: '2px', textTransform: 'uppercase', marginTop: '2px' }}>Admin Portal</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0' }}>
+                {/* Custom O with red square integrated */}
+                <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginRight: '-0.05em' }}>
+                  <svg 
+                    width="28" 
+                    height="28" 
+                    viewBox="0 0 100 100" 
+                    style={{ display: 'block' }}
+                  >
+                    {/* O outline */}
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="35"
+                      fill="none"
+                      stroke="white"
+                      strokeWidth="8"
+                    />
+                    {/* Red square in upper right */}
+                    <rect
+                      x="65"
+                      y="20"
+                      width="20"
+                      height="20"
+                      fill="#e61e25"
+                    />
+                  </svg>
+                </div>
+                <span style={{ color: 'white', fontWeight: 800, fontSize: '1.2rem', letterSpacing: '-0.5px', marginLeft: '-0.1em', lineHeight: '1.1' }}>ne Click</span>
               </div>
+              <div style={{ color: '#e61e25', fontSize: '0.65rem', fontWeight: 800, letterSpacing: '2px', textTransform: 'uppercase', marginTop: '2px', marginLeft: '0.5rem' }}>Admin Portal</div>
             </Link>
             <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem', lineHeight: 1.6, maxWidth: '280px' }}>
               Premium advertising and outdoor media solutions across the UAE.

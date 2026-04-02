@@ -341,7 +341,7 @@ export default function ContactPage() {
 
         .form-select option {
           background: #1c1c1c !important;
-          color: #121212 !important;
+          color: #ffffff !important;
         }
 
         .submit-button-wrap {

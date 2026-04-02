@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, Suspense, useRef } from 'react';
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { useState, useEffect, Suspense, useRef, useMemo, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
     ArrowRight, 
     Image as ImageIcon,
@@ -112,30 +112,42 @@ function ProjectsContent() {
     const [dynamicProjects, setDynamicProjects] = useState<Project[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    const mouseX = useMotionValue(0.5);
-    const mouseY = useMotionValue(0.5);
-    const springConfig = { damping: 25, stiffness: 150 };
-    const springX = useSpring(mouseX, springConfig);
-    const springY = useSpring(mouseY, springConfig);
-    
-    const rotateX = useTransform(springY, [0, 1], [15, -15]);
-    const rotateY = useTransform(springX, [0, 1], [-15, 15]);
-    const bgX = useTransform(springX, [0, 1], [-20, 20]);
-    const bgY = useTransform(springY, [0, 1], [-20, 20]);
+    const handleCategoryChange = useCallback((category: string) => {
+        setFilterCategory(category);
+    }, []);
 
-    const handleMouseMove = (e: React.MouseEvent) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        mouseX.set((e.clientX - rect.left) / rect.width);
-        mouseY.set((e.clientY - rect.top) / rect.height);
-    };
-
-    const categories = [
+    const categories = useMemo(() => [
         'All', 'Brand Identity', 'Digital Printing', 'Vehicle Branding', 
         'Display Solutions', 'Signage', 'Facade & Cladding'
-    ];
+    ], []);
 
     useEffect(() => {
-        fetchDynamicProjects();
+        // Use a faster, cached approach for fetching projects
+        const cachedProjects = sessionStorage.getItem('projectsCache');
+        const cacheTime = sessionStorage.getItem('projectsCacheTime');
+        const now = Date.now();
+        
+        // Use cache if it's less than 5 minutes old
+        if (cachedProjects && cacheTime && (now - parseInt(cacheTime)) < 300000) {
+            const cached = JSON.parse(cachedProjects);
+            setDynamicProjects(cached);
+            setIsLoading(false);
+        } else {
+            fetchDynamicProjects();
+        }
+        
+        // Preload critical images
+        const criticalImages = [
+            '/signage-branding.png',
+            '/signage-digital-print.png',
+            '/signage-vehicle.png',
+            '/signage-production.png'
+        ];
+        
+        criticalImages.forEach(src => {
+            const img = new Image();
+            img.src = src;
+        });
     }, []);
 
     const fetchDynamicProjects = async () => {
@@ -154,6 +166,10 @@ function ProjectsContent() {
                     detailsTitle: p.title
                 }));
                 setDynamicProjects(adapted);
+                
+                // Cache the results
+                sessionStorage.setItem('projectsCache', JSON.stringify(adapted));
+                sessionStorage.setItem('projectsCacheTime', Date.now().toString());
             }
         } catch (error) {
             console.error('Error fetching dynamic projects:', error);
@@ -161,12 +177,14 @@ function ProjectsContent() {
         setIsLoading(false);
     };
 
-    const combinedProjects = [...ALL_PROJECTS, ...dynamicProjects];
+    const combinedProjects = useMemo(() => [...ALL_PROJECTS, ...dynamicProjects], [dynamicProjects]);
 
-    const filteredProjects = combinedProjects.filter(p => {
-        if (filterCategory === 'All') return true;
-        return p.category.toLowerCase().includes(filterCategory.toLowerCase());
-    });
+    const filteredProjects = useMemo(() => {
+        return combinedProjects.filter(p => {
+            if (filterCategory === 'All') return true;
+            return p.category.toLowerCase().includes(filterCategory.toLowerCase());
+        });
+    }, [combinedProjects, filterCategory]);
 
     const CATEGORY_IMAGES: { [key: string]: string[] } = {
         'Brand Identity': [
@@ -349,6 +367,7 @@ function ProjectsContent() {
                     gap: 40px;
                     margin-bottom: 100px;
                     align-items: center;
+                    contain: layout style paint;
                 }
                 .cluster-text {
                     background: rgba(255, 255, 255, 0.05);
@@ -357,6 +376,7 @@ function ProjectsContent() {
                     border-radius: 24px;
                     box-shadow: 0 20px 50px rgba(12, 12, 12,0.2);
                     color: white;
+                    will-change: transform;
                 }
                 .cluster-title {
                     font-size: clamp(1.8rem, 6vw, 3rem);
@@ -374,6 +394,7 @@ function ProjectsContent() {
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                     gap: 20px;
+                    contain: layout style paint;
                 }
 
                 .cluster-images.single {
@@ -385,7 +406,8 @@ function ProjectsContent() {
                     object-fit: cover;
                     border-radius: 20px;
                     box-shadow: 0 15px 45px rgba(12, 12, 12,0.1);
-                    transition: all 0.6s ease;
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                    will-change: transform;
                 }
                 .cluster-images.small .cluster-img {
                     height: 480px;
@@ -486,30 +508,27 @@ function ProjectsContent() {
                 }
             `}</style>
 
-            <header className="hero-works" onMouseMove={handleMouseMove}>
-                <motion.div 
-                    className="hero-works-bg"
-                    style={{ x: bgX, y: bgY }}
-                >
+            <header className="hero-works">
+                <div className="hero-works-bg">
                     <img 
                         src="/professional_agency_team.png" 
-                        alt="Professional Agency Team" 
+                        alt="Professional Agency Team"
+                        loading="eager"
                     />
-                </motion.div>
+                </div>
                 <div className="hero-works-overlay"></div>
 
                 <motion.div 
                     className="hero-works-content"
-                    style={{ rotateX, rotateY }}
-                    initial={{ opacity: 0, rotateX: 30, y: 100, scale: 0.8 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ duration: 1.0, type: "spring", bounce: 0.3 }}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
                 >
                     <motion.h1 
                         className="hero-works-h1"
-                        initial={{ z: -200, rotateY: -20, opacity: 0 }}
-                        animate={{ z: 0, rotateY: 0, opacity: 1 }}
-                        transition={{ duration: 1.0, delay: 0.3, type: "spring", bounce: 0.4 }}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
                     >
                         Our <motion.span
                             animate={{ 
@@ -524,9 +543,9 @@ function ProjectsContent() {
                     </motion.h1>
                     <motion.div 
                         className="hero-works-tagline"
-                        initial={{ opacity: 0, y: 30, z: -100 }}
-                        animate={{ opacity: 1, y: 0, z: 0 }}
-                        transition={{ delay: 0.3, duration: 0.6 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4, duration: 0.4 }}
                     >
                         Real campaigns. Real impact.
                     </motion.div>
@@ -548,7 +567,7 @@ function ProjectsContent() {
                 {categories.map(cat => (
                     <button
                         key={cat}
-                        onClick={() => setFilterCategory(cat)}
+                        onClick={() => handleCategoryChange(cat)}
                         className={`cat-btn ${filterCategory === cat ? 'active' : ''}`}
                     >
                         {cat}
@@ -561,10 +580,10 @@ function ProjectsContent() {
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={filterCategory}
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: -20 }}
-                            transition={{ duration: 1.0 }}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.2 }}
                             style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}
                         >
                             {isLoading ? (
@@ -573,9 +592,23 @@ function ProjectsContent() {
                                 </div>
                             ) : filteredProjects.length > 0 ? (
                                 filteredProjects.map((project, idx) => (
-                                    <div key={project.id || idx} className="project-cluster" style={{ flexDirection: idx % 2 === 0 ? 'row' : 'row-reverse' }}>
+                                    <motion.div 
+                                        key={project.id || idx} 
+                                        className="project-cluster" 
+                                        style={{ flexDirection: idx % 2 === 0 ? 'row' : 'row-reverse' }}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true, margin: "-50px" }}
+                                        transition={{ 
+                                            duration: 0.3, 
+                                            delay: Math.min(idx * 0.05, 0.2),
+                                            ease: "easeOut"
+                                        }}
+                                    >
                                         <div className="cluster-text">
-                                            <h2 className="cluster-title">{project.title}</h2>
+                                            <h2 className="cluster-title">
+                                                {project.title}
+                                            </h2>
                                             <p className="cluster-desc">
                                                 {project.description}
                                             </p>
@@ -587,7 +620,8 @@ function ProjectsContent() {
                                                         key={i} 
                                                         src={img} 
                                                         alt={project.title} 
-                                                        className="cluster-img" 
+                                                        className="cluster-img"
+                                                        loading="lazy"
                                                         onError={(e) => {
                                                             (e.target as HTMLImageElement).src = '/projects-hero-bg.png';
                                                         }}
@@ -599,7 +633,7 @@ function ProjectsContent() {
                                                 </div>
                                             )}
                                         </div>
-                                    </div>
+                                    </motion.div>
                                 ))
                             ) : (
                                 <div style={{ textAlign: 'center', padding: '5rem', background: 'rgba(255,255,255,0.05)', borderRadius: '24px' }}>

@@ -521,6 +521,163 @@ export default function ServicesPage() {
                         </div>
                     </div>
                 )}
+
+                {/* Edit Service Modal */}
+                {showEditModal && (
+                    <div style={{
+                        position: 'fixed',
+                        inset: 0,
+                        background: 'rgba(12, 12, 12,0.5)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        zIndex: 1000
+                    }} onClick={() => setShowEditModal(false)}>
+                        <div className="glass-card" style={{ 
+                            maxWidth: '500px', 
+                            width: '90%', 
+                            padding: '2rem',
+                            maxHeight: '90vh',
+                            overflowY: 'auto'
+                        }} onClick={(e) => e.stopPropagation()}>
+                            <h2 style={{ marginBottom: '1.5rem', fontFamily: "'Outfit', sans-serif" }}>Edit Service</h2>
+                            <form onSubmit={handleEdit} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+                                <div>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem' }}>
+                                        Service Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        required
+                                        value={editFormData.name}
+                                        onChange={(e) => setEditFormData({ ...editFormData, name: e.target.value })}
+                                        placeholder="e.g., Digital Signage"
+                                        style={{
+                                            width: '100%',
+                                            padding: '0.8rem',
+                                            borderRadius: '8px',
+                                            border: '1px solid var(--color-card-border)',
+                                            background: 'rgba(124, 58, 237, 0.03)',
+                                            fontSize: '0.95rem'
+                                        }}
+                                    />
+                                </div>
+                                <div>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem' }}>
+                                        Category
+                                    </label>
+                                    <input
+                                        type="text"
+                                        required
+                                        value={editFormData.category}
+                                        onChange={(e) => setEditFormData({ ...editFormData, category: e.target.value })}
+                                        placeholder="e.g., Signage, Branding, Graphics"
+                                        style={{
+                                            width: '100%',
+                                            padding: '0.8rem',
+                                            borderRadius: '8px',
+                                            border: '1px solid var(--color-card-border)',
+                                            background: 'rgba(124, 58, 237, 0.03)',
+                                            fontSize: '0.95rem'
+                                        }}
+                                    />
+                                </div>
+                                <div>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem' }}>
+                                        Description
+                                    </label>
+                                    <textarea
+                                        required
+                                        value={editFormData.description}
+                                        onChange={(e) => setEditFormData({ ...editFormData, description: e.target.value })}
+                                        placeholder="Describe the service..."
+                                        rows={3}
+                                        style={{
+                                            width: '100%',
+                                            padding: '0.8rem',
+                                            borderRadius: '8px',
+                                            border: '1px solid var(--color-card-border)',
+                                            background: 'rgba(124, 58, 237, 0.03)',
+                                            fontSize: '0.95rem',
+                                            resize: 'vertical'
+                                        }}
+                                    />
+                                </div>
+                                <div>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem' }}>
+                                        Image (Direct Upload)
+                                    </label>
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={(e) => handleFileChange(e, true)}
+                                        style={{
+                                            width: '100%',
+                                            padding: '0.8rem',
+                                            borderRadius: '8px',
+                                            border: '1px solid var(--color-card-border)',
+                                            background: 'rgba(124, 58, 237, 0.03)',
+                                            fontSize: '0.95rem'
+                                        }}
+                                    />
+                                    {editFormData.image && (
+                                        <div style={{ marginTop: '1rem', height: '100px', borderRadius: '8px', overflow: 'hidden' }}>
+                                            <img src={editFormData.image} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                        </div>
+                                    )}
+                                </div>
+                                <div>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem' }}>
+                                        Service Items (Features/Details)
+                                    </label>
+                                    {editFormData.items.map((item, index) => (
+                                        <input
+                                            key={index}
+                                            type="text"
+                                            value={item}
+                                            onChange={(e) => {
+                                                const newItems = [...editFormData.items];
+                                                newItems[index] = e.target.value;
+                                                setEditFormData({ ...editFormData, items: newItems });
+                                            }}
+                                            placeholder={`Item ${index + 1} (optional)`}
+                                            style={{
+                                                width: '100%',
+                                                padding: '0.7rem',
+                                                borderRadius: '8px',
+                                                border: '1px solid var(--color-card-border)',
+                                                background: 'rgba(124, 58, 237, 0.03)',
+                                                fontSize: '0.9rem',
+                                                marginBottom: '0.6rem'
+                                            }}
+                                        />
+                                    ))}
+                                    <p style={{ fontSize: '0.8rem', color: 'var(--color-text-muted)', marginTop: '0.5rem' }}>
+                                        Add up to 4 bullet points describing key features or details
+                                    </p>
+                                </div>
+                                <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowEditModal(false)}
+                                        className="btn btn-outline"
+                                        style={{ flex: 1 }}
+                                    >
+                                        Cancel
+                                    </button>
+                                    <button
+                                        type="submit"
+                                        className="btn btn-primary"
+                                        style={{ flex: 1 }}
+                                    >
+                                        Update Service
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                )}
+
                 {/* Admin Footer */}
                 <AdminFooter />
             <style jsx global>{`

@@ -503,6 +503,30 @@ export default function Home() {
           width: 100%;
         }
 
+        /* Ensure portfolio title stays white even with global overrides */
+        .portfolio-item .portfolio-title,
+        .portfolio-item h3.portfolio-title {
+          color: white !important;
+        }
+
+        /* Ensure red ampersand stays red */
+        .portfolio-title span[style*="color: #e61e25"] {
+          color: #e61e25 !important;
+        }
+
+        /* Specific override for any print or global styles affecting portfolio */
+        @media screen {
+          .portfolio-item .portfolio-title,
+          .portfolio-item h3.portfolio-title,
+          .portfolio-grid .portfolio-item .portfolio-title {
+            color: white !important;
+          }
+          
+          .portfolio-title span[style*="#e61e25"] {
+            color: #e61e25 !important;
+          }
+        }
+
         .portfolio-divider {
           width: 100%;
           height: 1px;
@@ -1018,9 +1042,9 @@ export default function Home() {
                 <h3 className="portfolio-title">
                   {item.title.includes('&') ? (
                     <>
-                      {item.title.split('&')[0].trim()}
+                      <span style={{ color: '#e61e25' }}>{item.title.split('&')[0].trim()}</span>
                       <span style={{ color: '#e61e25' }}> & </span>
-                      {item.title.split('&')[1]?.trim()}
+                      <span style={{ color: 'white' }}>{item.title.split('&')[1]?.trim()}</span>
                     </>
                   ) : item.title}
                 </h3>

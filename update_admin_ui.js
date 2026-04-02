@@ -45,7 +45,7 @@ if (fs.existsSync(sidebarPath)) {
                             <circle cx="14" cy="14" r="11" fill="none" stroke="white" strokeWidth="4"/>
                             <rect x="16" y="2" width="9" height="9" fill="#e61e25" rx="1"/>
                         </svg>
-                        <span style={{ color: 'white', fontWeight: 800, fontSize: '1.4rem', marginLeft: '-1px', fontFamily: "'Bricolage Grotesque', sans-serif" }}>ne Click</span>
+                        <span style={{ color: 'white', fontWeight: 800, fontSize: '1.4rem', marginLeft: '-1px', fontFamily: "'Bricolage Grotesque', sans-serif" }}>One Click</span>
                     </div>
                     <div style={{ color: '#888', fontWeight: '900', letterSpacing: '3px', fontSize: '0.6rem', marginTop: '1px' }}>ADVERTISEMENT</div>
                 </Link>

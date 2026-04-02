@@ -267,8 +267,12 @@ export default function AdminProjectsPage() {
                     box-shadow: 0 20px 50px rgba(12, 12, 12,0.03);
                     display: flex;
                     flex-direction: column;
-                    justify-content: center;
+                    justify-content: flex-start;
                     position: relative;
+                    max-height: 500px;
+                    overflow-y: auto;
+                    scrollbar-width: thin;
+                    scrollbar-color: #e61e25 rgba(255, 255, 255, 0.1);
                 }
 
                 .cluster-title {
@@ -276,11 +280,11 @@ export default function AdminProjectsPage() {
                     font-weight: 800;
                     margin-bottom: 1.5rem;
                     letter-spacing: -1px;
-                    color: #1c1c1c;
+                    color: #ffffff;
                 }
 
                 .cluster-desc {
-                    color: #666;
+                    color: rgba(255, 255, 255, 0.8);
                     line-height: 1.8;
                     font-size: 1.05rem;
                     margin-bottom: 2rem;
@@ -309,7 +313,7 @@ export default function AdminProjectsPage() {
                 .cluster-admin-actions {
                     display: flex;
                     gap: 1rem;
-                    border-top: 1px solid #f0f0f0;
+                    border-top: 1px solid rgba(255, 255, 255, 0.2);
                     padding-top: 2rem;
                     margin-top: 1rem;
                 }
@@ -329,9 +333,9 @@ export default function AdminProjectsPage() {
                 }
 
                 .admin-btn.edit {
-                    background: #f8fafc;
-                    color: #1c1c1c;
-                    border: 1px solid #e2e8f0;
+                    background: rgba(255, 255, 255, 0.1);
+                    color: #ffffff;
+                    border: 1px solid rgba(255, 255, 255, 0.2);
                 }
 
                 .admin-btn.delete {
@@ -345,9 +349,9 @@ export default function AdminProjectsPage() {
                 }
 
                 .admin-btn.edit:hover {
-                    background: #1c1c1c;
-                    color: white;
-                    border-color: #1c1c1c;
+                    background: rgba(255, 255, 255, 0.2);
+                    color: #ffffff;
+                    border-color: rgba(255, 255, 255, 0.4);
                 }
 
                 .admin-btn.delete:hover {
@@ -365,6 +369,60 @@ export default function AdminProjectsPage() {
                     .project-cluster { display: flex !important; flex-direction: column !important; }
                     .cluster-images { order: 2 !important; height: 400px; }
                     .cluster-text { order: 1 !important; text-align: left; }
+                }
+
+                /* Custom scrollbar for projects container */
+                .projects-container::-webkit-scrollbar {
+                    width: 8px;
+                }
+
+                .projects-container::-webkit-scrollbar-track {
+                    background: #f1f1f1;
+                    border-radius: 10px;
+                }
+
+                .projects-container::-webkit-scrollbar-thumb {
+                    background: linear-gradient(135deg, #e61e25 0%, #ff4757 100%);
+                    border-radius: 10px;
+                    transition: all 0.3s ease;
+                }
+
+                .projects-container::-webkit-scrollbar-thumb:hover {
+                    background: linear-gradient(135deg, #d63031 0%, #e61e25 100%);
+                    box-shadow: 0 2px 8px rgba(230, 30, 37, 0.3);
+                }
+
+                /* Firefox scrollbar */
+                .projects-container {
+                    scrollbar-width: thin;
+                    scrollbar-color: #e61e25 #f1f1f1;
+                }
+
+                /* Custom scrollbar for individual project cards */
+                .cluster-text::-webkit-scrollbar {
+                    width: 6px;
+                }
+
+                .cluster-text::-webkit-scrollbar-track {
+                    background: rgba(255, 255, 255, 0.1);
+                    border-radius: 10px;
+                }
+
+                .cluster-text::-webkit-scrollbar-thumb {
+                    background: linear-gradient(135deg, #e61e25 0%, #ff4757 100%);
+                    border-radius: 10px;
+                    transition: all 0.3s ease;
+                }
+
+                .cluster-text::-webkit-scrollbar-thumb:hover {
+                    background: linear-gradient(135deg, #d63031 0%, #e61e25 100%);
+                    box-shadow: 0 2px 8px rgba(230, 30, 37, 0.3);
+                }
+
+                /* Firefox scrollbar for project cards */
+                .cluster-text {
+                    scrollbar-width: thin;
+                    scrollbar-color: #e61e25 rgba(255, 255, 255, 0.1);
                 }
             `}</style>
 
@@ -420,7 +478,19 @@ export default function AdminProjectsPage() {
                     <Loader2 className="animate-spin" size={40} color="#e61e25" />
                 </div>
             ) : (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
+                <div 
+                    className="projects-container"
+                    style={{ 
+                        display: 'flex', 
+                        flexDirection: 'column', 
+                        gap: '4rem',
+                        maxHeight: '70vh',
+                        overflowY: 'auto',
+                        paddingRight: '1rem',
+                        scrollbarWidth: 'thin',
+                        scrollbarColor: '#e61e25 #f1f1f1'
+                    }}
+                >
                     {filteredProjects.map((project, idx) => (
                         <motion.div 
                             layout
