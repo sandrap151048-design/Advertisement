@@ -260,7 +260,7 @@ export default function AdminProjectsPage() {
                 }
 
                 .cluster-text {
-                    background: white;
+                    background: #1a1a1a;
                     padding: clamp(1.5rem, 4vw, 3.5rem);
                     border: 1px solid rgba(0,0,0,0.05);
                     border-radius: 24px;

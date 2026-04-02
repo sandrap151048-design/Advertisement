@@ -304,7 +304,7 @@ export default function BrandingPage() {
 
         .submit-button {
           padding: 1rem 2rem;
-          background: white;
+          background: #1a1a1a;
           color: #1a1a1a;
           border: none;
           border-radius: 8px;

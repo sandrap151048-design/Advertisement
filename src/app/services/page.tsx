@@ -387,7 +387,7 @@ export default function ServicesPage() {
           right: -1px;
           width: 100px;
           height: 100px;
-          background: white;
+          background: #1a1a1a;
           border-top-left-radius: 100px;
           display: flex;
           align-items: center;
@@ -399,7 +399,7 @@ export default function ServicesPage() {
         .service-number {
           font-size: 1.5rem;
           font-weight: 900;
-          color: #1c222d;
+          color: white;
           margin-top: 15px;
           margin-left: 15px;
           transition: all 0.3s ease;

@@ -56,7 +56,7 @@ html::-webkit-scrollbar {
 body {
   margin: 0;
   padding: 0;
-  background: radial-gradient(circle at 20% 20%, #1a0b0b, #0b0b0d 40%, #080808 100%);
+  background: #050505;
   background-attachment: fixed;
   color: #ffffff;
   font-family: var(--font-body);
@@ -318,13 +318,6 @@ ul {
   background: rgba(30, 30, 40, 0.8);
   border: 1px solid rgba(124, 58, 237, 0.3);
   color: var(--color-text-main);
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.5) 100%) !important;
-  z-index: 1;
 }
 
 /* Decorative background elements */
@@ -3164,12 +3157,12 @@ input::placeholder, textarea::placeholder {
 /* Enhanced print styles for dark theme */
 @media print {
     body {
-        background: white !important;
+        background: #1a1a1a !important;
         color: black !important;
     }
     
     .glass-card {
-        background: white !important;
+        background: #1a1a1a !important;
         border: 1px solid #ccc !important;
     }
 }

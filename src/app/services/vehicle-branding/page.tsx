@@ -88,7 +88,7 @@ export default function VehicleBrandingPage() {
           top: 140px;
           left: 40px;
           z-index: 100;
-          background: white;
+          background: #1a1a1a;
           width: 48px;
           height: 48px;
           border-radius: 50%;
@@ -108,7 +108,7 @@ export default function VehicleBrandingPage() {
         }
 
         .hero-section {
-          background: white;
+          background: #1a1a1a;
           padding: 8rem 2rem;
           min-height: 70vh;
           display: flex;
@@ -195,13 +195,13 @@ export default function VehicleBrandingPage() {
         }
 
         .hero-dot.active {
-          background: white;
+          background: #1a1a1a;
           width: 24px;
           border-radius: 4px;
         }
 
         .why-choose-section {
-          background: white;
+          background: #1a1a1a;
           padding: 4rem 2rem;
           margin-bottom: 3rem;
         }
@@ -232,7 +232,7 @@ export default function VehicleBrandingPage() {
           border: 1px solid rgba(255,255,255,0.1);
           border-radius: 12px;
           overflow: hidden;
-          background: white;
+          background: #1a1a1a;
           transition: all 0.3s ease;
         }
 
@@ -282,7 +282,7 @@ export default function VehicleBrandingPage() {
         }
 
         .locations-section {
-          background: white;
+          background: #1a1a1a;
           padding: 4rem 2rem;
           margin-bottom: 3rem;
         }
@@ -429,7 +429,7 @@ export default function VehicleBrandingPage() {
 
         .submit-button {
           padding: 1rem 2rem;
-          background: white;
+          background: #1a1a1a;
           color: #1a1a1a;
           border: none;
           border-radius: 50px;

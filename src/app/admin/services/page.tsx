@@ -663,7 +663,7 @@ export default function ServicesPage() {
                 }
 
                 .action-btn.edit:hover {
-                    background: white;
+                    background: #1a1a1a;
                     color: #1a1a1a;
                 }
 

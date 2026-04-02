@@ -338,7 +338,7 @@ export default function ContactPage() {
         }
 
         .form-select option {
-          background: #ffffff !important;
+          background: #1a1a1a !important;
           color: #000000 !important;
         }
 
@@ -350,7 +350,7 @@ export default function ContactPage() {
 
         .submit-button {
           padding: 0.8rem 2.5rem;
-          background: white;
+          background: #1a1a1a;
           color: black;
           font-weight: 700;
           border-radius: 50px;
@@ -361,7 +361,7 @@ export default function ContactPage() {
         }
 
         .submit-button:hover {
-          background: #f0f0f0;
+          background: #1a1a1a;
           transform: translateY(-2px);
         }
 

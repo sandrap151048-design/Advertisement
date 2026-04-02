@@ -167,7 +167,7 @@ export default function Home() {
 
         body {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-          background: transparent;
+          background: #050505;
           color: white;
         }
 
@@ -181,7 +181,7 @@ export default function Home() {
           justify-content: center;
           overflow: hidden;
           padding-top: 70px;
-          background: transparent;
+          background: #050505;
           perspective: 1200px;
         }
 
@@ -294,7 +294,8 @@ export default function Home() {
         /* Section Styles */
         .section {
           padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
-          background: transparent;
+          background: rgba(26, 26, 26, 0.9);
+          backdrop-filter: blur(20px);
         }
 
         .section-dark {
@@ -322,19 +323,34 @@ export default function Home() {
         .container {
           max-width: 1200px;
           margin: 0 auto;
+          position: relative;
+          z-index: 10;
         }
 
         /* We Build Section */
         .we-build-section {
           text-align: center;
           padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
+          background: #1a1a1a;
+          position: relative;
+        }
+        
+        .we-build-section::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at 20% 20%, rgba(230, 30, 37, 0.05) 0%, transparent 50%);
+          pointer-events: none;
         }
 
         .we-build-title {
           font-size: clamp(2.2rem, 6vw, 4rem);
-          font-weight: 900;
+          font-weight: 950;
           margin-bottom: 3rem;
           line-height: 1.1;
+          color: white;
+          text-transform: uppercase;
+          letter-spacing: -2px;
         }
 
         /* Responsive Fixes */
@@ -510,7 +526,7 @@ export default function Home() {
           right: -1px;
           width: 100px;
           height: 100px;
-          background: white;
+          background: #050505;
           /* Creating the scalloped 'leaf' shape */
           border-top-left-radius: 100px;
           display: flex;
@@ -522,7 +538,7 @@ export default function Home() {
         .portfolio-number {
           font-size: 1.5rem;
           font-weight: 900;
-          color: #1c222d; /* Inverted for visibility on white */
+          color: white; /* Changed from dark to white for the new dark scallop background */
           margin-top: 15px;
           margin-left: 15px;
         }
@@ -628,7 +644,7 @@ export default function Home() {
         .for-brands-image {
           width: 100%;
           height: 400px;
-          background: #e0e0e0;
+          background: #050505;
           border-radius: 12px;
           overflow: hidden;
         }
@@ -646,12 +662,22 @@ export default function Home() {
           gap: 3rem;
           align-items: center;
           padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
+          background: #1a1a1a;
+          position: relative;
+        }
+
+        .prime-locations::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at 80% 80%, rgba(230, 30, 37, 0.05) 0%, transparent 50%);
+          pointer-events: none;
         }
 
         .prime-locations-image {
           width: 100%;
           height: 400px;
-          background: #e0e0e0;
+          background: #050505;
           border-radius: 12px;
           overflow: hidden;
         }
@@ -679,6 +705,15 @@ export default function Home() {
           background: #1a1a1a;
           color: white;
           padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
+          position: relative;
+        }
+
+        .we-reach-section::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at center, rgba(230, 30, 37, 0.03) 0%, transparent 60%);
+          pointer-events: none;
         }
 
         .we-reach-content {
@@ -719,7 +754,16 @@ export default function Home() {
         /* Built for Visibility */
         .built-section {
           padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
-          background: transparent;
+          background: #1a1a1a;
+          position: relative;
+        }
+
+        .built-section::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at 10% 90%, rgba(230, 30, 37, 0.05) 0%, transparent 50%);
+          pointer-events: none;
         }
 
         .built-content {
@@ -744,7 +788,7 @@ export default function Home() {
         .built-image {
           width: 100%;
           height: 400px;
-          background: #e0e0e0;
+          background: #050505;
           border-radius: 12px;
           overflow: hidden;
         }
@@ -757,7 +801,7 @@ export default function Home() {
 
         /* Footer */
         .footer {
-          background: #1a1a1a;
+          background: #050505;
           color: white;
           padding: 3rem clamp(1rem, 4vw, 2rem);
         }
@@ -838,7 +882,7 @@ export default function Home() {
           border-radius: 80px 0 80px 0;
           overflow: hidden;
           z-index: 2;
-          background: #e0e0e0;
+          background: #050505;
           box-shadow: 0 20px 40px rgba(0,0,0,0.1);
           border: 1px solid rgba(0,0,0,0.05);
         }
