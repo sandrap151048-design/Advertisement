@@ -69,29 +69,29 @@ export default function ContactsPage() {
     if (!isAuthenticated) return null;
 
     return (
-        <div style={{ padding: '2rem' }}>
+        <div style={{ padding: '2rem', minHeight: '100vh', background: '#050505', color: '#ffffff' }}>
                 <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '1.5rem', borderBottom: '1px solid rgba(44, 74, 94, 0.2)' }}>
                     <div>
                         <Link href="/admin" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#666', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, marginBottom: '1rem', transition: 'all 0.3s' }} className="hover-red">
                             <ArrowLeft size={18} /> Back to Dashboard
                         </Link>
-                        <h1 style={{ fontSize: '1.8rem', marginBottom: '0.5rem', fontFamily: "'Bricolage Grotesque', sans-serif", color: '#1c1c1c' }}>Contact <span style={{ color: '#e61e25', fontWeight: 700 }}>Forms</span></h1>
-                        <p style={{ color: '#666666', fontSize: '0.9rem', fontFamily: "'Manrope', sans-serif" }}>Manage customer inquiries and messages</p>
+                        <h1 style={{ fontSize: '1.8rem', marginBottom: '0.5rem', fontFamily: "'Bricolage Grotesque', sans-serif", color: '#ffffff' }}>Contact <span style={{ color: '#e61e25', fontWeight: 700 }}>Forms</span></h1>
+                        <p style={{ color: '#aaa', fontSize: '0.9rem', fontFamily: "'Manrope', sans-serif" }}>Manage customer inquiries and messages</p>
                     </div>
-                    <div style={{ background: 'rgba(255, 107, 53, 0.1)', padding: '0.8rem 1.5rem', borderRadius: '8px', border: '1px solid rgba(255, 107, 53, 0.2)' }}>
-                        <span style={{ color: '#e61e25', fontWeight: 700 }}>{contacts.length} Total</span>
+                    <div style={{ background: 'rgba(230, 30, 37, 0.1)', padding: '0.8rem 1.5rem', borderRadius: '12px', border: '1px solid rgba(230, 30, 37, 0.2)' }}>
+                        <span style={{ color: '#ffffff', fontWeight: 800 }}>{contacts.length} Total</span>
                     </div>
                 </header>
 
                 {isLoading ? (
-                    <div style={{ textAlign: 'center', padding: '3rem' }}>
-                        <p style={{ color: '#666666' }}>Loading contacts...</p>
+                    <div style={{ textAlign: 'center', padding: '5rem' }}>
+                        <p style={{ color: '#888' }}>Loading contacts...</p>
                     </div>
                 ) : contacts.length === 0 ? (
-                    <div className="glass-card" style={{ padding: '3rem', textAlign: 'center' }}>
-                        <MessageSquare size={48} color="#666666" style={{ margin: '0 auto 1rem' }} />
-                        <h3 style={{ marginBottom: '0.5rem' }}>No Contact Forms Yet</h3>
-                        <p style={{ color: '#666666' }}>Contact form submissions will appear here</p>
+                    <div className="glass-card" style={{ padding: '5rem', textAlign: 'center', background: 'rgba(255,255,255,0.02)', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                        <MessageSquare size={64} color="rgba(255,255,255,0.1)" style={{ margin: '0 auto 1.5rem' }} />
+                        <h3 style={{ marginBottom: '0.5rem', color: '#ffffff' }}>No Contact Forms Yet</h3>
+                        <p style={{ color: '#888' }}>Contact form submissions will appear here</p>
                     </div>
                 ) : (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -103,26 +103,27 @@ export default function ContactsPage() {
                                 className="glass-card"
                                 style={{ 
                                     padding: '1.5rem',
-                                    background: 'linear-gradient(135deg, rgba(255, 107, 53, 0.08) 0%, rgba(255, 107, 53, 0.03) 100%)',
-                                    border: '1px solid rgba(255, 107, 53, 0.2)',
-                                    boxShadow: '0 4px 12px rgba(255, 107, 53, 0.1)'
+                                    background: 'rgba(255, 255, 255, 0.03)',
+                                    border: '1px solid rgba(255, 255, 255, 0.05)',
+                                    boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+                                    borderRadius: '16px'
                                 }}
                             >
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '1rem' }}>
                                     <div>
-                                        <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', fontFamily: "'DM Sans', sans-serif", color: '#e61e25', fontWeight: 700 }}>{contact.name}</h3>
+                                        <h3 style={{ fontSize: '1.2rem', marginBottom: '0.4rem', fontFamily: "'DM Sans', sans-serif", color: '#ffffff', fontWeight: 700 }}>{contact.name}</h3>
                                         <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#666666', fontSize: '0.9rem' }}>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#aaaaaa', fontSize: '0.9rem' }}>
                                                 <Mail size={16} color="#e61e25" />
                                                 {contact.email}
                                             </div>
                                             {contact.phone && (
-                                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#666666', fontSize: '0.9rem' }}>
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#aaaaaa', fontSize: '0.9rem' }}>
                                                     <Phone size={16} color="#e61e25" />
                                                     {contact.phone}
                                                 </div>
                                             )}
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#666666', fontSize: '0.9rem' }}>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#aaaaaa', fontSize: '0.9rem' }}>
                                                 <Calendar size={16} color="#e61e25" />
                                                 {new Date(contact.createdAt).toLocaleDateString()}
                                             </div>
@@ -148,12 +149,12 @@ export default function ContactsPage() {
                                     </button>
                                 </div>
                                 <div style={{ 
-                                    background: 'rgba(255, 107, 53, 0.1)', 
-                                    padding: '1rem', 
-                                    borderRadius: '8px',
-                                    border: '1px solid rgba(255, 107, 53, 0.2)'
+                                    background: 'rgba(230, 30, 37, 0.05)', 
+                                    padding: '1.2rem', 
+                                    borderRadius: '12px',
+                                    border: '1px solid rgba(230, 30, 37, 0.15)'
                                 }}>
-                                    <p style={{ color: '#1c1c1c', lineHeight: '1.6', margin: 0, fontFamily: "'Manrope', sans-serif" }}>
+                                    <p style={{ color: '#dddddd', lineHeight: '1.6', margin: 0, fontFamily: "'Manrope', sans-serif" }}>
                                         {contact.message}
                                     </p>
                                 </div>

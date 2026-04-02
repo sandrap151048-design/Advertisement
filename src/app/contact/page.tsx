@@ -200,7 +200,8 @@ export default function ContactPage() {
         }
 
         .touch-left {
-          background: rgba(255,255,255,0.04);
+          background: rgba(255,255,255,0.02);
+          backdrop-filter: blur(10px);
           padding: 5rem 4rem;
           border-radius: 24px;
           display: flex;
@@ -218,7 +219,8 @@ export default function ContactPage() {
         }
 
         .touch-right {
-          background: #0d0d0d;
+          background: rgba(13, 13, 13, 0.4);
+          backdrop-filter: blur(10px);
           padding: 5rem 4rem;
           border-radius: 24px;
           border: 1px solid rgba(230, 30, 37, 0.2);
@@ -542,39 +544,51 @@ export default function ContactPage() {
         </section>
 
         {/* Get In Touch Section */}
-        <section className="touch-container">
-          <motion.div 
-            className="touch-left"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2>Get<br /><span className="italic">In Touch</span></h2>
-            <p>Reach out to us for enquiries, support, or to start your advertising campaign.</p>
-          </motion.div>
+        <section style={{ 
+          position: 'relative', 
+          width: '100%', 
+          backgroundImage: 'linear-gradient(rgba(12, 12, 12, 0.82), rgba(12, 12, 12, 0.95)), url(/professional-contact-bg.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+          padding: '4rem 0',
+          borderTop: '1px solid rgba(255,255,255,0.05)',
+          borderBottom: '1px solid rgba(255,255,255,0.05)'
+        }}>
+          <div className="touch-container">
+            <motion.div 
+              className="touch-left"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2>Get<br /><span className="italic">In Touch</span></h2>
+              <p>Reach out to us for enquiries, support, or to start your advertising campaign.</p>
+            </motion.div>
 
-          <motion.div 
-            className="touch-right"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-          >
-            <div className="contact-info-list">
-              <div className="info-item">
-                <Mail className="info-item-icon" size={24} />
-                <a href="mailto:hello@oneclickadv.ae">hello@oneclickadv.ae</a>
+            <motion.div 
+              className="touch-right"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+            >
+              <div className="contact-info-list">
+                <div className="info-item">
+                  <Mail className="info-item-icon" size={24} />
+                  <a href="mailto:hello@oneclickadv.ae">hello@oneclickadv.ae</a>
+                </div>
+                <div className="info-item">
+                  <Phone className="info-item-icon" size={24} />
+                  <a href="tel:+971524065110">+971 52 406 5110</a>
+                </div>
+                <div className="info-item">
+                  <MapPin className="info-item-icon" size={24} />
+                  <span>Dubai, United Arab Emirates</span>
+                </div>
               </div>
-              <div className="info-item">
-                <Phone className="info-item-icon" size={24} />
-                <a href="tel:+971524065110">+971 52 406 5110</a>
-              </div>
-              <div className="info-item">
-                <MapPin className="info-item-icon" size={24} />
-                <span>Dubai, United Arab Emirates</span>
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </section>
 
         {/* Campaign Form Section */}

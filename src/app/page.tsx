@@ -906,8 +906,8 @@ export default function Home() {
           style={{ x: bgX, y: bgY }}
         >
           <img 
-            src="/dubai-hero-building.jpg" 
-            alt="Dubai Skyscraper" 
+            src="/home-hero-bg.png" 
+            alt="One Click Advertisement - Premium Building Branding" 
           />
         </motion.div>
         <div className="hero-overlay"></div>

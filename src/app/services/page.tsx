@@ -788,9 +788,44 @@ export default function ServicesPage() {
                   <span style={{ color: 'white' }}>ne Click</span>
                 </span>
               </h2>
-              <p>
+              <p style={{ marginBottom: '2.5rem' }}>
                 As the leader in outdoor advertising, we deliver measurable results through strategic placements and creative excellence.
               </p>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                {[
+                  { title: "Extensive Network", desc: "Access the most premium advertising locations across all of UAE." },
+                  { title: "Premium Quality", desc: "We use high-grade, durable materials to ensure long-lasting brand impact." },
+                  { title: "Strategic Precision", desc: "Data-driven placements that reach your specific target demographic." },
+                  { title: "Full Scale Service", desc: "From design and planning to installation and legal approvals." }
+                ].map((point, i) => (
+                  <motion.div 
+                    key={i}
+                    variants={cardReveal}
+                    style={{ 
+                      display: 'flex', 
+                      gap: '1.2rem', 
+                      alignItems: 'flex-start',
+                      background: 'rgba(255,255,255,0.03)',
+                      padding: '1.2rem',
+                      borderRadius: '12px',
+                      borderLeft: '4px solid #e61e25'
+                    }}
+                  >
+                    <div style={{ 
+                      minWidth: '10px', 
+                      height: '10px', 
+                      borderRadius: '50%', 
+                      background: '#e61e25', 
+                      marginTop: '6px' 
+                    }}></div>
+                    <div>
+                      <div style={{ fontWeight: 800, fontSize: '1.1rem', marginBottom: '0.4rem', color: 'white' }}>{point.title}</div>
+                      <div style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.6)', lineHeight: '1.4' }}>{point.desc}</div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </motion.div>
 
             <motion.div className="accordion" variants={cardReveal}>
@@ -829,13 +864,13 @@ export default function ServicesPage() {
             viewport={{ once: true }}
             variants={staggerContainer}
           >
-            <motion.h2 className="cta-title" variants={fadeInUp}>
+            <motion.h2 className="cta-title" variants={cardReveal}>
               Ready to make your brand <span className="italic">impossible to ignore?</span>
             </motion.h2>
-            <motion.p className="cta-subtitle" variants={fadeInUp}>
+            <motion.p className="cta-subtitle" variants={cardReveal}>
               Launch your advertising campaign with high-impact placements across prime locations - fast, simple, and effective.
             </motion.p>
-            <motion.div variants={fadeInUp}>
+            <motion.div variants={cardReveal}>
               <Link href="/contact#campaign" className="cta-button">
                 Get started <ArrowRight size={20} />
               </Link>
