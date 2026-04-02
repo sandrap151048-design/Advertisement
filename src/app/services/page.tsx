@@ -9,18 +9,16 @@ import ServiceMap from '@/app/components/ServiceMap';
 const cardReveal: Variants = {
   hidden: { 
     opacity: 0, 
-    y: 60,
-    scale: 0.95
+    y: 20,
+    scale: 0.99
   },
   visible: { 
     opacity: 1, 
     y: 0,
     scale: 1,
     transition: { 
-      duration: 1.2,
-      ease: [0.25, 0.46, 0.45, 0.94],
-      type: "spring",
-      bounce: 0.1
+      duration: 0.4,
+      ease: "easeOut"
     } 
   }
 };
@@ -30,8 +28,8 @@ const staggerContainer: Variants = {
   visible: {
     opacity: 1,
     transition: { 
-      staggerChildren: 0.25,
-      delayChildren: 0.2
+      staggerChildren: 0.05,
+      delayChildren: 0.05
     }
   }
 };
@@ -742,23 +740,19 @@ export default function ServicesPage() {
                   onClick={(e) => handleCardClick(e, service.link)}
                   initial={{ 
                     opacity: 0, 
-                    y: 80,
-                    scale: 0.9,
-                    rotateX: 15
+                    y: 20,
+                    scale: 0.98
                   }}
                   whileInView={{ 
                     opacity: 1, 
                     y: 0,
-                    scale: 1,
-                    rotateX: 0
+                    scale: 1
                   }}
-                  viewport={{ once: true, margin: "-100px" }}
+                  viewport={{ once: true, margin: "-30px" }}
                   transition={{ 
-                    duration: 1.4,
-                    delay: index * 0.2,
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                    type: "spring",
-                    bounce: 0.1
+                    duration: 0.4,
+                    delay: index * 0.05,
+                    ease: "easeOut"
                   }}
                   style={{
                     backgroundImage: `linear-gradient(rgba(12, 12, 12,0.6), rgba(12, 12, 12,0.85)), url(${service.image})`,

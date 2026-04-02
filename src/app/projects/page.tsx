@@ -122,19 +122,11 @@ function ProjectsContent() {
     ], []);
 
     useEffect(() => {
-        // Use a faster, cached approach for fetching projects
-        const cachedProjects = sessionStorage.getItem('projectsCache');
-        const cacheTime = sessionStorage.getItem('projectsCacheTime');
-        const now = Date.now();
+        // Immediately show static projects and set loading to false
+        setIsLoading(false);
         
-        // Use cache if it's less than 5 minutes old
-        if (cachedProjects && cacheTime && (now - parseInt(cacheTime)) < 300000) {
-            const cached = JSON.parse(cachedProjects);
-            setDynamicProjects(cached);
-            setIsLoading(false);
-        } else {
-            fetchDynamicProjects();
-        }
+        // Fetch dynamic projects in background without blocking UI
+        fetchDynamicProjects();
         
         // Preload critical images
         const criticalImages = [
@@ -151,30 +143,55 @@ function ProjectsContent() {
     }, []);
 
     const fetchDynamicProjects = async () => {
-        setIsLoading(true);
         try {
-            const res = await fetch('/api/projects');
-            const data = await res.json();
-            if (data.projects) {
-                // Adapt dynamic projects to public interface
-                const adapted = data.projects.map((p: any) => ({
-                    id: p.id,
-                    title: p.title,
-                    description: p.description,
-                    category: p.category,
-                    images: p.image ? [p.image] : [],
-                    detailsTitle: p.title
-                }));
-                setDynamicProjects(adapted);
-                
-                // Cache the results
-                sessionStorage.setItem('projectsCache', JSON.stringify(adapted));
-                sessionStorage.setItem('projectsCacheTime', Date.now().toString());
+            // Check cache first
+            const cachedProjects = sessionStorage.getItem('projectsCache');
+            const cacheTime = sessionStorage.getItem('projectsCacheTime');
+            const now = Date.now();
+            
+            // Use cache if it's less than 5 minutes old
+            if (cachedProjects && cacheTime && (now - parseInt(cacheTime)) < 300000) {
+                const cached = JSON.parse(cachedProjects);
+                setDynamicProjects(cached);
+                return;
+            }
+
+            // Fetch fresh data
+            const res = await fetch('/api/projects', { 
+                cache: 'no-store',
+                headers: { 'Cache-Control': 'no-cache' }
+            });
+            
+            if (res.ok) {
+                const data = await res.json();
+                if (data.projects && Array.isArray(data.projects)) {
+                    // Adapt dynamic projects to public interface
+                    const adapted = data.projects
+                        .filter((p: any) => p && p.title) // Filter out invalid entries
+                        .map((p: any) => ({
+                            id: p.id || `dynamic-${Date.now()}-${Math.random()}`,
+                            title: p.title,
+                            description: p.description || 'No description available',
+                            category: p.category || 'Uncategorized',
+                            images: p.image ? [p.image] : ['/projects-hero-bg.png'],
+                            detailsTitle: p.title
+                        }));
+                    
+                    setDynamicProjects(adapted);
+                    
+                    // Cache the results
+                    try {
+                        sessionStorage.setItem('projectsCache', JSON.stringify(adapted));
+                        sessionStorage.setItem('projectsCacheTime', Date.now().toString());
+                    } catch (cacheError) {
+                        console.warn('Failed to cache projects:', cacheError);
+                    }
+                }
             }
         } catch (error) {
             console.error('Error fetching dynamic projects:', error);
+            // Don't show error to user, just continue with static projects
         }
-        setIsLoading(false);
     };
 
     const combinedProjects = useMemo(() => [...ALL_PROJECTS, ...dynamicProjects], [dynamicProjects]);
@@ -214,8 +231,8 @@ function ProjectsContent() {
     };
 
     const fadeInUp = {
-        hidden: { opacity: 0, y: 30 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
     };
 
     const handleLogout = () => {
@@ -228,7 +245,7 @@ function ProjectsContent() {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            transition: { staggerChildren: 0.3, delayChildren: 0.4 }
+            transition: { staggerChildren: 0.1, delayChildren: 0.2 }
         }
     };
 
@@ -639,11 +656,7 @@ function ProjectsContent() {
                             transition={{ duration: 0.8, ease: "easeOut" }}
                             style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}
                         >
-                            {isLoading ? (
-                                <div style={{ display: 'flex', justifyContent: 'center', padding: '5rem' }}>
-                                    <Loader2 className="animate-spin" size={40} color="#e61e25" />
-                                </div>
-                            ) : filteredProjects.length > 0 ? (
+                            {filteredProjects.length > 0 ? (
                                 filteredProjects.map((project, idx) => (
                                     <motion.div 
                                         key={project.id || idx} 
@@ -651,31 +664,27 @@ function ProjectsContent() {
                                         style={{ flexDirection: idx % 2 === 0 ? 'row' : 'row-reverse' }}
                                         initial={{ 
                                             opacity: 0, 
-                                            y: 80,
-                                            scale: 0.9,
-                                            rotateY: idx % 2 === 0 ? -10 : 10
+                                            y: 40,
+                                            scale: 0.95
                                         }}
                                         whileInView={{ 
                                             opacity: 1, 
                                             y: 0,
-                                            scale: 1,
-                                            rotateY: 0
+                                            scale: 1
                                         }}
-                                        viewport={{ once: true, margin: "-100px" }}
+                                        viewport={{ once: true, margin: "-50px" }}
                                         transition={{ 
-                                            duration: 1.6, 
-                                            delay: Math.min(idx * 0.3, 0.9),
-                                            ease: [0.25, 0.46, 0.45, 0.94],
-                                            type: "spring",
-                                            bounce: 0.1
+                                            duration: 0.8, 
+                                            delay: idx * 0.1,
+                                            ease: "easeOut"
                                         }}
                                     >
                                         <motion.div 
                                             className="cluster-text"
                                             initial={{ 
                                                 opacity: 0, 
-                                                x: idx % 2 === 0 ? -60 : 60,
-                                                scale: 0.95
+                                                x: idx % 2 === 0 ? -30 : 30,
+                                                scale: 0.98
                                             }}
                                             whileInView={{ 
                                                 opacity: 1, 
@@ -684,9 +693,9 @@ function ProjectsContent() {
                                             }}
                                             viewport={{ once: true }}
                                             transition={{ 
-                                                duration: 1.3, 
-                                                delay: Math.min(idx * 0.3, 0.9) + 0.3,
-                                                ease: [0.25, 0.46, 0.45, 0.94]
+                                                duration: 0.7, 
+                                                delay: idx * 0.1 + 0.2,
+                                                ease: "easeOut"
                                             }}
                                         >
                                             <motion.h2 
@@ -718,23 +727,19 @@ function ProjectsContent() {
                                             className={`cluster-images ${project.images.length === 1 ? 'single' : ''} ${project.isSmall ? 'small' : ''}`}
                                             initial={{ 
                                                 opacity: 0, 
-                                                x: idx % 2 === 0 ? 60 : -60,
-                                                scale: 0.95,
-                                                rotateY: idx % 2 === 0 ? 8 : -8
+                                                x: idx % 2 === 0 ? 30 : -30,
+                                                scale: 0.98
                                             }}
                                             whileInView={{ 
                                                 opacity: 1, 
                                                 x: 0,
-                                                scale: 1,
-                                                rotateY: 0
+                                                scale: 1
                                             }}
                                             viewport={{ once: true }}
                                             transition={{ 
-                                                duration: 1.5, 
-                                                delay: Math.min(idx * 0.3, 0.9) + 0.4,
-                                                ease: [0.25, 0.46, 0.45, 0.94],
-                                                type: "spring",
-                                                bounce: 0.1
+                                                duration: 0.8, 
+                                                delay: idx * 0.1 + 0.3,
+                                                ease: "easeOut"
                                             }}
                                         >
                                             {project.images.length > 0 ? (
@@ -747,25 +752,21 @@ function ProjectsContent() {
                                                         loading="lazy"
                                                         initial={{ 
                                                             opacity: 0, 
-                                                            scale: 0.9,
-                                                            rotateZ: i % 2 === 0 ? -3 : 3
+                                                            scale: 0.95
                                                         }}
                                                         whileInView={{ 
                                                             opacity: 1, 
-                                                            scale: 1,
-                                                            rotateZ: 0
+                                                            scale: 1
                                                         }}
                                                         viewport={{ once: true }}
                                                         transition={{ 
-                                                            duration: 1.2, 
-                                                            delay: Math.min(idx * 0.3, 0.9) + 0.6 + (i * 0.2),
-                                                            ease: [0.25, 0.46, 0.45, 0.94],
-                                                            type: "spring",
-                                                            bounce: 0.1
+                                                            duration: 0.6, 
+                                                            delay: idx * 0.1 + 0.4 + (i * 0.1),
+                                                            ease: "easeOut"
                                                         }}
                                                         whileHover={{ 
                                                             scale: 1.03,
-                                                            transition: { duration: 0.4, ease: "easeOut" }
+                                                            transition: { duration: 0.3, ease: "easeOut" }
                                                         }}
                                                         onError={(e) => {
                                                             (e.target as HTMLImageElement).src = '/projects-hero-bg.png';
