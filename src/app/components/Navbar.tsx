@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import Logo from './Logo';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -101,15 +102,8 @@ export default function Navbar() {
             }}
           >
             {/* Logo */}
-            <Link href="/" className="navbar-logo" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0' }}>
-                <svg width="18" height="18" viewBox="0 0 28 28">
-                  <circle cx="14" cy="14" r="11" fill="none" stroke="white" strokeWidth="4"/>
-                  <rect x="18" y="2" width="9" height="9" fill="#e61e25" rx="1"/>
-                </svg>
-                <span style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800, fontSize: '1rem', color: 'white', marginLeft: '-1px' }}>ne Click</span>
-              </div>
-              <div style={{ color: 'rgba(255,255,255,0.4)', fontWeight: 700, letterSpacing: '1.5px', fontSize: '0.45rem', textTransform: 'uppercase', marginTop: '0px' }}>ADVERTISEMENT</div>
+            <Link href="/" className="navbar-logo" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+              <Logo size="small" showFullText={true} />
             </Link>
             {/* Desktop Nav Links */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }} className="desktop-nav">

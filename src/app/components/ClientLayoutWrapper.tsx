@@ -9,7 +9,8 @@ export default function ClientLayoutWrapper({ children }: { children: React.Reac
   const pathname = usePathname();
   const isDashboard = pathname?.startsWith('/admin');
   const isLogin = pathname === '/admin/login';
-  const hideLayout = isDashboard || isLogin;
+  const isCampaign = pathname === '/campaign';
+  const hideLayout = isDashboard || isLogin || isCampaign;
 
   return (
     <StyledJsxRegistry>

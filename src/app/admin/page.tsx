@@ -5,6 +5,7 @@ import { Home, Users, MessageSquare, Briefcase, TrendingUp, Activity, Clock, Che
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import AdminFooter from './components/AdminFooter';
+import Logo from '../components/Logo';
 
 export default function AdminPage() {
     const router = useRouter();

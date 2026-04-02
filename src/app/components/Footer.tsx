@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { Mail, Phone, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import Logo from './Logo';
 
 export default function Footer() {
   const [currentYear, setCurrentYear] = useState<number | null>(null);
@@ -69,14 +70,7 @@ export default function Footer() {
         {/* Footer Bottom */}
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '40px', textAlign: 'center', color: '#666', fontSize: '0.9rem', fontWeight: 500, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
           <Link href="/" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0', fontSize: '1.6rem', fontWeight: 800, color: 'white', fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-              <svg width="28" height="28" viewBox="0 0 28 28" style={{ marginRight: '-1px' }}>
-                <circle cx="14" cy="14" r="11" fill="none" stroke="white" strokeWidth="4"/>
-                <rect x="16" y="2" width="9" height="9" fill="#e61e25" rx="1"/>
-              </svg>
-              <span style={{ marginLeft: '-1px' }}>ne Click</span>
-            </div>
-            <div style={{ color: '#888', fontWeight: '900', letterSpacing: '4px', fontSize: '0.65rem', marginTop: '4px' }}>ADVERTISEMENT</div>
+            <Logo size="medium" showFullText={true} />
           </Link>
           <span suppressHydrationWarning>&copy; {currentYear || new Date().getFullYear()} One Click Advertisement. All rights reserved.</span>
         </div>

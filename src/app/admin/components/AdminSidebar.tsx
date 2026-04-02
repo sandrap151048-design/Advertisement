@@ -5,6 +5,7 @@ import { Home, LogOut, MessageSquare, Briefcase, TrendingUp, Menu, X, Layout } f
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
+import Logo from '../../components/Logo';
 
 export default function AdminSidebar() {
     const pathname = usePathname();
@@ -157,13 +158,9 @@ export default function AdminSidebar() {
 
             <div style={{ marginBottom: '3.5rem', padding: '0 0.5rem' }}>
                 <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0' }}>
-                    <svg width="32" height="32" viewBox="0 0 28 28" style={{ marginRight: '-1px' }}>
-                        <circle cx="14" cy="14" r="11" fill="none" stroke="white" strokeWidth="4"/>
-                        <rect x="16" y="2" width="9" height="9" fill="#e61e25" rx="1"/>
-                    </svg>
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
-                        <div style={{ color: 'white', fontWeight: 800, fontSize: '1.4rem', letterSpacing: '-0.5px', marginLeft: '-1px', lineHeight: '1.1' }}>ne Click</div>
-                        <div style={{ color: '#e61e25', fontSize: '0.75rem', fontWeight: 800, letterSpacing: '2px', textTransform: 'uppercase', marginTop: '2px' }}>Admin Portal</div>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                        <Logo size="medium" showFullText={false} />
+                        <div style={{ color: '#e61e25', fontSize: '0.75rem', fontWeight: 800, letterSpacing: '2px', textTransform: 'uppercase', marginTop: '8px', marginLeft: '45px' }}>Admin Portal</div>
                     </div>
                 </Link>
             </div>

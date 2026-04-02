@@ -4,6 +4,7 @@ import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { Eye, EyeOff, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import Logo from '../../components/Logo';
 
 export default function AdminLoginPage() {
     const router = useRouter();
@@ -302,12 +303,7 @@ export default function AdminLoginPage() {
 
                 <div className="login-form-container">
                     <div className="login-logo">
-                        <svg width="32" height="32" viewBox="0 0 28 28">
-
-                            <circle cx="14" cy="14" r="12" fill="none" stroke="#ffffff" strokeWidth="4"/>
-                            <rect x="16" y="2" width="8" height="8" fill="#e61e25" rx="1"/>
-                        </svg>
-                        <span style={{ marginLeft: '2px' }}>ne Click</span>
+                        <Logo size="medium" showFullText={false} />
                     </div>
 
                     <h1 className="login-title">Sign in</h1>
