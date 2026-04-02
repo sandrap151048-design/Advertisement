@@ -478,8 +478,13 @@ export default function AboutPage() {
 
         .compliance-section {
           padding: 8rem 2rem;
-          background: #111;
+          background: linear-gradient(rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 0.9)), url('/compliance-approvals-bg.png');
+          background-size: cover;
+          background-attachment: fixed;
+          background-position: center;
           color: white;
+          position: relative;
+          overflow: hidden;
         }
 
         .compliance-grid {
@@ -805,6 +810,7 @@ export default function AboutPage() {
 
         {/* Compliance & Authority Section */}
         <section className="compliance-section">
+          <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, rgba(230,30,37,0.1) 0%, transparent 80%)', pointerEvents: 'none' }}></div>
           <div className="compliance-grid">
             <motion.div
               initial="hidden"
