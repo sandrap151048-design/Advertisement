@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Variants, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ChevronDown, ArrowRight, Phone, Mail, MapPin } from 'lucide-react';
+import { ChevronDown, ArrowRight, Phone, Mail, MapPin, Check } from 'lucide-react';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import ServiceMap from '@/app/components/ServiceMap';
@@ -15,7 +15,7 @@ const cardReveal: Variants = {
     opacity: 1, 
     y: 0,
     transition: { 
-      duration: 0.6,
+      duration: 0.4,
       ease: "easeOut"
     } 
   }
@@ -26,8 +26,8 @@ const staggerContainer: Variants = {
   visible: {
     opacity: 1,
     transition: { 
-      staggerChildren: 0.15,
-      delayChildren: 0.2
+      staggerChildren: 0.08,
+      delayChildren: 0.05
     }
   }
 };
@@ -374,7 +374,6 @@ export default function ServicesPage() {
           line-height: 1.6;
           text-align: left;
           margin-bottom: auto;
-          max-width: 280px;
           text-shadow: 0 2px 8px rgba(12, 12, 12,0.5);
         }
 

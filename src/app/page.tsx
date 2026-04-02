@@ -8,59 +8,59 @@ import './black-cards.css';
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } as any }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } as any }
 };
 
 const fadeInDown: Variants = {
   hidden: { opacity: 0, y: -20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1.0 } as any }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } as any }
 };
 
 const slideDown: Variants = {
-  hidden: { opacity: 0, y: -60 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1.0 } as any }
+  hidden: { opacity: 0, y: -40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } as any }
 };
 
 const dropIn: Variants = {
-  hidden: { opacity: 0, y: -400 },
-  visible: { opacity: 1, y: 0, transition: { type: "spring" as const, damping: 20, stiffness: 120 } as any }
+  hidden: { opacity: 0, y: -200 },
+  visible: { opacity: 1, y: 0, transition: { type: "spring" as const, damping: 25, stiffness: 180 } as any }
 };
 
 const bounceInDown: Variants = {
-  hidden: { opacity: 0, y: -100 },
-  visible: { opacity: 1, y: 0, transition: { type: "spring" as const, damping: 15, stiffness: 100 } as any }
+  hidden: { opacity: 0, y: -60 },
+  visible: { opacity: 1, y: 0, transition: { type: "spring" as const, damping: 20, stiffness: 150 } as any }
 };
 
 const revealDown: Variants = {
   hidden: { opacity: 0, clipPath: 'inset(0 0 100% 0)' },
-  visible: { opacity: 1, clipPath: 'inset(0 0 0% 0)', transition: { duration: 1.0 } as any }
+  visible: { opacity: 1, clipPath: 'inset(0 0 0% 0)', transition: { duration: 0.4 } as any }
 };
 
 const swipeLeft: Variants = {
-  hidden: { opacity: 0, x: -100 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } as any }
+  hidden: { opacity: 0, x: -60 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: "easeOut" } as any }
 };
 
 const swipeRight: Variants = {
-  hidden: { opacity: 0, x: 100 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } as any }
+  hidden: { opacity: 0, x: 60 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: "easeOut" } as any }
 };
 
 const swipeUp: Variants = {
-  hidden: { opacity: 0, y: 100 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } as any }
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } as any }
 };
 
 const swipeDown: Variants = {
-  hidden: { opacity: 0, y: -100 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } as any }
+  hidden: { opacity: 0, y: -60 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } as any }
 };
 
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.3, delayChildren: 0.5 } as any
+    transition: { staggerChildren: 0.1, delayChildren: 0.1 } as any
   }
 };
 
@@ -906,8 +906,8 @@ export default function Home() {
           style={{ x: bgX, y: bgY }}
         >
           <img 
-            src="/home-hero-bg.png" 
-            alt="One Click Advertisement - Premium Building Branding" 
+            src="/city-hero-daytime-v2.png" 
+            alt="One Click Advertisement - Iconic Architectural Cityscape" 
           />
         </motion.div>
         <div className="hero-overlay"></div>
@@ -1008,7 +1008,7 @@ export default function Home() {
               <motion.div 
                 key={item.id} 
                 className="portfolio-item" 
-                variants={index % 2 === 0 ? swipeLeft : swipeRight}
+                variants={swipeUp}
                 whileHover={{ scale: 1.02 }}
                 style={{
                   backgroundImage: `linear-gradient(rgba(12, 12, 12,0.6), rgba(12, 12, 12,0.85)), url(${item.image})`,
