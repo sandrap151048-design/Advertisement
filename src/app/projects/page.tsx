@@ -249,8 +249,8 @@ function ProjectsContent() {
     };
 
     const fadeInUp = {
-        hidden: { opacity: 0, y: 15 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.3 } }
+        hidden: { opacity: 0, y: 10 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.25 } }
     };
 
     const handleLogout = () => {
@@ -263,7 +263,7 @@ function ProjectsContent() {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            transition: { staggerChildren: 0.08, delayChildren: 0.1 }
+            transition: { staggerChildren: 0.05, delayChildren: 0.05 }
         }
     };
 
@@ -689,18 +689,18 @@ function ProjectsContent() {
                                         style={{ flexDirection: idx % 2 === 0 ? 'row' : 'row-reverse' }}
                                         initial={{ 
                                             opacity: 0, 
-                                            y: 25,
-                                            scale: 0.98
+                                            y: 20,
+                                            scale: 0.99
                                         }}
                                         whileInView={{ 
                                             opacity: 1, 
                                             y: 0,
                                             scale: 1
                                         }}
-                                        viewport={{ once: true, margin: "-30px" }}
+                                        viewport={{ once: true, margin: "-20px" }}
                                         transition={{ 
-                                            duration: 0.5, 
-                                            delay: idx * 0.08,
+                                            duration: 0.4, 
+                                            delay: idx * 0.05,
                                             ease: "easeOut"
                                         }}
                                     >
@@ -708,7 +708,7 @@ function ProjectsContent() {
                                             className="cluster-text"
                                             initial={{ 
                                                 opacity: 0, 
-                                                x: idx % 2 === 0 ? -20 : 20,
+                                                x: idx % 2 === 0 ? -15 : 15,
                                                 scale: 0.99
                                             }}
                                             whileInView={{ 
@@ -718,8 +718,8 @@ function ProjectsContent() {
                                             }}
                                             viewport={{ once: true }}
                                             transition={{ 
-                                                duration: 0.4, 
-                                                delay: idx * 0.08 + 0.1,
+                                                duration: 0.3, 
+                                                delay: idx * 0.05 + 0.05,
                                                 ease: "easeOut"
                                             }}
                                         >
@@ -752,7 +752,7 @@ function ProjectsContent() {
                                             className={`cluster-images ${project.images.length === 1 ? 'single' : ''} ${project.isSmall ? 'small' : ''}`}
                                             initial={{ 
                                                 opacity: 0, 
-                                                x: idx % 2 === 0 ? 20 : -20,
+                                                x: idx % 2 === 0 ? 15 : -15,
                                                 scale: 0.99
                                             }}
                                             whileInView={{ 
@@ -762,8 +762,8 @@ function ProjectsContent() {
                                             }}
                                             viewport={{ once: true }}
                                             transition={{ 
-                                                duration: 0.5, 
-                                                delay: idx * 0.08 + 0.15,
+                                                duration: 0.35, 
+                                                delay: idx * 0.05 + 0.1,
                                                 ease: "easeOut"
                                             }}
                                         >
@@ -777,7 +777,7 @@ function ProjectsContent() {
                                                         loading="lazy"
                                                         initial={{ 
                                                             opacity: 0, 
-                                                            scale: 0.97
+                                                            scale: 0.98
                                                         }}
                                                         whileInView={{ 
                                                             opacity: 1, 
@@ -785,8 +785,8 @@ function ProjectsContent() {
                                                         }}
                                                         viewport={{ once: true }}
                                                         transition={{ 
-                                                            duration: 0.4, 
-                                                            delay: idx * 0.08 + 0.2 + (i * 0.05),
+                                                            duration: 0.3, 
+                                                            delay: idx * 0.05 + 0.15 + (i * 0.03),
                                                             ease: "easeOut"
                                                         }}
                                                         whileHover={{ 

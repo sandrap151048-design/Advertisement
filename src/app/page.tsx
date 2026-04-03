@@ -930,7 +930,7 @@ export default function Home() {
         >
           <img 
             src="/dubai-hero-building.jpg" 
-            alt="One Click Advertisement - Dubai Buildings" 
+            alt="One Click Advertisement - Dubai Professional Buildings" 
           />
         </motion.div>
         <div className="hero-overlay"></div>
