@@ -33,6 +33,22 @@ export default function AdminPage() {
         }
         setIsLoading(false);
         setCurrentPath(window.location.pathname);
+
+        // Add event listener to refresh stats when returning to dashboard
+        const handleFocus = () => {
+            if (document.visibilityState === 'visible') {
+                fetchStats();
+                fetchRecentContacts();
+            }
+        };
+
+        document.addEventListener('visibilitychange', handleFocus);
+        window.addEventListener('focus', handleFocus);
+
+        return () => {
+            document.removeEventListener('visibilitychange', handleFocus);
+            window.removeEventListener('focus', handleFocus);
+        };
     }, [router]);
 
     const fetchStats = async () => {
@@ -43,12 +59,23 @@ export default function AdminPage() {
             ]);
             const contacts = await contactsRes.json();
             const services = await servicesRes.json();
+            
+            // Count both static services (7) and dynamic services from database
+            const staticServicesCount = 7; // Branding, Digital Printing, Vehicle Graphics, Signage, Exhibition, Cladding, Premium Outdoor
+            const dynamicServicesCount = Array.isArray(services) ? services.filter((s: any) => s && s.name).length : 0;
+            const totalServicesCount = staticServicesCount + dynamicServicesCount;
+            
             setStats({
                 contacts: contacts.length || 0,
-                services: services.length || 0
+                services: totalServicesCount
             });
         } catch (error) {
             console.error('Error fetching stats:', error);
+            // Fallback to static count if API fails
+            setStats({
+                contacts: 0,
+                services: 7
+            });
         }
     };
 
@@ -195,6 +222,57 @@ export default function AdminPage() {
                         <h2 style={{ fontSize: '2.2rem', margin: 0, color: '#ffffff', fontWeight: 800 }}>{stat.value}</h2>
                     </motion.div>
                 ))}
+            </motion.div>
+
+            {/* Quick Actions */}
+            <motion.div variants={containerVariants} initial="hidden" animate="visible" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', marginBottom: '2rem' }}>
+                <motion.div 
+                    variants={itemVariants} 
+                    onClick={() => router.push('/admin/services')}
+                    style={{ 
+                        background: 'linear-gradient(135deg, #e61e25 0%, #ff4757 100%)', 
+                        padding: '2rem', 
+                        borderRadius: '20px', 
+                        cursor: 'pointer', 
+                        color: 'white',
+                        boxShadow: '0 8px 25px rgba(230, 30, 37, 0.3)',
+                        border: '1px solid rgba(255,255,255,0.1)'
+                    }}
+                >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+                        <div style={{ width: 50, height: 50, borderRadius: '12px', background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <Briefcase size={24} />
+                        </div>
+                        <div>
+                            <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 800 }}>Manage Services</h3>
+                            <p style={{ margin: 0, fontSize: '0.85rem', opacity: 0.9 }}>Add, edit, or remove services</p>
+                        </div>
+                    </div>
+                </motion.div>
+
+                <motion.div 
+                    variants={itemVariants} 
+                    onClick={() => router.push('/admin/contacts')}
+                    style={{ 
+                        background: 'linear-gradient(135deg, #1c1c1c 0%, #333 100%)', 
+                        padding: '2rem', 
+                        borderRadius: '20px', 
+                        cursor: 'pointer', 
+                        color: 'white',
+                        boxShadow: '0 8px 25px rgba(0,0,0,0.3)',
+                        border: '1px solid rgba(255,255,255,0.1)'
+                    }}
+                >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+                        <div style={{ width: 50, height: 50, borderRadius: '12px', background: 'rgba(230,30,37,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <MessageSquare size={24} color="#e61e25" />
+                        </div>
+                        <div>
+                            <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 800 }}>View Inquiries</h3>
+                            <p style={{ margin: 0, fontSize: '0.85rem', opacity: 0.7 }}>Manage customer contacts</p>
+                        </div>
+                    </div>
+                </motion.div>
             </motion.div>
 
             {/* Main Content Area */}
