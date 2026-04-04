@@ -12,7 +12,7 @@ export default function AdminFooter() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '4rem', marginBottom: '4rem' }}>
           {/* Logo Column */}
           <div>
-            <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0', marginBottom: '1.5rem' }}>
+            <Link href="/" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0' }}>
                 {/* Custom O with red square integrated */}
                 <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginRight: '-0.05em' }}>
@@ -43,7 +43,9 @@ export default function AdminFooter() {
                 </div>
                 <span style={{ color: 'white', fontWeight: 800, fontSize: '1.2rem', letterSpacing: '-0.5px', marginLeft: '-0.1em', lineHeight: '1.1' }}>ne Click</span>
               </div>
-              <div style={{ color: '#e61e25', fontSize: '0.65rem', fontWeight: 800, letterSpacing: '2px', textTransform: 'uppercase', marginTop: '2px', marginLeft: '0.5rem' }}>Admin Portal</div>
+              <div style={{ fontSize: '0.7rem', fontWeight: 600, color: '#888', letterSpacing: '0.5px', textTransform: 'uppercase', marginTop: '4px' }}>
+                Advertisement LLC
+              </div>
             </Link>
             <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem', lineHeight: 1.6, maxWidth: '280px' }}>
               Premium advertising and outdoor media solutions across the UAE.
@@ -94,7 +96,7 @@ export default function AdminFooter() {
         </div>
 
         <div suppressHydrationWarning style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '2.5rem', textAlign: 'center', color: 'rgba(255,255,255,0.4)', fontSize: '0.85rem' }}>
-          &copy; {currentYear} One Click Admin Portal. All Rights Reserved.
+          &copy; {currentYear} One Click Advertisement LLC. All Rights Reserved.
         </div>
       </div>
     </footer>

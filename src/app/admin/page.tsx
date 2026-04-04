@@ -138,7 +138,6 @@ export default function AdminPage() {
                             </div>
                             <span style={{ marginLeft: '-0.1em' }}>ne Click</span>
                         </div>
-                        <div style={{ color: '#888', fontWeight: '900', letterSpacing: '4px', fontSize: '0.65rem' }}>ADVERTISEMENT</div>
                     </div>
                     
                     <motion.button

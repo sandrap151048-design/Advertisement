@@ -71,8 +71,11 @@ export default function Footer() {
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '40px', textAlign: 'center', color: '#666', fontSize: '0.9rem', fontWeight: 500, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
           <Link href="/" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <Logo size="medium" showFullText={true} />
+            <div style={{ fontSize: '0.8rem', fontWeight: 600, color: '#888', letterSpacing: '0.5px', textTransform: 'uppercase', marginTop: '8px' }}>
+              Advertisement LLC
+            </div>
           </Link>
-          <span suppressHydrationWarning>&copy; {currentYear || new Date().getFullYear()} One Click Advertisement. All rights reserved.</span>
+          <span suppressHydrationWarning>&copy; {currentYear || new Date().getFullYear()} One Click Advertisement LLC. All rights reserved.</span>
         </div>
       </div>
 
