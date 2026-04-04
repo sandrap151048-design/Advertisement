@@ -94,13 +94,6 @@ export const BrandText: React.FC<BrandTextProps> = ({
         </div>
         <span style={{ marginLeft: '-0.1em' }}>ne Click</span>
       </div>
-      
-      {/* Secondary text - only show if showFullText is true */}
-      {showFullText && (
-        <div style={secondaryTextStyle}>
-          Advertisement LLC
-        </div>
-      )}
     </div>
   );
 };
