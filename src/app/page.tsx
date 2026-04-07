@@ -4,8 +4,7 @@ import React, { useState, FormEvent, useEffect } from 'react';
 import { motion, Variants, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight, MapPin, Phone, Mail, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
-import ScratchCardSection from '@/components/ScratchCard/ScratchCardSection';
-import InlineScratchCard from '@/components/ScratchCard/InlineScratchCard';
+import ScratchPopup from '@/components/HeroScratchPopup/ScratchPopup';
 import './black-cards.css';
 
 const fadeInUp: Variants = {
@@ -117,7 +116,7 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<'whyus' | 'reach' | 'solutions'>('whyus');
   const [currentLocationIndex, setCurrentLocationIndex] = useState(0);
   const [openBrandAccordion, setOpenBrandAccordion] = useState<number | null>(0);
-  const [isScratchCardOpen, setIsScratchCardOpen] = useState(false);
+  const [isScratchPopupOpen, setIsScratchPopupOpen] = useState(false);
 
   // 3D Parallax Mouse Tracking
   const mouseX = useMotionValue(0.5);
@@ -993,9 +992,14 @@ export default function Home() {
             animate={{ z: 0, opacity: 1 }}
             transition={{ duration: 1.0, delay: 0.3 }}
             variants={fadeInDown}
+            onClick={() => setIsScratchPopupOpen(true)}
             style={{ 
-              fontFamily: "'Bricolage Grotesque', sans-serif"
+              fontFamily: "'Bricolage Grotesque', sans-serif",
+              cursor: 'pointer',
+              transition: 'all 0.3s ease'
             }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
             <span className="highlight">At</span>tractive
           </motion.h1>
@@ -1006,13 +1010,6 @@ export default function Home() {
             <Link href="/contact#campaign" className="btn btn-primary">
               Start Your Campaign <ArrowRight size={20} />
             </Link>
-            <button 
-              onClick={() => setIsScratchCardOpen(true)}
-              className="btn btn-secondary"
-              style={{ cursor: 'pointer' }}
-            >
-              🎁 Scratch Card
-            </button>
             <Link href="/contact" className="btn btn-secondary">
               Learn More
             </Link>
@@ -1020,37 +1017,11 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Scratch Card Offer */}
-      {SCRATCH_CARD_CONFIG.useModalVersion ? (
-        <ScratchCardSection />
-      ) : (
-        <>
-          {/* Modal Scratch Card - Triggered by Hero Button */}
-          <InlineScratchCard 
-            placement="modal"
-            isOpen={isScratchCardOpen}
-            onClose={() => setIsScratchCardOpen(false)}
-          />
-
-          {/* Floating Popup Scratch Card */}
-          {SCRATCH_CARD_CONFIG.placement === 'floating-popup' && (
-            <InlineScratchCard 
-              placement="floating-popup"
-              autoShow={SCRATCH_CARD_CONFIG.autoShow}
-              delay={SCRATCH_CARD_CONFIG.delay}
-            />
-          )}
-          
-          {/* Sticky Corner Scratch Card */}
-          {SCRATCH_CARD_CONFIG.placement === 'sticky-corner' && (
-            <InlineScratchCard 
-              placement="sticky-corner"
-              autoShow={SCRATCH_CARD_CONFIG.autoShow}
-              delay={SCRATCH_CARD_CONFIG.delay}
-            />
-          )}
-        </>
-      )}
+      {/* Scratch Card Popup */}
+      <ScratchPopup 
+        isOpen={isScratchPopupOpen}
+        onClose={() => setIsScratchPopupOpen(false)}
+      />
 
 
 
