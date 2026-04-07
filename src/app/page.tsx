@@ -96,6 +96,12 @@ const staggerContainer: Variants = {
  */
 
 export default function Home() {
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // SCRATCH CARD CONFIGURATION
   // Change these settings to control the scratch card behavior
   const SCRATCH_CARD_CONFIG = {
@@ -1019,10 +1025,12 @@ export default function Home() {
       </section>
 
       {/* Scratch Card Popup */}
-      <ScratchPopup 
-        isOpen={isScratchPopupOpen}
-        onClose={() => setIsScratchPopupOpen(false)}
-      />
+      {mounted && (
+        <ScratchPopup 
+          isOpen={isScratchPopupOpen}
+          onClose={() => setIsScratchPopupOpen(false)}
+        />
+      )}
 
 
 
