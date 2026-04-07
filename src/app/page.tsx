@@ -1015,10 +1015,22 @@ export default function Home() {
       {/* Scratch Card Offer Section - Below Hero */}
       <section style={{
         padding: 'clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem)',
-        background: 'linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%)',
-        textAlign: 'center'
+        background: `linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 245, 245, 0.95) 100%), url('/services-hero-bg.png')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+        textAlign: 'center',
+        position: 'relative'
       }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        {/* Overlay */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'radial-gradient(circle at center, rgba(230, 30, 37, 0.05) 0%, transparent 60%)',
+          pointerEvents: 'none'
+        }} />
+        
+        <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
