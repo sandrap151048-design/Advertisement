@@ -1,31 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 // Mock data for development - replace with actual database integration
-const mockOffers = [
-  {
-    _id: '1',
-    name: 'John Doe',
-    email: 'john@example.com',
-    phone: '+1234567890',
-    companyName: 'Example Corp',
-    offer: {
-      id: '1',
-      title: '20% Off Advertisement Package',
-      description: 'Get 20% discount on any advertisement package worth $500+',
-      discount: '20%',
-      type: 'percentage',
-      color: '#3b82f6'
-    },
-    scratchedAt: new Date().toISOString(),
-    source: 'homepage_below-hero',
-    claimed: false,
-    createdAt: new Date().toISOString(),
-    ipAddress: '127.0.0.1',
-    status: 'active',
-    userAgent: 'Mozilla/5.0...',
-    expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString() // 30 days
-  }
-];
+const mockOffers: any[] = [];
 
 export async function GET(request: NextRequest) {
   try {

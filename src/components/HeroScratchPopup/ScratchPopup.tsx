@@ -13,15 +13,56 @@ interface ScratchPopupProps {
 export default function ScratchPopup({ isOpen, onClose }: ScratchPopupProps) {
   const [currentStep, setCurrentStep] = useState<'scratch' | 'result'>('scratch');
   const [selectedOffer, setSelectedOffer] = useState<any>(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    companyName: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleScratchComplete = (offer: any) => {
     setSelectedOffer(offer);
     setCurrentStep('result');
   };
 
+  const handleSubmit = async () => {
+    if (!formData.name || !formData.email || !formData.phone) {
+      alert('Please fill in all required fields');
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('/api/scratch-offers', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          offer: selectedOffer,
+          scratchedAt: new Date().toISOString(),
+          source: 'homepage_hero_scratch'
+        }),
+      });
+
+      if (response.ok) {
+        alert('Thank you! We will contact you soon.');
+        handleClose();
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Error submitting form. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const handleClose = () => {
     setCurrentStep('scratch');
     setSelectedOffer(null);
+    setFormData({ name: '', email: '', phone: '', companyName: '' });
     onClose();
   };
 
@@ -220,7 +261,9 @@ export default function ScratchPopup({ isOpen, onClose }: ScratchPopupProps) {
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
                       <input
                         type="text"
-                        placeholder="Full Name"
+                        placeholder="Full Name *"
+                        value={formData.name}
+                        onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                         style={{
                           padding: '0.75rem',
                           background: 'rgba(255, 255, 255, 0.08)',
@@ -233,7 +276,9 @@ export default function ScratchPopup({ isOpen, onClose }: ScratchPopupProps) {
                       />
                       <input
                         type="email"
-                        placeholder="Email"
+                        placeholder="Email *"
+                        value={formData.email}
+                        onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                         style={{
                           padding: '0.75rem',
                           background: 'rgba(255, 255, 255, 0.08)',
@@ -246,7 +291,9 @@ export default function ScratchPopup({ isOpen, onClose }: ScratchPopupProps) {
                       />
                       <input
                         type="tel"
-                        placeholder="Phone"
+                        placeholder="Phone *"
+                        value={formData.phone}
+                        onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
                         style={{
                           padding: '0.75rem',
                           background: 'rgba(255, 255, 255, 0.08)',
@@ -260,6 +307,8 @@ export default function ScratchPopup({ isOpen, onClose }: ScratchPopupProps) {
                       <input
                         type="text"
                         placeholder="Company Name"
+                        value={formData.companyName}
+                        onChange={(e) => setFormData(prev => ({ ...prev, companyName: e.target.value }))}
                         style={{
                           padding: '0.75rem',
                           background: 'rgba(255, 255, 255, 0.08)',
@@ -275,7 +324,8 @@ export default function ScratchPopup({ isOpen, onClose }: ScratchPopupProps) {
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      onClick={handleClose}
+                      onClick={handleSubmit}
+                      disabled={isSubmitting}
                       style={{
                         width: '100%',
                         padding: '0.9rem',
@@ -285,13 +335,14 @@ export default function ScratchPopup({ isOpen, onClose }: ScratchPopupProps) {
                         borderRadius: '8px',
                         fontSize: '0.95rem',
                         fontWeight: 800,
-                        cursor: 'pointer',
+                        cursor: isSubmitting ? 'not-allowed' : 'pointer',
                         boxShadow: '0 10px 30px rgba(230, 30, 37, 0.4)',
                         transition: 'all 0.3s ease',
-                        marginTop: '1rem'
+                        marginTop: '1rem',
+                        opacity: isSubmitting ? 0.7 : 1
                       }}
                     >
-                      Contact Us
+                      {isSubmitting ? 'Submitting...' : 'Contact Us'}
                     </motion.button>
                   </motion.div>
                 )}
