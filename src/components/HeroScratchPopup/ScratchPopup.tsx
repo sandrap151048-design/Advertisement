@@ -21,7 +21,12 @@ export default function ScratchPopup({ isOpen, onClose }: ScratchPopupProps) {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  React.useEffect(() => {
+    console.log('ScratchPopup isOpen:', isOpen);
+  }, [isOpen]);
+
   const handleScratchComplete = (offer: any) => {
+    console.log('Scratch complete, offer:', offer);
     setSelectedOffer(offer);
     setCurrentStep('result');
   };

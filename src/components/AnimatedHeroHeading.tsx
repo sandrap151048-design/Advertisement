@@ -104,7 +104,10 @@ export default function AnimatedHeroHeading({ onReveal, onTagClick }: AnimatedHe
           repeat: Infinity,
           ease: "easeInOut"
         }}
-        onClick={onTagClick}
+        onClick={() => {
+          console.log('Get Offer tag clicked');
+          onTagClick();
+        }}
         style={{
           position: 'absolute',
           top: '-20px',
