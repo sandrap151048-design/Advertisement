@@ -94,7 +94,7 @@ export default function AnimatedHeroHeading({ onReveal, onTagClick }: AnimatedHe
       </motion.h1>
 
       {/* Floating Glowing Tag */}
-      <motion.div
+      <motion.button
         animate={{
           y: [0, -15, 0],
           opacity: [0.8, 1, 0.8]
@@ -104,7 +104,9 @@ export default function AnimatedHeroHeading({ onReveal, onTagClick }: AnimatedHe
           repeat: Infinity,
           ease: "easeInOut"
         }}
-        onClick={() => {
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
           console.log('Get Offer tag clicked');
           onTagClick();
         }}
@@ -141,7 +143,7 @@ export default function AnimatedHeroHeading({ onReveal, onTagClick }: AnimatedHe
         >
           🎁 Get Offer
         </motion.span>
-      </motion.div>
+      </motion.button>
     </div>
   );
 }
