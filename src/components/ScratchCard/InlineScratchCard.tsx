@@ -62,17 +62,21 @@ const offers: Offer[] = [
 ];
 
 interface InlineScratchCardProps {
-  placement: 'below-hero' | 'floating-popup' | 'sticky-corner';
+  placement: 'below-hero' | 'floating-popup' | 'sticky-corner' | 'modal';
   autoShow?: boolean;
   delay?: number;
+  isOpen?: boolean;
+  onClose?: () => void;
 }
 
 export default function InlineScratchCard({ 
   placement = 'below-hero', 
   autoShow = true, 
-  delay = 2000 
+  delay = 2000,
+  isOpen = false,
+  onClose
 }: InlineScratchCardProps) {
-  const [isVisible, setIsVisible] = useState(placement === 'below-hero');
+  const [isVisible, setIsVisible] = useState(placement === 'below-hero' || (placement === 'modal' && isOpen));
   const [currentStep, setCurrentStep] = useState<'form' | 'scratch' | 'result'>('form');
   const [selectedOffer, setSelectedOffer] = useState<Offer | null>(null);
   const [userData, setUserData] = useState<UserData | null>(null);
@@ -85,6 +89,12 @@ export default function InlineScratchCard({
   });
   const [errors, setErrors] = useState<Partial<UserData>>({});
   const [isMinimized, setIsMinimized] = useState(false);
+
+  useEffect(() => {
+    if (placement === 'modal') {
+      setIsVisible(isOpen);
+    }
+  }, [isOpen, placement]);
 
   useEffect(() => {
     if (placement === 'floating-popup' && autoShow) {
@@ -182,6 +192,9 @@ export default function InlineScratchCard({
 
   const handleClose = () => {
     setIsVisible(false);
+    if (placement === 'modal' && onClose) {
+      onClose();
+    }
     localStorage.setItem('scratchCardLastSeen', new Date().toDateString());
   };
 
@@ -202,12 +215,12 @@ export default function InlineScratchCard({
       exit={{ opacity: 0, y: -20 }}
       className={`
         ${placement === 'below-hero' ? 'inline-scratch-card' : ''}
-        ${placement === 'floating-popup' ? 'floating-scratch-card' : ''}
+        ${placement === 'floating-popup' || placement === 'modal' ? 'floating-scratch-card' : ''}
         ${placement === 'sticky-corner' ? `sticky-scratch-card ${isMinimized ? 'minimized' : ''}` : ''}
       `}
     >
       {/* Close button for popup and sticky */}
-      {(placement === 'floating-popup' || placement === 'sticky-corner') && (
+      {(placement === 'floating-popup' || placement === 'sticky-corner' || placement === 'modal') && (
         <button
           onClick={handleClose}
           className="scratch-card-close-btn"
@@ -397,19 +410,21 @@ export default function InlineScratchCard({
     </motion.div>
   );
 
-  // Render with overlay for floating popup
-  if (placement === 'floating-popup') {
+  // Render with overlay for floating popup and modal
+  if (placement === 'floating-popup' || placement === 'modal') {
     return (
       <AnimatePresence>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="floating-overlay"
-          onClick={(e) => e.target === e.currentTarget && handleClose()}
-        >
-          {renderContent()}
-        </motion.div>
+        {isVisible && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="floating-overlay"
+            onClick={(e) => e.target === e.currentTarget && handleClose()}
+          >
+            {renderContent()}
+          </motion.div>
+        )}
       </AnimatePresence>
     );
   }
