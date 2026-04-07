@@ -399,7 +399,7 @@ export default function InlineScratchCard({
                   whileTap={{ scale: 0.98 }}
                   className="claim-button"
                 >
-                  {isSubmitting ? 'Claiming...' : 'Claim Offer Now'}
+                  {isSubmitting ? 'Contacting...' : 'Contact Us'}
                   <ArrowRight size={18} />
                 </motion.button>
               </motion.div>
