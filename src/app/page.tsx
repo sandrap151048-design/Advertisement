@@ -4,6 +4,8 @@ import React, { useState, FormEvent, useEffect } from 'react';
 import { motion, Variants, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight, MapPin, Phone, Mail, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
+import ScratchCardSection from '@/components/ScratchCard/ScratchCardSection';
+import InlineScratchCard from '@/components/ScratchCard/InlineScratchCard';
 import './black-cards.css';
 
 const fadeInUp: Variants = {
@@ -64,7 +66,50 @@ const staggerContainer: Variants = {
   }
 };
 
+/*
+ * SCRATCH CARD PLACEMENT GUIDE
+ * ============================
+ * 
+ * To change the scratch card placement, modify the SCRATCH_CARD_CONFIG below:
+ * 
+ * 1. BELOW HERO SECTION (Default - Recommended for lead generation):
+ *    placement: 'below-hero'
+ *    - Shows prominently after hero section
+ *    - High visibility and conversion
+ *    - Best for capturing immediate attention
+ * 
+ * 2. FLOATING POPUP (Attention-grabbing):
+ *    placement: 'floating-popup'
+ *    - Shows as modal popup after delay
+ *    - Can be closed by user
+ *    - Good for re-engagement
+ * 
+ * 3. STICKY CORNER (Non-intrusive):
+ *    placement: 'sticky-corner'
+ *    - Shows in bottom-right corner
+ *    - Can be minimized
+ *    - Least intrusive option
+ * 
+ * Additional Options:
+ * - autoShow: true/false (for popup and sticky)
+ * - delay: milliseconds (for popup and sticky)
+ * - useModalVersion: true to use old modal, false for new inline
+ */
+
 export default function Home() {
+  // SCRATCH CARD CONFIGURATION
+  // Change these settings to control the scratch card behavior
+  const SCRATCH_CARD_CONFIG = {
+    // Placement options: 'below-hero' | 'floating-popup' | 'sticky-corner'
+    placement: 'below-hero' as 'below-hero' | 'floating-popup' | 'sticky-corner',
+    // Auto show (for popup and sticky)
+    autoShow: true,
+    // Delay in milliseconds (for popup and sticky)
+    delay: 2000,
+    // Show the old modal version (set to false to use new inline version)
+    useModalVersion: false
+  };
+
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{ success?: boolean; message?: string } | null>(null);
@@ -966,6 +1011,44 @@ export default function Home() {
           </motion.div>
         </motion.div>
       </section>
+
+      {/* Scratch Card Offer */}
+      {SCRATCH_CARD_CONFIG.useModalVersion ? (
+        <ScratchCardSection />
+      ) : (
+        <>
+          {/* Floating Popup Scratch Card */}
+          {SCRATCH_CARD_CONFIG.placement === 'floating-popup' && (
+            <InlineScratchCard 
+              placement="floating-popup"
+              autoShow={SCRATCH_CARD_CONFIG.autoShow}
+              delay={SCRATCH_CARD_CONFIG.delay}
+            />
+          )}
+          
+          {/* Sticky Corner Scratch Card */}
+          {SCRATCH_CARD_CONFIG.placement === 'sticky-corner' && (
+            <InlineScratchCard 
+              placement="sticky-corner"
+              autoShow={SCRATCH_CARD_CONFIG.autoShow}
+              delay={SCRATCH_CARD_CONFIG.delay}
+            />
+          )}
+        </>
+      )}
+
+      {/* Below Hero Scratch Card */}
+      {!SCRATCH_CARD_CONFIG.useModalVersion && SCRATCH_CARD_CONFIG.placement === 'below-hero' && (
+        <section className="section">
+          <div className="container">
+            <InlineScratchCard 
+              placement="below-hero"
+              autoShow={SCRATCH_CARD_CONFIG.autoShow}
+              delay={SCRATCH_CARD_CONFIG.delay}
+            />
+          </div>
+        </section>
+      )}
 
       {/* We Build Section */}
       <section className="we-build-section">

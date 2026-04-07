@@ -61,7 +61,7 @@ const ALL_PROJECTS: Project[] = [
         category: 'Vehicle Branding',
         images: [
             '/signage-vehicle.png',
-            '/cta-bg-premium.png'
+            '/dubai-hero-building.jpg'
         ]
     },
     {
@@ -232,7 +232,7 @@ function ProjectsContent() {
         ],
         'Vehicle Branding': [
             '/signage-vehicle.png',
-            '/cta-bg-premium.png'
+            '/dubai-hero-building.jpg'
         ],
         'Display Solutions': [
             '/signage-exhibition.png',

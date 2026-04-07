@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Home, LogOut, MessageSquare, Briefcase, TrendingUp, Menu, X, Layout } from 'lucide-react';
+import { Home, LogOut, MessageSquare, Briefcase, TrendingUp, Menu, X, Layout, Users, Gift } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -176,6 +176,12 @@ export default function AdminSidebar() {
                     <div style={getNavItemStyle('/admin/contacts')}>
                         <MessageSquare size={20} color={getNavIconColor('/admin/contacts')} /> 
                         <span style={getNavTextStyle('/admin/contacts')}>Contact Forms</span>
+                    </div>
+                </Link>
+                <Link href="/admin/scratch-offers" style={{ textDecoration: 'none' }} onClick={() => setIsMobileMenuOpen(false)}>
+                    <div style={getNavItemStyle('/admin/scratch-offers')}>
+                        <Gift size={20} color={getNavIconColor('/admin/scratch-offers')} /> 
+                        <span style={getNavTextStyle('/admin/scratch-offers')}>Scratch Offers</span>
                     </div>
                 </Link>
                 <Link href="/admin/services" style={{ textDecoration: 'none' }} onClick={() => setIsMobileMenuOpen(false)}>
