@@ -1,7 +1,31 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// Mock data for development - replace with actual database integration
-const mockOffers: any[] = [];
+// Store offers in a variable (in production, use a database)
+let offersStore: any[] = [
+  {
+    _id: '1',
+    name: 'Test User',
+    email: 'test@example.com',
+    phone: '+1234567890',
+    companyName: 'Test Company',
+    offer: {
+      id: '1',
+      title: '20% Off Advertisement Package',
+      description: 'Get 20% discount on any advertisement package worth $500+',
+      discount: '20%',
+      type: 'percentage',
+      color: '#3b82f6'
+    },
+    scratchedAt: new Date().toISOString(),
+    source: 'homepage_hero_scratch',
+    claimed: true,
+    createdAt: new Date().toISOString(),
+    ipAddress: '127.0.0.1',
+    status: 'claimed',
+    userAgent: 'Mozilla/5.0',
+    expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString()
+  }
+];
 
 export async function GET(request: NextRequest) {
   try {
@@ -13,7 +37,7 @@ export async function GET(request: NextRequest) {
     const dateTo = searchParams.get('dateTo');
 
     // Filter offers based on parameters
-    let filteredOffers = [...mockOffers];
+    let filteredOffers = [...offersStore];
     
     if (status !== 'all') {
       filteredOffers = filteredOffers.filter(offer => offer.status === status);
@@ -38,8 +62,8 @@ export async function GET(request: NextRequest) {
 
     // Statistics
     const statistics = {
-      totalOffers: mockOffers.length,
-      todayOffers: mockOffers.filter(offer => 
+      totalOffers: offersStore.length,
+      todayOffers: offersStore.filter(offer => 
         new Date(offer.createdAt).toDateString() === new Date().toDateString()
       ).length,
       offerTypes: ['percentage', 'free', 'fixed']
@@ -94,13 +118,16 @@ export async function POST(request: NextRequest) {
       claimed: false,
       createdAt: new Date().toISOString(),
       ipAddress: request.ip || '127.0.0.1',
-      status: 'active',
+      status: 'claimed',
       userAgent: request.headers.get('user-agent') || '',
       expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString()
     };
 
-    // In a real application, save to database
-    mockOffers.push(newOffer);
+    // Store in memory
+    offersStore.push(newOffer);
+    
+    console.log('New offer saved:', newOffer);
+    console.log('Total offers:', offersStore.length);
 
     return NextResponse.json({
       success: true,
