@@ -1007,13 +1007,13 @@ export default function Home() {
             </Link>
             <button 
               onClick={() => {
-                console.log('Test button clicked, isScratchPopupOpen:', isScratchPopupOpen);
+                console.log('Get Offer clicked, isScratchPopupOpen:', isScratchPopupOpen);
                 setIsScratchPopupOpen(true);
               }}
               className="btn btn-secondary"
               style={{ cursor: 'pointer' }}
             >
-              Test Popup
+              🎁 Get Offer
             </button>
             <Link href="/contact" className="btn btn-secondary">
               Learn More
