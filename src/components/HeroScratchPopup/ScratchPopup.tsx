@@ -163,21 +163,21 @@ export default function ScratchPopup({ isOpen, onClose }: ScratchPopupProps) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
-                    style={{ textAlign: 'center' }}
                   >
                     <motion.div
                       animate={{ scale: [1, 1.2, 1], rotate: [0, 10, -10, 0] }}
                       transition={{ duration: 0.8 }}
-                      style={{ fontSize: '3.5rem', marginBottom: '1.5rem' }}
+                      style={{ fontSize: '2.5rem', marginBottom: '1rem', textAlign: 'center' }}
                     >
                       ✨
                     </motion.div>
                     <h3 style={{
-                      fontSize: '1.6rem',
+                      fontSize: '1.4rem',
                       fontWeight: 900,
                       color: '#10b981',
-                      marginBottom: '1.5rem',
-                      letterSpacing: '-0.5px'
+                      marginBottom: '1rem',
+                      letterSpacing: '-0.5px',
+                      textAlign: 'center'
                     }}>
                       Congratulations!
                     </h3>
@@ -185,51 +185,110 @@ export default function ScratchPopup({ isOpen, onClose }: ScratchPopupProps) {
                       background: 'rgba(255, 255, 255, 0.08)',
                       border: '2px solid rgba(230, 30, 37, 0.3)',
                       borderRadius: '16px',
-                      padding: '1.5rem',
+                      padding: '1.2rem',
                       marginBottom: '1.5rem',
-                      backdropFilter: 'blur(10px)'
+                      backdropFilter: 'blur(10px)',
+                      textAlign: 'center'
                     }}>
                       <div style={{
-                        fontSize: '2.5rem',
+                        fontSize: '2rem',
                         fontWeight: 900,
                         color: selectedOffer.color,
-                        marginBottom: '0.75rem',
+                        marginBottom: '0.5rem',
                         textShadow: '0 4px 12px rgba(230, 30, 37, 0.3)'
                       }}>
                         {selectedOffer.discount}
                       </div>
                       <h4 style={{
-                        fontSize: '1.1rem',
+                        fontSize: '1rem',
                         fontWeight: 700,
                         color: 'white',
-                        marginBottom: '0.5rem'
+                        marginBottom: '0.4rem'
                       }}>
                         {selectedOffer.title}
                       </h4>
                       <p style={{
-                        fontSize: '0.9rem',
+                        fontSize: '0.85rem',
                         color: 'rgba(255, 255, 255, 0.7)',
-                        lineHeight: '1.6'
+                        lineHeight: '1.5'
                       }}>
                         {selectedOffer.description}
                       </p>
                     </div>
+
+                    {/* Contact Form */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                      <input
+                        type="text"
+                        placeholder="Full Name"
+                        style={{
+                          padding: '0.75rem',
+                          background: 'rgba(255, 255, 255, 0.08)',
+                          border: '1px solid rgba(230, 30, 37, 0.3)',
+                          borderRadius: '8px',
+                          color: 'white',
+                          fontSize: '0.9rem',
+                          fontWeight: '500'
+                        }}
+                      />
+                      <input
+                        type="email"
+                        placeholder="Email"
+                        style={{
+                          padding: '0.75rem',
+                          background: 'rgba(255, 255, 255, 0.08)',
+                          border: '1px solid rgba(230, 30, 37, 0.3)',
+                          borderRadius: '8px',
+                          color: 'white',
+                          fontSize: '0.9rem',
+                          fontWeight: '500'
+                        }}
+                      />
+                      <input
+                        type="tel"
+                        placeholder="Phone"
+                        style={{
+                          padding: '0.75rem',
+                          background: 'rgba(255, 255, 255, 0.08)',
+                          border: '1px solid rgba(230, 30, 37, 0.3)',
+                          borderRadius: '8px',
+                          color: 'white',
+                          fontSize: '0.9rem',
+                          fontWeight: '500'
+                        }}
+                      />
+                      <input
+                        type="text"
+                        placeholder="Company Name"
+                        style={{
+                          padding: '0.75rem',
+                          background: 'rgba(255, 255, 255, 0.08)',
+                          border: '1px solid rgba(230, 30, 37, 0.3)',
+                          borderRadius: '8px',
+                          color: 'white',
+                          fontSize: '0.9rem',
+                          fontWeight: '500'
+                        }}
+                      />
+                    </div>
+
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={handleClose}
                       style={{
                         width: '100%',
-                        padding: '1rem',
+                        padding: '0.9rem',
                         background: 'linear-gradient(135deg, #e61e25 0%, #ff2d35 100%)',
                         color: 'white',
                         border: 'none',
-                        borderRadius: '12px',
-                        fontSize: '1rem',
+                        borderRadius: '8px',
+                        fontSize: '0.95rem',
                         fontWeight: 800,
                         cursor: 'pointer',
                         boxShadow: '0 10px 30px rgba(230, 30, 37, 0.4)',
-                        transition: 'all 0.3s ease'
+                        transition: 'all 0.3s ease',
+                        marginTop: '1rem'
                       }}
                     >
                       Contact Us
