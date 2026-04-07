@@ -1005,6 +1005,16 @@ export default function Home() {
             <Link href="/contact#campaign" className="btn btn-primary">
               Start Your Campaign <ArrowRight size={20} />
             </Link>
+            <button 
+              onClick={() => {
+                console.log('Test button clicked, isScratchPopupOpen:', isScratchPopupOpen);
+                setIsScratchPopupOpen(true);
+              }}
+              className="btn btn-secondary"
+              style={{ cursor: 'pointer' }}
+            >
+              Test Popup
+            </button>
             <Link href="/contact" className="btn btn-secondary">
               Learn More
             </Link>
