@@ -117,7 +117,6 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<'whyus' | 'reach' | 'solutions'>('whyus');
   const [currentLocationIndex, setCurrentLocationIndex] = useState(0);
   const [openBrandAccordion, setOpenBrandAccordion] = useState<number | null>(0);
-  const [isScratchCardOpen, setIsScratchCardOpen] = useState(false);
 
   // 3D Parallax Mouse Tracking
   const mouseX = useMotionValue(0.5);
@@ -1006,13 +1005,6 @@ export default function Home() {
             <Link href="/contact#campaign" className="btn btn-primary">
               Start Your Campaign <ArrowRight size={20} />
             </Link>
-            <button 
-              onClick={() => setIsScratchCardOpen(true)}
-              className="btn btn-secondary"
-              style={{ cursor: 'pointer' }}
-            >
-              🎁 Special Offer
-            </button>
             <Link href="/contact" className="btn btn-secondary">
               Learn More
             </Link>
@@ -1025,13 +1017,6 @@ export default function Home() {
         <ScratchCardSection />
       ) : (
         <>
-          {/* Modal Scratch Card - Triggered by Hero Button */}
-          <InlineScratchCard 
-            placement="modal"
-            isOpen={isScratchCardOpen}
-            onClose={() => setIsScratchCardOpen(false)}
-          />
-
           {/* Floating Popup Scratch Card */}
           {SCRATCH_CARD_CONFIG.placement === 'floating-popup' && (
             <InlineScratchCard 
