@@ -996,7 +996,11 @@ export default function Home() {
               cursor: 'pointer',
               transition: 'all 0.3s ease'
             }}
-            onClick={() => setIsScratchPopupOpen(true)}
+            onClick={(e) => {
+              e.preventDefault();
+              console.log('Heading clicked');
+              setIsScratchPopupOpen(true);
+            }}
           >
             <span className="highlight">At</span>tractive
           </motion.h1>
