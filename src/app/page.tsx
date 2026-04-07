@@ -5,6 +5,7 @@ import { motion, Variants, useMotionValue, useSpring, useTransform } from 'frame
 import { ArrowRight, MapPin, Phone, Mail, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import ScratchPopup from '@/components/HeroScratchPopup/ScratchPopup';
+import AnimatedHeroHeading from '@/components/AnimatedHeroHeading';
 import './black-cards.css';
 
 const fadeInUp: Variants = {
@@ -993,23 +994,7 @@ export default function Home() {
           animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
           transition={{ duration: 1.0, type: "spring", bounce: 0.3 }}
         >
-          <motion.h1 
-            initial={{ z: -150, opacity: 0 }}
-            animate={{ z: 0, opacity: 1 }}
-            transition={{ duration: 1.0, delay: 0.3 }}
-            style={{ 
-              fontFamily: "'Bricolage Grotesque', sans-serif",
-              cursor: 'pointer',
-              transition: 'all 0.3s ease'
-            }}
-            onClick={(e) => {
-              e.preventDefault();
-              console.log('Heading clicked');
-              setIsScratchPopupOpen(true);
-            }}
-          >
-            <span className="highlight">At</span>tractive
-          </motion.h1>
+          <AnimatedHeroHeading onReveal={() => setIsScratchPopupOpen(true)} />
           <motion.p variants={fadeInUp}>
             We create high-impact advertising that makes your brand visible, memorable, and impossible to ignore.
           </motion.p>
