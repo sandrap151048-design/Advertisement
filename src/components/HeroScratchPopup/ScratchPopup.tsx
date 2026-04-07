@@ -56,9 +56,9 @@ export default function ScratchPopup({ isOpen, onClose }: ScratchPopupProps) {
               left: '50%',
               transform: 'translate(-50%, -50%)',
               zIndex: 9999,
-              width: '90%',
-              maxWidth: '600px',
-              maxHeight: '90vh',
+              width: '85%',
+              maxWidth: '500px',
+              maxHeight: '80vh',
               overflowY: 'auto'
             }}
           >
@@ -87,7 +87,7 @@ export default function ScratchPopup({ isOpen, onClose }: ScratchPopupProps) {
                 background: 'linear-gradient(135deg, rgba(15, 15, 25, 0.95) 0%, rgba(25, 10, 20, 0.95) 100%)',
                 border: '2px solid rgba(230, 30, 37, 0.5)',
                 borderRadius: '24px',
-                padding: '2rem',
+                padding: '1.5rem',
                 backdropFilter: 'blur(20px)',
                 boxShadow: '0 25px 50px rgba(0, 0, 0, 0.5)'
               }}
@@ -127,16 +127,16 @@ export default function ScratchPopup({ isOpen, onClose }: ScratchPopupProps) {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                   >
-                    <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                    <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
                       <motion.div
                         animate={{ rotate: [0, 15, -15, 0], scale: [1, 1.1, 1] }}
                         transition={{ duration: 2.5, repeat: Infinity }}
-                        style={{ fontSize: '3rem', marginBottom: '1rem', display: 'inline-block' }}
+                        style={{ fontSize: '2.5rem', marginBottom: '0.75rem', display: 'inline-block' }}
                       >
                         🎁
                       </motion.div>
                       <h2 style={{
-                        fontSize: '1.8rem',
+                        fontSize: '1.5rem',
                         fontWeight: 900,
                         color: '#ffffff',
                         marginBottom: '0.5rem',
@@ -145,7 +145,7 @@ export default function ScratchPopup({ isOpen, onClose }: ScratchPopupProps) {
                         Special Offer
                       </h2>
                       <p style={{
-                        fontSize: '1rem',
+                        fontSize: '0.9rem',
                         color: 'rgba(255, 255, 255, 0.7)',
                         lineHeight: '1.6'
                       }}>
