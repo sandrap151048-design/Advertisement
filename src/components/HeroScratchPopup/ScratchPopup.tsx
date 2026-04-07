@@ -52,7 +52,7 @@ export default function ScratchPopup({ isOpen, onClose }: ScratchPopupProps) {
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             style={{
               position: 'fixed',
-              top: '50%',
+              top: '35%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
               zIndex: 9999,
