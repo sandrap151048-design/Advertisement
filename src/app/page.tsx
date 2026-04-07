@@ -994,7 +994,10 @@ export default function Home() {
           animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
           transition={{ duration: 1.0, type: "spring", bounce: 0.3 }}
         >
-          <AnimatedHeroHeading onReveal={() => setIsScratchPopupOpen(true)} />
+          <AnimatedHeroHeading 
+            onReveal={() => setIsScratchPopupOpen(true)}
+            onTagClick={() => setIsScratchPopupOpen(true)}
+          />
           <motion.p variants={fadeInUp}>
             We create high-impact advertising that makes your brand visible, memorable, and impossible to ignore.
           </motion.p>

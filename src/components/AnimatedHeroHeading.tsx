@@ -5,9 +5,10 @@ import { motion } from 'framer-motion';
 
 interface AnimatedHeroHeadingProps {
   onReveal: () => void;
+  onTagClick: () => void;
 }
 
-export default function AnimatedHeroHeading({ onReveal }: AnimatedHeroHeadingProps) {
+export default function AnimatedHeroHeading({ onReveal, onTagClick }: AnimatedHeroHeadingProps) {
   const [isRevealed, setIsRevealed] = useState(false);
   const text = "ATTRACTIVE";
   const letters = text.split("");
@@ -103,7 +104,7 @@ export default function AnimatedHeroHeading({ onReveal }: AnimatedHeroHeadingPro
           repeat: Infinity,
           ease: "easeInOut"
         }}
-        onClick={handleClick}
+        onClick={onTagClick}
         style={{
           position: 'absolute',
           top: '-20px',
