@@ -52,12 +52,14 @@ export default function ScratchPopup({ isOpen, onClose }: ScratchPopupProps) {
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             style={{
               position: 'fixed',
-              top: '35%',
+              top: '50%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
               zIndex: 9999,
               width: '90%',
-              maxWidth: '600px'
+              maxWidth: '600px',
+              maxHeight: '90vh',
+              overflowY: 'auto'
             }}
           >
             {/* Glow Effect */}
@@ -85,7 +87,7 @@ export default function ScratchPopup({ isOpen, onClose }: ScratchPopupProps) {
                 background: 'linear-gradient(135deg, rgba(15, 15, 25, 0.95) 0%, rgba(25, 10, 20, 0.95) 100%)',
                 border: '2px solid rgba(230, 30, 37, 0.5)',
                 borderRadius: '24px',
-                padding: '2.5rem',
+                padding: '2rem',
                 backdropFilter: 'blur(20px)',
                 boxShadow: '0 25px 50px rgba(0, 0, 0, 0.5)'
               }}
