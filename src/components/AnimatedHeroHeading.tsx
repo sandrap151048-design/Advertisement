@@ -40,7 +40,7 @@ export default function AnimatedHeroHeading({ onReveal }: AnimatedHeroHeadingPro
       y: Math.random() * 50 - 25,
       transition: {
         duration: 0.6,
-        ease: "easeInOut"
+        ease: "easeInOut" as const
       }
     })
   };
