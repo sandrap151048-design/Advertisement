@@ -1005,22 +1005,70 @@ export default function Home() {
             <Link href="/contact#campaign" className="btn btn-primary">
               Start Your Campaign <ArrowRight size={20} />
             </Link>
-            <button 
-              onClick={() => {
-                console.log('Get Offer clicked, isScratchPopupOpen:', isScratchPopupOpen);
-                setIsScratchPopupOpen(true);
-              }}
-              className="btn btn-secondary"
-              style={{ cursor: 'pointer' }}
-            >
-              🎁 Get Offer
-            </button>
             <Link href="/contact" className="btn btn-secondary">
               Learn More
             </Link>
           </motion.div>
         </motion.div>
       </section>
+
+      {/* Scratch Card Offer Section - Below Hero */}
+      <section style={{
+        padding: 'clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem)',
+        background: 'linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%)',
+        textAlign: 'center'
+      }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 style={{
+              fontSize: 'clamp(1.8rem, 5vw, 2.8rem)',
+              fontWeight: 900,
+              marginBottom: '1rem',
+              color: '#e61e25',
+              letterSpacing: '-1px'
+            }}>
+              🎁 Exclusive Offer
+            </h2>
+            <p style={{
+              fontSize: '1.1rem',
+              color: '#333',
+              marginBottom: '2rem',
+              maxWidth: '600px',
+              margin: '0 auto 2rem auto',
+              lineHeight: '1.6'
+            }}>
+              Scratch to reveal your special discount and exclusive deals
+            </p>
+            
+            <motion.button
+              onClick={() => setIsScratchPopupOpen(true)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              style={{
+                padding: '1.2rem 3rem',
+                background: 'linear-gradient(135deg, #e61e25 0%, #ff2d35 100%)',
+                color: 'white',
+                border: 'none',
+                borderRadius: '12px',
+                fontSize: '1.1rem',
+                fontWeight: 800,
+                cursor: 'pointer',
+                boxShadow: '0 10px 30px rgba(230, 30, 37, 0.3)',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              🎁 Get Your Offer
+            </motion.button>
+          </motion.div>
+        </div>
+      </section>
+
+
 
       {/* Scratch Card Popup */}
       {mounted && (
@@ -1029,8 +1077,6 @@ export default function Home() {
           onClose={() => setIsScratchPopupOpen(false)}
         />
       )}
-
-
 
       {/* We Build Section */}
       <section className="we-build-section">
