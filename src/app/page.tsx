@@ -991,15 +991,12 @@ export default function Home() {
             initial={{ z: -150, opacity: 0 }}
             animate={{ z: 0, opacity: 1 }}
             transition={{ duration: 1.0, delay: 0.3 }}
-            variants={fadeInDown}
-            onClick={() => setIsScratchPopupOpen(true)}
             style={{ 
               fontFamily: "'Bricolage Grotesque', sans-serif",
               cursor: 'pointer',
               transition: 'all 0.3s ease'
             }}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            onClick={() => setIsScratchPopupOpen(true)}
           >
             <span className="highlight">At</span>tractive
           </motion.h1>
