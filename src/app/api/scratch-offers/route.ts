@@ -48,7 +48,16 @@ export async function GET(request: NextRequest) {
     const dateTo = searchParams.get('dateTo');
 
     // Read offers from file
-    const offersStore = await readOffers();
+    let offersStore = [];
+    try {
+      offersStore = await readOffers();
+    } catch (readError) {
+      console.error('Error reading offers:', readError);
+      offersStore = [];
+    }
+
+    // Sort by newest first
+    offersStore.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
     // Filter offers based on parameters
     let filteredOffers = [...offersStore];
@@ -192,7 +201,16 @@ export async function DELETE(request: NextRequest) {
     }
 
     // Read existing offers
-    const offersStore = await readOffers();
+    let offersStore = [];
+    try {
+      offersStore = await readOffers();
+    } catch (readError) {
+      console.error('Error reading offers:', readError);
+      return NextResponse.json(
+        { success: false, error: 'Failed to read offers from storage' },
+        { status: 500 }
+      );
+    }
 
     // Filter out the offer to delete
     const updatedOffers = offersStore.filter((offer: any) => offer._id !== offerId);
@@ -206,7 +224,15 @@ export async function DELETE(request: NextRequest) {
     }
 
     // Save updated offers
-    await writeOffers(updatedOffers);
+    try {
+      await writeOffers(updatedOffers);
+    } catch (writeError) {
+      console.error('Error writing offers:', writeError);
+      return NextResponse.json(
+        { success: false, error: 'Failed to save changes to storage' },
+        { status: 500 }
+      );
+    }
 
     console.log('Offer deleted:', offerId);
     console.log('Total offers remaining:', updatedOffers.length);
@@ -219,7 +245,7 @@ export async function DELETE(request: NextRequest) {
   } catch (error) {
     console.error('Error deleting scratch offer:', error);
     return NextResponse.json(
-      { success: false, error: 'Failed to delete scratch offer' },
+      { success: false, error: 'Failed to delete scratch offer: ' + (error instanceof Error ? error.message : 'Unknown error') },
       { status: 500 }
     );
   }

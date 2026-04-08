@@ -125,16 +125,20 @@ export default function ScratchOffersAdminPage() {
         method: 'DELETE'
       });
 
-      if (response.ok) {
+      const data = await response.json();
+
+      if (response.ok && data.success) {
         // Remove from local state
         setOffers(prev => prev.filter(offer => offer._id !== offerId));
         setSelectedOffer(null);
+        alert('Offer deleted successfully');
       } else {
-        alert('Failed to delete offer');
+        console.error('Delete error:', data);
+        alert(data.error || 'Failed to delete offer');
       }
     } catch (error) {
       console.error('Error deleting offer:', error);
-      alert('Error deleting offer');
+      alert('Error deleting offer: ' + (error instanceof Error ? error.message : 'Unknown error'));
     } finally {
       setDeletingId(null);
     }
