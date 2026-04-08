@@ -1,0 +1,94 @@
+[
+  {
+    "_id": "1775620869944",
+    "name": "samm",
+    "email": "sam@gmail.com",
+    "phone": "09746721825",
+    "companyName": "sd",
+    "offer": {
+      "id": "4",
+      "title": "VIP Access",
+      "description": "Exclusive benefits",
+      "discount": "50% OFF",
+      "type": "percentage",
+      "color": "#f59e0b"
+    },
+    "scratchedAt": "2026-04-08T04:01:09.035Z",
+    "source": "homepage_inline_scratch",
+    "claimed": false,
+    "createdAt": "2026-04-08T04:01:09.944Z",
+    "ipAddress": "127.0.0.1",
+    "status": "claimed",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0",
+    "expiresAt": "2026-05-08T04:01:09.944Z"
+  },
+  {
+    "_id": "1775621534766",
+    "name": "sandra p",
+    "email": "ha@gmail.com",
+    "phone": "09746721825",
+    "companyName": "abcd",
+    "offer": {
+      "id": "4",
+      "title": "VIP Access",
+      "description": "Exclusive benefits",
+      "discount": "50% OFF",
+      "type": "percentage",
+      "color": "#f59e0b"
+    },
+    "scratchedAt": "2026-04-08T04:12:13.809Z",
+    "source": "homepage_inline_scratch",
+    "claimed": false,
+    "createdAt": "2026-04-08T04:12:14.766Z",
+    "ipAddress": "127.0.0.1",
+    "status": "claimed",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0",
+    "expiresAt": "2026-05-08T04:12:14.766Z"
+  },
+  {
+    "_id": "1775622036971",
+    "name": "sandra p",
+    "email": "ha@gmail.com",
+    "phone": "09746721825",
+    "companyName": "abcd",
+    "offer": {
+      "id": "2",
+      "title": "Free Consultation",
+      "description": "Worth $500",
+      "discount": "FREE",
+      "type": "free",
+      "color": "#10b981"
+    },
+    "scratchedAt": "2026-04-08T04:20:35.938Z",
+    "source": "homepage_inline_scratch",
+    "claimed": false,
+    "createdAt": "2026-04-08T04:20:36.971Z",
+    "ipAddress": "127.0.0.1",
+    "status": "claimed",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0",
+    "expiresAt": "2026-05-08T04:20:36.971Z"
+  },
+  {
+    "_id": "1775622379882",
+    "name": "arshya",
+    "email": "arshay@gmail.com",
+    "phone": "73464628820",
+    "companyName": "asdf",
+    "offer": {
+      "id": "2",
+      "title": "Free Consultation",
+      "description": "Worth $500",
+      "discount": "FREE",
+      "type": "free",
+      "color": "#10b981"
+    },
+    "scratchedAt": "2026-04-08T04:26:18.609Z",
+    "source": "homepage_inline_scratch",
+    "claimed": false,
+    "createdAt": "2026-04-08T04:26:19.882Z",
+    "ipAddress": "127.0.0.1",
+    "status": "claimed",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0",
+    "expiresAt": "2026-05-08T04:26:19.883Z"
+  }
+]

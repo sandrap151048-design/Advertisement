@@ -14,7 +14,7 @@ interface Offer {
 
 interface ScratchCardProps {
   offer: Offer;
-  onComplete: () => void;
+  onComplete: (offer: Offer) => void;
 }
 
 export default function ScratchCard({ offer, onComplete }: ScratchCardProps) {
@@ -37,23 +37,23 @@ export default function ScratchCard({ offer, onComplete }: ScratchCardProps) {
 
     // Set canvas size
     const rect = canvas.getBoundingClientRect();
-    canvas.width = 300;
-    canvas.height = 180;
+    canvas.width = 500;
+    canvas.height = 250;
 
-    // Create gradient scratch surface
+    // Create gradient scratch surface - RED THEME
     const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-    gradient.addColorStop(0, '#4a4a4a');
-    gradient.addColorStop(0.5, '#2a2a2a');
-    gradient.addColorStop(1, '#1a1a1a');
+    gradient.addColorStop(0, '#e61e25');
+    gradient.addColorStop(0.5, '#c41820');
+    gradient.addColorStop(1, '#a01419');
     
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // Add scratch-off text with glow effect
     ctx.save();
-    ctx.shadowColor = '#666';
+    ctx.shadowColor = 'rgba(255, 255, 255, 0.5)';
     ctx.shadowBlur = 10;
-    ctx.fillStyle = '#888';
+    ctx.fillStyle = '#ffffff';
     ctx.font = 'bold 16px Arial';
     ctx.textAlign = 'center';
     ctx.fillText('🎁 Scratch to Reveal', canvas.width / 2, canvas.height / 2 - 10);
@@ -61,7 +61,7 @@ export default function ScratchCard({ offer, onComplete }: ScratchCardProps) {
     ctx.restore();
 
     // Add decorative elements
-    ctx.strokeStyle = '#666';
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
     ctx.lineWidth = 2;
     ctx.setLineDash([5, 5]);
     ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
@@ -111,7 +111,7 @@ export default function ScratchCard({ offer, onComplete }: ScratchCardProps) {
     if (progress > 40 && !isRevealed) {
       setIsRevealed(true);
       setTimeout(() => {
-        onComplete();
+        onComplete(offer);
       }, 1000);
     }
   };

@@ -41,10 +41,10 @@ export default function AnimatedHeroHeading({ onReveal, onTagClick }: AnimatedHe
       y: Math.random() * 50 - 25,
       transition: {
         duration: 0.6,
-        ease: "easeInOut" as const
+        ease: "easeInOut"
       }
     })
-  };
+  } as any;
 
   return (
     <div style={{ position: 'relative', display: 'inline-block' }}>

@@ -6,6 +6,7 @@ import { ArrowRight, MapPin, Phone, Mail, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import ScratchPopup from '@/components/HeroScratchPopup/ScratchPopup';
 import AnimatedHeroHeading from '@/components/AnimatedHeroHeading';
+import InlineScratchCardSection from '@/components/ScratchCard/InlineScratchCardSection';
 import './black-cards.css';
 
 const fadeInUp: Variants = {
@@ -123,7 +124,6 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<'whyus' | 'reach' | 'solutions'>('whyus');
   const [currentLocationIndex, setCurrentLocationIndex] = useState(0);
   const [openBrandAccordion, setOpenBrandAccordion] = useState<number | null>(0);
-  const [isScratchPopupOpen, setIsScratchPopupOpen] = useState(false);
 
   // 3D Parallax Mouse Tracking
   const mouseX = useMotionValue(0.5);
@@ -995,8 +995,8 @@ export default function Home() {
           transition={{ duration: 1.0, type: "spring", bounce: 0.3 }}
         >
           <AnimatedHeroHeading 
-            onReveal={() => setIsScratchPopupOpen(true)}
-            onTagClick={() => setIsScratchPopupOpen(true)}
+            onReveal={() => {}}
+            onTagClick={() => {}}
           />
           <motion.p variants={fadeInUp}>
             We create high-impact advertising that makes your brand visible, memorable, and impossible to ignore.
@@ -1012,83 +1012,8 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Scratch Card Offer Section - Below Hero */}
-      <section style={{
-        padding: 'clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem)',
-        background: `linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 245, 245, 0.95) 100%), url('/services-hero-bg.png')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
-        textAlign: 'center',
-        position: 'relative'
-      }}>
-        {/* Overlay */}
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'radial-gradient(circle at center, rgba(230, 30, 37, 0.05) 0%, transparent 60%)',
-          pointerEvents: 'none'
-        }} />
-        
-        <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 style={{
-              fontSize: 'clamp(1.8rem, 5vw, 2.8rem)',
-              fontWeight: 900,
-              marginBottom: '1rem',
-              color: '#e61e25',
-              letterSpacing: '-1px'
-            }}>
-              🎁 Exclusive Offer
-            </h2>
-            <p style={{
-              fontSize: '1.1rem',
-              color: '#333',
-              marginBottom: '2rem',
-              maxWidth: '600px',
-              margin: '0 auto 2rem auto',
-              lineHeight: '1.6'
-            }}>
-              Scratch to reveal your special discount and exclusive deals
-            </p>
-            
-            <motion.button
-              onClick={() => setIsScratchPopupOpen(true)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              style={{
-                padding: '1.2rem 3rem',
-                background: 'linear-gradient(135deg, #e61e25 0%, #ff2d35 100%)',
-                color: 'white',
-                border: 'none',
-                borderRadius: '12px',
-                fontSize: '1.1rem',
-                fontWeight: 800,
-                cursor: 'pointer',
-                boxShadow: '0 10px 30px rgba(230, 30, 37, 0.3)',
-                transition: 'all 0.3s ease'
-              }}
-            >
-              🎁 Get Your Offer
-            </motion.button>
-          </motion.div>
-        </div>
-      </section>
-
-
-
-      {/* Scratch Card Popup */}
-      {mounted && (
-        <ScratchPopup 
-          isOpen={isScratchPopupOpen}
-          onClose={() => setIsScratchPopupOpen(false)}
-        />
-      )}
+      {/* Inline Scratch Card Section */}
+      {mounted && <InlineScratchCardSection />}
 
       {/* We Build Section */}
       <section className="we-build-section">

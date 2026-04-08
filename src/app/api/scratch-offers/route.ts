@@ -1,31 +1,42 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { promises as fs } from 'fs';
+import path from 'path';
 
-// Store offers in a variable (in production, use a database)
-let offersStore: any[] = [
-  {
-    _id: '1',
-    name: 'Test User',
-    email: 'test@example.com',
-    phone: '+1234567890',
-    companyName: 'Test Company',
-    offer: {
-      id: '1',
-      title: '20% Off Advertisement Package',
-      description: 'Get 20% discount on any advertisement package worth $500+',
-      discount: '20%',
-      type: 'percentage',
-      color: '#3b82f6'
-    },
-    scratchedAt: new Date().toISOString(),
-    source: 'homepage_hero_scratch',
-    claimed: true,
-    createdAt: new Date().toISOString(),
-    ipAddress: '127.0.0.1',
-    status: 'claimed',
-    userAgent: 'Mozilla/5.0',
-    expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString()
+// Path to store offers data
+const dataDir = path.join(process.cwd(), 'data');
+const offersFile = path.join(dataDir, 'scratch-offers.json');
+
+// Ensure data directory exists
+async function ensureDataDir() {
+  try {
+    await fs.mkdir(dataDir, { recursive: true });
+  } catch (error) {
+    console.error('Error creating data directory:', error);
   }
-];
+}
+
+// Read offers from file
+async function readOffers() {
+  try {
+    await ensureDataDir();
+    const data = await fs.readFile(offersFile, 'utf-8');
+    return JSON.parse(data);
+  } catch (error) {
+    // File doesn't exist yet, return empty array
+    return [];
+  }
+}
+
+// Write offers to file
+async function writeOffers(offers: any[]) {
+  try {
+    await ensureDataDir();
+    await fs.writeFile(offersFile, JSON.stringify(offers, null, 2));
+  } catch (error) {
+    console.error('Error writing offers to file:', error);
+    throw error;
+  }
+}
 
 export async function GET(request: NextRequest) {
   try {
@@ -35,6 +46,9 @@ export async function GET(request: NextRequest) {
     const status = searchParams.get('status') || 'all';
     const dateFrom = searchParams.get('dateFrom');
     const dateTo = searchParams.get('dateTo');
+
+    // Read offers from file
+    const offersStore = await readOffers();
 
     // Filter offers based on parameters
     let filteredOffers = [...offersStore];
@@ -105,6 +119,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Read existing offers
+    const offersStore = await readOffers();
+
     // Create new offer entry
     const newOffer = {
       _id: Date.now().toString(),
@@ -123,8 +140,9 @@ export async function POST(request: NextRequest) {
       expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString()
     };
 
-    // Store in memory
+    // Add to offers and save to file
     offersStore.push(newOffer);
+    await writeOffers(offersStore);
     
     console.log('New offer saved:', newOffer);
     console.log('Total offers:', offersStore.length);
@@ -139,6 +157,52 @@ export async function POST(request: NextRequest) {
     console.error('Error saving scratch offer:', error);
     return NextResponse.json(
       { success: false, error: 'Failed to save scratch offer' },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const offerId = searchParams.get('id');
+
+    if (!offerId) {
+      return NextResponse.json(
+        { success: false, error: 'Offer ID is required' },
+        { status: 400 }
+      );
+    }
+
+    // Read existing offers
+    const offersStore = await readOffers();
+
+    // Filter out the offer to delete
+    const updatedOffers = offersStore.filter(offer => offer._id !== offerId);
+
+    // Check if offer was found
+    if (updatedOffers.length === offersStore.length) {
+      return NextResponse.json(
+        { success: false, error: 'Offer not found' },
+        { status: 404 }
+      );
+    }
+
+    // Save updated offers
+    await writeOffers(updatedOffers);
+
+    console.log('Offer deleted:', offerId);
+    console.log('Total offers remaining:', updatedOffers.length);
+
+    return NextResponse.json({
+      success: true,
+      message: 'Offer deleted successfully'
+    });
+
+  } catch (error) {
+    console.error('Error deleting scratch offer:', error);
+    return NextResponse.json(
+      { success: false, error: 'Failed to delete scratch offer' },
       { status: 500 }
     );
   }
