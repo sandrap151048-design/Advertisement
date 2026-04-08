@@ -6,6 +6,10 @@ import path from 'path';
 const dataDir = path.join(process.cwd(), 'data');
 const offersFile = path.join(dataDir, 'scratch-offers.json');
 
+// In-memory store for Vercel (read-only file system)
+let inMemoryOffers: any[] = [];
+let offersLoaded = false;
+
 // Ensure data directory exists
 async function ensureDataDir() {
   try {
@@ -15,26 +19,42 @@ async function ensureDataDir() {
   }
 }
 
-// Read offers from file
+// Read offers from file or memory
 async function readOffers() {
   try {
+    // If already loaded in memory, return that
+    if (offersLoaded && inMemoryOffers.length > 0) {
+      return inMemoryOffers;
+    }
+
+    // Try to read from file
     await ensureDataDir();
     const data = await fs.readFile(offersFile, 'utf-8');
-    return JSON.parse(data);
+    inMemoryOffers = JSON.parse(data);
+    offersLoaded = true;
+    return inMemoryOffers;
   } catch (error) {
-    // File doesn't exist yet, return empty array
-    return [];
+    console.error('Error reading offers:', error);
+    // Return in-memory store even if file read fails
+    return inMemoryOffers;
   }
 }
 
-// Write offers to file
+// Write offers to file and memory
 async function writeOffers(offers: any[]) {
   try {
+    // Always update in-memory store
+    inMemoryOffers = offers;
+    offersLoaded = true;
+
+    // Try to write to file (may fail on Vercel)
     await ensureDataDir();
     await fs.writeFile(offersFile, JSON.stringify(offers, null, 2));
   } catch (error) {
     console.error('Error writing offers to file:', error);
-    throw error;
+    // Still keep in memory even if file write fails
+    inMemoryOffers = offers;
+    offersLoaded = true;
   }
 }
 
