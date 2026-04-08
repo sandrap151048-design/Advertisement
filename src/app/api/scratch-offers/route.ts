@@ -42,7 +42,7 @@ export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const page = parseInt(searchParams.get('page') || '1');
-    const limit = parseInt(searchParams.get('limit') || '10');
+    const limit = parseInt(searchParams.get('limit') || '100');
     const status = searchParams.get('status') || 'all';
     const dateFrom = searchParams.get('dateFrom');
     const dateTo = searchParams.get('dateTo');

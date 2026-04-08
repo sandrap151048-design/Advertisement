@@ -78,7 +78,7 @@ export default function ScratchOffersAdminPage() {
     try {
       const params = new URLSearchParams({
         page: (pagination?.page || 1).toString(),
-        limit: (pagination?.limit || 10).toString()
+        limit: '1000'  // Fetch up to 1000 offers to show all submissions
       });
 
       const response = await fetch(`/api/scratch-offers?${params}`);
