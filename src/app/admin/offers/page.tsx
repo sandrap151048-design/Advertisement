@@ -112,7 +112,7 @@ export default function OffersAdminPage() {
       title: offer.title,
       description: offer.description,
       discount: offer.discount,
-      type: offer.type,
+      type: offer.type as 'percentage' | 'free' | 'fixed',
       color: offer.color,
       active: offer.active
     });
