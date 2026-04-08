@@ -119,7 +119,6 @@ export default function FloatingOfferCard({ onClose }: FloatingOfferCardProps) {
               cursor: 'pointer',
               position: 'relative',
               overflow: 'hidden',
-              border: 'none',
               textAlign: 'left'
             }}
           >
