@@ -107,6 +107,24 @@ export default function InlineScratchCardSection() {
       
       <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
 
+        {/* Heading */}
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          style={{
+            fontSize: 'clamp(1.5rem, 5vw, 2.5rem)',
+            fontWeight: 900,
+            color: '#ffffff',
+            marginBottom: '2rem',
+            textAlign: 'center',
+            letterSpacing: '-0.5px'
+          }}
+        >
+          🎁 Exclusive Offer
+        </motion.h2>
+
         {/* Scratch Card Container */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9, y: 40 }}
