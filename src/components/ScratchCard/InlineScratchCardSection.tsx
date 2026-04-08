@@ -106,32 +106,6 @@ export default function InlineScratchCardSection() {
       }} />
       
       <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 style={{
-            fontSize: 'clamp(1.8rem, 5vw, 2.8rem)',
-            fontWeight: 900,
-            marginBottom: '1rem',
-            color: '#e61e25',
-            letterSpacing: '-1px'
-          }}>
-            🎁 Exclusive Offer
-          </h2>
-          <p style={{
-            fontSize: '1.1rem',
-            color: '#ffffff',
-            marginBottom: '3rem',
-            maxWidth: '600px',
-            margin: '0 auto 3rem auto',
-            lineHeight: '1.6'
-          }}>
-            Scratch to reveal your special discount and exclusive deals
-          </p>
-        </motion.div>
 
         {/* Scratch Card Container */}
         <motion.div
@@ -163,32 +137,6 @@ export default function InlineScratchCardSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-                  <motion.div
-                    animate={{ rotate: [0, 15, -15, 0], scale: [1, 1.1, 1] }}
-                    transition={{ duration: 2.5, repeat: Infinity }}
-                    style={{ fontSize: '2.5rem', marginBottom: '0.75rem', display: 'inline-block' }}
-                  >
-                    🎁
-                  </motion.div>
-                  <h3 style={{
-                    fontSize: '1.5rem',
-                    fontWeight: 900,
-                    color: '#ffffff',
-                    marginBottom: '0.5rem',
-                    letterSpacing: '-0.5px'
-                  }}>
-                    Special Offer
-                  </h3>
-                  <p style={{
-                    fontSize: '0.9rem',
-                    color: 'rgba(255, 255, 255, 0.7)',
-                    lineHeight: '1.6'
-                  }}>
-                    Scratch to reveal your exclusive discount
-                  </p>
-                </div>
-
                 {(() => {
                   if (availableOffers.length === 0) {
                     return (
