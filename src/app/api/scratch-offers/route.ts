@@ -77,7 +77,7 @@ export async function GET(request: NextRequest) {
     // Statistics
     const statistics = {
       totalOffers: offersStore.length,
-      todayOffers: offersStore.filter(offer => 
+      todayOffers: offersStore.filter((offer: any) => 
         new Date(offer.createdAt).toDateString() === new Date().toDateString()
       ).length,
       offerTypes: ['percentage', 'free', 'fixed']
