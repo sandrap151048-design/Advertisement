@@ -90,10 +90,8 @@ export default function FloatingCouponCard({ onClose }: FloatingCouponCardProps)
       {isVisible && !showForm && !showSuccess && (
         <motion.div
           initial={{ opacity: 0, y: 100, x: '-50%' }}
-          animate={{ opacity: 1, y: 0, x: '-50%' }}
+          animate={{ opacity: 1, y: [0, -10, 0], x: '-50%' }}
           exit={{ opacity: 0, y: 100, x: '-50%' }}
-          transition={{ duration: 0.6, type: 'spring', stiffness: 300, damping: 30 }}
-          animate={{ y: [0, -10, 0] }}
           transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
           style={{
             position: 'fixed',
