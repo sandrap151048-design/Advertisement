@@ -70,11 +70,12 @@ export default function InlineScratchCardSection() {
         }, 3000);
       } else {
         const errorData = await response.json();
+        console.error('API Error:', errorData);
         alert(errorData.error || 'Error submitting form. Please try again.');
       }
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('Error submitting form. Please try again.');
+      alert('Error submitting form. Please check your connection and try again.');
     } finally {
       setIsSubmitting(false);
     }
