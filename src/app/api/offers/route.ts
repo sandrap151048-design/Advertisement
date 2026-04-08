@@ -63,7 +63,7 @@ export async function GET(request: NextRequest) {
     
     if (featured === 'true') {
       const settings = await readSettings();
-      const featuredOffer = offers.find(o => o.id === settings.featuredOfferId);
+      const featuredOffer = offers.find((o: any) => o.id === settings.featuredOfferId);
       return NextResponse.json({
         success: true,
         data: featuredOffer || null
