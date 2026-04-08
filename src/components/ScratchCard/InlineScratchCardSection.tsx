@@ -139,7 +139,7 @@ export default function InlineScratchCardSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
           style={{
-            maxWidth: '450px',
+            maxWidth: '320px',
             margin: '0 auto',
             perspective: '1000px'
           }}
@@ -317,7 +317,7 @@ export default function InlineScratchCardSection() {
               padding: '2rem',
               backdropFilter: 'blur(20px)',
               boxShadow: '0 25px 50px rgba(0, 0, 0, 0.5)',
-              maxWidth: '450px',
+              maxWidth: '320px',
               margin: '0 auto',
               marginTop: '2rem'
             }}

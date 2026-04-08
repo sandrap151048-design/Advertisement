@@ -35,9 +35,9 @@ export default function ScratchCard({ offer, onComplete }: ScratchCardProps) {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Set canvas size - responsive
+    // Set canvas size - responsive and smaller
     const rect = canvas.getBoundingClientRect();
-    const width = Math.min(400, window.innerWidth - 40);
+    const width = Math.min(300, window.innerWidth - 40);
     const height = (width / 500) * 250;
     canvas.width = width;
     canvas.height = height;
