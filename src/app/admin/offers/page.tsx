@@ -33,7 +33,7 @@ export default function OffersAdminPage() {
     title: '',
     description: '',
     discount: '',
-    type: 'percentage' as const,
+    type: 'percentage' as 'percentage' | 'free' | 'fixed',
     color: '#e61e25',
     active: true
   });
@@ -175,7 +175,7 @@ export default function OffersAdminPage() {
       title: '',
       description: '',
       discount: '',
-      type: 'percentage',
+      type: 'percentage' as 'percentage' | 'free' | 'fixed',
       color: '#e61e25',
       active: true
     });
