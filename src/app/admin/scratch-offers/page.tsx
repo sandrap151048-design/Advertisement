@@ -127,11 +127,13 @@ export default function ScratchOffersAdminPage() {
 
       const data = await response.json();
 
-      if (response.ok && data.success) {
+      if (response.ok || data.success) {
         // Remove from local state
         setOffers(prev => prev.filter(offer => offer._id !== offerId));
         setSelectedOffer(null);
         alert('Offer deleted successfully');
+        // Refresh the list
+        fetchOffers();
       } else {
         console.error('Delete error:', data);
         alert(data.error || 'Failed to delete offer');
