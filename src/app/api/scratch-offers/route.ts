@@ -178,7 +178,7 @@ export async function DELETE(request: NextRequest) {
     const offersStore = await readOffers();
 
     // Filter out the offer to delete
-    const updatedOffers = offersStore.filter(offer => offer._id !== offerId);
+    const updatedOffers = offersStore.filter((offer: any) => offer._id !== offerId);
 
     // Check if offer was found
     if (updatedOffers.length === offersStore.length) {
