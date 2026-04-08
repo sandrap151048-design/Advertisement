@@ -35,10 +35,10 @@ export default function ScratchCard({ offer, onComplete }: ScratchCardProps) {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Set canvas size - responsive and smaller
+    // Set canvas size - responsive and much bigger
     const rect = canvas.getBoundingClientRect();
-    const width = Math.min(300, window.innerWidth - 40);
-    const height = (width / 500) * 250;
+    const width = Math.min(450, window.innerWidth - 40);
+    const height = (width / 500) * 380;
     canvas.width = width;
     canvas.height = height;
 
@@ -131,93 +131,8 @@ export default function ScratchCard({ offer, onComplete }: ScratchCardProps) {
       transition={{ duration: 0.3 }}
       className="relative"
     >
-      {/* Progress Bar */}
-      <div className="mb-4">
-        <div className="flex justify-between text-sm text-white/70 mb-2">
-          <span>Scratch Progress</span>
-          <span>{Math.round(scratchProgress)}%</span>
-        </div>
-        <div className="w-full bg-white/10 rounded-full h-2">
-          <motion.div
-            className="bg-gradient-to-r from-red-500 to-red-400 h-2 rounded-full"
-            initial={{ width: 0 }}
-            animate={{ width: `${scratchProgress}%` }}
-            transition={{ duration: 0.3 }}
-          />
-        </div>
-      </div>
-
       {/* Scratch Card Container */}
-      <div className="relative mx-auto w-[300px] h-[180px] rounded-xl overflow-hidden shadow-2xl">
-        {/* Offer Background */}
-        <div 
-          className="absolute inset-0 flex flex-col items-center justify-center text-white p-4"
-          style={{
-            background: `linear-gradient(135deg, ${offer.color}15 0%, ${offer.color}30 100%)`
-          }}
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.3, y: 20 }}
-            animate={{ opacity: isRevealed ? 1 : 0, scale: isRevealed ? 1 : 0.3, y: isRevealed ? 0 : 20 }}
-            transition={{ duration: 0.6, type: "spring", stiffness: 100, damping: 15 }}
-            className="text-center w-full"
-          >
-            {/* Discount Badge */}
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: isRevealed ? 1 : 0 }}
-              transition={{ delay: 0.1, duration: 0.4, type: "spring" }}
-              className="mb-3"
-              style={{
-                background: `linear-gradient(135deg, ${offer.color} 0%, ${offer.color}dd 100%)`,
-                padding: '0.75rem 1.5rem',
-                borderRadius: '12px',
-                boxShadow: `0 8px 20px ${offer.color}40`,
-                display: 'inline-block'
-              }}
-            >
-              <div className="text-2xl font-black" style={{ letterSpacing: '-0.5px' }}>
-                {offer.discount}
-              </div>
-            </motion.div>
-
-            {/* Title */}
-            <motion.h3
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: isRevealed ? 1 : 0, y: isRevealed ? 0 : 10 }}
-              transition={{ delay: 0.2, duration: 0.4 }}
-              className="text-base font-bold mb-1"
-              style={{ color: '#ffffff', letterSpacing: '-0.3px' }}
-            >
-              {offer.title}
-            </motion.h3>
-
-            {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: isRevealed ? 1 : 0, y: isRevealed ? 0 : 10 }}
-              transition={{ delay: 0.3, duration: 0.4 }}
-              className="text-xs"
-              style={{ color: 'rgba(255, 255, 255, 0.85)', lineHeight: '1.4' }}
-            >
-              {offer.description}
-            </motion.p>
-
-            {/* Decorative Line */}
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: isRevealed ? 1 : 0 }}
-              transition={{ delay: 0.4, duration: 0.3 }}
-              style={{
-                height: '2px',
-                background: `linear-gradient(90deg, transparent, ${offer.color}, transparent)`,
-                margin: '0.75rem 0',
-                transformOrigin: 'center'
-              }}
-            />
-          </motion.div>
-        </div>
-
+      <div className="relative mx-auto w-[450px] h-[280px] rounded-xl overflow-hidden shadow-2xl">
         {/* Scratch Canvas */}
         <canvas
           ref={canvasRef}
