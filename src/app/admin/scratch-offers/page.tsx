@@ -115,32 +115,19 @@ export default function ScratchOffersAdminPage() {
   };
 
   const handleDeleteOffer = async (offerId: string) => {
-    if (!confirm('Are you sure you want to delete this offer?')) {
+    if (!confirm('Are you sure you want to delete this offer? This will remove it from the view.')) {
       return;
     }
 
     setDeletingId(offerId);
     try {
-      const response = await fetch(`/api/scratch-offers?id=${offerId}`, {
-        method: 'DELETE'
-      });
-
-      const data = await response.json();
-
-      if (response.ok || data.success) {
-        // Remove from local state
-        setOffers(prev => prev.filter(offer => offer._id !== offerId));
-        setSelectedOffer(null);
-        alert('Offer deleted successfully');
-        // Refresh the list
-        fetchOffers();
-      } else {
-        console.error('Delete error:', data);
-        alert(data.error || 'Failed to delete offer');
-      }
+      // Just remove from local state (Vercel has read-only file system)
+      setOffers(prev => prev.filter(offer => offer._id !== offerId));
+      setSelectedOffer(null);
+      alert('Offer removed from view');
     } catch (error) {
-      console.error('Error deleting offer:', error);
-      alert('Error deleting offer: ' + (error instanceof Error ? error.message : 'Unknown error'));
+      console.error('Error removing offer:', error);
+      alert('Error removing offer');
     } finally {
       setDeletingId(null);
     }
