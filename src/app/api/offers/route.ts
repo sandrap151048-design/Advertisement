@@ -137,7 +137,7 @@ export async function PUT(request: NextRequest) {
     }
 
     const offers = await readOffers();
-    const offerIndex = offers.findIndex(o => o.id === id);
+    const offerIndex = offers.findIndex((o: any) => o.id === id);
 
     if (offerIndex === -1) {
       return NextResponse.json(
@@ -182,7 +182,7 @@ export async function DELETE(request: NextRequest) {
     }
 
     const offers = await readOffers();
-    const filteredOffers = offers.filter(o => o.id !== id);
+    const filteredOffers = offers.filter((o: any) => o.id !== id);
 
     if (filteredOffers.length === offers.length) {
       return NextResponse.json(
@@ -226,7 +226,7 @@ export async function PATCH(request: NextRequest) {
     }
 
     const offers = await readOffers();
-    const offerExists = offers.find(o => o.id === featuredOfferId);
+    const offerExists = offers.find((o: any) => o.id === featuredOfferId);
 
     if (!offerExists) {
       return NextResponse.json(
