@@ -139,7 +139,7 @@ export default function InlineScratchCardSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
           style={{
-            maxWidth: '700px',
+            maxWidth: '450px',
             margin: '0 auto',
             perspective: '1000px'
           }}
@@ -317,7 +317,7 @@ export default function InlineScratchCardSection() {
               padding: '2rem',
               backdropFilter: 'blur(20px)',
               boxShadow: '0 25px 50px rgba(0, 0, 0, 0.5)',
-              maxWidth: '700px',
+              maxWidth: '450px',
               margin: '0 auto',
               marginTop: '2rem'
             }}
@@ -463,6 +463,14 @@ export default function InlineScratchCardSection() {
         @media (max-width: 768px) {
           div[style*="maxWidth"] {
             max-width: 100% !important;
+            padding: 0 1rem !important;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          div[style*="maxWidth"] {
+            max-width: 100% !important;
+            padding: 0 0.75rem !important;
           }
         }
       `}</style>
