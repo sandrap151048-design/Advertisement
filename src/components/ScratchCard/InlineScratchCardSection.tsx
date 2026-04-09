@@ -360,7 +360,7 @@ export default function InlineScratchCardSection() {
               exit={{ opacity: 0 }}
               onClick={handleReset}
               style={{
-                position: 'absolute',
+                position: 'fixed',
                 inset: 0,
                 background: 'rgba(0, 0, 0, 0.6)',
                 backdropFilter: 'blur(8px)',
@@ -621,7 +621,7 @@ export default function InlineScratchCardSection() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               style={{
-                position: 'absolute',
+                position: 'fixed',
                 inset: 0,
                 background: 'rgba(0, 0, 0, 0.6)',
                 backdropFilter: 'blur(8px)',
@@ -634,7 +634,7 @@ export default function InlineScratchCardSection() {
               exit={{ opacity: 0, scale: 0.8 }}
               transition={{ duration: 0.4 }}
               style={{
-                position: 'absolute',
+                position: 'fixed',
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
