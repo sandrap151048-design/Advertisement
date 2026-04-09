@@ -269,19 +269,19 @@ export default function FloatingCouponCard({ onClose }: FloatingCouponCardProps)
             transition={{ duration: 0.4, type: 'spring', stiffness: 300, damping: 30 }}
             style={{
               position: 'fixed',
-              top: '50%',
+              top: '1rem',
               left: '50%',
-              transform: 'translate(-50%, -50%)',
+              transform: 'translateX(-50%)',
               background: 'linear-gradient(135deg, rgba(11, 11, 11, 0.95) 0%, rgba(20, 10, 15, 0.95) 100%)',
               border: '1px solid rgba(255, 42, 42, 0.3)',
               borderRadius: '16px',
-              padding: '2rem',
+              padding: 'clamp(1.5rem, 4vw, 2rem)',
               backdropFilter: 'blur(20px)',
               boxShadow: '0 25px 60px rgba(255, 42, 42, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
               zIndex: 1001,
               maxWidth: 'calc(100vw - 2rem)',
               width: 'clamp(280px, 90vw, 480px)',
-              maxHeight: 'calc(100vh - 2rem)',
+              maxHeight: 'calc(100vh - 3rem)',
               overflowY: 'auto',
               overflowX: 'hidden'
             }}
