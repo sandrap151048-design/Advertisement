@@ -364,12 +364,7 @@ export default function InlineScratchCardSection() {
                 inset: 0,
                 background: 'rgba(0, 0, 0, 0.6)',
                 backdropFilter: 'blur(8px)',
-                zIndex: 1000,
-                display: 'flex',
-                alignItems: 'flex-start',
-                justifyContent: 'center',
-                paddingTop: '1rem',
-                overflow: 'auto'
+                zIndex: 1000
               }}
             />
 
@@ -382,8 +377,9 @@ export default function InlineScratchCardSection() {
               style={{
                 position: 'fixed',
                 top: '1rem',
-                left: '50%',
-                transform: 'translateX(-50%)',
+                left: 0,
+                right: 0,
+                margin: '0 auto',
                 background: 'linear-gradient(135deg, rgba(11, 11, 11, 0.95) 0%, rgba(20, 10, 15, 0.95) 100%)',
                 border: '1px solid rgba(255, 42, 42, 0.3)',
                 borderRadius: '16px',
