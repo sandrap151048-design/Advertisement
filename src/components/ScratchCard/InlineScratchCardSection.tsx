@@ -375,20 +375,20 @@ export default function InlineScratchCardSection() {
               exit={{ opacity: 0, scale: 0.8, y: -50 }}
               transition={{ duration: 0.4, type: 'spring', stiffness: 300, damping: 30 }}
               style={{
-                position: 'absolute',
-                top: '-350px',
+                position: 'fixed',
+                top: '50%',
                 left: '50%',
-                transform: 'translateX(-50%)',
+                transform: 'translate(-50%, -50%)',
                 background: 'linear-gradient(135deg, rgba(11, 11, 11, 0.95) 0%, rgba(20, 10, 15, 0.95) 100%)',
                 border: '1px solid rgba(255, 42, 42, 0.3)',
                 borderRadius: '16px',
-                padding: '2rem',
+                padding: 'clamp(1.5rem, 4vw, 2rem)',
                 backdropFilter: 'blur(20px)',
                 boxShadow: '0 25px 60px rgba(255, 42, 42, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
                 zIndex: 1001,
                 maxWidth: 'calc(100vw - 2rem)',
-                width: '480px',
-                maxHeight: '80vh',
+                width: 'clamp(280px, 90vw, 480px)',
+                maxHeight: '90vh',
                 overflowY: 'auto',
                 overflowX: 'hidden'
               }}
@@ -686,6 +686,16 @@ export default function InlineScratchCardSection() {
           div[style*="maxWidth"] {
             max-width: 100% !important;
             padding: 0 0.75rem !important;
+          }
+          
+          /* Mobile popup fixes */
+          div[style*="position: 'absolute'"] {
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            width: calc(100vw - 2rem) !important;
+            max-width: 100% !important;
           }
         }
       `}</style>
