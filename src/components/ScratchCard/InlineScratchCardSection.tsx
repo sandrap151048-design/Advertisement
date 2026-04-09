@@ -378,6 +378,7 @@ export default function InlineScratchCardSection() {
                 position: 'fixed',
                 top: '1rem',
                 left: '50%',
+                right: 'auto',
                 transform: 'translateX(-50%)',
                 background: 'linear-gradient(135deg, rgba(11, 11, 11, 0.95) 0%, rgba(20, 10, 15, 0.95) 100%)',
                 border: '1px solid rgba(255, 42, 42, 0.3)',
@@ -390,7 +391,8 @@ export default function InlineScratchCardSection() {
                 width: 'clamp(280px, 90vw, 480px)',
                 maxHeight: 'calc(100vh - 3rem)',
                 overflowY: 'auto',
-                overflowX: 'hidden'
+                overflowX: 'hidden',
+                margin: '0 auto'
               }}
             >
               {/* Close Button */}
@@ -688,14 +690,13 @@ export default function InlineScratchCardSection() {
             padding: 0 0.75rem !important;
           }
           
-          /* Mobile popup fixes */
-          div[style*="position: 'absolute'"] {
-            position: fixed !important;
-            top: 50% !important;
+          /* Mobile popup fixes - ensure centering */
+          div[style*="position: fixed"][style*="left: 50%"] {
             left: 50% !important;
-            transform: translate(-50%, -50%) !important;
-            width: calc(100vw - 2rem) !important;
-            max-width: 100% !important;
+            right: auto !important;
+            transform: translateX(-50%) !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
           }
         }
       `}</style>
