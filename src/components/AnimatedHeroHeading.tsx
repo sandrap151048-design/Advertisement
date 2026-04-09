@@ -47,7 +47,7 @@ export default function AnimatedHeroHeading({ onReveal, onTagClick }: AnimatedHe
   } as any;
 
   return (
-    <div style={{ position: 'relative', display: 'inline-block' }}>
+    <div style={{ position: 'relative', display: 'block', width: '100%' }}>
       <motion.h1
         onClick={handleClick}
         style={{
@@ -61,8 +61,9 @@ export default function AnimatedHeroHeading({ onReveal, onTagClick }: AnimatedHe
           wordBreak: 'break-word',
           textShadow: '0 2px 20px rgba(0,0,0,0.9), 0 4px 40px rgba(0,0,0,0.7)',
           position: 'relative',
-          display: 'inline-block',
-          minHeight: '120px'
+          display: 'block',
+          minHeight: '120px',
+          width: '100%'
         }}
         whileHover={!isRevealed ? { scale: 1.02 } : {}}
         whileTap={!isRevealed ? { scale: 0.98 } : {}}
@@ -74,7 +75,9 @@ export default function AnimatedHeroHeading({ onReveal, onTagClick }: AnimatedHe
           style={{
             display: 'flex',
             gap: '0.1em',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            flexWrap: 'nowrap',
+            whiteSpace: 'nowrap'
           }}
         >
           {letters.map((letter, i) => (
@@ -84,7 +87,8 @@ export default function AnimatedHeroHeading({ onReveal, onTagClick }: AnimatedHe
               variants={letterVariants}
               style={{
                 display: 'inline-block',
-                color: i === 0 ? '#e61e25' : '#ffffff'
+                color: i === 0 ? '#e61e25' : '#ffffff',
+                flexShrink: 0
               }}
             >
               {letter}

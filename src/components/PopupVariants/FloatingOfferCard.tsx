@@ -241,7 +241,7 @@ export default function FloatingOfferCard({ onClose }: FloatingOfferCardProps) {
               zIndex: 1001,
               maxWidth: 'calc(100vw - 2rem)',
               width: 'clamp(280px, 90vw, 480px)',
-              maxHeight: '90vh',
+              maxHeight: 'calc(100vh - 2rem)',
               overflowY: 'auto',
               overflowX: 'hidden'
             }}

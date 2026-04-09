@@ -280,8 +280,8 @@ export default function FloatingCouponCard({ onClose }: FloatingCouponCardProps)
               boxShadow: '0 25px 60px rgba(255, 42, 42, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
               zIndex: 1001,
               maxWidth: 'calc(100vw - 2rem)',
-              width: '480px',
-              maxHeight: '90vh',
+              width: 'clamp(280px, 90vw, 480px)',
+              maxHeight: 'calc(100vh - 2rem)',
               overflowY: 'auto',
               overflowX: 'hidden'
             }}
