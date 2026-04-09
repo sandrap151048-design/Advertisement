@@ -383,16 +383,17 @@ export default function InlineScratchCardSection() {
                 background: 'linear-gradient(135deg, rgba(11, 11, 11, 0.95) 0%, rgba(20, 10, 15, 0.95) 100%)',
                 border: '1px solid rgba(255, 42, 42, 0.3)',
                 borderRadius: '16px',
-                padding: 'clamp(1.5rem, 4vw, 2rem)',
+                padding: 'clamp(1rem, 3vw, 1.5rem)',
                 backdropFilter: 'blur(20px)',
                 boxShadow: '0 25px 60px rgba(255, 42, 42, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
                 zIndex: 1001,
-                maxWidth: 'calc(100vw - 2rem)',
-                width: 'clamp(280px, 90vw, 480px)',
-                maxHeight: 'calc(100vh - 3rem)',
+                maxWidth: 'calc(100vw - 1rem)',
+                width: 'clamp(260px, 85vw, 450px)',
+                maxHeight: 'calc(100vh - 2rem)',
                 overflowY: 'auto',
                 overflowX: 'hidden',
-                margin: '0 auto'
+                margin: '0 auto',
+                boxSizing: 'border-box'
               }}
             >
               {/* Close Button */}
@@ -427,26 +428,26 @@ export default function InlineScratchCardSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                style={{ textAlign: 'center', marginBottom: '2rem' }}
+                style={{ textAlign: 'center', marginBottom: '1.5rem' }}
               >
                 <motion.div
                   animate={{ scale: [1, 1.05, 1] }}
                   transition={{ duration: 0.6 }}
                   style={{
-                    fontSize: '3.5rem',
+                    fontSize: 'clamp(2.5rem, 8vw, 3.5rem)',
                     fontWeight: 900,
                     color: '#FF2A2A',
-                    marginBottom: '0.5rem',
+                    marginBottom: '0.3rem',
                     textShadow: '0 0 20px rgba(255, 42, 42, 0.3)'
                   }}
                 >
                   {selectedOffer.discount}
                 </motion.div>
                 <h2 style={{
-                  fontSize: '1.5rem',
+                  fontSize: 'clamp(1.2rem, 4vw, 1.5rem)',
                   fontWeight: 800,
                   color: '#ffffff',
-                  marginBottom: '0.5rem'
+                  marginBottom: '0.3rem'
                 }}>
                   {selectedOffer.title}
                 </h2>
@@ -464,7 +465,7 @@ export default function InlineScratchCardSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
+                style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}
               >
                 <input
                   type="text"
@@ -472,7 +473,7 @@ export default function InlineScratchCardSection() {
                   value={formData.name}
                   onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                   style={{
-                    padding: '0.9rem',
+                    padding: '0.75rem',
                     background: 'rgba(255, 255, 255, 0.05)',
                     border: '1px solid rgba(255, 42, 42, 0.2)',
                     borderRadius: '8px',
@@ -497,7 +498,7 @@ export default function InlineScratchCardSection() {
                   value={formData.email}
                   onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                   style={{
-                    padding: '0.9rem',
+                    padding: '0.75rem',
                     background: 'rgba(255, 255, 255, 0.05)',
                     border: '1px solid rgba(255, 42, 42, 0.2)',
                     borderRadius: '8px',
@@ -522,7 +523,7 @@ export default function InlineScratchCardSection() {
                   value={formData.phone}
                   onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
                   style={{
-                    padding: '0.9rem',
+                    padding: '0.75rem',
                     background: 'rgba(255, 255, 255, 0.05)',
                     border: '1px solid rgba(255, 42, 42, 0.2)',
                     borderRadius: '8px',
@@ -547,7 +548,7 @@ export default function InlineScratchCardSection() {
                   value={formData.companyName}
                   onChange={(e) => setFormData(prev => ({ ...prev, companyName: e.target.value }))}
                   style={{
-                    padding: '0.9rem',
+                    padding: '0.75rem',
                     background: 'rgba(255, 255, 255, 0.05)',
                     border: '1px solid rgba(255, 42, 42, 0.2)',
                     borderRadius: '8px',
@@ -574,7 +575,7 @@ export default function InlineScratchCardSection() {
                   disabled={isSubmitting}
                   style={{
                     width: '100%',
-                    padding: '1rem',
+                    padding: '0.85rem',
                     background: 'linear-gradient(135deg, #FF2A2A 0%, #FF4444 100%)',
                     color: 'white',
                     border: 'none',
@@ -597,7 +598,7 @@ export default function InlineScratchCardSection() {
                   onClick={handleReset}
                   style={{
                     width: '100%',
-                    padding: '0.9rem',
+                    padding: '0.75rem',
                     background: 'transparent',
                     color: 'rgba(255, 255, 255, 0.7)',
                     border: '1px solid rgba(255, 255, 255, 0.2)',
