@@ -25,11 +25,11 @@ export default function AnimatedHeroHeading({ onReveal, onTagClick }: AnimatedHe
           textShadow: '0 2px 20px rgba(0,0,0,0.9), 0 4px 40px rgba(0,0,0,0.7)',
           position: 'relative',
           display: 'block',
-          width: '100%',
-          color: '#ffffff'
+          width: '100%'
         }}
       >
-        ATTRACTIVE
+        <span style={{ color: '#e61e25' }}>AT</span>
+        <span style={{ color: '#ffffff' }}>TRACTIVE</span>
       </motion.h1>
     </div>
   );
