@@ -350,7 +350,7 @@ export default function InlineScratchCardSection() {
             )}
         </motion.div>
 
-        {/* Popup Modal */}
+        {/* Popup Modal - Coupon Ticket Style */}
         {currentStep === 'result' && selectedOffer && (
           <>
             {/* Backdrop */}
@@ -368,7 +368,7 @@ export default function InlineScratchCardSection() {
               }}
             />
 
-            {/* Popup */}
+            {/* Coupon Ticket Popup */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8, y: -50 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -380,236 +380,280 @@ export default function InlineScratchCardSection() {
                 left: 0,
                 right: 0,
                 margin: '0 auto',
-                background: 'linear-gradient(135deg, rgba(11, 11, 11, 0.95) 0%, rgba(20, 10, 15, 0.95) 100%)',
-                border: '1px solid rgba(255, 42, 42, 0.3)',
-                borderRadius: '16px',
-                padding: 'clamp(1rem, 3vw, 1.5rem)',
+                background: 'linear-gradient(135deg, rgba(11, 11, 11, 0.98) 0%, rgba(20, 10, 15, 0.98) 100%)',
+                border: '2px dashed rgba(255, 42, 42, 0.5)',
+                borderRadius: '12px',
+                padding: 'clamp(1.5rem, 4vw, 2rem)',
                 backdropFilter: 'blur(20px)',
                 boxShadow: '0 25px 60px rgba(255, 42, 42, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
                 zIndex: 1001,
-                width: 'min(calc(100vw - 1rem), 450px)',
+                width: 'min(calc(100vw - 1rem), 500px)',
                 maxHeight: 'calc(100vh - 2rem)',
                 overflowY: 'auto',
                 overflowX: 'hidden',
                 boxSizing: 'border-box'
               }}
             >
-              {/* Close Button */}
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={handleReset}
+              {/* Glow Effect */}
+              <motion.div
+                animate={{ opacity: [0.2, 0.5, 0.2] }}
+                transition={{ duration: 2.5, repeat: Infinity }}
                 style={{
                   position: 'absolute',
-                  top: '1.5rem',
-                  right: '1.5rem',
-                  background: 'rgba(255, 42, 42, 0.15)',
-                  border: '1px solid rgba(255, 42, 42, 0.3)',
-                  color: '#FF2A2A',
-                  width: '36px',
-                  height: '36px',
-                  borderRadius: '50%',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '1.3rem',
-                  fontWeight: 'bold',
-                  transition: 'all 0.3s ease'
+                  inset: 0,
+                  background: 'radial-gradient(circle at center, rgba(255, 42, 42, 0.1) 0%, transparent 70%)',
+                  pointerEvents: 'none',
+                  borderRadius: '12px'
                 }}
-              >
-                ✕
-              </motion.button>
+              />
 
-              {/* Offer Header */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                style={{ textAlign: 'center', marginBottom: '1.5rem' }}
-              >
+              {/* Content */}
+              <div style={{ position: 'relative', zIndex: 2 }}>
+                {/* Top Divider */}
                 <motion.div
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 0.6 }}
+                  initial={{ opacity: 0, scaleX: 0 }}
+                  animate={{ opacity: 1, scaleX: 1 }}
+                  transition={{ delay: 0.1 }}
                   style={{
-                    fontSize: 'clamp(2.5rem, 8vw, 3.5rem)',
-                    fontWeight: 900,
+                    height: '2px',
+                    background: 'repeating-linear-gradient(90deg, #FF2A2A 0px, #FF2A2A 10px, transparent 10px, transparent 20px)',
+                    marginBottom: '1.5rem',
+                    transformOrigin: 'left'
+                  }}
+                />
+
+                {/* Offer Header */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15 }}
+                  style={{
+                    textAlign: 'center',
+                    marginBottom: '1.5rem'
+                  }}
+                >
+                  <div style={{
+                    fontSize: '0.85rem',
+                    fontWeight: 700,
                     color: '#FF2A2A',
-                    marginBottom: '0.3rem',
+                    marginBottom: '0.5rem',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px'
+                  }}>
+                    🎁 SPECIAL OFFER
+                  </div>
+                  <h2 style={{
+                    fontSize: 'clamp(1.5rem, 5vw, 2rem)',
+                    fontWeight: 900,
+                    color: '#ffffff',
+                    marginBottom: '0.5rem',
                     textShadow: '0 0 20px rgba(255, 42, 42, 0.3)'
-                  }}
-                >
-                  {selectedOffer.discount}
-                </motion.div>
-                <h2 style={{
-                  fontSize: 'clamp(1.2rem, 4vw, 1.5rem)',
-                  fontWeight: 800,
-                  color: '#ffffff',
-                  marginBottom: '0.3rem'
-                }}>
-                  {selectedOffer.title}
-                </h2>
-                <p style={{
-                  fontSize: '1rem',
-                  color: 'rgba(255, 255, 255, 0.7)',
-                  lineHeight: '1.6'
-                }}>
-                  {selectedOffer.description}
-                </p>
-              </motion.div>
-
-              {/* Form */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}
-              >
-                <input
-                  type="text"
-                  placeholder="Full Name *"
-                  value={formData.name}
-                  onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                  style={{
-                    padding: '0.75rem',
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    border: '1px solid rgba(255, 42, 42, 0.2)',
-                    borderRadius: '8px',
-                    color: 'white',
-                    fontSize: '0.95rem',
-                    fontWeight: '500',
-                    transition: 'all 0.3s ease',
-                    outline: 'none'
-                  }}
-                  onFocus={(e) => {
-                    e.target.style.borderColor = 'rgba(255, 42, 42, 0.6)';
-                    e.target.style.boxShadow = '0 0 12px rgba(255, 42, 42, 0.2)';
-                  }}
-                  onBlur={(e) => {
-                    e.target.style.borderColor = 'rgba(255, 42, 42, 0.2)';
-                    e.target.style.boxShadow = 'none';
-                  }}
-                />
-                <input
-                  type="email"
-                  placeholder="Email *"
-                  value={formData.email}
-                  onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                  style={{
-                    padding: '0.75rem',
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    border: '1px solid rgba(255, 42, 42, 0.2)',
-                    borderRadius: '8px',
-                    color: 'white',
-                    fontSize: '0.95rem',
-                    fontWeight: '500',
-                    transition: 'all 0.3s ease',
-                    outline: 'none'
-                  }}
-                  onFocus={(e) => {
-                    e.target.style.borderColor = 'rgba(255, 42, 42, 0.6)';
-                    e.target.style.boxShadow = '0 0 12px rgba(255, 42, 42, 0.2)';
-                  }}
-                  onBlur={(e) => {
-                    e.target.style.borderColor = 'rgba(255, 42, 42, 0.2)';
-                    e.target.style.boxShadow = 'none';
-                  }}
-                />
-                <input
-                  type="tel"
-                  placeholder="Phone Number *"
-                  value={formData.phone}
-                  onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                  style={{
-                    padding: '0.75rem',
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    border: '1px solid rgba(255, 42, 42, 0.2)',
-                    borderRadius: '8px',
-                    color: 'white',
-                    fontSize: '0.95rem',
-                    fontWeight: '500',
-                    transition: 'all 0.3s ease',
-                    outline: 'none'
-                  }}
-                  onFocus={(e) => {
-                    e.target.style.borderColor = 'rgba(255, 42, 42, 0.6)';
-                    e.target.style.boxShadow = '0 0 12px rgba(255, 42, 42, 0.2)';
-                  }}
-                  onBlur={(e) => {
-                    e.target.style.borderColor = 'rgba(255, 42, 42, 0.2)';
-                    e.target.style.boxShadow = 'none';
-                  }}
-                />
-                <input
-                  type="text"
-                  placeholder="Company Name"
-                  value={formData.companyName}
-                  onChange={(e) => setFormData(prev => ({ ...prev, companyName: e.target.value }))}
-                  style={{
-                    padding: '0.75rem',
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    border: '1px solid rgba(255, 42, 42, 0.2)',
-                    borderRadius: '8px',
-                    color: 'white',
-                    fontSize: '0.95rem',
-                    fontWeight: '500',
-                    transition: 'all 0.3s ease',
-                    outline: 'none'
-                  }}
-                  onFocus={(e) => {
-                    e.target.style.borderColor = 'rgba(255, 42, 42, 0.6)';
-                    e.target.style.boxShadow = '0 0 12px rgba(255, 42, 42, 0.2)';
-                  }}
-                  onBlur={(e) => {
-                    e.target.style.borderColor = 'rgba(255, 42, 42, 0.2)';
-                    e.target.style.boxShadow = 'none';
-                  }}
-                />
-
-                <motion.button
-                  whileHover={{ scale: 1.02, boxShadow: '0 0 30px rgba(255, 42, 42, 0.4)' }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={handleSubmit}
-                  disabled={isSubmitting}
-                  style={{
-                    width: '100%',
-                    padding: '0.85rem',
-                    background: 'linear-gradient(135deg, #FF2A2A 0%, #FF4444 100%)',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '8px',
+                  }}>
+                    {selectedOffer.title}
+                  </h2>
+                  <p style={{
                     fontSize: '1rem',
-                    fontWeight: 800,
-                    cursor: isSubmitting ? 'not-allowed' : 'pointer',
-                    boxShadow: '0 8px 24px rgba(255, 42, 42, 0.3)',
-                    transition: 'all 0.3s ease',
-                    marginTop: '0.5rem',
-                    opacity: isSubmitting ? 0.7 : 1
-                  }}
-                >
-                  {isSubmitting ? 'Submitting...' : 'Contact Us'}
-                </motion.button>
-
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={handleReset}
-                  style={{
-                    width: '100%',
-                    padding: '0.75rem',
-                    background: 'transparent',
+                    color: '#FF2A2A',
+                    fontWeight: 700,
+                    marginBottom: '0.3rem'
+                  }}>
+                    {selectedOffer.discount}
+                  </p>
+                  <p style={{
+                    fontSize: '0.9rem',
                     color: 'rgba(255, 255, 255, 0.7)',
-                    border: '1px solid rgba(255, 255, 255, 0.2)',
-                    borderRadius: '8px',
-                    fontSize: '0.95rem',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease'
+                    lineHeight: '1.4'
+                  }}>
+                    {selectedOffer.description}
+                  </p>
+                </motion.div>
+
+                {/* Middle Divider */}
+                <motion.div
+                  initial={{ opacity: 0, scaleX: 0 }}
+                  animate={{ opacity: 1, scaleX: 1 }}
+                  transition={{ delay: 0.2 }}
+                  style={{
+                    height: '2px',
+                    background: 'repeating-linear-gradient(90deg, #FF2A2A 0px, #FF2A2A 10px, transparent 10px, transparent 20px)',
+                    marginBottom: '1.5rem',
+                    transformOrigin: 'left'
                   }}
+                />
+
+                {/* Form */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.25 }}
+                  style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1.5rem' }}
                 >
-                  Try Another Offer
-                </motion.button>
-              </motion.div>
+                  <input
+                    type="text"
+                    placeholder="Full Name *"
+                    value={formData.name}
+                    onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                    style={{
+                      padding: '0.75rem',
+                      background: 'rgba(255, 255, 255, 0.05)',
+                      border: '1px solid rgba(255, 42, 42, 0.2)',
+                      borderRadius: '6px',
+                      color: 'white',
+                      fontSize: '0.95rem',
+                      fontWeight: '500',
+                      transition: 'all 0.3s ease',
+                      outline: 'none'
+                    }}
+                    onFocus={(e) => {
+                      e.target.style.borderColor = 'rgba(255, 42, 42, 0.6)';
+                      e.target.style.boxShadow = '0 0 12px rgba(255, 42, 42, 0.2)';
+                    }}
+                    onBlur={(e) => {
+                      e.target.style.borderColor = 'rgba(255, 42, 42, 0.2)';
+                      e.target.style.boxShadow = 'none';
+                    }}
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email *"
+                    value={formData.email}
+                    onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                    style={{
+                      padding: '0.75rem',
+                      background: 'rgba(255, 255, 255, 0.05)',
+                      border: '1px solid rgba(255, 42, 42, 0.2)',
+                      borderRadius: '6px',
+                      color: 'white',
+                      fontSize: '0.95rem',
+                      fontWeight: '500',
+                      transition: 'all 0.3s ease',
+                      outline: 'none'
+                    }}
+                    onFocus={(e) => {
+                      e.target.style.borderColor = 'rgba(255, 42, 42, 0.6)';
+                      e.target.style.boxShadow = '0 0 12px rgba(255, 42, 42, 0.2)';
+                    }}
+                    onBlur={(e) => {
+                      e.target.style.borderColor = 'rgba(255, 42, 42, 0.2)';
+                      e.target.style.boxShadow = 'none';
+                    }}
+                  />
+                  <input
+                    type="tel"
+                    placeholder="Phone Number *"
+                    value={formData.phone}
+                    onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
+                    style={{
+                      padding: '0.75rem',
+                      background: 'rgba(255, 255, 255, 0.05)',
+                      border: '1px solid rgba(255, 42, 42, 0.2)',
+                      borderRadius: '6px',
+                      color: 'white',
+                      fontSize: '0.95rem',
+                      fontWeight: '500',
+                      transition: 'all 0.3s ease',
+                      outline: 'none'
+                    }}
+                    onFocus={(e) => {
+                      e.target.style.borderColor = 'rgba(255, 42, 42, 0.6)';
+                      e.target.style.boxShadow = '0 0 12px rgba(255, 42, 42, 0.2)';
+                    }}
+                    onBlur={(e) => {
+                      e.target.style.borderColor = 'rgba(255, 42, 42, 0.2)';
+                      e.target.style.boxShadow = 'none';
+                    }}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Company Name"
+                    value={formData.companyName}
+                    onChange={(e) => setFormData(prev => ({ ...prev, companyName: e.target.value }))}
+                    style={{
+                      padding: '0.75rem',
+                      background: 'rgba(255, 255, 255, 0.05)',
+                      border: '1px solid rgba(255, 42, 42, 0.2)',
+                      borderRadius: '6px',
+                      color: 'white',
+                      fontSize: '0.95rem',
+                      fontWeight: '500',
+                      transition: 'all 0.3s ease',
+                      outline: 'none'
+                    }}
+                    onFocus={(e) => {
+                      e.target.style.borderColor = 'rgba(255, 42, 42, 0.6)';
+                      e.target.style.boxShadow = '0 0 12px rgba(255, 42, 42, 0.2)';
+                    }}
+                    onBlur={(e) => {
+                      e.target.style.borderColor = 'rgba(255, 42, 42, 0.2)';
+                      e.target.style.boxShadow = 'none';
+                    }}
+                  />
+                </motion.div>
+
+                {/* Bottom Divider */}
+                <motion.div
+                  initial={{ opacity: 0, scaleX: 0 }}
+                  animate={{ opacity: 1, scaleX: 1 }}
+                  transition={{ delay: 0.3 }}
+                  style={{
+                    height: '2px',
+                    background: 'repeating-linear-gradient(90deg, #FF2A2A 0px, #FF2A2A 10px, transparent 10px, transparent 20px)',
+                    marginBottom: '1.5rem',
+                    transformOrigin: 'left'
+                  }}
+                />
+
+                {/* Buttons */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.35 }}
+                  style={{ display: 'flex', gap: '0.75rem', flexDirection: 'column' }}
+                >
+                  <motion.button
+                    whileHover={{ scale: 1.02, boxShadow: '0 0 30px rgba(255, 42, 42, 0.4)' }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={handleSubmit}
+                    disabled={isSubmitting}
+                    style={{
+                      width: '100%',
+                      padding: '0.9rem',
+                      background: 'linear-gradient(135deg, #FF2A2A 0%, #FF4444 100%)',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '6px',
+                      fontSize: '1rem',
+                      fontWeight: 800,
+                      cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                      boxShadow: '0 8px 24px rgba(255, 42, 42, 0.3)',
+                      transition: 'all 0.3s ease',
+                      opacity: isSubmitting ? 0.7 : 1
+                    }}
+                  >
+                    {isSubmitting ? 'Submitting...' : 'Contact Us'}
+                  </motion.button>
+
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={handleReset}
+                    style={{
+                      width: '100%',
+                      padding: '0.9rem',
+                      background: 'transparent',
+                      color: 'rgba(255, 255, 255, 0.7)',
+                      border: '1px solid rgba(255, 255, 255, 0.2)',
+                      borderRadius: '6px',
+                      fontSize: '1rem',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease'
+                    }}
+                  >
+                    Try Another Offer
+                  </motion.button>
+                </motion.div>
+              </div>
             </motion.div>
           </>
         )}
