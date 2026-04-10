@@ -681,27 +681,31 @@ export default function InlineScratchCardSection() {
               style={{
                 position: 'fixed',
                 top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
+                left: 0,
+                right: 0,
+                margin: '0 auto',
+                transform: 'translateY(-50%)',
                 background: 'linear-gradient(135deg, rgba(11, 11, 11, 0.95) 0%, rgba(20, 10, 15, 0.95) 100%)',
                 border: '1px solid rgba(16, 185, 129, 0.3)',
                 borderRadius: '16px',
-                padding: '3rem 2.5rem',
+                padding: 'clamp(2rem, 5vw, 3rem) clamp(1.5rem, 4vw, 2.5rem)',
                 backdropFilter: 'blur(20px)',
                 boxShadow: '0 25px 60px rgba(16, 185, 129, 0.15)',
                 zIndex: 1001,
-                textAlign: 'center'
+                textAlign: 'center',
+                width: 'min(calc(100vw - 1rem), 450px)',
+                boxSizing: 'border-box'
               }}
             >
               <motion.div
                 animate={{ scale: [1, 1.2, 1], rotate: [0, 10, -10, 0] }}
                 transition={{ duration: 0.8 }}
-                style={{ fontSize: '3rem', marginBottom: '1rem' }}
+                style={{ fontSize: 'clamp(2rem, 8vw, 3rem)', marginBottom: '1rem' }}
               >
                 ✨
               </motion.div>
               <h3 style={{
-                fontSize: '1.5rem',
+                fontSize: 'clamp(1.2rem, 5vw, 1.5rem)',
                 fontWeight: 900,
                 color: '#10b981',
                 marginBottom: '0.5rem'
@@ -709,8 +713,9 @@ export default function InlineScratchCardSection() {
                 Thank You!
               </h3>
               <p style={{
-                fontSize: '1rem',
-                color: 'rgba(255, 255, 255, 0.8)'
+                fontSize: 'clamp(0.9rem, 3vw, 1rem)',
+                color: 'rgba(255, 255, 255, 0.8)',
+                lineHeight: '1.5'
               }}>
                 We will contact you soon
               </p>
