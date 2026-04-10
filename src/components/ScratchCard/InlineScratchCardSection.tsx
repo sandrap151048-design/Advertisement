@@ -376,11 +376,10 @@ export default function InlineScratchCardSection() {
               transition={{ duration: 0.4, type: 'spring', stiffness: 300, damping: 30 }}
               style={{
                 position: 'fixed',
-                top: '50%',
+                top: '1rem',
                 left: 0,
                 right: 0,
                 margin: '0 auto',
-                transform: 'translateY(-50%)',
                 background: 'linear-gradient(135deg, rgba(11, 11, 11, 0.98) 0%, rgba(20, 10, 15, 0.98) 100%)',
                 border: '2px dashed rgba(255, 42, 42, 0.5)',
                 borderRadius: '12px',
@@ -389,7 +388,7 @@ export default function InlineScratchCardSection() {
                 boxShadow: '0 25px 60px rgba(255, 42, 42, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
                 zIndex: 1001,
                 width: 'min(calc(100vw - 1rem), 500px)',
-                maxHeight: 'calc(100vh - 2rem)',
+                maxHeight: 'calc(100vh - 3rem)',
                 overflowY: 'auto',
                 overflowX: 'hidden',
                 boxSizing: 'border-box'
