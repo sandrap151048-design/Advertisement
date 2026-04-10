@@ -125,6 +125,13 @@ export default function LaunchCampaignCard() {
     setShowSuccess(false);
   };
 
+  const handleReset = () => {
+    setShowForm(false);
+    setIsExpanded(false);
+    setFormData({ name: '', email: '', phone: '', companyName: '' });
+    setShowSuccess(false);
+  };
+
   return (
     <section style={{
       padding: 'clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 2rem)',
