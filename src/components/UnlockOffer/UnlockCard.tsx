@@ -43,8 +43,8 @@ export default function UnlockCard({ offers = [] }: UnlockCardProps) {
             {
               id: '1',
               title: 'Free Consultation',
-              description: 'Worth $500 - Expert consultation session',
-              discount: 'FREE',
+              description: 'Worth 500 - Expert consultation session',
+              discount: '500% DISCOUNT',
               type: 'free' as const,
               color: '#10b981',
             },
@@ -60,7 +60,7 @@ export default function UnlockCard({ offers = [] }: UnlockCardProps) {
               id: '3',
               title: 'Special Discount',
               description: 'Limited time offer on all services',
-              discount: '$200 OFF',
+              discount: '200% OFF',
               type: 'fixed' as const,
               color: '#3b82f6',
             },
@@ -208,7 +208,7 @@ export default function UnlockCard({ offers = [] }: UnlockCardProps) {
                 background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%)',
                 border: '1px solid rgba(255, 255, 255, 0.1)',
                 borderRadius: '16px',
-                padding: '3rem 2rem',
+                padding: '2.5rem 2rem',
                 backdropFilter: 'blur(10px)',
                 boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
                 maxWidth: '500px',
@@ -217,18 +217,6 @@ export default function UnlockCard({ offers = [] }: UnlockCardProps) {
                 margin: '0 auto'
               }}
             >
-              {/* Lock Icon */}
-              <motion.div
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                style={{
-                  fontSize: '4rem',
-                  marginBottom: '1.5rem'
-                }}
-              >
-                🔒
-              </motion.div>
-
               {/* Offer Title */}
               <h3 style={{
                 fontSize: '1.5rem',
@@ -254,8 +242,9 @@ export default function UnlockCard({ offers = [] }: UnlockCardProps) {
                 background: 'rgba(255, 42, 42, 0.1)',
                 border: '1px solid rgba(255, 42, 42, 0.3)',
                 borderRadius: '8px',
-                padding: '1rem',
-                marginBottom: '2rem'
+                padding: '1.2rem',
+                marginBottom: '2rem',
+                textAlign: 'center'
               }}>
                 <p style={{
                   fontSize: '0.85rem',
@@ -307,13 +296,13 @@ export default function UnlockCard({ offers = [] }: UnlockCardProps) {
                 borderTop: '1px solid rgba(255, 255, 255, 0.1)'
               }}>
                 <div style={{ fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.6)' }}>
-                  ✓ No Credit Card
+                  ✓ Premium Design
                 </div>
                 <div style={{ fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.6)' }}>
-                  ✓ Instant Access
+                  ✓ Fast Delivery
                 </div>
                 <div style={{ fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.6)' }}>
-                  ✓ 100% Secure
+                  ✓ Expert Support
                 </div>
               </div>
             </motion.div>
@@ -366,7 +355,7 @@ export default function UnlockCard({ offers = [] }: UnlockCardProps) {
               position: 'fixed',
               top: '20px',
               left: '50%',
-              marginLeft: 'calc(-250px)',
+              marginLeft: '-250px',
               background: 'linear-gradient(135deg, rgba(11, 11, 11, 0.99) 0%, rgba(20, 10, 15, 0.99) 100%)',
               border: '2px dashed rgba(255, 42, 42, 0.8)',
               borderRadius: '16px',
@@ -377,8 +366,7 @@ export default function UnlockCard({ offers = [] }: UnlockCardProps) {
               width: '500px',
               maxHeight: 'calc(100vh - 40px)',
               overflowY: 'auto',
-              boxSizing: 'border-box',
-              willChange: 'opacity'
+              boxSizing: 'border-box'
             }}
           >
             {/* Close Button */}
@@ -402,62 +390,68 @@ export default function UnlockCard({ offers = [] }: UnlockCardProps) {
             {/* Offer Info */}
             <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
               <div style={{
-                fontSize: '0.85rem',
+                fontSize: '0.75rem',
                 fontWeight: 700,
                 color: '#FF2A2A',
-                marginBottom: '0.5rem',
+                marginBottom: '0.8rem',
                 textTransform: 'uppercase',
-                letterSpacing: '1px'
+                letterSpacing: '2px'
               }}>
-                🔓 UNLOCKED OFFER
+                🎉 SPECIAL OFFER UNLOCKED
               </div>
               <h2 style={{
-                fontSize: '1.8rem',
+                fontSize: '2.2rem',
                 fontWeight: 900,
                 color: '#ffffff',
-                marginBottom: '0.5rem'
+                marginBottom: '0.8rem',
+                letterSpacing: '-1px'
               }}>
                 {selectedOffer.title}
               </h2>
               <p style={{
-                fontSize: '1.2rem',
-                color: '#FF2A2A',
-                fontWeight: 700,
-                marginBottom: '0.3rem'
-              }}>
-                {selectedOffer.discount}
-              </p>
-              <p style={{
-                fontSize: '0.9rem',
-                color: 'rgba(255, 255, 255, 0.7)'
+                fontSize: '0.95rem',
+                color: 'rgba(255, 255, 255, 0.7)',
+                marginBottom: '1.2rem',
+                lineHeight: '1.5'
               }}>
                 {selectedOffer.description}
               </p>
+              
+              {/* Discount Badge */}
+              <div style={{
+                display: 'inline-block',
+                background: 'linear-gradient(135deg, #FF2A2A 0%, #FF4444 100%)',
+                padding: '0.8rem 1.5rem',
+                borderRadius: '50px',
+                marginBottom: '1.5rem'
+              }}>
+                <p style={{
+                  fontSize: '1.8rem',
+                  fontWeight: 900,
+                  color: '#ffffff',
+                  margin: 0
+                }}>
+                  {selectedOffer.discount}
+                </p>
+              </div>
             </div>
-
-            {/* Divider */}
-            <div style={{
-              height: '2px',
-              background: 'repeating-linear-gradient(90deg, #FF2A2A 0px, #FF2A2A 10px, transparent 10px, transparent 20px)',
-              marginBottom: '1.5rem'
-            }} />
 
             {/* Form */}
             <div style={{
               display: 'flex',
               flexDirection: 'column',
-              gap: '1rem'
+              gap: '0.9rem'
             }}>
               <input
                 type="text"
-                placeholder="Full Name *"
+                placeholder="Full Name"
                 value={formData.name}
                 onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                 style={{
-                  padding: '0.85rem',
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  border: '1px solid rgba(255, 42, 42, 0.2)',
-                  borderRadius: '8px',
+                  padding: '1rem',
+                  background: 'rgba(255, 255, 255, 0.08)',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  borderRadius: '10px',
                   color: 'white',
                   fontSize: '0.95rem',
                   outline: 'none',
@@ -465,23 +459,23 @@ export default function UnlockCard({ offers = [] }: UnlockCardProps) {
                 }}
                 onFocus={(e) => {
                   e.currentTarget.style.borderColor = 'rgba(255, 42, 42, 0.6)';
-                  e.currentTarget.style.boxShadow = '0 0 12px rgba(255, 42, 42, 0.2)';
+                  e.currentTarget.style.background = 'rgba(255, 42, 42, 0.05)';
                 }}
                 onBlur={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(255, 42, 42, 0.2)';
-                  e.currentTarget.style.boxShadow = 'none';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
                 }}
               />
               <input
                 type="email"
-                placeholder="Email *"
+                placeholder="Email Address"
                 value={formData.email}
                 onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                 style={{
-                  padding: '0.85rem',
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  border: '1px solid rgba(255, 42, 42, 0.2)',
-                  borderRadius: '8px',
+                  padding: '1rem',
+                  background: 'rgba(255, 255, 255, 0.08)',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  borderRadius: '10px',
                   color: 'white',
                   fontSize: '0.95rem',
                   outline: 'none',
@@ -489,23 +483,23 @@ export default function UnlockCard({ offers = [] }: UnlockCardProps) {
                 }}
                 onFocus={(e) => {
                   e.currentTarget.style.borderColor = 'rgba(255, 42, 42, 0.6)';
-                  e.currentTarget.style.boxShadow = '0 0 12px rgba(255, 42, 42, 0.2)';
+                  e.currentTarget.style.background = 'rgba(255, 42, 42, 0.05)';
                 }}
                 onBlur={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(255, 42, 42, 0.2)';
-                  e.currentTarget.style.boxShadow = 'none';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
                 }}
               />
               <input
                 type="tel"
-                placeholder="Phone Number *"
+                placeholder="Phone Number"
                 value={formData.phone}
                 onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
                 style={{
-                  padding: '0.85rem',
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  border: '1px solid rgba(255, 42, 42, 0.2)',
-                  borderRadius: '8px',
+                  padding: '1rem',
+                  background: 'rgba(255, 255, 255, 0.08)',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  borderRadius: '10px',
                   color: 'white',
                   fontSize: '0.95rem',
                   outline: 'none',
@@ -513,23 +507,23 @@ export default function UnlockCard({ offers = [] }: UnlockCardProps) {
                 }}
                 onFocus={(e) => {
                   e.currentTarget.style.borderColor = 'rgba(255, 42, 42, 0.6)';
-                  e.currentTarget.style.boxShadow = '0 0 12px rgba(255, 42, 42, 0.2)';
+                  e.currentTarget.style.background = 'rgba(255, 42, 42, 0.05)';
                 }}
                 onBlur={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(255, 42, 42, 0.2)';
-                  e.currentTarget.style.boxShadow = 'none';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
                 }}
               />
               <input
                 type="text"
-                placeholder="Company Name"
+                placeholder="Company Name (Optional)"
                 value={formData.companyName}
                 onChange={(e) => setFormData(prev => ({ ...prev, companyName: e.target.value }))}
                 style={{
-                  padding: '0.85rem',
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  border: '1px solid rgba(255, 42, 42, 0.2)',
-                  borderRadius: '8px',
+                  padding: '1rem',
+                  background: 'rgba(255, 255, 255, 0.08)',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  borderRadius: '10px',
                   color: 'white',
                   fontSize: '0.95rem',
                   outline: 'none',
@@ -537,24 +531,17 @@ export default function UnlockCard({ offers = [] }: UnlockCardProps) {
                 }}
                 onFocus={(e) => {
                   e.currentTarget.style.borderColor = 'rgba(255, 42, 42, 0.6)';
-                  e.currentTarget.style.boxShadow = '0 0 12px rgba(255, 42, 42, 0.2)';
+                  e.currentTarget.style.background = 'rgba(255, 42, 42, 0.05)';
                 }}
                 onBlur={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(255, 42, 42, 0.2)';
-                  e.currentTarget.style.boxShadow = 'none';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
                 }}
               />
             </div>
 
-            {/* Divider */}
-            <div style={{
-              height: '2px',
-              background: 'repeating-linear-gradient(90deg, #FF2A2A 0px, #FF2A2A 10px, transparent 10px, transparent 20px)',
-              margin: '1.5rem 0'
-            }} />
-
             {/* Buttons */}
-            <div style={{ display: 'flex', gap: '0.75rem', flexDirection: 'column' }}>
+            <div style={{ display: 'flex', gap: '0.75rem', flexDirection: 'column', marginTop: '1.5rem' }}>
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -562,19 +549,20 @@ export default function UnlockCard({ offers = [] }: UnlockCardProps) {
                 disabled={isSubmitting}
                 style={{
                   width: '100%',
-                  padding: '0.9rem',
+                  padding: '1.1rem',
                   background: 'linear-gradient(135deg, #FF2A2A 0%, #FF4444 100%)',
                   color: 'white',
                   border: 'none',
-                  borderRadius: '8px',
+                  borderRadius: '10px',
                   fontSize: '1rem',
                   fontWeight: 800,
                   cursor: isSubmitting ? 'not-allowed' : 'pointer',
                   boxShadow: '0 8px 24px rgba(255, 42, 42, 0.3)',
-                  opacity: isSubmitting ? 0.7 : 1
+                  opacity: isSubmitting ? 0.7 : 1,
+                  transition: 'all 0.3s ease'
                 }}
               >
-                {isSubmitting ? 'Submitting...' : 'Contact Us'}
+                {isSubmitting ? 'Submitting...' : '✓ Contact Us'}
               </motion.button>
 
               <motion.button
@@ -583,17 +571,18 @@ export default function UnlockCard({ offers = [] }: UnlockCardProps) {
                 onClick={handleTryAnother}
                 style={{
                   width: '100%',
-                  padding: '0.9rem',
-                  background: 'transparent',
-                  color: 'rgba(255, 255, 255, 0.7)',
+                  padding: '1.1rem',
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  color: 'rgba(255, 255, 255, 0.9)',
                   border: '1px solid rgba(255, 255, 255, 0.2)',
-                  borderRadius: '8px',
+                  borderRadius: '10px',
                   fontSize: '1rem',
-                  fontWeight: 600,
-                  cursor: 'pointer'
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease'
                 }}
               >
-                Try Another Offer
+                🔄 Try Another Offer
               </motion.button>
             </div>
           </motion.div>
@@ -628,7 +617,7 @@ export default function UnlockCard({ offers = [] }: UnlockCardProps) {
               position: 'fixed',
               top: '20px',
               left: '50%',
-              transform: 'translateX(-50%)',
+              marginLeft: '-225px',
               background: 'linear-gradient(135deg, rgba(11, 11, 11, 0.99) 0%, rgba(20, 10, 15, 0.99) 100%)',
               border: '1px solid rgba(16, 185, 129, 0.5)',
               borderRadius: '16px',
@@ -637,9 +626,8 @@ export default function UnlockCard({ offers = [] }: UnlockCardProps) {
               boxShadow: '0 0 60px rgba(16, 185, 129, 0.3)',
               zIndex: 9999,
               textAlign: 'center',
-              width: 'min(calc(100vw - 1rem), 450px)',
-              boxSizing: 'border-box',
-              willChange: 'transform'
+              width: '450px',
+              boxSizing: 'border-box'
             }}
           >
             <motion.div

@@ -61,7 +61,7 @@ const ALL_PROJECTS: Project[] = [
         category: 'Vehicle Branding',
         images: [
             '/signage-vehicle.png',
-            '/dubai-hero-building.jpg'
+            '/signage-production.png'
         ]
     },
     {

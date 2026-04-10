@@ -264,5 +264,30 @@
     "status": "claimed",
     "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0",
     "expiresAt": "2026-05-10T05:57:47.898Z"
+  },
+  {
+    "_id": "1775805026682",
+    "name": "sandra",
+    "email": "sandrap@gmail.com",
+    "phone": "09746721825",
+    "companyName": "wsd",
+    "offer": {
+      "id": "3",
+      "title": "Special Discount",
+      "description": "Limited time offer on all services",
+      "discount": "$200 OFF",
+      "type": "fixed",
+      "color": "#3b82f6",
+      "active": true,
+      "createdAt": "2026-04-08T00:00:00.000Z"
+    },
+    "scratchedAt": "2026-04-10T07:10:26.065Z",
+    "source": "homepage_unlock_card",
+    "claimed": false,
+    "createdAt": "2026-04-10T07:10:26.682Z",
+    "ipAddress": "127.0.0.1",
+    "status": "claimed",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0",
+    "expiresAt": "2026-05-10T07:10:26.683Z"
   }
 ]
