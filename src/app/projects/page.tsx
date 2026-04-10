@@ -61,7 +61,7 @@ const ALL_PROJECTS: Project[] = [
         category: 'Vehicle Branding',
         images: [
             '/signage-vehicle.png',
-            '/signage-production.png'
+            'https://luberfiner.com/wp-content/uploads/2020/02/ldq-insights.png'
         ]
     },
     {
@@ -70,7 +70,7 @@ const ALL_PROJECTS: Project[] = [
         description: 'High-visibility 3D LED signage installations designed for maximum impact in premium commercial districts, ensuring your brand stays visible 24/7.',
         category: 'Signage',
         images: [
-            '/signage-production.png',
+            '/signage-cladding.png',
             '/services-hero-bg.png'
         ]
     },
@@ -101,7 +101,7 @@ const ALL_PROJECTS: Project[] = [
         category: 'Facade & Cladding',
         images: [
             '/signage-cladding.png',
-            '/home-hero-bg.png'
+            '/signage-branding.png'
         ]
     }
 ];
