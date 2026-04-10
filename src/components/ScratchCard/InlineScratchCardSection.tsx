@@ -377,9 +377,8 @@ export default function InlineScratchCardSection() {
               style={{
                 position: 'fixed',
                 top: '1rem',
-                left: 0,
-                right: 0,
-                margin: '0 auto',
+                left: '50%',
+                transform: 'translateX(-50%)',
                 background: 'linear-gradient(135deg, rgba(11, 11, 11, 0.98) 0%, rgba(20, 10, 15, 0.98) 100%)',
                 border: '2px dashed rgba(255, 42, 42, 0.5)',
                 borderRadius: '12px',
@@ -391,7 +390,8 @@ export default function InlineScratchCardSection() {
                 maxHeight: 'calc(100vh - 3rem)',
                 overflowY: 'auto',
                 overflowX: 'hidden',
-                boxSizing: 'border-box'
+                boxSizing: 'border-box',
+                willChange: 'transform'
               }}
             >
               {/* Glow Effect */}
