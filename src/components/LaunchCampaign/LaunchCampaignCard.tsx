@@ -600,7 +600,7 @@ export default function LaunchCampaignCard() {
                   transition: 'all 0.3s ease'
                 }}
               >
-                🎁 Get Another Offer
+                🔄 Get Another Offer
               </motion.button>
             </div>
           </motion.div>
