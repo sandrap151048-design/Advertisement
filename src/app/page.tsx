@@ -7,7 +7,6 @@ import Link from 'next/link';
 import ScratchPopup from '@/components/HeroScratchPopup/ScratchPopup';
 import AnimatedHeroHeading from '@/components/AnimatedHeroHeading';
 import InlineScratchCardSection from '@/components/ScratchCard/InlineScratchCardSection';
-import CouponTicketPopup from '@/components/PopupVariants/CouponTicketPopup';
 import './black-cards.css';
 
 const fadeInUp: Variants = {
@@ -1601,9 +1600,6 @@ export default function Home() {
           `}</style>
         </motion.div>
       </section>
-
-      {/* Coupon Ticket Popup */}
-      <CouponTicketPopup />
 
       {/* CTA Section with Background */}
       <section style={{ 
