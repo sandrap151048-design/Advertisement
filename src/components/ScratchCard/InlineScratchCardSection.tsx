@@ -376,10 +376,11 @@ export default function InlineScratchCardSection() {
               transition={{ duration: 0.4, type: 'spring', stiffness: 300, damping: 30 }}
               style={{
                 position: 'fixed',
-                top: '1rem',
+                top: '50%',
                 left: 0,
                 right: 0,
                 margin: '0 auto',
+                transform: 'translateY(-50%)',
                 background: 'linear-gradient(135deg, rgba(11, 11, 11, 0.98) 0%, rgba(20, 10, 15, 0.98) 100%)',
                 border: '2px dashed rgba(255, 42, 42, 0.5)',
                 borderRadius: '12px',
