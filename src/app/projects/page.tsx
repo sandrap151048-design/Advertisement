@@ -51,7 +51,7 @@ const ALL_PROJECTS: Project[] = [
         category: 'Digital Printing',
         images: [
             '/signage-exhibition.png',
-            '/home-hero-bg.png'
+            'https://i.pinimg.com/736x/c0/d4/de/c0d4de585c6bcff79eeb27a950e60112.jpg'
         ]
     },
     {
