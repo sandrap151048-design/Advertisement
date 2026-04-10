@@ -6,6 +6,7 @@ import { ArrowRight, MapPin, Phone, Mail, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import AnimatedHeroHeading from '@/components/AnimatedHeroHeading';
 import EnvelopePopup from '@/components/UnlockOffer/UnlockCard';
+import LaunchCampaignCard from '@/components/LaunchCampaign/LaunchCampaignCard';
 import './black-cards.css';
 
 const fadeInUp: Variants = {
@@ -1011,8 +1012,8 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Unlock Offer Section */}
-      {mounted && <EnvelopePopup />}
+      {/* Launch Campaign Section */}
+      {mounted && <LaunchCampaignCard />}
 
       {/* We Build Section */}
       <section className="we-build-section">
