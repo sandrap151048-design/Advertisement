@@ -61,7 +61,7 @@ const ALL_PROJECTS: Project[] = [
         category: 'Vehicle Branding',
         images: [
             '/signage-vehicle.png',
-            'https://luberfiner.com/wp-content/uploads/2020/02/ldq-insights.png'
+            'https://lirp.cdn-website.com/08d904d8/dms3rep/multi/opt/fleet+wraps+roseville-1920w.jpg'
         ]
     },
     {
