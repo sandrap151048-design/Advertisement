@@ -4,9 +4,8 @@ import React, { useState, FormEvent, useEffect } from 'react';
 import { motion, Variants, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight, MapPin, Phone, Mail, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
-import ScratchPopup from '@/components/HeroScratchPopup/ScratchPopup';
 import AnimatedHeroHeading from '@/components/AnimatedHeroHeading';
-import InlineScratchCardSection from '@/components/ScratchCard/InlineScratchCardSection';
+import EnvelopePopup from '@/components/UnlockOffer/UnlockCard';
 import './black-cards.css';
 
 const fadeInUp: Variants = {
@@ -1012,8 +1011,8 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Inline Scratch Card Section */}
-      {mounted && <InlineScratchCardSection />}
+      {/* Unlock Offer Section */}
+      {mounted && <EnvelopePopup />}
 
       {/* We Build Section */}
       <section className="we-build-section">

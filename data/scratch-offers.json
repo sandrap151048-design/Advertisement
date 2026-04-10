@@ -240,5 +240,29 @@
     "status": "claimed",
     "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0",
     "expiresAt": "2026-05-10T04:33:42.662Z"
+  },
+  {
+    "_id": "1775800667897",
+    "name": "sandra",
+    "email": "sandrap@gmail.com",
+    "phone": "09746721825",
+    "companyName": "dsa",
+    "offer": {
+      "id": "1",
+      "title": "Free Consultation",
+      "description": "Worth $500 - Expert consultation session",
+      "discount": "FREE",
+      "type": "free",
+      "color": "#10b981",
+      "active": true
+    },
+    "scratchedAt": "2026-04-10T05:57:43.385Z",
+    "source": "homepage_inline_scratch",
+    "claimed": false,
+    "createdAt": "2026-04-10T05:57:47.897Z",
+    "ipAddress": "127.0.0.1",
+    "status": "claimed",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0",
+    "expiresAt": "2026-05-10T05:57:47.898Z"
   }
 ]

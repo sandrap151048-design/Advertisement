@@ -23,9 +23,14 @@ export default function ScratchCard({ offer, onComplete }: ScratchCardProps) {
   const [isRevealed, setIsRevealed] = useState(false);
   const [scratchProgress, setScratchProgress] = useState(0);
   const isDrawing = useRef(false);
+  const lastX = useRef(0);
+  const lastY = useRef(0);
+  const hasRevealed = useRef(false);
 
   useEffect(() => {
     initCanvas();
+    window.addEventListener('resize', initCanvas);
+    return () => window.removeEventListener('resize', initCanvas);
   }, []);
 
   const initCanvas = () => {
@@ -35,10 +40,9 @@ export default function ScratchCard({ offer, onComplete }: ScratchCardProps) {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Set canvas size - responsive and much bigger
-    const rect = canvas.getBoundingClientRect();
+    // Set canvas size - responsive
     const width = Math.min(450, window.innerWidth - 40);
-    const height = (width / 500) * 380;
+    const height = (width / 450) * 280;
     canvas.width = width;
     canvas.height = height;
 
@@ -51,32 +55,57 @@ export default function ScratchCard({ offer, onComplete }: ScratchCardProps) {
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    // Add subtle texture
+    for (let i = 0; i < 100; i++) {
+      ctx.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.05})`;
+      ctx.fillRect(
+        Math.random() * canvas.width,
+        Math.random() * canvas.height,
+        Math.random() * 3,
+        Math.random() * 3
+      );
+    }
+
     // Add scratch-off text with glow effect
     ctx.save();
-    ctx.shadowColor = 'rgba(255, 255, 255, 0.5)';
-    ctx.shadowBlur = 10;
+    ctx.shadowColor = 'rgba(255, 255, 255, 0.6)';
+    ctx.shadowBlur = 15;
     ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 16px Arial';
+    ctx.font = `bold ${Math.max(14, canvas.width * 0.035)}px Arial`;
     ctx.textAlign = 'center';
-    ctx.fillText('🎁 Scratch to Reveal', canvas.width / 2, canvas.height / 2 - 10);
-    ctx.fillText('Your Special Offer! 🎁', canvas.width / 2, canvas.height / 2 + 15);
+    ctx.fillText('🎁 Scratch to Reveal', canvas.width / 2, canvas.height / 2 - 15);
+    ctx.fillText('Your Special Offer! 🎁', canvas.width / 2, canvas.height / 2 + 20);
     ctx.restore();
 
-    // Add decorative elements
+    // Add decorative border
     ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
     ctx.lineWidth = 2;
     ctx.setLineDash([5, 5]);
-    ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
+    ctx.strokeRect(15, 15, canvas.width - 30, canvas.height - 30);
+    ctx.setLineDash([]);
   };
 
   const startScratch = (e: React.MouseEvent | React.TouchEvent) => {
+    if (isRevealed || hasRevealed.current) return;
+    
     isDrawing.current = true;
     setIsScratching(true);
+    
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    
+    const rect = canvas.getBoundingClientRect();
+    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+    
+    lastX.current = ((clientX - rect.left) / rect.width) * canvas.width;
+    lastY.current = ((clientY - rect.top) / rect.height) * canvas.height;
+    
     scratch(e);
   };
 
   const scratch = (e: React.MouseEvent | React.TouchEvent) => {
-    if (!isDrawing.current) return;
+    if (!isDrawing.current || isRevealed || hasRevealed.current) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -91,11 +120,30 @@ export default function ScratchCard({ offer, onComplete }: ScratchCardProps) {
     const x = ((clientX - rect.left) / rect.width) * canvas.width;
     const y = ((clientY - rect.top) / rect.height) * canvas.height;
 
-    // Create scratch effect
+    // Create smooth brush stroke effect
     ctx.globalCompositeOperation = 'destination-out';
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.lineWidth = 35;
+    
+    // Draw smooth line from last position to current
     ctx.beginPath();
-    ctx.arc(x, y, 25, 0, 2 * Math.PI);
-    ctx.fill();
+    ctx.moveTo(lastX.current, lastY.current);
+    ctx.lineTo(x, y);
+    ctx.stroke();
+    
+    // Add soft brush effect with multiple passes
+    ctx.lineWidth = 25;
+    ctx.globalAlpha = 0.6;
+    ctx.beginPath();
+    ctx.moveTo(lastX.current, lastY.current);
+    ctx.lineTo(x, y);
+    ctx.stroke();
+    
+    ctx.globalAlpha = 1;
+    
+    lastX.current = x;
+    lastY.current = y;
 
     // Calculate scratched area
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -109,12 +157,17 @@ export default function ScratchCard({ offer, onComplete }: ScratchCardProps) {
     const progress = (transparent / (pixels.length / 4)) * 100;
     setScratchProgress(progress);
 
-    // Reveal offer when 60% is scratched (increased from 40%)
-    if (progress > 60 && !isRevealed) {
+    // Reveal offer when 1% is scratched (for testing)
+    if (progress >= 1 && !hasRevealed.current) {
+      hasRevealed.current = true;
       setIsRevealed(true);
+      console.log('✅✅✅ SCRATCH DETECTED - Progress:', Math.round(progress) + '%');
+      console.log('✅✅✅ Calling onComplete with offer:', offer);
+      console.log('✅✅✅ onComplete function:', onComplete);
+      console.log('✅✅✅ About to call onComplete NOW');
       setTimeout(() => {
         onComplete(offer);
-      }, 1500);
+      }, 100);
     }
   };
 
@@ -131,14 +184,26 @@ export default function ScratchCard({ offer, onComplete }: ScratchCardProps) {
       transition={{ duration: 0.3 }}
       className="relative"
     >
+      <style>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.5; }
+        }
+      `}</style>
+
       {/* Scratch Card Container */}
-      <div className="relative mx-auto w-[450px] h-[280px] rounded-xl overflow-hidden shadow-2xl">
+      <div style={{
+        position: 'relative',
+        margin: '0 auto',
+        width: 'clamp(280px, 90vw, 450px)',
+        aspectRatio: '450 / 280',
+        borderRadius: '12px',
+        overflow: 'hidden',
+        boxShadow: '0 20px 60px rgba(0, 0, 0, 0.4)'
+      }}>
         {/* Scratch Canvas */}
         <canvas
           ref={canvasRef}
-          className={`absolute inset-0 cursor-grab active:cursor-grabbing transition-opacity duration-500 ${
-            isRevealed ? 'opacity-0' : 'opacity-100'
-          } ${isScratching ? 'animate-pulse' : ''}`}
           onMouseDown={startScratch}
           onMouseMove={scratch}
           onMouseUp={stopScratch}
@@ -147,15 +212,29 @@ export default function ScratchCard({ offer, onComplete }: ScratchCardProps) {
           onTouchMove={scratch}
           onTouchEnd={stopScratch}
           style={{ 
-            width: '100%', 
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
             height: '100%',
-            filter: isScratching ? 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))' : 'none'
+            cursor: 'grab',
+            opacity: isRevealed ? 0 : 1,
+            transition: 'opacity 0.5s ease',
+            touchAction: 'none',
+            pointerEvents: 'auto'
           }}
         />
 
         {/* Glow Effect */}
         {isScratching && (
-          <div className="absolute inset-0 rounded-xl animate-pulse border-2 border-red-500/50 shadow-lg shadow-red-500/25" />
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            borderRadius: '12px',
+            border: '2px solid rgba(230, 30, 37, 0.5)',
+            boxShadow: '0 0 20px rgba(230, 30, 37, 0.4)',
+            animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            pointerEvents: 'none'
+          }} />
         )}
       </div>
 
@@ -165,29 +244,36 @@ export default function ScratchCard({ offer, onComplete }: ScratchCardProps) {
         animate={{ opacity: isRevealed ? 0 : 1 }}
         className="text-center mt-4"
       >
-        <p className="text-white/60 text-sm">
+        <p style={{
+          color: 'rgba(255, 255, 255, 0.6)',
+          fontSize: '0.9rem',
+          margin: 0
+        }}>
           {isScratching ? '🎉 Keep scratching...' : '👆 Click and drag to scratch'}
         </p>
-        <div className="flex justify-center mt-2">
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '0.5rem' }}>
           <motion.div
             animate={{ y: [0, -5, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-            className="text-2xl"
+            style={{ fontSize: '1.5rem' }}
           >
             ✨
           </motion.div>
         </div>
       </motion.div>
 
-      {/* Confetti Effect */}
+      {/* Confetti Animation */}
       {isRevealed && (
-        <div className="absolute inset-0 pointer-events-none">
-          {[...Array(20)].map((_, i) => (
+        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
+          {[...Array(15)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-2 h-2 rounded-full"
               style={{
-                backgroundColor: ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57'][i % 5],
+                position: 'absolute',
+                width: '8px',
+                height: '8px',
+                borderRadius: '50%',
+                backgroundColor: ['#FF2A2A', '#FFD700', '#FF6B6B', '#FF4444', '#FF1111'][i % 5],
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
               }}
@@ -195,11 +281,11 @@ export default function ScratchCard({ offer, onComplete }: ScratchCardProps) {
               animate={{ 
                 scale: [0, 1, 0], 
                 rotate: 360,
-                y: [0, -100, -200]
+                y: [0, -150, -300]
               }}
               transition={{ 
-                duration: 2, 
-                delay: Math.random() * 0.5,
+                duration: 2.5, 
+                delay: Math.random() * 0.3,
                 ease: "easeOut"
               }}
             />
