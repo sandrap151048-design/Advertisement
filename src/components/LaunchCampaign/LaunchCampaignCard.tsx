@@ -168,107 +168,172 @@ export default function LaunchCampaignCard() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
               style={{
-                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%)',
-                border: '2px solid rgba(230, 30, 37, 0.5)',
-                borderRadius: '20px',
-                padding: '3rem 2.5rem',
-                backdropFilter: 'blur(10px)',
-                boxShadow: '0 0 40px rgba(230, 30, 37, 0.2), 0 8px 32px rgba(0, 0, 0, 0.3)',
-                maxWidth: '550px',
+                background: 'linear-gradient(135deg, rgba(11, 11, 11, 0.95) 0%, rgba(20, 10, 15, 0.95) 100%)',
+                border: '1px solid rgba(230, 30, 37, 0.3)',
+                borderRadius: '24px',
+                padding: '3.5rem 3rem',
+                backdropFilter: 'blur(20px)',
+                boxShadow: '0 0 80px rgba(230, 30, 37, 0.15), 0 20px 60px rgba(0, 0, 0, 0.4)',
+                maxWidth: '600px',
                 width: '100%',
                 textAlign: 'center',
-                margin: '0 auto'
+                margin: '0 auto',
+                position: 'relative',
+                overflow: 'hidden'
               }}
             >
-              {/* Offer Title */}
-              <h3 style={{
-                fontSize: '1.8rem',
-                fontWeight: 800,
-                color: '#ffffff',
-                marginBottom: '1rem'
-              }}>
-                {selectedOffer.title}
-              </h3>
-
-              {/* Offer Description */}
-              <p style={{
-                fontSize: '1rem',
-                color: 'rgba(255, 255, 255, 0.7)',
-                marginBottom: '2rem',
-                lineHeight: '1.6'
-              }}>
-                {selectedOffer.description}
-              </p>
-
-              {/* Offer Value */}
+              {/* Decorative gradient background */}
               <div style={{
-                background: 'rgba(230, 30, 37, 0.15)',
-                border: '2px solid rgba(230, 30, 37, 0.4)',
-                borderRadius: '12px',
-                padding: '1.5rem',
-                marginBottom: '2.5rem',
-                textAlign: 'center'
-              }}>
-                <p style={{
-                  fontSize: '0.9rem',
-                  color: 'rgba(255, 255, 255, 0.6)',
-                  marginBottom: '0.5rem',
-                  textTransform: 'uppercase',
-                  letterSpacing: '1.5px',
-                  fontWeight: 600
-                }}>
-                  Special Offer
-                </p>
-                <p style={{
-                  fontSize: '2.5rem',
-                  fontWeight: 900,
+                position: 'absolute',
+                top: '-50%',
+                right: '-50%',
+                width: '300px',
+                height: '300px',
+                background: 'radial-gradient(circle, rgba(230, 30, 37, 0.1) 0%, transparent 70%)',
+                borderRadius: '50%',
+                pointerEvents: 'none'
+              }} />
+
+              {/* Content wrapper */}
+              <div style={{ position: 'relative', zIndex: 1 }}>
+                {/* Badge */}
+                <div style={{
+                  display: 'inline-block',
+                  background: 'rgba(230, 30, 37, 0.2)',
+                  border: '1px solid rgba(230, 30, 37, 0.4)',
+                  padding: '0.6rem 1.2rem',
+                  borderRadius: '50px',
+                  marginBottom: '1.5rem',
+                  fontSize: '0.75rem',
+                  fontWeight: 700,
                   color: '#FF2A2A',
-                  margin: 0
+                  textTransform: 'uppercase',
+                  letterSpacing: '1.5px'
                 }}>
-                  {selectedOffer.discount}
+                  ⭐ Limited Time Offer
+                </div>
+
+                {/* Offer Title */}
+                <h3 style={{
+                  fontSize: '2.2rem',
+                  fontWeight: 900,
+                  color: '#ffffff',
+                  marginBottom: '0.8rem',
+                  letterSpacing: '-0.5px'
+                }}>
+                  {selectedOffer.title}
+                </h3>
+
+                {/* Offer Description */}
+                <p style={{
+                  fontSize: '1.05rem',
+                  color: 'rgba(255, 255, 255, 0.75)',
+                  marginBottom: '2.5rem',
+                  lineHeight: '1.7',
+                  fontWeight: 500
+                }}>
+                  {selectedOffer.description}
                 </p>
-              </div>
 
-              {/* Launch Button */}
-              <motion.button
-                whileHover={{ scale: 1.05, boxShadow: '0 0 60px rgba(255, 42, 42, 0.5)' }}
-                whileTap={{ scale: 0.95 }}
-                onClick={handleLaunchClick}
-                style={{
-                  width: '100%',
-                  padding: '1.2rem',
-                  background: 'linear-gradient(135deg, #FF2A2A 0%, #FF4444 100%)',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '12px',
-                  fontSize: '1.1rem',
-                  fontWeight: 800,
-                  cursor: 'pointer',
-                  boxShadow: '0 8px 24px rgba(255, 42, 42, 0.3)',
-                  transition: 'all 0.3s ease'
-                }}
-              >
-                🚀 Launch Now
-              </motion.button>
+                {/* Discount Badge - Premium Style */}
+                <div style={{
+                  background: 'linear-gradient(135deg, rgba(230, 30, 37, 0.2) 0%, rgba(230, 30, 37, 0.05) 100%)',
+                  border: '2px solid rgba(230, 30, 37, 0.5)',
+                  borderRadius: '16px',
+                  padding: '2rem 1.5rem',
+                  marginBottom: '2.5rem',
+                  textAlign: 'center',
+                  backdropFilter: 'blur(10px)'
+                }}>
+                  <p style={{
+                    fontSize: '0.85rem',
+                    color: 'rgba(255, 255, 255, 0.6)',
+                    marginBottom: '0.8rem',
+                    textTransform: 'uppercase',
+                    letterSpacing: '2px',
+                    fontWeight: 600
+                  }}>
+                    Your Exclusive Discount
+                  </p>
+                  <p style={{
+                    fontSize: '3.2rem',
+                    fontWeight: 950,
+                    background: 'linear-gradient(135deg, #FF2A2A 0%, #FF6B6B 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                    margin: 0,
+                    letterSpacing: '-1px'
+                  }}>
+                    {selectedOffer.discount}
+                  </p>
+                </div>
 
-              {/* Trust Indicators */}
-              <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                gap: '1.5rem',
-                marginTop: '2rem',
-                paddingTop: '2rem',
-                borderTop: '1px solid rgba(255, 255, 255, 0.1)',
-                flexWrap: 'wrap'
-              }}>
-                <div style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.6)' }}>
-                  ✓ Premium Design
-                </div>
-                <div style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.6)' }}>
-                  ✓ Fast Delivery
-                </div>
-                <div style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.6)' }}>
-                  ✓ Expert Support
+                {/* Launch Button - Premium Style */}
+                <motion.button
+                  whileHover={{ scale: 1.05, boxShadow: '0 0 80px rgba(255, 42, 42, 0.6)' }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={handleLaunchClick}
+                  style={{
+                    width: '100%',
+                    padding: '1.4rem 2rem',
+                    background: 'linear-gradient(135deg, #FF2A2A 0%, #FF4444 100%)',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '14px',
+                    fontSize: '1.15rem',
+                    fontWeight: 800,
+                    cursor: 'pointer',
+                    boxShadow: '0 12px 40px rgba(255, 42, 42, 0.4)',
+                    transition: 'all 0.3s ease',
+                    letterSpacing: '0.5px'
+                  }}
+                >
+                  🚀 Launch Now
+                </motion.button>
+
+                {/* Trust Indicators - Professional Style */}
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr 1fr',
+                  gap: '1.2rem',
+                  marginTop: '2.5rem',
+                  paddingTop: '2.5rem',
+                  borderTop: '1px solid rgba(255, 255, 255, 0.1)'
+                }}>
+                  <div style={{
+                    padding: '1rem',
+                    background: 'rgba(255, 255, 255, 0.03)',
+                    borderRadius: '12px',
+                    border: '1px solid rgba(255, 255, 255, 0.08)'
+                  }}>
+                    <div style={{ fontSize: '1.2rem', marginBottom: '0.4rem' }}>✨</div>
+                    <div style={{ fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.7)', fontWeight: 600 }}>
+                      Premium Design
+                    </div>
+                  </div>
+                  <div style={{
+                    padding: '1rem',
+                    background: 'rgba(255, 255, 255, 0.03)',
+                    borderRadius: '12px',
+                    border: '1px solid rgba(255, 255, 255, 0.08)'
+                  }}>
+                    <div style={{ fontSize: '1.2rem', marginBottom: '0.4rem' }}>⚡</div>
+                    <div style={{ fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.7)', fontWeight: 600 }}>
+                      Fast Delivery
+                    </div>
+                  </div>
+                  <div style={{
+                    padding: '1rem',
+                    background: 'rgba(255, 255, 255, 0.03)',
+                    borderRadius: '12px',
+                    border: '1px solid rgba(255, 255, 255, 0.08)'
+                  }}>
+                    <div style={{ fontSize: '1.2rem', marginBottom: '0.4rem' }}>🎯</div>
+                    <div style={{ fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.7)', fontWeight: 600 }}>
+                      Expert Support
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.div>
