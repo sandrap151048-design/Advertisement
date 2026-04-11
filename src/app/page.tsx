@@ -8,6 +8,7 @@ import AnimatedHeroHeading from '@/components/AnimatedHeroHeading';
 import EnvelopePopup from '@/components/UnlockOffer/UnlockCard';
 import LaunchCampaignCard from '@/components/LaunchCampaign/LaunchCampaignCard';
 import CampaignPopup from '@/components/HeroCampaignPopup/CampaignPopup';
+
 import './black-cards.css';
 
 const fadeInUp: Variants = {
@@ -1016,14 +1017,13 @@ export default function Home() {
 
         {/* Floating Campaign Card */}
         <motion.div
-          initial={{ opacity: 0, x: 100 }}
+          initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.5, duration: 0.6 }}
           style={{
             position: 'absolute',
-            right: 'clamp(1rem, 5vw, 2rem)',
-            top: '50%',
-            transform: 'translateY(-50%)',
+            right: '2rem',
+            bottom: '2rem',
             zIndex: 20,
             pointerEvents: 'auto'
           }}
@@ -1096,6 +1096,7 @@ export default function Home() {
           </motion.button>
         </motion.div>
       </section>
+
 
       {/* We Build Section */}
       <section className="we-build-section">

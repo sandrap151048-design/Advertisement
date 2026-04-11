@@ -1,7 +1,8 @@
 "use client";
 
 import Link from 'next/link';
-import { Phone, MapPin, Mail, Layout, Users, MessageSquare, Briefcase, ExternalLink } from 'lucide-react';
+import { Phone, MapPin, Mail, Layout, Users, MessageSquare, Briefcase, ExternalLink, Facebook, Instagram, Linkedin } from 'lucide-react';
+import Logo from '../../components/Logo';
 
 export default function AdminFooter() {
   const currentYear = new Date().getFullYear();
@@ -13,43 +14,22 @@ export default function AdminFooter() {
           {/* Logo Column */}
           <div>
             <Link href="/" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0' }}>
-                {/* Custom O with red square integrated */}
-                <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginRight: '-0.05em' }}>
-                  <svg 
-                    width="28" 
-                    height="28" 
-                    viewBox="0 0 100 100" 
-                    style={{ display: 'block' }}
-                  >
-                    {/* O outline */}
-                    <circle
-                      cx="50"
-                      cy="50"
-                      r="35"
-                      fill="none"
-                      stroke="white"
-                      strokeWidth="8"
-                    />
-                    {/* Red square in upper right */}
-                    <rect
-                      x="65"
-                      y="20"
-                      width="20"
-                      height="20"
-                      fill="#e61e25"
-                    />
-                  </svg>
-                </div>
-                <span style={{ color: 'white', fontWeight: 800, fontSize: '1.2rem', letterSpacing: '-0.5px', marginLeft: '-0.1em', lineHeight: '1.1' }}>ne Click</span>
-              </div>
-              <div style={{ fontSize: '0.7rem', fontWeight: 600, color: '#888', letterSpacing: '0.5px', textTransform: 'uppercase', marginTop: '4px' }}>
-                Advertisement LLC
-              </div>
+              <Logo size="small" showFullText={true} />
             </Link>
-            <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem', lineHeight: 1.6, maxWidth: '280px' }}>
+            <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem', lineHeight: 1.6, maxWidth: '280px', marginBottom: '1.5rem' }}>
               Premium advertising and outdoor media solutions across the UAE.
             </p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
+              <a href="https://www.facebook.com/oneclickadvertisement/" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.4)', transition: 'color 0.3s' }} onMouseOver={(e) => e.currentTarget.style.color = '#e61e25'} onMouseOut={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'} aria-label="Facebook">
+                <Facebook size={20} />
+              </a>
+              <a href="https://www.instagram.com/oneclick_advertisement?igsh=NzNwaGo2b2VwbDNh" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.4)', transition: 'color 0.3s' }} onMouseOver={(e) => e.currentTarget.style.color = '#e61e25'} onMouseOut={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'} aria-label="Instagram">
+                <Instagram size={20} />
+              </a>
+              <a href="#" style={{ color: 'rgba(255,255,255,0.4)', transition: 'color 0.3s' }} onMouseOver={(e) => e.currentTarget.style.color = '#e61e25'} onMouseOut={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'} aria-label="LinkedIn">
+                <Linkedin size={20} />
+              </a>
+            </div>
           </div>
 
           {/* Quick Links */}

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { Mail, Phone, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Logo from './Logo';
 
@@ -62,6 +62,17 @@ export default function Footer() {
               <li style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                 <Mail size={18} style={{ color: '#888' }} />
                 <a href="mailto:hello@oneclickadv.ae" style={{ color: 'white', textDecoration: 'none', fontSize: '1rem', fontWeight: 500 }}>hello@oneclickadv.ae</a>
+              </li>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '1.2rem', marginTop: '0.5rem' }}>
+                <a href="https://www.facebook.com/oneclickadvertisement/" target="_blank" rel="noopener noreferrer" style={{ color: '#888', transition: 'color 0.3s' }} onMouseOver={(e) => e.currentTarget.style.color = '#e61e25'} onMouseOut={(e) => e.currentTarget.style.color = '#888'} aria-label="Facebook">
+                  <Facebook size={22} />
+                </a>
+                <a href="https://www.instagram.com/oneclick_advertisement?igsh=NzNwaGo2b2VwbDNh" target="_blank" rel="noopener noreferrer" style={{ color: '#888', transition: 'color 0.3s' }} onMouseOver={(e) => e.currentTarget.style.color = '#e61e25'} onMouseOut={(e) => e.currentTarget.style.color = '#888'} aria-label="Instagram">
+                  <Instagram size={22} />
+                </a>
+                <a href="#" style={{ color: '#888', transition: 'color 0.3s' }} onMouseOver={(e) => e.currentTarget.style.color = '#e61e25'} onMouseOut={(e) => e.currentTarget.style.color = '#888'} aria-label="LinkedIn">
+                  <Linkedin size={22} />
+                </a>
               </li>
             </ul>
           </div>

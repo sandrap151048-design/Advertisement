@@ -169,6 +169,25 @@ export default function ScratchOffersAdminPage() {
     return offer.status;
   };
 
+  const getNormalizedOffer = (offer: ScratchOffer['offer'] | string) => {
+    if (typeof offer === 'string') {
+      return {
+        title: offer,
+        discount: 'N/A',
+        description: 'Legacy Offer',
+        type: 'fixed',
+        color: '#e61e25'
+      };
+    }
+    return {
+      title: offer?.title || 'Untitled Offer',
+      discount: offer?.discount || 'N/A',
+      description: offer?.description || '',
+      type: offer?.type || 'fixed',
+      color: offer?.color || '#e61e25'
+    };
+  };
+
   const exportOffers = () => {
     const csvContent = [
       ['Name', 'Email', 'Phone', 'Company', 'Offer Title', 'Discount', 'Type', 'Status', 'Date', 'Expires'].join(','),
@@ -481,42 +500,58 @@ export default function ScratchOffersAdminPage() {
                       
                       {/* Offer Details */}
                       <div style={{ 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        gap: '1rem', 
-                        padding: '1rem',
-                        background: 'rgba(255, 255, 255, 0.02)',
-                        borderRadius: '12px',
-                        border: '1px solid rgba(255, 255, 255, 0.05)'
+                        marginTop: '1.25rem',
+                        padding: '1.25rem',
+                        background: 'rgba(255, 255, 255, 0.03)',
+                        borderRadius: '16px',
+                        border: '1px solid rgba(230, 30, 37, 0.2)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '1rem'
                       }}>
-                        <div
-                          style={{
-                            width: '3rem',
-                            height: '3rem',
-                            borderRadius: '8px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            color: 'white',
-                            fontSize: '0.9rem',
-                            fontWeight: 900,
-                            backgroundColor: offer.offer.color
-                          }}
-                        >
-                          {offer.offer.discount}
-                        </div>
-                        <div style={{ flex: 1 }}>
-                          <div style={{ fontSize: '1rem', fontWeight: 600, color: '#ffffff', marginBottom: '0.25rem' }}>
-                            {offer.offer.title}
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                          <div style={{ flex: 1 }}>
+                            <div style={{ fontSize: '0.7rem', color: '#888', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px', fontWeight: 700 }}>Title</div>
+                            <div style={{ fontSize: '1.1rem', fontWeight: 700, color: '#ffffff' }}>
+                              {(offer.offer as any).title || offer.offer}
+                            </div>
                           </div>
-                          <div style={{ fontSize: '0.85rem', color: '#aaaaaa', marginBottom: '0.5rem', lineHeight: '1.4' }}>
-                            {offer.offer.description}
-                          </div>
-                          <div style={{ fontSize: '0.8rem', color: '#888', textTransform: 'capitalize' }}>
-                            {offer.offer.type} • Expires: {formatDate(offer.expiresAt)}
+                          <div style={{ textAlign: 'right' }}>
+                            <div style={{ fontSize: '0.7rem', color: '#888', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px', fontWeight: 700 }}>Discount</div>
+                            <div style={{ 
+                              background: (offer.offer as any).color || '#e61e25',
+                              padding: '4px 12px',
+                              borderRadius: '6px',
+                              fontSize: '0.9rem',
+                              fontWeight: 900,
+                              color: 'white',
+                              display: 'inline-block',
+                              boxShadow: `0 4px 10px ${((offer.offer as any).color || '#e61e25')}40`
+                            }}>
+                              {(offer.offer as any).discount || 'N/A'}
+                            </div>
                           </div>
                         </div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                        
+                        <div>
+                          <div style={{ fontSize: '0.7rem', color: '#888', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px', fontWeight: 700 }}>Description</div>
+                          <div style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.7)', lineHeight: '1.5' }}>
+                            {(offer.offer as any).description || 'No description available'}
+                          </div>
+                        </div>
+
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.5rem', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '1rem' }}>
+                          <div style={{ display: 'flex', gap: '1.5rem' }}>
+                            <div>
+                              <div style={{ fontSize: '0.65rem', color: '#666', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '2px' }}>Type</div>
+                              <div style={{ fontSize: '0.8rem', color: '#aaa', fontWeight: 600 }}>{(offer.offer as any).type || 'promotion'}</div>
+                            </div>
+                            <div>
+                              <div style={{ fontSize: '0.65rem', color: '#666', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '2px' }}>Expiry</div>
+                              <div style={{ fontSize: '0.8rem', color: '#aaa', fontWeight: 600 }}>{formatDate(offer.expiresAt)}</div>
+                            </div>
+                          </div>
+                          
                           <span
                             style={{
                               display: 'inline-flex',
@@ -528,7 +563,7 @@ export default function ScratchOffersAdminPage() {
                               textTransform: 'capitalize',
                               backgroundColor: `${getStatusColor(getOfferStatus(offer))}20`,
                               color: getStatusColor(getOfferStatus(offer)),
-                              border: `1px solid ${getStatusColor(getOfferStatus(offer))}30`
+                              border: `1px solid ${getStatusColor(getStatusColor(getOfferStatus(offer)))}30`
                             }}
                           >
                             {getOfferStatus(offer)}

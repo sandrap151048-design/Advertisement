@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Home, LogOut, MessageSquare, Briefcase, TrendingUp, Menu, X, Layout, Users, Gift } from 'lucide-react';
+import { Home, LogOut, MessageSquare, Briefcase, TrendingUp, Menu, X, Layout, Users, Gift, Facebook, Instagram, Linkedin } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -199,7 +199,19 @@ export default function AdminSidebar() {
                 </Link>
             </nav>
 
-            <div style={{ marginTop: 'auto', borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '2rem' }}>
+            <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '2rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', padding: '0 0.5rem' }}>
+                    <a href="https://www.facebook.com/oneclickadvertisement/" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.4)', transition: 'color 0.3s' }} onMouseOver={(e) => e.currentTarget.style.color = '#e61e25'} onMouseOut={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'} aria-label="Facebook">
+                        <Facebook size={20} />
+                    </a>
+                    <a href="https://www.instagram.com/oneclick_advertisement?igsh=NzNwaGo2b2VwbDNh" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.4)', transition: 'color 0.3s' }} onMouseOver={(e) => e.currentTarget.style.color = '#e61e25'} onMouseOut={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'} aria-label="Instagram">
+                        <Instagram size={20} />
+                    </a>
+                    <a href="#" style={{ color: 'rgba(255,255,255,0.4)', transition: 'color 0.3s' }} onMouseOver={(e) => e.currentTarget.style.color = '#e61e25'} onMouseOut={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'} aria-label="LinkedIn">
+                        <Linkedin size={20} />
+                    </a>
+                </div>
+                
                 <div 
                     onClick={handleLogout}
                     style={{ 

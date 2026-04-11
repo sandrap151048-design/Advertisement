@@ -29,7 +29,7 @@ export default function Logo({ size = 'medium', className = '', showFullText = f
         style={{
           width: '100%',
           height: 'auto',
-          maxWidth: config.width
+          maxWidth: config.width,
         }}
       />
     </div>

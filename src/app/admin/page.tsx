@@ -135,36 +135,7 @@ export default function AdminPage() {
             >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', flexWrap: 'wrap', gap: '1rem' }}>
                     <div onClick={() => window.location.href='/'} style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0', fontSize: '1.5rem', fontWeight: 900, color: '#ffffff' }}>
-                            {/* Custom O with red square integrated */}
-                            <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginRight: '-0.05em' }}>
-                                <svg 
-                                    width="24" 
-                                    height="24" 
-                                    viewBox="0 0 100 100" 
-                                    style={{ display: 'block' }}
-                                >
-                                    {/* O outline */}
-                                    <circle
-                                        cx="50"
-                                        cy="50"
-                                        r="35"
-                                        fill="none"
-                                        stroke="#ffffff"
-                                        strokeWidth="8"
-                                    />
-                                    {/* Red square in upper right */}
-                                    <rect
-                                        x="65"
-                                        y="20"
-                                        width="20"
-                                        height="20"
-                                        fill="#e61e25"
-                                    />
-                                </svg>
-                            </div>
-                            <span style={{ marginLeft: '-0.1em' }}>ne Click</span>
-                        </div>
+                                <Logo size="small" showFullText={true} />
                     </div>
                     
                     <motion.button
