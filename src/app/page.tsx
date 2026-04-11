@@ -310,41 +310,65 @@ export default function Home() {
         }
 
         .btn {
-          padding: 1rem 2.5rem;
+          padding: 1.1rem 2.5rem;
           font-size: 1rem;
           font-weight: 800;
-          border-radius: 8px;
+          border-radius: 4px;
           border: none;
           cursor: pointer;
-          transition: all 0.6s ease;
+          transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
           text-decoration: none;
           display: inline-flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: 0.8rem;
           white-space: nowrap;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          position: relative;
+          overflow: hidden;
         }
 
         .btn-primary {
           background: #e61e25;
           color: white;
-          box-shadow: 0 4px 15px rgba(230, 30, 37, 0.3);
+          box-shadow: 0 10px 30px rgba(230, 30, 37, 0.3);
+          clip-path: polygon(0 0, 100% 0, 100% 70%, 85% 100%, 0 100%);
+        }
+
+        .btn-primary::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 50%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+          transform: skewX(-25deg);
+          transition: 0.5s;
         }
 
         .btn-primary:hover {
-          background: #ff2d35;
-          transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(230, 30, 37, 0.4);
+          transform: translateY(-5px);
+          box-shadow: 0 20px 40px rgba(230, 30, 37, 0.5);
+          background: #ff1e25;
+        }
+
+        .btn-primary:hover::before {
+          left: 150%;
         }
 
         .btn-secondary {
           background: transparent;
           color: white;
-          border: 2px solid white;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%, 0 30%);
         }
 
         .btn-secondary:hover {
-          background: rgba(255, 255, 255, 0.1);
-          transform: translateY(-2px);
+          background: rgba(255, 255, 255, 0.05);
+          border-color: #e61e25;
+          color: #e61e25;
+          transform: translateY(-5px);
         }
 
         /* Section Styles */
@@ -1057,17 +1081,17 @@ export default function Home() {
           <motion.button
             onClick={() => setCampaignPopupOpen(true)}
             whileHover={{ 
-              scale: 1.08,
-              y: -5,
-              boxShadow: '0 30px 60px rgba(230, 30, 37, 0.6)'
+              scale: 1.05,
+              translateY: -5,
+              boxShadow: '0 20px 40px rgba(230, 30, 37, 0.4)'
             }}
-            whileTap={{ scale: 0.94 }}
+            whileTap={{ scale: 0.95 }}
             style={{
-              background: 'linear-gradient(135deg, #e61e25 0%, #ff3d47 50%, #e61e25 100%)',
-              backgroundSize: '200% auto',
-              padding: '1rem 2.2rem',
-              borderRadius: '100px',
-              border: '2px solid rgba(255, 255, 255, 0.35)',
+              background: 'rgba(20, 20, 20, 0.8)',
+              backdropFilter: 'blur(15px)',
+              padding: '0.8rem 2rem',
+              borderRadius: '12px',
+              border: '1px solid rgba(230, 30, 37, 0.3)',
               color: 'white',
               fontSize: '1rem',
               fontWeight: 900,
@@ -1075,66 +1099,70 @@ export default function Home() {
               alignItems: 'center',
               gap: '0.8rem',
               cursor: 'pointer',
-              boxShadow: '0 20px 40px rgba(230, 30, 37, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3)',
               position: 'relative',
               zIndex: 1,
               whiteSpace: 'nowrap',
               letterSpacing: '0.5px',
-              textShadow: '0 2px 10px rgba(0, 0, 0, 0.3)',
-              overflow: 'hidden',
-              transition: 'background-position 0.5s ease'
-            }}
-            animate={{
-              backgroundPosition: ['0% center', '200% center']
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "linear"
+              textShadow: '0 0 10px rgba(230, 30, 37, 0.5)',
+              overflow: 'hidden'
             }}
           >
-            {/* High-End Glint Sweep */}
+            {/* Animated Scanning Laser */}
             <motion.div
-              animate={{ x: ['-200%', '200%'] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", repeatDelay: 2 }}
+              animate={{
+                top: ['-100%', '200%']
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "linear"
+              }}
               style={{
                 position: 'absolute',
-                top: 0,
                 left: 0,
-                width: '60%',
-                height: '100%',
-                background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent)',
-                skewX: '-30deg',
-                zIndex: 2
+                width: '100%',
+                height: '50px',
+                background: 'linear-gradient(to bottom, transparent, rgba(230, 30, 37, 0.2), transparent)',
+                zIndex: 2,
+                pointerEvents: 'none'
               }}
             />
+
+            {/* Corner Brackets */}
+            <div style={{ position: 'absolute', top: '5px', left: '5px', width: '10px', height: '10px', borderTop: '2px solid #e61e25', borderLeft: '2px solid #e61e25' }} />
+            <div style={{ position: 'absolute', bottom: '5px', right: '5px', width: '10px', height: '10px', borderBottom: '2px solid #e61e25', borderRight: '2px solid #e61e25' }} />
 
             <motion.div 
               style={{ 
                 display: 'flex', 
                 fontSize: '1.6rem',
-                filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.4))'
+                zIndex: 3
               }}
               animate={{ 
-                scale: [1, 1.25, 1],
-                rotate: [0, 10, -10, 0]
+                scale: [1, 1.15, 1],
+                filter: [
+                  'drop-shadow(0 0 5px rgba(230, 30, 37, 0.5))',
+                  'drop-shadow(0 0 15px rgba(230, 30, 37, 0.8))',
+                  'drop-shadow(0 0 5px rgba(230, 30, 37, 0.5))'
+                ]
               }}
               transition={{ duration: 2, repeat: Infinity }}
             >
               🎁
             </motion.div>
             
-            <span style={{ position: 'relative', zIndex: 3 }}>
-              Unlock Special Offer
-            </span>
-            
-            <motion.span
-              animate={{ x: [0, 6, 0] }}
-              transition={{ duration: 1.2, repeat: Infinity }}
-              style={{ fontSize: '1.2rem', position: 'relative', zIndex: 3, fontWeight: 900 }}
+            <div style={{ position: 'relative', zIndex: 3, textAlign: 'left' }}>
+              <div style={{ fontSize: '0.65rem', color: '#e61e25', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '2px' }}>Identity Found</div>
+              <div style={{ fontSize: '1.05rem', fontWeight: 800 }}>Unlock Reward</div>
+            </div>
+
+            <motion.div
+              animate={{ x: [0, 5, 0], opacity: [0.5, 1, 0.5] }}
+              transition={{ duration: 1, repeat: Infinity }}
+              style={{ fontSize: '1.2rem', color: '#e61e25', fontWeight: 900 }}
             >
-              →
-            </motion.span>
+              ≫
+            </motion.div>
           </motion.button>
         </motion.div>
       </section>
