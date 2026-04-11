@@ -7,6 +7,7 @@ import Link from 'next/link';
 import AnimatedHeroHeading from '@/components/AnimatedHeroHeading';
 import EnvelopePopup from '@/components/UnlockOffer/UnlockCard';
 import LaunchCampaignCard from '@/components/LaunchCampaign/LaunchCampaignCard';
+import CampaignPopup from '@/components/HeroCampaignPopup/CampaignPopup';
 import './black-cards.css';
 
 const fadeInUp: Variants = {
@@ -1012,9 +1013,6 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Launch Campaign Section */}
-      {mounted && <LaunchCampaignCard />}
-
       {/* We Build Section */}
       <section className="we-build-section">
         <motion.div
@@ -1024,8 +1022,18 @@ export default function Home() {
           variants={staggerContainer}
           className="container"
         >
-          <motion.h2 className="we-build-title" variants={bounceInDown}>
-            We build <span className="italic">unmissable brand</span> presence
+          <motion.h2 className="we-build-title" variants={bounceInDown} style={{
+            fontWeight: 950,
+            fontSize: 'clamp(2.5rem, 8vw, 4rem)',
+            letterSpacing: '-1px',
+            textTransform: 'uppercase',
+            lineHeight: 1.1
+          }}>
+            We build <span style={{
+              color: '#e61e25',
+              fontWeight: 950,
+              textTransform: 'uppercase'
+            }}>unmissable brand</span> presence
           </motion.h2>
           <motion.p className="we-build-subtitle" variants={slideDown}>
             From concept to execution, we deliver advertising solutions that capture attention and drive results.

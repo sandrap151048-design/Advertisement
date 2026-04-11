@@ -63,36 +63,67 @@ export const BrandText: React.FC<BrandTextProps> = ({
 
   return (
     <div className={className} style={{ display: 'flex', flexDirection: 'column', alignItems: 'inherit' }}>
-      {/* Main brand text with custom O */}
-      <div style={textStyle}>
-        {/* Custom O with red square */}
-        <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginRight: '-0.05em' }}>
+      {/* Main brand text with CUSTOM O and TWO red squares */}
+      <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', gap: '0.08em' }}>
+        {/* CUSTOM O - SVG Design (NOT a font) */}
+        <div style={{ position: 'relative', display: 'inline-block', lineHeight: 1 }}>
           <svg 
             width={oSize} 
             height={oSize} 
-            viewBox="0 0 100 100" 
+            viewBox="0 0 120 120" 
             style={{ display: 'block' }}
+            xmlns="http://www.w3.org/2000/svg"
           >
-            {/* O outline */}
+            {/* Thick bold circular O - custom design */}
             <circle
-              cx="50"
-              cy="50"
-              r="35"
+              cx="60"
+              cy="60"
+              r="45"
               fill="none"
               stroke="var(--logo-text)"
-              strokeWidth="8"
-            />
-            {/* Red square in upper right */}
-            <rect
-              x="65"
-              y="20"
-              width="20"
-              height="20"
-              fill="var(--logo-accent)"
+              strokeWidth="22"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
+          
+          {/* FIRST red square - smaller, positioned above-right */}
+          <div style={{
+            position: 'absolute',
+            top: '-18px',
+            right: '12px',
+            width: squareSize * 0.5,
+            height: squareSize * 0.5,
+            backgroundColor: '#FF1F3D',
+            borderRadius: '2px',
+            zIndex: 12
+          }} />
+          
+          {/* SECOND red square - slightly larger, offset */}
+          <div style={{
+            position: 'absolute',
+            top: '-8px',
+            right: '-2px',
+            width: squareSize * 0.65,
+            height: squareSize * 0.65,
+            backgroundColor: '#FF1F3D',
+            borderRadius: '2px',
+            zIndex: 11
+          }} />
         </div>
-        <span style={{ marginLeft: '-0.1em' }}>ne Click</span>
+        
+        {/* "ne Click" text - Bold modern sans-serif */}
+        <span style={{ 
+          fontWeight: 900,
+          fontSize: fontSize,
+          color: 'var(--logo-text)',
+          fontFamily: '"Inter", "Montserrat", "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+          letterSpacing: letterSpacing,
+          lineHeight: 1,
+          display: 'inline-block'
+        }}>
+          ne Click
+        </span>
       </div>
     </div>
   );
