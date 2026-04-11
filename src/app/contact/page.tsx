@@ -171,22 +171,24 @@ export default function ContactPage() {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          padding: 1.1rem 2.8rem;
-          background: #e61e25;
+          padding: 1.15rem 3rem;
+          background: linear-gradient(135deg, #e61e25 0%, #ff2d35 100%);
           color: white;
           font-weight: 800;
-          border-radius: 12px;
+          border-radius: 100px;
           text-decoration: none;
-          transition: all 0.6s ease;
-          font-size: 1rem;
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          font-size: 1.05rem;
           width: fit-content;
-          box-shadow: 0 10px 25px rgba(230, 30, 37, 0.3);
+          box-shadow: 0 10px 30px rgba(230, 30, 37, 0.4);
           pointer-events: auto;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          letter-spacing: 0.5px;
         }
         .hero-cta-button:hover {
-          background: #ff2d35;
-          transform: translateY(-3px) scale(1.02);
-          box-shadow: 0 15px 35px rgba(230, 30, 37, 0.4);
+          background: linear-gradient(135deg, #ff2d35 0%, #e61e25 100%);
+          transform: translateY(-5px) scale(1.05);
+          box-shadow: 0 20px 40px rgba(230, 30, 37, 0.5);
         }
 
         /* Get In Touch Section */
@@ -314,12 +316,14 @@ export default function ContactPage() {
         }
 
         .form-wrapper {
-          max-width: 500px;
+          max-width: 600px;
           margin: 0 auto;
-          padding: 2rem;
-          background: rgba(255,255,255,0.02);
-          border: 1px solid rgba(255,255,255,0.1);
-          border-radius: 12px;
+          padding: 3rem 2.5rem;
+          background: rgba(15, 15, 15, 0.4);
+          backdrop-filter: blur(20px);
+          border: 1px solid rgba(230, 30, 37, 0.2);
+          border-radius: 20px;
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
         }
 
         .contact-form {
@@ -473,7 +477,8 @@ export default function ContactPage() {
             font-size: 2.22rem;
           }
           .form-wrapper {
-            padding: 2rem 1.5rem;
+            padding: 2.5rem 1.5rem;
+            max-width: 100%;
           }
           .footer-black {
             padding: 4rem 5% 3rem 5%;

@@ -752,7 +752,8 @@ export default function LeadCaptureForm() {
           }
 
           .button-container {
-            margin-left: 1.5rem;
+            margin-left: 0;
+            width: 100%;
           }
 
           .trust-badges {

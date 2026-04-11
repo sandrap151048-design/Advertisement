@@ -1,5 +1,6 @@
 "use client";
 
+import styles from './Navbar.module.css';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
@@ -22,54 +23,11 @@ export default function Navbar() {
 
   return (
     <>
-      <style>{`
-        .nav-link, .mobile-nav-link, .btn-login, .mobile-toggle, .navbar-logo {
-          outline: none !important;
-          -webkit-tap-highlight-color: transparent !important;
-        }
-
-        .nav-link {
-          position: relative; color: white; text-decoration: none;
-          font-size: 0.88rem; font-weight: 600;
-          padding: 8px 0; transition: color 0.3s;
-        }
-        .nav-link:hover { color: #e61e25; }
-        .nav-link::after {
-          content: ''; position: absolute; bottom: 8px; left: 0;
-          width: 0; height: 2px; background: #e61e25; transition: width 0.3s;
-        }
-        .nav-link:hover::after { width: 100%; }
-
-        .btn-login {
-          padding: 8px 18px; background: #e61e25; color: white;
-          text-decoration: none; font-size: 0.85rem; font-weight: 700;
-          border-radius: 6px; transition: all 0.6s; white-space: nowrap;
-        }
-        .btn-login:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(230,30,37,0.3); }
-
-        .mobile-nav-link {
-          display: block; color: white !important; text-decoration: none;
-          font-size: 1.1rem; font-weight: 700; padding: 1rem 1.25rem;
-          border-radius: 12px; transition: all 0.6s ease;
-          background: rgba(255,255,255,0.03);
-        }
-        .mobile-nav-link:active, .mobile-nav-link:hover {
-          background: rgba(230, 30, 37, 0.2); color: #e61e25 !important;
-        }
-        .mobile-nav-link-login {
-          background: #e61e25 !important; margin-top: 0.5rem;
-          text-align: center; color: white !important;
-        }
-        .mobile-nav-link-login:active, .mobile-nav-link-login:hover {
-          background: #ff2d35 !important; color: white !important;
-        }
-      `}</style>
-
       {/* ===== NAVBAR WRAPPER — Always fixed, always on top ===== */}
       <div
         style={{
           position: 'absolute',
-          top: 8, // Moved higher for a cleaner floating effect
+          top: 8,
           left: 0,
           right: 0,
           width: '100%',
@@ -77,7 +35,7 @@ export default function Navbar() {
           display: 'flex',
           justifyContent: 'center',
           padding: '12px 16px',
-          pointerEvents: 'none',   /* allow clicks through the wrapper gap */
+          pointerEvents: 'none',
         }}
       >
         <nav
@@ -90,7 +48,7 @@ export default function Navbar() {
             border: '1px solid rgba(255,255,255,0.1)',
             borderRadius: '12px',
             boxShadow: '0 8px 32px rgba(12, 12, 12,0.4)',
-            pointerEvents: 'all',   /* re-enable clicks on the nav pill */
+            pointerEvents: 'all',
           }}
         >
           <div
@@ -102,28 +60,28 @@ export default function Navbar() {
             }}
           >
             {/* Logo */}
-            <Link href="/" className="navbar-logo" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+            <Link href="/" className={styles.navbarLogo} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
               <Logo size="small" showFullText={true} />
             </Link>
             {/* Desktop Nav Links */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }} className="desktop-nav">
-              <Link href="/" className="nav-link">Home</Link>
-              <Link href="/projects" className="nav-link">Projects</Link>
-              <Link href="/services" className="nav-link">Services</Link>
-              <Link href="/contact" className="nav-link">Contact</Link>
-              <Link href="/about" className="nav-link">About</Link>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }} className={styles.desktopNav}>
+              <Link href="/" className={styles.navLink}>Home</Link>
+              <Link href="/projects" className={styles.navLink}>Projects</Link>
+              <Link href="/services" className={styles.navLink}>Services</Link>
+              <Link href="/contact" className={styles.navLink}>Contact</Link>
+              <Link href="/about" className={styles.navLink}>About</Link>
             </div>
 
             {/* Desktop Login Button */}
-            <div className="desktop-nav">
-              <Link href="/admin/login" className="btn-login" style={{ padding: '8px 20px', fontSize: '0.85rem' }}>Login</Link>
+            <div className={styles.desktopNav}>
+              <Link href="/admin/login" className={styles.btnLogin} style={{ padding: '8px 20px', fontSize: '0.85rem' }}>Login</Link>
             </div>
 
             {/* Mobile Hamburger */}
             <button
               onClick={toggleMobileMenu}
               aria-label="Toggle Menu"
-              className="mobile-toggle"
+              className={styles.mobileToggle}
               style={{
                 display: 'none',
                 background: 'none',
@@ -163,33 +121,13 @@ export default function Navbar() {
           pointerEvents: isMobileMenuOpen ? 'all' : 'none',
         }}
       >
-        <Link href="/" className="mobile-nav-link" onClick={closeMobileMenu}>Home</Link>
-        <Link href="/projects" className="mobile-nav-link" onClick={closeMobileMenu}>Projects</Link>
-        <Link href="/services" className="mobile-nav-link" onClick={closeMobileMenu}>Services</Link>
-        <Link href="/contact" className="mobile-nav-link" onClick={closeMobileMenu}>Contact</Link>
-        <Link href="/about" className="mobile-nav-link" onClick={closeMobileMenu}>About</Link>
-        <Link href="/admin/login" className="mobile-nav-link mobile-nav-link-login" onClick={closeMobileMenu}>Admin Login</Link>
+        <Link href="/" className={styles.mobileNavLink} onClick={closeMobileMenu}>Home</Link>
+        <Link href="/projects" className={styles.mobileNavLink} onClick={closeMobileMenu}>Projects</Link>
+        <Link href="/services" className={styles.mobileNavLink} onClick={closeMobileMenu}>Services</Link>
+        <Link href="/contact" className={styles.mobileNavLink} onClick={closeMobileMenu}>Contact</Link>
+        <Link href="/about" className={styles.mobileNavLink} onClick={closeMobileMenu}>About</Link>
+        <Link href="/admin/login" className={`${styles.mobileNavLink} ${styles.mobileNavLinkLogin}`} onClick={closeMobileMenu}>Admin Login</Link>
       </div>
-
-      {/* Responsive CSS */}
-      <style>{`
-        @media (max-width: 1024px) {
-          .desktop-nav {
-            display: none !important;
-          }
-          .mobile-toggle {
-            display: flex !important;
-          }
-        }
-        @media (min-width: 1025px) {
-          .mobile-toggle {
-            display: none !important;
-          }
-          .desktop-nav {
-            display: flex !important;
-          }
-        }
-      `}</style>
     </>
   );
 }

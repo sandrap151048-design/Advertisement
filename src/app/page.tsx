@@ -1015,81 +1015,123 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        {/* Floating Campaign Card */}
+        {/* Premium Floating Campaign Offer Button */}
         <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
+          initial={{ opacity: 0, scale: 0.6, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ 
+            type: "spring",
+            stiffness: 260,
+            damping: 20,
+            delay: 1.2 
+          }}
           style={{
-            position: 'absolute',
-            right: '2rem',
-            bottom: '2rem',
-            zIndex: 20,
+            position: 'fixed',
+            right: 'clamp(1rem, 5vw, 2.5rem)',
+            bottom: 'clamp(1rem, 5vw, 2.5rem)',
+            zIndex: 1000,
             pointerEvents: 'auto'
           }}
         >
-          {/* Glow effect background */}
+          {/* Enhanced Pulsating Aura */}
           <motion.div
             animate={{ 
-              boxShadow: [
-                '0 0 20px rgba(230, 30, 37, 0.4)',
-                '0 0 40px rgba(230, 30, 37, 0.6)',
-                '0 0 20px rgba(230, 30, 37, 0.4)'
-              ]
+              scale: [1, 1.4, 1],
+              opacity: [0.3, 0.6, 0.3],
             }}
-            transition={{ duration: 2, repeat: Infinity }}
+            transition={{ 
+              duration: 3, 
+              repeat: Infinity,
+              ease: "easeInOut" 
+            }}
             style={{
               position: 'absolute',
-              inset: '-10px',
-              borderRadius: '50px',
+              inset: '-15px',
+              background: 'radial-gradient(circle, rgba(230, 30, 37, 0.6) 0%, transparent 75%)',
+              borderRadius: '100px',
+              zIndex: 0,
               pointerEvents: 'none'
             }}
           />
 
           <motion.button
-            animate={{ y: [0, -12, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
             onClick={() => setCampaignPopupOpen(true)}
-            whileHover={{
-              scale: 1.15,
-              boxShadow: '0 20px 60px rgba(230, 30, 37, 0.8)'
+            whileHover={{ 
+              scale: 1.08,
+              y: -5,
+              boxShadow: '0 30px 60px rgba(230, 30, 37, 0.6)'
             }}
-            whileTap={{ scale: 0.92 }}
+            whileTap={{ scale: 0.94 }}
             style={{
-              background: 'linear-gradient(135deg, #e61e25 0%, #ff2d35 100%)',
-              backdropFilter: 'blur(20px)',
-              borderRadius: '50px',
-              border: '2px solid rgba(255, 255, 255, 0.3)',
-              padding: '1rem 1.25rem',
-              boxShadow: '0 15px 40px rgba(230, 30, 37, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
+              background: 'linear-gradient(135deg, #e61e25 0%, #ff3d47 50%, #e61e25 100%)',
+              backgroundSize: '200% auto',
+              padding: '1rem 2.2rem',
+              borderRadius: '100px',
+              border: '2px solid rgba(255, 255, 255, 0.35)',
+              color: 'white',
+              fontSize: '1rem',
+              fontWeight: 900,
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0.6rem',
-              color: 'white',
-              fontSize: 'clamp(0.8rem, 1.5vw, 0.95rem)',
-              fontWeight: 700,
-              whiteSpace: 'nowrap',
+              gap: '0.8rem',
+              cursor: 'pointer',
+              boxShadow: '0 20px 40px rgba(230, 30, 37, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3)',
               position: 'relative',
               zIndex: 1,
+              whiteSpace: 'nowrap',
               letterSpacing: '0.5px',
-              textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)'
+              textShadow: '0 2px 10px rgba(0, 0, 0, 0.3)',
+              overflow: 'hidden',
+              transition: 'background-position 0.5s ease'
+            }}
+            animate={{
+              backgroundPosition: ['0% center', '200% center']
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "linear"
             }}
           >
-            <motion.span 
-              animate={{ scale: [1, 1.2, 1] }}
+            {/* High-End Glint Sweep */}
+            <motion.div
+              animate={{ x: ['-200%', '200%'] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", repeatDelay: 2 }}
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '60%',
+                height: '100%',
+                background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent)',
+                skewX: '-30deg',
+                zIndex: 2
+              }}
+            />
+
+            <motion.div 
+              style={{ 
+                display: 'flex', 
+                fontSize: '1.6rem',
+                filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.4))'
+              }}
+              animate={{ 
+                scale: [1, 1.25, 1],
+                rotate: [0, 10, -10, 0]
+              }}
               transition={{ duration: 2, repeat: Infinity }}
-              style={{ fontSize: '1.4rem', display: 'flex' }}
             >
               🎁
-            </motion.span>
-            <span>Campaign Offer</span>
+            </motion.div>
+            
+            <span style={{ position: 'relative', zIndex: 3 }}>
+              Unlock Special Offer
+            </span>
+            
             <motion.span
-              animate={{ x: [0, 4, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              style={{ fontSize: '1rem' }}
+              animate={{ x: [0, 6, 0] }}
+              transition={{ duration: 1.2, repeat: Infinity }}
+              style={{ fontSize: '1.2rem', position: 'relative', zIndex: 3, fontWeight: 900 }}
             >
               →
             </motion.span>

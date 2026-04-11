@@ -168,13 +168,14 @@ export default function CampaignPage() {
         .form-select,
         .form-textarea {
           width: 100%;
-          padding: 1rem 1.5rem;
-          background: rgba(255,255,255,0.05);
+          padding: 1.15rem 1.5rem;
+          background: rgba(255,255,255,0.03);
           border: 1px solid rgba(255,255,255,0.1);
-          border-radius: 8px;
+          border-radius: 12px;
           color: white;
           font-size: 1rem;
-          transition: all 0.3s ease;
+          transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+          box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
         }
 
         .form-input:focus,
@@ -182,12 +183,14 @@ export default function CampaignPage() {
         .form-textarea:focus {
           outline: none;
           border-color: #e61e25;
-          background: rgba(255,255,255,0.08);
+          background: rgba(255,255,255,0.06);
+          box-shadow: 0 0 0 4px rgba(230, 30, 37, 0.1), inset 0 2px 4px rgba(0,0,0,0.2);
+          transform: translateY(-2px);
         }
 
         .form-input::placeholder,
         .form-textarea::placeholder {
-          color: rgba(255,255,255,0.4);
+          color: rgba(255,255,255,0.3);
         }
 
         .form-select {
@@ -201,37 +204,40 @@ export default function CampaignPage() {
 
         .form-textarea {
           resize: vertical;
-          min-height: 120px;
+          min-height: 140px;
           font-family: inherit;
         }
 
         .submit-button-wrap {
           text-align: center;
-          margin-top: 1rem;
+          margin-top: 1.5rem;
         }
 
         .submit-button {
-          padding: 1rem 3rem;
-          background: #e61e25;
+          padding: 1.25rem 4rem;
+          background: linear-gradient(135deg, #e61e25 0%, #ff2d35 100%);
           color: white;
-          border: none;
-          border-radius: 8px;
-          font-size: 1rem;
-          font-weight: 700;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 100px;
+          font-size: 1.1rem;
+          font-weight: 800;
           cursor: pointer;
-          transition: all 0.3s ease;
-          box-shadow: 0 4px 20px rgba(230,30,37,0.4);
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          box-shadow: 0 10px 30px rgba(230, 30, 37, 0.4);
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
         }
 
         .submit-button:hover:not(:disabled) {
-          background: #ff1e25;
-          transform: translateY(-2px);
-          box-shadow: 0 6px 30px rgba(230,30,37,0.6);
+          background: linear-gradient(135deg, #ff2d35 0%, #e61e25 100%);
+          transform: translateY(-5px) scale(1.02);
+          box-shadow: 0 20px 40px rgba(230, 30, 37, 0.5);
         }
 
         .submit-button:disabled {
-          opacity: 0.6;
+          opacity: 0.5;
           cursor: not-allowed;
+          filter: grayscale(1);
         }
 
         .success-message {

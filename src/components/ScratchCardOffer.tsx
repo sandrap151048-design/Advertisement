@@ -23,33 +23,33 @@ interface UserData {
 const offers: Offer[] = [
   {
     id: '1',
-    title: '20% Off Advertisement Package',
-    description: 'Get 20% discount on any advertisement package',
-    discount: '20%',
+    title: 'One Click Premium Package',
+    description: 'Get 20% discount on any full-service advertisement package',
+    discount: '20% OFF',
     type: 'percentage',
     probability: 30
   },
   {
     id: '2',
-    title: 'Free Social Media Post',
-    description: 'Get a professional social media post design for free',
-    discount: 'FREE',
+    title: 'One Click Social Edge',
+    description: 'Get a professional social media campaign post for free',
+    discount: 'FREE POST',
     type: 'free',
     probability: 25
   },
   {
     id: '3',
-    title: 'Free Banner Design',
-    description: 'Get a custom banner design absolutely free',
-    discount: 'FREE',
+    title: 'One Click Creative Asset',
+    description: 'Get a custom high-impact banner design absolutely free',
+    discount: 'FREE DESIGN',
     type: 'free',
     probability: 20
   },
   {
     id: '4',
-    title: '10% Discount on Branding',
-    description: 'Save 10% on complete branding packages',
-    discount: '10%',
+    title: 'One Click Brand Ignite',
+    description: 'Save 10% on complete strategic branding packages',
+    discount: '10% OFF',
     type: 'percentage',
     probability: 25
   }

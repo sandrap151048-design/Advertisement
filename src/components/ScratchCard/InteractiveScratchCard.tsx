@@ -25,12 +25,12 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
   const [offers, setOffers] = useState<any[]>([]);
 
   const defaultOffers = [
-    { id: '1', title: 'Billboard Special', description: '10% OFF on your first month of billboard advertising', discount: '10% OFF' },
-    { id: '2', title: 'Design Bonus', description: 'Free professional graphic design mockup for your brand', discount: 'FREE DESIGN' },
-    { id: '3', title: 'Fleet Branding', description: 'Exclusive 15% discount on partial vehicle wraps', discount: '15% OFF' },
-    { id: '4', title: 'Signage Support', description: 'Free site survey and expert consultation worth 500 AED', discount: 'FREE SURVEY' },
-    { id: '5', title: 'Digital Print', description: '20% extra surface area on large format printing orders', discount: '20% BONUS' },
-    { id: '6', title: 'VIP Campaign', description: 'Priority installation and 10% off on all facade solutions', discount: '10% OFF' }
+    { id: '1', title: 'One Click Billboard Exclusive', description: '10% OFF on your first month of premium billboard advertising', discount: '10% OFF' },
+    { id: '2', title: 'One Click Design Edge', description: 'Free professional graphic design mockup for your brand identity', discount: 'FREE DESIGN' },
+    { id: '3', title: 'One Click Fleet Power', description: 'Exclusive 15% discount on high-impact vehicle wraps', discount: '15% OFF' },
+    { id: '4', title: 'One Click Signage Audit', description: 'Free site survey and expert consultation worth 500 AED', discount: 'FREE CONSULT' },
+    { id: '5', title: 'One Click Prime Spot', description: 'Priority access to high-traffic urban hoarding placements', discount: 'PRIORITY ACCESS' },
+    { id: '6', title: 'One Click VIP Strategy', description: 'Complete 360° campaign strategy and priority installation', discount: 'VIP PASS' }
   ];
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
     if (!ctx) return;
 
     // Set canvas size
@@ -112,7 +112,7 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
     if (!ctx) return;
 
     const rect = canvas.getBoundingClientRect();
@@ -144,7 +144,7 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
     if (!ctx) return;
 
     const touch = e.touches[0];
@@ -234,7 +234,8 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
             boxShadow: '0 20px 60px rgba(230, 30, 37, 0.3), 0 0 40px rgba(230, 30, 37, 0.1)',
             background: '#1a1a1a',
             border: '2px solid rgba(230, 30, 37, 0.2)',
-            aspectRatio: '16 / 14'
+            aspectRatio: isRevealed ? 'auto' : '16 / 14',
+            minHeight: isRevealed ? '450px' : 'auto'
           }}
         >
           {/* Background Image */}
@@ -305,13 +306,21 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   backdropFilter: 'blur(10px)',
-                  padding: 'clamp(1.5rem, 4vw, 2rem)',
+                  padding: 'clamp(1rem, 4vw, 2rem)',
                   display: 'flex',
                   flexDirection: 'column',
-                  justifyContent: 'center',
-                  zIndex: 3
+                  justifyContent: 'flex-start',
+                  zIndex: 3,
+                  overflowY: 'auto',
+                  scrollbarWidth: 'none',
+                  msOverflowStyle: 'none'
                 }}
               >
+                <style jsx>{`
+                  div::-webkit-scrollbar {
+                    display: none;
+                  }
+                `}</style>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -324,164 +333,169 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
                     Fill in your details to get started
                   </p>
 
-                  <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                    <input
-                      type="text"
-                      name="fullName"
-                      placeholder="Full Name"
-                      value={formData.fullName}
-                      onChange={handleFormChange}
-                      required
-                      style={{
-                        padding: 'clamp(0.5rem, 1.5vw, 0.75rem)',
-                        background: 'rgba(255, 255, 255, 0.08)',
-                        backdropFilter: 'blur(5px)',
-                        border: '1px solid rgba(230, 30, 37, 0.3)',
-                        borderRadius: '8px',
-                        color: 'white',
-                        fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)',
-                        outline: 'none',
-                        transition: 'all 0.3s ease',
-                        boxSizing: 'border-box'
-                      }}
-                      onFocus={(e) => {
-                        e.target.style.borderColor = '#e61e25';
-                        e.target.style.background = 'rgba(255, 255, 255, 0.08)';
-                      }}
-                      onBlur={(e) => {
-                        e.target.style.borderColor = 'rgba(230, 30, 37, 0.3)';
-                        e.target.style.background = 'rgba(255, 255, 255, 0.05)';
-                      }}
-                    />
+                      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                        <input
+                          type="text"
+                          name="fullName"
+                          placeholder="Full Name"
+                          value={formData.fullName}
+                          onChange={handleFormChange}
+                          required
+                          style={{
+                            padding: '1rem 1.25rem',
+                            background: 'rgba(255, 255, 255, 0.08)',
+                            backdropFilter: 'blur(5px)',
+                            border: '1px solid rgba(230, 30, 37, 0.3)',
+                            borderRadius: '12px',
+                            color: 'white',
+                            fontSize: '1rem',
+                            outline: 'none',
+                            transition: 'all 0.3s ease',
+                            width: '100%',
+                            boxSizing: 'border-box'
+                          }}
+                          onFocus={(e) => {
+                            e.target.style.borderColor = '#e61e25';
+                            e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.12)';
+                          }}
+                          onBlur={(e) => {
+                            e.target.style.borderColor = 'rgba(230, 30, 37, 0.3)';
+                            e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
+                          }}
+                        />
 
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Email"
-                      value={formData.email}
-                      onChange={handleFormChange}
-                      required
-                      style={{
-                        padding: 'clamp(0.5rem, 1.5vw, 0.75rem)',
-                        background: 'rgba(255, 255, 255, 0.08)',
-                        backdropFilter: 'blur(5px)',
-                        border: '1px solid rgba(230, 30, 37, 0.3)',
-                        borderRadius: '8px',
-                        color: 'white',
-                        fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)',
-                        outline: 'none',
-                        transition: 'all 0.3s ease',
-                        boxSizing: 'border-box'
-                      }}
-                      onFocus={(e) => {
-                        e.target.style.borderColor = '#e61e25';
-                        e.target.style.background = 'rgba(255, 255, 255, 0.08)';
-                      }}
-                      onBlur={(e) => {
-                        e.target.style.borderColor = 'rgba(230, 30, 37, 0.3)';
-                        e.target.style.background = 'rgba(255, 255, 255, 0.05)';
-                      }}
-                    />
+                        <input
+                          type="email"
+                          name="email"
+                          placeholder="Email"
+                          value={formData.email}
+                          onChange={handleFormChange}
+                          required
+                          style={{
+                            padding: '1rem 1.25rem',
+                            background: 'rgba(255, 255, 255, 0.08)',
+                            backdropFilter: 'blur(5px)',
+                            border: '1px solid rgba(230, 30, 37, 0.3)',
+                            borderRadius: '12px',
+                            color: 'white',
+                            fontSize: '1rem',
+                            outline: 'none',
+                            transition: 'all 0.3s ease',
+                            width: '100%',
+                            boxSizing: 'border-box'
+                          }}
+                          onFocus={(e) => {
+                            e.target.style.borderColor = '#e61e25';
+                            e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.12)';
+                          }}
+                          onBlur={(e) => {
+                            e.target.style.borderColor = 'rgba(230, 30, 37, 0.3)';
+                            e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
+                          }}
+                        />
 
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="Phone Number"
-                      value={formData.phone}
-                      onChange={handleFormChange}
-                      required
-                      style={{
-                        padding: 'clamp(0.5rem, 1.5vw, 0.75rem)',
-                        background: 'rgba(255, 255, 255, 0.08)',
-                        backdropFilter: 'blur(5px)',
-                        border: '1px solid rgba(230, 30, 37, 0.3)',
-                        borderRadius: '8px',
-                        color: 'white',
-                        fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)',
-                        outline: 'none',
-                        transition: 'all 0.3s ease',
-                        boxSizing: 'border-box'
-                      }}
-                      onFocus={(e) => {
-                        e.target.style.borderColor = '#e61e25';
-                        e.target.style.background = 'rgba(255, 255, 255, 0.08)';
-                      }}
-                      onBlur={(e) => {
-                        e.target.style.borderColor = 'rgba(230, 30, 37, 0.3)';
-                        e.target.style.background = 'rgba(255, 255, 255, 0.05)';
-                      }}
-                    />
+                        <input
+                          type="tel"
+                          name="phone"
+                          placeholder="Phone Number"
+                          value={formData.phone}
+                          onChange={handleFormChange}
+                          required
+                          style={{
+                            padding: '1rem 1.25rem',
+                            background: 'rgba(255, 255, 255, 0.08)',
+                            backdropFilter: 'blur(5px)',
+                            border: '1px solid rgba(230, 30, 37, 0.3)',
+                            borderRadius: '12px',
+                            color: 'white',
+                            fontSize: '1rem',
+                            outline: 'none',
+                            transition: 'all 0.3s ease',
+                            width: '100%',
+                            boxSizing: 'border-box'
+                          }}
+                          onFocus={(e) => {
+                            e.target.style.borderColor = '#e61e25';
+                            e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.12)';
+                          }}
+                          onBlur={(e) => {
+                            e.target.style.borderColor = 'rgba(230, 30, 37, 0.3)';
+                            e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
+                          }}
+                        />
 
-                    <input
-                      type="text"
-                      name="companyName"
-                      placeholder="Company Name (Optional)"
-                      value={formData.companyName}
-                      onChange={handleFormChange}
-                      style={{
-                        padding: 'clamp(0.5rem, 1.5vw, 0.75rem)',
-                        background: 'rgba(255, 255, 255, 0.08)',
-                        backdropFilter: 'blur(5px)',
-                        border: '1px solid rgba(230, 30, 37, 0.3)',
-                        borderRadius: '8px',
-                        color: 'white',
-                        fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)',
-                        outline: 'none',
-                        transition: 'all 0.3s ease',
-                        boxSizing: 'border-box'
-                      }}
-                      onFocus={(e) => {
-                        e.target.style.borderColor = '#e61e25';
-                        e.target.style.background = 'rgba(255, 255, 255, 0.08)';
-                      }}
-                      onBlur={(e) => {
-                        e.target.style.borderColor = 'rgba(230, 30, 37, 0.3)';
-                        e.target.style.background = 'rgba(255, 255, 255, 0.05)';
-                      }}
-                    />
+                        <input
+                          type="text"
+                          name="companyName"
+                          placeholder="Company Name (Optional)"
+                          value={formData.companyName}
+                          onChange={handleFormChange}
+                          style={{
+                            padding: '1rem 1.25rem',
+                            background: 'rgba(255, 255, 255, 0.08)',
+                            backdropFilter: 'blur(5px)',
+                            border: '1px solid rgba(230, 30, 37, 0.3)',
+                            borderRadius: '12px',
+                            color: 'white',
+                            fontSize: '1rem',
+                            outline: 'none',
+                            transition: 'all 0.3s ease',
+                            width: '100%',
+                            boxSizing: 'border-box'
+                          }}
+                          onFocus={(e) => {
+                            e.target.style.borderColor = '#e61e25';
+                            e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.12)';
+                          }}
+                          onBlur={(e) => {
+                            e.target.style.borderColor = 'rgba(230, 30, 37, 0.3)';
+                            e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
+                          }}
+                        />
 
-                    <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      type="submit"
-                      disabled={isSubmitting}
-                      style={{
-                        padding: 'clamp(0.6rem, 1.5vw, 0.8rem)',
-                        background: isSubmitting ? 'rgba(230, 30, 37, 0.5)' : '#e61e25',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '8px',
-                        fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)',
-                        fontWeight: 700,
-                        cursor: isSubmitting ? 'not-allowed' : 'pointer',
-                        marginTop: '0.5rem',
-                        transition: 'all 0.3s ease'
-                      }}
-                    >
-                      {isSubmitting ? '⏳ Processing...' : '🎯 Claim My Campaign Offer'}
-                    </motion.button>
+                        <motion.button
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          type="submit"
+                          disabled={isSubmitting}
+                          style={{
+                            padding: '1rem',
+                            background: isSubmitting ? 'rgba(230, 30, 37, 0.5)' : '#e61e25',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '12px',
+                            fontSize: '1rem',
+                            fontWeight: 800,
+                            cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                            marginTop: '0.5rem',
+                            transition: 'all 0.3s ease',
+                            boxShadow: '0 5px 15px rgba(230, 30, 37, 0.3)'
+                          }}
+                        >
+                          {isSubmitting ? '⏳ Processing...' : '🎯 Claim My Campaign Offer'}
+                        </motion.button>
 
-                    <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      type="button"
-                      onClick={() => setShowOffers(!showOffers)}
-                      style={{
-                        padding: 'clamp(0.6rem, 1.5vw, 0.8rem)',
-                        background: 'transparent',
-                        color: 'white',
-                        border: '2px solid #e61e25',
-                        borderRadius: '8px',
-                        fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)',
-                        fontWeight: 700,
-                        cursor: 'pointer',
-                        marginTop: '0.5rem',
-                        transition: 'all 0.3s ease'
-                      }}
-                    >
-                      🔄 Try Another Offer
-                    </motion.button>
-                  </form>
+                        <motion.button
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          type="button"
+                          onClick={() => setShowOffers(!showOffers)}
+                          style={{
+                            padding: '0.8rem',
+                            background: 'transparent',
+                            color: 'white',
+                            border: '2px solid rgba(230, 30, 37, 0.5)',
+                            borderRadius: '12px',
+                            fontSize: '0.9rem',
+                            fontWeight: 700,
+                            cursor: 'pointer',
+                            marginTop: '0.25rem',
+                            transition: 'all 0.3s ease'
+                          }}
+                        >
+                          🔄 Try Another Offer
+                        </motion.button>
+                      </form>
 
                   {submitStatus && (
                     <motion.div
