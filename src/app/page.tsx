@@ -310,20 +310,20 @@ export default function Home() {
         }
 
         .btn {
-          padding: 1.1rem 2.5rem;
-          font-size: 1rem;
+          padding: 1.1rem 2.8rem;
+          font-size: 1.05rem;
           font-weight: 800;
-          border-radius: 4px;
+          border-radius: 100px;
           border: none;
           cursor: pointer;
-          transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+          transition: all 0.4s ease;
           text-decoration: none;
           display: inline-flex;
           align-items: center;
-          gap: 0.8rem;
+          gap: 0.75rem;
           white-space: nowrap;
           text-transform: uppercase;
-          letter-spacing: 2px;
+          letter-spacing: 1px;
           position: relative;
           overflow: hidden;
         }
@@ -331,44 +331,25 @@ export default function Home() {
         .btn-primary {
           background: #e61e25;
           color: white;
-          box-shadow: 0 10px 30px rgba(230, 30, 37, 0.3);
-          clip-path: polygon(0 0, 100% 0, 100% 70%, 85% 100%, 0 100%);
-        }
-
-        .btn-primary::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 50%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-          transform: skewX(-25deg);
-          transition: 0.5s;
+          box-shadow: 0 10px 30px rgba(230, 30, 37, 0.4);
         }
 
         .btn-primary:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 20px 40px rgba(230, 30, 37, 0.5);
-          background: #ff1e25;
-        }
-
-        .btn-primary:hover::before {
-          left: 150%;
+          transform: translateY(-3px);
+          background: #ff2d35;
+          box-shadow: 0 15px 35px rgba(230, 30, 37, 0.5);
         }
 
         .btn-secondary {
-          background: transparent;
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(10px);
           color: white;
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%, 0 30%);
+          border: 2px solid white;
         }
 
         .btn-secondary:hover {
-          background: rgba(255, 255, 255, 0.05);
-          border-color: #e61e25;
-          color: #e61e25;
-          transform: translateY(-5px);
+          background: rgba(255, 255, 255, 0.2);
+          transform: translateY(-3px);
         }
 
         /* Section Styles */
@@ -1078,92 +1059,91 @@ export default function Home() {
             }}
           />
 
-          <motion.button
-            onClick={() => setCampaignPopupOpen(true)}
-            whileHover={{ 
-              scale: 1.05,
-              translateY: -5,
-              boxShadow: '0 20px 40px rgba(230, 30, 37, 0.4)'
-            }}
-            whileTap={{ scale: 0.95 }}
-            style={{
-              background: 'rgba(20, 20, 20, 0.8)',
-              backdropFilter: 'blur(15px)',
-              padding: '0.8rem 2rem',
-              borderRadius: '12px',
-              border: '1px solid rgba(230, 30, 37, 0.3)',
-              color: 'white',
-              fontSize: '1rem',
-              fontWeight: 900,
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.8rem',
-              cursor: 'pointer',
-              position: 'relative',
-              zIndex: 1,
-              whiteSpace: 'nowrap',
-              letterSpacing: '0.5px',
-              textShadow: '0 0 10px rgba(230, 30, 37, 0.5)',
-              overflow: 'hidden'
-            }}
+          <motion.div
+            style={{ position: 'relative' }}
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           >
-            {/* Animated Scanning Laser */}
-            <motion.div
-              animate={{
-                top: ['-100%', '200%']
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "linear"
-              }}
+            {/* 3D Wireframe Cage Border */}
+            <motion.button
+              onClick={() => setCampaignPopupOpen(true)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               style={{
-                position: 'absolute',
-                left: 0,
-                width: '100%',
-                height: '50px',
-                background: 'linear-gradient(to bottom, transparent, rgba(230, 30, 37, 0.2), transparent)',
-                zIndex: 2,
-                pointerEvents: 'none'
+                background: 'rgba(5, 5, 5, 0.6)',
+                padding: '0.8rem 2rem',
+                borderRadius: '4px',
+                border: '1px solid rgba(230, 30, 37, 0.5)',
+                color: 'white',
+                fontSize: '0.95rem',
+                fontWeight: 900,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '1rem',
+                cursor: 'pointer',
+                boxShadow: '0 0 20px rgba(230, 30, 37, 0.2)',
+                position: 'relative',
+                zIndex: 1,
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textTransform: 'uppercase',
+                letterSpacing: '2px'
               }}
-            />
-
-            {/* Corner Brackets */}
-            <div style={{ position: 'absolute', top: '5px', left: '5px', width: '10px', height: '10px', borderTop: '2px solid #e61e25', borderLeft: '2px solid #e61e25' }} />
-            <div style={{ position: 'absolute', bottom: '5px', right: '5px', width: '10px', height: '10px', borderBottom: '2px solid #e61e25', borderRight: '2px solid #e61e25' }} />
-
-            <motion.div 
-              style={{ 
-                display: 'flex', 
-                fontSize: '1.6rem',
-                zIndex: 3
-              }}
-              animate={{ 
-                scale: [1, 1.15, 1],
-                filter: [
-                  'drop-shadow(0 0 5px rgba(230, 30, 37, 0.5))',
-                  'drop-shadow(0 0 15px rgba(230, 30, 37, 0.8))',
-                  'drop-shadow(0 0 5px rgba(230, 30, 37, 0.5))'
-                ]
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
             >
-              🎁
-            </motion.div>
-            
-            <div style={{ position: 'relative', zIndex: 3, textAlign: 'left' }}>
-              <div style={{ fontSize: '0.65rem', color: '#e61e25', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '2px' }}>Identity Found</div>
-              <div style={{ fontSize: '1.05rem', fontWeight: 800 }}>Unlock Reward</div>
-            </div>
+              {/* Racing Edge Light (Top) */}
+              <motion.div
+                animate={{ left: ['-100%', '100%'] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  width: '30%',
+                  height: '2px',
+                  background: 'linear-gradient(90deg, transparent, #e61e25, #ffffff, #e61e25, transparent)',
+                  zIndex: 2
+                }}
+              />
+              {/* Racing Edge Light (Bottom) */}
+              <motion.div
+                animate={{ right: ['-100%', '100%'] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  width: '30%',
+                  height: '2px',
+                  background: 'linear-gradient(90deg, transparent, #e61e25, #ffffff, #e61e25, transparent)',
+                  zIndex: 2
+                }}
+              />
 
-            <motion.div
-              animate={{ x: [0, 5, 0], opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 1, repeat: Infinity }}
-              style={{ fontSize: '1.2rem', color: '#e61e25', fontWeight: 900 }}
-            >
-              ≫
-            </motion.div>
-          </motion.button>
+              <motion.div 
+                style={{ display: 'flex', fontSize: '1.6rem' }}
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{ duration: 1, repeat: Infinity }}
+              >
+                🎁
+              </motion.div>
+              
+              <div style={{ textAlign: 'left' }}>
+                <div style={{ fontSize: '1.1rem', fontWeight: 950, color: 'white' }}>Reveal Offer</div>
+              </div>
+              
+              <motion.span
+                animate={{ opacity: [1, 0.4, 1] }}
+                transition={{ duration: 0.8, repeat: Infinity }}
+                style={{ color: '#e61e25', fontSize: '1.2rem', fontWeight: 950 }}
+              >
+                _
+              </motion.span>
+            </motion.button>
+
+            {/* Corner Bracket Decorations */}
+            <div style={{ position: 'absolute', top: '-5px', left: '-5px', width: '10px', height: '10px', borderTop: '2px solid #e61e25', borderLeft: '2px solid #e61e25' }}></div>
+            <div style={{ position: 'absolute', top: '-5px', right: '-5px', width: '10px', height: '10px', borderTop: '2px solid #e61e25', borderRight: '2px solid #e61e25' }}></div>
+            <div style={{ position: 'absolute', bottom: '-5px', left: '-5px', width: '10px', height: '10px', borderBottom: '2px solid #e61e25', borderLeft: '2px solid #e61e25' }}></div>
+            <div style={{ position: 'absolute', bottom: '-5px', right: '-5px', width: '10px', height: '10px', borderBottom: '2px solid #e61e25', borderRight: '2px solid #e61e25' }}></div>
+          </motion.div>
         </motion.div>
       </section>
 
