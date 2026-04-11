@@ -100,6 +100,7 @@ const staggerContainer: Variants = {
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
+  const [campaignPopupOpen, setCampaignPopupOpen] = useState(false);
   
   useEffect(() => {
     setMounted(true);
@@ -202,6 +203,7 @@ export default function Home() {
 
   return (
     <>
+      <CampaignPopup isOpen={campaignPopupOpen} onOpenChange={setCampaignPopupOpen} />
       <style>{`
         * {
           margin: 0;
@@ -1010,6 +1012,88 @@ export default function Home() {
               Learn More
             </Link>
           </motion.div>
+        </motion.div>
+
+        {/* Floating Campaign Card */}
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.5, duration: 0.6 }}
+          style={{
+            position: 'absolute',
+            right: 'clamp(1rem, 5vw, 2rem)',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            zIndex: 20,
+            pointerEvents: 'auto'
+          }}
+        >
+          {/* Glow effect background */}
+          <motion.div
+            animate={{ 
+              boxShadow: [
+                '0 0 20px rgba(230, 30, 37, 0.4)',
+                '0 0 40px rgba(230, 30, 37, 0.6)',
+                '0 0 20px rgba(230, 30, 37, 0.4)'
+              ]
+            }}
+            transition={{ duration: 2, repeat: Infinity }}
+            style={{
+              position: 'absolute',
+              inset: '-10px',
+              borderRadius: '50px',
+              pointerEvents: 'none'
+            }}
+          />
+
+          <motion.button
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+            onClick={() => setCampaignPopupOpen(true)}
+            whileHover={{
+              scale: 1.15,
+              boxShadow: '0 20px 60px rgba(230, 30, 37, 0.8)'
+            }}
+            whileTap={{ scale: 0.92 }}
+            style={{
+              background: 'linear-gradient(135deg, #e61e25 0%, #ff2d35 100%)',
+              backdropFilter: 'blur(20px)',
+              borderRadius: '50px',
+              border: '2px solid rgba(255, 255, 255, 0.3)',
+              padding: '1rem 1.25rem',
+              boxShadow: '0 15px 40px rgba(230, 30, 37, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.6rem',
+              color: 'white',
+              fontSize: 'clamp(0.8rem, 1.5vw, 0.95rem)',
+              fontWeight: 700,
+              whiteSpace: 'nowrap',
+              position: 'relative',
+              zIndex: 1,
+              letterSpacing: '0.5px',
+              textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)'
+            }}
+          >
+            <motion.span 
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              style={{ fontSize: '1.4rem', display: 'flex' }}
+            >
+              🎁
+            </motion.span>
+            <span>Campaign Offer</span>
+            <motion.span
+              animate={{ x: [0, 4, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              style={{ fontSize: '1rem' }}
+            >
+              →
+            </motion.span>
+          </motion.button>
         </motion.div>
       </section>
 

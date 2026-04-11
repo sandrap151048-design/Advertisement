@@ -96,6 +96,11 @@ export const OneClickLogo: React.FC<OneClickLogoProps> = ({
       tabIndex={onClick ? 0 : undefined}
       {...props}
     >
+      <LogoMark 
+        size={currentSize.logoMark} 
+        variant={currentVariant} 
+        className={styles.logoMark} 
+      />
       <BrandText
         size={size}
         customFontSize={size === 'custom' ? currentSize.fontSize : undefined}
