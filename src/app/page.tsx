@@ -5,9 +5,7 @@ import { motion, Variants, useMotionValue, useSpring, useTransform } from 'frame
 import { ArrowRight, MapPin, Phone, Mail, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import AnimatedHeroHeading from '@/components/AnimatedHeroHeading';
-import EnvelopePopup from '@/components/UnlockOffer/UnlockCard';
-import LaunchCampaignCard from '@/components/LaunchCampaign/LaunchCampaignCard';
-import CampaignPopup from '@/components/HeroCampaignPopup/CampaignPopup';
+import MysteryBoxSection from '@/components/MysteryBoxSection';
 
 import './black-cards.css';
 
@@ -101,24 +99,6 @@ const staggerContainer: Variants = {
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
-  const [campaignPopupOpen, setCampaignPopupOpen] = useState(false);
-  
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // SCRATCH CARD CONFIGURATION
-  // Change these settings to control the scratch card behavior
-  const SCRATCH_CARD_CONFIG = {
-    // Placement options: 'below-hero' | 'floating-popup' | 'sticky-corner'
-    placement: 'below-hero' as 'below-hero' | 'floating-popup' | 'sticky-corner',
-    // Auto show (for popup and sticky)
-    autoShow: true,
-    // Delay in milliseconds (for popup and sticky)
-    delay: 2000,
-    // Show the old modal version (set to false to use new inline version)
-    useModalVersion: false
-  };
 
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -127,6 +107,8 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<'whyus' | 'reach' | 'solutions'>('whyus');
   const [currentLocationIndex, setCurrentLocationIndex] = useState(0);
   const [openBrandAccordion, setOpenBrandAccordion] = useState<number | null>(0);
+  const [isMysteryBoxOpen, setIsMysteryBoxOpen] = useState(false);
+
 
   // 3D Parallax Mouse Tracking
   const mouseX = useMotionValue(0.5);
@@ -204,7 +186,11 @@ export default function Home() {
 
   return (
     <>
-      <CampaignPopup isOpen={campaignPopupOpen} onOpenChange={setCampaignPopupOpen} />
+      <MysteryBoxSection 
+        isModal={true} 
+        isOpen={isMysteryBoxOpen} 
+        onClose={() => setIsMysteryBoxOpen(false)} 
+      />
       <style>{`
         * {
           margin: 0;
@@ -310,10 +296,10 @@ export default function Home() {
         }
 
         .btn {
-          padding: 1.1rem 2.8rem;
-          font-size: 1.05rem;
+          padding: 0.8rem 2rem;
+          font-size: 0.95rem;
           font-weight: 800;
-          border-radius: 100px;
+          border-radius: 4px;
           border: none;
           cursor: pointer;
           transition: all 0.4s ease;
@@ -508,6 +494,20 @@ export default function Home() {
           .portfolio-item {
             height: 200px;
           }
+
+          .claim-btn-floating {
+            bottom: 1.5rem !important;
+            right: 1.5rem !important;
+            width: auto !important;
+          }
+        }
+
+        .claim-btn-floating {
+          position: absolute;
+          bottom: 3rem;
+          right: 3rem;
+          z-index: 10;
+          pointer-events: auto;
         }
 
 
@@ -1015,135 +1015,64 @@ export default function Home() {
               Start Your Campaign <ArrowRight size={20} />
             </Link>
             <Link href="/contact" className="btn btn-secondary">
-              Learn More
+              Learn More <ArrowRight size={20} />
             </Link>
           </motion.div>
         </motion.div>
 
-        {/* Premium Floating Campaign Offer Button */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.6, y: 30 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ 
-            type: "spring",
-            stiffness: 260,
-            damping: 20,
-            delay: 1.2 
-          }}
-          style={{
-            position: 'fixed',
-            right: 'clamp(1rem, 5vw, 2.5rem)',
-            bottom: 'clamp(1rem, 5vw, 2.5rem)',
-            zIndex: 1000,
-            pointerEvents: 'auto'
-          }}
+        <motion.div 
+          className="claim-btn-floating"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.8, type: "spring" }}
         >
-          {/* Enhanced Pulsating Aura */}
-          <motion.div
-            animate={{ 
-              scale: [1, 1.4, 1],
-              opacity: [0.3, 0.6, 0.3],
+          <button 
+            onClick={() => setIsMysteryBoxOpen(true)} 
+            className="btn" 
+            style={{ 
+              background: 'rgba(230, 30, 37, 0.15)',
+              backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              color: 'white', 
+              fontWeight: 900, 
+              textTransform: 'uppercase', 
+              letterSpacing: '0.1em', 
+              boxShadow: '0 8px 32px 0 rgba(230, 30, 37, 0.3)',
+              borderRadius: '8px',
+              padding: '1.25rem 2.5rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.75rem',
+              cursor: 'pointer',
+              fontSize: '0.85rem'
             }}
-            transition={{ 
-              duration: 3, 
-              repeat: Infinity,
-              ease: "easeInOut" 
-            }}
-            style={{
-              position: 'absolute',
-              inset: '-15px',
-              background: 'radial-gradient(circle, rgba(230, 30, 37, 0.6) 0%, transparent 75%)',
-              borderRadius: '100px',
-              zIndex: 0,
-              pointerEvents: 'none'
-            }}
-          />
-
-          <motion.div
-            style={{ position: 'relative' }}
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           >
-            {/* 3D Wireframe Cage Border */}
-            <motion.button
-              onClick={() => setCampaignPopupOpen(true)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              style={{
-                background: 'rgba(5, 5, 5, 0.6)',
-                padding: '0.8rem 2rem',
-                borderRadius: '4px',
-                border: '1px solid rgba(230, 30, 37, 0.5)',
-                color: 'white',
-                fontSize: '0.95rem',
-                fontWeight: 900,
-                display: 'flex',
-                alignItems: 'center',
-                gap: '1rem',
-                cursor: 'pointer',
-                boxShadow: '0 0 20px rgba(230, 30, 37, 0.2)',
-                position: 'relative',
-                zIndex: 1,
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textTransform: 'uppercase',
-                letterSpacing: '2px'
-              }}
+            <motion.span
+              animate={{ rotate: [0, 15, -15, 0] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+              style={{ fontSize: '1.25rem' }}
             >
-              {/* Racing Edge Light (Top) */}
-              <motion.div
-                animate={{ left: ['-100%', '100%'] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  width: '30%',
-                  height: '2px',
-                  background: 'linear-gradient(90deg, transparent, #e61e25, #ffffff, #e61e25, transparent)',
-                  zIndex: 2
-                }}
-              />
-              {/* Racing Edge Light (Bottom) */}
-              <motion.div
-                animate={{ right: ['-100%', '100%'] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                style={{
-                  position: 'absolute',
-                  bottom: 0,
-                  width: '30%',
-                  height: '2px',
-                  background: 'linear-gradient(90deg, transparent, #e61e25, #ffffff, #e61e25, transparent)',
-                  zIndex: 2
-                }}
-              />
-
-              <motion.div 
-                style={{ display: 'flex', fontSize: '1.6rem' }}
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 1, repeat: Infinity }}
-              >
-                🎁
-              </motion.div>
-              
-              <div style={{ textAlign: 'left' }}>
-                <div style={{ fontSize: '1.1rem', fontWeight: 950, color: 'white' }}>Reveal Offer</div>
-              </div>
-              
-              <motion.span
-                animate={{ opacity: [1, 0.4, 1] }}
-                transition={{ duration: 0.8, repeat: Infinity }}
-                style={{ color: '#e61e25', fontSize: '1.2rem', fontWeight: 950 }}
-              >
-                _
-              </motion.span>
-            </motion.button>
-
-            {/* Corner Bracket Decorations */}
-            <div style={{ position: 'absolute', top: '-5px', left: '-5px', width: '10px', height: '10px', borderTop: '2px solid #e61e25', borderLeft: '2px solid #e61e25' }}></div>
-            <div style={{ position: 'absolute', top: '-5px', right: '-5px', width: '10px', height: '10px', borderTop: '2px solid #e61e25', borderRight: '2px solid #e61e25' }}></div>
-            <div style={{ position: 'absolute', bottom: '-5px', left: '-5px', width: '10px', height: '10px', borderBottom: '2px solid #e61e25', borderLeft: '2px solid #e61e25' }}></div>
-            <div style={{ position: 'absolute', bottom: '-5px', right: '-5px', width: '10px', height: '10px', borderBottom: '2px solid #e61e25', borderRight: '2px solid #e61e25' }}></div>
-          </motion.div>
+              🎁
+            </motion.span>
+            <span>Claim Free Offer</span>
+            
+            {/* Inner Glowing Layer */}
+            <div style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent)',
+              transform: 'translateX(-100%)',
+              animation: 'shimmer 3s infinite'
+            }} />
+          </button>
+          
+          <style jsx>{`
+            @keyframes shimmer {
+              0% { transform: translateX(-100%); }
+              100% { transform: translateX(100%); }
+            }
+          `}</style>
         </motion.div>
       </section>
 

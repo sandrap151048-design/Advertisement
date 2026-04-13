@@ -178,10 +178,10 @@ export default function AdminSidebar() {
                         <span style={getNavTextStyle('/admin/contacts')}>Contact Forms</span>
                     </div>
                 </Link>
-                <Link href="/admin/scratch-offers" style={{ textDecoration: 'none' }} onClick={() => setIsMobileMenuOpen(false)}>
-                    <div style={getNavItemStyle('/admin/scratch-offers')}>
-                        <Gift size={20} color={getNavIconColor('/admin/scratch-offers')} /> 
-                        <span style={getNavTextStyle('/admin/scratch-offers')}>Scratch Offers</span>
+                <Link href="/admin/interactive-offers" style={{ textDecoration: 'none' }} onClick={() => setIsMobileMenuOpen(false)}>
+                    <div style={getNavItemStyle('/admin/interactive-offers')}>
+                        <Gift size={20} color={getNavIconColor('/admin/interactive-offers')} /> 
+                        <span style={getNavTextStyle('/admin/interactive-offers')}>Offer Reveal</span>
                     </div>
                 </Link>
                 <Link href="/admin/services" style={{ textDecoration: 'none' }} onClick={() => setIsMobileMenuOpen(false)}>
