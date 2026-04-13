@@ -103,6 +103,17 @@ const ALL_PROJECTS: Project[] = [
             '/signage-cladding.png',
             '/signage-branding.png'
         ]
+    },
+    {
+        id: 'def-7',
+        title: 'Frosted Glass Sticker Design',
+        description: 'Premium frosted glass vinyl sticker solutions for offices, storefronts, and conference rooms. Our precision-cut frosted films combine elegant privacy with striking brand visibility, featuring custom logo etchings, decorative patterns, and sandblasted effects that transform ordinary glass into sophisticated branding surfaces.',
+        category: 'Frosted Glass Sticker',
+        images: [
+            'https://images.unsplash.com/photo-1627012898015-aa708e5c53ee?q=80&w=800&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1637625854255-d893202554f4?q=80&w=800&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1579543228532-77621eee55a0?q=80&w=800&auto=format&fit=crop'
+        ]
     }
 ];
 
@@ -136,7 +147,7 @@ function ProjectsContent() {
 
     const categories = useMemo(() => [
         'All', 'Brand Identity', 'Digital Printing', 'Vehicle Branding', 
-        'Display Solutions', 'Signage', 'Facade & Cladding'
+        'Display Solutions', 'Signage', 'Facade & Cladding', 'Frosted Glass Sticker'
     ], []);
 
     useEffect(() => {
@@ -245,6 +256,11 @@ function ProjectsContent() {
         'Facade & Cladding': [
             '/signage-cladding.png',
             '/cta-bg-premium.png'
+        ],
+        'Frosted Glass Sticker': [
+            'https://images.unsplash.com/photo-1627012898015-aa708e5c53ee?q=80&w=800&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1637625854255-d893202554f4?q=80&w=800&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1579543228532-77621eee55a0?q=80&w=800&auto=format&fit=crop'
         ]
     };
 
