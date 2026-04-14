@@ -318,6 +318,97 @@ export default function DigitalGraphicsPage() {
           box-shadow: 0 8px 20px rgba(255,255,255,0.3);
         }
 
+        /* Frosted Glass Gallery Styles */
+        .frosted-glass-section {
+          padding: 8rem 2rem;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+        .section-header {
+          margin-bottom: 4rem;
+        }
+        .section-header h2 {
+          font-size: 3.5rem;
+          font-weight: 900;
+          margin-bottom: 0.5rem;
+          letter-spacing: -1px;
+        }
+        .section-header .accent {
+          color: #e61e25;
+          font-style: italic;
+          font-weight: 300;
+        }
+        .gallery-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2.5rem;
+        }
+        .gallery-card {
+          position: relative;
+          border-radius: 24px;
+          overflow: hidden;
+          background: rgba(255, 255, 255, 0.03);
+          backdrop-filter: blur(15px);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+          cursor: pointer;
+        }
+        .gallery-card:hover {
+          transform: translateY(-15px);
+          border-color: rgba(230, 30, 37, 0.4);
+          box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+        .card-image {
+          width: 100%;
+          height: 450px;
+          object-fit: cover;
+          transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .gallery-card:hover .card-image {
+          transform: scale(1.15);
+        }
+        .card-overlay {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          padding: 2.5rem;
+          background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 40%, transparent 100%);
+          opacity: 0;
+          transition: all 0.5s ease;
+        }
+        .gallery-card:hover .card-overlay {
+          opacity: 1;
+        }
+        .card-overlay h3 {
+          font-size: 1.5rem;
+          font-weight: 800;
+          margin-bottom: 0.8rem;
+          color: white;
+          transform: translateY(20px);
+          transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .gallery-card:hover .card-overlay h3 {
+          transform: translateY(0);
+        }
+        .card-overlay p {
+          font-size: 1rem;
+          color: rgba(255,255,255,0.8);
+          line-height: 1.5;
+          transform: translateY(20px);
+          transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+        }
+        .gallery-card:hover .card-overlay p {
+          transform: translateY(0);
+        }
+
+        @media (max-width: 992px) {
+          .gallery-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
         @media (max-width: 768px) {
           .service-detail-page {
             padding-top: 80px;
@@ -346,11 +437,18 @@ export default function DigitalGraphicsPage() {
             gap: 2rem;
           }
 
+          .section-header h2 {
+            font-size: 2.5rem;
+          }
           
-
+          .gallery-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+          }
           
-
-          
+          .card-image {
+            height: 350px;
+          }
         }
       `}</style>
 
@@ -423,6 +521,66 @@ export default function DigitalGraphicsPage() {
             ))}
           </motion.div>
         </motion.section>
+
+        {/* Frosted Glass Gallery */}
+        <section className="frosted-glass-section">
+          <motion.div 
+            className="section-header"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2>Frosted Glass <span className="accent">Solutions</span></h2>
+            <p style={{ color: 'rgba(255,255,255,0.6)', maxWidth: '600px' }}>
+              Elevate your workspace with our premium acid-etched and sandblasted effect glass films. 
+              Ideal for corporate privacy and artistic architectural branding.
+            </p>
+          </motion.div>
+
+          <div className="gallery-grid">
+            <motion.div 
+              className="gallery-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+            >
+              <img src="/frosted-glass-1.png" alt="Geometric Frosted Glass" className="card-image" />
+              <div className="card-overlay">
+                <h3>Minimalist Geometric</h3>
+                <p>Sophisticated diamond patterns for luxury lounges and executive suites.</p>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              className="gallery-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              <img src="/frosted-glass-2.png" alt="Ornate Storefront Design" className="card-image" />
+              <div className="card-overlay">
+                <h3>Storefront Branding</h3>
+                <p>Custom botanical and ornate patterns for high-end retail visibility.</p>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              className="gallery-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+            >
+              <img src="/frosted-glass-3.png" alt="Modern Corporate Privacy" className="card-image" />
+              <div className="card-overlay">
+                <h3>Modern Corporate</h3>
+                <p>Strategic privacy films with abstract lines for contemporary meeting rooms.</p>
+              </div>
+            </motion.div>
+          </div>
+        </section>
 
         {/* Service Locations */}
         <ServiceMap />
