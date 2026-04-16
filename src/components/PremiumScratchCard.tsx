@@ -297,20 +297,12 @@ export default function PremiumScratchCard({ onClaim, onClose }: PremiumScratchC
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',
-                                        backgroundPosition: 'center'
-                                    }}>
-                                        <div style={{ 
-                                            background: 'rgba(230, 30, 37, 0.9)', 
-                                            padding: '12px 24px', 
-                                            borderRadius: '50px', 
-                                            color: 'white', 
-                                            fontWeight: 'bold',
-                                            boxShadow: '0 10px 20px rgba(0,0,0,0.3)',
-                                            border: '2px solid rgba(255,255,255,0.2)'
-                                        }}>
-                                            REVEAL OFFER
-                                        </div>
-                                    </div>
+                                        backgroundPosition: 'center',
+                                        transition: 'transform 0.3s ease'
+                                    }}
+                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
+                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                                    />
                                 </div>
 
                                 <motion.div 
@@ -328,7 +320,7 @@ export default function PremiumScratchCard({ onClaim, onClose }: PremiumScratchC
                                         textShadow: '0 2px 10px rgba(0,0,0,0.5)'
                                     }}
                                 >
-                                    CLICK THE BUTTON TO REVEAL YOUR OFFER
+                                    CLICK TO REVEAL YOUR OFFER
                                 </motion.div>
                             </motion.div>
                         )}
