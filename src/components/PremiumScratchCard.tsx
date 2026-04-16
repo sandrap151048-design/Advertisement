@@ -264,7 +264,13 @@ export default function PremiumScratchCard({ onClaim, onClose }: PremiumScratchC
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{ opacity: 1, scale: 1 }}
                             >
-                                <div className="psc-scratch-box" style={{ width: '320px', height: '320px', position: 'relative', background: '#000', borderRadius: '24px', overflow: 'hidden' }}>
+                                <div className="psc-scratch-box" 
+                                    style={{ width: '320px', height: '320px', position: 'relative', background: '#000', borderRadius: '24px', overflow: 'hidden', cursor: 'pointer' }}
+                                    onClick={() => {
+                                        setPhase('revealed');
+                                        setTimeout(() => setPhase('form'), 3000);
+                                    }}
+                                >
                                     {/* The Underneath (Prize View) */}
                                     <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                                         <div style={{ 
@@ -276,26 +282,35 @@ export default function PremiumScratchCard({ onClaim, onClose }: PremiumScratchC
                                             filter: 'blur(4px) brightness(0.6)',
                                         }} />
                                         <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', padding: '20px' }}>
-                                            {/* Removed 'OFFER' text as requested */}
                                             <div className="psc-ribbon" style={{ fontSize: '18px', padding: '10px 30px' }}>{currentOffer.ribbon}</div>
                                             <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '12px', marginTop: '10px', fontWeight: 'bold' }}>EXPIRED SOON!</div>
                                         </div>
                                     </div>
 
-                                    {/* The Scratch Layer */}
-                                    <canvas 
-                                        ref={canvasRef}
-                                        width={320}
-                                        height={320}
-                                        className="psc-canvas"
-                                        style={{ position: 'absolute', inset: 0, zIndex: 10, cursor: 'crosshair', touchAction: 'none' }}
-                                        onMouseDown={() => (isDrawing.current = true)}
-                                        onMouseUp={() => { isDrawing.current = false; checkPercent(); }}
-                                        onMouseMove={(e) => isDrawing.current && handleScratch(e.clientX, e.clientY)}
-                                        onTouchStart={(e) => { isDrawing.current = true; handleScratch(e.touches[0].clientX, e.touches[0].clientY); }}
-                                        onTouchEnd={() => { isDrawing.current = false; checkPercent(); }}
-                                        onTouchMove={(e) => isDrawing.current && handleScratch(e.touches[0].clientX, e.touches[0].clientY)}
-                                    />
+                                    {/* The Interactive Overlay */}
+                                    <div style={{ 
+                                        position: 'absolute', 
+                                        inset: 0, 
+                                        zIndex: 10, 
+                                        backgroundImage: "url('/scratch-surface.png')",
+                                        backgroundSize: 'cover',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        backgroundPosition: 'center'
+                                    }}>
+                                        <div style={{ 
+                                            background: 'rgba(230, 30, 37, 0.9)', 
+                                            padding: '12px 24px', 
+                                            borderRadius: '50px', 
+                                            color: 'white', 
+                                            fontWeight: 'bold',
+                                            boxShadow: '0 10px 20px rgba(0,0,0,0.3)',
+                                            border: '2px solid rgba(255,255,255,0.2)'
+                                        }}>
+                                            REVEAL OFFER
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <motion.div 
@@ -313,7 +328,7 @@ export default function PremiumScratchCard({ onClaim, onClose }: PremiumScratchC
                                         textShadow: '0 2px 10px rgba(0,0,0,0.5)'
                                     }}
                                 >
-                                    SCRATCH TO REVEAL YOUR OFFER
+                                    CLICK THE BUTTON TO REVEAL YOUR OFFER
                                 </motion.div>
                             </motion.div>
                         )}
