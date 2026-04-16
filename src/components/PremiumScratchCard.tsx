@@ -12,10 +12,10 @@ interface PremiumScratchCardProps {
 
 const AD_OFFERS = [
     { title: "ZERO", ribbon: "Creative Design Fees", sub: "For your first 3 months" },
-    { title: "FREE", ribbon: "Branding Package", sub: "Full corporate identity design" },
-    { title: "FREE", ribbon: "Advertisement Design", sub: "Professional billboard design" },
-    { title: "FREE", ribbon: "Expert Consultation", sub: "One-on-one strategy session" },
-    { title: "FREE", ribbon: "Social Media Promotion", sub: "One week of targeted social ads" },
+    { title: "OFFER", ribbon: "Branding Package", sub: "Full corporate identity design" },
+    { title: "OFFER", ribbon: "Advertisement Design", sub: "Professional billboard design" },
+    { title: "OFFER", ribbon: "Expert Consultation", sub: "One-on-one strategy session" },
+    { title: "OFFER", ribbon: "Social Media Promotion", sub: "One week of targeted social ads" },
 ];
 
 export default function PremiumScratchCard({ onClaim, onClose }: PremiumScratchCardProps) {
@@ -59,46 +59,47 @@ export default function PremiumScratchCard({ onClaim, onClose }: PremiumScratchC
         return () => clearTimeout(timer);
     }, []);
 
-    const initCanvas = useCallback(() => {
-        setTimeout(() => {
-            const canvas = canvasRef.current;
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d', { willReadFrequently: true });
-            if (!ctx) return;
-
-            const rect = canvas.getBoundingClientRect();
-            canvas.width = rect.width || canvas.clientWidth || 320;
-            canvas.height = rect.height || canvas.clientHeight || 320;
-
-            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-            gradient.addColorStop(0, '#e61e25');
-            gradient.addColorStop(0.5, '#ff4d52');
-            gradient.addColorStop(1, '#e61e25');
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
-            ctx.lineWidth = 1;
-            for (let i = 0; i < canvas.width; i += 10) {
-                ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke();
-            }
-            for (let j = 0; j < canvas.height; j += 10) {
-                ctx.beginPath(); ctx.moveTo(0, j); ctx.lineTo(canvas.width, j); ctx.stroke();
-            }
-
-            ctx.fillStyle = '#fff';
-            ctx.font = 'bold 20px Montserrat';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('SCRATCH TO REVEAL', canvas.width / 2, canvas.height / 2);
-        }, 50);
-    }, []);
-
     useEffect(() => {
         if (phase === 'scratching') {
-            initCanvas();
+            const timer = setTimeout(initCanvas, 100);
+            return () => clearTimeout(timer);
         }
-    }, [phase, initCanvas]);
+    }, [phase]);
+
+    const initCanvas = () => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d', { willReadFrequently: true });
+        if (!ctx) return;
+
+        canvas.width = 320;
+        canvas.height = 320;
+
+        // Fill background
+        ctx.fillStyle = '#C0C0C0';
+        ctx.fillRect(0, 0, 320, 320);
+
+        // Metallic gradient
+        const grad = ctx.createLinearGradient(0, 0, 320, 320);
+        grad.addColorStop(0, '#A0A0A0');
+        grad.addColorStop(0.5, '#EAEAEA');
+        grad.addColorStop(1, '#A0A0A0');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 320, 320);
+
+        // Texture
+        ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+        ctx.lineWidth = 1;
+        for(let i=0; i<320; i+=4) {
+            ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i+2,320); ctx.stroke();
+        }
+
+        ctx.fillStyle = '#333';
+        ctx.font = '900 24px Montserrat';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('SCRATCH HERE', 160, 160);
+    };
 
     const handleScratch = (clientX: number, clientY: number) => {
         if (phase !== 'scratching') return;
@@ -261,32 +262,73 @@ export default function PremiumScratchCard({ onClaim, onClose }: PremiumScratchC
                             </motion.div>
                         )}
 
-                        {/* Phase 2: Scratching */}
+                        {/* Phase 2: Mystery Gift Reveal */}
                         {phase === 'scratching' && (
                             <motion.div 
-                                key="scratch"
+                                key="gift-reveal"
                                 className="psc-form-wrap"
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{ opacity: 1, scale: 1 }}
                             >
-                                <div className="psc-scratch-box">
-                                    <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#222' }}>
-                                        <div className="psc-big-text" style={{ fontSize: '60px' }}>{currentOffer.title}</div>
-                                        <div className="psc-ribbon" style={{ fontSize: '14px' }}>{currentOffer.ribbon}</div>
-                                    </div>
-                                    <canvas 
-                                        ref={canvasRef}
-                                        className="psc-canvas"
-                                        onMouseDown={() => (isDrawing.current = true)}
-                                        onMouseUp={() => { isDrawing.current = false; checkPercent(); }}
-                                        onMouseMove={(e) => isDrawing.current && handleScratch(e.clientX, e.clientY)}
-                                        onTouchStart={(e) => { isDrawing.current = true; handleScratch(e.touches[0].clientX, e.touches[0].clientY); }}
-                                        onTouchEnd={() => { isDrawing.current = false; checkPercent(); }}
-                                        onTouchMove={(e) => isDrawing.current && handleScratch(e.touches[0].clientX, e.touches[0].clientY)}
-                                    />
-                                    <div className="psc-shine" />
+                                <div 
+                                    onClick={() => {
+                                        setPhase('revealed');
+                                        setTimeout(() => setPhase('form'), 3000);
+                                    }}
+                                    style={{ 
+                                        cursor: 'pointer',
+                                        position: 'relative',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        gap: '2.5rem'
+                                    }}
+                                >
+                                    {/* Realistic 3D Gift Box Asset */}
+                                    <motion.div
+                                        animate={{ 
+                                            rotate: [0, -3, 3, -3, 3, 0],
+                                            scale: [1, 1.05, 1],
+                                            filter: [
+                                                'drop-shadow(0 0 20px rgba(230,30,37,0.4))',
+                                                'drop-shadow(0 0 40px rgba(230,30,37,0.8))',
+                                                'drop-shadow(0 0 20px rgba(230,30,37,0.4))'
+                                            ]
+                                        }}
+                                        transition={{ 
+                                            repeat: Infinity, 
+                                            duration: 2,
+                                            ease: "easeInOut"
+                                        }}
+                                    >
+                                        <img 
+                                            src="/giftbox-3d.png" 
+                                            alt="Premium Gift" 
+                                            style={{ 
+                                                width: '280px', 
+                                                height: 'auto',
+                                                filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.6))'
+                                            }}
+                                        />
+                                    </motion.div>
+
+                                    <motion.div 
+                                        className="psc-scratch-instr"
+                                        animate={{ opacity: [1, 0.5, 1] }}
+                                        transition={{ repeat: Infinity, duration: 2 }}
+                                        style={{ 
+                                            color: '#fff', 
+                                            fontSize: '18px', 
+                                            fontWeight: '950',
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '2px',
+                                            textAlign: 'center',
+                                            textShadow: '0 2px 10px rgba(0,0,0,0.5)'
+                                        }}
+                                    >
+                                        CLICK TO REVEAL YOUR OFFER
+                                    </motion.div>
                                 </div>
-                                <div className="psc-scratch-instr">Scratch to Reveal Your Offer</div>
                             </motion.div>
                         )}
 
@@ -296,10 +338,10 @@ export default function PremiumScratchCard({ onClaim, onClose }: PremiumScratchC
                                 key="revealed"
                                 className="psc-form-wrap"
                                 initial={{ opacity: 0, scale: 0.5 }}
-                                animate={{ opacity: 1, scale: 1.1 }}
+                                animate={{ opacity: 1, scale: 1 }}
                             >
-                                <Sparkles color="#e61e25" size={48} />
-                                <div className="psc-big-text" style={{ fontSize: '90px', textShadow: '0 0 20px #e61e25' }}>YOU WON!</div>
+                                <Sparkles color="#e61e25" size={48} style={{ marginBottom: '10px' }} />
+                                <div className="psc-big-text" style={{ fontSize: '64px', textShadow: '0 0 20px #e61e25', marginBottom: '15px' }}>YOU WON!</div>
                                 <div className="psc-ribbon">{currentOffer.ribbon}</div>
                             </motion.div>
                         )}

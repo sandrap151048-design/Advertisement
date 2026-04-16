@@ -379,3 +379,64 @@
     pointer-events: none;
     z-index: 100;
 }
+/* Responsive Media Queries */
+@media (max-width: 480px) {
+    .psc-container {
+        width: 100%;
+        min-height: 500px;
+        border-radius: 20px;
+    }
+
+    .psc-big-text {
+        font-size: 60px;
+    }
+
+    .psc-ribbon {
+        font-size: 15px;
+        padding: 6px 20px;
+    }
+
+    .psc-content {
+        padding: 20px;
+    }
+
+    .psc-scratch-box {
+        width: 280px;
+        height: 280px;
+    }
+
+    .psc-title {
+        font-size: 18px;
+    }
+
+    .psc-form-title {
+        font-size: 20px;
+    }
+
+    .psc-form-sub {
+        font-size: 12px;
+        margin-bottom: 20px;
+    }
+
+    .psc-input {
+        height: 44px;
+        font-size: 13px;
+    }
+
+    .psc-btn-teal, .psc-btn-submit {
+        height: 48px;
+        font-size: 16px;
+    }
+}
+
+@media (max-height: 600px) {
+    .psc-container {
+        min-height: unset;
+        height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .psc-content {
+        padding: 10px 20px;
+    }
+}

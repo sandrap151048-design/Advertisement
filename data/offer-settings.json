@@ -5,37 +5,37 @@
   "offers": [
     {
       "id": "2",
-      "title": "Free Branding Package",
+      "title": "Branding Package",
       "description": "Full corporate identity design",
-      "discount": "FREE",
+      "discount": "OFFER",
       "color": "#10b981"
     },
     {
       "id": "3",
       "title": "Advertisement Design",
-      "discount": "FREE",
+      "discount": "OFFER",
       "description": "Professional billboard design",
       "color": "#10b981"
     },
     {
       "id": "4",
       "title": "Expert Consultation",
-      "discount": "FREE",
+      "discount": "OFFER",
       "description": "One-on-one strategy session",
       "color": "#f59e0b"
     },
     {
       "id": "5",
       "title": "Social Media Promotion",
-      "discount": "FREE",
+      "discount": "OFFER",
       "description": "One week of targeted social ads",
       "color": "#8b5cf6"
     },
     {
       "id": "1776084583715",
-      "title": "free branding",
-      "description": "sdfghj",
-      "discount": "free",
+      "title": "Branding Suite",
+      "description": "Complete professional branding and strategy",
+      "discount": "OFFER",
       "color": "#e61e25"
     }
   ]

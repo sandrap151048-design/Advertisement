@@ -110,13 +110,6 @@ export default function Home() {
   const [openBrandAccordion, setOpenBrandAccordion] = useState<number | null>(0);
   const [isScratchCardOpen, setIsScratchCardOpen] = useState(false);
   
-  useEffect(() => {
-    // Show scratch card after 3 seconds on first load
-    const timer = setTimeout(() => {
-        setIsScratchCardOpen(true);
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
 
 
   // 3D Parallax Mouse Tracking
@@ -512,6 +505,7 @@ export default function Home() {
             bottom: 1.5rem !important;
             right: 1.5rem !important;
             width: auto !important;
+            --icon-size: 2.5rem;
           }
         }
 
@@ -521,6 +515,7 @@ export default function Home() {
           right: 3rem;
           z-index: 10;
           pointer-events: auto;
+          --icon-size: 4.5rem;
         }
 
 
@@ -1043,40 +1038,42 @@ export default function Home() {
             onClick={() => setIsScratchCardOpen(true)} 
             className="btn" 
             style={{ 
-              background: 'rgba(230, 30, 37, 0.15)',
-              backdropFilter: 'blur(16px)',
-              WebkitBackdropFilter: 'blur(16px)',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
+              background: 'rgba(230, 30, 37, 0.25)', /* Slightly higher opacity for visibility */
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              border: '1px solid rgba(255, 255, 255, 0.3)',
               color: 'white', 
               fontWeight: 900, 
               textTransform: 'uppercase', 
               letterSpacing: '0.1em', 
-              boxShadow: '0 8px 32px 0 rgba(230, 30, 37, 0.3)',
-              borderRadius: '8px',
-              padding: '1.25rem 2.5rem',
+              boxShadow: '0 8px 32px 0 rgba(230, 30, 37, 0.4)',
+              borderRadius: '50px', /* Pill shape for "small" button look */
+              padding: '0.75rem 1.75rem', /* Reduced padding */
               display: 'flex',
               alignItems: 'center',
-              gap: '0.75rem',
+              gap: '0.6rem',
               cursor: 'pointer',
-              fontSize: '0.85rem'
+              fontSize: '0.75rem', /* Reduced font size */
+              position: 'relative',
+              overflow: 'hidden'
             }}
           >
             <motion.span
               animate={{ rotate: [0, 15, -15, 0] }}
               transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-              style={{ fontSize: '1.25rem' }}
+              style={{ fontSize: '1.1rem' }}
             >
               🎁
             </motion.span>
-            <span>Launch My Growth Campaign</span>
+            <span>Grab Your Deal</span>
             
             {/* Inner Glowing Layer */}
             <div style={{
               position: 'absolute',
               inset: 0,
-              background: 'linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent)',
+              background: 'linear-gradient(45deg, transparent, rgba(255,255,255,0.15), transparent)',
               transform: 'translateX(-100%)',
-              animation: 'shimmer 3s infinite'
+              animation: 'shimmer 2.5s infinite'
             }} />
           </button>
           
