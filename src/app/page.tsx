@@ -6,6 +6,7 @@ import { ArrowRight, MapPin, Phone, Mail, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import AnimatedHeroHeading from '@/components/AnimatedHeroHeading';
 import MysteryBoxSection from '@/components/MysteryBoxSection';
+import PremiumScratchCard from '@/components/PremiumScratchCard';
 
 import './black-cards.css';
 
@@ -107,7 +108,15 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<'whyus' | 'reach' | 'solutions'>('whyus');
   const [currentLocationIndex, setCurrentLocationIndex] = useState(0);
   const [openBrandAccordion, setOpenBrandAccordion] = useState<number | null>(0);
-  const [isMysteryBoxOpen, setIsMysteryBoxOpen] = useState(false);
+  const [isScratchCardOpen, setIsScratchCardOpen] = useState(false);
+  
+  useEffect(() => {
+    // Show scratch card after 3 seconds on first load
+    const timer = setTimeout(() => {
+        setIsScratchCardOpen(true);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
 
   // 3D Parallax Mouse Tracking
@@ -186,11 +195,15 @@ export default function Home() {
 
   return (
     <>
-      <MysteryBoxSection 
-        isModal={true} 
-        isOpen={isMysteryBoxOpen} 
-        onClose={() => setIsMysteryBoxOpen(false)} 
-      />
+      {isScratchCardOpen && (
+        <PremiumScratchCard 
+          onClose={() => setIsScratchCardOpen(false)}
+          onClaim={() => {
+            console.log("Offer Claimed - Showing success message");
+          }}
+        />
+      )}
+      
       <style>{`
         * {
           margin: 0;
@@ -1027,7 +1040,7 @@ export default function Home() {
           transition={{ delay: 1.2, duration: 0.8, type: "spring" }}
         >
           <button 
-            onClick={() => setIsMysteryBoxOpen(true)} 
+            onClick={() => setIsScratchCardOpen(true)} 
             className="btn" 
             style={{ 
               background: 'rgba(230, 30, 37, 0.15)',
@@ -1055,7 +1068,7 @@ export default function Home() {
             >
               🎁
             </motion.span>
-            <span>Claim Free Offer</span>
+            <span>Launch My Growth Campaign</span>
             
             {/* Inner Glowing Layer */}
             <div style={{

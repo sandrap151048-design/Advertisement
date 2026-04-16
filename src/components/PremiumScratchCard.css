@@ -1,0 +1,381 @@
+/* Premium Scratch Card UI Styles - Perfect Alignment Edition */
+
+.psc-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.psc-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/city-hero-premium.png');
+    background-size: cover;
+    background-position: center;
+    filter: blur(15px) brightness(0.6);
+    z-index: -1;
+    transform: scale(1.1); /* Prevent blurred edges */
+}
+
+.psc-container {
+    position: relative;
+    width: 380px;
+    max-width: 100%;
+    min-height: 540px;
+    background: rgba(15, 15, 15, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 28px;
+    box-shadow: 
+        0 40px 100px -20px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(230, 30, 37, 0.3), /* Red outer edge */
+        inset 0 1px 1px rgba(255, 255, 255, 0.2); /* Top highlight */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Background Sunburst - Premium Refinement */
+.psc-modal-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('/cta-campaign-bg.png');
+    background-size: cover;
+    background-position: center;
+    filter: blur(12px) brightness(0.75);
+    z-index: -1;
+    transform: scale(1.1);
+}
+
+.psc-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.85) 100%);
+    z-index: -1;
+}
+
+.psc-sunburst {
+    position: absolute;
+    inset: -100px;
+    background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        rgba(255, 255, 255, 0.05) 15deg,
+        transparent 30deg
+    );
+    background-repeat: repeat;
+    animation: psc-rotate 40s linear infinite;
+    z-index: 0;
+    pointer-events: none;
+}
+
+@keyframes psc-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Header */
+.psc-header {
+    width: 100%;
+    padding: 30px 20px 0;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.psc-title {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 950;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.psc-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+.psc-close:hover { background: rgba(255,100,100,0.3); }
+
+/* Main Content Area */
+.psc-content {
+    flex: 1;
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+/* Offer Card Elements */
+.psc-big-text {
+    font-size: 85px;
+    font-weight: 950;
+    color: white;
+    line-height: 1;
+    margin-bottom: 25px;
+    letter-spacing: -2px;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.psc-ribbon-wrap {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.psc-ribbon {
+    background: #e61e25;
+    padding: 8px 35px;
+    color: white;
+    font-weight: 900;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    box-shadow: 0 10px 20px rgba(230, 30, 37, 0.3);
+}
+
+.psc-badge {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background: #fff;
+    color: #e61e25;
+    padding: 4px 12px;
+    font-size: 10px;
+    font-weight: 900;
+    border-radius: 20px;
+    transform: rotate(5deg);
+    border: 1px solid #e61e25;
+    z-index: 10;
+}
+
+.psc-small-desc {
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+    font-weight: 700;
+    max-width: 220px;
+    margin-bottom: 30px;
+}
+
+/* Buttons */
+.psc-btn-teal {
+    width: 100%;
+    height: 56px;
+    background: linear-gradient(135deg, #e61e25 0%, #b3161b 100%);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    font-size: 18px;
+    font-weight: 900;
+    text-transform: uppercase;
+    box-shadow: 0 10px 25px rgba(230, 30, 37, 0.4);
+    cursor: pointer;
+    animation: psc-bounce 2s infinite;
+    position: relative;
+    z-index: 100;
+    pointer-events: auto;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.psc-btn-teal:hover { 
+    transform: scale(1.04) translateY(-2px);
+    box-shadow: 0 15px 35px rgba(230, 30, 37, 0.6);
+}
+
+/* Scratch Implementation */
+.psc-scratch-box {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    background: #000;
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.psc-scratch-instr {
+    position: absolute;
+    bottom: 20px;
+    color: #fff;
+    opacity: 0.6;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Form Styling */
+.psc-form-wrap {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.psc-form-title {
+    color: white;
+    font-size: 26px;
+    font-weight: 950;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.psc-form-sub {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 30px;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.psc-fields {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.psc-input {
+    width: 100%;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 0 15px;
+    color: white;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.psc-input:focus {
+    border-color: #e61e25;
+    box-shadow: 0 0 15px rgba(230, 30, 37, 0.2);
+}
+
+.psc-btn-submit {
+    width: 100%;
+    height: 56px;
+    margin-top: 20px;
+    background: linear-gradient(135deg, #e61e25 0%, #b3161b 100%);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(230, 30, 37, 0.4);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.psc-btn-submit:hover { 
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(230, 30, 37, 0.5);
+}
+
+.psc-btn-submit:active {
+    transform: scale(0.96);
+}
+
+/* Extra Visuals */
+.psc-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: psc-shine 3s infinite;
+    pointer-events: none; /* Crucial: prevent blocking canvas events */
+}
+
+@keyframes psc-shine {
+    to { left: 200%; }
+}
+
+.psc-canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 100;
+    cursor: crosshair;
+    touch-action: none;
+    width: 100%;
+    height: 100%;
+}
+
+.psc-success-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    padding: 20px;
+}
+
+.psc-success-ring {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #e61e25;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    position: relative;
+    box-shadow: 0 0 20px rgba(230, 30, 37, 0.3);
+}
+
+.psc-success-ring::after {
+    content: '';
+    position: absolute;
+    inset: -10px;
+    border-radius: 50%;
+    border: 1px solid rgba(230, 30, 37, 0.2);
+    animation: psc-pulse 2s infinite;
+}
+
+@keyframes psc-pulse {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+.psc-victory-wrap {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+}
