@@ -1033,7 +1033,64 @@ export default function Home() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.8, type: "spring" }}
+          style={{ position: 'relative' }}
         >
+          {/* Floating Call-to-Action Badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ 
+              opacity: 1, 
+              scale: 1, 
+              y: [0, -10, 0] 
+            }}
+            transition={{ 
+                duration: 3, 
+                repeat: Infinity, 
+                ease: "easeInOut",
+                delay: 2
+            }}
+            style={{
+                position: 'absolute',
+                top: '-70px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                background: 'linear-gradient(135deg, #e61e25 0%, #ff4d4d 100%)',
+                padding: '10px 20px',
+                borderRadius: '50px',
+                color: 'white',
+                fontSize: '0.8rem',
+                fontWeight: 900,
+                whiteSpace: 'nowrap',
+                boxShadow: '0 10px 25px rgba(230, 30, 37, 0.4)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                cursor: 'pointer',
+                zIndex: 100,
+                border: '2px solid rgba(255,255,255,0.2)'
+            }}
+            onClick={() => setIsScratchCardOpen(true)}
+          >
+            <motion.span
+                animate={{ scale: [1, 1.3, 1] }}
+                transition={{ repeat: Infinity, duration: 1.5 }}
+            >
+                🔥
+            </motion.span>
+            LIMITED ADVERTISING OFFER
+            <div style={{
+                position: 'absolute',
+                bottom: '-10px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: '0',
+                height: '0',
+                borderLeft: '10px solid transparent',
+                borderRight: '10px solid transparent',
+                borderTop: '10px solid #e61e25'
+            }} />
+          </motion.div>
+
           <button 
             onClick={() => setIsScratchCardOpen(true)} 
             className="btn-grab-deal" 
