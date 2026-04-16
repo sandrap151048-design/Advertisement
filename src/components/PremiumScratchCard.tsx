@@ -75,17 +75,18 @@ export default function PremiumScratchCard({ onClaim, onClose }: PremiumScratchC
         canvas.width = 320;
         canvas.height = 320;
 
+        // IMMEDIATELY Fill with solid color so prize isn't visible while loading
+        ctx.fillStyle = '#A0A0A0';
+        ctx.fillRect(0, 0, 320, 320);
+
         // Load and draw the custom scratch surface image
         const img = new Image();
         img.src = '/scratch-surface.png';
         img.onload = () => {
-            // Draw a background behind the image to ensure no transparency leaks
-            ctx.fillStyle = '#C0C0C0';
-            ctx.fillRect(0, 0, 320, 320);
             ctx.drawImage(img, 0, 0, 320, 320);
             
             // Add a subtle overlay text to guide
-            ctx.fillStyle = 'rgba(0,0,0,0.4)';
+            ctx.fillStyle = 'rgba(0,0,0,0.5)';
             ctx.font = '900 24px Montserrat';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
