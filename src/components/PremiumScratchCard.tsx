@@ -275,7 +275,7 @@ export default function PremiumScratchCard({ onClaim, onClose }: PremiumScratchC
                                         }} />
                                         <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', padding: '20px' }}>
                                             {/* Removed 'OFFER' text as requested */}
-                                            <div className="psc-ribbon" style={{ fontSize: '18px', padding: '10px 30px' }}>{currentOffer.ribbon || currentOffer.discount}</div>
+                                            <div className="psc-ribbon" style={{ fontSize: '18px', padding: '10px 30px' }}>{currentOffer.ribbon}</div>
                                             <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '12px', marginTop: '10px', fontWeight: 'bold' }}>EXPIRED SOON!</div>
                                         </div>
                                     </div>
