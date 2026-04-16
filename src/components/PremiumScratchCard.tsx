@@ -178,7 +178,8 @@ export default function PremiumScratchCard({ onClaim, onClose }: PremiumScratchC
                 
                 {/* Header */}
                 <header className="psc-header">
-                    {(phase !== 'scratching' && phase !== 'form') && <h2 className="psc-title">THE BEST OFFER!</h2>}
+                    {phase === 'teaser' && <h2 className="psc-title">GRAB YOUR DEAL</h2>}
+                    {phase === 'revealed' && <h2 className="psc-title">THE BEST OFFER!</h2>}
                     <button className="psc-close" onClick={onClose} aria-label="Close">
                         <X size={20} />
                     </button>
