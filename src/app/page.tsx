@@ -1033,9 +1033,9 @@ export default function Home() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.8, type: "spring" }}
-          style={{ position: 'relative' }}
+          style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}
         >
-          {/* Floating Call-to-Action Badge */}
+          {/* Floating Call-to-Action Badge - now the primary button */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ 
@@ -1050,97 +1050,33 @@ export default function Home() {
                 delay: 2
             }}
             style={{
-                position: 'absolute',
-                top: '-70px',
-                left: '50%',
-                transform: 'translateX(-50%)',
                 background: 'linear-gradient(135deg, #e61e25 0%, #ff4d4d 100%)',
-                padding: '10px 20px',
+                padding: '12px 28px',
                 borderRadius: '50px',
                 color: 'white',
-                fontSize: '0.8rem',
+                fontSize: '0.9rem',
                 fontWeight: 900,
                 whiteSpace: 'nowrap',
-                boxShadow: '0 10px 25px rgba(230, 30, 37, 0.4)',
+                boxShadow: '0 15px 35px rgba(230, 30, 37, 0.5)',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px',
+                gap: '10px',
                 cursor: 'pointer',
                 zIndex: 100,
-                border: '2px solid rgba(255,255,255,0.2)'
+                border: '2px solid rgba(255, 255, 255, 0.3)',
+                textTransform: 'uppercase',
+                letterSpacing: '1px'
             }}
             onClick={() => setIsScratchCardOpen(true)}
           >
             <motion.span
-                animate={{ scale: [1, 1.3, 1] }}
+                animate={{ scale: [1, 1.4, 1] }}
                 transition={{ repeat: Infinity, duration: 1.5 }}
             >
                 🔥
             </motion.span>
             LIMITED ADVERTISING OFFER
-            <div style={{
-                position: 'absolute',
-                bottom: '-10px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: '0',
-                height: '0',
-                borderLeft: '10px solid transparent',
-                borderRight: '10px solid transparent',
-                borderTop: '10px solid #e61e25'
-            }} />
           </motion.div>
-
-          <button 
-            onClick={() => setIsScratchCardOpen(true)} 
-            className="btn-grab-deal" 
-            style={{ 
-              background: 'none',
-              border: 'none',
-              color: 'white', 
-              fontWeight: 950, 
-              textTransform: 'uppercase', 
-              letterSpacing: '0.15em', 
-              padding: '0.5rem',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              cursor: 'pointer',
-              fontSize: '1rem',
-              outline: 'none',
-              transition: 'all 0.3s ease',
-              filter: 'drop-shadow(0 0 10px rgba(0,0,0,0.5))'
-            }}
-          >
-            <motion.span
-              animate={{ 
-                rotate: [0, 15, -15, 0],
-                scale: [1, 1.2, 1]
-              }}
-              transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-              style={{ fontSize: '1.5rem', filter: 'drop-shadow(0 0 10px rgba(230,30,37,0.4))' }}
-            >
-              🎁
-            </motion.span>
-            <span style={{ transition: 'all 0.3s ease' }}>Grab Your Deal</span>
-          </button>
-          
-          <style jsx>{`
-            .btn-grab-deal:hover {
-              transform: scale(1.1);
-              filter: drop-shadow(0 0 15px rgba(230,30,37,0.6));
-            }
-            .btn-grab-deal:hover span {
-              color: #e61e25;
-            }
-          `}</style>
-          
-          <style jsx>{`
-            @keyframes shimmer {
-              0% { transform: translateX(-100%); }
-              100% { transform: translateX(100%); }
-            }
-          `}</style>
         </motion.div>
       </section>
 
