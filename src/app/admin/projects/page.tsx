@@ -371,58 +371,20 @@ export default function AdminProjectsPage() {
                     .cluster-text { order: 1 !important; text-align: left; }
                 }
 
-                /* Custom scrollbar for projects container */
+                /* Hide scrollbars for projects container */
                 .projects-container::-webkit-scrollbar {
-                    width: 8px;
+                    display: none;
                 }
-
-                .projects-container::-webkit-scrollbar-track {
-                    background: #f1f1f1;
-                    border-radius: 10px;
-                }
-
-                .projects-container::-webkit-scrollbar-thumb {
-                    background: linear-gradient(135deg, #e61e25 0%, #ff4757 100%);
-                    border-radius: 10px;
-                    transition: all 0.3s ease;
-                }
-
-                .projects-container::-webkit-scrollbar-thumb:hover {
-                    background: linear-gradient(135deg, #d63031 0%, #e61e25 100%);
-                    box-shadow: 0 2px 8px rgba(230, 30, 37, 0.3);
-                }
-
-                /* Firefox scrollbar */
                 .projects-container {
-                    scrollbar-width: thin;
-                    scrollbar-color: #e61e25 #f1f1f1;
+                    scrollbar-width: none;
                 }
 
-                /* Custom scrollbar for individual project cards */
+                /* Hide scrollbars for individual project cards */
                 .cluster-text::-webkit-scrollbar {
-                    width: 6px;
+                    display: none;
                 }
-
-                .cluster-text::-webkit-scrollbar-track {
-                    background: rgba(255, 255, 255, 0.1);
-                    border-radius: 10px;
-                }
-
-                .cluster-text::-webkit-scrollbar-thumb {
-                    background: linear-gradient(135deg, #e61e25 0%, #ff4757 100%);
-                    border-radius: 10px;
-                    transition: all 0.3s ease;
-                }
-
-                .cluster-text::-webkit-scrollbar-thumb:hover {
-                    background: linear-gradient(135deg, #d63031 0%, #e61e25 100%);
-                    box-shadow: 0 2px 8px rgba(230, 30, 37, 0.3);
-                }
-
-                /* Firefox scrollbar for project cards */
                 .cluster-text {
-                    scrollbar-width: thin;
-                    scrollbar-color: #e61e25 rgba(255, 255, 255, 0.1);
+                    scrollbar-width: none;
                 }
             `}</style>
 

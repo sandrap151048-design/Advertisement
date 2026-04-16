@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
+import { getDatabase } from '@/lib/mongodb';
 
-const dataDir = path.join(process.cwd(), 'data');
-const settingsFile = path.join(dataDir, 'offer-settings.json');
+const SETTINGS_ID = 'main_config';
 
 const defaultSettings = {
   enabled: true,
@@ -18,38 +16,39 @@ const defaultSettings = {
   ]
 };
 
-async function ensureDataDir() {
-  try {
-    await fs.mkdir(dataDir, { recursive: true });
-  } catch (error) {}
-}
-
-async function readSettings() {
-  try {
-    await ensureDataDir();
-    const data = await fs.readFile(settingsFile, 'utf-8');
-    return JSON.parse(data);
-  } catch (error) {
-    return defaultSettings;
-  }
-}
-
-async function writeSettings(settings: any) {
-  await ensureDataDir();
-  await fs.writeFile(settingsFile, JSON.stringify(settings, null, 2));
-}
-
 export async function GET() {
-  const settings = await readSettings();
-  return NextResponse.json({ success: true, ...settings });
+  try {
+    const db = await getDatabase();
+    const settings = await db.collection('offer_settings').findOne({ configId: SETTINGS_ID });
+    
+    if (!settings) {
+      return NextResponse.json({ success: true, ...defaultSettings });
+    }
+    
+    return NextResponse.json({ success: true, ...settings });
+  } catch (error) {
+    console.error('Database error:', error);
+    return NextResponse.json({ success: false, error: 'Failed to fetch settings' }, { status: 500 });
+  }
 }
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    await writeSettings(body);
+    const db = await getDatabase();
+    
+    // Remove _id from body if present to avoid immutable field error during upsert
+    const { _id, ...updateData } = body;
+    
+    await db.collection('offer_settings').updateOne(
+        { configId: SETTINGS_ID },
+        { $set: { ...updateData, configId: SETTINGS_ID } },
+        { upsert: true }
+    );
+    
     return NextResponse.json({ success: true });
   } catch (error) {
+    console.error('Database error:', error);
     return NextResponse.json({ success: false, error: 'Failed to save settings' }, { status: 500 });
   }
 }
