@@ -1030,10 +1030,16 @@ export default function Home() {
 
         <motion.div 
           className="claim-btn-floating"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.8, type: "spring" }}
-          style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 1.5, duration: 0.8 }}
+          style={{ 
+            position: 'absolute', 
+            right: '2rem', 
+            bottom: '2rem',
+            zIndex: 1000,
+            pointerEvents: 'auto'
+          }}
         >
           {/* Floating Call-to-Action Badge - now the primary button */}
           <motion.div
@@ -1046,23 +1052,21 @@ export default function Home() {
             transition={{ 
                 duration: 3, 
                 repeat: Infinity, 
-                ease: "easeInOut",
-                delay: 2
+                ease: "easeInOut"
             }}
             style={{
                 background: 'linear-gradient(135deg, #e61e25 0%, #ff4d4d 100%)',
-                padding: '12px 28px',
+                padding: '10px 24px',
                 borderRadius: '50px',
                 color: 'white',
-                fontSize: '0.9rem',
+                fontSize: '0.8rem',
                 fontWeight: 900,
                 whiteSpace: 'nowrap',
-                boxShadow: '0 15px 35px rgba(230, 30, 37, 0.5)',
+                boxShadow: '0 15px 35px rgba(230, 30, 37, 0.4)',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '10px',
+                gap: '8px',
                 cursor: 'pointer',
-                zIndex: 100,
                 border: '2px solid rgba(255, 255, 255, 0.3)',
                 textTransform: 'uppercase',
                 letterSpacing: '1px'
