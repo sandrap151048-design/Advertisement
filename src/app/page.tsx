@@ -1036,46 +1036,47 @@ export default function Home() {
         >
           <button 
             onClick={() => setIsScratchCardOpen(true)} 
-            className="btn" 
+            className="btn-grab-deal" 
             style={{ 
-              background: 'rgba(230, 30, 37, 0.25)', /* Slightly higher opacity for visibility */
-              backdropFilter: 'blur(12px)',
-              WebkitBackdropFilter: 'blur(12px)',
-              border: '1px solid rgba(255, 255, 255, 0.3)',
+              background: 'none',
+              border: 'none',
               color: 'white', 
-              fontWeight: 900, 
+              fontWeight: 950, 
               textTransform: 'uppercase', 
-              letterSpacing: '0.1em', 
-              boxShadow: '0 8px 32px 0 rgba(230, 30, 37, 0.4)',
-              borderRadius: '50px', /* Pill shape for "small" button look */
-              padding: '0.75rem 1.75rem', /* Reduced padding */
+              letterSpacing: '0.15em', 
+              padding: '0.5rem',
               display: 'flex',
               alignItems: 'center',
-              gap: '0.6rem',
+              gap: '0.75rem',
               cursor: 'pointer',
-              fontSize: '0.75rem', /* Reduced font size */
-              position: 'relative',
-              overflow: 'hidden'
+              fontSize: '1rem',
+              outline: 'none',
+              transition: 'all 0.3s ease',
+              filter: 'drop-shadow(0 0 10px rgba(0,0,0,0.5))'
             }}
           >
             <motion.span
-              animate={{ rotate: [0, 15, -15, 0] }}
-              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-              style={{ fontSize: '1.1rem' }}
+              animate={{ 
+                rotate: [0, 15, -15, 0],
+                scale: [1, 1.2, 1]
+              }}
+              transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+              style={{ fontSize: '1.5rem', filter: 'drop-shadow(0 0 10px rgba(230,30,37,0.4))' }}
             >
               🎁
             </motion.span>
-            <span>Grab Your Deal</span>
-            
-            {/* Inner Glowing Layer */}
-            <div style={{
-              position: 'absolute',
-              inset: 0,
-              background: 'linear-gradient(45deg, transparent, rgba(255,255,255,0.15), transparent)',
-              transform: 'translateX(-100%)',
-              animation: 'shimmer 2.5s infinite'
-            }} />
+            <span style={{ transition: 'all 0.3s ease' }}>Grab Your Deal</span>
           </button>
+          
+          <style jsx>{`
+            .btn-grab-deal:hover {
+              transform: scale(1.1);
+              filter: drop-shadow(0 0 15px rgba(230,30,37,0.6));
+            }
+            .btn-grab-deal:hover span {
+              color: #e61e25;
+            }
+          `}</style>
           
           <style jsx>{`
             @keyframes shimmer {

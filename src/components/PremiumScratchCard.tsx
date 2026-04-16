@@ -75,30 +75,22 @@ export default function PremiumScratchCard({ onClaim, onClose }: PremiumScratchC
         canvas.width = 320;
         canvas.height = 320;
 
-        // Fill background
-        ctx.fillStyle = '#C0C0C0';
-        ctx.fillRect(0, 0, 320, 320);
-
-        // Metallic gradient
-        const grad = ctx.createLinearGradient(0, 0, 320, 320);
-        grad.addColorStop(0, '#A0A0A0');
-        grad.addColorStop(0.5, '#EAEAEA');
-        grad.addColorStop(1, '#A0A0A0');
-        ctx.fillStyle = grad;
-        ctx.fillRect(0, 0, 320, 320);
-
-        // Texture
-        ctx.strokeStyle = 'rgba(255,255,255,0.3)';
-        ctx.lineWidth = 1;
-        for(let i=0; i<320; i+=4) {
-            ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i+2,320); ctx.stroke();
-        }
-
-        ctx.fillStyle = '#333';
-        ctx.font = '900 24px Montserrat';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText('SCRATCH HERE', 160, 160);
+        // Load and draw the custom scratch surface image
+        const img = new Image();
+        img.src = '/scratch-surface.png';
+        img.onload = () => {
+            // Draw a background behind the image to ensure no transparency leaks
+            ctx.fillStyle = '#C0C0C0';
+            ctx.fillRect(0, 0, 320, 320);
+            ctx.drawImage(img, 0, 0, 320, 320);
+            
+            // Add a subtle overlay text to guide
+            ctx.fillStyle = 'rgba(0,0,0,0.4)';
+            ctx.font = '900 24px Montserrat';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('SCRATCH HERE', 160, 160);
+        };
     };
 
     const handleScratch = (clientX: number, clientY: number) => {
@@ -117,10 +109,10 @@ export default function PremiumScratchCard({ onClaim, onClose }: PremiumScratchC
         ctx.lineCap = 'round';
         ctx.lineWidth = 60;
         ctx.beginPath();
-        ctx.arc(x, y, 30, 0, Math.PI * 2);
+        ctx.arc(x, y, 35, 0, Math.PI * 2);
         ctx.fill();
 
-        if (Math.random() > 0.95) checkPercent();
+        if (Math.random() > 0.9) checkPercent();
     };
 
     const checkPercent = () => {
@@ -137,9 +129,9 @@ export default function PremiumScratchCard({ onClaim, onClose }: PremiumScratchC
         }
 
         const percent = (transparent / (pixels.length / 4)) * 100;
-        if (percent > 50) {
+        if (percent > 45) {
             setPhase('revealed');
-            setTimeout(() => setPhase('form'), 2000);
+            setTimeout(() => setPhase('form'), 3000);
         }
     };
 
@@ -185,7 +177,7 @@ export default function PremiumScratchCard({ onClaim, onClose }: PremiumScratchC
                 
                 {/* Header */}
                 <header className="psc-header">
-                    <h2 className="psc-title">THE BEST OFFER!</h2>
+                    {(phase !== 'scratching' && phase !== 'form') && <h2 className="psc-title">THE BEST OFFER!</h2>}
                     <button className="psc-close" onClick={onClose} aria-label="Close">
                         <X size={20} />
                     </button>
@@ -262,73 +254,65 @@ export default function PremiumScratchCard({ onClaim, onClose }: PremiumScratchC
                             </motion.div>
                         )}
 
-                        {/* Phase 2: Mystery Gift Reveal */}
+                        {/* Phase 2: Mystery Scratch Reveal */}
                         {phase === 'scratching' && (
                             <motion.div 
-                                key="gift-reveal"
+                                key="scratch-reveal"
                                 className="psc-form-wrap"
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{ opacity: 1, scale: 1 }}
                             >
-                                <div 
-                                    onClick={() => {
-                                        setPhase('revealed');
-                                        setTimeout(() => setPhase('form'), 3000);
-                                    }}
+                                <div className="psc-scratch-box" style={{ width: '320px', height: '320px', position: 'relative', background: '#000', borderRadius: '24px', overflow: 'hidden' }}>
+                                    {/* The Underneath (Prize View) */}
+                                    <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                                        <div style={{ 
+                                            position: 'absolute', 
+                                            inset: 0, 
+                                            backgroundImage: "url('/cta-campaign-bg.png')",
+                                            backgroundSize: 'cover',
+                                            backgroundPosition: 'center',
+                                            filter: 'blur(4px) brightness(0.6)',
+                                        }} />
+                                        <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', padding: '20px' }}>
+                                            {/* Removed 'OFFER' text as requested */}
+                                            <div className="psc-ribbon" style={{ fontSize: '18px', padding: '10px 30px' }}>{currentOffer.ribbon || currentOffer.discount}</div>
+                                            <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '12px', marginTop: '10px', fontWeight: 'bold' }}>EXPIRED SOON!</div>
+                                        </div>
+                                    </div>
+
+                                    {/* The Scratch Layer */}
+                                    <canvas 
+                                        ref={canvasRef}
+                                        width={320}
+                                        height={320}
+                                        className="psc-canvas"
+                                        style={{ position: 'absolute', inset: 0, zIndex: 10, cursor: 'crosshair', touchAction: 'none' }}
+                                        onMouseDown={() => (isDrawing.current = true)}
+                                        onMouseUp={() => { isDrawing.current = false; checkPercent(); }}
+                                        onMouseMove={(e) => isDrawing.current && handleScratch(e.clientX, e.clientY)}
+                                        onTouchStart={(e) => { isDrawing.current = true; handleScratch(e.touches[0].clientX, e.touches[0].clientY); }}
+                                        onTouchEnd={() => { isDrawing.current = false; checkPercent(); }}
+                                        onTouchMove={(e) => isDrawing.current && handleScratch(e.touches[0].clientX, e.touches[0].clientY)}
+                                    />
+                                </div>
+
+                                <motion.div 
+                                    className="psc-scratch-instr"
+                                    animate={{ opacity: [1, 0.5, 1] }}
+                                    transition={{ repeat: Infinity, duration: 2 }}
                                     style={{ 
-                                        cursor: 'pointer',
-                                        position: 'relative',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        alignItems: 'center',
-                                        gap: '2.5rem'
+                                        marginTop: '25px',
+                                        color: '#fff', 
+                                        fontSize: '18px', 
+                                        fontWeight: '950',
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '2px',
+                                        textAlign: 'center',
+                                        textShadow: '0 2px 10px rgba(0,0,0,0.5)'
                                     }}
                                 >
-                                    {/* Realistic 3D Gift Box Asset */}
-                                    <motion.div
-                                        animate={{ 
-                                            rotate: [0, -3, 3, -3, 3, 0],
-                                            scale: [1, 1.05, 1],
-                                            filter: [
-                                                'drop-shadow(0 0 20px rgba(230,30,37,0.4))',
-                                                'drop-shadow(0 0 40px rgba(230,30,37,0.8))',
-                                                'drop-shadow(0 0 20px rgba(230,30,37,0.4))'
-                                            ]
-                                        }}
-                                        transition={{ 
-                                            repeat: Infinity, 
-                                            duration: 2,
-                                            ease: "easeInOut"
-                                        }}
-                                    >
-                                        <img 
-                                            src="/giftbox-3d.png" 
-                                            alt="Premium Gift" 
-                                            style={{ 
-                                                width: '280px', 
-                                                height: 'auto',
-                                                filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.6))'
-                                            }}
-                                        />
-                                    </motion.div>
-
-                                    <motion.div 
-                                        className="psc-scratch-instr"
-                                        animate={{ opacity: [1, 0.5, 1] }}
-                                        transition={{ repeat: Infinity, duration: 2 }}
-                                        style={{ 
-                                            color: '#fff', 
-                                            fontSize: '18px', 
-                                            fontWeight: '950',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '2px',
-                                            textAlign: 'center',
-                                            textShadow: '0 2px 10px rgba(0,0,0,0.5)'
-                                        }}
-                                    >
-                                        CLICK TO REVEAL YOUR OFFER
-                                    </motion.div>
-                                </div>
+                                    SCRATCH TO REVEAL YOUR OFFER
+                                </motion.div>
                             </motion.div>
                         )}
 
