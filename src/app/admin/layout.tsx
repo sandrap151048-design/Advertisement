@@ -56,7 +56,13 @@ export default function AdminLayout({
           height: 100vh;
           overflow-y: auto;
           padding: 3rem;
+          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none; /* IE/Edge */
         }
+        .main-content::-webkit-scrollbar {
+          display: none; /* Chrome/Safari/Webkit */
+        }
+
         @media (max-width: 1024px) {
           .sidebar-wrapper {
             width: 0;

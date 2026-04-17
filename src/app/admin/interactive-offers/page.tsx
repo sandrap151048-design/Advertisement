@@ -466,10 +466,10 @@ export default function InteractiveOffersAdmin() {
             <div className="p-2-5 rounded-xl" style={{ background: 'rgba(230,30,37,0.1)' }}>
               <Gift className="text-[#e61e25]" size={28} />
             </div>
-            <h1 className="text-4xl font-black text-white">Mystery Box Reveal</h1>
+            <h1 className="text-4xl font-black text-white">Limited Offer</h1>
           </div>
           <p className="text-gray-500 text-sm">
-            Manage interactive mystery box offers, track leads, and configure settings.
+            Manage interactive promotional offers, track leads, and configure settings.
           </p>
         </div>
 
@@ -483,19 +483,6 @@ export default function InteractiveOffersAdmin() {
             <RefreshCw size={16} color="#ffffff" className={loading ? 'animate-spin' : ''} />
             Refresh
           </button>
-
-          {/* Live status pill */}
-          <div
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold"
-            style={{
-              background: cfg.enabled ? 'rgba(16,185,129,0.1)' : 'rgba(255,255,255,0.05)',
-              border: `1px solid ${cfg.enabled ? 'rgba(16,185,129,0.3)' : 'rgba(255,255,255,0.08)'}`,
-              color: cfg.enabled ? '#10b981' : '#888',
-            }}
-          >
-            <span className={`w-2 h-2 rounded-full ${cfg.enabled ? 'bg-green-400' : 'bg-gray-600'} ${cfg.enabled ? 'animate-pulse' : ''}`} />
-            {cfg.enabled ? 'Live' : 'Disabled'}
-          </div>
         </div>
       </div>
 

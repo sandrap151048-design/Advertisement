@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Home, LogOut, MessageSquare, Briefcase, TrendingUp, Menu, X, Layout, Users, Gift, Facebook, Instagram, Linkedin } from 'lucide-react';
+import { Home, LogOut, MessageSquare, Briefcase, TrendingUp, Menu, X, Layout, Users, Gift } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -72,29 +72,15 @@ export default function AdminSidebar() {
                     overflow-x: hidden;
                 }
 
-                /* Custom scrollbar — matches services page card premium style */
+                /* Hide scrollbars for admin sidebar */
                 .admin-sidebar::-webkit-scrollbar {
-                    width: 5px;
+                    display: none;
                 }
-                .admin-sidebar::-webkit-scrollbar-track {
-                    background: rgba(255, 255, 255, 0.04);
-                    border-radius: 10px;
-                }
-                .admin-sidebar::-webkit-scrollbar-thumb {
-                    background: linear-gradient(180deg, #e61e25 0%, #ff4d4d 100%);
-                    border-radius: 10px;
-                    box-shadow: 0 0 6px rgba(230, 30, 37, 0.5);
-                    transition: background 0.3s ease;
-                }
-                .admin-sidebar::-webkit-scrollbar-thumb:hover {
-                    background: linear-gradient(180deg, #ff2d35 0%, #ff6b6b 100%);
-                    box-shadow: 0 0 10px rgba(230, 30, 37, 0.8);
-                }
-                /* Firefox */
                 .admin-sidebar {
-                    scrollbar-width: thin;
-                    scrollbar-color: #e61e25 rgba(255, 255, 255, 0.04);
+                    scrollbar-width: none;
+                    -ms-overflow-style: none;
                 }
+
 
                 @media (max-width: 1024px) {
                     .admin-sidebar {
@@ -180,8 +166,8 @@ export default function AdminSidebar() {
                 </Link>
                 <Link href="/admin/interactive-offers" style={{ textDecoration: 'none' }} onClick={() => setIsMobileMenuOpen(false)}>
                     <div style={getNavItemStyle('/admin/interactive-offers')}>
-                        <Gift size={20} color={getNavIconColor('/admin/interactive-offers')} /> 
-                        <span style={getNavTextStyle('/admin/interactive-offers')}>Offer Reveal</span>
+                        <TrendingUp size={20} color={getNavIconColor('/admin/interactive-offers')} /> 
+                        <span style={getNavTextStyle('/admin/interactive-offers')}>Limited Offers</span>
                     </div>
                 </Link>
                 <Link href="/admin/services" style={{ textDecoration: 'none' }} onClick={() => setIsMobileMenuOpen(false)}>
@@ -200,17 +186,6 @@ export default function AdminSidebar() {
             </nav>
 
             <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '2rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', padding: '0 0.5rem' }}>
-                    <a href="https://www.facebook.com/oneclickadvertisement/" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.4)', transition: 'color 0.3s' }} onMouseOver={(e) => e.currentTarget.style.color = '#e61e25'} onMouseOut={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'} aria-label="Facebook">
-                        <Facebook size={20} />
-                    </a>
-                    <a href="https://www.instagram.com/oneclick_advertisement?igsh=NzNwaGo2b2VwbDNh" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.4)', transition: 'color 0.3s' }} onMouseOver={(e) => e.currentTarget.style.color = '#e61e25'} onMouseOut={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'} aria-label="Instagram">
-                        <Instagram size={20} />
-                    </a>
-                    <a href="#" style={{ color: 'rgba(255,255,255,0.4)', transition: 'color 0.3s' }} onMouseOver={(e) => e.currentTarget.style.color = '#e61e25'} onMouseOut={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'} aria-label="LinkedIn">
-                        <Linkedin size={20} />
-                    </a>
-                </div>
                 
                 <div 
                     onClick={handleLogout}

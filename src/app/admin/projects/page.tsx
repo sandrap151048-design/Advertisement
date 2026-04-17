@@ -241,150 +241,184 @@ export default function AdminProjectsPage() {
         return matchesSearch && matchesCategory;
     });
 
+    const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        const card = e.currentTarget;
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        
+        card.style.setProperty('--mouse-x', `${x}%`);
+        card.style.setProperty('--mouse-y', `${y}%`);
+    };
+
     return (
-        <div style={{ padding: '0', background: '#ffffff', minHeight: '100vh', color: '#1c1c1c' }}>
+        <div style={{ padding: '0', background: '#f8fafc', minHeight: '100vh', color: '#1c1c1c', paddingBottom: '100px' }}>
             <style jsx global>{`
-                @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap');
+                @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
                 
                 .hover-red:hover { color: #e61e25 !important; }
                 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
                 .animate-spin { animation: spin 1s linear infinite; }
 
-                .project-cluster {
+                .projects-grid {
                     display: grid;
-                    grid-template-columns: 1fr 1.5fr;
-                    gap: 40px;
-                    margin-bottom: 80px;
-                    align-items: center;
-                    background: transparent;
+                    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                    gap: 2rem;
+                    max-width: 1400px;
+                    margin: 0 auto;
                 }
 
-                .cluster-text {
-                    background: #1c1c1c;
-                    padding: clamp(1.5rem, 4vw, 3.5rem);
-                    border: 1px solid rgba(12, 12, 12,0.05);
-                    border-radius: 24px;
-                    box-shadow: 0 20px 50px rgba(12, 12, 12,0.03);
+                .project-card {
+                    position: relative;
+                    height: 380px;
+                    border-radius: 20px;
+                    overflow: hidden;
+                    cursor: pointer;
+                    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+                    background: #000;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    box-shadow: 0 10px 30px rgba(12, 12, 12, 0.2);
+                    will-change: transform, box-shadow;
+                }
+
+                .project-card::before {
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(230, 30, 37, 0.15), transparent 80%);
+                    opacity: 0;
+                    transition: opacity 0.4s ease;
+                    pointer-events: none;
+                    z-index: 1;
+                }
+
+                .project-card:hover {
+                    transform: translateY(-10px);
+                    box-shadow: 0 20px 40px rgba(230, 30, 37, 0.15);
+                    border-color: rgba(230, 30, 37, 0.3);
+                }
+
+                .project-card:hover::before {
+                    opacity: 1;
+                }
+
+                .project-card img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+
+                .project-card:hover img {
+                    transform: scale(1.1);
+                    filter: brightness(0.7);
+                }
+
+                .project-overlay {
+                    position: absolute;
+                    inset: 0;
+                    background: linear-gradient(to top, rgba(12, 12, 12,0.95) 0%, rgba(12, 12, 12,0.4) 50%, rgba(12, 12, 12,0.1) 100%);
                     display: flex;
                     flex-direction: column;
-                    justify-content: flex-start;
-                    position: relative;
-                    max-height: 500px;
-                    overflow-y: auto;
-                    scrollbar-width: thin;
-                    scrollbar-color: #e61e25 rgba(255, 255, 255, 0.1);
-                }
-
-                .cluster-title {
-                    font-size: clamp(1.8rem, 5vw, 2.8rem);
-                    font-weight: 800;
-                    margin-bottom: 1.5rem;
-                    letter-spacing: -1px;
-                    color: #ffffff;
-                }
-
-                .cluster-desc {
-                    color: rgba(255, 255, 255, 0.8);
-                    line-height: 1.8;
-                    font-size: 1.05rem;
-                    margin-bottom: 2rem;
-                }
-
-                .cluster-images {
-                    display: grid;
-                    grid-template-columns: 1fr;
-                    gap: 30px;
-                }
-
-                .cluster-img {
-                    width: 100%;
-                    height: 550px;
-                    object-fit: cover;
-                    border-radius: 20px;
-                    box-shadow: 0 15px 45px rgba(12, 12, 12,0.1);
+                    justify-content: flex-end;
+                    padding: 2rem;
+                    color: white;
+                    z-index: 2;
                     transition: all 0.6s ease;
                 }
 
-                .cluster-img:hover {
-                    box-shadow: 0 30px 60px rgba(12, 12, 12,0.2);
-                    transform: scale(1.02);
+                .project-card:hover .project-overlay {
+                    background: linear-gradient(to top, rgba(12, 12, 12,0.98) 0%, rgba(12, 12, 12,0.3) 100%);
                 }
 
-                .cluster-admin-actions {
-                    display: flex;
-                    gap: 1rem;
-                    border-top: 1px solid rgba(255, 255, 255, 0.2);
-                    padding-top: 2rem;
-                    margin-top: 1rem;
+                .project-title {
+                    font-size: 1.7rem;
+                    font-weight: 800;
+                    margin-bottom: 0.6rem;
+                    color: white;
+                    text-shadow: 0 2px 10px rgba(12, 12, 12,0.5);
                 }
 
-                .admin-btn {
-                    padding: 0.8rem 1.5rem;
-                    border-radius: 12px;
-                    border: none;
+                .project-category-badge {
+                    display: inline-block;
+                    background: rgba(230, 30, 37, 0.9);
+                    color: white;
+                    padding: 4px 12px;
+                    border-radius: 20px;
+                    font-size: 0.75rem;
                     font-weight: 700;
-                    cursor: pointer;
+                    margin-bottom: 0.75rem;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    width: fit-content;
+                }
+
+                .project-desc {
+                    color: rgba(255, 255, 255, 0.7);
+                    font-size: 0.9rem;
+                    line-height: 1.6;
+                    margin-bottom: 1.5rem;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                }
+
+                .admin-actions {
+                    display: flex;
+                    gap: 0.75rem;
+                    opacity: 1;
+                    transform: translateY(0);
+                    transition: all 0.4s ease;
+                }
+
+                /* Hover state for cards still maintains gradient/scale effects */
+
+                .action-btn {
+                    flex: 1;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    gap: 10px;
-                    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-                    font-size: 0.95rem;
+                    gap: 8px;
+                    padding: 0.6rem;
+                    border-radius: 10px;
+                    font-size: 0.85rem;
+                    font-weight: 700;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    border: none;
                 }
 
-                .admin-btn.edit {
-                    background: rgba(255, 255, 255, 0.1);
-                    color: #ffffff;
-                    border: 1px solid rgba(255, 255, 255, 0.2);
+                .action-btn.edit {
+                    background: white;
+                    color: #1c1c1c;
                 }
 
-                .admin-btn.delete {
-                    background: rgba(230, 30, 37, 0.08);
-                    color: #e61e25;
+                .action-btn.edit:hover {
+                    background: #f0f0f0;
                 }
 
-                .admin-btn:hover {
-                    transform: translateY(-3px);
-                    box-shadow: 0 8px 20px rgba(12, 12, 12,0.1);
+                .action-btn.delete {
+                    background: rgba(230, 30, 37, 0.15);
+                    color: #ff4d4d;
+                    backdrop-filter: blur(10px);
+                    border: 1px solid rgba(230, 30, 37, 0.3);
                 }
 
-                .admin-btn.edit:hover {
-                    background: rgba(255, 255, 255, 0.2);
-                    color: #ffffff;
-                    border-color: rgba(255, 255, 255, 0.4);
-                }
-
-                .admin-btn.delete:hover {
+                .action-btn.delete:hover {
                     background: #e61e25;
                     color: white;
                 }
 
-                @media (max-width: 1024px) {
-                    .project-cluster { grid-template-columns: 1fr; gap: 30px; }
-                    .cluster-images.single { height: 450px; }
-                    .cluster-text { padding: 2.5rem 1.5rem; }
+                /* Hide scrollbars for the whole dashboard content and containers */
+                :global(.main-content)::-webkit-scrollbar,
+                .projects-grid::-webkit-scrollbar {
+                    display: none !important;
                 }
-
-                @media (max-width: 768px) {
-                    .project-cluster { display: flex !important; flex-direction: column !important; }
-                    .cluster-images { order: 2 !important; height: 400px; }
-                    .cluster-text { order: 1 !important; text-align: left; }
-                }
-
-                /* Hide scrollbars for projects container */
-                .projects-container::-webkit-scrollbar {
-                    display: none;
-                }
-                .projects-container {
-                    scrollbar-width: none;
-                }
-
-                /* Hide scrollbars for individual project cards */
-                .cluster-text::-webkit-scrollbar {
-                    display: none;
-                }
-                .cluster-text {
-                    scrollbar-width: none;
+                :global(.main-content),
+                .projects-grid {
+                    scrollbar-width: none !important;
+                    -ms-overflow-style: none !important;
                 }
             `}</style>
 
@@ -397,7 +431,8 @@ export default function AdminProjectsPage() {
                             exit={{ opacity: 0, y: -50 }}
                             style={{
                                 position: 'fixed', top: '2rem', right: '2rem',
-                                background: '#10b981', color: 'white', padding: '1rem 2rem',
+                                background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)', 
+                                color: 'white', padding: '1rem 2rem',
                                 borderRadius: '12px', display: 'flex', alignItems: 'center',
                                 gap: '0.5rem', boxShadow: '0 10px 25px rgba(16, 185, 129, 0.3)',
                                 zIndex: 1000, fontWeight: 600
@@ -414,24 +449,38 @@ export default function AdminProjectsPage() {
                         <Link href="/admin" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#666', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, marginBottom: '1.5rem', transition: 'all 0.3s' }} className="hover-red">
                             <ArrowLeft size={18} /> Back to Dashboard
                         </Link>
-                        <h1 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#1c1c1c', marginBottom: '0.5rem' }}>
+                        <h1 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#1c1c1c', marginBottom: '0.2rem', fontFamily: "'Outfit', sans-serif" }}>
                             Projects <span style={{ color: '#e61e25' }}>Management</span>
                         </h1>
+                        <p style={{ color: '#666', fontSize: '0.95rem' }}>Showcase your best work to the world</p>
                     </div>
                     <motion.button 
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={() => setIsAddModalOpen(true)} 
-                        style={{ background: '#e61e25', color: 'white', border: 'none', padding: '0.8rem 1.8rem', borderRadius: '12px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '0.6rem', cursor: 'pointer', boxShadow: '0 4px 12px rgba(230, 30, 37, 0.3)' }}
+                        style={{ 
+                            background: 'linear-gradient(135deg, #2c4a5e 0%, #e61e25 100%)', 
+                            color: 'white', 
+                            border: 'none', 
+                            padding: '0.8rem 1.8rem', 
+                            borderRadius: '12px', 
+                            fontWeight: 700, 
+                            display: 'flex', 
+                            alignItems: 'center', 
+                            gap: '0.6rem', 
+                            cursor: 'pointer', 
+                            boxShadow: '0 4px 15px rgba(230, 30, 37, 0.3)',
+                            fontSize: '0.95rem'
+                        }}
                     >
-                        <Plus size={20} /> New Project
+                        <Plus size={20} /> Add Project
                     </motion.button>
                 </div>
 
-                <div style={{ background: 'white', padding: '1.2rem', borderRadius: '16px', marginBottom: '4rem', display: 'flex', gap: '1rem', alignItems: 'center', border: '1px solid #f0f0f0', boxShadow: '0 4px 15px rgba(12, 12, 12,0.02)' }}>
+                <div style={{ background: 'white', padding: '1.2rem', borderRadius: '16px', marginBottom: '3rem', display: 'flex', gap: '1rem', alignItems: 'center', border: '1px solid #f0f0f0', boxShadow: '0 4px 15px rgba(12, 12, 12,0.02)' }}>
                     <div style={{ flex: 1, position: 'relative' }}>
                         <Search style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: '#999' }} size={18} />
-                        <input type="text" placeholder="Search projects..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} style={{ width: '100%', padding: '0.9rem 1rem 0.9rem 3rem', border: '1px solid #eee', borderRadius: '12px', color: '#000', background: '#fcfcfc', fontSize: '0.95rem' }} />
+                        <input type="text" placeholder="Search projects by title or category..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} style={{ width: '100%', padding: '0.9rem 1rem 0.9rem 3rem', border: '1px solid #eee', borderRadius: '12px', color: '#000', background: '#fcfcfc', fontSize: '0.95rem' }} />
                     </div>
                 </div>
 
@@ -440,64 +489,56 @@ export default function AdminProjectsPage() {
                     <Loader2 className="animate-spin" size={40} color="#e61e25" />
                 </div>
             ) : (
-                <div 
-                    className="projects-container"
-                    style={{ 
-                        display: 'flex', 
-                        flexDirection: 'column', 
-                        gap: '4rem',
-                        maxHeight: '70vh',
-                        overflowY: 'auto',
-                        paddingRight: '1rem',
-                        scrollbarWidth: 'thin',
-                        scrollbarColor: '#e61e25 #f1f1f1'
-                    }}
-                >
+                <div className="projects-grid">
                     {filteredProjects.map((project, idx) => (
                         <motion.div 
                             layout
                             key={project.id} 
-                            className="project-cluster"
-                            style={{ flexDirection: idx % 2 === 0 ? 'row' : 'row-reverse' }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4, delay: idx * 0.05 }}
+                            className="project-card"
+                            onMouseMove={handleCardMouseMove}
                         >
-                            <div className="cluster-text">
-                                <div style={{ marginBottom: '1rem' }}>
-                                    <span style={{ background: 'rgba(230, 30, 37, 0.1)', color: '#e61e25', padding: '4px 12px', borderRadius: '20px', fontSize: '0.75rem', fontWeight: 800 }}>
-                                        {project.category}
-                                    </span>
+                            {project.image ? (
+                                <img 
+                                    src={project.image} 
+                                    alt={project.title} 
+                                    onError={(e) => {
+                                        (e.target as HTMLImageElement).src = '/projects-hero-bg.png';
+                                    }}
+                                />
+                            ) : (
+                                <div style={{ height: '100%', background: '#1c1c1c', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#666', gap: '1rem' }}>
+                                    <ImageIcon size={48} />
+                                    <span>No image available</span>
                                 </div>
-                                <h2 className="cluster-title">{project.title}</h2>
-                                <p className="cluster-desc">{project.description}</p>
-                                
-                                <div className="cluster-admin-actions">
-                                    <button onClick={() => openEditModal(project)} className="admin-btn edit">
-                                        <Edit2 size={18} /> Edit Project
-                                    </button>
-                                    <button onClick={() => handleDeleteProject(project.id)} className="admin-btn delete">
-                                        <Trash2 size={18} /> Delete
-                                    </button>
-                                </div>
-                            </div>
+                            )}
 
-                            <div className={`cluster-images single`}>
-                                {project.image ? (
-                                    <img 
-                                        src={project.image} 
-                                        alt={project.title} 
-                                        className="cluster-img"
-                                        onError={(e) => {
-                                            (e.target as HTMLImageElement).src = '/projects-hero-bg.png';
-                                        }}
-                                    />
-                                ) : (
-                                    <div className="cluster-img-placeholder">
-                                        <ImageIcon size={48} />
-                                        <span>No image available</span>
-                                    </div>
-                                )}
+                            <div className="project-overlay">
+                                <span className="project-category-badge">{project.category}</span>
+                                <h2 className="project-title">{project.title}</h2>
+                                <p className="project-desc">{project.description}</p>
+                                
+                                <div className="admin-actions">
+                                    <button onClick={(e) => { e.stopPropagation(); openEditModal(project); }} className="action-btn edit">
+                                        <Edit2 size={16} /> Edit
+                                    </button>
+                                    <button onClick={(e) => { e.stopPropagation(); handleDeleteProject(project.id); }} className="action-btn delete">
+                                        <Trash2 size={16} /> Delete
+                                    </button>
+                                </div>
                             </div>
                         </motion.div>
                     ))}
+                    
+                    {filteredProjects.length === 0 && (
+                        <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '5rem', background: 'white', borderRadius: '24px', border: '2px dashed #eee' }}>
+                            <div style={{ color: '#999', marginBottom: '1rem' }}><Search size={48} style={{ margin: '0 auto' }} /></div>
+                            <h3 style={{ fontSize: '1.4rem', color: '#1c1c1c', marginBottom: '0.5rem' }}>No projects found</h3>
+                            <p style={{ color: '#666' }}>Try adjusting your search terms or add a new project.</p>
+                        </div>
+                    )}
                 </div>
             )}
 
@@ -509,28 +550,28 @@ export default function AdminProjectsPage() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         style={{
-                            position: 'fixed', inset: 0, background: 'rgba(12, 12, 12,0.5)',
-                            display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2000, padding: '1rem', backdropFilter: 'blur(4px)'
+                            position: 'fixed', inset: 0, background: 'rgba(12, 12, 12,0.65)',
+                            display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2000, padding: '1rem', backdropFilter: 'blur(8px)'
                         }}
                     >
                         <motion.div
-                            initial={{ scale: 0.9, y: 20 }}
+                            initial={{ scale: 0.95, y: 20 }}
                             animate={{ scale: 1, y: 0 }}
-                            exit={{ scale: 0.9, y: 20 }}
+                            exit={{ scale: 0.95, y: 20 }}
                             style={{
                                 background: 'white', borderRadius: '24px', width: '100%',
                                 maxWidth: '500px', padding: '2.5rem', boxShadow: '0 25px 50px -12px rgba(12, 12, 12,0.25)',
-                                position: 'relative'
+                                position: 'relative', maxHeight: '90vh', overflowY: 'auto'
                             }}
                         >
                             <button 
                                 onClick={() => { setIsAddModalOpen(false); setIsEditModalOpen(false); }}
-                                style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', border: 'none', background: 'none', cursor: 'pointer', color: '#999' }}
+                                style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', border: 'none', background: '#f5f5f5', borderRadius: '8px', padding: '6px', cursor: 'pointer', color: '#666' }}
                             >
-                                <X size={24} />
+                                <X size={20} />
                             </button>
 
-                            <h2 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#1c1c1c', marginBottom: '1.5rem' }}>
+                            <h2 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#1c1c1c', marginBottom: '1.5rem', fontFamily: "'Outfit', sans-serif" }}>
                                 {isEditModalOpen ? 'Edit Project' : 'Add New Project'}
                             </h2>
 
@@ -541,7 +582,7 @@ export default function AdminProjectsPage() {
                                         type="text" required
                                         value={formData.title}
                                         onChange={e => setFormData({...formData, title: e.target.value})}
-                                        style={{ width: '100%', padding: '0.8rem 1rem', borderRadius: '10px', border: '1px solid #ddd', color: '#000', background: '#ffffff' }}
+                                        style={{ width: '100%', padding: '0.8rem 1rem', borderRadius: '10px', border: '1px solid #ddd', color: '#000', background: '#ffffff', fontSize: '0.95rem' }}
                                         placeholder="Enter project title"
                                     />
                                 </div>
@@ -551,7 +592,7 @@ export default function AdminProjectsPage() {
                                     <select 
                                         value={formData.category}
                                         onChange={e => setFormData({...formData, category: e.target.value})}
-                                        style={{ width: '100%', padding: '0.8rem 1rem', borderRadius: '10px', border: '1px solid #ddd', background: '#ffffff', color: '#000' }}
+                                        style={{ width: '100%', padding: '0.8rem 1rem', borderRadius: '10px', border: '1px solid #ddd', background: '#ffffff', color: '#000', fontSize: '0.95rem' }}
                                     >
                                         {categories.filter(c => c !== 'All').map(c => (
                                             <option key={c} value={c} style={{ color: '#000' }}>{c}</option>
@@ -560,27 +601,28 @@ export default function AdminProjectsPage() {
                                 </div>
 
                                 <div style={{ marginBottom: '1.2rem' }}>
-                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem', color: '#333' }}>Client Name</label>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem', color: '#333' }}>Client Name (Optional)</label>
                                     <input 
                                         type="text"
                                         value={formData.clientName}
                                         onChange={e => setFormData({...formData, clientName: e.target.value})}
-                                        style={{ width: '100%', padding: '0.8rem 1rem', borderRadius: '10px', border: '1px solid #ddd', color: '#000', background: '#ffffff' }}
+                                        style={{ width: '100%', padding: '0.8rem 1rem', borderRadius: '10px', border: '1px solid #ddd', color: '#000', background: '#ffffff', fontSize: '0.95rem' }}
+                                        placeholder="Enter client name"
                                     />
                                 </div>
 
                                 <div style={{ marginBottom: '1.2rem' }}>
                                     <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem', color: '#333' }}>
-                                        Image (Direct Upload)
+                                        Project Image
                                     </label>
                                     <input 
                                         type="file"
                                         accept="image/*"
                                         onChange={handleFileChange}
-                                        style={{ width: '100%', padding: '0.8rem 1rem', borderRadius: '10px', border: '1px solid #ddd', color: '#000', background: '#ffffff' }}
+                                        style={{ width: '100%', padding: '0.8rem 1rem', borderRadius: '10px', border: '1px solid #ddd', color: '#000', background: '#ffffff', fontSize: '0.9rem' }}
                                     />
                                     {formData.image && (
-                                        <div style={{ marginTop: '1rem', height: '100px', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee' }}>
+                                        <div style={{ marginTop: '1rem', height: '120px', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee' }}>
                                             <img src={formData.image} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                         </div>
                                     )}
@@ -592,7 +634,8 @@ export default function AdminProjectsPage() {
                                         required
                                         value={formData.description}
                                         onChange={e => setFormData({...formData, description: e.target.value})}
-                                        style={{ width: '100%', padding: '0.8rem 1rem', borderRadius: '10px', border: '1px solid #ddd', height: '100px', resize: 'none', color: '#000', background: '#ffffff' }}
+                                        style={{ width: '100%', padding: '0.8rem 1rem', borderRadius: '10px', border: '1px solid #ddd', height: '100px', resize: 'none', color: '#000', background: '#ffffff', fontSize: '0.95rem' }}
+                                        placeholder="Tell us about the project..."
                                     />
                                 </div>
 
@@ -602,8 +645,10 @@ export default function AdminProjectsPage() {
                                         onClick={() => { setIsAddModalOpen(false); setIsEditModalOpen(false); }}
                                         style={{
                                             flex: 1, padding: '1rem', background: '#f8fafc', color: '#64748b', border: '1px solid #e2e8f0',
-                                            borderRadius: '12px', fontWeight: 700, cursor: 'pointer'
+                                            borderRadius: '12px', fontWeight: 700, cursor: 'pointer', transition: 'all 0.3s'
                                         }}
+                                        onMouseOver={(e) => e.currentTarget.style.background = '#f1f5f9'}
+                                        onMouseOut={(e) => e.currentTarget.style.background = '#f8fafc'}
                                     >
                                         Cancel
                                     </button>
@@ -611,10 +656,11 @@ export default function AdminProjectsPage() {
                                         disabled={isSubmitting}
                                         style={{
                                             flex: 2, padding: '1rem', background: '#e61e25', color: '#ffffff', border: 'none',
-                                            borderRadius: '12px', fontWeight: 800, cursor: 'pointer', boxShadow: '0 4px 12px rgba(230, 30, 37, 0.3)'
+                                            borderRadius: '12px', fontWeight: 800, cursor: 'pointer', boxShadow: '0 4px 12px rgba(230, 30, 37, 0.3)',
+                                            display: 'flex', alignItems: 'center', justifyContent: 'center'
                                         }}
                                     >
-                                        {isSubmitting ? <Loader2 className="animate-spin" size={20} /> : (isEditModalOpen ? 'Save Changes' : 'Create Project')}
+                                        {isSubmitting ? <Loader2 className="animate-spin" size={24} /> : (isEditModalOpen ? 'Update Project' : 'Create Project')}
                                     </button>
                                 </div>
                             </form>
