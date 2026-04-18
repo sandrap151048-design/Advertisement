@@ -544,6 +544,50 @@
     transform: translate(-50%, -50%) scale(1.2);
     transition: all 0.3s ease;
 }
+.psc-new-card-wrap:hover .psc-card-spotlight {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.25);
+    filter: blur(60px);
+}
+
+/* ── Dedicated Circular Glow Spotlight ── */
+.psc-card-spotlight {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Perfect circle: equal width & height */
+    width: 380px;
+    height: 380px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at center,
+        rgba(230, 20,  20,  0.80) 0%,
+        rgba(180, 0,   0,   0.50) 30%,
+        rgba(120, 0,   0,   0.20) 55%,
+        rgba(60,  0,   0,   0.06) 70%,
+        transparent               85%
+    );
+    filter: blur(50px);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.85;
+    animation: spotlight-breathe 3s ease-in-out infinite;
+    transition: all 0.4s ease;
+}
+
+@keyframes spotlight-breathe {
+    0%,  100% { opacity: 0.75; transform: translate(-50%, -50%) scale(1);    }
+    50%        { opacity: 1;    transform: translate(-50%, -50%) scale(1.12); }
+}
+
+/* Ensure card renders above glow */
+.psc-new-card,
+.psc-shout-lines,
+.psc-new-customers {
+    position: relative;
+    z-index: 1;
+}
 
 .psc-shout-lines {
     position: absolute;

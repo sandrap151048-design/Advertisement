@@ -133,6 +133,8 @@ export default function PremiumScratchCard({ onClaim, onClose }: PremiumScratchC
                                 }}
                             >
                                 <div className="psc-new-card-wrap" onClick={() => setPhase('offers')} style={{ cursor: 'pointer' }}>
+                                    {/* Perfect Circle Glow Spotlight */}
+                                    <div className="psc-card-spotlight" />
                                     <div className="psc-shout-lines">
                                         <div className="shout-line line-1" />
                                         <div className="shout-line line-2" />
