@@ -293,7 +293,7 @@ export default function Home() {
                          width: '120px',
                          height: '120px',
                          background: 'linear-gradient(135deg, #cc0000 0%, #ff1a1a 50%, #b30000 100%)',
-                         borderRadius: '16px',
+                         borderRadius: '6px',
                          transform: `rotate(${deg}deg)`,
                          boxShadow: 'inset 3px 3px 6px rgba(255,255,255,0.4), inset -4px -4px 10px rgba(0,0,0,0.5)',
                      }}/>

@@ -220,7 +220,7 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
         style={{
-          maxWidth: '600px',
+          maxWidth: '450px',
           margin: '0 auto',
           position: 'relative'
         }}
@@ -306,7 +306,7 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   backdropFilter: 'blur(10px)',
-                  padding: 'clamp(1rem, 4vw, 2rem)',
+                  padding: 'clamp(0.75rem, 3vw, 1.25rem)',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'flex-start',
@@ -329,11 +329,11 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
                   <h3 style={{ color: '#e61e25', fontSize: 'clamp(1rem, 2vw, 1.3rem)', fontWeight: 700, marginBottom: '0.5rem', textAlign: 'center' }}>
                     🎯 Claim Your Offer
                   </h3>
-                  <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)', textAlign: 'center', marginBottom: '1.5rem' }}>
+                  <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: 'clamp(0.75rem, 1.5vw, 0.85rem)', textAlign: 'center', marginBottom: '1rem' }}>
                     Fill in your details to get started
                   </p>
 
-                      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                         <input
                           type="text"
                           name="fullName"
@@ -342,13 +342,13 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
                           onChange={handleFormChange}
                           required
                           style={{
-                            padding: '1rem 1.25rem',
+                            padding: '0.75rem 1rem',
                             background: 'rgba(255, 255, 255, 0.08)',
                             backdropFilter: 'blur(5px)',
                             border: '1px solid rgba(230, 30, 37, 0.3)',
-                            borderRadius: '12px',
+                            borderRadius: '10px',
                             color: 'white',
-                            fontSize: '1rem',
+                            fontSize: '0.9rem',
                             outline: 'none',
                             transition: 'all 0.3s ease',
                             width: '100%',
@@ -372,13 +372,13 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
                           onChange={handleFormChange}
                           required
                           style={{
-                            padding: '1rem 1.25rem',
+                            padding: '0.75rem 1rem',
                             background: 'rgba(255, 255, 255, 0.08)',
                             backdropFilter: 'blur(5px)',
                             border: '1px solid rgba(230, 30, 37, 0.3)',
-                            borderRadius: '12px',
+                            borderRadius: '10px',
                             color: 'white',
-                            fontSize: '1rem',
+                            fontSize: '0.9rem',
                             outline: 'none',
                             transition: 'all 0.3s ease',
                             width: '100%',
@@ -402,13 +402,13 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
                           onChange={handleFormChange}
                           required
                           style={{
-                            padding: '1rem 1.25rem',
+                            padding: '0.75rem 1rem',
                             background: 'rgba(255, 255, 255, 0.08)',
                             backdropFilter: 'blur(5px)',
                             border: '1px solid rgba(230, 30, 37, 0.3)',
-                            borderRadius: '12px',
+                            borderRadius: '10px',
                             color: 'white',
-                            fontSize: '1rem',
+                            fontSize: '0.9rem',
                             outline: 'none',
                             transition: 'all 0.3s ease',
                             width: '100%',
@@ -431,13 +431,13 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
                           value={formData.companyName}
                           onChange={handleFormChange}
                           style={{
-                            padding: '1rem 1.25rem',
+                            padding: '0.75rem 1rem',
                             background: 'rgba(255, 255, 255, 0.08)',
                             backdropFilter: 'blur(5px)',
                             border: '1px solid rgba(230, 30, 37, 0.3)',
-                            borderRadius: '12px',
+                            borderRadius: '10px',
                             color: 'white',
-                            fontSize: '1rem',
+                            fontSize: '0.9rem',
                             outline: 'none',
                             transition: 'all 0.3s ease',
                             width: '100%',
@@ -459,15 +459,15 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
                           type="submit"
                           disabled={isSubmitting}
                           style={{
-                            padding: '1rem',
+                            padding: '0.85rem',
                             background: isSubmitting ? 'rgba(230, 30, 37, 0.5)' : '#e61e25',
                             color: 'white',
                             border: 'none',
-                            borderRadius: '12px',
-                            fontSize: '1rem',
+                            borderRadius: '10px',
+                            fontSize: '0.95rem',
                             fontWeight: 800,
                             cursor: isSubmitting ? 'not-allowed' : 'pointer',
-                            marginTop: '0.5rem',
+                            marginTop: '0.25rem',
                             transition: 'all 0.3s ease',
                             boxShadow: '0 5px 15px rgba(230, 30, 37, 0.3)'
                           }}
@@ -481,15 +481,15 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
                           type="button"
                           onClick={() => setShowOffers(!showOffers)}
                           style={{
-                            padding: '0.8rem',
+                            padding: '0.65rem',
                             background: 'transparent',
                             color: 'white',
                             border: '2px solid rgba(230, 30, 37, 0.5)',
-                            borderRadius: '12px',
-                            fontSize: '0.9rem',
+                            borderRadius: '10px',
+                            fontSize: '0.85rem',
                             fontWeight: 700,
                             cursor: 'pointer',
-                            marginTop: '0.25rem',
+                            marginTop: '0.1rem',
                             transition: 'all 0.3s ease'
                           }}
                         >
