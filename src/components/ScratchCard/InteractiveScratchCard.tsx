@@ -220,7 +220,7 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
         style={{
-          maxWidth: '450px',
+          maxWidth: '380px',
           margin: '0 auto',
           position: 'relative'
         }}
@@ -235,7 +235,7 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
             background: '#1a1a1a',
             border: '2px solid rgba(230, 30, 37, 0.2)',
             aspectRatio: isRevealed ? 'auto' : '16 / 14',
-            minHeight: isRevealed ? '450px' : 'auto'
+            minHeight: isRevealed ? '400px' : 'auto'
           }}
         >
           {/* Background Image */}
@@ -306,7 +306,7 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   backdropFilter: 'blur(10px)',
-                  padding: 'clamp(0.75rem, 3vw, 1.25rem)',
+                  padding: 'clamp(0.5rem, 2.5vw, 1rem)',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'flex-start',
@@ -326,14 +326,14 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.4 }}
                 >
-                  <h3 style={{ color: '#e61e25', fontSize: 'clamp(1rem, 2vw, 1.3rem)', fontWeight: 700, marginBottom: '0.5rem', textAlign: 'center' }}>
+                  <h3 style={{ color: '#e61e25', fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)', fontWeight: 700, marginBottom: '0.4rem', textAlign: 'center' }}>
                     🎯 Claim Your Offer
                   </h3>
-                  <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: 'clamp(0.75rem, 1.5vw, 0.85rem)', textAlign: 'center', marginBottom: '1rem' }}>
+                  <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: 'clamp(0.7rem, 1.2vw, 0.8rem)', textAlign: 'center', marginBottom: '0.8rem' }}>
                     Fill in your details to get started
                   </p>
 
-                      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
                         <input
                           type="text"
                           name="fullName"
@@ -342,13 +342,13 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
                           onChange={handleFormChange}
                           required
                           style={{
-                            padding: '0.75rem 1rem',
+                            padding: '0.65rem 0.9rem',
                             background: 'rgba(255, 255, 255, 0.08)',
                             backdropFilter: 'blur(5px)',
                             border: '1px solid rgba(230, 30, 37, 0.3)',
-                            borderRadius: '10px',
+                            borderRadius: '8px',
                             color: 'white',
-                            fontSize: '0.9rem',
+                            fontSize: '0.85rem',
                             outline: 'none',
                             transition: 'all 0.3s ease',
                             width: '100%',
@@ -372,13 +372,13 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
                           onChange={handleFormChange}
                           required
                           style={{
-                            padding: '0.75rem 1rem',
+                            padding: '0.65rem 0.9rem',
                             background: 'rgba(255, 255, 255, 0.08)',
                             backdropFilter: 'blur(5px)',
                             border: '1px solid rgba(230, 30, 37, 0.3)',
-                            borderRadius: '10px',
+                            borderRadius: '8px',
                             color: 'white',
-                            fontSize: '0.9rem',
+                            fontSize: '0.85rem',
                             outline: 'none',
                             transition: 'all 0.3s ease',
                             width: '100%',
@@ -402,13 +402,13 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
                           onChange={handleFormChange}
                           required
                           style={{
-                            padding: '0.75rem 1rem',
+                            padding: '0.65rem 0.9rem',
                             background: 'rgba(255, 255, 255, 0.08)',
                             backdropFilter: 'blur(5px)',
                             border: '1px solid rgba(230, 30, 37, 0.3)',
-                            borderRadius: '10px',
+                            borderRadius: '8px',
                             color: 'white',
-                            fontSize: '0.9rem',
+                            fontSize: '0.85rem',
                             outline: 'none',
                             transition: 'all 0.3s ease',
                             width: '100%',
@@ -431,13 +431,13 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
                           value={formData.companyName}
                           onChange={handleFormChange}
                           style={{
-                            padding: '0.75rem 1rem',
+                            padding: '0.65rem 0.9rem',
                             background: 'rgba(255, 255, 255, 0.08)',
                             backdropFilter: 'blur(5px)',
                             border: '1px solid rgba(230, 30, 37, 0.3)',
-                            borderRadius: '10px',
+                            borderRadius: '8px',
                             color: 'white',
-                            fontSize: '0.9rem',
+                            fontSize: '0.85rem',
                             outline: 'none',
                             transition: 'all 0.3s ease',
                             width: '100%',
@@ -459,15 +459,15 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
                           type="submit"
                           disabled={isSubmitting}
                           style={{
-                            padding: '0.85rem',
+                            padding: '0.75rem',
                             background: isSubmitting ? 'rgba(230, 30, 37, 0.5)' : '#e61e25',
                             color: 'white',
                             border: 'none',
-                            borderRadius: '10px',
-                            fontSize: '0.95rem',
+                            borderRadius: '8px',
+                            fontSize: '0.9rem',
                             fontWeight: 800,
                             cursor: isSubmitting ? 'not-allowed' : 'pointer',
-                            marginTop: '0.25rem',
+                            marginTop: '0.15rem',
                             transition: 'all 0.3s ease',
                             boxShadow: '0 5px 15px rgba(230, 30, 37, 0.3)'
                           }}
@@ -481,15 +481,15 @@ export default function InteractiveScratchCard({ onFormReveal }: ScratchCardProp
                           type="button"
                           onClick={() => setShowOffers(!showOffers)}
                           style={{
-                            padding: '0.65rem',
+                            padding: '0.55rem',
                             background: 'transparent',
                             color: 'white',
                             border: '2px solid rgba(230, 30, 37, 0.5)',
-                            borderRadius: '10px',
-                            fontSize: '0.85rem',
+                            borderRadius: '8px',
+                            fontSize: '0.8rem',
                             fontWeight: 700,
                             cursor: 'pointer',
-                            marginTop: '0.1rem',
+                            marginTop: '0.05rem',
                             transition: 'all 0.3s ease'
                           }}
                         >
