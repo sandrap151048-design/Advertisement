@@ -804,12 +804,20 @@
 
 /* Responsive */
 @media (max-width: 480px) {
+    .psc-container {
+        width: calc(100vw - 32px) !important;
+        max-width: 380px !important;
+        margin: 0 auto;
+    }
     .psc-container:has(.psc-offers-wrap) {
-        width: 100%;
+        width: calc(100vw - 32px) !important;
     }
     .psc-offer-card-title { font-size: 13px; }
     .psc-offer-card-desc  { font-size: 11px; }
     .psc-won-discount     { font-size: 36px; }
     .psc-won-title        { font-size: 14px; }
     .psc-offer-badge      { font-size: 10px; padding: 3px 8px; }
+    .psc-header           { padding: 20px 20px 0; }
+    .psc-content          { padding: 20px; }
+    .psc-title            { font-size: 20px; }
 }

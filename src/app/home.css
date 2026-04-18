@@ -282,10 +282,12 @@
   }
 
   .claim-btn-floating {
-    bottom: 1.5rem !important;
-    right: 1.5rem !important;
+    bottom: 0.5rem !important;
+    right: 0.5rem !important;
+    left: auto !important;
     width: auto !important;
-    --icon-size: 2.5rem;
+    scale: 0.7;
+    transform-origin: bottom right;
   }
 }
 

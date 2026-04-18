@@ -240,66 +240,127 @@ export default function Home() {
 
         <motion.div 
           className="claim-btn-floating"
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 50, scale: 0 }}
+          animate={{ opacity: 1, y: 0, scale: 0.75 }}
           transition={{ delay: 1.5, type: "spring", stiffness: 260, damping: 20 }}
           style={{ 
             position: 'absolute', 
-            right: '4rem', 
-            bottom: '4rem',
+            right: '2rem', 
+            bottom: '2rem',
             zIndex: 1000,
-            pointerEvents: 'auto',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
+            pointerEvents: 'auto'
           }}
         >
-          {/* Minimal Glowing Dot Trigger */}
+          {/* MEGA SALE Starburst Teaser */}
           <motion.div
             onClick={() => setIsScratchCardOpen(true)}
-            animate={{ y: [-8, 8, -8] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            whileHover={{ scale: 1.3, filter: 'brightness(1.2)' }}
-            whileTap={{ scale: 0.9 }}
+            animate={{ y: [-5, 5, -5], rotate: [-2, 2, -2] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
             style={{
                 position: 'relative',
-                width: '32px',
-                height: '32px',
-                borderRadius: '50%',
-                background: 'linear-gradient(135deg, #ff4d4d, #cc0000)',
+                width: '150px',
+                height: '150px',
+                minWidth: '150px',
+                minHeight: '150px',
+                flexShrink: 0,
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: '0 10px 20px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 42, 42, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.3)'
+                filter: 'drop-shadow(0 15px 25px rgba(0,0,0,0.6))'
             }}
           >
-              {/* Outer Ripple Wave */}
+              {/* Spinning Starburst Base Container */}
               <motion.div
-                 animate={{ scale: [1, 2.5], opacity: [0.7, 0] }}
-                 transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+                 animate={{ rotate: 360 }}
+                 transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
                  style={{
                      position: 'absolute',
                      inset: 0,
-                     borderRadius: '50%',
-                     border: '2px solid #ff2a2a',
-                     pointerEvents: 'none'
+                     width: '100%',
+                     height: '100%',
+                     display: 'flex',
+                     alignItems: 'center',
+                     justifyContent: 'center'
                  }}
-              />
-              
-              {/* Inner glowing pulse */}
-              <motion.div
-                 animate={{ opacity: [0.4, 1, 0.4], scale: [0.8, 1.1, 0.8] }}
-                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                 style={{
+              >
+                 {/* 3 Rotated Rounded Squares to form the scalloped 12-point badge */}
+                 {[0, 30, 60].map((deg, i) => (
+                     <div key={i} style={{
+                         position: 'absolute',
+                         width: '120px',
+                         height: '120px',
+                         background: 'linear-gradient(135deg, #cc0000 0%, #ff1a1a 50%, #b30000 100%)',
+                         borderRadius: '16px',
+                         transform: `rotate(${deg}deg)`,
+                         boxShadow: 'inset 3px 3px 6px rgba(255,255,255,0.4), inset -4px -4px 10px rgba(0,0,0,0.5)',
+                     }}/>
+                 ))}
+                 
+                 {/* Center Body Core to fill inner gaps and solidify lighting */}
+                 <div style={{
                      position: 'absolute',
-                     inset: 0,
+                     width: '118px',
+                     height: '118px',
                      borderRadius: '50%',
-                     background: '#ff2a2a',
-                     filter: 'blur(4px)',
-                     pointerEvents: 'none'
-                 }}
-              />
+                     background: '#e60000',
+                 }} />
+              </motion.div>
+
+              {/* Specular Highlight Gloss (Stationary, overlaying the spinning object) */}
+              <div style={{
+                  position: 'absolute',
+                  top: '6%',
+                  left: '12%',
+                  width: '76%',
+                  height: '40%',
+                  background: 'linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%)',
+                  borderRadius: '50%',
+                  zIndex: 5,
+                  pointerEvents: 'none'
+              }} />
+
+              {/* Text Content Overlay */}
+              <div style={{
+                  position: 'relative',
+                  zIndex: 10,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  textAlign: 'center',
+                  pointerEvents: 'none',
+                  marginTop: '-2px'
+              }}>
+                  {/* SPECIAL text */}
+                  <span style={{ 
+                      color: '#fff', 
+                      fontSize: '24px', 
+                      fontWeight: 900, 
+                      lineHeight: 0.9, 
+                      letterSpacing: '0px', 
+                      textShadow: '0 3px 6px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.6)' 
+                  }}>
+                      SPECIAL
+                  </span>
+                  
+                  {/* OFFER text with 3D gradient */}
+                  <span style={{ 
+                      fontSize: '30px', 
+                      fontWeight: 900, 
+                      lineHeight: 0.9, 
+                      letterSpacing: '-1px',
+                      background: 'linear-gradient(180deg, #ffea00, #ff8c00)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      filter: 'drop-shadow(0 2px 3px rgba(0,0,0,0.5))',
+                      marginTop: '4px'
+                  }}>
+                      OFFER
+                  </span>
+              </div>
           </motion.div>
         </motion.div>
       </section>
