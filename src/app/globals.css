@@ -44,13 +44,15 @@ select:focus {
 }
 
 html {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-  scroll-padding-top: 100px; /* Offset for fixed navbar */
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  scroll-padding-top: 100px;
 }
 
 html::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 body {
@@ -61,35 +63,31 @@ body {
   color: #ffffff;
   font-family: var(--font-body);
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   min-height: 100vh;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
 }
 
-/* Improved fade-in for page content - safely updated */
-body {
-  opacity: 1;
+* {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
 }
 
-body.loaded {
-  opacity: 1;
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
-body:not(.loaded) main {
-  opacity: 1 !important; /* safe override so content is never hidden if JS fails */
-}
-
-body.loaded main {
-  opacity: 1;
-  transition: opacity 0.5s ease;
-}
-
+/* Specific fix for body scrollbar in Chrome/Safari */
 body::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 h1,

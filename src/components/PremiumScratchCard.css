@@ -24,22 +24,49 @@
 
 .psc-container {
     position: relative;
-    width: 380px;
+    width: 520px;
     max-width: 100%;
-    min-height: 540px;
-    background: rgba(15, 15, 15, 0.4);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    min-height: auto;
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.7) 0%, rgba(10, 10, 10, 0.95) 100%);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 28px;
     box-shadow: 
-        0 40px 100px -20px rgba(0, 0, 0, 0.9),
-        0 0 0 1px rgba(230, 30, 37, 0.3), /* Red outer edge */
-        inset 0 1px 1px rgba(255, 255, 255, 0.2); /* Top highlight */
+        0 40px 80px -10px rgba(0, 0, 0, 0.9),
+        inset 0 1px 1px rgba(255, 255, 255, 0.05);
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: visible;
+    transition: background 0.35s ease, border 0.35s ease, box-shadow 0.35s ease;
+    outline: none !important;
+}
+
+.psc-container:focus, .psc-container:active {
+    outline: none !important;
+}
+
+/* Teaser phase: Make the container totally transparent so the black box is gone */
+.psc-container.teaser-mode {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+.psc-container.teaser-mode .psc-bg-wrapper,
+.psc-container.teaser-mode .psc-close {
+    display: none;
+}
+
+.psc-bg-wrapper {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
     overflow: hidden;
+    z-index: -1;
 }
 
 /* Background Sunburst - Premium Refinement */
@@ -104,10 +131,10 @@
     top: 20px;
     right: 20px;
     background: rgba(255,255,255,0.1);
-    border: none;
+    border: 1px solid rgba(255,255,255,0.1);
     color: white;
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -174,6 +201,12 @@
     z-index: 10;
 }
 
+.psc-badge::before {
+    content: '✦';
+    margin-right: 5px;
+    font-size: 10px;
+}
+
 .psc-small-desc {
     color: rgba(255,255,255,0.7);
     font-size: 14px;
@@ -207,27 +240,7 @@
     box-shadow: 0 15px 35px rgba(230, 30, 37, 0.6);
 }
 
-/* Scratch Implementation */
-.psc-scratch-box {
-    position: relative;
-    width: 320px;
-    height: 320px;
-    background: #000;
-    border: 2px solid rgba(255,255,255,0.2);
-    border-radius: 20px;
-    overflow: hidden;
-}
 
-.psc-scratch-instr {
-    position: absolute;
-    bottom: 20px;
-    color: #fff;
-    opacity: 0.6;
-    font-weight: 700;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
 
 /* Form Styling */
 .psc-form-wrap {
@@ -239,17 +252,18 @@
 
 .psc-form-title {
     color: white;
-    font-size: 26px;
-    font-weight: 950;
-    margin-bottom: 10px;
+    font-size: 28px;
+    font-weight: 900;
+    margin-bottom: 8px;
     text-transform: uppercase;
+    letter-spacing: -0.5px;
 }
 
 .psc-form-sub {
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 15px;
     font-weight: 500;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     max-width: 280px;
     margin-left: auto;
     margin-right: auto;
@@ -264,39 +278,44 @@
 
 .psc-input {
     width: 100%;
-    height: 48px;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(5px);
+    height: 52px;
+    background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
-    padding: 0 15px;
-    color: white;
-    font-size: 14px;
+    padding: 0 20px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
     outline: none;
     transition: all 0.3s;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.psc-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 400;
 }
 
 .psc-input:focus {
     border-color: #e61e25;
+    background: rgba(255, 255, 255, 0.08);
     box-shadow: 0 0 15px rgba(230, 30, 37, 0.2);
 }
 
 .psc-btn-submit {
     width: 100%;
     height: 56px;
-    margin-top: 20px;
-    background: linear-gradient(135deg, #e61e25 0%, #b3161b 100%);
+    margin-top: 10px;
+    background: #e61e25;
     color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: none;
     border-radius: 12px;
     font-size: 18px;
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 1px;
     cursor: pointer;
-    box-shadow: 0 10px 25px rgba(230, 30, 37, 0.4);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 25px rgba(230, 30, 37, 0.3);
+    transition: all 0.2s ease;
     position: relative;
     overflow: hidden;
 }
@@ -304,6 +323,7 @@
 .psc-btn-submit:hover { 
     transform: translateY(-3px);
     box-shadow: 0 15px 35px rgba(230, 30, 37, 0.5);
+    background: #f72a31;
 }
 
 .psc-btn-submit:active {
@@ -326,15 +346,7 @@
     to { left: 200%; }
 }
 
-.psc-canvas {
-    position: absolute;
-    inset: 0;
-    z-index: 100;
-    cursor: crosshair;
-    touch-action: none;
-    width: 100%;
-    height: 100%;
-}
+
 
 .psc-success-view {
     display: flex;
@@ -439,4 +451,365 @@
     .psc-content {
         padding: 10px 20px;
     }
+}
+
+
+
+/* ====================================================
+   NEW TEASER CARD DESIGN (LIMITED TIME OFFER)
+   ==================================================== */
+.psc-new-card-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-top: 10px;
+    transition: transform 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    outline: none !important;
+}
+.psc-new-card-wrap:hover {
+    transform: scale(1.02);
+}
+
+.psc-shout-lines {
+    position: absolute;
+    top: -26px;
+    right: -22px;
+    width: 60px;
+    height: 60px;
+    z-index: 10;
+}
+
+.shout-line {
+    position: absolute;
+    background: #ffffff;
+    border-radius: 2px;
+    clip-path: polygon(0 0, 100% 0, 75% 100%, 25% 100%);
+    transform-origin: bottom center;
+}
+
+.shout-line.line-1 { width: 7px; height: 18px; left: 26px; top: 26px; transform: rotate(15deg) translateY(-26px); }
+.shout-line.line-2 { width: 9px; height: 32px; left: 25px; top: 19px; transform: rotate(45deg) translateY(-28px); }
+.shout-line.line-3 { width: 7px; height: 18px; left: 26px; top: 26px; transform: rotate(78deg) translateY(-26px); }
+
+.psc-new-card-container {
+    position: relative;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.psc-new-card {
+    position: relative;
+    width: 380px;
+    transform: rotate(-4deg);
+    border-radius: 20px;
+    border: 3px solid #ff2a2a;
+    background: #1a1a1a;
+    box-shadow: 
+        6px 8px 0 #cc0b11,
+        0 20px 40px rgba(0,0,0,0.7),
+        0 0 40px rgba(230, 30, 37, 0.4);
+}
+
+.psc-new-card-top {
+    padding: 40px 20px 85px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.05;
+}
+
+.psc-card-limited, .psc-card-time {
+    color: #ffffff;
+    font-size: 68px;
+    font-weight: 900;
+    font-family: 'Montserrat', 'Inter', sans-serif;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    text-shadow: none;
+}
+
+.psc-card-time {
+    margin-top: -2px;
+}
+
+.psc-new-card-bottom {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #e61e25;
+    border: 3px solid #ff4d4d;
+    border-radius: 14px;
+    padding: 8px 30px;
+    width: 94%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 
+        5px 6px 0 #800000,
+        0 15px 25px rgba(0,0,0,0.6);
+}
+
+.psc-card-offer {
+    color: #ffffff;
+    font-size: 48px;
+    font-weight: 900;
+    font-family: 'Montserrat', 'Inter', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.psc-new-customers {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 35px;
+}
+
+
+/* ====================================================
+   OFFER POPUP CARDS — Phase 2 (Offer List)
+   ==================================================== */
+
+/* Container width is statically managed above */
+
+.psc-offers-wrap {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+.psc-offers-subtitle {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+    text-align: center;
+    background: linear-gradient(90deg, #ffffff, #a0a0a0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.psc-offer-cards-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Single Offer Card */
+.psc-offer-card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
+    padding: 16px 20px;
+    cursor: pointer;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.psc-offer-card:hover {
+    border-color: var(--offer-color, #e61e25);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01));
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 20px var(--offer-color, #e61e25);
+}
+
+.psc-offer-card-left {
+    flex-shrink: 0;
+}
+
+.psc-offer-icon-wrap {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.2), 0 8px 15px rgba(0,0,0,0.2);
+}
+
+.psc-offer-card:hover .psc-offer-icon-wrap {
+    transform: scale(1.12);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--offer-color, #e61e25);
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.4), 0 0 25px var(--offer-color, #e61e25);
+}
+
+.psc-offer-card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.psc-offer-card-title {
+    color: #ffffff;
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+}
+
+.psc-offer-card-desc {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.psc-offer-card-right {
+    flex-shrink: 0;
+}
+
+.psc-offer-badge {
+    display: inline-block;
+    background: var(--offer-color, #e61e25);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 900;
+    padding: 6px 16px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px -2px var(--offer-color, #e61e25), 0 8px 20px rgba(0,0,0,0.4);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Hover glow sweep */
+.psc-offer-card-glow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.05) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+    pointer-events: none;
+}
+.psc-offer-card:hover .psc-offer-card-glow {
+    transform: translateX(100%);
+}
+
+/* ====================================================
+   WON CARD — Phase 3 (Selected offer reveal)
+   ==================================================== */
+
+.psc-won-card {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    padding: 24px 28px;
+    background: linear-gradient(135deg, rgba(20,20,20,0.95) 0%, rgba(30,30,30,0.9) 100%);
+    border: 2px solid var(--offer-color, #e61e25);
+    border-radius: 20px;
+    text-align: center;
+    overflow: hidden;
+    box-shadow:
+        0 0 40px var(--offer-color, #e61e25),
+        0 20px 60px rgba(0,0,0,0.6),
+        inset 0 1px 1px rgba(255,255,255,0.1);
+    margin-top: 12px;
+}
+
+.psc-won-discount {
+    font-size: 48px;
+    font-weight: 950;
+    color: var(--offer-color, #e61e25);
+    line-height: 1;
+    margin-bottom: 8px;
+    text-shadow: 0 0 20px var(--offer-color, #e61e25);
+    letter-spacing: -1px;
+}
+
+.psc-won-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.psc-won-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 500;
+}
+
+.psc-won-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.08), transparent);
+    animation: psc-shine 2.5s infinite;
+}
+
+/* ====================================================
+   FORM OFFER REMINDER BADGE
+   ==================================================== */
+
+.psc-form-offer-reminder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 14px 20px;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+.psc-form-offer-discount {
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--offer-color, #e61e25);
+    flex-shrink: 0;
+    text-shadow: none;
+    padding-right: 12px;
+    border-right: 1px solid rgba(255,255,255,0.15);
+}
+
+.psc-form-offer-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+    flex: 1;
+    text-align: left;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .psc-container:has(.psc-offers-wrap) {
+        width: 100%;
+    }
+    .psc-offer-card-title { font-size: 13px; }
+    .psc-offer-card-desc  { font-size: 11px; }
+    .psc-won-discount     { font-size: 36px; }
+    .psc-won-title        { font-size: 14px; }
+    .psc-offer-badge      { font-size: 10px; padding: 3px 8px; }
 }

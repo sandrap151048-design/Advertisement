@@ -7,6 +7,77 @@
   }
 }
 
+/* Featured Portfolio Card Style - Premium & High Impact */
+.portfolio-item-featured {
+  background: linear-gradient(135deg, rgba(230, 30, 37, 0.1) 0%, rgba(12, 12, 12, 0.98) 100%) !important;
+  border: 1px solid rgba(230, 30, 37, 0.3) !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5) !important;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.portfolio-item-featured::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+  animation: shimmer 4s infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.portfolio-item-featured .portfolio-title,
+.portfolio-item-featured .service-title {
+  color: #ffffff !important;
+  font-size: 2rem !important;
+  border-left: 4px solid #e61e25;
+  padding-left: 1.5rem;
+  margin-top: 1rem;
+}
+
+.portfolio-item-featured .portfolio-divider,
+.portfolio-item-featured .service-divider {
+  background: linear-gradient(90deg, #e61e25, transparent) !important;
+  height: 3px !important;
+  width: 60px !important;
+  margin-left: 1.5rem;
+}
+
+.portfolio-item-featured .portfolio-desc,
+.portfolio-item-featured .service-desc {
+  color: rgba(255,255,255,0.8) !important;
+  padding-left: 1.5rem;
+  font-size: 1.1rem !important;
+}
+
+.portfolio-item-featured .portfolio-scallop,
+.portfolio-item-featured .service-scallop {
+  background: #e61e25 !important;
+  width: 120px !important;
+  height: 120px !important;
+  box-shadow: -10px -10px 30px rgba(230, 30, 37, 0.3);
+}
+
+.portfolio-item-featured .portfolio-number,
+.portfolio-item-featured .service-number {
+  font-size: 2rem !important;
+  color: white !important;
+  font-weight: 900 !important;
+}
+
 .service-card-black {
   background: #2a2a2f !important;
   border: 1px solid rgba(255,255,255,0.2) !important;

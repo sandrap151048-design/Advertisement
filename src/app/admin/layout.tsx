@@ -53,11 +53,12 @@ export default function AdminLayout({
         }
         .main-content {
           flex: 1;
-          height: 100vh;
+          min-height: 100vh;
           overflow-y: auto;
           padding: 3rem;
-          scrollbar-width: none; /* Firefox */
-          -ms-overflow-style: none; /* IE/Edge */
+          background: #121212;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
         }
         .main-content::-webkit-scrollbar {
           display: none; /* Chrome/Safari/Webkit */

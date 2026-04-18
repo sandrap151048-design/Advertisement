@@ -82,7 +82,8 @@ interface Project {
     title: string;
     description: string;
     category: string;
-    image: string;
+    image?: string; // Kept for legacy
+    images?: string[]; // New field
     clientName?: string;
     status: string;
     createdAt: string;
@@ -104,7 +105,7 @@ export default function AdminProjectsPage() {
         title: '',
         description: '',
         category: 'Branding',
-        image: '',
+        images: [] as string[],
         clientName: ''
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -142,20 +143,36 @@ export default function AdminProjectsPage() {
     }
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
+        const files = Array.from(e.target.files || []);
+        if (files.length === 0) return;
+
+        files.forEach(file => {
             // Check file size (limit 2MB for Base64)
             if (file.size > 2 * 1024 * 1024) {
-                alert('File is too large! Please select an image smaller than 2MB.');
-                e.target.value = '';
+                alert(`File ${file.name} is too large! Please select images smaller than 2MB.`);
                 return;
             }
+
             const reader = new FileReader();
             reader.onloadend = () => {
-                setFormData({ ...formData, image: reader.result as string });
+                const base64 = reader.result as string;
+                setFormData(prev => ({
+                    ...prev,
+                    images: [...prev.images, base64]
+                }));
             };
             reader.readAsDataURL(file);
-        }
+        });
+        
+        // Clear input so same file can be selected again
+        e.target.value = '';
+    };
+
+    const removeImage = (index: number) => {
+        setFormData(prev => ({
+            ...prev,
+            images: prev.images.filter((_, i) => i !== index)
+        }));
     };
 
     const handleAddProject = async (e: React.FormEvent) => {
@@ -171,7 +188,7 @@ export default function AdminProjectsPage() {
             if (res.ok) {
                 setSuccessMessage('Project added successfully!');
                 setIsAddModalOpen(false);
-                setFormData({ title: '', description: '', category: 'Brand Identity', image: '', clientName: '' });
+                setFormData({ title: '', description: '', category: 'Branding', images: [], clientName: '' });
                 fetchProjects();
                 setTimeout(() => setSuccessMessage(''), 3000);
             } else {
@@ -226,7 +243,7 @@ export default function AdminProjectsPage() {
             title: project.title,
             description: project.description,
             category: project.category,
-            image: project.image,
+            images: project.images || (project.image ? [project.image] : []),
             clientName: project.clientName || ''
         });
         setIsEditModalOpen(true);
@@ -372,8 +389,6 @@ export default function AdminProjectsPage() {
                     transition: all 0.4s ease;
                 }
 
-                /* Hover state for cards still maintains gradient/scale effects */
-
                 .action-btn {
                     flex: 1;
                     display: flex;
@@ -408,6 +423,50 @@ export default function AdminProjectsPage() {
                 .action-btn.delete:hover {
                     background: #e61e25;
                     color: white;
+                }
+
+                .image-preview-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+                    gap: 10px;
+                    margin-top: 1rem;
+                }
+
+                .preview-item {
+                    position: relative;
+                    height: 80px;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    border: 1px solid #eee;
+                }
+
+                .preview-item img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+                .remove-img-btn {
+                    position: absolute;
+                    top: 2px;
+                    right: 2px;
+                    background: rgba(230, 30, 37, 0.8);
+                    color: white;
+                    border: none;
+                    border-radius: 50%;
+                    width: 20px;
+                    height: 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    font-size: 12px;
+                    transition: all 0.2s;
+                }
+
+                .remove-img-btn:hover {
+                    background: #e61e25;
+                    transform: scale(1.1);
                 }
 
                 /* Hide scrollbars for the whole dashboard content and containers */
@@ -457,7 +516,10 @@ export default function AdminProjectsPage() {
                     <motion.button 
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        onClick={() => setIsAddModalOpen(true)} 
+                        onClick={() => {
+                            setFormData({ title: '', description: '', category: 'Branding', images: [], clientName: '' });
+                            setIsAddModalOpen(true);
+                        }} 
                         style={{ 
                             background: 'linear-gradient(135deg, #2c4a5e 0%, #e61e25 100%)', 
                             color: 'white', 
@@ -490,47 +552,50 @@ export default function AdminProjectsPage() {
                 </div>
             ) : (
                 <div className="projects-grid">
-                    {filteredProjects.map((project, idx) => (
-                        <motion.div 
-                            layout
-                            key={project.id} 
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.4, delay: idx * 0.05 }}
-                            className="project-card"
-                            onMouseMove={handleCardMouseMove}
-                        >
-                            {project.image ? (
-                                <img 
-                                    src={project.image} 
-                                    alt={project.title} 
-                                    onError={(e) => {
-                                        (e.target as HTMLImageElement).src = '/projects-hero-bg.png';
-                                    }}
-                                />
-                            ) : (
-                                <div style={{ height: '100%', background: '#1c1c1c', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#666', gap: '1rem' }}>
-                                    <ImageIcon size={48} />
-                                    <span>No image available</span>
-                                </div>
-                            )}
+                    {filteredProjects.map((project, idx) => {
+                        const projectImage = project.images?.[0] || project.image;
+                        return (
+                            <motion.div 
+                                layout
+                                key={project.id} 
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.4, delay: idx * 0.05 }}
+                                className="project-card"
+                                onMouseMove={handleCardMouseMove}
+                            >
+                                {projectImage ? (
+                                    <img 
+                                        src={projectImage} 
+                                        alt={project.title} 
+                                        onError={(e) => {
+                                            (e.target as HTMLImageElement).src = '/projects-hero-bg.png';
+                                        }}
+                                    />
+                                ) : (
+                                    <div style={{ height: '100%', background: '#1c1c1c', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#666', gap: '1rem' }}>
+                                        <ImageIcon size={48} />
+                                        <span>No image available</span>
+                                    </div>
+                                )}
 
-                            <div className="project-overlay">
-                                <span className="project-category-badge">{project.category}</span>
-                                <h2 className="project-title">{project.title}</h2>
-                                <p className="project-desc">{project.description}</p>
-                                
-                                <div className="admin-actions">
-                                    <button onClick={(e) => { e.stopPropagation(); openEditModal(project); }} className="action-btn edit">
-                                        <Edit2 size={16} /> Edit
-                                    </button>
-                                    <button onClick={(e) => { e.stopPropagation(); handleDeleteProject(project.id); }} className="action-btn delete">
-                                        <Trash2 size={16} /> Delete
-                                    </button>
+                                <div className="project-overlay">
+                                    <span className="project-category-badge">{project.category}</span>
+                                    <h2 className="project-title">{project.title}</h2>
+                                    <p className="project-desc">{project.description}</p>
+                                    
+                                    <div className="admin-actions">
+                                        <button onClick={(e) => { e.stopPropagation(); openEditModal(project); }} className="action-btn edit">
+                                            <Edit2 size={16} /> Edit
+                                        </button>
+                                        <button onClick={(e) => { e.stopPropagation(); handleDeleteProject(project.id); }} className="action-btn delete">
+                                            <Trash2 size={16} /> Delete
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        </motion.div>
-                    ))}
+                            </motion.div>
+                        );
+                    })}
                     
                     {filteredProjects.length === 0 && (
                         <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '5rem', background: 'white', borderRadius: '24px', border: '2px dashed #eee' }}>
@@ -613,17 +678,30 @@ export default function AdminProjectsPage() {
 
                                 <div style={{ marginBottom: '1.2rem' }}>
                                     <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem', color: '#333' }}>
-                                        Project Image
+                                        Project Images (Select 2 or more)
                                     </label>
                                     <input 
                                         type="file"
                                         accept="image/*"
+                                        multiple
                                         onChange={handleFileChange}
                                         style={{ width: '100%', padding: '0.8rem 1rem', borderRadius: '10px', border: '1px solid #ddd', color: '#000', background: '#ffffff', fontSize: '0.9rem' }}
                                     />
-                                    {formData.image && (
-                                        <div style={{ marginTop: '1rem', height: '120px', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee' }}>
-                                            <img src={formData.image} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                    
+                                    {formData.images.length > 0 && (
+                                        <div className="image-preview-grid">
+                                            {formData.images.map((img, idx) => (
+                                                <div key={idx} className="preview-item">
+                                                    <img src={img} alt={`Preview ${idx + 1}`} />
+                                                    <button 
+                                                        type="button" 
+                                                        onClick={() => removeImage(idx)}
+                                                        className="remove-img-btn"
+                                                    >
+                                                        <X size={12} />
+                                                    </button>
+                                                </div>
+                                            ))}
                                         </div>
                                     )}
                                 </div>

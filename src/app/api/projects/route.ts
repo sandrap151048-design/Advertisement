@@ -32,7 +32,7 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { title, description, category, image, clientName } = body;
+    const { title, description, category, images, clientName } = body;
 
     if (!title || !description || !category) {
       return NextResponse.json(
@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
       title,
       description,
       category,
-      image,
+      images: images || [],
       clientName: clientName || null,
       status: 'published',
       createdAt: new Date()

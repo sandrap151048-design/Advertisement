@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Send, User, Phone, Mail, Briefcase, CheckCircle2 } from 'lucide-react';
+import { Send, User, Phone, Mail, Briefcase, CheckCircle2 } from 'lucide-react';
 
 interface Offer {
   title: string;
@@ -58,7 +58,6 @@ const ClaimForm: React.FC<ClaimFormProps> = ({ offer, onClose, onSubmit }) => {
       exit={{ opacity: 0 }}
       className="fixed inset-0 z-[999] flex items-center justify-center p-4"
       style={{ background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(16px)' }}
-      onClick={onClose}
     >
       <motion.div
         initial={{ scale: 0.85, y: 40, opacity: 0 }}
@@ -85,13 +84,7 @@ const ClaimForm: React.FC<ClaimFormProps> = ({ offer, onClose, onSubmit }) => {
           style={{ background: `${color}12` }}
         />
 
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          className="absolute top-5 right-5 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-white transition-all"
-        >
-          <X size={18} />
-        </button>
+
 
         <AnimatePresence mode="wait">
           {!submitted ? (

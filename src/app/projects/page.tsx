@@ -202,7 +202,7 @@ function ProjectsContent() {
                             title: p.title,
                             description: p.description || 'No description available',
                             category: p.category || 'Uncategorized',
-                            images: p.image ? [p.image] : ['/projects-hero-bg.png'],
+                            images: (p.images && p.images.length > 0) ? p.images : (p.image ? [p.image] : ['/projects-hero-bg.png']),
                             detailsTitle: p.title
                         }));
                     
