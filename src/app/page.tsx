@@ -251,71 +251,82 @@ export default function Home() {
             pointerEvents: 'auto'
           }}
         >
-          {/* Comic-Style Starburst Teaser */}
+          {/* Comic-Style "Extended Offer" Teaser - Website Color Theme */}
           <motion.div
             onClick={() => setIsScratchCardOpen(true)}
             initial={{ scale: 0 }}
             animate={{ 
-              scale: [0.75, 1.1, 1],
-              rotate: [-2, 2, -2]
+              scale: [0.75, 1.15, 1],
+              rotate: [-3, 3, -3]
             }}
             transition={{ 
               duration: 0.5,
               delay: 1.5,
-              scale: { duration: 0.4 },
-              rotate: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+              scale: { duration: 0.4, ease: "easeOut" },
+              rotate: { duration: 3, repeat: Infinity, ease: "easeInOut" }
             }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.1, rotate: 0 }}
+            whileTap={{ scale: 0.9 }}
             style={{
                 position: 'relative',
-                width: '160px',
-                height: '160px',
-                minWidth: '160px',
-                minHeight: '160px',
+                width: '180px',
+                height: '180px',
+                minWidth: '180px',
+                minHeight: '180px',
                 flexShrink: 0,
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                background: '#fbb414',
-                backgroundImage: 'radial-gradient(#d97706 1.5px, transparent 0)',
-                backgroundSize: '8px 8px',
+                background: '#e61e25',
+                backgroundImage: 'radial-gradient(rgba(0,0,0,0.2) 1.5px, transparent 0)',
+                backgroundSize: '10px 10px',
                 borderRadius: '50%',
-                boxShadow: '0 15px 35px rgba(0,0,0,0.4), inset 0 0 40px rgba(0,0,0,0.1)',
-                border: '4px solid #fff'
+                boxShadow: '0 20px 50px rgba(0,0,0,0.5), inset 0 0 30px rgba(255,255,255,0.1)',
+                border: '4px solid #fff',
+                zIndex: 1000
             }}
           >
-              {/* White Starburst Shape */}
+              {/* Explosive Starburst Shape */}
               <div style={{
                 position: 'absolute',
-                width: '135%',
-                height: '135%',
+                width: '150%',
+                height: '150%',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 pointerEvents: 'none',
-                filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.2))'
+                filter: 'drop-shadow(0 15px 25px rgba(0,0,0,0.3))'
               }}>
                 <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%', fill: 'white' }}>
-                   <path d="M50 2 L56 18 L70 8 L72 25 L88 20 L82 35 L98 40 L88 50 L98 60 L82 65 L88 80 L72 75 L70 92 L56 82 L50 98 L44 82 L30 92 L28 75 L12 80 L18 65 L2 60 L12 50 L2 40 L18 35 L12 20 L28 25 L30 8 L44 18 Z" />
+                   <path d="M50 0 L55 20 L68 5 L70 25 L88 15 L80 35 L100 38 L85 50 L98 65 L78 68 L85 88 L65 80 L60 100 L45 80 L25 95 L30 70 L5 80 L20 55 L0 45 L20 35 L5 15 L32 25 L25 5 L45 22 Z" />
                 </svg>
               </div>
 
-              {/* Megaphone Icon */}
-              <div style={{
-                position: 'absolute',
-                top: '-10px',
-                right: '-5px',
-                background: 'white',
-                padding: '8px',
-                borderRadius: '50%',
-                boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
-                zIndex: 15,
-                transform: 'rotate(15deg)'
-              }}>
-                <Megaphone size={24} color="#000" fill="#000" />
-              </div>
+              {/* Mega-Sized Megaphone Icon - Angled like the image */}
+              <motion.div 
+                animate={{ rotate: [15, 20, 15] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                style={{
+                  position: 'absolute',
+                  top: '-25px',
+                  right: '-15px',
+                  zIndex: 15,
+                  filter: 'drop-shadow(0 5px 10px rgba(0,0,0,0.3))'
+                }}
+              >
+                <div style={{
+                  background: '#fff',
+                  padding: '12px',
+                  borderRadius: '16px',
+                  boxShadow: '0 8px 20px rgba(0,0,0,0.2)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  <Megaphone size={34} color="#000" fill="#000" strokeWidth={2.5} />
+                </div>
+              </motion.div>
 
               {/* Text Content Overlay */}
               <div style={{
@@ -326,27 +337,34 @@ export default function Home() {
                   alignItems: 'center',
                   justifyContent: 'center',
                   textAlign: 'center',
-                  pointerEvents: 'none'
+                  pointerEvents: 'none',
+                  marginTop: '-5px'
               }}>
                   <span style={{ 
                       color: '#000', 
-                      fontSize: '18px', 
+                      fontSize: '20px', 
                       fontWeight: 950, 
                       lineHeight: 1, 
                       letterSpacing: '-0.5px',
+                      textTransform: 'uppercase'
                   }}>
                       EXTENDED
                   </span>
                   
-                  <span style={{ 
+                  <motion.span 
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    style={{ 
                       color: '#000', 
-                      fontSize: '32px', 
+                      fontSize: '38px', 
                       fontWeight: 950, 
-                      lineHeight: 0.9, 
-                      letterSpacing: '-1px',
-                  }}>
+                      lineHeight: 0.85, 
+                      letterSpacing: '-1.5px',
+                      textTransform: 'uppercase'
+                    }}
+                  >
                       OFFER
-                  </span>
+                  </motion.span>
               </div>
           </motion.div>
         </motion.div>
