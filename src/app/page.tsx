@@ -2,7 +2,7 @@
 
 import React, { useState, FormEvent, useEffect } from 'react';
 import { motion, Variants, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ArrowRight, MapPin, Phone, Mail, ChevronDown, Sparkles } from 'lucide-react';
+import { ArrowRight, MapPin, Phone, Mail, ChevronDown, Sparkles, Megaphone } from 'lucide-react';
 import Link from 'next/link';
 import AnimatedHeroHeading from '@/components/AnimatedHeroHeading';
 import MysteryBoxSection from '@/components/MysteryBoxSection';
@@ -251,112 +251,99 @@ export default function Home() {
             pointerEvents: 'auto'
           }}
         >
-          {/* MEGA SALE Starburst Teaser */}
+          {/* Comic-Style Starburst Teaser */}
           <motion.div
             onClick={() => setIsScratchCardOpen(true)}
-            animate={{ y: [-5, 5, -5], rotate: [-2, 2, -2] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            whileHover={{ scale: 1.1 }}
+            initial={{ scale: 0 }}
+            animate={{ 
+              scale: [0.75, 1.1, 1],
+              rotate: [-2, 2, -2]
+            }}
+            transition={{ 
+              duration: 0.5,
+              delay: 1.5,
+              scale: { duration: 0.4 },
+              rotate: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+            }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             style={{
                 position: 'relative',
-                width: '150px',
-                height: '150px',
-                minWidth: '150px',
-                minHeight: '150px',
+                width: '160px',
+                height: '160px',
+                minWidth: '160px',
+                minHeight: '160px',
                 flexShrink: 0,
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                filter: 'drop-shadow(0 15px 25px rgba(0,0,0,0.6))'
+                background: '#fbb414',
+                backgroundImage: 'radial-gradient(#d97706 1.5px, transparent 0)',
+                backgroundSize: '8px 8px',
+                borderRadius: '50%',
+                boxShadow: '0 15px 35px rgba(0,0,0,0.4), inset 0 0 40px rgba(0,0,0,0.1)',
+                border: '4px solid #fff'
             }}
           >
-              {/* Spinning Starburst Base Container */}
-              <motion.div
-                 animate={{ rotate: 360 }}
-                 transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-                 style={{
-                     position: 'absolute',
-                     inset: 0,
-                     width: '100%',
-                     height: '100%',
-                     display: 'flex',
-                     alignItems: 'center',
-                     justifyContent: 'center'
-                 }}
-              >
-                 {/* 3 Rotated Rounded Squares to form the scalloped 12-point badge */}
-                 {[0, 30, 60].map((deg, i) => (
-                     <div key={i} style={{
-                         position: 'absolute',
-                         width: '120px',
-                         height: '120px',
-                         background: 'linear-gradient(135deg, #cc0000 0%, #ff1a1a 50%, #b30000 100%)',
-                         borderRadius: '6px',
-                         transform: `rotate(${deg}deg)`,
-                         boxShadow: 'inset 3px 3px 6px rgba(255,255,255,0.4), inset -4px -4px 10px rgba(0,0,0,0.5)',
-                     }}/>
-                 ))}
-                 
-                 {/* Center Body Core to fill inner gaps and solidify lighting */}
-                 <div style={{
-                     position: 'absolute',
-                     width: '118px',
-                     height: '118px',
-                     borderRadius: '50%',
-                     background: '#e60000',
-                 }} />
-              </motion.div>
-
-              {/* Specular Highlight Gloss (Stationary, overlaying the spinning object) */}
+              {/* White Starburst Shape */}
               <div style={{
-                  position: 'absolute',
-                  top: '6%',
-                  left: '12%',
-                  width: '76%',
-                  height: '40%',
-                  background: 'linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%)',
-                  borderRadius: '50%',
-                  zIndex: 5,
-                  pointerEvents: 'none'
-              }} />
+                position: 'absolute',
+                width: '135%',
+                height: '135%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                pointerEvents: 'none',
+                filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.2))'
+              }}>
+                <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%', fill: 'white' }}>
+                   <path d="M50 2 L56 18 L70 8 L72 25 L88 20 L82 35 L98 40 L88 50 L98 60 L82 65 L88 80 L72 75 L70 92 L56 82 L50 98 L44 82 L30 92 L28 75 L12 80 L18 65 L2 60 L12 50 L2 40 L18 35 L12 20 L28 25 L30 8 L44 18 Z" />
+                </svg>
+              </div>
+
+              {/* Megaphone Icon */}
+              <div style={{
+                position: 'absolute',
+                top: '-10px',
+                right: '-5px',
+                background: 'white',
+                padding: '8px',
+                borderRadius: '50%',
+                boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
+                zIndex: 15,
+                transform: 'rotate(15deg)'
+              }}>
+                <Megaphone size={24} color="#000" fill="#000" />
+              </div>
 
               {/* Text Content Overlay */}
               <div style={{
                   position: 'relative',
-                  zIndex: 10,
+                  zIndex: 20,
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
                   textAlign: 'center',
-                  pointerEvents: 'none',
-                  marginTop: '-2px'
+                  pointerEvents: 'none'
               }}>
-                  {/* SPECIAL text */}
                   <span style={{ 
-                      color: '#fff', 
-                      fontSize: '24px', 
-                      fontWeight: 900, 
-                      lineHeight: 0.9, 
-                      letterSpacing: '0px', 
-                      textShadow: '0 3px 6px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.6)' 
+                      color: '#000', 
+                      fontSize: '18px', 
+                      fontWeight: 950, 
+                      lineHeight: 1, 
+                      letterSpacing: '-0.5px',
                   }}>
-                      SPECIAL
+                      EXTENDED
                   </span>
                   
-                  {/* OFFER text with 3D gradient */}
                   <span style={{ 
-                      fontSize: '30px', 
-                      fontWeight: 900, 
+                      color: '#000', 
+                      fontSize: '32px', 
+                      fontWeight: 950, 
                       lineHeight: 0.9, 
                       letterSpacing: '-1px',
-                      background: 'linear-gradient(180deg, #ffea00, #ff8c00)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      filter: 'drop-shadow(0 2px 3px rgba(0,0,0,0.5))',
-                      marginTop: '4px'
                   }}>
                       OFFER
                   </span>
