@@ -489,28 +489,60 @@
     align-items: center;
     position: relative;
     margin-top: 10px;
-    transition: transform 0.2s;
     -webkit-tap-highlight-color: transparent;
     outline: none !important;
+    /* Floating animation */
+    animation: card-float 4s ease-in-out infinite;
 }
 
+/* ── Perfect Circle Glow ── */
 .psc-new-card-wrap::before {
     content: '';
     position: absolute;
-    bottom: 30px;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    width: 75%;
-    height: 40px;
-    background: radial-gradient(ellipse at center, rgba(230, 30, 37, 0.45) 0%, rgba(0, 0, 0, 0) 75%);
+    /* Perfect circle: equal width & height */
+    width: 320px;
+    height: 320px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(
+        circle at center,
+        rgba(230, 20, 20, 0.75)  0%,
+        rgba(180, 0,  0,  0.45) 35%,
+        rgba(100, 0,  0,  0.18) 60%,
+        transparent              80%
+    );
     border-radius: 50%;
-    filter: blur(18px);
+    filter: blur(45px);
     z-index: -1;
     pointer-events: none;
+    animation: glow-pulse 3s ease-in-out infinite;
 }
 
+/* Floating card up/down */
+@keyframes card-float {
+    0%,  100% { transform: translateY(0px);  }
+    50%        { transform: translateY(-10px); }
+}
+
+/* Glow breathe in/out */
+@keyframes glow-pulse {
+    0%,  100% { opacity: 0.75; transform: translate(-50%, -50%) scale(1);    }
+    50%        { opacity: 1;    transform: translate(-50%, -50%) scale(1.15); }
+}
+
+/* Hover: scale up + glow intensifies */
 .psc-new-card-wrap:hover {
-    transform: scale(1.02);
+    animation-play-state: paused;
+    transform: translateY(-6px) scale(1.04);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.psc-new-card-wrap:hover::before {
+    animation-play-state: paused;
+    opacity: 1;
+    filter: blur(55px);
+    transform: translate(-50%, -50%) scale(1.2);
+    transition: all 0.3s ease;
 }
 
 .psc-shout-lines {
