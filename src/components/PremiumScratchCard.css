@@ -128,19 +128,21 @@
 
 .psc-close {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 18px;
+    right: 18px;
     background: rgba(255,255,255,0.1);
     border: 1px solid rgba(255,255,255,0.1);
     color: white;
-    width: 28px;
-    height: 28px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background 0.2s;
+    z-index: 999;
+    touch-action: manipulation;
 }
 .psc-close:hover { background: rgba(255,100,100,0.3); }
 
