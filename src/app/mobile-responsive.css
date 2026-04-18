@@ -82,11 +82,11 @@ body {
 @media (max-width: 768px) {
   /* === HERO SECTION: Full Fix === */
   .hero-section {
-    background: #111111 !important;       /* Dark fallback if image fails */
-    height: auto !important;              /* Let content define height */
-    min-height: 100svh !important;        /* Small viewport height unit for mobile browsers */
-    min-height: 100vh !important;         /* Fallback for older browsers */
-    padding: 110px 1.5rem 60px !important;
+    background: #111111 !important;
+    height: auto !important;
+    min-height: 100svh !important;
+    min-height: 100vh !important;
+    padding: 140px 1.5rem 60px !important;
     text-align: center !important;
     width: 100% !important;
     overflow: hidden !important;
@@ -365,7 +365,7 @@ body {
 @media (max-width: 768px) and (orientation: landscape) {
   .hero-section {
     min-height: 70vh !important;
-    padding-top: 3rem !important;
+    padding-top: 100px !important;
   }
 
   .section {
