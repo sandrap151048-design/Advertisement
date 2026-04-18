@@ -269,28 +269,22 @@ export default function Home() {
             whileTap={{ scale: 0.95 }}
             style={{
                 position: 'relative',
-                width: '160px',
-                height: '160px',
-                minWidth: '160px',
-                minHeight: '160px',
+                width: '180px',
+                height: '180px',
+                minWidth: '180px',
+                minHeight: '180px',
                 flexShrink: 0,
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                background: '#fbb414',
-                backgroundImage: 'radial-gradient(#d97706 1.5px, transparent 0)',
-                backgroundSize: '8px 8px',
-                borderRadius: '50%',
-                boxShadow: '0 15px 35px rgba(0,0,0,0.4), inset 0 0 40px rgba(0,0,0,0.1)',
-                border: '4px solid #fff'
+                justifyContent: 'center'
             }}
           >
               {/* White Starburst Shape */}
               <div style={{
                 position: 'absolute',
-                width: '115%',
-                height: '115%',
+                width: '100%',
+                height: '100%',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
