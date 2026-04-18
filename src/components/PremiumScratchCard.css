@@ -566,14 +566,14 @@
 }
 
 .psc-new-customers {
-    color: rgba(255, 255, 255, 0.95);
-    font-size: 20px;
-    font-weight: 800;
-    font-family: 'Montserrat', 'Inter', sans-serif;
-    letter-spacing: 5px;
+    color: #a7b3ba;
+    font-size: 22px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 3px;
     text-transform: uppercase;
     margin-top: 55px;
-    text-shadow: 0 4px 15px rgba(0,0,0,0.8);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.9);
 }
 
 
@@ -830,8 +830,8 @@
         font-size: 36px;
     }
     .psc-new-customers {
-        font-size: 15px;
-        letter-spacing: 4px;
+        font-size: 16px;
+        letter-spacing: 2px;
         margin-top: 45px;
     }
     .psc-shout-lines {
