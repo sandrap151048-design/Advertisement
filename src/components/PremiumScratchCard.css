@@ -470,6 +470,22 @@
     -webkit-tap-highlight-color: transparent;
     outline: none !important;
 }
+
+.psc-new-card-wrap::before {
+    content: '';
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75%;
+    height: 40px;
+    background: radial-gradient(ellipse at center, rgba(230, 30, 37, 0.45) 0%, rgba(0, 0, 0, 0) 75%);
+    border-radius: 50%;
+    filter: blur(18px);
+    z-index: -1;
+    pointer-events: none;
+}
+
 .psc-new-card-wrap:hover {
     transform: scale(1.02);
 }
