@@ -289,8 +289,8 @@ export default function Home() {
               {/* White Starburst Shape */}
               <div style={{
                 position: 'absolute',
-                width: '135%',
-                height: '135%',
+                width: '115%',
+                height: '115%',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -305,8 +305,8 @@ export default function Home() {
               {/* Megaphone Icon */}
               <div style={{
                 position: 'absolute',
-                top: '-10px',
-                right: '-5px',
+                top: '-5px',
+                right: '5px',
                 background: 'white',
                 padding: '8px',
                 borderRadius: '50%',
