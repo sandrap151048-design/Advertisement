@@ -132,17 +132,7 @@ export default function PremiumScratchCard({ onClaim, onClose }: PremiumScratchC
                                     position: 'relative'
                                 }}
                             >
-                                <div 
-                                    className="psc-new-card-wrap" 
-                                    onClick={() => {
-                                        const defaultOffer = offers.length > 0 
-                                            ? offers[0] 
-                                            : { id: '1', title: 'Premium Advertising Package', discount: 'SPECIAL', description: 'Limited time promotional offer', color: '#ff2a2a' };
-                                        setSelectedOffer(defaultOffer);
-                                        setPhase('form');
-                                    }} 
-                                    style={{ cursor: 'pointer' }}
-                                >
+                                <div className="psc-new-card-wrap" onClick={() => setPhase('offers')} style={{ cursor: 'pointer' }}>
                                     <div className="psc-shout-lines">
                                         <div className="shout-line line-1" />
                                         <div className="shout-line line-2" />
