@@ -585,8 +585,8 @@ export default function ServicesPage() {
         @media (max-width: 768px) {
           .hero-services {
             height: auto;
-            min-height: 100vh;
-            padding: 120px 1.5rem 60px 1.5rem;
+            min-height: 100svh;
+            padding: 140px 1.5rem 80px 1.5rem;
           }
 
           .hero-title {
@@ -601,18 +601,17 @@ export default function ServicesPage() {
             margin-bottom: 1.5rem;
           }
 
-          .services-section {
-            padding: 3rem 1rem 0 1rem;
-          }
-
-          .services-grid {
+          .services-deck {
             grid-template-columns: 1fr;
             gap: 2rem;
-            padding: 0 0.5rem;
+            padding: 0 1rem;
+            margin: 2.5rem auto;
           }
 
           .service-card {
-            height: 260px;
+            min-height: 280px;
+            height: auto;
+            padding: 2.5rem 2rem;
           }
 
           .service-title {
@@ -645,7 +644,7 @@ export default function ServicesPage() {
           }
 
           .service-card {
-            height: 240px;
+            padding: 2rem 1.5rem;
           }
 
           .service-title {

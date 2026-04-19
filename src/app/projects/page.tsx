@@ -410,12 +410,17 @@ function ProjectsContent() {
                 
                 .category-nav {
                     display: flex;
-                    justify-content: center;
-                    gap: 15px;
-                    flex-wrap: wrap;
-                    margin-bottom: 80px;
-                    padding: 0 20px;
-                    overflow: hidden;
+                    justify-content: flex-start;
+                    gap: 12px;
+                    flex-wrap: nowrap;
+                    margin-bottom: 50px;
+                    padding: 10px 20px 20px 20px;
+                    overflow-x: auto;
+                    -webkit-overflow-scrolling: touch;
+                    scrollbar-width: none;
+                }
+                .category-nav::-webkit-scrollbar {
+                    display: none;
                 }
                 .cat-btn {
                     padding: 0.6rem 1.8rem;
@@ -558,29 +563,31 @@ function ProjectsContent() {
                 }
 
                 @media (max-width: 768px) {
-                    .hero-works { height: auto; min-height: 60vh; padding: 120px 20px 60px; }
-                    .hero-works-h1 { font-size: 2.8rem; word-break: break-word; line-height: 1.1; margin-bottom: 1.5rem; }
-                    .hero-works-tagline { font-size: 1rem; }
-                    .project-cluster { margin-bottom: 5rem; display: flex !important; flex-direction: column !important; }
-                    .cluster-img { height: 400px; }
-                    .cluster-images { grid-template-columns: 1fr; gap: 1rem; order: 2 !important; }
-                    .cluster-text { padding: 2.5rem 1.5rem; order: 1 !important; text-align: center; }
+                    .hero-works { height: auto; min-height: 100svh; padding: 140px 1.5rem 80px; }
+                    .hero-works-h1 { font-size: clamp(2.2rem, 8vw, 3.5rem); word-break: break-word; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -1px; }
+                    .hero-works-tagline { font-size: 1rem; letter-spacing: 3px; }
+                    .project-cluster { margin-bottom: 4rem; display: flex !important; flex-direction: column !important; gap: 1.5rem !important; }
+                    .cluster-img { height: 320px; }
+                    .cluster-images { grid-template-columns: 1fr; gap: 1rem; order: 2 !important; width: 100% !important; }
+                    .cluster-text { padding: 2rem 1.25rem; order: 1 !important; text-align: center; border-radius: 20px; }
                     .cluster-title { font-size: 1.8rem; margin-bottom: 1rem; }
-                    .section-header { padding: 4rem 0 3rem 0; }
-                    .title-our { font-size: 2.2rem; }
+                    .section-header { padding: 4rem 1rem 2rem 1rem; }
+                    .title-our { font-size: 2.2rem; gap: 10px; }
                     .title-projects { font-size: 1.8rem; }
-                    .category-nav { gap: 10px; margin-bottom: 3rem; }
-                    .cat-btn { padding: 0.6rem 1.25rem; font-size: 0.8rem; }
-                    .project-overview-bg { padding: 5rem 0; margin-top: 3rem; }
-                    .project-overview-glass { padding: 3rem 1.5rem; border-radius: 20px; }
-                    .cta-btn-pill { width: 100%; justify-content: center; margin-top: 1.5rem; }
+                    .category-nav { margin-bottom: 2.5rem; }
+                    .cat-btn { padding: 0.7rem 1.5rem; font-size: 0.85rem; white-space: nowrap; flex-shrink: 0; }
+                    .project-overview-bg { padding: 6rem 0; margin-top: 2rem; }
+                    .project-overview-glass { padding: 3.5rem 1.5rem; border-radius: 20px; margin: 0 1rem; }
+                    .cta-btn-pill { width: 100%; justify-content: center; margin-top: 1.5rem; padding: 1rem 2rem; }
+                    .container { padding: 0 1.5rem !important; }
                 }
 
                 @media (max-width: 480px) {
-                    .hero-works-h1 { font-size: 2.22rem; }
+                    .hero-works-h1 { font-size: 2.4rem; }
                     .title-our { font-size: 2rem; }
                     .cluster-title { font-size: 1.5rem; }
-                    .cluster-img { height: 350px; }
+                    .cluster-img { height: 280px; }
+                    .cluster-text { padding: 1.5rem 1rem; }
                 }
             `}</style>
 

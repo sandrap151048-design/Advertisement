@@ -239,18 +239,35 @@ export default function Home() {
         </motion.div>
 
         <motion.div 
-          className="claim-btn-floating"
+          className="claim-btn-floating-container"
           initial={{ opacity: 0, y: 50, scale: 0 }}
           animate={{ opacity: 1, y: 0, scale: 0.75 }}
           transition={{ delay: 1.5, type: "spring", stiffness: 260, damping: 20 }}
-          style={{ 
-            position: 'absolute', 
-            right: '2rem', 
-            bottom: '2rem',
-            zIndex: 1000,
-            pointerEvents: 'auto'
-          }}
         >
+          <style jsx>{`
+            .claim-btn-floating-container {
+              position: absolute;
+              right: 2rem;
+              bottom: 2rem;
+              z-index: 1000;
+              pointer-events: auto;
+            }
+            @media (max-width: 768px) {
+              .claim-btn-floating-container {
+                right: 1rem;
+                bottom: 1rem;
+                transform: scale(0.65) !important;
+                transform-origin: bottom right;
+              }
+            }
+            @media (max-width: 480px) {
+              .claim-btn-floating-container {
+                right: 0.5rem;
+                bottom: 0.5rem;
+                transform: scale(0.55) !important;
+              }
+            }
+          `}</style>
           {/* Comic-Style Starburst Teaser */}
           <motion.div
             onClick={() => setIsScratchCardOpen(true)}
@@ -291,7 +308,7 @@ export default function Home() {
                 pointerEvents: 'none',
                 filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.2))'
               }}>
-                <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%', fill: 'white' }}>
+                <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%', fill: '#e61e25' }}>
                    <path d="M50 2 L56 18 L70 8 L72 25 L88 20 L82 35 L98 40 L88 50 L98 60 L82 65 L88 80 L72 75 L70 92 L56 82 L50 98 L44 82 L30 92 L28 75 L12 80 L18 65 L2 60 L12 50 L2 40 L18 35 L12 20 L28 25 L30 8 L44 18 Z" />
                 </svg>
               </div>
@@ -323,7 +340,7 @@ export default function Home() {
                   pointerEvents: 'none'
               }}>
                   <span style={{ 
-                      color: '#000', 
+                      color: '#fff', 
                       fontSize: '18px', 
                       fontWeight: 950, 
                       lineHeight: 1, 
@@ -333,7 +350,7 @@ export default function Home() {
                   </span>
                   
                   <span style={{ 
-                      color: '#000', 
+                      color: '#fff', 
                       fontSize: '32px', 
                       fontWeight: 950, 
                       lineHeight: 0.9, 
