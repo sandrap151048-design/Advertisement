@@ -268,9 +268,9 @@ export default function Home() {
             }
             @media (max-width: 480px) {
               .claim-btn-floating-container {
-                right: 0.2rem !important;
-                bottom: 0.2rem !important;
-                transform: scale(0.38) translateZ(600px) !important;
+                right: 0.1rem !important;
+                bottom: 0.1rem !important;
+                transform: scale(0.32) translateZ(600px) !important;
                 transform-origin: bottom right;
               }
             }
