@@ -624,8 +624,12 @@ export default function AboutPage() {
             align-items: center;
             justify-content: center;
           }
-          .hero-title { font-size: clamp(2.2rem, 10vw, 3.5rem); letter-spacing: -1px; margin-bottom: 1.5rem; }
-          .hero-desc { font-size: 1.1rem; line-height: 1.5; }
+          .hero-content {
+            text-align: center !important;
+            padding: 1rem !important;
+          }
+          .hero-title { font-size: clamp(2.1rem, 10vw, 3rem); letter-spacing: -1px; margin-bottom: 1rem; text-align: center; }
+          .hero-desc { font-size: 1rem; line-height: 1.5; text-align: center; }
         }
       `}</style>
 

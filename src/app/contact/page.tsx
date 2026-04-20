@@ -458,23 +458,30 @@ export default function ContactPage() {
 
         @media (max-width: 768px) {
           .contact-hero {
-            padding: 60px 1.5rem 30px;
+            padding: 80px 1.5rem 40px;
             min-height: 100svh;
             height: auto;
             display: flex;
             align-items: center;
             justify-content: center;
+            text-align: center;
           }
           .contact-hero-content {
-            gap: 0.5rem;
+            gap: 1rem;
+            text-align: center;
+            align-items: center;
+            flex-direction: column;
           }
           .hero-right {
-            gap: 0.8rem;
+            gap: 1.2rem;
+            text-align: center;
+            align-items: center;
           }
           .contact-hero-title {
-            font-size: 2.8rem;
+            font-size: clamp(2rem, 10vw, 2.8rem);
             letter-spacing: -1px;
             margin-bottom: 0.5rem;
+            text-align: center;
           }
           .contact-hero-text {
             font-size: 0.95rem;

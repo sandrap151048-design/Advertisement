@@ -562,9 +562,18 @@ function ProjectsContent() {
                 }
 
                 @media (max-width: 768px) {
-                    .hero-works { height: auto; min-height: 100svh; padding: 140px 1.5rem 80px; display: flex; align-items: center; justify-content: center; flex-direction: column; }
-                    .hero-works-h1 { font-size: clamp(2rem, 8vw, 3rem); word-break: break-word; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -1px; }
-                    .hero-works-tagline { font-size: 1rem; letter-spacing: 3px; }
+                    .hero-works { 
+                        height: auto; 
+                        min-height: 100svh; 
+                        padding: 100px 1.5rem 60px; 
+                        display: flex; 
+                        align-items: center; 
+                        justify-content: center; 
+                        flex-direction: column; 
+                        text-align: center;
+                    }
+                    .hero-works-h1 { font-size: clamp(2rem, 10vw, 2.8rem); word-break: break-word; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -1px; text-align: center; }
+                    .hero-works-tagline { font-size: 0.9rem; letter-spacing: 2px; text-align: center; margin-bottom: 1rem; }
                     .project-cluster { margin-bottom: 4rem; display: flex !important; flex-direction: column !important; gap: 1.5rem !important; }
                     .cluster-img { height: 320px; }
                     .cluster-images { grid-template-columns: 1fr; gap: 1rem; order: 2 !important; width: 100% !important; }
