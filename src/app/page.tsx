@@ -260,17 +260,18 @@ export default function Home() {
           <style jsx>{`
             @media (max-width: 768px) {
               .claim-btn-floating-container {
-                right: 1.5rem !important;
-                bottom: 1.5rem !important;
+                right: 1.2rem !important;
+                bottom: 1.2rem !important;
                 transform: scale(0.5) translateZ(500px) !important;
                 transform-origin: bottom right;
               }
             }
             @media (max-width: 480px) {
               .claim-btn-floating-container {
-                right: 0.5rem !important;
-                bottom: 0.5rem !important;
-                transform: scale(0.4) translateZ(600px) !important;
+                right: 0.2rem !important;
+                bottom: 0.2rem !important;
+                transform: scale(0.38) translateZ(600px) !important;
+                transform-origin: bottom right;
               }
             }
           `}</style>
