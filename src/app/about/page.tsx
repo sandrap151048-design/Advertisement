@@ -170,7 +170,7 @@ export default function AboutPage() {
         }
 
         .hero-title {
-          font-size: clamp(3rem, 10vw, 6.5rem);
+          font-size: clamp(2.5rem, 8vw, 4.5rem);
           font-weight: 950;
           line-height: 0.95;
           margin-bottom: 2rem;
@@ -751,7 +751,7 @@ export default function AboutPage() {
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <h2 style={{ fontSize: '3rem' }}>Our Core <span className="italic" style={{ color: '#e61e25', fontStyle: 'italic', fontWeight: 'inherit' }}>Services</span></h2>
+            <h2 style={{ fontSize: '2.5rem' }}>Our Core <span className="italic" style={{ color: '#e61e25', fontStyle: 'italic', fontWeight: 'inherit' }}>Services</span></h2>
             <p style={{ fontWeight: 400 }}>Comprehensive branding and signage solutions tailored for the UAE market.</p>
           </motion.div>
 

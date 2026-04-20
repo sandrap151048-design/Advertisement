@@ -6,8 +6,10 @@ import {
     ArrowRight, 
     Image as ImageIcon,
     Layout,
-    Loader2
+    Loader2,
+    Megaphone
 } from 'lucide-react';
+import PremiumScratchCard from '@/components/PremiumScratchCard';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -122,6 +124,7 @@ function ProjectsContent() {
     const [filterCategory, setFilterCategory] = useState('All');
     const [dynamicProjects, setDynamicProjects] = useState<Project[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [isScratchCardOpen, setIsScratchCardOpen] = useState(false);
 
     // 3D Parallax Mouse Tracking
     const mouseX = useMotionValue(0.5);
@@ -348,7 +351,7 @@ function ProjectsContent() {
                     pointer-events: none;
                 }
                 .hero-works-h1 {
-                    font-size: clamp(3rem, 10vw, 7.5rem);
+                    font-size: clamp(2.5rem, 8vw, 4.5rem);
                     font-weight: 950;
                     color: white;
                     letter-spacing: -3px;
@@ -410,16 +413,12 @@ function ProjectsContent() {
                 
                 .category-nav {
                     display: flex;
-                    justify-content: flex-start;
+                    justify-content: center;
                     gap: 12px;
-                    flex-wrap: nowrap;
+                    flex-wrap: wrap;
                     margin-bottom: 50px;
                     padding: 10px 20px 20px 20px;
-                    overflow-x: auto;
-                    -webkit-overflow-scrolling: touch;
-                    scrollbar-width: none;
-                }
-                .category-nav::-webkit-scrollbar {
+                }.category-nav::-webkit-scrollbar {
                     display: none;
                 }
                 .cat-btn {
@@ -580,14 +579,38 @@ function ProjectsContent() {
                     .project-overview-glass { padding: 3.5rem 1.5rem; border-radius: 20px; margin: 0 1rem; }
                     .cta-btn-pill { width: 100%; justify-content: center; margin-top: 1.5rem; padding: 1rem 2rem; }
                     .container { padding: 0 1.5rem !important; }
+                    .category-nav { justify-content: center; flex-wrap: wrap; gap: 8px; }
                 }
 
+                /* Extended Offer Badge Styles */
+                .claim-btn-floating-container {
+                  position: fixed !important;
+                  right: 2rem !important;
+                  bottom: 2rem !important;
+                  left: auto !important;
+                  margin: 0 !important;
+                  z-index: 99999 !important;
+                  pointer-events: auto !important;
+                  transform-style: preserve-3d;
+                  transform: translateZ(500px);
+                  touch-action: manipulation;
+                  width: fit-content !important;
+                }
+                @media (max-width: 768px) {
+                  .claim-btn-floating-container {
+                    right: 1rem;
+                    bottom: 1rem;
+                    transform: scale(0.75) translateZ(500px) !important;
+                    transform-origin: bottom right;
+                  }
+                }
                 @media (max-width: 480px) {
-                    .hero-works-h1 { font-size: 2.4rem; }
-                    .title-our { font-size: 2rem; }
-                    .cluster-title { font-size: 1.5rem; }
-                    .cluster-img { height: 280px; }
-                    .cluster-text { padding: 1.5rem 1rem; }
+                  .claim-btn-floating-container {
+                    right: 0.5rem !important;
+                    bottom: 1.5rem !important;
+                    left: auto !important;
+                    transform: scale(0.6) translateZ(600px) !important;
+                  }
                 }
             `}</style>
 
@@ -623,12 +646,13 @@ function ProjectsContent() {
                         Our <motion.span
                             animate={{ 
                                 textShadow: [
-                                    "0px 0px 10px rgba(230,30,37,0.5)",
-                                    "0px 0px 40px rgba(230,30,37,1)",
-                                    "0px 0px 10px rgba(230,30,37,0.5)"
+                                    "0px 0px 10px rgba(230,30,37,0.3)",
+                                    "0px 0px 30px rgba(230,30,37,0.7)",
+                                    "0px 0px 10px rgba(230,30,37,0.3)"
                                 ]
                             }}
                             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                            style={{ color: '#e61e25', display: 'inline-block' }}
                         >Impact</motion.span>
                     </motion.h1>
                     <motion.div 
@@ -640,6 +664,7 @@ function ProjectsContent() {
                         Real campaigns. Real impact.
                     </motion.div>
                 </motion.div>
+
             </header>
 
             <section className="section-header">
@@ -879,6 +904,15 @@ function ProjectsContent() {
                     </motion.div>
                 </motion.div>
             </section>
+
+
+
+            {isScratchCardOpen && (
+                <PremiumScratchCard 
+                    isOpen={isScratchCardOpen} 
+                    onClose={() => setIsScratchCardOpen(false)} 
+                />
+            )}
         </div>
     );
 }

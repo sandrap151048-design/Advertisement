@@ -56,7 +56,7 @@ export default function Navbar() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              padding: '6px 16px',
+              padding: '8px 24px',
             }}
           >
             {/* Logo */}

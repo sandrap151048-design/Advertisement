@@ -240,37 +240,46 @@ export default function Home() {
 
         <motion.div 
           className="claim-btn-floating-container"
-          initial={{ opacity: 0, y: 50, scale: 0 }}
+          initial={{ opacity: 0, y: 100, scale: 0 }}
           animate={{ opacity: 1, y: 0, scale: 0.75 }}
           transition={{ delay: 1.5, type: "spring", stiffness: 260, damping: 20 }}
+          style={{ 
+            position: 'absolute', 
+            bottom: '2rem', 
+            right: '2rem', 
+            zIndex: 99999, 
+            pointerEvents: 'auto',
+            transformStyle: 'preserve-3d',
+            transform: 'translateZ(500px)',
+            width: 'fit-content',
+            margin: 0,
+            left: 'auto',
+            top: 'auto'
+          }}
         >
           <style jsx>{`
-            .claim-btn-floating-container {
-              position: absolute;
-              right: 2rem;
-              bottom: 2rem;
-              z-index: 1000;
-              pointer-events: auto;
-            }
             @media (max-width: 768px) {
               .claim-btn-floating-container {
-                right: 1rem;
-                bottom: 1rem;
-                transform: scale(0.65) !important;
+                right: 1rem !important;
+                bottom: 1rem !important;
+                transform: scale(0.75) translateZ(500px) !important;
                 transform-origin: bottom right;
               }
             }
             @media (max-width: 480px) {
               .claim-btn-floating-container {
-                right: 0.5rem;
-                bottom: 0.5rem;
-                transform: scale(0.55) !important;
+                right: 0.5rem !important;
+                bottom: 0.5rem !important;
+                transform: scale(0.6) translateZ(600px) !important;
               }
             }
           `}</style>
           {/* Comic-Style Starburst Teaser */}
           <motion.div
-            onClick={() => setIsScratchCardOpen(true)}
+            onTap={() => {
+              console.log("Home Badge Tapped");
+              setIsScratchCardOpen(true);
+            }}
             initial={{ scale: 0 }}
             animate={{ 
               scale: [0.75, 1.1, 1],
@@ -283,7 +292,7 @@ export default function Home() {
               rotate: { duration: 4, repeat: Infinity, ease: "easeInOut" }
             }}
             whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileTap={{ scale: 0.9 }}
             style={{
                 position: 'relative',
                 width: '180px',
@@ -294,7 +303,9 @@ export default function Home() {
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                pointerEvents: 'auto',
+                WebkitTapHighlightColor: 'transparent'
             }}
           >
               {/* White Starburst Shape */}
@@ -306,7 +317,7 @@ export default function Home() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 pointerEvents: 'none',
-                filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.2))'
+                filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.3))'
               }}>
                 <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%', fill: '#e61e25' }}>
                    <path d="M50 2 L56 18 L70 8 L72 25 L88 20 L82 35 L98 40 L88 50 L98 60 L82 65 L88 80 L72 75 L70 92 L56 82 L50 98 L44 82 L30 92 L28 75 L12 80 L18 65 L2 60 L12 50 L2 40 L18 35 L12 20 L28 25 L30 8 L44 18 Z" />
@@ -323,7 +334,8 @@ export default function Home() {
                 borderRadius: '50%',
                 boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
                 zIndex: 15,
-                transform: 'rotate(15deg)'
+                transform: 'rotate(15deg)',
+                pointerEvents: 'none'
               }}>
                 <Megaphone size={24} color="#000" fill="#000" />
               </div>

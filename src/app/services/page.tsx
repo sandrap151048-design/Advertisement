@@ -259,7 +259,7 @@ export default function ServicesPage() {
         }
 
         .hero-title {
-          font-size: clamp(2.5rem, 8vw, 5.5rem);
+          font-size: clamp(2.5rem, 8vw, 4.5rem);
           font-weight: 950;
           line-height: 1.05;
           margin-bottom: 1.5rem;

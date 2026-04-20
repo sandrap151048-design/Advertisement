@@ -456,16 +456,18 @@ export default function ContactPage() {
 
         @media (max-width: 768px) {
           .contact-hero {
-            padding: 140px 16px 50px;
+            padding: 80px 16px 60px;
             min-height: 100vh;
           }
           .contact-hero-title {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             letter-spacing: -1px;
+            margin-bottom: 0.5rem;
           }
           .contact-hero-text {
-            font-size: 0.92rem;
+            font-size: 0.95rem;
             line-height: 1.6;
+            margin-bottom: 2rem;
           }
           .hero-cta-button {
             margin: 0 auto;
@@ -496,10 +498,10 @@ export default function ContactPage() {
 
         @media (max-width: 480px) {
           .contact-hero {
-            padding: 150px 16px 40px;
+            padding: 90px 16px 40px;
           }
           .contact-hero-title {
-            font-size: 2rem;
+            font-size: 2.22rem;
           }
           .contact-hero-text {
             font-size: 0.88rem;
