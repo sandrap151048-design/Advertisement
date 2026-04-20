@@ -221,7 +221,7 @@ export default function ServicesPage() {
           align-items: center;
           justify-content: center;
           overflow: hidden;
-          padding-top: 140px;
+          padding: 160px 1.5rem 80px;
           background-color: transparent;
           perspective: 1500px;
         }
@@ -585,8 +585,11 @@ export default function ServicesPage() {
         @media (max-width: 768px) {
           .hero-services {
             height: auto;
-            min-height: 100svh;
-            padding: 140px 1.5rem 80px 1.5rem;
+            min-height: 80vh;
+            padding: 120px 1.5rem 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
 
           .hero-title {
@@ -638,8 +641,12 @@ export default function ServicesPage() {
         }
 
         @media (max-width: 480px) {
+          .hero-services {
+            min-height: 70vh !important;
+            padding: 100px 1rem 40px !important;
+          }
           .hero-title {
-            font-size: 2.22rem;
+            font-size: 2.1rem;
             line-height: 1.2;
           }
 
