@@ -481,12 +481,18 @@ export default function ContactPage() {
 
         @media (max-width: 768px) {
           .contact-hero {
-            padding: 120px 16px 60px;
+            padding: 80px 1.5rem 40px;
             min-height: 100svh;
             height: auto;
             display: flex;
             align-items: center;
             justify-content: center;
+          }
+          .contact-hero-content {
+            gap: 1rem;
+          }
+          .hero-right {
+            gap: 1.2rem;
           }
           .contact-hero-title {
             font-size: 2.8rem;
@@ -496,7 +502,7 @@ export default function ContactPage() {
           .contact-hero-text {
             font-size: 0.95rem;
             line-height: 1.6;
-            margin-bottom: 2rem;
+            margin-bottom: 0.5rem;
           }
           .hero-cta-button {
             margin: 0 auto;
@@ -529,7 +535,7 @@ export default function ContactPage() {
 
         @media (max-width: 480px) {
           .contact-hero {
-            padding: 120px 16px 60px !important;
+            padding: 80px 1rem 40px !important;
             min-height: 100svh !important;
             display: flex !important;
             flex-direction: column !important;
@@ -537,11 +543,10 @@ export default function ContactPage() {
             text-align: center !important;
           }
           .contact-hero-content {
-            flex-direction: column !important;
-            gap: 1.5rem !important;
-            text-align: center !important;
+            gap: 1rem !important;
           }
           .hero-right {
+            gap: 1rem !important;
             text-align: center !important;
             max-width: 100% !important;
           }
