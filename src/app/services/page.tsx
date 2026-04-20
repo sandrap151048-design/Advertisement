@@ -205,7 +205,7 @@ export default function ServicesPage() {
 
   return (
     <>
-      <style jsx global>{`
+      <style jsx>{`
 
         .services-page {
           background: transparent;
@@ -259,7 +259,7 @@ export default function ServicesPage() {
         }
 
         .hero-title {
-          font-size: clamp(2.5rem, 8vw, 4.5rem);
+          font-size: clamp(1.8rem, 5vw, 2.8rem);
           font-weight: 950;
           line-height: 1.05;
           margin-bottom: 1.5rem;
