@@ -204,10 +204,7 @@ export default function ContactPage() {
 
         @media (max-width: 768px) {
           .contact-floating-badge {
-            bottom: 1rem;
-            right: 1rem;
-            transform: scale(0.7) translateZ(200px);
-            transform-origin: bottom right;
+            display: none;
           }
         }
 
@@ -485,7 +482,7 @@ export default function ContactPage() {
         @media (max-width: 768px) {
           .contact-hero {
             padding: 120px 16px 60px;
-            min-height: 80vh;
+            min-height: 100svh;
             height: auto;
             display: flex;
             align-items: center;
@@ -530,8 +527,8 @@ export default function ContactPage() {
 
         @media (max-width: 480px) {
           .contact-hero {
-            padding: 100px 16px 40px !important;
-            min-height: 70vh !important;
+            padding: 120px 16px 60px !important;
+            min-height: 100svh !important;
             display: flex !important;
             flex-direction: column !important;
             justify-content: center !important;
