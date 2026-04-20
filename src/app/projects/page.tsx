@@ -909,7 +909,6 @@ function ProjectsContent() {
 
             {isScratchCardOpen && (
                 <PremiumScratchCard 
-                    isOpen={isScratchCardOpen} 
                     onClose={() => setIsScratchCardOpen(false)} 
                 />
             )}
