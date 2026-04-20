@@ -500,8 +500,10 @@ export default function ContactPage() {
           }
           .hero-cta-button {
             margin: 0 auto;
-            width: 100%;
-            max-width: 280px;
+            width: auto;
+            max-width: fit-content;
+            padding: 0.8rem 2rem;
+            font-size: 0.9rem;
           }
           .touch-container {
             padding: 4rem 1.5rem;
