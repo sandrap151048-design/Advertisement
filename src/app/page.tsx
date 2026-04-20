@@ -270,7 +270,7 @@ export default function Home() {
               .claim-btn-floating-container {
                 right: 0.5rem !important;
                 bottom: 0.5rem !important;
-                transform: scale(0.6) translateZ(600px) !important;
+                transform: scale(0.48) translateZ(600px) !important;
               }
             }
           `}</style>
