@@ -119,7 +119,7 @@ export default function AboutPage() {
 
   return (
     <>
-      <style jsx>{`
+      <style jsx global>{`
         .about-page {
           background: transparent;
           color: #ffffff;
@@ -170,7 +170,7 @@ export default function AboutPage() {
         }
 
         .hero-title {
-          font-size: clamp(1.8rem, 5vw, 2.8rem);
+          font-size: clamp(2.5rem, 8vw, 4.5rem);
           font-weight: 950;
           line-height: 0.95;
           margin-bottom: 2rem;

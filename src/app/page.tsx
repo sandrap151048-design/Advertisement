@@ -241,12 +241,12 @@ export default function Home() {
         <motion.div 
           className="claim-btn-floating-container"
           initial={{ opacity: 0, y: 100, scale: 0 }}
-          animate={{ opacity: 1, y: 0, scale: 0.65 }}
+          animate={{ opacity: 1, y: 0, scale: 0.45 }}
           transition={{ delay: 1.5, type: "spring", stiffness: 260, damping: 20 }}
           style={{ 
             position: 'absolute', 
-            bottom: '2rem', 
-            right: '2rem', 
+            bottom: '1rem', 
+            right: '1rem', 
             zIndex: 99999, 
             pointerEvents: 'auto',
             transformStyle: 'preserve-3d',
@@ -254,23 +254,24 @@ export default function Home() {
             width: 'fit-content',
             margin: 0,
             left: 'auto',
-            top: 'auto'
+            top: 'auto',
+            transformOrigin: 'bottom right'
           }}
         >
           <style jsx>{`
             @media (max-width: 768px) {
               .claim-btn-floating-container {
-                right: 1.2rem !important;
-                bottom: 1.2rem !important;
-                transform: scale(0.5) translateZ(500px) !important;
+                right: 0.5rem !important;
+                bottom: 0.5rem !important;
+                transform: scale(0.35) translateZ(500px) !important;
                 transform-origin: bottom right;
               }
             }
             @media (max-width: 480px) {
               .claim-btn-floating-container {
-                right: 0.1rem !important;
-                bottom: 0.1rem !important;
-                transform: scale(0.32) translateZ(600px) !important;
+                right: 0 !important;
+                bottom: 0 !important;
+                transform: scale(0.25) translateZ(600px) !important;
                 transform-origin: bottom right;
               }
             }
