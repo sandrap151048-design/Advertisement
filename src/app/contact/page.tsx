@@ -456,8 +456,12 @@ export default function ContactPage() {
 
         @media (max-width: 768px) {
           .contact-hero {
-            padding: 80px 16px 60px;
-            min-height: 100vh;
+            padding: 120px 16px 60px;
+            min-height: 80vh;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
           .contact-hero-title {
             font-size: 2.8rem;
