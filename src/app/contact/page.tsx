@@ -191,30 +191,7 @@ export default function ContactPage() {
           box-shadow: 0 20px 40px rgba(230, 30, 37, 0.5);
         }
 
-        /* Floating Badge */
-        .contact-floating-badge {
-          position: absolute;
-          bottom: 2rem;
-          right: 2rem;
-          z-index: 20;
-          cursor: pointer;
-          transform-style: preserve-3d;
-          transform: translateZ(200px);
-        }
 
-        @media (max-width: 768px) {
-          .contact-floating-badge {
-            display: none;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .contact-floating-badge {
-            bottom: -20px;
-            right: -20px;
-            transform: scale(0.55) translateZ(250px);
-          }
-        }
 
         /* Get In Touch Section */
         .touch-container {
@@ -611,31 +588,7 @@ export default function ContactPage() {
             </motion.div>
           </motion.div>
 
-          {/* Interactive Floating Badge */}
-          <motion.div 
-            className="contact-floating-badge"
-            initial={{ scale: 0, rotate: -45 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ delay: 1, type: "spring", stiffness: 200 }}
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <div style={{
-              position: 'relative',
-              width: '140px',
-              height: '140px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
-              <svg viewBox="0 0 100 100" style={{ position: 'absolute', width: '100%', height: '100%', fill: '#e61e25', filter: 'drop-shadow(0 8px 15px rgba(0,0,0,0.3))' }}>
-                <path d="M50 0 L61 15 L78 5 L80 25 L98 25 L90 42 L100 55 L85 65 L88 85 L70 82 L60 100 L45 88 L25 98 L20 80 L2 75 L15 58 L0 45 L18 35 L12 15 L32 20 L40 0 Z" />
-              </svg>
-              <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', color: 'white', fontWeight: 950, fontSize: '14px', lineHeight: 1.1 }}>
-                SECURE<br />YOUR<br /><span style={{ fontSize: '20px' }}>SPOT</span>
-              </div>
-            </div>
-          </motion.div>
+
         </section>
 
         {/* Get In Touch Section */}
