@@ -585,8 +585,8 @@ export default function ServicesPage() {
         @media (max-width: 768px) {
           .hero-services {
             height: auto;
-            min-height: 80vh;
-            padding: 120px 1.5rem 60px;
+            min-height: 100svh;
+            padding: 140px 1.5rem 80px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -642,11 +642,11 @@ export default function ServicesPage() {
 
         @media (max-width: 480px) {
           .hero-services {
-            min-height: 70vh !important;
+            min-height: 100svh !important;
             padding: 100px 1rem 40px !important;
           }
           .hero-title {
-            font-size: 2.1rem;
+            font-size: clamp(2rem, 10vw, 2.5rem);
             line-height: 1.2;
           }
 

@@ -562,7 +562,7 @@ function ProjectsContent() {
                 }
 
                 @media (max-width: 768px) {
-                    .hero-works { height: auto; min-height: 80vh; padding: 120px 1.5rem 60px; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+                    .hero-works { height: auto; min-height: 100svh; padding: 140px 1.5rem 80px; display: flex; align-items: center; justify-content: center; flex-direction: column; }
                     .hero-works-h1 { font-size: clamp(2rem, 8vw, 3rem); word-break: break-word; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -1px; }
                     .hero-works-tagline { font-size: 1rem; letter-spacing: 3px; }
                     .project-cluster { margin-bottom: 4rem; display: flex !important; flex-direction: column !important; gap: 1.5rem !important; }
@@ -582,7 +582,7 @@ function ProjectsContent() {
                     .category-nav { justify-content: center; flex-wrap: wrap; gap: 8px; }
                 }
                 @media (max-width: 480px) {
-                    .hero-works { min-height: 70vh !important; padding: 100px 1rem 40px !important; }
+                    .hero-works { min-height: 100svh !important; padding: 100px 1rem 40px !important; }
                     .hero-works-h1 { font-size: 1.85rem !important; }
                 }
 

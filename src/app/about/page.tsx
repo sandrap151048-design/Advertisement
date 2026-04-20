@@ -616,12 +616,16 @@ export default function AboutPage() {
         }
 
         @media (max-width: 768px) {
-          .profile-grid, .vision-mission-grid, .process-grid, .compliance-grid, .industries-grid, .services-summary-grid {
-            grid-template-columns: 1fr;
+          .hero-section {
+            height: auto;
+            min-height: 100svh;
+            padding: 140px 1.5rem 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
-          .hero-title { font-size: 3.5rem; }
-          .section-header h2 { font-size: 2.5rem; }
-          .commitment-content h2 { font-size: 2.5rem; }
+          .hero-title { font-size: clamp(2.2rem, 10vw, 3.5rem); letter-spacing: -1px; margin-bottom: 1.5rem; }
+          .hero-desc { font-size: 1.1rem; line-height: 1.5; }
         }
       `}</style>
 
