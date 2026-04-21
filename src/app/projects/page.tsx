@@ -565,19 +565,39 @@ function ProjectsContent() {
                     .hero-works { 
                         height: auto; 
                         min-height: 100svh; 
-                        padding: 100px 1.5rem 60px; 
+                        padding: 120px 1.5rem 80px; 
                         display: flex; 
                         align-items: center; 
                         justify-content: center; 
                         flex-direction: column; 
                         text-align: center;
                     }
-                    .hero-works-h1 { font-size: clamp(2rem, 10vw, 2.8rem); word-break: break-word; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -1px; text-align: center; }
-                    .hero-works-tagline { font-size: 0.9rem; letter-spacing: 2px; text-align: center; margin-bottom: 1rem; }
+                    .hero-works-content {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    .hero-works-h1 { 
+                        font-size: clamp(2.2rem, 10vw, 3.2rem); 
+                        word-break: keep-all; 
+                        line-height: 1.1; 
+                        margin-bottom: 1.5rem; 
+                        letter-spacing: -1px; 
+                        text-align: center; 
+                    }
+                    .hero-works-tagline { 
+                        font-size: 1rem; 
+                        letter-spacing: 2px; 
+                        text-align: center; 
+                        margin-bottom: 2rem; 
+                        max-width: 90%;
+                    }
                     .project-cluster { margin-bottom: 4rem; display: flex !important; flex-direction: column !important; gap: 1.5rem !important; }
                     .cluster-img { height: 320px; }
                     .cluster-images { grid-template-columns: 1fr; gap: 1rem; order: 2 !important; width: 100% !important; }
-                    .cluster-text { padding: 2rem 1.25rem; order: 1 !important; text-align: center; border-radius: 20px; }
+                    .cluster-text { padding: 2.5rem 1.5rem; order: 1 !important; text-align: center; border-radius: 20px; }
                     .cluster-title { font-size: 1.8rem; margin-bottom: 1rem; }
                     .section-header { padding: 4rem 1rem 2rem 1rem; }
                     .title-our { font-size: 2.2rem; gap: 10px; }
